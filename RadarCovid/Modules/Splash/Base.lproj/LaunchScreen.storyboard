@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="semiCircle" translatesAutoresizingMaskIntoConstraints="NO" id="OnQ-sI-clw">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoronaSplashLogo" translatesAutoresizingMaskIntoConstraints="NO" id="QDl-UO-gnJ">
+                                <rect key="frame" x="71.666666666666686" y="403" width="271" height="100.33333333333331"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GobImage" translatesAutoresizingMaskIntoConstraints="NO" id="gVN-sk-NJh">
+                                <rect key="frame" x="122.66666666666669" y="94" width="169" height="80"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="bgColor"/>
+                        <constraints>
+                            <constraint firstItem="gVN-sk-NJh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="CZg-Yy-B1W"/>
+                            <constraint firstItem="QDl-UO-gnJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="JAi-ki-L0q"/>
+                            <constraint firstItem="OnQ-sI-clw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-44" id="aez-Kz-COi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OnQ-sI-clw" secondAttribute="trailing" id="ftN-MJ-8mB"/>
+                            <constraint firstItem="gVN-sk-NJh" firstAttribute="centerX" secondItem="OnQ-sI-clw" secondAttribute="centerX" id="kFy-0q-LVw"/>
+                            <constraint firstItem="QDl-UO-gnJ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="mme-iN-3mA"/>
+                            <constraint firstItem="OnQ-sI-clw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uee-9D-KaT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OnQ-sI-clw" secondAttribute="bottom" constant="-34" id="vIF-eG-dW7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="50.724637681159422" y="373.66071428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="CoronaSplashLogo" width="271" height="100.33333587646484"/>
+        <image name="GobImage" width="169" height="80"/>
+        <image name="semiCircle" width="375" height="812"/>
+        <namedColor name="bgColor">
+            <color red="0.98039215686274506" green="0.97647058823529409" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

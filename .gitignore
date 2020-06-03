@@ -1,0 +1,11 @@
+Pods
+.DSStore
+.DS_Store
+Package.resolved
+Podfile.lock
+node_modules
+package-lock.json
+RadarCovid.xcworkspace/xcuserdata
+RadarCovid.xcodeproj/project.xcworkspace/xcuserdata
+
+*.xcuserstate
