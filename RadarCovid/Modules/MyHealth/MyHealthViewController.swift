@@ -12,7 +12,7 @@
 import UIKit
 import RxSwift
 
-class MyHealthViewController: UIViewController {
+class MyHealthViewController: UIViewController, UITextFieldDelegate {
     private let disposeBag = DisposeBag()
 
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
@@ -115,6 +115,7 @@ class MyHealthViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        codeTextField.delegate = self
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -226,6 +227,21 @@ class MyHealthViewController: UIViewController {
         // move back the root view origin to zero
         self.scrollViewBottonConstraint.constant = 0
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+       if let x = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
+              guard let textFieldText = textField.text,
+                  let rangeOfTextToReplace = Range(range, in: textFieldText) else {
+                      return false
+              }
+            let substringToReplace = textFieldText[rangeOfTextToReplace]
+            let count = textFieldText.count - substringToReplace.count + string.count
+            return count <= 12
+        return true
+       } else {
+       return false
+    }
     }
 
 }
