@@ -31,9 +31,9 @@ open class Response<T> {
     }
 
     public convenience init(response: HTTPURLResponse, body: T?) {
-        let rawHeader = response.allHeaderFields as! [String: String]
+        let rawHeader = response.allHeaderFields
         var header = [String: String]()
-        for case let (key, value) in rawHeader {
+        for case let (key as String, value as String) in rawHeader {
             header[key] = value
         }
         self.init(statusCode: response.statusCode, header: header, body: body)
