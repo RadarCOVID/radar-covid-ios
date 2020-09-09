@@ -195,10 +195,10 @@ class Injection {
             appRouter.activatePush = r.resolve(ActivatePushNotificationViewController.self)!
         }
 
-        container.register(ProximityViewController.self) {  route in
+        container.register(ProximityViewController.self) {  r in
             let proxVC = ProximityViewController()
-            proxVC.radarStatusUseCase = route.resolve(RadarStatusUseCase.self)!
-            proxVC.router = route.resolve(AppRouter.self)!
+            proxVC.radarStatusUseCase = r.resolve(RadarStatusUseCase.self)!
+            proxVC.router = r.resolve(AppRouter.self)!
             return proxVC
         }
 
@@ -209,12 +209,12 @@ class Injection {
             ) as? ExpositionViewController ?? ExpositionViewController()
         }
 
-        container.register(HighExpositionViewController.self) {  route in
+        container.register(HighExpositionViewController.self) {  r in
             let highExposition = self.createViewController(
                 storyboard: "HighExposition",
                 viewId: "HighExpositionViewController")
             as? HighExpositionViewController ?? HighExpositionViewController()
-            highExposition.ccaUseCase = route.resolve(CCAAUseCase.self)!
+            highExposition.ccaUseCase = r.resolve(CCAAUseCase.self)!
             return highExposition
         }
 
@@ -226,14 +226,15 @@ class Injection {
 
         }
 
-        container.register(HomeViewController.self) {  route in
+        container.register(HomeViewController.self) {  r in
             let homeVC = self.createViewController(
                 storyboard: "Home",
                 viewId: "HomeViewController"
             ) as? HomeViewController
-            homeVC?.router = route.resolve(AppRouter.self)!
-            homeVC?.viewModel = route.resolve(HomeViewModel.self)!
-            homeVC?.timeExposedDismissedUseCase = route.resolve(TimeExposedDismissedUseCase.self)!
+            homeVC?.router = r.resolve(AppRouter.self)!
+            homeVC?.viewModel = r.resolve(HomeViewModel.self)!
+            homeVC?.timeExposedDismissedUseCase = r.resolve(TimeExposedDismissedUseCase.self)!
+            homeVC?.errorHandler = r.resolve(ErrorHandler.self)!
             return homeVC!
         }
 

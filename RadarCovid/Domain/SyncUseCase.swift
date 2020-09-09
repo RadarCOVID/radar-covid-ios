@@ -43,7 +43,8 @@ class SyncUseCase {
 
             DP3TTracing.sync(runningInBackground: false) { result in
                 switch result {
-                case let .failure(error):                        observer.onError(error)
+                case let .failure(error):
+                    observer.onError(error)
                 default:
                     observer.onNext(())
                     observer.onCompleted()

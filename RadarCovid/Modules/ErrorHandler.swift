@@ -43,7 +43,7 @@ class ErrorHandlerImpl : ErrorHandler {
         }
         errorRecorder?.record(error: error)
         guard let dp3tError = error as? DP3TTracingError else {
-            showIfVervose(error, "Unexpected")
+            showIfVervose(error, error.localizedDescription)
             return
         }
         
@@ -91,7 +91,7 @@ class ErrorHandlerImpl : ErrorHandler {
     
     private func showIfVervose(_ error: Error, _ description: String) {
         if verbose {
-            showError(error, "DEBUG_ERROR: " + description)
+            showError(error, "DEBUG_ERROR: \(description)")
         }
     }
     

@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
     private let circleGray = UIImage(named: "circle")?.grayScale
     
     var timeExposedDismissedUseCase: TimeExposedDismissedUseCase?
-    var errorHandler: ErrorHandler?
+    var errorHandler: ErrorHandler!
     
     @IBOutlet weak var popupButton: UIButton!
     
@@ -95,12 +95,6 @@ class HomeViewController: UIViewController {
             buttonTitle: "ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON".localized,
             buttonVoiceover: "ACC_HINT".localized) { (_) in
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-        }
-    }
-    
-    func showBluethothMessage() {
-        self.showAlertOk(title: "ALERT_HOME_COVID_NOTIFICATION_TITLE".localized, message: "HOME_COVID_NOTIFICATION_POPUP_INACTIVE_BLUETOOTH".localized, buttonTitle: "ALERT_OK_BUTTON".localized) { (action) in
-            //Bluetooth action
         }
     }
     
@@ -256,30 +250,6 @@ class HomeViewController: UIViewController {
         moreinfo.isHidden = false
     }
 
-    private func setErrorState(_ error: DomainError?) {
-
-        if error == nil {
-            notificationInactiveMessage.isHidden = true
-            activateNotificationButton.isHidden = true
-            topActiveNotification.priority = .defaultLow
-            topRadarTitle.priority = .defaultHigh
-        }
-        else if error == DomainError.BluetoothTurnedOff {
-            notificationInactiveMessage.isHidden = false
-            activateNotificationButton.isHidden = false
-            topActiveNotification.priority = .defaultHigh
-            topRadarTitle.priority = .defaultLow
-            self.showBluethothMessage()
-        }
-        else {
-            notificationInactiveMessage.isHidden = false
-            activateNotificationButton.isHidden = false
-            topActiveNotification.priority = .defaultHigh
-            topRadarTitle.priority = .defaultLow
-            setImagesInactive(true)
-        }
-    }
-
     private func setImagesInactive(_ inactive: Bool) {
         if inactive {
             imageDefault.image = imageHomeGray
@@ -289,33 +259,70 @@ class HomeViewController: UIViewController {
             imageCircle.image = circle
         }
     }
+    private func setErrorState(_ error: DomainError?) {
 
+        if let error = error {
+            switch error {
+            case .bluetoothTurnedOff:
+                changeRadarMessage(status: .inactive)
+                notificationInactiveMessage.text = "HOME_BLUETOOTH_INACTIVE_MESSAGE".localized
+                showExtraMessage()
+                activateNotificationButton.isHidden = true
+            case .notAuthorized:
+                changeRadarMessage(status: .inactive)
+                notificationInactiveMessage.text = "HOME_NOTIFICATION_INACTIVE_MESSAGE".localized
+                activateNotificationButton.isHidden = false
+                showExtraMessage()
+            case .unexpected:
+               break
+            }
+        } else {
+            // Clean error state
+            hideExtraMessage()
+        }
+    }
+    
     private func changeRadarMessage(status: RadarStatus) {
         
         switch status {
         case .active:
-            radarTitle.text = "HOME_RADAR_TITLE_ACTIVE".localizedAttributed.string
-            radarMessage.text = "HOME_RADAR_CONTENT_ACTIVE".localizedAttributed.string
+            radarTitle.text = "HOME_RADAR_TITLE_ACTIVE".localized
+            radarMessage.text = "HOME_RADAR_CONTENT_ACTIVE".localized
             radarMessage.textColor = UIColor.black
             radarSwitch.isOn = true
             radarSwitch.accessibilityLabel = "ACC_BUTTON_DEACTIVATE_RADAR".localized
             setImagesInactive(false)
         case .inactive:
-            radarTitle.text = "HOME_RADAR_TITLE_INACTIVE".localizedAttributed.string
-            radarMessage.text = "HOME_RADAR_CONTENT_INACTIVE".localizedAttributed.string
+            radarTitle.text = "HOME_RADAR_TITLE_INACTIVE".localized
+            radarMessage.text = "HOME_RADAR_CONTENT_INACTIVE".localized
             radarMessage.textColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
             radarSwitch.isOn = false
             radarSwitch.accessibilityLabel = "ACC_BUTTON_ACTIVATE_RADAR".localized
             setImagesInactive(true)
         case .disabled:
-            radarTitle.text = "HOME_RADAR_TITLE_INACTIVE".localizedAttributed.string
-            radarMessage.text = "HOME_RADAR_MESSAGE_DISABLED".localizedAttributed.string
+            radarTitle.text = "HOME_RADAR_TITLE_INACTIVE".localized
+            radarMessage.text = "HOME_RADAR_MESSAGE_DISABLED".localized
             radarMessage.textColor = UIColor.black
             radarSwitch.isOn = false
             radarSwitch.accessibilityLabel = "ACC_BUTTON_ACTIVATE_RADAR".localized
             radarSwitch.isHidden = true
             setImagesInactive(false)
         }
+    }
+    
+    private func showExtraMessage() {
+        topActiveNotification.priority = .defaultHigh
+        topRadarTitle.priority = .defaultLow
+        notificationInactiveMessage.isHidden = false
+        activateNotificationButton.isHidden = false
+        radarSwitch.isEnabled = false
+    }
+    private func hideExtraMessage() {
+        topActiveNotification.priority = .defaultLow
+        topRadarTitle.priority = .defaultHigh
+        notificationInactiveMessage.isHidden = true
+        activateNotificationButton.isHidden = true
+        radarSwitch.isEnabled = true
     }
 
     private func showError(message: String?) {

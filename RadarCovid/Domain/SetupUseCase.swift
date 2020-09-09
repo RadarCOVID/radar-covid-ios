@@ -106,7 +106,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
             debugPrint("Error \(e)")
         }
 
-        return DomainError.Unexpected
+        return DomainError.unexpected
     }
 
 }

@@ -11,6 +11,7 @@
 
 import DP3TSDK
 import Foundation
+import ExposureNotification
 import RxSwift
 
 class ExpositionUseCase: DP3TTracingDelegate {
@@ -73,8 +74,8 @@ class ExpositionUseCase: DP3TTracingDelegate {
                 if let eis = tracingStatusToExpositionInfo(tStatus: state) {
                     subject.onNext(eis)
                 }
-            case .failure:
-                subject.onError("Error retrieving exposition status")
+            case let .failure(error):
+                subject.onError(error)
             }
         }
 
@@ -128,13 +129,18 @@ class ExpositionUseCase: DP3TTracingDelegate {
     private func dp3tTracingErrorToDomain(_ error: DP3TTracingError) -> DomainError? {
         switch error {
         case .bluetoothTurnedOff:
-            return .BluetoothTurnedOff
+            return .bluetoothTurnedOff
         case .permissonError:
-            return .NotAuthorized
+            return .notAuthorized
+        case let .exposureNotificationError(error: enError as ENError):
+            if enError.code == ENError.notAuthorized {
+                return .notAuthorized
+            }
+            return nil
         default:
-            debugPrint("Error State \(error)")
             return nil
         }
+
     }
 
 }

@@ -12,7 +12,7 @@
 import Foundation
 
 enum DomainError: String, Codable, Swift.Error {
-    case NotAuthorized
-    case BluetoothTurnedOff
-    case Unexpected
+    case notAuthorized
+    case bluetoothTurnedOff
+    case unexpected
 }

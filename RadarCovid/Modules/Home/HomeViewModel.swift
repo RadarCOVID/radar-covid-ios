@@ -36,6 +36,7 @@ class HomeViewModel {
     func changeRadarStatus(_ active: Bool) {
         radarStatusUseCase?.changeTracingStatus(active: active).subscribe(
             onNext: { [weak self] status in
+                self?.checkInitialExposition()
                 self?.radarStatus.onNext(status)
             }, onError: {  [weak self] error in
                 self?.error.onNext(error)

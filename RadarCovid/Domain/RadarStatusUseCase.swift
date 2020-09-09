@@ -69,7 +69,7 @@ class RadarStatusUseCase {
             observer.onNext(.disabled)
             observer.onCompleted()
         } else {
-            observer.onError("Error starting tracing. : \(error)")
+            observer.onError(error)
         }
     }
 
