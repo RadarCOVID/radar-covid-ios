@@ -42,7 +42,7 @@ public struct TextCustomMap: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: String.self)
 
-        var nonAdditionalPropertyKeys = Set<String>()
+        let nonAdditionalPropertyKeys = Set<String>()
         additionalProperties = try container.decodeMap(String.self, excludedKeys: nonAdditionalPropertyKeys)
     }
 
