@@ -24,7 +24,8 @@ class JailBreakDetect {
         #if arch(i386) || arch(x86_64)
             // This is a Simulator not an idevice
             return false
-        #endif
+
+        #else
 
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
@@ -54,6 +55,7 @@ class JailBreakDetect {
         } catch {
             return false
         }
+        #endif
     }
 
     static func canOpen(path: String) -> Bool {
