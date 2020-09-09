@@ -133,14 +133,6 @@
 		7603469B24F423E20038CFC7 /* CertificatePiningImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603469A24F423E20038CFC7 /* CertificatePiningImplementation.swift */; };
 		7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */; };
 		7603469E24F42DF70038CFC7 /* radarcovid.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */; };
-		760346A724F432430038CFC7 /* dp3tValidationKeyReleasePre in Resources */ = {isa = PBXBuildFile; fileRef = 7603469F24F432420038CFC7 /* dp3tValidationKeyReleasePre */; };
-		760346A824F432430038CFC7 /* verificationKeyReleasePro in Resources */ = {isa = PBXBuildFile; fileRef = 760346A024F432420038CFC7 /* verificationKeyReleasePro */; };
-		760346A924F432430038CFC7 /* verificationKeyDebugPre in Resources */ = {isa = PBXBuildFile; fileRef = 760346A124F432420038CFC7 /* verificationKeyDebugPre */; };
-		760346AA24F432430038CFC7 /* verificationKeyReleasePre in Resources */ = {isa = PBXBuildFile; fileRef = 760346A224F432430038CFC7 /* verificationKeyReleasePre */; };
-		760346AB24F432430038CFC7 /* verificationKeyDebugPro in Resources */ = {isa = PBXBuildFile; fileRef = 760346A324F432430038CFC7 /* verificationKeyDebugPro */; };
-		760346AC24F432430038CFC7 /* dp3tValidationKeyReleasePro in Resources */ = {isa = PBXBuildFile; fileRef = 760346A424F432430038CFC7 /* dp3tValidationKeyReleasePro */; };
-		760346AD24F432430038CFC7 /* dp3tValidationKeyDebugPro in Resources */ = {isa = PBXBuildFile; fileRef = 760346A524F432430038CFC7 /* dp3tValidationKeyDebugPro */; };
-		760346AE24F432430038CFC7 /* dp3tValidationKeyDebugPre in Resources */ = {isa = PBXBuildFile; fileRef = 760346A624F432430038CFC7 /* dp3tValidationKeyDebugPre */; };
 		763489FB24B637ED00B31C59 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763489FA24B637ED00B31C59 /* UIImage+Extension.swift */; };
 		763489FD24B7530500B31C59 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763489FC24B7530500B31C59 /* UIFont+Extension.swift */; };
 		763489FF24B75A6900B31C59 /* TransparentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763489FE24B75A6900B31C59 /* TransparentView.xib */; };
@@ -302,14 +294,6 @@
 		7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = radarcovidpre.covid19.gob.es.cer; sourceTree = "<group>"; };
 		7603469A24F423E20038CFC7 /* CertificatePiningImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatePiningImplementation.swift; sourceTree = "<group>"; };
 		7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = radarcovid.covid19.gob.es.cer; sourceTree = "<group>"; };
-		7603469F24F432420038CFC7 /* dp3tValidationKeyReleasePre */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dp3tValidationKeyReleasePre; sourceTree = "<group>"; };
-		760346A024F432420038CFC7 /* verificationKeyReleasePro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = verificationKeyReleasePro; sourceTree = "<group>"; };
-		760346A124F432420038CFC7 /* verificationKeyDebugPre */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = verificationKeyDebugPre; sourceTree = "<group>"; };
-		760346A224F432430038CFC7 /* verificationKeyReleasePre */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = verificationKeyReleasePre; sourceTree = "<group>"; };
-		760346A324F432430038CFC7 /* verificationKeyDebugPro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = verificationKeyDebugPro; sourceTree = "<group>"; };
-		760346A424F432430038CFC7 /* dp3tValidationKeyReleasePro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dp3tValidationKeyReleasePro; sourceTree = "<group>"; };
-		760346A524F432430038CFC7 /* dp3tValidationKeyDebugPro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dp3tValidationKeyDebugPro; sourceTree = "<group>"; };
-		760346A624F432430038CFC7 /* dp3tValidationKeyDebugPre */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dp3tValidationKeyDebugPre; sourceTree = "<group>"; };
 		763489FA24B637ED00B31C59 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		763489FC24B7530500B31C59 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		763489FE24B75A6900B31C59 /* TransparentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransparentView.xib; sourceTree = "<group>"; };
@@ -617,14 +601,6 @@
 			children = (
 				7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */,
 				7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */,
-				760346A624F432430038CFC7 /* dp3tValidationKeyDebugPre */,
-				760346A524F432430038CFC7 /* dp3tValidationKeyDebugPro */,
-				7603469F24F432420038CFC7 /* dp3tValidationKeyReleasePre */,
-				760346A424F432430038CFC7 /* dp3tValidationKeyReleasePro */,
-				760346A124F432420038CFC7 /* verificationKeyDebugPre */,
-				760346A324F432430038CFC7 /* verificationKeyDebugPro */,
-				760346A224F432430038CFC7 /* verificationKeyReleasePre */,
-				760346A024F432420038CFC7 /* verificationKeyReleasePro */,
 				6DE27CB424A37EF500BBCF40 /* debug.entitlements */,
 				6DB5419A2498ABE900166D37 /* release.entitlements */,
 				39443297248939F500FF0217 /* Info.plist */,
@@ -884,10 +860,8 @@
 				763489FF24B75A6900B31C59 /* TransparentView.xib in Resources */,
 				6DF6ECBB248F5E56007EAA40 /* ProximityViewController.xib in Resources */,
 				6D5AFC8E2492827C00EFE838 /* muli_semibold.ttf in Resources */,
-				760346A924F432430038CFC7 /* verificationKeyDebugPre in Resources */,
 				6DF6ECC2248F68DF007EAA40 /* Home.storyboard in Resources */,
 				39A1AD46249225510049E48B /* HighExposition.storyboard in Resources */,
-				760346A824F432430038CFC7 /* verificationKeyReleasePro in Resources */,
 				6D5AFC8D2492827C00EFE838 /* muli_extrabold.ttf in Resources */,
 				6DA18CC024916B3300BE8AAB /* Exposition.storyboard in Resources */,
 				39443296248939F500FF0217 /* LaunchScreen.storyboard in Resources */,
@@ -896,23 +870,17 @@
 				7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */,
 				6DF6ECCF248FA032007EAA40 /* MyData.storyboard in Resources */,
 				6D2CA48624B4C69B00981DA4 /* PositiveExposed.storyboard in Resources */,
-				760346AC24F432430038CFC7 /* dp3tValidationKeyReleasePro in Resources */,
 				6D5AFC932492883700EFE838 /* muli_regular.ttf in Resources */,
-				760346AA24F432430038CFC7 /* verificationKeyReleasePre in Resources */,
 				6DE27C9F24A0AA2300BBCF40 /* WelcomeViewController.xib in Resources */,
 				766C73AE24B567C50056D2DB /* ActivatePushNotificationViewController.xib in Resources */,
-				760346A724F432430038CFC7 /* dp3tValidationKeyReleasePre in Resources */,
 				399CA87D24912B96000B6BF4 /* MyHealthReported.storyboard in Resources */,
-				760346AE24F432430038CFC7 /* dp3tValidationKeyDebugPre in Resources */,
 				394E962F248E7F25009F640E /* MyHealth.storyboard in Resources */,
 				39443293248939F500FF0217 /* Assets.xcassets in Resources */,
 				394E962C248E3F6E009F640E /* OnBoarding.storyboard in Resources */,
-				760346AB24F432430038CFC7 /* verificationKeyDebugPro in Resources */,
 				6D5AFC8F2492827C00EFE838 /* muli_bold.ttf in Resources */,
 				7603469E24F42DF70038CFC7 /* radarcovid.covid19.gob.es.cer in Resources */,
 				6D17CC3B24FFC6A1009FD47F /* ActivateCovidNotificationViewController.xib in Resources */,
 				6D5AFC942492883700EFE838 /* muli_italic.ttf in Resources */,
-				760346AD24F432430038CFC7 /* dp3tValidationKeyDebugPro in Resources */,
 				6D83345024B8350300223071 /* RootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
