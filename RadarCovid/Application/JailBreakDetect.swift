@@ -14,6 +14,14 @@ import UIKit
 
 class JailBreakDetect {
 
+    static var isSimulator: Bool {
+        #if arch(i386) || arch(x86_64)
+            return true
+        #else
+            return false
+        #endif
+    }
+
     static func isJailbroken() -> Bool {
 
         guard let cydiaUrlScheme = NSURL(string: "cydia://package/com.example.package") else { return false }
@@ -21,11 +29,7 @@ class JailBreakDetect {
             return true
         }
 
-        #if arch(i386) || arch(x86_64)
-            // This is a Simulator not an idevice
-            return false
-
-        #else
+        guard !isSimulator else { return false }
 
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
@@ -55,7 +59,7 @@ class JailBreakDetect {
         } catch {
             return false
         }
-        #endif
+
     }
 
     static func canOpen(path: String) -> Bool {
