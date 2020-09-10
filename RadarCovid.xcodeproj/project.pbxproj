@@ -93,7 +93,6 @@
 		6DE27C7A249A6D4600BBCF40 /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27C70249A6D4500BBCF40 /* CodableHelper.swift */; };
 		6DE27C97249FB1F600BBCF40 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27C96249FB1F600BBCF40 /* UIViewController+Extension.swift */; };
 		6DE27C9F24A0AA2300BBCF40 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DE27C9E24A0AA2300BBCF40 /* WelcomeViewController.xib */; };
-		6DE27CAB24A25F9D00BBCF40 /* JailBreakDetect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27CAA24A25F9D00BBCF40 /* JailBreakDetect.swift */; };
 		6DE27CB324A379F800BBCF40 /* NetworkActivityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27CB224A379F800BBCF40 /* NetworkActivityLogger.swift */; };
 		6DE27D3F24A76D7E00BBCF40 /* AttenuationDurationThresholdsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27D3E24A76D7D00BBCF40 /* AttenuationDurationThresholdsDto.swift */; };
 		6DE27D4124A7A08C00BBCF40 /* SyncUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27D4024A7A08C00BBCF40 /* SyncUseCase.swift */; };
