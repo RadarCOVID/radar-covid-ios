@@ -117,6 +117,11 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         codeTextField.delegate = self
         super.viewDidLoad()
+        codeTextField.isAccessibilityElement = true
+        codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
+        codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
+        codeTextField.accessibilityHint = "ACC_HINT".localized
+        codeTextField.keyboardType = .numberPad
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
@@ -234,17 +239,20 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
        if let x = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
-              guard let textFieldText = textField.text,
-                  let rangeOfTextToReplace = Range(range, in: textFieldText) else {
-                      return false
-              }
+            guard let textFieldText = textField.text,
+                let rangeOfTextToReplace = Range(range, in: textFieldText) else {
+                    return false
+            }
             let substringToReplace = textFieldText[rangeOfTextToReplace]
             let count = textFieldText.count - substringToReplace.count + string.count
+            if (count == 12){
+                sendDiagnosticButton.isEnabled = true
+            }
             return count <= 12
-        return true
-       } else {
-       return false
-    }
+       }
+       else {
+                return false
+            }
     }
 
 }
