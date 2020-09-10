@@ -42,13 +42,13 @@
                                 <rect key="frame" x="0.0" y="96" width="414" height="1120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mz4-S1-tfj">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1224.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1233"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1H-mT-hEv" userLabel="ExpositionBGView" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="8" width="374" height="162"/>
+                                                <rect key="frame" x="20" y="8" width="374" height="166"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tu exposición es baja" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oRi-0Z-J6b">
-                                                        <rect key="frame" x="26" y="39" width="332" height="33"/>
+                                                        <rect key="frame" x="26" y="40.5" width="332" height="35.5"/>
                                                         <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -57,7 +57,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tJa-7M-psA">
-                                                        <rect key="frame" x="26" y="82" width="329" height="20.5"/>
+                                                        <rect key="frame" x="26" y="86" width="329" height="20.5"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Sin contactos de riesgos aparentes.">
                                                                 <attributes>
@@ -69,7 +69,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RIESGO BAJO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTT-u6-S6Y">
-                                                        <rect key="frame" x="26" y="15" width="198" height="14"/>
+                                                        <rect key="frame" x="26" y="15" width="198" height="15.5"/>
                                                         <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -92,7 +92,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Qué debo hacer?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vBQ-H2-P9H">
-                                                <rect key="frame" x="20" y="180" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="184" width="374" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="xKL-cp-hIN"/>
                                                 </constraints>
@@ -104,7 +104,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manten las medidas de seguridad y distanciamiento social." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fth-dZ-n17">
-                                                <rect key="frame" x="20" y="235" width="374" height="65"/>
+                                                <rect key="frame" x="20" y="239" width="374" height="65"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="65" id="vdI-xh-g2I"/>
                                                 </constraints>
@@ -116,14 +116,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SafeDistance" translatesAutoresizingMaskIntoConstraints="NO" id="MaH-n7-rlV">
-                                                <rect key="frame" x="32" y="320" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="324" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="0es-Xf-Aqz"/>
                                                     <constraint firstAttribute="height" constant="50" id="gVN-7i-Liv"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mantén la distancia de seguridad de 1,5 metros  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="syr-YP-tqL">
-                                                <rect key="frame" x="136" y="320" width="243" height="50"/>
+                                                <rect key="frame" x="136" y="324" width="243" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="wTl-Uv-wGA"/>
                                                 </constraints>
@@ -135,14 +135,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MaskFrame" translatesAutoresizingMaskIntoConstraints="NO" id="PEX-K7-wuy">
-                                                <rect key="frame" x="32" y="395" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="399" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="Dd1-Py-Ut0"/>
                                                     <constraint firstAttribute="height" constant="50" id="tyE-8p-i7K"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usa siempre mascarilla quirúrgica" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xqy-wU-IOR">
-                                                <rect key="frame" x="136" y="395" width="243" height="50"/>
+                                                <rect key="frame" x="136" y="399" width="243" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="31w-WT-5Em"/>
                                                 </constraints>
@@ -154,14 +154,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WashHandsFrame" translatesAutoresizingMaskIntoConstraints="NO" id="vKK-7N-nPb">
-                                                <rect key="frame" x="32" y="470" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="474" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="2dg-t4-yyQ"/>
                                                     <constraint firstAttribute="height" constant="50" id="I23-6d-PFJ"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lávate las manos frecuentemente" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iHR-lm-dWN">
-                                                <rect key="frame" x="136" y="470" width="243" height="50"/>
+                                                <rect key="frame" x="136" y="474" width="243" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="oeV-Mv-cXh"/>
                                                 </constraints>
@@ -173,14 +173,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cough" translatesAutoresizingMaskIntoConstraints="NO" id="cf8-Wm-O9g">
-                                                <rect key="frame" x="32" y="545" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="549" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="dMj-9q-nr7"/>
                                                     <constraint firstAttribute="width" constant="50" id="uPw-8g-xXq"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Al toser o estornudar, tápate la boca o la nariz y usa pañuelos desechables o la parte interior del codo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GeS-2i-Gcu">
-                                                <rect key="frame" x="136" y="542" width="243" height="100.5"/>
+                                                <rect key="frame" x="136" y="546" width="243" height="100.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100.5" id="F1v-Sa-gMn"/>
                                                 </constraints>
@@ -192,14 +192,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProtocolIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oeR-rl-M0m">
-                                                <rect key="frame" x="32" y="825" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="829" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="NFv-Tm-wLI"/>
                                                     <constraint firstAttribute="width" constant="50" id="iQx-tH-gf0"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Respeta las normas particulares en tu territorio sobre aforos y actividades permitidas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-ZR-mh8">
-                                                <rect key="frame" x="136" y="797.5" width="243" height="105"/>
+                                                <rect key="frame" x="136" y="801.5" width="243" height="105"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="105" id="uA9-ks-3Fn"/>
                                                 </constraints>
@@ -211,14 +211,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HealthFrame" translatesAutoresizingMaskIntoConstraints="NO" id="AZm-RW-2DU">
-                                                <rect key="frame" x="32" y="925" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="929" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="NfI-yR-L8f"/>
                                                     <constraint firstAttribute="height" constant="50" id="jdh-jm-Apl"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ante la aparición de algún síntoma (fiebre, tos, dificultad respiratoria) llama a tu centro de salud " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TUQ-pP-dpK">
-                                                <rect key="frame" x="136" y="907.5" width="243" height="100.5"/>
+                                                <rect key="frame" x="136" y="911.5" width="243" height="100.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100.5" id="cSJ-6b-eXD"/>
                                                 </constraints>
@@ -230,7 +230,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVv-Kt-0V0">
-                                                <rect key="frame" x="16" y="1167.5" width="382" height="56"/>
+                                                <rect key="frame" x="16" y="1171.5" width="382" height="60.5"/>
                                                 <string key="text">Gracias por seguir cuidándote y cuidando a los demás.
 </string>
                                                 <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="16"/>
@@ -241,7 +241,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSh-DP-kva" userLabel="MoreInfoView">
-                                                <rect key="frame" x="16" y="1088.5" width="382" height="55"/>
+                                                <rect key="frame" x="16" y="1092.5" width="382" height="55"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9b-qz-rHQ" userLabel="Separator">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
@@ -258,7 +258,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfB-Xo-muc">
-                                                        <rect key="frame" x="8" y="17" width="134.5" height="21"/>
+                                                        <rect key="frame" x="8" y="16" width="143" height="23"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES"/>
                                                         </accessibility>
@@ -290,14 +290,14 @@
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clean" translatesAutoresizingMaskIntoConstraints="NO" id="JZr-Td-CMZ" userLabel="CleanSurfaceFrame">
-                                                <rect key="frame" x="32" y="655" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="659" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="2zb-xp-Exc"/>
                                                     <constraint firstAttribute="width" constant="50" id="ATb-FR-wp1"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Limpia con regularidad las superficies que mas se tocan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ra0-WP-ygf">
-                                                <rect key="frame" x="136" y="652.5" width="248" height="50"/>
+                                                <rect key="frame" x="136" y="656.5" width="248" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="bKc-5T-tFL"/>
                                                 </constraints>
@@ -309,14 +309,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Touch" translatesAutoresizingMaskIntoConstraints="NO" id="NGW-AC-HEK" userLabel="AvoidTouchFrame">
-                                                <rect key="frame" x="30" y="745" width="50" height="50"/>
+                                                <rect key="frame" x="30" y="749" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="1UX-CT-GAT"/>
                                                     <constraint firstAttribute="height" constant="50" id="7x4-tg-euv"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evita tocarte los ojos, la nariz y la boca" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ycL-q5-dUr">
-                                                <rect key="frame" x="135" y="742.5" width="249" height="50"/>
+                                                <rect key="frame" x="135" y="746.5" width="249" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="gLc-hf-Ofh"/>
                                                 </constraints>
@@ -328,7 +328,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ged-TB-hIN">
-                                                <rect key="frame" x="16" y="1033" width="378" height="20.5"/>
+                                                <rect key="frame" x="16" y="1037" width="378" height="20.5"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" link="YES"/>
                                                 </accessibility>
@@ -442,6 +442,7 @@
                         <outlet property="moreInfoView" destination="xSh-DP-kva" id="hiO-Pb-RLy"/>
                         <outlet property="moreinfo" destination="mfB-Xo-muc" id="wxH-oY-JIE"/>
                         <outlet property="sincontactos" destination="tJa-7M-psA" id="lKX-ti-6FM"/>
+                        <outlet property="viewTitle" destination="oRi-0Z-J6b" id="tqE-5z-fLQ"/>
                         <outlet property="whatToDo" destination="ged-TB-hIN" id="1SE-sq-2Q1"/>
                     </connections>
                 </viewController>
