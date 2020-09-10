@@ -24,7 +24,7 @@ Before you submit a new pull-request, please check the following few things:
 
 ## Why did my issue/PR get closed?
 
-We are currently focused on national rollout. Hence, we try to keep the changes to a minimum and expect to take care of PRs in medium term. Please, be patience.
+We are currently focused on national rollout. Hence, we try to keep the changes to a minimum and expect to take care of PRs in medium term. Please, be patient.
 
 Proposed changes exclusively related to the tools we use should be thoroughly justified. We use a set of tools and configurations that we are used to. Therefore, unless strong arguments for changes are provided, we probably won't change it.
 
