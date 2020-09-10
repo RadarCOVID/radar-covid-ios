@@ -38,16 +38,19 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
         faqWebLabel.isUserInteractionEnabled = true
         faqWebLabel.isAccessibilityElement = true
         faqWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        faqWebLabel.accessibilityHint = "ACC_HINT".localized
         faqWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapFaq(tapGestureRecognizer:))))
 
         infoWebLabel.isUserInteractionEnabled = true
         infoWebLabel.isAccessibilityElement = true
         infoWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        infoWebLabel.accessibilityHint = "ACC_HINT".localized
         infoWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapWeb(tapGestureRecognizer:))))
 
         otherWebLabel.isUserInteractionEnabled = true
         otherWebLabel.isAccessibilityElement = true
         otherWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        otherWebLabel.accessibilityHint = "ACC_HINT".localized
         otherWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapOther(tapGestureRecognizer:))))
 
     }
