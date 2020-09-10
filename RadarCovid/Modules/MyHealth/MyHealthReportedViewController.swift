@@ -17,7 +17,8 @@ class MyHealthReportedViewController: UIViewController {
 
     @IBOutlet weak var moreinfolabel: UILabel!
     @IBOutlet weak var moreInfoView: UIView!
-
+    @IBOutlet weak var viewTitle: UILabel!
+    
     @IBAction func onBack(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
@@ -30,6 +31,14 @@ class MyHealthReportedViewController: UIViewController {
         moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapLabel(tapGestureRecognizer:))))
         moreinfolabel.isUserInteractionEnabled = true
         moreinfolabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized
+        if UIAccessibility.isVoiceOverRunning {
+            viewTitle.isHidden = false
+        }else{
+            viewTitle.isHidden = true
+        }
     }
 
     @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {

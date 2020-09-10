@@ -16,7 +16,8 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var languageSelector: UIButton!
     var router: AppRouter?
-
+    @IBOutlet weak var viewTitle: UILabel!
+    
     var localesKeysArray: [String] = []
     var localesArray: [String: String?]!
     var localizationRepository: LocalizationRepository!
@@ -55,6 +56,9 @@ class WelcomeViewController: UIViewController {
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityLabel = "ACC_BUTTON_CONTINUE".localized
         continueButton.accessibilityHint = "ACC_HINT".localized
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityLabel = "ACC_WELCOME_TITLE".localized
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
 
     }
 

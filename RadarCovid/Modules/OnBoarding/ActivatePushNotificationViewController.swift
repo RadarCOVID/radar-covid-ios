@@ -16,6 +16,7 @@ class ActivatePushNotificationViewController: UIViewController {
     private let disposeBag = DisposeBag()
     var router: AppRouter?
 
+    @IBOutlet weak var viewTitle: UILabel!
     var notificationHandler: NotificationHandler?
 
     @IBOutlet weak var allowButton: UIButton!
@@ -43,6 +44,9 @@ class ActivatePushNotificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         allowButton.setTitle("ACTIVATE_PUSH_NOTIFICATION_ALLOW_BUTTON".localized, for: .normal)
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_ACTIVATE_PUSH_NOTIFICATION_TITLE".localized
     }
 
 }

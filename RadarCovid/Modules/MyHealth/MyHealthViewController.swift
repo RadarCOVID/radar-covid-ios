@@ -12,13 +12,13 @@
 import UIKit
 import RxSwift
 
-class MyHealthViewController: UIViewController {
+class MyHealthViewController: UIViewController, UITextFieldDelegate {
     private let disposeBag = DisposeBag()
 
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var codeView: UIView!
-    
+    @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var backButton: UIButton!
     var diagnosisCodeUseCase: DiagnosisCodeUseCase?
     var statusBar: UIView?
@@ -115,8 +115,17 @@ class MyHealthViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        codeTextField.delegate = self
         super.viewDidLoad()
-
+        codeTextField.isAccessibilityElement = true
+        codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
+        codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
+        codeTextField.accessibilityHint = "ACC_HINT".localized
+        codeTextField.keyboardType = .numberPad
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
+        
         // Do any additional setup after loading the view.
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
@@ -226,6 +235,24 @@ class MyHealthViewController: UIViewController {
         // move back the root view origin to zero
         self.scrollViewBottonConstraint.constant = 0
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+       if let x = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
+            guard let textFieldText = textField.text,
+                let rangeOfTextToReplace = Range(range, in: textFieldText) else {
+                    return false
+            }
+            let substringToReplace = textFieldText[rangeOfTextToReplace]
+            let count = textFieldText.count - substringToReplace.count + string.count
+            if (count == 12){
+                sendDiagnosticButton.isEnabled = true
+            }
+            return count <= 12
+       }
+       else {
+                return false
+            }
     }
 
 }

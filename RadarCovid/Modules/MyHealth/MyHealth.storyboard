@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -399,6 +399,7 @@ COVID positivo</string>
                         <outlet property="scrollView" destination="Jih-el-nlf" id="5Gw-ZO-kwg"/>
                         <outlet property="scrollViewBottonConstraint" destination="8DS-Iz-GfQ" id="Adz-qf-JBj"/>
                         <outlet property="sendDiagnosticButton" destination="xVl-Ca-TVL" id="HFL-yS-R6i"/>
+                        <outlet property="viewTitle" destination="Qdj-RI-6GS" id="gIR-zU-wX1"/>
                         <outletCollection property="codeChars" destination="WUj-fi-auz" collectionClass="NSMutableArray" id="xOS-Fk-1f9"/>
                         <outletCollection property="codeChars" destination="ZSg-YA-62O" collectionClass="NSMutableArray" id="CCx-0S-cMa"/>
                         <outletCollection property="codeChars" destination="j9Y-8N-jxw" collectionClass="NSMutableArray" id="uTG-fj-LWn"/>

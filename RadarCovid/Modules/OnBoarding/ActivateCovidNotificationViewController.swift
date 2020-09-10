@@ -23,6 +23,7 @@ class ActivateCovidNotificationViewController: UIViewController {
     
     @IBOutlet weak var activateButton: UIButton!
 
+    @IBOutlet weak var viewTitle: UILabel!
     @IBAction func onContinue(_ sender: Any) {
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil, "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.white)
         radarStatusUseCase?.restoreLastStateAndSync().subscribe(
@@ -46,6 +47,9 @@ class ActivateCovidNotificationViewController: UIViewController {
         super.viewDidLoad()
         activateButton.setTitle("ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON".localized, for: .normal)
         errorHandler?.alertDelegate = self
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_ACTIVATE_COVID_NOTIFICATION_TITLE".localized
     }
 
 }

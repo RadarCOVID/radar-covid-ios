@@ -16,7 +16,8 @@ class OnBoardingViewController: UIViewController {
     var router: AppRouter?
 
     private var termsAccepted: Bool = false
-
+    @IBOutlet weak var viewTitle: UILabel!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var checkBoxImage: UIImageView!
 
@@ -68,6 +69,9 @@ class OnBoardingViewController: UIViewController {
             checkBoxImage.isHidden = false
         }
 
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_TITLE".localized
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         //Adding tapgesture to the Accept terms checkboxImage and label
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true

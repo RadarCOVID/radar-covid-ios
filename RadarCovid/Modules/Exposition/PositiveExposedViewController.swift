@@ -14,12 +14,16 @@ import UIKit
 class PositiveExposedViewController: BaseExposed {
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
 
+    @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var moreinfo: UILabel!
     @IBOutlet weak var realInfectedText: UILabel!
     var since: Date?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_POSITIVE_EXPOSED_TITLE".localized
         setInfectedText()
         moreinfo.isUserInteractionEnabled = true
         moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))

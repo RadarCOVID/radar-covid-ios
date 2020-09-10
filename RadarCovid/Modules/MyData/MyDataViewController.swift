@@ -18,14 +18,17 @@ class MyDataViewController: UIViewController {
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var bullet2: UILabel!
     @IBOutlet weak var bullet3: UILabel!
-
+    @IBOutlet weak var viewTitle: UILabel!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_MYDATA_TITLE".localized
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true
 

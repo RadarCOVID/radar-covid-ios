@@ -19,6 +19,7 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
     var preferencesRepository: PreferencesRepository?
     private let disposeBag = DisposeBag()
 
+    @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var phoneView: BackgroundView!
     @IBOutlet weak var faqWebLabel: UILabel!
     @IBOutlet weak var infoWebLabel: UILabel!
@@ -29,7 +30,9 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_MORE_INFO".localized
         phoneView.image = UIImage(named: "WhiteCard")
 
         faqWebLabel.isUserInteractionEnabled = true
