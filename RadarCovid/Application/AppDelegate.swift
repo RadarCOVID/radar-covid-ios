@@ -20,9 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var injection: Injection = Injection()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if JailBreakDetect.isJailbroken() {
-            exit(-1)
-        }
         if Config.debug {
              NetworkActivityLogger.shared.startLogging()
         }
