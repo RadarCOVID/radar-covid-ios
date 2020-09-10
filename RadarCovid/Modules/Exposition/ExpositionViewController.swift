@@ -26,12 +26,11 @@ class ExpositionViewController: BaseExposed {
         whatToDo.attributedText = "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localizedAttributed()
         whatToDo.isUserInteractionEnabled = true
         whatToDo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapWhatToDo(tapGestureRecognizer:))))
-        // Do any additional setup after loading the view.
+        
         moreinfo.isAccessibilityElement = true
         moreinfo.accessibilityTraits.insert(UIAccessibilityTraits.link)
         self.sincontactos.attributedText = "EXPOSITION_LOW_DESCRIPTION".localizedAttributed(withParams: [expositionDateWithFormat()])
 
-//        self.expositionDate.text = "(actualizado \(expositionDateWithFormat()))"
         expositionBGView.image = bgImageGreen
 
         super.viewDidLoad()
@@ -43,7 +42,7 @@ class ExpositionViewController: BaseExposed {
             formatter.dateFormat = "dd.MM.YYYY"
             return formatter.string(from: date)
         }
-        return "01.07.2020"
+        return "-"
     }
 
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
