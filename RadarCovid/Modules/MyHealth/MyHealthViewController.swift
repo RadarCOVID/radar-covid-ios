@@ -18,7 +18,7 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var codeView: UIView!
-    
+    @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var backButton: UIButton!
     var diagnosisCodeUseCase: DiagnosisCodeUseCase?
     var statusBar: UIView?
@@ -117,7 +117,10 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         codeTextField.delegate = self
         super.viewDidLoad()
-
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
+        
         // Do any additional setup after loading the view.
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)

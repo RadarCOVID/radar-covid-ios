@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -50,10 +50,10 @@
                                 <rect key="frame" x="0.0" y="104" width="414" height="666"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyR-wT-fHO">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="605.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="630.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MI DIAGNÓSTICO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qdj-RI-6GS">
-                                                <rect key="frame" x="16" y="40" width="99" height="14"/>
+                                                <rect key="frame" x="16" y="40" width="101.5" height="15.5"/>
                                                 <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="12"/>
                                                 <color key="textColor" red="0.5764058232" green="0.57650798560000005" blue="0.57639932630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -62,7 +62,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Er1-Bv-oBy">
-                                                <rect key="frame" x="16" y="62" width="382" height="65.5"/>
+                                                <rect key="frame" x="16" y="63.5" width="382" height="70.5"/>
                                                 <string key="text">Envía tu diagnóstico 
 COVID positivo</string>
                                                 <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
@@ -73,7 +73,7 @@ COVID positivo</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enviando tu diagnóstico anónimo COVID-19, estás contribuyendo a detener la propagación del virus. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tmM-lH-0wr">
-                                                <rect key="frame" x="16" y="152" width="382" height="37.5"/>
+                                                <rect key="frame" x="16" y="158.5" width="382" height="40.5"/>
                                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -82,7 +82,7 @@ COVID positivo</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gracias por ayudarnos a cuidar a los demás." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fhW-dS-s0P">
-                                                <rect key="frame" x="16" y="209.5" width="382" height="19"/>
+                                                <rect key="frame" x="16" y="219" width="382" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -91,7 +91,7 @@ COVID positivo</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu información está segura y será tratada siempre anónimamente " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HKP-HT-Bda">
-                                                <rect key="frame" x="16" y="248" width="382" height="37.5"/>
+                                                <rect key="frame" x="16" y="259" width="382" height="40.5"/>
                                                 <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -100,10 +100,10 @@ COVID positivo</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIG-oT-yE6" userLabel="CodeView">
-                                                <rect key="frame" x="16" y="305.5" width="382" height="189"/>
+                                                <rect key="frame" x="16" y="319.5" width="382" height="194.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código de diagnóstico" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gxN-3Y-ry3">
-                                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="167" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -112,7 +112,7 @@ COVID positivo</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Introduce el código que te han enviado" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hLh-M6-ReM">
-                                                        <rect key="frame" x="0.0" y="30" width="247" height="37.5"/>
+                                                        <rect key="frame" x="0.0" y="31.5" width="247" height="40.5"/>
                                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -121,14 +121,14 @@ COVID positivo</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="codeInputFrame" translatesAutoresizingMaskIntoConstraints="NO" id="G11-pm-jeh" userLabel="ImageView">
-                                                        <rect key="frame" x="252" y="-6.5" width="130" height="130"/>
+                                                        <rect key="frame" x="252" y="-2" width="130" height="130"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="130" id="Bom-Co-7TI"/>
                                                             <constraint firstAttribute="height" constant="130" id="IYZ-Sm-Pq1"/>
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l7M-4N-gr7">
-                                                        <rect key="frame" x="0.0" y="93.5" width="382" height="60"/>
+                                                        <rect key="frame" x="0.0" y="98" width="382" height="60"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vQp-5T-boc">
                                                                 <rect key="frame" x="19" y="15" width="344" height="60"/>
@@ -260,13 +260,13 @@ COVID positivo</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVH-3T-hqu">
-                                                        <rect key="frame" x="0.0" y="93.5" width="382" height="60"/>
+                                                        <rect key="frame" x="0.0" y="98" width="382" height="60"/>
                                                         <connections>
                                                             <action selector="insertCode:" destination="vmx-lJ-Xhc" eventType="touchUpInside" id="FJP-qx-35p"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ej. 123456789123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R9K-nS-WzH">
-                                                        <rect key="frame" x="0.0" y="173.5" width="104" height="15.5"/>
+                                                        <rect key="frame" x="0.0" y="178" width="110.5" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Muli-Italic" family="Muli" pointSize="13"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -275,7 +275,7 @@ COVID positivo</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tjF-aE-P9m">
-                                                        <rect key="frame" x="0.0" y="92.5" width="382" height="35"/>
+                                                        <rect key="frame" x="0.0" y="97" width="382" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
@@ -305,7 +305,7 @@ COVID positivo</string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVP-J7-pec">
-                                                <rect key="frame" x="16" y="514.5" width="382" height="75"/>
+                                                <rect key="frame" x="16" y="534" width="382" height="80.5"/>
                                                 <string key="text">Al enviar tu diagnóstico los identificadores aleatorios generados en los ultimos días servirán para avisar a las personas que han estado cerca de ti. Tu identidad no se comparte con nadie.</string>
                                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
                                                 <nil key="textColor"/>
@@ -399,6 +399,7 @@ COVID positivo</string>
                         <outlet property="scrollView" destination="Jih-el-nlf" id="5Gw-ZO-kwg"/>
                         <outlet property="scrollViewBottonConstraint" destination="8DS-Iz-GfQ" id="Adz-qf-JBj"/>
                         <outlet property="sendDiagnosticButton" destination="xVl-Ca-TVL" id="HFL-yS-R6i"/>
+                        <outlet property="viewTitle" destination="Qdj-RI-6GS" id="gIR-zU-wX1"/>
                         <outletCollection property="codeChars" destination="WUj-fi-auz" collectionClass="NSMutableArray" id="xOS-Fk-1f9"/>
                         <outletCollection property="codeChars" destination="ZSg-YA-62O" collectionClass="NSMutableArray" id="CCx-0S-cMa"/>
                         <outletCollection property="codeChars" destination="j9Y-8N-jxw" collectionClass="NSMutableArray" id="uTG-fj-LWn"/>
