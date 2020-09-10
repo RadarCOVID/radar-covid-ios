@@ -342,7 +342,6 @@
 				39443288248939F000FF0217 /* RadarCovid */,
 				6D64131F24ED88AB00B33427 /* RadarCovidTests */,
 				39443287248939F000FF0217 /* Products */,
-				4C455EB1031872BC4EFFD7B2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -449,13 +448,6 @@
 				399CA88024913B0E000B6BF4 /* MyHealthReportedViewController.swift */,
 			);
 			path = MyHealth;
-			sourceTree = "<group>";
-		};
-		4C455EB1031872BC4EFFD7B2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		6D5AFC9F2493621300EFE838 /* WS */ = {
