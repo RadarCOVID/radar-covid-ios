@@ -35,9 +35,9 @@ class MyHealthReportedViewController: UIViewController {
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized
         if UIAccessibility.isVoiceOverRunning {
-            viewTitle.isHidden = true
-        }else{
             viewTitle.isHidden = false
+        }else{
+            viewTitle.isHidden = true
         }
     }
 

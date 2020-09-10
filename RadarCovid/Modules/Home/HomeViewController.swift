@@ -123,9 +123,9 @@ class HomeViewController: UIViewController {
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_HOME_TITLE".localized
         if UIAccessibility.isVoiceOverRunning {
-            viewTitle.isHidden = true
-        }else{
             viewTitle.isHidden = false
+        }else{
+            viewTitle.isHidden = true
         }
         setupBindings()
         arrowRight.isAccessibilityElement = true
