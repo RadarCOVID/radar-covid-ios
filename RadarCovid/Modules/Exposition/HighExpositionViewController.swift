@@ -20,7 +20,6 @@ class HighExpositionViewController: BaseExposed {
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
 
     @IBOutlet weak var youCouldBe: UILabel!
-    @IBOutlet weak var infectedText: UILabel!
     @IBOutlet weak var phoneView: BackgroundView!
     @IBOutlet weak var timeTableLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
