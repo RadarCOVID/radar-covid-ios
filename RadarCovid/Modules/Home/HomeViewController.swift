@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
     var errorHandler: ErrorHandler!
     
     @IBOutlet weak var popupButton: UIButton!
+    @IBOutlet weak var viewTitle: UILabel!
     
     @IBOutlet weak var moreinfo: UILabel!
     @IBOutlet weak var topRadarTitle: NSLayoutConstraint!
@@ -118,6 +119,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         radarSwitch.isAccessibilityElement = true
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_HOME_TITLE".localized
+        if UIAccessibility.isVoiceOverRunning {
+            viewTitle.isHidden = true
+        }
         setupBindings()
         arrowRight.isAccessibilityElement = true
         arrowRight.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized

@@ -34,6 +34,9 @@ class MyHealthReportedViewController: UIViewController {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized
+        if UIAccessibility.isVoiceOverRunning {
+            viewTitle.isHidden = true
+        }
     }
 
     @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
