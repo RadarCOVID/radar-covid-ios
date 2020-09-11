@@ -49,7 +49,7 @@ class OnBoardingViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        setupAccessibility()
         acceptButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
 
         acceptButton.isEnabled = termsAccepted
@@ -58,8 +58,21 @@ class OnBoardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        acceptTermsLabel.isUserInteractionEnabled = true
+        privacyLabel.isUserInteractionEnabled = true
+        acceptView.isUserInteractionEnabled = true
+        
+        acceptView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapAccept(tapGestureRecognizer:))))
+
+        acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapTerms(tapGestureRecognizer:))))
+
+        privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
+
+    }
+    
+    func setupAccessibility() {
         switchAccept.isOn = false
-        // test to lower case if voiceover is active
         if UIAccessibility.isVoiceOverRunning {
             paragraph_1_description.text = paragraph_1_description.text?.lowercased()
             checkBoxImage.isHidden = true
@@ -72,35 +85,22 @@ class OnBoardingViewController: UIViewController {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_TITLE".localized
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        //Adding tapgesture to the Accept terms checkboxImage and label
-        acceptTermsLabel.isUserInteractionEnabled = true
-        privacyLabel.isUserInteractionEnabled = true
-        acceptView.isUserInteractionEnabled = true
+        
         acceptTermsLabel.isAccessibilityElement = true;
         acceptTermsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         acceptTermsLabel.accessibilityHint = "ACC_HINT".localized
+        
         privacyLabel.isAccessibilityElement = true;
         privacyLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         privacyLabel.accessibilityHint = "ACC_HINT".localized
-        checkBoxImage.isAccessibilityElement = true
-        checkBoxImage.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
-        checkBoxImage.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        checkBoxImage.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
-        checkBoxImage.accessibilityHint = "ACC_HINT".localized
+        
         switchAccept.isAccessibilityElement = true
         switchAccept.accessibilityTraits.insert(UIAccessibilityTraits.button)
         switchAccept.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
-        switchAccept.accessibilityHint = "ACC_HINT".localized
+        
         acceptButton.isAccessibilityElement = true
         acceptButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
         acceptButton.accessibilityHint = "ACC_HINT".localized
-
-        acceptView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapAccept(tapGestureRecognizer:))))
-
-        acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapTerms(tapGestureRecognizer:))))
-
-        privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
-
     }
 
     @objc func userDidTapAccept(tapGestureRecognizer: UITapGestureRecognizer) {

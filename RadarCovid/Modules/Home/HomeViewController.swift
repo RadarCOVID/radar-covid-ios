@@ -118,23 +118,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        radarSwitch.isAccessibilityElement = true
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_HOME_TITLE".localized
-        expositionTitle.isAccessibilityElement = true
-        expositionTitle.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        expositionTitle.accessibilityHint = "ACC_HINT".localized
-        if UIAccessibility.isVoiceOverRunning {
-            viewTitle.isHidden = false
-        }else{
-            viewTitle.isHidden = true
-        }
+        setupAccessibility()
         setupBindings()
-        arrowRight.isAccessibilityElement = true
-        arrowRight.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized
-        arrowRight.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        arrowRight.accessibilityHint = "ACC_HINT".localized
         moreinfo.isUserInteractionEnabled = true
         moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
@@ -156,6 +141,29 @@ class HomeViewController: UIViewController {
         
         errorHandler?.alertDelegate = self
 
+    }
+    
+    func setupAccessibility() {
+        radarSwitch.isAccessibilityElement = true
+        
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_HOME_TITLE".localized
+        
+        expositionTitle.isAccessibilityElement = true
+        expositionTitle.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        expositionTitle.accessibilityHint = "ACC_HINT".localized
+        
+        if UIAccessibility.isVoiceOverRunning {
+            viewTitle.isHidden = false
+        }else{
+            viewTitle.isHidden = true
+        }
+        
+        arrowRight.isAccessibilityElement = true
+        arrowRight.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized
+        arrowRight.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        arrowRight.accessibilityHint = "ACC_HINT".localized
     }
 
     private func setupBindings() {

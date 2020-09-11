@@ -22,17 +22,22 @@ class PositiveExposedViewController: BaseExposed {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_POSITIVE_EXPOSED_TITLE".localized
-        whatToDoTitle.isAccessibilityElement = true
-        whatToDoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        whatToDoTitle.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
+        setupAccessibility()
         setInfectedText()
         moreinfo.isUserInteractionEnabled = true
         moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
         expositionBGView.image = bgImageRed
         super.viewDidLoad()
+    }
+    
+    func setupAccessibility() {
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_POSITIVE_EXPOSED_TITLE".localized
+        
+        whatToDoTitle.isAccessibilityElement = true
+        whatToDoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        whatToDoTitle.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
     }
 
     func setInfectedText() {

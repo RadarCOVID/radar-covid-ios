@@ -47,17 +47,22 @@ class TimeExposedView: UIView {
     }
     
     func initValues() {
-            containerView.layer.masksToBounds = true;
-            containerView.layer.cornerRadius = 8;
-            bullet1.isUserInteractionEnabled = true
-            bullet2.isUserInteractionEnabled = true
-            moreinfo.isUserInteractionEnabled = true
-            bullet1.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapPrecauciones(tapGestureRecognizer:))))
-            bullet2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapSintomas(tapGestureRecognizer:))))
-            moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapInformacion(tapGestureRecognizer:))))
+        containerView.layer.masksToBounds = true;
+        containerView.layer.cornerRadius = 8;
+        bullet1.isUserInteractionEnabled = true
+        bullet2.isUserInteractionEnabled = true
+        moreinfo.isUserInteractionEnabled = true
+        bullet1.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapPrecauciones(tapGestureRecognizer:))))
+        bullet2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapSintomas(tapGestureRecognizer:))))
+        moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapInformacion(tapGestureRecognizer:))))
+        setupAccessibility()
+    }
+    
+    func setupAccessibility() {
         closeButton.isAccessibilityElement = true
         closeButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
         closeButton.accessibilityHint = "ACC_HINT".localized
+        
         acceptButton.isAccessibilityElement = true
         acceptButton.accessibilityLabel = "ACC_BUTTON_ACCEPT".localized
         acceptButton.accessibilityHint = "ACC_HINT".localized

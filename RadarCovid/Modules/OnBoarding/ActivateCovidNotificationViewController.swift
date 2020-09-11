@@ -49,6 +49,10 @@ class ActivateCovidNotificationViewController: UIViewController {
         super.viewDidLoad()
         activateButton.setTitle("ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON".localized, for: .normal)
         errorHandler?.alertDelegate = self
+        setupAccessibility()
+    }
+    
+    func setupAccessibility() {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_ACTIVATE_COVID_NOTIFICATION_TITLE".localized

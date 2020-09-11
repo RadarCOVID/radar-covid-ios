@@ -31,6 +31,10 @@ class MyHealthReportedViewController: UIViewController {
         moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapLabel(tapGestureRecognizer:))))
         moreinfolabel.isUserInteractionEnabled = true
         moreinfolabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+        setupAccessibility()
+    }
+    
+    func setupAccessibility() {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized

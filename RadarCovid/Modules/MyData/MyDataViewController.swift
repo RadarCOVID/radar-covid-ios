@@ -26,16 +26,20 @@ class MyDataViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        print("ACC_MYDATA_TITLE".localized)
-        viewTitle.accessibilityLabel = "ACC_MYDATA_TITLE".localized
+        setupAccessibility()
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true
 
         acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapTerms(tapGestureRecognizer:))))
 
         privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
+    }
+    
+    func setupAccessibility() {
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        print("ACC_MYDATA_TITLE".localized)
+        viewTitle.accessibilityLabel = "ACC_MYDATA_TITLE".localized
     }
 
     @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {

@@ -118,17 +118,6 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         codeTextField.delegate = self
         super.viewDidLoad()
-        codeTextField.isAccessibilityElement = true
-        codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
-        codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
-        codeTextField.accessibilityHint = "ACC_HINT".localized
-        codeTextField.keyboardType = .numberPad
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
-        codigoTitle.isAccessibilityElement = true
-        codigoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        codigoTitle.accessibilityLabel = "ACC_CODE_TITLE".localized
         
         // Do any additional setup after loading the view.
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -148,9 +137,29 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
         )
 
         sendDiagnosticButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
+        
+        setupAccessibility()
+    }
+    
+    func setupAccessibility() {
+        codeTextField.isAccessibilityElement = true
+        codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
+        codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
+        codeTextField.accessibilityHint = "ACC_HINT".localized
+        codeTextField.keyboardType = .numberPad
+        
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
+        
+        codigoTitle.isAccessibilityElement = true
+        codigoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        codigoTitle.accessibilityLabel = "ACC_CODE_TITLE".localized
+        
         sendDiagnosticButton.isAccessibilityElement = true
         sendDiagnosticButton.accessibilityLabel = "ACC_BUTTON_SEND_DIAGNOSTIC".localized
         sendDiagnosticButton.accessibilityHint = "ACC_HINT".localized
+        
         if UIAccessibility.isVoiceOverRunning {
             codeTextField.isHidden = false
             codeView.isHidden = true
@@ -158,7 +167,6 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
             codeTextField.isHidden = true
             codeView.isHidden = false
         }
-
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {

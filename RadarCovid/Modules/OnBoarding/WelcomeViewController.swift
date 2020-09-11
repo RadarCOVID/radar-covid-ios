@@ -49,17 +49,22 @@ class WelcomeViewController: UIViewController {
         picker.dataSource = self
         pickerPresenter = PickerPresenter(picker: picker)
         pickerPresenter?.delegate = self
+        setupAccessibility()
+    }
+    
+    func setupAccessibility() {
         languageSelector.isAccessibilityElement = true
         languageSelector.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
         languageSelector.accessibilityHint = "ACC_HINT".localized
+        
         continueButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityLabel = "ACC_BUTTON_CONTINUE".localized
         continueButton.accessibilityHint = "ACC_HINT".localized
+        
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityLabel = "ACC_WELCOME_TITLE".localized
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-
     }
 
     private func loadLocaleValues() {
