@@ -21,6 +21,7 @@ class BaseExposed: UIViewController, ExpositionView {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var moreInfoView: UIView!
     @IBOutlet weak var expositionBGView: BackgroundView!
+    
     var lastCheck: Date?
 
     override func viewDidLoad() {

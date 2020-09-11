@@ -20,11 +20,19 @@ class ExpositionViewController: BaseExposed {
     @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var whatToDo: UILabel!
     @IBOutlet weak var moreinfo: UILabel!
+    
+    private let formatter = DateFormatter()
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        formatter.dateFormat = "dd.MM.YYYY"
+        
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_LOW_EXPOSED_TITLE".localized
+        
         whatToDo.isAccessibilityElement = true
         whatToDo.accessibilityTraits.insert(UIAccessibilityTraits.link)
         whatToDo.attributedText = "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localizedAttributed()
@@ -33,22 +41,21 @@ class ExpositionViewController: BaseExposed {
         
         moreinfo.isAccessibilityElement = true
         moreinfo.accessibilityTraits.insert(UIAccessibilityTraits.link)
-        self.sincontactos.attributedText = "EXPOSITION_LOW_DESCRIPTION".localizedAttributed(withParams: [expositionDateWithFormat()])
 
         expositionBGView.image = bgImageGreen
 
-        super.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
 
-    func expositionDateWithFormat() -> String {
-        if let date = self.lastCheck {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd.MM.YYYY"
-            return formatter.string(from: date)
+        super.viewWillAppear(animated)
+        if let lastCheck = lastCheck {
+            sincontactos.attributedText = "EXPOSITION_LOW_DESCRIPTION".localizedAttributed(withParams: [formatter.string(from: lastCheck)])
+        } else {
+            sincontactos.isHidden = true
         }
-        return "-"
     }
-
+    
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSURE_LOW_INFO_URL".localized)
     }
