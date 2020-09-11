@@ -33,6 +33,9 @@ class ProximityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         continueButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
+        continueButton.isAccessibilityElement = true
+        continueButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        continueButton.accessibilityHint = "ACC_HINT".localized
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_HOW_WORKS_TITLE".localized

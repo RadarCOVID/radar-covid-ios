@@ -91,6 +91,9 @@ class OnBoardingViewController: UIViewController {
         switchAccept.accessibilityTraits.insert(UIAccessibilityTraits.button)
         switchAccept.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
         switchAccept.accessibilityHint = "ACC_HINT".localized
+        acceptButton.isAccessibilityElement = true
+        acceptButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        acceptButton.accessibilityHint = "ACC_HINT".localized
 
         acceptView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapAccept(tapGestureRecognizer:))))
 
