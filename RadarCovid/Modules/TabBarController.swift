@@ -10,7 +10,7 @@
 //
 
 import Foundation
-
+import RxSwift
 import UIKit
 
 class TabBarController: UITabBarController {
@@ -21,7 +21,8 @@ class TabBarController: UITabBarController {
     var preferencesRepository: PreferencesRepository?
     private let disposeBag = DisposeBag()
 
-    init(homeViewController: HomeViewController, myDataViewController: MyDataViewController, helpLineViewController: HelpLineViewController, preferencesRepository: PreferencesRepository) {
+    init(localizationUseCase: LocalizationUseCase, homeViewController: HomeViewController, myDataViewController: MyDataViewController, helpLineViewController: HelpLineViewController, preferencesRepository: PreferencesRepository) {
+        self.localizationUseCase = localizationUseCase
         self.homeViewController = homeViewController
         self.myDataViewController = myDataViewController
         self.helpLineViewController = helpLineViewController
@@ -83,28 +84,28 @@ class TabBarController: UITabBarController {
         self.localizationUseCase.localizationLoaded.subscribe(
             onNext: { [weak self] (loaded) in
                 // all is ok so we can continue
-                homeViewController.tabBarItem.isAccessibilityElement = true
-                homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+                self?.homeViewController.tabBarItem.isAccessibilityElement = true
+                self?.homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
                 let home_acc_label = "ACC_HOME_TITLE".localized
                 print (home_acc_label)
-                homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
-                homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+                self?.homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
+                self?.homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
                 
                 
                 
-                myDataViewController.tabBarItem.isAccessibilityElement = true
-                myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+                self?.myDataViewController.tabBarItem.isAccessibilityElement = true
+                self?.myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
                 
                 let myData_acc_label = "ACC_MYDATA_TITLE".localized
                 print (myData_acc_label)
-                myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
-                myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+                self?.myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
+                self?.myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
                 
                 
-                helpLineViewController.tabBarItem.isAccessibilityElement = true
-                helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-                helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
-                helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+                self?.helpLineViewController.tabBarItem.isAccessibilityElement = true
+                self?.helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+                self?.helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
+                self?.helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
                 
             }).disposed(by: self.disposeBag)
         
