@@ -110,8 +110,19 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
         let key = localesKeysArray[row]
         self.languageSelector.setTitle(self.localesArray[key, default: ""], for: .normal)
         localizationRepository.setLocale(key)
-
     }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+        let key = localesKeysArray[row]
+        let text = localesArray[key] ?? ""
+        label.isAccessibilityElement = true
+        label.accessibilityLabel = (text ?? "") + "ACC_SELECTED".localized
+        label.contentMode = .center
+        label.text = text
+        return label
+    }
+    
     var containerView: UIView {
         get {
             self.view
