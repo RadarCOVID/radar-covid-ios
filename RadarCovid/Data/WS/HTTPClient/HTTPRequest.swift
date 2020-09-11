@@ -12,15 +12,15 @@
 import Foundation
 
 struct HTTPRequest<ResponseModel: Codable> {
-    public private(set) var parameters: [String: Any]
-    public private(set) var headers = [String: String]()
-    public private(set) var endpoint: HTTPEndpoint
-    public let id: UUID
-    public var url: URL?
-    public var baseURL: URL?
-    public var urlRequest: URLRequest?
+    private(set) var parameters: [String: Any]
+    private(set) var headers = [String: String]()
+    private(set) var endpoint: HTTPEndpoint
+    let id: UUID
+    var url: URL?
+    var baseURL: URL?
+    var urlRequest: URLRequest?
 
-    public init(endpoint: HTTPEndpoint, parameters: [String: Any]? = nil) {
+    init(endpoint: HTTPEndpoint, parameters: [String: Any]? = nil) {
         self.endpoint = endpoint
         self.parameters = parameters ?? [:]
         id = UUID()
