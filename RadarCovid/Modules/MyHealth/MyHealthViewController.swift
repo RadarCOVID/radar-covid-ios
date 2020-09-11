@@ -23,6 +23,7 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
     var diagnosisCodeUseCase: DiagnosisCodeUseCase?
     var statusBar: UIView?
     @IBOutlet weak var codeTextField: UITextField!
+    @IBOutlet weak var codigoTitle: UILabel!
     
     @IBOutlet weak var sendDiagnosticButton: UIButton!
     var router: AppRouter?
@@ -125,6 +126,9 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
+        codigoTitle.isAccessibilityElement = true
+        codigoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        codigoTitle.accessibilityLabel = "ACC_CODE_TITLE".localized
         
         // Do any additional setup after loading the view.
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))

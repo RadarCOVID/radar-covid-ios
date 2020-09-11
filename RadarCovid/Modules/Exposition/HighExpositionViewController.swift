@@ -20,6 +20,7 @@ class HighExpositionViewController: BaseExposed {
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
 
     @IBOutlet weak var viewTitle: UILabel!
+    @IBOutlet weak var whatToDoTitle: UILabel!
     @IBOutlet weak var youCouldBe: UILabel!
     @IBOutlet weak var infectedText: UILabel!
     @IBOutlet weak var phoneView: BackgroundView!
@@ -51,6 +52,9 @@ class HighExpositionViewController: BaseExposed {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_HIGH_EXPOSED_TITLE".localized
+        whatToDoTitle.isAccessibilityElement = true
+        whatToDoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        whatToDoTitle.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
         let picker = UIPickerView.init()
         picker.delegate = self
         picker.dataSource = self

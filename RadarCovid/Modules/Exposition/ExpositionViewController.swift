@@ -18,6 +18,7 @@ class ExpositionViewController: BaseExposed {
     @IBOutlet weak var sincontactos: UILabel!
     
     @IBOutlet weak var viewTitle: UILabel!
+    @IBOutlet weak var whatToDoTitle: UILabel!
     @IBOutlet weak var whatToDo: UILabel!
     @IBOutlet weak var moreinfo: UILabel!
     override func viewDidLoad() {
@@ -25,6 +26,9 @@ class ExpositionViewController: BaseExposed {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_LOW_EXPOSED_TITLE".localized
+        whatToDoTitle.isAccessibilityElement = true
+        whatToDoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        whatToDoTitle.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
         whatToDo.isAccessibilityElement = true
         whatToDo.accessibilityTraits.insert(UIAccessibilityTraits.link)
         whatToDo.attributedText = "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localizedAttributed()
