@@ -83,30 +83,31 @@ class TabBarController: UITabBarController {
         // accesibility
         self.localizationUseCase.localizationLoaded.subscribe(
             onNext: { [weak self] (loaded) in
-                // all is ok so we can continue
-                self?.homeViewController.tabBarItem.isAccessibilityElement = true
-                self?.homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-                let home_acc_label = "ACC_HOME_TITLE".localized
-                print (home_acc_label)
-                self?.homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
-                self?.homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-                
-                
-                
-                self?.myDataViewController.tabBarItem.isAccessibilityElement = true
-                self?.myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-                
-                let myData_acc_label = "ACC_MYDATA_TITLE".localized
-                print (myData_acc_label)
-                self?.myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
-                self?.myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-                
-                
-                self?.helpLineViewController.tabBarItem.isAccessibilityElement = true
-                self?.helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-                self?.helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
-                self?.helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-                
+                if (loaded){
+                    // all is ok so we can continue
+                    self?.homeViewController.tabBarItem.isAccessibilityElement = true
+                    self?.homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+                    let home_acc_label = "ACC_HOME_TITLE".localized
+                    print (home_acc_label)
+                    self?.homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
+                    self?.homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+                    
+                    
+                    
+                    self?.myDataViewController.tabBarItem.isAccessibilityElement = true
+                    self?.myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+                    
+                    let myData_acc_label = "ACC_MYDATA_TITLE".localized
+                    print (myData_acc_label)
+                    self?.myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
+                    self?.myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+                    
+                    
+                    self?.helpLineViewController.tabBarItem.isAccessibilityElement = true
+                    self?.helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+                    self?.helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
+                    self?.helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+                }
             }).disposed(by: self.disposeBag)
         
 
