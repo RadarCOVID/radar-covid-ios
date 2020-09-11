@@ -122,6 +122,9 @@ class HomeViewController: UIViewController {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_HOME_TITLE".localized
+        expositionTitle.isAccessibilityElement = true
+        expositionTitle.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        expositionTitle.accessibilityHint = "ACC_HINT".localized
         if UIAccessibility.isVoiceOverRunning {
             viewTitle.isHidden = false
         }else{
