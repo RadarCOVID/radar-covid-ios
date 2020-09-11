@@ -152,6 +152,7 @@
 		76D9BD4724A8CA8800BA6697 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BD4624A8CA8800BA6697 /* UIColor+Extension.swift */; };
 		76D9BD4D24A950CF00BA6697 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BD4C24A950CF00BA6697 /* Date+Extension.swift */; };
 		E9AF092E250BC968005DBE1A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF092D250BC968005DBE1A /* HTTPMethod.swift */; };
+		E9AF0932250BC9FC005DBE1A /* HTTPEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -313,6 +314,7 @@
 		76D9BD4624A8CA8800BA6697 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		76D9BD4C24A950CF00BA6697 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		E9AF092D250BC968005DBE1A /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -768,6 +770,7 @@
 			isa = PBXGroup;
 			children = (
 				E9AF092D250BC968005DBE1A /* HTTPMethod.swift */,
+				E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -1000,6 +1003,7 @@
 				6D83344F24B8350300223071 /* RootViewController.swift in Sources */,
 				3944328C248939F000FF0217 /* SceneDelegate.swift in Sources */,
 				6D2CA48A24B60F5F00981DA4 /* Localizable.swift in Sources */,
+				E9AF0932250BC9FC005DBE1A /* HTTPEndpoint.swift in Sources */,
 				6D7AB26D24ADCC9A00F30E0B /* NotificationHandler.swift in Sources */,
 				6D01BDE124FD619900FBADB4 /* RadarStatus.swift in Sources */,
 				766B026724D282C9006FBD29 /* BaseExposedViewController.swift in Sources */,
