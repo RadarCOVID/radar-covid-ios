@@ -14,12 +14,15 @@ import Foundation
 protocol ExpositionInfoRepository {
     func getExpositionInfo() -> ExpositionInfo?
     func save(expositionInfo: ExpositionInfo)
+    func isChangedToHealthy() -> Bool?
+    func setChangedToHealthy(changed: Bool)
     func clearData()
 }
 
 class UserDefaultsExpositionInfoRepository: ExpositionInfoRepository {
-
+    
     private static let kData = "UserDefaultsExpositionInfoRepository.expositionInfo"
+    private static let kChanged = "UserDefaultsExpositionInfoRepository.changedToHealthy"
 
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
@@ -41,9 +44,18 @@ class UserDefaultsExpositionInfoRepository: ExpositionInfoRepository {
         guard let encoded = try? encoder.encode(expositionInfo) else { return }
         userDefaults.set(encoded, forKey: UserDefaultsExpositionInfoRepository.kData)
     }
+    
+    func isChangedToHealthy() -> Bool? {
+        userDefaults.object(forKey: UserDefaultsExpositionInfoRepository.kChanged) as? Bool
+    }
+    
+    func setChangedToHealthy(changed: Bool) {
+        userDefaults.set(changed, forKey: UserDefaultsExpositionInfoRepository.kChanged)
+    }
 
     func clearData() {
         userDefaults.removeObject(forKey: UserDefaultsExpositionInfoRepository.kData)
+        userDefaults.removeObject(forKey: UserDefaultsExpositionInfoRepository.kChanged)
     }
 
 }

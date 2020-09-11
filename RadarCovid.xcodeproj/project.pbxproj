@@ -18,7 +18,6 @@
 		39A1AD46249225510049E48B /* HighExposition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39A1AD45249225510049E48B /* HighExposition.storyboard */; };
 		39A1AD48249225A40049E48B /* HighExpositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1AD47249225A40049E48B /* HighExpositionViewController.swift */; };
 		39C3FEC32497746900D1A13E /* DiagnosisCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C3FEC22497746900D1A13E /* DiagnosisCodeUseCase.swift */; };
-		5C2C3E2E24FD958C0035B522 /* TimeExposedDismissedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C3E2D24FD958C0035B522 /* TimeExposedDismissedUseCase.swift */; };
 		5C5474DC24F96E3900881B7C /* TimeExposedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5474DB24F96E3900881B7C /* TimeExposedView.swift */; };
 		5CE5834424FD483E00DBB3CB /* TimeExposed.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5834324FD483D00DBB3CB /* TimeExposed.xib */; };
 		6D01BDCF24EFEFCB00FBADB4 /* MyMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */; };
@@ -47,6 +46,9 @@
 		6D63108C2501194F000CDCB4 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63108B2501194F000CDCB4 /* UINavigationController+Extension.swift */; };
 		6D63108E2501197B000CDCB4 /* AccTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63108D2501197B000CDCB4 /* AccTitleView.swift */; };
 		6D64132D24ED897300B33427 /* ExpositionCheckUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D64132C24ED897300B33427 /* ExpositionCheckUseCaseTest.swift */; };
+		6D662D19250B80B700AEEFE7 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D662D18250B80B700AEEFE7 /* HomeViewModelTest.swift */; };
+		6D662D1C250B964B00AEEFE7 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 6D662D1B250B964B00AEEFE7 /* RxTest */; };
+		6D662D1E250B965200AEEFE7 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 6D662D1D250B965200AEEFE7 /* RxBlocking */; };
 		6D78B44124A9F13A00FBC23F /* SetupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */; };
 		6D7AB26D24ADCC9A00F30E0B /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */; };
 		6D7AB26F24ADED7400F30E0B /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
@@ -177,7 +179,6 @@
 		39A1AD45249225510049E48B /* HighExposition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HighExposition.storyboard; sourceTree = "<group>"; };
 		39A1AD47249225A40049E48B /* HighExpositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighExpositionViewController.swift; sourceTree = "<group>"; };
 		39C3FEC22497746900D1A13E /* DiagnosisCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisCodeUseCase.swift; sourceTree = "<group>"; };
-		5C2C3E2D24FD958C0035B522 /* TimeExposedDismissedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeExposedDismissedUseCase.swift; sourceTree = "<group>"; };
 		5C5474DB24F96E3900881B7C /* TimeExposedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeExposedView.swift; sourceTree = "<group>"; };
 		5CE5834324FD483D00DBB3CB /* TimeExposed.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeExposed.xib; sourceTree = "<group>"; };
 		6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMocks.swift; sourceTree = "<group>"; };
@@ -207,6 +208,7 @@
 		6D64132224ED88AB00B33427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D64132B24ED897200B33427 /* RadarCovidTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RadarCovidTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		6D64132C24ED897300B33427 /* ExpositionCheckUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionCheckUseCaseTest.swift; sourceTree = "<group>"; };
+		6D662D18250B80B700AEEFE7 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUseCase.swift; sourceTree = "<group>"; };
 		6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionInfoRepository.swift; sourceTree = "<group>"; };
@@ -330,6 +332,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D662D1C250B964B00AEEFE7 /* RxTest in Frameworks */,
+				6D662D1E250B965200AEEFE7 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +346,7 @@
 				39443288248939F000FF0217 /* RadarCovid */,
 				6D64131F24ED88AB00B33427 /* RadarCovidTests */,
 				39443287248939F000FF0217 /* Products */,
+				6D662D1A250B964B00AEEFE7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -486,8 +491,16 @@
 				6D64132B24ED897200B33427 /* RadarCovidTests-Bridging-Header.h */,
 				6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */,
 				6D9F3A8F25029C5C005EE842 /* ErrorHandlerTest.swift */,
+				6D662D18250B80B700AEEFE7 /* HomeViewModelTest.swift */,
 			);
 			path = RadarCovidTests;
+			sourceTree = "<group>";
+		};
+		6D662D1A250B964B00AEEFE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6D83344C24B834DD00223071 /* Root */ = {
@@ -616,7 +629,6 @@
 				6DF8211A24CF02E9000ED0D2 /* CCAAUseCase.swift */,
 				6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */,
 				6DBDBD5524EC012D00EF2654 /* ExpositionChechUseCase.swift */,
-				5C2C3E2D24FD958C0035B522 /* TimeExposedDismissedUseCase.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -794,6 +806,10 @@
 				6D64132424ED88AB00B33427 /* PBXTargetDependency */,
 			);
 			name = RadarCovidTests;
+			packageProductDependencies = (
+				6D662D1B250B964B00AEEFE7 /* RxTest */,
+				6D662D1D250B965200AEEFE7 /* RxBlocking */,
+			);
 			productName = RadarCovidTests;
 			productReference = 6D64131E24ED88AB00B33427 /* RadarCovidTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -938,7 +954,6 @@
 				6DE27D4124A7A08C00BBCF40 /* SyncUseCase.swift in Sources */,
 				76D9BD1C24A8992000BA6697 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
 				6DA18CC224916B4100BE8AAB /* ExpositionViewController.swift in Sources */,
-				5C2C3E2E24FD958C0035B522 /* TimeExposedDismissedUseCase.swift in Sources */,
 				6DB5418F24989C2500166D37 /* SettingsDto.swift in Sources */,
 				6DE27C78249A6D4600BBCF40 /* AlamofireImplementations.swift in Sources */,
 				5C5474DC24F96E3900881B7C /* TimeExposedView.swift in Sources */,
@@ -1011,6 +1026,7 @@
 				6D01BDCF24EFEFCB00FBADB4 /* MyMocks.swift in Sources */,
 				6D9F3A9025029C5C005EE842 /* ErrorHandlerTest.swift in Sources */,
 				6D64132D24ED897300B33427 /* ExpositionCheckUseCaseTest.swift in Sources */,
+				6D662D19250B80B700AEEFE7 /* HomeViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1733,6 +1749,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		6D662D1B250B964B00AEEFE7 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		6D662D1D250B965200AEEFE7 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
 		};
 		6DF6ECA7248E7453007EAA40 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

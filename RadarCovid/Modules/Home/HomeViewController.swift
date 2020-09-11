@@ -25,7 +25,6 @@ class HomeViewController: UIViewController {
     private let circle = UIImage(named: "circle")
     private let circleGray = UIImage(named: "circle")?.grayScale
     
-    var timeExposedDismissedUseCase: TimeExposedDismissedUseCase?
     var errorHandler: ErrorHandler!
     
     @IBOutlet weak var popupButton: UIButton!
@@ -149,7 +148,6 @@ class HomeViewController: UIViewController {
 
         viewModel!.checkInitialExposition()
         viewModel!.checkOnboarding()
-        viewModel!.checkExposedToHealthy()
         
         errorHandler?.alertDelegate = self
 
@@ -180,17 +178,16 @@ class HomeViewController: UIViewController {
             self?.setErrorState(error.element ?? nil)
         }.disposed(by: disposeBag)
         
-        viewModel?.expositionCheck.subscribe { [weak self] expositionCheck in
-            if (expositionCheck.element ?? false){
-                if self?.timeExposedDismissedUseCase?.isTimeExposedDismissed() == false {
-                    self?.showTimeExposed();
-                }
+        viewModel?.showBackToHealthyDialog.subscribe { [weak self] expositionCheck in
+            if expositionCheck.element ?? false {
+                self?.showTimeExposed();
             }
         }.disposed(by: disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel!.checkShowBackToHealthyDialog()
         viewModel?.restoreLastStateAndSync()
     }
 
@@ -230,7 +227,6 @@ class HomeViewController: UIViewController {
     }
 
     private func setExposed() {
-        viewModel?.setTimeExposedDismissed(value: false) 
         expositionTitle.text = "HOME_EXPOSITION_TITLE_HIGH".localized
         expositionDescription.attributedText = "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
             withParams: ["CONTACT_PHONE".localized]

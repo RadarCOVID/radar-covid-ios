@@ -104,10 +104,6 @@ class Injection {
         container.register(OnboardingCompletedUseCase.self) { r in
             OnboardingCompletedUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!)
         }.inObjectScope(.container)
-        
-        container.register(TimeExposedDismissedUseCase.self) { r in
-            TimeExposedDismissedUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!)
-        }.inObjectScope(.container)
 
         container.register(ExpositionUseCase.self) { r in
             ExpositionUseCase(notificationHandler: r.resolve(NotificationHandler.self)!,
@@ -233,7 +229,6 @@ class Injection {
             ) as? HomeViewController
             homeVC?.router = r.resolve(AppRouter.self)!
             homeVC?.viewModel = r.resolve(HomeViewModel.self)!
-            homeVC?.timeExposedDismissedUseCase = r.resolve(TimeExposedDismissedUseCase.self)!
             homeVC?.errorHandler = r.resolve(ErrorHandler.self)!
             return homeVC!
         }
@@ -246,7 +241,6 @@ class Injection {
             homeVM.expositionCheckUseCase = route.resolve(ExpositionCheckUseCase.self)!
             homeVM.syncUseCase = route.resolve(SyncUseCase.self)!
             homeVM.onBoardingCompletedUseCase = route.resolve(OnboardingCompletedUseCase.self)!
-            homeVM.timeExposedDismissedUseCase = route.resolve(TimeExposedDismissedUseCase.self)!
             return homeVM
         }
 

@@ -39,7 +39,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         resetMocks()
         expositionInfoRepository!.expositionInfo = ExpositionInfo(level: .healthy)
         
-        sut?.checkExposedToHealthy().subscribe(onNext: { result in
+        sut?.checkBackToHealthy().subscribe(onNext: { result in
             XCTAssertFalse(result)
             XCTAssertEqual(self.resetdataUseCase?.exposureDaysCalls, 0)
         }, onError: { error in
@@ -60,7 +60,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
         settingsRepository?.settings = settings
         
-        sut?.checkExposedToHealthy().subscribe(onNext: { result in
+        sut?.checkBackToHealthy().subscribe(onNext: { result in
             XCTAssertFalse(result)
             XCTAssertEqual(self.resetdataUseCase?.exposureDaysCalls, 0)
         }, onError: { error in
@@ -81,7 +81,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
         settingsRepository?.settings = settings
         
-        sut?.checkExposedToHealthy().subscribe(onNext: { result in
+        sut?.checkBackToHealthy().subscribe(onNext: { result in
             XCTAssertTrue(result)
             XCTAssertEqual(self.resetdataUseCase?.exposureDaysCalls, 1)
         }, onError: { error in

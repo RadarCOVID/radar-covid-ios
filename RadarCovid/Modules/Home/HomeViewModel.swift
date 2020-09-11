@@ -22,12 +22,11 @@ class HomeViewModel {
     var syncUseCase: SyncUseCase?
     var resetDataUseCase: ResetDataUseCase?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
-    var timeExposedDismissedUseCase: TimeExposedDismissedUseCase?
 
     var radarStatus = BehaviorSubject<RadarStatus>(value: .active)
     var checkState = BehaviorSubject<Bool>(value: false)
     var timeExposedDismissed = BehaviorSubject<Bool>(value: false)
-    var expositionCheck = BehaviorSubject<Bool>(value: false)
+    var showBackToHealthyDialog = PublishSubject<Bool>()
     var errorState = BehaviorSubject<DomainError?>(value: nil)
     var expositionInfo = BehaviorSubject<ExpositionInfo>(value: ExpositionInfo(level: .healthy))
     var error = PublishSubject<Error>()
@@ -97,17 +96,10 @@ class HomeViewModel {
         }
     }
     
-    func setTimeExposedDismissed(value: Bool){
-        timeExposedDismissedUseCase?.setTimeExposedDismissed(dismissed: value)
-    }
-    
-    func checkExposedToHealthy() {
-        expositionCheckUseCase?.checkExposedToHealthy().subscribe(
-            onNext: { [weak self] expositionCheck in
-                self?.expositionCheck.onNext(expositionCheck)
-            }, onError: { error in
-                debugPrint(error)
-        }).disposed(by: disposeBag)
+    func checkShowBackToHealthyDialog() {
+        if (expositionCheckUseCase?.checkBackToHealthyJustChanged() ?? false) {
+            showBackToHealthyDialog.onNext(true)
+        }
     }
 
 }

@@ -64,7 +64,6 @@ class TimeExposedView: UIView {
     }
     
     func removePopUpView() {
-        viewModel?.setTimeExposedDismissed(value: true)
         for view in parentViewController?.view.subviews ?? [] {
             if view.tag == 1111 {
                 view.fadeOut { (_) in

@@ -18,6 +18,7 @@ import UIKit
 class MockExpositionInfoRepository: ExpositionInfoRepository {
     
     var expositionInfo: ExpositionInfo?
+    var changedToHealthy: Bool?
     
     func getExpositionInfo() -> ExpositionInfo? {
         expositionInfo
@@ -33,6 +34,15 @@ class MockExpositionInfoRepository: ExpositionInfoRepository {
     
     func resetMock() {
         expositionInfo = nil
+        changedToHealthy = nil
+    }
+    
+    func isChangedToHealthy() -> Bool? {
+        return changedToHealthy
+    }
+    
+    func setChangedToHealthy(changed: Bool) {
+        changedToHealthy = changed
     }
     
 }
