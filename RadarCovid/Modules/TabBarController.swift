@@ -14,11 +14,12 @@ import Foundation
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    var localizationUseCase: LocalizationUseCase
     var homeViewController: HomeViewController
     var myDataViewController: MyDataViewController
     var helpLineViewController: HelpLineViewController
     var preferencesRepository: PreferencesRepository?
+    private let disposeBag = DisposeBag()
 
     init(homeViewController: HomeViewController, myDataViewController: MyDataViewController, helpLineViewController: HelpLineViewController, preferencesRepository: PreferencesRepository) {
         self.homeViewController = homeViewController
@@ -69,29 +70,44 @@ class TabBarController: UITabBarController {
             title: "",
             image: UIImage(named: "MenuHomeNormal"),
             selectedImage: UIImage(named: "MenuHomeSelected"))
-        homeViewController.tabBarItem.isAccessibilityElement = true
-        homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
-        homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-        
-
         myDataViewController.tabBarItem = UITabBarItem(
             title: "",
             image: UIImage(named: "MenuInfoNormal"),
             selectedImage: UIImage(named: "MenuInfoSelected"))
-        myDataViewController.tabBarItem.isAccessibilityElement = true
-        myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
-        myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-
         helpLineViewController.tabBarItem = UITabBarItem(
             title: "",
             image: UIImage(named: "MenuHelpNormal"),
             selectedImage: UIImage(named: "MenuHelpSelected"))
-        helpLineViewController.tabBarItem.isAccessibilityElement = true
-        helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
-        helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+        
+        // accesibility
+        self.localizationUseCase.localizationLoaded.subscribe(
+            onNext: { [weak self] (loaded) in
+                // all is ok so we can continue
+                homeViewController.tabBarItem.isAccessibilityElement = true
+                homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+                let home_acc_label = "ACC_HOME_TITLE".localized
+                print (home_acc_label)
+                homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
+                homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+                
+                
+                
+                myDataViewController.tabBarItem.isAccessibilityElement = true
+                myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+                
+                let myData_acc_label = "ACC_MYDATA_TITLE".localized
+                print (myData_acc_label)
+                myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
+                myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+                
+                
+                helpLineViewController.tabBarItem.isAccessibilityElement = true
+                helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+                helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
+                helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+                
+            }).disposed(by: self.disposeBag)
+        
 
     }
 

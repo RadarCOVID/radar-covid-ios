@@ -171,6 +171,7 @@ class Injection {
         
         container.register(TabBarController.self) { r in
             TabBarController(
+                localizationUseCase = r.resolve(LocalizationUseCase.self)!
                 homeViewController: r.resolve(HomeViewController.self)!,
                 myDataViewController: r.resolve(MyDataViewController.self)!,
                 helpLineViewController: r.resolve(HelpLineViewController.self)!,

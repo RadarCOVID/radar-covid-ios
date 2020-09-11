@@ -28,6 +28,7 @@ class MyDataViewController: UIViewController {
         super.viewDidLoad()
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        print("ACC_MYDATA_TITLE".localized)
         viewTitle.accessibilityLabel = "ACC_MYDATA_TITLE".localized
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true
