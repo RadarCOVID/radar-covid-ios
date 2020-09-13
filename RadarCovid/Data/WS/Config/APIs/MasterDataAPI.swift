@@ -33,7 +33,7 @@ open class MasterDataAPI {
         let getCcaaEndpoint = HTTPEndpoint(address: "/masterData/ccaa", method: .GET)
         var getCcaaRequest = HTTPRequest<[CcaaKeyValueDto]>(endpoint: getCcaaEndpoint, parameters: ["additionalInfo": additionalInfo, "locale": locale ?? "es-ES"])
 
-        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return}
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return }
         let configuration = HTTPClientConfiguration(baseURL: baseURL)
         httpClient.configure(using: configuration)
 
