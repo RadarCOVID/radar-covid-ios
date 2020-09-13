@@ -72,8 +72,18 @@ open class MasterDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     open func getLocales(locale: String? = nil, completion: @escaping ((_ data: [KeyValueDto]?, _ error: Error?) -> Void)) {
-        getLocalesWithRequestBuilder(locale: locale).execute { (response, error) -> Void in
-            completion(response?.body, error)
+        let getLocalesEndpoint = HTTPEndpoint(address: "/masterData/locales", method: .GET)
+        var getLocalesRequest = HTTPRequest<[KeyValueDto]>(endpoint: getLocalesEndpoint, parameters: ["locale": locale ?? "es-ES"])
+
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return}
+        let configuration = HTTPClientConfiguration(baseURL: baseURL)
+        httpClient.configure(using: configuration)
+
+        httpClient.run(request: &getLocalesRequest) { (result) in
+            switch result {
+            case .failure(let error): completion(nil, error)
+            case .success(let locales): completion(locales, nil)
+            }
         }
     }
 
@@ -96,34 +106,4 @@ open class MasterDataAPI {
             return Disposables.create()
         }
     }
-
-    /**
-     Get availables locales
-     - GET /masterData/locales
-
-     - examples: [{contentType=application/json, example=[ {
-  "description" : "description",
-  "id" : "id"
-}, {
-  "description" : "description",
-  "id" : "id"
-} ]}]
-     - parameter locale: (query)  (optional, default to es-ES)
-
-     - returns: RequestBuilder<[KeyValueDto]> 
-     */
-    open func getLocalesWithRequestBuilder(locale: String? = nil) -> RequestBuilder<[KeyValueDto]> {
-        let path = "/masterData/locales"
-        let URLString = clientApi.basePath + path
-        let parameters: [String: Any]? = nil
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "locale": locale
-        ])
-
-        let requestBuilder: RequestBuilder<[KeyValueDto]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
 }
