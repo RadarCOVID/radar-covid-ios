@@ -14,25 +14,33 @@ import Swinject
 import UIKit
 
 class Injection {
-    
+
     enum Endpoint: String {
         case CONFIG
         case KPI
         case VERIFICATION
     }
-    
+
     private let container: Container
-    
+
     init() {
         
-        container = Container()
-        
-        container.register(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue) { _ in
+        container = Container();
+
+        container.register(HTTPClient.self) { _ in HTTPClientDefault() }.inObjectScope(.container)
+
+        container.register(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue) { r in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.config
             return swaggerApi
         }.inObjectScope(.container)
-        
+
+        container.register(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue) { _ in
+            let swaggerApi = SwaggerClientAPI()
+            swaggerApi.basePath = Config.endpoints.kpi
+            return swaggerApi
+        }.inObjectScope(.container)
+
         container.register(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.verification
@@ -42,72 +50,69 @@ class Injection {
         container.register(TokenAPI.self) { r in
             TokenAPI(clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!)
         }.inObjectScope(.container)
-        
+
         container.register(SettingsAPI.self) { r in
             SettingsAPI(
                 clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
             )
         }.inObjectScope(.container)
-        
+
         container.register(TextsAPI.self) { r in
             TextsAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!,
+                httpClient: r.resolve(HTTPClient.self)!
             )
         }.inObjectScope(.container)
-        
+
         container.register(MasterDataAPI.self) { r in
             MasterDataAPI(
                 clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
             )
         }.inObjectScope(.container)
-        
+
         container.register(VerificationControllerAPI.self) { r in
             VerificationControllerAPI(
                 clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue)!
             )
         }.inObjectScope(.container)
-        
+
         container.register(PreferencesRepository.self) { _ in
             UserDefaultsPreferencesRepository()
         }.inObjectScope(.container)
-        
-        container.register(TermsAcceptedRepository.self) { _ in
-            TermsAcceptedRepository()
-        }.inObjectScope(.container)
-        
+
         container.register(SettingsRepository.self) { _ in
             UserDefaultsSettingsRepository()
         }.inObjectScope(.container)
-        
-        container.register(FakeRequestRepository.self) { _ in
-            FakeRequestRepository()
-        }.inObjectScope(.container)
-        
+
         container.register(ExpositionInfoRepository.self) { _ in
             UserDefaultsExpositionInfoRepository()
         }.inObjectScope(.container)
-        
+
         container.register(LocalizationRepository.self) { _ in
             UserDefaultsLocalizationRepository()
         }.inObjectScope(.container)
-        
+
+        container.register(BluetoothHandler.self) { _ in
+            CentralManagerBluetoothHandler()
+        }.inObjectScope(.container)
+
         container.register(VersionHandler.self) { _ in
             VersionHandler()
         }.inObjectScope(.container)
-        
+
         container.register(NotificationHandler.self) { _ in
             NotificationHandler()
         }.inObjectScope(.container)
-        
+
         container.register(OnboardingCompletedUseCase.self) { r in
             OnboardingCompletedUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(ExpositionUseCase.self) { r in
             ExpositionUseCase(notificationHandler: r.resolve(NotificationHandler.self)!,
                               expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(RadarStatusUseCase.self) { r in
             RadarStatusUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!,
                                syncUseCase: r.resolve(SyncUseCase.self)!)
@@ -123,20 +128,14 @@ class Injection {
             DiagnosisCodeUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
                                  verificationApi: r.resolve(VerificationControllerAPI.self)!)
         }.inObjectScope(.container)
-        
-        container.register(FakeRequestUseCase.self) { r in
-            FakeRequestUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
-                               verificationApi: r.resolve(VerificationControllerAPI.self)!,
-                               fakeRequestRepository: r.resolve(FakeRequestRepository.self)!)
-        }.inObjectScope(.container)
-        
+
         container.register(ConfigurationUseCase.self) { r in
             ConfigurationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
                                  tokenApi: r.resolve(TokenAPI.self)!,
                                  settingsApi: r.resolve(SettingsAPI.self)!,
                                  versionHandler: r.resolve(VersionHandler.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(SyncUseCase.self) { r in
             SyncUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!)
         }.inObjectScope(.container)
@@ -144,20 +143,19 @@ class Injection {
         container.register(SetupUseCase.self) { r in
             SetupUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!,
                          notificationHandler: r.resolve(NotificationHandler.self)!,
-                         expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!,
-                         fakeRequestUseCase: r.resolve(FakeRequestUseCase.self)!)
+                         expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(LocalizationUseCase.self) { r in
             LocalizationUseCase(textsApi: r.resolve(TextsAPI.self)!,
                                 localizationRepository: r.resolve(LocalizationRepository.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(CCAAUseCase.self) { r in
             CCAAUseCase(masterDataApi: r.resolve(MasterDataAPI.self)!,
                         localizationRepository: r.resolve(LocalizationRepository.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(LocalesUseCase.self) { r in
             LocalesUseCase(localizationRepository: r.resolve(LocalizationRepository.self)!,
                            masterDataApi: r.resolve(MasterDataAPI.self)!)
@@ -172,27 +170,39 @@ class Injection {
         
         container.register(TabBarController.self) { r in
             TabBarController(
+                localizationUseCase: r.resolve(LocalizationUseCase.self)!,
                 homeViewController: r.resolve(HomeViewController.self)!,
                 myDataViewController: r.resolve(MyDataViewController.self)!,
                 helpLineViewController: r.resolve(HelpLineViewController.self)!,
-                settingViewController: r.resolve(SettingViewController.self)!,
-                preferencesRepository: r.resolve(PreferencesRepository.self)!,
-                localizationUseCase: r.resolve(LocalizationUseCase.self)!
+                preferencesRepository: r.resolve(PreferencesRepository.self)!
             )
         }
-        
+
         container.register(AppRouter.self) { _ in
             AppRouter()
         }.initCompleted {r, appRouter in
+            appRouter.rootVC = r.resolve(RootViewController.self)!
+            appRouter.proxymityVC  = r.resolve(ProximityViewController.self)!
+            appRouter.onBoardingVC = r.resolve(OnBoardingViewController.self)!
+            appRouter.tabBarController = r.resolve(TabBarController.self)!
+            appRouter.myHealthVC = r.resolve(MyHealthViewController.self)!
+            appRouter.myHealthReportedVC = r.resolve(MyHealthReportedViewController.self)!
+            appRouter.expositionVC = r.resolve(ExpositionViewController.self)!
+            appRouter.highExpositionVC = r.resolve(HighExpositionViewController.self)!
+            appRouter.positiveExposedVC = r.resolve(PositiveExposedViewController.self)!
+            appRouter.welcomeVC = r.resolve(WelcomeViewController.self)!
+            appRouter.activateCovid = r.resolve(ActivateCovidNotificationViewController.self)!
+            appRouter.activatePush = r.resolve(ActivatePushNotificationViewController.self)!
+            appRouter.homeVC = r.resolve(HomeViewController.self)!
         }
-        
+
         container.register(ProximityViewController.self) {  r in
             let proxVC = ProximityViewController()
             proxVC.radarStatusUseCase = r.resolve(RadarStatusUseCase.self)!
             proxVC.router = r.resolve(AppRouter.self)!
             return proxVC
         }
-        
+
         container.register(ExpositionViewController.self) { r  in
             let vc = self.createViewController(
                 storyboard: "Exposition",
@@ -201,17 +211,17 @@ class Injection {
             vc.router = r.resolve(AppRouter.self)!
             return vc
         }
-        
+
         container.register(HighExpositionViewController.self) {  r in
             let highExposition = self.createViewController(
                 storyboard: "HighExposition",
                 viewId: "HighExpositionViewController")
-                as? HighExpositionViewController ?? HighExpositionViewController()
+            as? HighExpositionViewController ?? HighExpositionViewController()
             highExposition.ccaUseCase = r.resolve(CCAAUseCase.self)!
             highExposition.router = r.resolve(AppRouter.self)!
             return highExposition
         }
-        
+
         container.register(PositiveExposedViewController.self) { r in
             let vc = self.createViewController(
                 storyboard: "PositiveExposed",
@@ -220,7 +230,7 @@ class Injection {
             vc.router = r.resolve(AppRouter.self)!
             return vc
         }
-        
+
         container.register(HomeViewController.self) {  r in
             let homeVC = self.createViewController(
                 storyboard: "Home",
@@ -229,10 +239,9 @@ class Injection {
             homeVC?.router = r.resolve(AppRouter.self)!
             homeVC?.viewModel = r.resolve(HomeViewModel.self)!
             homeVC?.errorHandler = r.resolve(ErrorHandler.self)!
-            homeVC?.termsRepository = r.resolve(TermsAcceptedRepository.self)!
             return homeVC!
         }
-        
+
         container.register(HomeViewModel.self) { route in
             let homeVM = HomeViewModel()
             homeVM.expositionUseCase = route.resolve(ExpositionUseCase.self)!
@@ -241,16 +250,15 @@ class Injection {
             homeVM.expositionCheckUseCase = route.resolve(ExpositionCheckUseCase.self)!
             homeVM.syncUseCase = route.resolve(SyncUseCase.self)!
             homeVM.onBoardingCompletedUseCase = route.resolve(OnboardingCompletedUseCase.self)!
-            homeVM.fakeRequestUseCase = route.resolve(FakeRequestUseCase.self)!
             return homeVM
         }
-        
+
         container.register(MyDataViewController.self) {  _ in
             self.createViewController(
                 storyboard: "MyData",
                 viewId: "MyDataViewController") as? MyDataViewController ?? MyDataViewController()
         }
-        
+
         container.register(HelpLineViewController.self) {  route in
             let helpVC = self.createViewController(
                 storyboard: "HelpLine",
@@ -259,38 +267,16 @@ class Injection {
             helpVC?.preferencesRepository = route.resolve(PreferencesRepository.self)!
             return helpVC!
         }
-        
-        container.register(SettingViewController.self) {  route in
-            let settingVC = SettingViewController()
-            settingVC.router = route.resolve(AppRouter.self)!
-            settingVC.viewModel = route.resolve(SettingViewModel.self)!
-            return settingVC
-        }
-        
-        container.register(SettingViewModel.self) { route in
-            let settingVM = SettingViewModel(localesUseCase: route.resolve(LocalesUseCase.self)!)
-            return settingVM
+
+        container.register(MyHealthViewController.self) {  route in
+            let myHealthVC = self.createViewController(
+                storyboard: "MyHealth",
+                viewId: "MyHealthViewController") as? MyHealthViewController
+            myHealthVC?.diagnosisCodeUseCase = route.resolve(DiagnosisCodeUseCase.self)!
+            myHealthVC?.router = route.resolve(AppRouter.self)!
+            return myHealthVC!
         }
 
-        container.register(MyHealthStep0ViewController.self) {  route in
-            let myHealthStep0 = MyHealthStep0ViewController()
-            myHealthStep0.router = route.resolve(AppRouter.self)!
-            return myHealthStep0
-        }
-        
-        container.register(MyHealthStep1ViewController.self) {  route in
-            let myHealthStep1 = MyHealthStep1ViewController()
-            myHealthStep1.router = route.resolve(AppRouter.self)!
-            return myHealthStep1
-        }
-        
-        container.register(MyHealthStep2ViewController.self) {  route in
-            let myHealthStep2 = MyHealthStep2ViewController()
-            myHealthStep2.router = route.resolve(AppRouter.self)!
-            myHealthStep2.diagnosisCodeUseCase = route.resolve(DiagnosisCodeUseCase.self)!
-            return myHealthStep2
-        }
-        
         container.register(MyHealthReportedViewController.self) { route in
             let myHealthReportedVC = self.createViewController(
                 storyboard: "MyHealthReported",
@@ -298,28 +284,22 @@ class Injection {
             myHealthReportedVC?.router = route.resolve(AppRouter.self)!
             return myHealthReportedVC!
         }
-        
+
         container.register(OnBoardingViewController.self) {  route in
             let onbVC = self.createViewController(
                 storyboard: "OnBoarding",
                 viewId: "OnBoardingViewController") as? OnBoardingViewController
             onbVC?.router = route.resolve(AppRouter.self)!
-            onbVC?.termsRepository = route.resolve(TermsAcceptedRepository.self)!
             return onbVC!
         }
-        
+
         container.register(WelcomeViewController.self) {  r in
             let welcomeVC = WelcomeViewController()
-            welcomeVC.viewModel = r.resolve(WelcomeViewModel.self)!
+            welcomeVC.localizationRepository = r.resolve(LocalizationRepository.self)!
             welcomeVC.router = r.resolve(AppRouter.self)!
             return welcomeVC
         }
-        
-        container.register(WelcomeViewModel.self) { route in
-            let welcomeVM = WelcomeViewModel(localesUseCase: route.resolve(LocalesUseCase.self)!)
-            return welcomeVM
-        }
-        
+
         container.register(ActivateCovidNotificationViewController.self) {  r in
             let activateCovidVC = ActivateCovidNotificationViewController()
             activateCovidVC.router = r.resolve(AppRouter.self)!
@@ -328,14 +308,14 @@ class Injection {
             activateCovidVC.errorHandler = r.resolve(ErrorHandler.self)!
             return activateCovidVC
         }
-        
+
         container.register(ActivatePushNotificationViewController.self) {  r in
             let activatePushVC = ActivatePushNotificationViewController()
             activatePushVC.router = r.resolve(AppRouter.self)!
             activatePushVC.notificationHandler = r.resolve(NotificationHandler.self)
             return activatePushVC
         }
-        
+
         container.register(RootViewController.self) { r in
             let rootVC = RootViewController()
             rootVC.ccaaUseCase = r.resolve(CCAAUseCase.self)!
@@ -347,7 +327,7 @@ class Injection {
             return rootVC
         }
         
-        container.register(ErrorRecorder.self) { _ in
+        container.register(ErrorRecorder.self) { r in
             ErrorRecorderImpl()
         }
         
@@ -358,13 +338,13 @@ class Injection {
         }
         
     }
-    
+
     func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         return container.resolve(serviceType)
     }
-    
+
     private func createViewController(storyboard: String, viewId: String) -> UIViewController {
         UIStoryboard(name: storyboard, bundle: Bundle.main)
-            .instantiateViewController(withIdentifier: viewId)
+        .instantiateViewController(withIdentifier: viewId)
     }
 }

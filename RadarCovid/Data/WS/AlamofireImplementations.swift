@@ -74,7 +74,7 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
      */
     open func makeRequest(
         manager: SessionManager,
-        method: HTTPMethod,
+        method: Alamofire.HTTPMethod,
         encoding: ParameterEncoding,
         headers: [String: String]) -> DataRequest {
         return manager.request(URLString, method: method, parameters: parameters, encoding: encoding, headers: headers)

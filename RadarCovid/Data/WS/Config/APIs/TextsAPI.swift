@@ -14,11 +14,12 @@ import Alamofire
 import RxSwift
 
 open class TextsAPI {
-
+    private let httpClient: HTTPClient
     private let clientApi: SwaggerClientAPI
 
-    init(clientApi: SwaggerClientAPI) {
+    init(clientApi: SwaggerClientAPI, httpClient: HTTPClient) {
         self.clientApi = clientApi
+        self.httpClient = httpClient
     }
 
     /**
@@ -26,13 +27,21 @@ open class TextsAPI {
 
      - parameter ccaa: (query)  (optional, default to ES)
      - parameter locale: (query)  (optional, default to es-ES)
-     - parameter platform: (query)  (optional, default to iOS)
-     - parameter version: (query)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open func getTexts(ccaa: String? = nil, locale: String? = nil, platform: String? = nil, version: String? = nil, completion: @escaping ((_ data: TextCustomMap?,_ error: Error?) -> Void)) {
-        getTextsWithRequestBuilder(ccaa: ccaa, locale: locale, platform: platform, version: version).execute { (response, error) -> Void in
-            completion(response?.body, error)
+    open func getTexts(ccaa: String? = nil, locale: String? = nil, completion: @escaping ((_ data: TextCustomMap?, _ error: Error?) -> Void)) {
+        let verifyCodeEndpoint = HTTPEndpoint(address: "/texts",
+                                              method: .GET)
+        var verifyCodeRequest = HTTPRequest<TextCustomMap>(endpoint: verifyCodeEndpoint)
+
+        let configuration = HTTPClientConfiguration(baseURL: URL(string: clientApi.basePath)!)
+        httpClient.configure(using: configuration)
+
+        httpClient.run(request: &verifyCodeRequest) { (result) in
+            switch result {
+            case .failure(let error): completion(nil, error)
+            case .success(let texts): completion(texts, nil)
+            }
         }
     }
 
@@ -40,13 +49,11 @@ open class TextsAPI {
      Get texts by locale and CCAA
      - parameter ccaa: (query)  (optional, default to ES)
      - parameter locale: (query)  (optional, default to es-ES)
-     - parameter platform: (query)  (optional, default to iOS)
-     - parameter version: (query)  (optional)
      - returns: Observable<TextCustomMap>
      */
-    open func getTexts(ccaa: String? = nil, locale: String? = nil, platform: String? = nil, version: String? = nil) -> Observable<TextCustomMap> {
-        return Observable.create { [weak self]  observer -> Disposable in
-            self?.getTexts(ccaa: ccaa, locale: locale, platform: platform, version: version) { data, error in
+    open func getTexts(ccaa: String? = nil, locale: String? = nil) -> Observable<TextCustomMap> {
+        return Observable.create { [weak self] observer -> Disposable in
+            self?.getTexts(ccaa: ccaa, locale: locale) { data, error in
                 if let error = error {
                     observer.on(.error(error))
                 } else {
@@ -57,36 +64,4 @@ open class TextsAPI {
             return Disposables.create()
         }
     }
-
-    /**
-     Get texts by locale and CCAA
-     - GET /texts
-
-     - examples: [{contentType=application/json, example={
-  "key" : ""
-}}]
-     - parameter ccaa: (query)  (optional, default to ES)
-     - parameter locale: (query)  (optional, default to es-ES)
-     - parameter platform: (query)  (optional, default to iOS)
-     - parameter version: (query)  (optional)
-
-     - returns: RequestBuilder<TextCustomMap>
-     */
-    open func getTextsWithRequestBuilder(ccaa: String? = nil, locale: String? = nil, platform: String? = nil, version: String? = nil) -> RequestBuilder<TextCustomMap> {
-        let path = "/texts"
-        let URLString = clientApi.basePath + path
-        let parameters: [String:Any]? = nil
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "ccaa": ccaa,
-                        "locale": locale,
-                        "platform": platform,
-                        "version": version
-        ])
-
-        let requestBuilder: RequestBuilder<TextCustomMap>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
 }

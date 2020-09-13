@@ -12,10 +12,10 @@
 import Foundation
 
 struct HTTPEndpoint: Equatable {
-    public private(set) var address: String
-    public private(set) var method: HTTPMethod
+    private(set) var address: String
+    private(set) var method: HTTPMethod
 }
 
-public func == (lhs: HTTPEndpoint, rhs: HTTPEndpoint) -> Bool {
+func == (lhs: HTTPEndpoint, rhs: HTTPEndpoint) -> Bool {
     return lhs.address == rhs.address && lhs.method == rhs.method
 }
