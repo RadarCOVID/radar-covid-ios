@@ -10,7 +10,6 @@
 //
 
 import Foundation
-import Alamofire
 import RxSwift
 
 open class TextsAPI {
@@ -33,7 +32,7 @@ open class TextsAPI {
         let getTextEndpoint = HTTPEndpoint(address: "/texts", method: .GET)
         var getTextCodeRequest = HTTPRequest<TextCustomMap>(endpoint: getTextEndpoint, parameters: ["ccaa": ccaa ?? "ES", "locale": locale ?? "es-ES"])
 
-        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return}
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return }
         let configuration = HTTPClientConfiguration(baseURL: baseURL)
         httpClient.configure(using: configuration)
 

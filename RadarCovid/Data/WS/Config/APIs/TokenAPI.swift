@@ -10,7 +10,6 @@
 //
 
 import Foundation
-import Alamofire
 import RxSwift
 
 open class TokenAPI {
@@ -31,7 +30,7 @@ open class TokenAPI {
         let getUuidEndpoint = HTTPEndpoint(address: "/token/uuid", method: .GET)
         var getUuidRequest = HTTPRequest<UuidDto>(endpoint: getUuidEndpoint)
 
-        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return}
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return }
         let configuration = HTTPClientConfiguration(baseURL: baseURL)
         httpClient.configure(using: configuration)
 

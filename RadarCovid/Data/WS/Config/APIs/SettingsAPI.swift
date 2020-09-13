@@ -10,7 +10,6 @@
 //
 
 import Foundation
-import Alamofire
 import RxSwift
 
 open class SettingsAPI {
@@ -28,8 +27,18 @@ open class SettingsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     open func getSettings(completion: @escaping ((_ data: SettingsDto?, _ error: Error?) -> Void)) {
-        getSettingsWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error)
+        let getSettingsEndpoint = HTTPEndpoint(address: "/settings", method: .GET)
+        var getSettingsRequest = HTTPRequest<SettingsDto>(endpoint: getSettingsEndpoint)
+
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return }
+        let configuration = HTTPClientConfiguration(baseURL: baseURL)
+        httpClient.configure(using: configuration)
+
+        httpClient.run(request: &getSettingsRequest) { (result) in
+            switch result {
+            case .failure(let error): completion(nil, error)
+            case .success(let settings): completion(settings, nil)
+            }
         }
     }
 
@@ -50,76 +59,4 @@ open class SettingsAPI {
             return Disposables.create()
         }
     }
-
-    /**
-     Get application settings
-     - GET /settings
-
-     - :
-       - type: http
-       - name: bearerAuth
-     - examples: [{contentType=application/json, example=[ {
-  "minRiskScore" : 2,
-  "riskScoreClassification" : [ {
-    "minValue" : 4,
-    "maxValue" : 7,
-    "label" : "label"
-  }, {
-    "minValue" : 4,
-    "maxValue" : 7,
-    "label" : "label"
-  } ],
-  "exposureConfiguration" : {
-    "transmission" : {
-      "riskLevelValue1" : 0,
-      "riskLevelValue3" : 1,
-      "riskLevelValue2" : 6,
-      "riskLevelValue8" : 9,
-      "riskLevelValue5" : 5,
-      "riskLevelValue4" : 5,
-      "riskLevelWeight" : 3.616076749251911,
-      "riskLevelValue7" : 7,
-      "riskLevelValue6" : 2
-    }
-  }
-}, {
-  "minRiskScore" : 2,
-  "riskScoreClassification" : [ {
-    "minValue" : 4,
-    "maxValue" : 7,
-    "label" : "label"
-  }, {
-    "minValue" : 4,
-    "maxValue" : 7,
-    "label" : "label"
-  } ],
-  "exposureConfiguration" : {
-    "transmission" : {
-      "riskLevelValue1" : 0,
-      "riskLevelValue3" : 1,
-      "riskLevelValue2" : 6,
-      "riskLevelValue8" : 9,
-      "riskLevelValue5" : 5,
-      "riskLevelValue4" : 5,
-      "riskLevelWeight" : 3.616076749251911,
-      "riskLevelValue7" : 7,
-      "riskLevelValue6" : 2
-    }
-  }
-} ]}]
-
-     - returns: RequestBuilder<[SettingsDto]> 
-     */
-    open func getSettingsWithRequestBuilder() -> RequestBuilder<SettingsDto> {
-        let path = "/settings"
-        let URLString = clientApi.basePath + path
-        let parameters: [String: Any]? = nil
-
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<SettingsDto>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
 }
