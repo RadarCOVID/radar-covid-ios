@@ -10,14 +10,14 @@
 //
 
 import Foundation
-import Alamofire
 import RxSwift
 
 open class VerificationControllerAPI {
-
+    private let httpClient: HTTPClient
     private let clientApi: SwaggerClientAPI
 
-    init(clientApi: SwaggerClientAPI) {
+    init(clientApi: SwaggerClientAPI, httpClient: HTTPClient) {
+        self.httpClient = httpClient
         self.clientApi = clientApi
     }
 
@@ -28,24 +28,19 @@ open class VerificationControllerAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     open func verifyCode(body: Code, completion: @escaping ((_ data: TokenResponse?, _ error: Error?) -> Void)) {
-        let verifyCodeEndpoint = HTTPEndpoint(address: "/verify/code",
-                                              method: .POST)
-        var verifyCodeRequest = HTTPRequest<TokenResponse>(endpoint: verifyCodeEndpoint,
-                                                           parameters: JSONEncodingHelper.encodingParameters(forEncodableObject: body))
+        let verifyCodeEndpoint = HTTPEndpoint(address: "/masterData/ccaa", method: .POST)
+        var verifyCodeRequest = HTTPRequest<TokenResponse>(endpoint: verifyCodeEndpoint, parameters: JSONEncodingHelper.encodingParameters(forEncodableObject: body))
 
-        let configuration = HTTPClientConfiguration(baseURL: URL(string: clientApi.basePath)!)
-        HTTPClientDefault().configure(using: configuration)
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return }
+        let configuration = HTTPClientConfiguration(baseURL: baseURL)
+        httpClient.configure(using: configuration)
 
-        HTTPClientDefault().run(request: &verifyCodeRequest) { (result) in
+        httpClient.run(request: &verifyCodeRequest) { (result) in
             switch result {
             case .failure(let error): completion(nil, error)
             case .success(let token): completion(token, nil)
             }
         }
-
-//        verifyCodeWithRequestBuilder(body: body).execute { (response, error) -> Void in
-//            completion(response?.body, error)
-//        }
     }
 
     /**
@@ -65,28 +60,5 @@ open class VerificationControllerAPI {
             }
             return Disposables.create()
         }
-    }
-
-    /**
-     Verify provided Code
-     - POST /verify/code
-
-     - examples: [{contentType=application/json, example={
-  "token" : "token"
-}}]
-     - parameter body: (body)
-
-     - returns: RequestBuilder<TokenResponse>
-     */
-    open func verifyCodeWithRequestBuilder(body: Code) -> RequestBuilder<TokenResponse> {
-        let path = "/verify/code"
-        let URLString = clientApi.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
-
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<TokenResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 }

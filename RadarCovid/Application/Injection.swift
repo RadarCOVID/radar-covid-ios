@@ -77,7 +77,8 @@ class Injection {
 
         container.register(VerificationControllerAPI.self) { r in
             VerificationControllerAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue)!,
+                httpClient: r.resolve(HTTPClient.self)!
             )
         }.inObjectScope(.container)
 
