@@ -36,8 +36,8 @@ open class SettingsAPI {
 
         httpClient.run(request: &getSettingsRequest) { (result) in
             switch result {
-            case .failure(let error): completion(nil, error)
-            case .success(let settings): completion(settings, nil)
+            case .failure(let error): DispatchQueue.main.async { completion(nil, error) }
+            case .success(let settings): DispatchQueue.main.async { completion(settings, nil) }
             }
         }
     }

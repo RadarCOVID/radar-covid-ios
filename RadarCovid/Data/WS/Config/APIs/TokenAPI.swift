@@ -36,8 +36,8 @@ open class TokenAPI {
 
         httpClient.run(request: &getUuidRequest) { (result) in
             switch result {
-            case .failure(let error): completion(nil, error)
-            case .success(let uuid): completion(uuid, nil)
+            case .failure(let error): DispatchQueue.main.async { completion(nil, error) }
+            case .success(let uuid): DispatchQueue.main.async { completion(uuid, nil) }
             }
         }
     }

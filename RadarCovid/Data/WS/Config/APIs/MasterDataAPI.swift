@@ -38,8 +38,8 @@ open class MasterDataAPI {
 
         httpClient.run(request: &getCcaaRequest) { (result) in
             switch result {
-            case .failure(let error): completion(nil, error)
-            case .success(let ccaa): completion(ccaa, nil)
+            case .failure(let error): DispatchQueue.main.async { completion(nil, error) }
+            case .success(let ccaa): DispatchQueue.main.async { completion(ccaa, nil) }
             }
         }
     }
@@ -80,8 +80,8 @@ open class MasterDataAPI {
 
         httpClient.run(request: &getLocalesRequest) { (result) in
             switch result {
-            case .failure(let error): completion(nil, error)
-            case .success(let locales): completion(locales, nil)
+            case .failure(let error): DispatchQueue.main.async { completion(nil, error) }
+            case .success(let locales): DispatchQueue.main.async { completion(locales, nil) }
             }
         }
     }

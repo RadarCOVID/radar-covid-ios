@@ -38,8 +38,8 @@ open class TextsAPI {
 
         httpClient.run(request: &getTextCodeRequest) { (result) in
             switch result {
-            case .failure(let error): completion(nil, error)
-            case .success(let texts): completion(texts, nil)
+            case .failure(let error): DispatchQueue.main.async { completion(nil, error) }
+            case .success(let texts): DispatchQueue.main.async { completion(texts, nil) }
             }
         }
     }

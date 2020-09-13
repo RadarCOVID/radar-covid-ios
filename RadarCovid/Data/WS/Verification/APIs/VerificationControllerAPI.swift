@@ -37,8 +37,8 @@ open class VerificationControllerAPI {
 
         httpClient.run(request: &verifyCodeRequest) { (result) in
             switch result {
-            case .failure(let error): completion(nil, error)
-            case .success(let token): completion(token, nil)
+            case .failure(let error): DispatchQueue.main.async { completion(nil, error) }
+            case .success(let token): DispatchQueue.main.async { completion(token, nil) }
             }
         }
     }
