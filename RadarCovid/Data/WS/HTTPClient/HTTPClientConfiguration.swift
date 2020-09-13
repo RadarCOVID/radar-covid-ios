@@ -12,5 +12,5 @@
 import Foundation
 
 struct HTTPClientConfiguration {
-    private(set) var baseURL: URL
+    let baseURL: URL
 }

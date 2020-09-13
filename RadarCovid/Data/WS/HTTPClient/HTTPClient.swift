@@ -13,6 +13,11 @@ import Foundation
 
 struct Empty: Codable {}
 
+enum Environment {
+    case pre
+    case pro
+}
+
 protocol HTTPClient {
     var isConfigured: Bool { get }
 
@@ -20,11 +25,17 @@ protocol HTTPClient {
     func run<ResponseModel: Codable>(request: inout HTTPRequest<ResponseModel>, _ completion: @escaping (Result<ResponseModel, Error>) -> Void)
 }
 
-class HTTPClientDefault: HTTPClient {
+class HTTPClientDefault: NSObject, HTTPClient {
     var isConfigured: Bool { return configuration != nil }
 
-    private var session: URLSession { return URLSession.shared }
+    private(set) var session: URLSession
     private var configuration: HTTPClientConfiguration?
+
+    override init() {
+        let sessionConfiguration = URLSessionConfiguration.default
+        session = URLSession(configuration: sessionConfiguration)
+        super.init()
+    }
 
     func configure(using configuration: HTTPClientConfiguration) {
         self.configuration = configuration
@@ -32,6 +43,9 @@ class HTTPClientDefault: HTTPClient {
 
     func run<ResponseModel: Codable>(request: inout HTTPRequest<ResponseModel>, _ completion: @escaping (Result<ResponseModel, Error>) -> Void) {
         guard let configuration = configuration else { completion(Result<ResponseModel, Error>.failure(HTTPClientError.notConfigured)); return }
+
+
+
         request.configure(baseURL: configuration.baseURL)
         let preparedRequest = request
 
@@ -75,16 +89,42 @@ class HTTPClientDefault: HTTPClient {
             if request is HTTPRequest<Empty> {
                 completion(Result<ResponseModel, Error>.success(Empty() as! ResponseModel))
             } else {
-                let expectedModel: ResponseModel
-                if ResponseModel.self == String.self {
-                    expectedModel = String(data: data, encoding: .utf8) as! ResponseModel
-                } else {
-                    expectedModel = try JSONDecoder().decode(ResponseModel.self, from: data)
-                }
+                let expectedModel = try JSONDecoder().decode(ResponseModel.self, from: data)
                 completion(Result<ResponseModel, Error>.success(expectedModel))
             }
         } catch {
             completion(Result<ResponseModel, Error>.failure(error))
         }
+    }
+}
+
+extension HTTPClientDefault: URLSessionDelegate {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        guard let serverTrust = challenge.protectionSpace.serverTrust, challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+
+        let prePolicy = SecPolicyCreateSSL(true, "radarcovidpre.covid19.gob.es" as CFString)
+        let proPolicy = SecPolicyCreateSSL(true, "radarcovid.covid19.gob.es" as CFString)
+        let policies = NSArray(array: [prePolicy, proPolicy])
+        SecTrustSetPolicies(serverTrust, policies)
+
+        let certificateCount = SecTrustGetCertificateCount(serverTrust)
+        guard certificateCount > 0, let certificate = SecTrustGetCertificateAtIndex(serverTrust, 0) else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+
+        let serverCertificateData = SecCertificateCopyData(certificate) as Data
+        let certificates = HTTPPinningCertificate.localCertificates()
+        for localCert in certificates {
+            if localCert.validate(against: serverCertificateData, using: serverTrust) {
+                completionHandler(.useCredential, URLCredential(trust: serverTrust))
+                return
+            }
+        }
+
+        completionHandler(.cancelAuthenticationChallenge, nil)
     }
 }

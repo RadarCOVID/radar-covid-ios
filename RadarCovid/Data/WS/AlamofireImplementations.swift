@@ -38,23 +38,9 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
      configuration.
      */
     open func createSessionManager() -> Alamofire.SessionManager {
-        let serverTrustPolicies: [String: ServerTrustPolicy] = [
-            "radarcovidpre.covid19.gob.es": .pinCertificates(
-                certificates: [        CertificateUtil.certificate(filename: "radarcovidpre.covid19.gob.es")
-],
-                validateCertificateChain: false,
-                validateHost: true
-            ),
-            "radarcovid.covid19.gob.es": .pinCertificates(
-                certificates: [CertificateUtil.pro],
-                validateCertificateChain: false,
-                validateHost: true
-            )
-        ]
         let configuration = URLSessionConfiguration.default
-        let serverTrusPolicyManager = ServerTrustPolicyManager(policies: serverTrustPolicies)
         configuration.httpAdditionalHeaders = buildHeaders()
-        return Alamofire.SessionManager(configuration: configuration, serverTrustPolicyManager: serverTrusPolicyManager )
+        return Alamofire.SessionManager(configuration: configuration)
     }
 
     /**
