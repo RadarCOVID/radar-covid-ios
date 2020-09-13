@@ -29,15 +29,29 @@ struct HTTPRequest<ResponseModel: Codable> {
     mutating func configure(baseURL: URL) {
         self.baseURL = baseURL
         url = baseURL.appendingPathComponent(endpoint.address)
-        urlRequest = URLRequest(url: baseURL.appendingPathComponent(endpoint.address))
+        prepareRequest()
+        prepareParameters()
     }
 
-    init(request: HTTPRequest<ResponseModel>) {
-        endpoint = request.endpoint
-        parameters = request.parameters
-        id = request.id
-        baseURL = request.baseURL
-        url = request.url
-        urlRequest = request.urlRequest
+    private mutating func prepareRequest() {
+        guard let baseURL = baseURL else { return }
+        urlRequest = URLRequest(url: baseURL.appendingPathComponent(endpoint.address))
+        urlRequest?.httpMethod = endpoint.method.rawValue
+        urlRequest?.allHTTPHeaderFields = headers
+    }
+
+    private mutating func prepareParameters() {
+        switch endpoint.method {
+        case .GET, .DELETE:
+            guard let requestURL = url else { return }
+            guard var paramsURL = URLComponents(string: requestURL.absoluteString) else { return }
+            paramsURL.queryItems = []
+            parameters.forEach({ paramsURL.queryItems?.append(URLQueryItem(name: $0.key, value: "\($0.value)")) })
+            urlRequest = URLRequest(url: paramsURL.url!)
+
+        case .POST, .PUT:
+            let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+            urlRequest?.httpBody = postData
+        }
     }
 }
