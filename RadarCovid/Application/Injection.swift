@@ -56,7 +56,8 @@ class Injection {
 
         container.register(SettingsAPI.self) { r in
             SettingsAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!,
+                httpClient: r.resolve(HTTPClient.self)!
             )
         }.inObjectScope(.container)
 
