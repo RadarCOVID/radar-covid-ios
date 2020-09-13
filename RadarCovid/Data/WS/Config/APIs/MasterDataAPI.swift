@@ -27,13 +27,21 @@ open class MasterDataAPI {
 
      - parameter locale: (query)  (optional, default to es-ES)
      - parameter additionalInfo: (query)  (optional, default to false)
-     - parameter platform: (query)  (optional, default to iOS)
-     - parameter version: (query)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open func getCcaa(locale: String? = nil, additionalInfo: Bool? = nil, platform: String? = nil, version: String? = nil, completion: @escaping ((_ data: [CcaaKeyValueDto]?,_ error: Error?) -> Void)) {
-        getCcaaWithRequestBuilder(locale: locale, additionalInfo: additionalInfo, platform: platform, version: version).execute { (response, error) -> Void in
-            completion(response?.body, error)
+    open func getCcaa(locale: String? = nil, additionalInfo: Bool = true, completion: @escaping ((_ data: [CcaaKeyValueDto]?, _ error: Error?) -> Void)) {
+        let getCcaaEndpoint = HTTPEndpoint(address: "/masterData/ccaa", method: .GET)
+        var getCcaaRequest = HTTPRequest<[CcaaKeyValueDto]>(endpoint: getCcaaEndpoint, parameters: ["additionalInfo": additionalInfo, "locale": locale ?? "es-ES"])
+
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return}
+        let configuration = HTTPClientConfiguration(baseURL: baseURL)
+        httpClient.configure(using: configuration)
+
+        httpClient.run(request: &getCcaaRequest) { (result) in
+            switch result {
+            case .failure(let error): completion(nil, error)
+            case .success(let ccaa): completion(ccaa, nil)
+            }
         }
     }
 
@@ -41,13 +49,11 @@ open class MasterDataAPI {
      Get availables autonomous communities
      - parameter locale: (query)  (optional, default to es-ES)
      - parameter additionalInfo: (query)  (optional, default to false)
-     - parameter platform: (query)  (optional, default to iOS)
-     - parameter version: (query)  (optional)
      - returns: Observable<[CcaaKeyValueDto]>
      */
-    open func getCcaa(locale: String? = nil, additionalInfo: Bool? = nil, platform: String? = nil, version: String? = nil) -> Observable<[CcaaKeyValueDto]> {
-        return Observable.create { [weak self]  observer -> Disposable in
-            self?.getCcaa(locale: locale, additionalInfo: additionalInfo, platform: platform, version: version) { data, error in
+    open func getCcaa(locale: String? = nil, additionalInfo: Bool = true) -> Observable<[CcaaKeyValueDto]> {
+        return Observable.create { [weak self] observer -> Disposable in
+            self?.getCcaa(locale: locale, additionalInfo: additionalInfo) { data, error in
                 if let error = error {
                     observer.on(.error(error))
                 } else {
@@ -60,60 +66,13 @@ open class MasterDataAPI {
     }
 
     /**
-     Get availables autonomous communities
-     - GET /masterData/ccaa
-
-     - examples: [{contentType=application/json, example=[ {
-  "phone" : "phone",
-  "web" : "web",
-  "webName" : "webName",
-  "additionalInfo" : "additionalInfo",
-  "description" : "description",
-  "id" : "id",
-  "email" : "email"
-}, {
-  "phone" : "phone",
-  "web" : "web",
-  "webName" : "webName",
-  "additionalInfo" : "additionalInfo",
-  "description" : "description",
-  "id" : "id",
-  "email" : "email"
-} ]}]
-     - parameter locale: (query)  (optional, default to es-ES)
-     - parameter additionalInfo: (query)  (optional, default to false)
-     - parameter platform: (query)  (optional, default to iOS)
-     - parameter version: (query)  (optional)
-
-     - returns: RequestBuilder<[CcaaKeyValueDto]>
-     */
-    open func getCcaaWithRequestBuilder(locale: String? = nil, additionalInfo: Bool? = nil, platform: String? = nil, version: String? = nil) -> RequestBuilder<[CcaaKeyValueDto]> {
-        let path = "/masterData/ccaa"
-        let URLString = clientApi.basePath + path
-        let parameters: [String: Any]? = nil
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "locale": locale,
-            "additionalInfo": additionalInfo,
-            "platform": platform,
-            "version": version
-        ])
-
-        let requestBuilder: RequestBuilder<[CcaaKeyValueDto]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
      Get availables locales
 
      - parameter locale: (query)  (optional, default to es-ES)
-     - parameter platform: (query)  (optional, default to iOS)
-     - parameter version: (query)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open func getLocales(locale: String? = nil, platform: String? = nil, version: String? = nil, completion: @escaping ((_ data: [KeyValueDto]?,_ error: Error?) -> Void)) {
-        getLocalesWithRequestBuilder(locale: locale, platform: platform, version: version).execute { (response, error) -> Void in
+    open func getLocales(locale: String? = nil, completion: @escaping ((_ data: [KeyValueDto]?, _ error: Error?) -> Void)) {
+        getLocalesWithRequestBuilder(locale: locale).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -123,9 +82,10 @@ open class MasterDataAPI {
      - parameter locale: (query)  (optional, default to es-ES)
      - returns: Observable<[KeyValueDto]>
      */
-    open func getLocales(locale: String? = nil, platform: String? = nil, version: String? = nil) -> Observable<[KeyValueDto]> {
+    open func getLocales(locale: String? = nil) -> Observable<[KeyValueDto]> {
         return Observable.create { [weak self] observer -> Disposable in
-            self?.getLocales(locale: locale, platform: platform, version: version) { data, error in
+
+            self?.getLocales(locale: locale) { data, error in
                 if let error = error {
                     observer.on(.error(error))
                 } else {
@@ -149,20 +109,16 @@ open class MasterDataAPI {
   "id" : "id"
 } ]}]
      - parameter locale: (query)  (optional, default to es-ES)
-     - parameter platform: (query)  (optional, default to iOS)
-     - parameter version: (query)  (optional)
 
-     - returns: RequestBuilder<[KeyValueDto]>
+     - returns: RequestBuilder<[KeyValueDto]> 
      */
-    open func getLocalesWithRequestBuilder(locale: String? = nil, platform: String? = nil, version: String? = nil) -> RequestBuilder<[KeyValueDto]> {
+    open func getLocalesWithRequestBuilder(locale: String? = nil) -> RequestBuilder<[KeyValueDto]> {
         let path = "/masterData/locales"
         let URLString = clientApi.basePath + path
         let parameters: [String: Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-                "locale": locale,
-                "platform": platform,
-                "version": version
+                        "locale": locale
         ])
 
         let requestBuilder: RequestBuilder<[KeyValueDto]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
