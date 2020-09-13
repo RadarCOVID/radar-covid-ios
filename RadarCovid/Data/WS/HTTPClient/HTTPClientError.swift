@@ -12,6 +12,7 @@
 import Foundation
 
 enum HTTPClientError: LocalizedError, Equatable {
+    case invalidBaseURL
     case notConfigured
     case invalidResponse
     case noData
@@ -20,6 +21,7 @@ enum HTTPClientError: LocalizedError, Equatable {
 
     var errorDescription: String? {
         switch self {
+        case .invalidBaseURL: return "HTTPClient reporst invalid baseUrl"
         case .notConfigured: return "HTTPClient is not configured."
         case .invalidResponse: return "HTTPClient reports invalid response."
         case .noData: return "HTTPClient reports there's no data to parse."

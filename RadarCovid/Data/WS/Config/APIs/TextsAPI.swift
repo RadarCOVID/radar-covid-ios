@@ -30,14 +30,15 @@ open class TextsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     open func getTexts(ccaa: String? = nil, locale: String? = nil, completion: @escaping ((_ data: TextCustomMap?, _ error: Error?) -> Void)) {
-        let verifyCodeEndpoint = HTTPEndpoint(address: "/texts",
-                                              method: .GET)
-        var verifyCodeRequest = HTTPRequest<TextCustomMap>(endpoint: verifyCodeEndpoint)
+        let getTextEndpoint = HTTPEndpoint(address: "/texts", method: .GET)
+        var getTextCodeRequest = HTTPRequest<TextCustomMap>(endpoint: getTextEndpoint, parameters: ["ccaa": ccaa ?? "ES", "locale": locale ?? "es-ES"])
 
-        let configuration = HTTPClientConfiguration(baseURL: URL(string: clientApi.basePath)!)
+
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return}
+        let configuration = HTTPClientConfiguration(baseURL: baseURL)
         httpClient.configure(using: configuration)
 
-        httpClient.run(request: &verifyCodeRequest) { (result) in
+        httpClient.run(request: &getTextCodeRequest) { (result) in
             switch result {
             case .failure(let error): completion(nil, error)
             case .success(let texts): completion(texts, nil)
