@@ -14,10 +14,11 @@ import Alamofire
 import RxSwift
 
 open class MasterDataAPI {
-
+    private let httpClient: HTTPClient
     private let clientApi: SwaggerClientAPI
 
-    init(clientApi: SwaggerClientAPI) {
+    init(clientApi: SwaggerClientAPI, httpClient: HTTPClient) {
+        self.httpClient = httpClient
         self.clientApi = clientApi
     }
 

@@ -66,7 +66,8 @@ class Injection {
 
         container.register(MasterDataAPI.self) { r in
             MasterDataAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!,
+                httpClient: r.resolve(HTTPClient.self)!
             )
         }.inObjectScope(.container)
 
