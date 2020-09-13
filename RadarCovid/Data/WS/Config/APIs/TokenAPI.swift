@@ -28,8 +28,18 @@ open class TokenAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     open func getUuid(completion: @escaping ((_ data: UuidDto?, _ error: Error?) -> Void)) {
-        getUuidWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error)
+        let getUuidEndpoint = HTTPEndpoint(address: "/token/uuid", method: .GET)
+        var getUuidRequest = HTTPRequest<UuidDto>(endpoint: getUuidEndpoint)
+
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return}
+        let configuration = HTTPClientConfiguration(baseURL: baseURL)
+        httpClient.configure(using: configuration)
+
+        httpClient.run(request: &getUuidRequest) { (result) in
+            switch result {
+            case .failure(let error): completion(nil, error)
+            case .success(let uuid): completion(uuid, nil)
+            }
         }
     }
 
@@ -50,30 +60,4 @@ open class TokenAPI {
             return Disposables.create()
         }
     }
-
-    /**
-     Get application UUID token
-     - GET /token/uuid
-
-     - :
-       - type: http
-       - name: bearerAuth
-     - examples: [{contentType=application/json, example={
-  "uuid" : "uuid"
-}}]
-
-     - returns: RequestBuilder<UuidDto> 
-     */
-    open func getUuidWithRequestBuilder() -> RequestBuilder<UuidDto> {
-        let path = "/token/uuid"
-        let URLString = clientApi.basePath + path
-        let parameters: [String: Any]? = nil
-
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<UuidDto>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
 }
