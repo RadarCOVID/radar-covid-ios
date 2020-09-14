@@ -85,7 +85,6 @@ class OnBoardingViewController: UIViewController {
             switchAccept.isHidden = true
             acceptView.isHidden = true
         }
-
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_TITLE".localized
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
@@ -114,8 +113,7 @@ class OnBoardingViewController: UIViewController {
         privacyLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         privacyLabel.accessibilityHint = "ACC_HINT".localized
         
-        switchAccept.isAccessibilityElement = true
-        switchAccept.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        switchAccept.accessibilityTraits = UISwitch().accessibilityTraits
         switchAccept.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
         
         acceptButton.isAccessibilityElement = true
