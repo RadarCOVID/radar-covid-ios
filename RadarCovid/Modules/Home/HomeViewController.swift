@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var activateNotificationButton: UIButton!
     @IBOutlet weak var notificationInactiveMessage: UILabel!
     @IBOutlet weak var resetDataButton: UIButton!
-    @IBOutlet weak var arrowRight: UIImageView!
+    @IBOutlet weak var expositionDetailView: UIImageView!
     
     var router: AppRouter?
     var viewModel: HomeViewModel?
@@ -160,10 +160,19 @@ class HomeViewController: UIViewController {
             viewTitle.isHidden = true
         }
         
-        arrowRight.isAccessibilityElement = true
-        arrowRight.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized
-        arrowRight.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        arrowRight.accessibilityHint = "ACC_HINT".localized
+        expositionDetailView.isAccessibilityElement = false
+        expositionDetailView.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized
+        expositionDetailView.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        expositionDetailView.accessibilityHint = "ACC_HINT".localized
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onOpenSettingsTap))
+        notificationInactiveMessage.addGestureRecognizer(gesture)
+        notificationInactiveMessage.isAccessibilityElement = true
+        notificationInactiveMessage.accessibilityHint = "ACC_HINT".localized
+        notificationInactiveMessage.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        
+        activateNotificationButton.isAccessibilityElement = false
+        
     }
 
     private func setupBindings() {
