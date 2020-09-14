@@ -198,16 +198,6 @@ Cuídate y cuida a los demás.</string>
                                 <viewLayoutGuide key="contentLayoutGuide" id="UtQ-SN-Kis"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="8p4-5Z-9pe"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtS-xb-Pfn">
-                                <rect key="frame" x="170" y="195.5" width="74" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ifB-5N-n5w"/>
-                                </constraints>
-                                <state key="normal" title="POPUP">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgD-SH-6Y2">
                                 <rect key="frame" x="16" y="792" width="382" height="54"/>
                                 <constraints>
