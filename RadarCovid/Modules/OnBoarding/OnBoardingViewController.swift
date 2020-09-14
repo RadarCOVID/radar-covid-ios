@@ -79,11 +79,11 @@ class OnBoardingViewController: UIViewController {
         switchAccept.isOn = false
         if UIAccessibility.isVoiceOverRunning {
             paragraph_1_description.text = paragraph_1_description.text?.lowercased()
-            checkBoxImage.isHidden = true
+            acceptView.isHidden = true
             switchAccept.isHidden = false
         }else{
             switchAccept.isHidden = true
-            checkBoxImage.isHidden = false
+            acceptView.isHidden = true
         }
 
         viewTitle.isAccessibilityElement = true
