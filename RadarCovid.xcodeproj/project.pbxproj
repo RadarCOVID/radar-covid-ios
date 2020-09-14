@@ -140,7 +140,6 @@
 		763489FF24B75A6900B31C59 /* TransparentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763489FE24B75A6900B31C59 /* TransparentView.xib */; };
 		76348A0124B75A8500B31C59 /* TransparentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76348A0024B75A8500B31C59 /* TransparentView.swift */; };
 		764C6D1324B7E5BB002FA594 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 764C6D1224B7E5BB002FA594 /* RxSwift */; };
-		764C6D1524B7E5BB002FA594 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 764C6D1424B7E5BB002FA594 /* RxCocoa */; };
 		766B026724D282C9006FBD29 /* BaseExposedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B026624D282C9006FBD29 /* BaseExposedViewController.swift */; };
 		766C73AD24B567C50056D2DB /* ActivatePushNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766C73AB24B567C50056D2DB /* ActivatePushNotificationViewController.swift */; };
 		766C73AE24B567C50056D2DB /* ActivatePushNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766C73AC24B567C50056D2DB /* ActivatePushNotificationViewController.xib */; };
@@ -320,7 +319,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				764C6D1524B7E5BB002FA594 /* RxCocoa in Frameworks */,
 				6D5AFCE8249369FE00EFE838 /* Alamofire in Frameworks */,
 				764C6D1324B7E5BB002FA594 /* RxSwift in Frameworks */,
 				6DF6ECA8248E7453007EAA40 /* Swinject in Frameworks */,
@@ -785,7 +783,6 @@
 				6DF6ECA7248E7453007EAA40 /* Swinject */,
 				6D5AFCE7249369FE00EFE838 /* Alamofire */,
 				764C6D1224B7E5BB002FA594 /* RxSwift */,
-				764C6D1424B7E5BB002FA594 /* RxCocoa */,
 				6D30137925067AC700E162E3 /* DP3TSDK */,
 			);
 			productName = "Covid Pilot";
@@ -1769,11 +1766,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
-		};
-		764C6D1424B7E5BB002FA594 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
