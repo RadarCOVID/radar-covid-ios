@@ -28,7 +28,6 @@ class HomeViewController: UIViewController {
     var timeExposedDismissedUseCase: TimeExposedDismissedUseCase?
     var errorHandler: ErrorHandler!
     
-    @IBOutlet weak var popupButton: UIButton!
     @IBOutlet weak var viewTitle: UILabel!
     
     @IBOutlet weak var moreinfo: UILabel!
@@ -118,16 +117,15 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupAccessibility()
         setupBindings()
-        moreinfo.isUserInteractionEnabled = true
-        moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+        setupUserInteraction()
+        
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
-
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onExpositionTap))
-        expositionView.addGestureRecognizer(gesture)
+        
         radarView.image = UIImage(named: "WhiteCard")
-
+        
         radarSwitch.tintColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         radarSwitch.layer.cornerRadius = radarSwitch.frame.height / 2
         radarSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
@@ -143,6 +141,17 @@ class HomeViewController: UIViewController {
 
     }
     
+    private func setupUserInteraction() {
+        moreinfo.isUserInteractionEnabled = true
+        moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+        
+        expositionView.isUserInteractionEnabled = true
+        expositionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.onExpositionTap)))
+        
+        notificationInactiveMessage.isUserInteractionEnabled = true
+        notificationInactiveMessage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.onOpenSettingsTap)))
+    }
+    
     private func setupAccessibility() {
         radarSwitch.isAccessibilityElement = true
         
@@ -154,19 +163,13 @@ class HomeViewController: UIViewController {
         expositionTitle.accessibilityTraits.insert(UIAccessibilityTraits.button)
         expositionTitle.accessibilityHint = "ACC_HINT".localized
         
-        if UIAccessibility.isVoiceOverRunning {
-            viewTitle.isHidden = false
-        }else{
-            viewTitle.isHidden = true
-        }
+        viewTitle.isHidden = !UIAccessibility.isVoiceOverRunning
         
         expositionDetailView.isAccessibilityElement = false
         expositionDetailView.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized
         expositionDetailView.accessibilityTraits.insert(UIAccessibilityTraits.button)
         expositionDetailView.accessibilityHint = "ACC_HINT".localized
         
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onOpenSettingsTap))
-        notificationInactiveMessage.addGestureRecognizer(gesture)
         notificationInactiveMessage.isAccessibilityElement = true
         notificationInactiveMessage.accessibilityHint = "ACC_HINT".localized
         notificationInactiveMessage.accessibilityTraits.insert(UIAccessibilityTraits.button)
@@ -288,6 +291,7 @@ class HomeViewController: UIViewController {
             imageCircle.image = circle
         }
     }
+    
     private func setErrorState(_ error: DomainError?) {
 
         if let error = error {
@@ -346,6 +350,7 @@ class HomeViewController: UIViewController {
         activateNotificationButton.isHidden = false
         radarSwitch.isEnabled = false
     }
+    
     private func hideExtraMessage() {
         topActiveNotification.priority = .defaultLow
         topRadarTitle.priority = .defaultHigh
@@ -384,9 +389,7 @@ class HomeViewController: UIViewController {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSITION_HIGH_MORE_INFO_URL".localized)
     }
     
-
 }
-
 
 extension HomeViewController: AccTitleView {
 

@@ -113,6 +113,9 @@ Cuídate y cuida a los demás.</string>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Notificaciones de exposición a la COVID-19 DESACTIVADAS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Le3-5O-yti" userLabel="notification inactive message">
                                                         <rect key="frame" x="26" y="73.5" width="276" height="37.5"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" button="YES" staticText="YES"/>
+                                                        </accessibility>
                                                         <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="16"/>
                                                         <color key="textColor" name="darkPeach"/>
                                                         <nil key="highlightedColor"/>
@@ -243,17 +246,13 @@ Cuídate y cuida a los demás.</string>
                             <constraint firstItem="AKG-lv-3X4" firstAttribute="leading" secondItem="AA3-07-0Pc" secondAttribute="leading" constant="112.5" id="1Np-oA-l8S"/>
                             <constraint firstItem="AKG-lv-3X4" firstAttribute="top" secondItem="AA3-07-0Pc" secondAttribute="top" constant="50" id="5ML-OD-uBX"/>
                             <constraint firstAttribute="trailing" secondItem="JEu-F8-ZM1" secondAttribute="trailing" id="7V8-R5-VYd"/>
-                            <constraint firstItem="DtS-xb-Pfn" firstAttribute="centerX" secondItem="bH7-lt-L7E" secondAttribute="centerX" id="8TI-JI-g2f"/>
                             <constraint firstItem="iWR-aJ-g5N" firstAttribute="centerX" secondItem="bH7-lt-L7E" secondAttribute="centerX" id="9bg-Pf-NvC"/>
                             <constraint firstItem="uUO-V4-jee" firstAttribute="width" secondItem="bH7-lt-L7E" secondAttribute="width" id="BUG-wc-oBe"/>
-                            <constraint firstItem="AA3-07-0Pc" firstAttribute="trailing" secondItem="DtS-xb-Pfn" secondAttribute="trailing" constant="170" id="E4D-gU-5uQ"/>
-                            <constraint firstItem="DtS-xb-Pfn" firstAttribute="top" secondItem="iWR-aJ-g5N" secondAttribute="bottom" constant="20" id="H6l-fI-s2D"/>
                             <constraint firstItem="JEu-F8-ZM1" firstAttribute="top" secondItem="bH7-lt-L7E" secondAttribute="top" id="Ij6-j4-nUd"/>
                             <constraint firstItem="AKG-lv-3X4" firstAttribute="centerX" secondItem="bH7-lt-L7E" secondAttribute="centerX" id="MVc-Dr-zgZ"/>
                             <constraint firstItem="AA3-07-0Pc" firstAttribute="trailing" secondItem="AKG-lv-3X4" secondAttribute="trailing" constant="112.5" id="SI4-y6-eEz"/>
                             <constraint firstItem="mgD-SH-6Y2" firstAttribute="top" secondItem="JEu-F8-ZM1" secondAttribute="bottom" constant="10" id="WKe-p7-llK"/>
                             <constraint firstItem="mgD-SH-6Y2" firstAttribute="leading" secondItem="AA3-07-0Pc" secondAttribute="leading" constant="16" id="WlP-ae-zYz"/>
-                            <constraint firstItem="DtS-xb-Pfn" firstAttribute="leading" secondItem="AA3-07-0Pc" secondAttribute="leading" constant="170" id="a3K-83-Bx1"/>
                             <constraint firstItem="iWR-aJ-g5N" firstAttribute="top" secondItem="AKG-lv-3X4" secondAttribute="bottom" id="bwu-jd-7qJ"/>
                             <constraint firstItem="AA3-07-0Pc" firstAttribute="bottom" secondItem="mgD-SH-6Y2" secondAttribute="bottom" constant="16" id="ium-ZE-m5v"/>
                             <constraint firstItem="AA3-07-0Pc" firstAttribute="trailing" secondItem="mgD-SH-6Y2" secondAttribute="trailing" constant="16" id="ocB-xZ-CJp"/>
@@ -274,7 +273,6 @@ Cuídate y cuida a los demás.</string>
                         <outlet property="imageDefault" destination="6NQ-cJ-mH8" id="Vdx-I6-dIm"/>
                         <outlet property="moreinfo" destination="8L1-q5-EhC" id="kfq-0N-ISG"/>
                         <outlet property="notificationInactiveMessage" destination="Le3-5O-yti" id="zZ8-Wv-yLt"/>
-                        <outlet property="popupButton" destination="DtS-xb-Pfn" id="V00-sb-l3b"/>
                         <outlet property="radarMessage" destination="5DO-YK-Xnt" id="mg3-Yj-6Kn"/>
                         <outlet property="radarSwitch" destination="G5m-HH-dbd" id="eo5-R2-GwJ"/>
                         <outlet property="radarTitle" destination="p5A-O2-cnn" id="pwU-lr-a3Q"/>
@@ -297,7 +295,7 @@ Cuídate y cuida a los demás.</string>
         <image name="circle" width="351" height="330.5"/>
         <image name="imageHome" width="238" height="177"/>
         <namedColor name="bgColor">
-            <color red="0.98039215686274506" green="0.97647058823529409" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.91244200805322129" green="0.91244200805322129" blue="0.91244200805322129" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="darkPeach">
             <color red="0.87800002098083496" green="0.42399999499320984" blue="0.34099999070167542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
