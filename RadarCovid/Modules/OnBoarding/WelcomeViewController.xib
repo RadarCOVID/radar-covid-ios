@@ -40,7 +40,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="494"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJg-TW-Zyr">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="648"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="630.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkC-Jh-ngm">
                                     <rect key="frame" x="113" y="0.0" width="207" height="206.5"/>
@@ -66,7 +66,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ln-m6-qGi">
-                                    <rect key="frame" x="16" y="150" width="288" height="70.5"/>
+                                    <rect key="frame" x="16" y="150" width="288" height="65.5"/>
                                     <string key="text">Bienvenido a 
 Radar COVID</string>
                                     <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
@@ -77,7 +77,7 @@ Radar COVID</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gracias por cuidarte y ayudarnos a proteger a los demás." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cpa-3O-7Z9">
-                                    <rect key="frame" x="16" y="562.5" width="288" height="75.5"/>
+                                    <rect key="frame" x="16" y="550.5" width="288" height="70"/>
                                     <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="20"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@ Radar COVID</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kjg-12-rKN">
-                                    <rect key="frame" x="16" y="240.5" width="288" height="100.5"/>
+                                    <rect key="frame" x="16" y="235.5" width="288" height="93.5"/>
                                     <string key="text">Fase Piloto sólo operativa en San Sebastián de
 la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
@@ -97,7 +97,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQe-F8-5u6">
-                                    <rect key="frame" x="16" y="361" width="288" height="62"/>
+                                    <rect key="frame" x="16" y="349" width="288" height="62"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSt-AF-pW4" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
                                             <rect key="frame" x="1" y="1" width="286" height="60"/>
@@ -135,7 +135,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMv-ck-JYx" userLabel="stepbullet1">
-                                    <rect key="frame" x="32" y="441" width="272" height="20.5"/>
+                                    <rect key="frame" x="32" y="429" width="272" height="20.5"/>
                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -144,7 +144,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QR7-i5-ImM">
-                                    <rect key="frame" x="17" y="436" width="10" height="29"/>
+                                    <rect key="frame" x="17" y="424" width="10" height="29"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -153,7 +153,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2A-1t-Mhn" userLabel="stepbullet2">
-                                    <rect key="frame" x="32" y="476.5" width="272" height="20.5"/>
+                                    <rect key="frame" x="32" y="464.5" width="272" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -162,7 +162,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNN-3A-qYp">
-                                    <rect key="frame" x="17" y="471.5" width="10" height="29"/>
+                                    <rect key="frame" x="17" y="459.5" width="10" height="29"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -171,7 +171,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyH-o9-UvP" userLabel="stepbullet3">
-                                    <rect key="frame" x="32" y="512" width="272" height="20.5"/>
+                                    <rect key="frame" x="32" y="500" width="272" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -180,7 +180,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDd-xc-3dr">
-                                    <rect key="frame" x="17" y="507" width="10" height="29"/>
+                                    <rect key="frame" x="17" y="495" width="10" height="29"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -243,10 +243,11 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="hQk-Nu-kUO"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="16"/>
-                    <state key="normal" title="Continuar" backgroundImage="GradientBackgroundButton">
+                    <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="22"/>
+                    <state key="normal" title="Continuar" backgroundImage="buttonsPrimary">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="10"/>
@@ -273,10 +274,11 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
         </view>
     </objects>
     <resources>
+        <image name="ButtonPrimaryDisabled" width="343" height="56"/>
         <image name="CollapsableClosed" width="14.5" height="8.5"/>
         <image name="GirlMobile" width="118" height="131"/>
-        <image name="GradientBackgroundButton" width="343" height="56"/>
         <image name="RightTopShade" width="283.5" height="206.5"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
         <namedColor name="bgColor">
             <color red="0.98039215686274506" green="0.97647058823529409" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -1,23 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "buttonsPrimary.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "boton1.png",
+      "idiom" : "universal"
     },
     {
-      "filename" : "buttonsPrimary@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "boton1@2x.png",
+      "idiom" : "universal"
     },
     {
-      "filename" : "buttonsPrimary@3x.png",
       "idiom" : "universal",
+      "filename" : "boton1@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }

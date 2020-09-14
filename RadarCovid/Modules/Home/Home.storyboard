@@ -213,8 +213,8 @@ Cuídate y cuida a los demás.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="UKC-Bh-shj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="16"/>
-                                <state key="normal" title="Comunica tu positivo COVID" backgroundImage="GradientBackgroundButton">
+                                <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="22"/>
+                                <state key="normal" title="Comunica tu positivo COVID" backgroundImage="buttonsPrimary">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -302,8 +302,8 @@ Cuídate y cuida a los demás.</string>
     </scenes>
     <resources>
         <image name="CheckWhite" width="90" height="90"/>
-        <image name="GradientBackgroundButton" width="343" height="56"/>
         <image name="arrowRight" width="25.5" height="17"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
         <image name="circle" width="351" height="330.5"/>
         <image name="imageHome" width="238" height="177"/>
         <namedColor name="bgColor">

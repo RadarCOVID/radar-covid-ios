@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -356,8 +356,8 @@ COVID positivo</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="HRm-FZ-ZNP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="18"/>
-                                <state key="normal" title="Enviar diagnóstico anónimo" backgroundImage="GradientBackgroundButton">
+                                <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="22"/>
+                                <state key="normal" title="Enviar diagnóstico anónimo" backgroundImage="buttonsPrimary">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
@@ -422,7 +422,7 @@ COVID positivo</string>
     </scenes>
     <resources>
         <image name="ButtonPrimaryDisabled" width="343" height="56"/>
-        <image name="GradientBackgroundButton" width="343" height="56"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
         <image name="codeInputFrame" width="166" height="161"/>
         <image name="iconsBack" width="25.5" height="17"/>
         <image name="organicColor" width="375" height="155.5"/>
