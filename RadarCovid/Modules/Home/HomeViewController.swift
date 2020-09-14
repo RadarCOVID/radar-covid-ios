@@ -89,7 +89,7 @@ class HomeViewController: UIViewController {
         }
     }
 
-    func showActivationMessage() {
+    private func showActivationMessage() {
         self.showAlertOk(
             title: "ALERT_HOME_COVID_NOTIFICATION_TITLE".localized,
             message: "HOME_COVID_NOTIFICATION_POPUP_INACTIVE".localized,
@@ -143,7 +143,7 @@ class HomeViewController: UIViewController {
 
     }
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         radarSwitch.isAccessibilityElement = true
         
         viewTitle.isAccessibilityElement = true
@@ -229,7 +229,7 @@ class HomeViewController: UIViewController {
 
     }
     
-    func showTimeExposed() {
+    private func showTimeExposed() {
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
         TimeExposedView.initWithParentViewController(viewController: self)
        

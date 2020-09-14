@@ -44,7 +44,7 @@ extension UIViewController : AlertController {
         uiAlert.addAction(action)
         let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
         uiAlert.view.tintColor = UIColor.white
-        buttonView?.backgroundColor  = #colorLiteral(red: 0.4550000131, green: 0.5799999833, blue: 0.92900002, alpha: 1)
+        buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
 
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
         self.present(uiAlert, animated: true, completion: nil)
@@ -74,7 +74,7 @@ extension UIViewController : AlertController {
         uiAlert.addAction(actionCancel)
         let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
         uiAlert.view.tintColor = UIColor.white
-        buttonView?.backgroundColor  = #colorLiteral(red: 0.4550000131, green: 0.5799999833, blue: 0.92900002, alpha: 1)
+        buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
 
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
         self.present(uiAlert, animated: true, completion: nil)
