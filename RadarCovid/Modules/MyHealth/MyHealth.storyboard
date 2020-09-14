@@ -275,14 +275,16 @@ COVID positivo</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tjF-aE-P9m">
-                                                        <rect key="frame" x="0.0" y="92.5" width="382" height="35"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <rect key="frame" x="0.0" y="92.5" width="382" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="OxZ-Ho-5NK"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="23"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="hLh-M6-ReM" firstAttribute="top" secondItem="gxN-3Y-ry3" secondAttribute="bottom" constant="11" id="2O7-Nb-fj9"/>
-                                                    <constraint firstItem="R9K-nS-WzH" firstAttribute="top" secondItem="tjF-aE-P9m" secondAttribute="bottom" constant="46" id="2dR-pY-or0"/>
                                                     <constraint firstItem="R9K-nS-WzH" firstAttribute="top" secondItem="l7M-4N-gr7" secondAttribute="bottom" constant="20" id="2lj-2C-zS7"/>
                                                     <constraint firstAttribute="trailing" secondItem="tjF-aE-P9m" secondAttribute="trailing" id="3jg-ty-VUC"/>
                                                     <constraint firstItem="l7M-4N-gr7" firstAttribute="leading" secondItem="uIG-oT-yE6" secondAttribute="leading" id="4Tc-U3-9im"/>
