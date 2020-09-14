@@ -15,7 +15,10 @@ import UIKit
 extension String: Localizable {
 
     var localized: String {
-        LocalizationHolder.localizationMap?[self] ?? NSLocalizedString(self, comment: "")
+        let map = LocalizationHolder.localizationMap
+        let string = LocalizationHolder.localizationMap?[self]
+        
+        return LocalizationHolder.localizationMap?[self] ?? NSLocalizedString(self, comment: "")
     }
 
     var isAttributedText: Bool {

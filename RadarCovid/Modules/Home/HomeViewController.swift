@@ -48,7 +48,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var activateNotificationButton: UIButton!
     @IBOutlet weak var notificationInactiveMessage: UILabel!
     @IBOutlet weak var resetDataButton: UIButton!
-    @IBOutlet weak var arrowRight: UIImageView!
+    @IBOutlet weak var expositionDetailView: UIImageView!
     
     var router: AppRouter?
     var viewModel: HomeViewModel?
@@ -117,20 +117,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        radarSwitch.isAccessibilityElement = true
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_HOME_TITLE".localized
-        if UIAccessibility.isVoiceOverRunning {
-            viewTitle.isHidden = false
-        }else{
-            viewTitle.isHidden = true
-        }
+        setupAccessibility()
         setupBindings()
-        arrowRight.isAccessibilityElement = true
-        arrowRight.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized
-        arrowRight.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        arrowRight.accessibilityHint = "ACC_HINT".localized
         moreinfo.isUserInteractionEnabled = true
         moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
@@ -151,6 +139,38 @@ class HomeViewController: UIViewController {
         
         errorHandler?.alertDelegate = self
 
+    }
+    
+    func setupAccessibility() {
+        radarSwitch.isAccessibilityElement = true
+        
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_HOME_TITLE".localized
+        
+        expositionTitle.isAccessibilityElement = true
+        expositionTitle.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        expositionTitle.accessibilityHint = "ACC_HINT".localized
+        
+        if UIAccessibility.isVoiceOverRunning {
+            viewTitle.isHidden = false
+        }else{
+            viewTitle.isHidden = true
+        }
+        
+        expositionDetailView.isAccessibilityElement = false
+        expositionDetailView.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized
+        expositionDetailView.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        expositionDetailView.accessibilityHint = "ACC_HINT".localized
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onOpenSettingsTap))
+        notificationInactiveMessage.addGestureRecognizer(gesture)
+        notificationInactiveMessage.isAccessibilityElement = true
+        notificationInactiveMessage.accessibilityHint = "ACC_HINT".localized
+        notificationInactiveMessage.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        
+        activateNotificationButton.isAccessibilityElement = false
+        
     }
 
     private func setupBindings() {

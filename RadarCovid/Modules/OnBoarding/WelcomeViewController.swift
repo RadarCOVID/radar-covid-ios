@@ -49,17 +49,22 @@ class WelcomeViewController: UIViewController {
         picker.dataSource = self
         pickerPresenter = PickerPresenter(picker: picker)
         pickerPresenter?.delegate = self
+        setupAccessibility()
+    }
+    
+    func setupAccessibility() {
         languageSelector.isAccessibilityElement = true
         languageSelector.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
         languageSelector.accessibilityHint = "ACC_HINT".localized
+        
         continueButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityLabel = "ACC_BUTTON_CONTINUE".localized
         continueButton.accessibilityHint = "ACC_HINT".localized
+        
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityLabel = "ACC_WELCOME_TITLE".localized
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-
     }
 
     private func loadLocaleValues() {
@@ -110,8 +115,19 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
         let key = localesKeysArray[row]
         self.languageSelector.setTitle(self.localesArray[key, default: ""], for: .normal)
         localizationRepository.setLocale(key)
-
     }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+        let key = localesKeysArray[row]
+        let text = localesArray[key] ?? ""
+        label.isAccessibilityElement = true
+        label.accessibilityLabel = (text ?? "") + "ACC_SELECTED".localized
+        label.contentMode = .center
+        label.text = text
+        return label
+    }
+    
     var containerView: UIView {
         get {
             self.view

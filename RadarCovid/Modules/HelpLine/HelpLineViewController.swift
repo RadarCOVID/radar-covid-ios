@@ -30,26 +30,36 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_MORE_INFO".localized
+        setupAccessibility()
         phoneView.image = UIImage(named: "WhiteCard")
 
         faqWebLabel.isUserInteractionEnabled = true
-        faqWebLabel.isAccessibilityElement = true
-        faqWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         faqWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapFaq(tapGestureRecognizer:))))
 
         infoWebLabel.isUserInteractionEnabled = true
-        infoWebLabel.isAccessibilityElement = true
-        infoWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         infoWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapWeb(tapGestureRecognizer:))))
 
         otherWebLabel.isUserInteractionEnabled = true
-        otherWebLabel.isAccessibilityElement = true
-        otherWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         otherWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapOther(tapGestureRecognizer:))))
 
+    }
+    
+    func setupAccessibility() {
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        viewTitle.accessibilityLabel = "ACC_MORE_INFO".localized
+        
+        faqWebLabel.isAccessibilityElement = true
+        faqWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        faqWebLabel.accessibilityHint = "ACC_HINT".localized
+        
+        infoWebLabel.isAccessibilityElement = true
+        infoWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        infoWebLabel.accessibilityHint = "ACC_HINT".localized
+        
+        otherWebLabel.isAccessibilityElement = true
+        otherWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        otherWebLabel.accessibilityHint = "ACC_HINT".localized
     }
 
     @objc func onCallTap(tapGestureRecognizer: UITapGestureRecognizer) {

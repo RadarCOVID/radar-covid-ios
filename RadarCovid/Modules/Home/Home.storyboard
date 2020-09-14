@@ -31,27 +31,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="782"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUO-V4-jee" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="678"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="717"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="Ker-eU-Kvi" userLabel="circleBG">
-                                                <rect key="frame" x="0.0" y="-20" width="414" height="331"/>
+                                                <rect key="frame" x="0.0" y="-20" width="414" height="409"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageHome" translatesAutoresizingMaskIntoConstraints="NO" id="6NQ-cJ-mH8">
-                                                <rect key="frame" x="88" y="89.5" width="238" height="177"/>
+                                                <rect key="frame" x="88" y="128.5" width="238" height="177"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="177" id="LUJ-Lw-sdv"/>
                                                     <constraint firstAttribute="width" constant="238" id="rRz-TQ-CGn"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckWhite" translatesAutoresizingMaskIntoConstraints="NO" id="s47-VN-7tM">
-                                                <rect key="frame" x="162" y="90" width="90" height="90"/>
+                                                <rect key="frame" x="162" y="129" width="90" height="90"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="5rp-cy-SZ4"/>
                                                     <constraint firstAttribute="width" constant="90" id="wUK-6X-b5G"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hz-zu-Mhb" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="251.5" width="382" height="173"/>
+                                                <rect key="frame" x="16" y="290.5" width="382" height="173"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Exposición baja" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tiy-hB-953">
                                                         <rect key="frame" x="20" y="15" width="272" height="37"/>
@@ -97,7 +97,7 @@ Cuídate y cuida a los demás.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuQ-dg-Nwm" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="444.5" width="382" height="213.5"/>
+                                                <rect key="frame" x="16" y="483.5" width="382" height="213.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radar COVID activo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p5A-O2-cnn">
                                                         <rect key="frame" x="26" y="20" width="275.5" height="23.5"/>
@@ -154,8 +154,14 @@ Cuídate y cuida a los demás.</string>
                                                     <constraint firstAttribute="trailing" secondItem="QdH-mH-0eN" secondAttribute="trailing" constant="20" id="x7J-hb-6YZ"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pantalla principal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umm-hj-wLw">
-                                                <rect key="frame" x="20" y="60" width="130" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umm-hj-wLw">
+                                                <rect key="frame" x="20" y="60" width="374" height="60"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="65F-8J-Za9"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -164,6 +170,7 @@ Cuídate y cuida a los demás.</string>
                                         <constraints>
                                             <constraint firstItem="6NQ-cJ-mH8" firstAttribute="top" secondItem="Umm-hj-wLw" secondAttribute="bottom" constant="8.5" id="7qR-dM-QHf"/>
                                             <constraint firstAttribute="trailing" secondItem="fuQ-dg-Nwm" secondAttribute="trailing" constant="16" id="9nF-Y7-5lJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="Umm-hj-wLw" secondAttribute="trailing" constant="20" id="ETe-JB-uJ0"/>
                                             <constraint firstItem="s47-VN-7tM" firstAttribute="centerX" secondItem="Ker-eU-Kvi" secondAttribute="centerX" id="HWK-xR-S1W"/>
                                             <constraint firstItem="Umm-hj-wLw" firstAttribute="leading" secondItem="uUO-V4-jee" secondAttribute="leading" constant="20" id="I0U-Do-TRf"/>
                                             <constraint firstItem="Ker-eU-Kvi" firstAttribute="centerY" secondItem="6NQ-cJ-mH8" secondAttribute="centerY" constant="-32.500000000000028" id="Nd7-rE-95Y"/>
@@ -266,10 +273,10 @@ Cuídate y cuida a los demás.</string>
                     </view>
                     <connections>
                         <outlet property="activateNotificationButton" destination="QdH-mH-0eN" id="MGk-ZP-XGw"/>
-                        <outlet property="arrowRight" destination="kNQ-4q-3vF" id="tOj-mE-Qhg"/>
                         <outlet property="communicationButton" destination="mgD-SH-6Y2" id="PD0-jV-Ds1"/>
                         <outlet property="envLabel" destination="iWR-aJ-g5N" id="OpB-d4-Ngt"/>
                         <outlet property="expositionDescription" destination="XCQ-uz-Hi1" id="SgW-aX-6xj"/>
+                        <outlet property="expositionDetailView" destination="kNQ-4q-3vF" id="tOj-mE-Qhg"/>
                         <outlet property="expositionTitle" destination="Tiy-hB-953" id="d36-84-O30"/>
                         <outlet property="expositionView" destination="6hz-zu-Mhb" id="8iB-cX-vMh"/>
                         <outlet property="imageCheck" destination="s47-VN-7tM" id="pmS-0V-GBe"/>

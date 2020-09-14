@@ -351,6 +351,7 @@
                         <outlet property="moreinfo" destination="C6J-xF-N95" id="BmF-we-jWS"/>
                         <outlet property="realInfectedText" destination="VDp-8X-dw5" id="C7n-SU-h4a"/>
                         <outlet property="viewTitle" destination="sso-zP-dSu" id="KVa-BC-xni"/>
+                        <outlet property="whatToDoTitle" destination="xcn-at-WWX" id="VOa-Xs-b0Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lxn-LZ-mDG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

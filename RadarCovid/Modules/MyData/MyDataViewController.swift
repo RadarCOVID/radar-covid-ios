@@ -18,6 +18,7 @@ class MyDataViewController: UIViewController {
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var bullet2: UILabel!
     @IBOutlet weak var bullet3: UILabel!
+    
     @IBOutlet weak var viewTitle: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,15 +27,25 @@ class MyDataViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_MYDATA_TITLE".localized
+        setupAccessibility()
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true
 
         acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapTerms(tapGestureRecognizer:))))
 
         privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
+    }
+    
+    func setupAccessibility() {
+        viewTitle.isAccessibilityElement = true
+        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        print("ACC_MYDATA_TITLE".localized)
+        viewTitle.accessibilityLabel = "ACC_MYDATA_TITLE".localized
+        if UIAccessibility.isVoiceOverRunning {
+            descriptionLabel.text = descriptionLabel.text?.lowercased()
+            bullet2.text = bullet2.text?.lowercased()
+            bullet3.text = bullet3.text?.lowercased()
+        }
     }
 
     @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {

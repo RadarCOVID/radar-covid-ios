@@ -578,6 +578,7 @@
                         <outlet property="selectorView" destination="bN3-KM-Seu" id="csm-tU-3qc"/>
                         <outlet property="timeTableLabel" destination="pcd-dI-oHv" id="djX-jZ-G0a"/>
                         <outlet property="viewTitle" destination="7G0-Fd-EDb" id="GbA-ta-nTs"/>
+                        <outlet property="whatToDoTitle" destination="ksB-JD-OWW" id="VGy-Kc-bFK"/>
                         <outlet property="youCouldBe" destination="Qbx-0G-Sye" id="dub-EN-XPU"/>
                     </connections>
                 </viewController>

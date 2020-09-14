@@ -396,6 +396,7 @@ COVID positivo</string>
                         <outlet property="backButton" destination="6r9-h6-6CB" id="Bnd-Db-ZhV"/>
                         <outlet property="codeTextField" destination="tjF-aE-P9m" id="Oad-so-ggB"/>
                         <outlet property="codeView" destination="l7M-4N-gr7" id="DWD-tI-eyP"/>
+                        <outlet property="codigoTitle" destination="gxN-3Y-ry3" id="18J-0K-Pcq"/>
                         <outlet property="scrollView" destination="Jih-el-nlf" id="5Gw-ZO-kwg"/>
                         <outlet property="scrollViewBottonConstraint" destination="8DS-Iz-GfQ" id="Adz-qf-JBj"/>
                         <outlet property="sendDiagnosticButton" destination="xVl-Ca-TVL" id="HFL-yS-R6i"/>

@@ -10,17 +10,19 @@
 //
 
 import Foundation
-
+import RxSwift
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    var localizationUseCase: LocalizationUseCase
     var homeViewController: HomeViewController
     var myDataViewController: MyDataViewController
     var helpLineViewController: HelpLineViewController
     var preferencesRepository: PreferencesRepository?
+    private let disposeBag = DisposeBag()
 
-    init(homeViewController: HomeViewController, myDataViewController: MyDataViewController, helpLineViewController: HelpLineViewController, preferencesRepository: PreferencesRepository) {
+    init(localizationUseCase: LocalizationUseCase, homeViewController: HomeViewController, myDataViewController: MyDataViewController, helpLineViewController: HelpLineViewController, preferencesRepository: PreferencesRepository) {
+        self.localizationUseCase = localizationUseCase
         self.homeViewController = homeViewController
         self.myDataViewController = myDataViewController
         self.helpLineViewController = helpLineViewController
@@ -69,30 +71,42 @@ class TabBarController: UITabBarController {
             title: "",
             image: UIImage(named: "MenuHomeNormal"),
             selectedImage: UIImage(named: "MenuHomeSelected"))
+        myDataViewController.tabBarItem = UITabBarItem(
+            title: "",
+            image: UIImage(named: "MenuInfoNormal"),
+            selectedImage: UIImage(named: "MenuInfoSelected"))
+        helpLineViewController.tabBarItem = UITabBarItem(
+            title: "",
+            image: UIImage(named: "MenuHelpNormal"),
+            selectedImage: UIImage(named: "MenuHelpSelected"))
+        
+        // accesibility
+        self.localizationUseCase.localizationLoaded.subscribe(
+            onNext: { [weak self] (loaded) in
+                if (loaded){
+                    // all is ok so we can continue
+                    self?.setupAccessibility()
+                }
+            }).disposed(by: self.disposeBag)
+        
+
+    }
+    
+    func setupAccessibility() {
         homeViewController.tabBarItem.isAccessibilityElement = true
         homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
         homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
         
-
-        myDataViewController.tabBarItem = UITabBarItem(
-            title: "",
-            image: UIImage(named: "MenuInfoNormal"),
-            selectedImage: UIImage(named: "MenuInfoSelected"))
         myDataViewController.tabBarItem.isAccessibilityElement = true
         myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
         myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-
-        helpLineViewController.tabBarItem = UITabBarItem(
-            title: "",
-            image: UIImage(named: "MenuHelpNormal"),
-            selectedImage: UIImage(named: "MenuHelpSelected"))
+        
         helpLineViewController.tabBarItem.isAccessibilityElement = true
         helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
         helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
