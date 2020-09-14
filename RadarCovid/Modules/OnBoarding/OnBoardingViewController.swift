@@ -17,6 +17,10 @@ class OnBoardingViewController: UIViewController {
 
     private var termsAccepted: Bool = false
     @IBOutlet weak var viewTitle: UILabel!
+    @IBOutlet weak var viewSubtitle: UILabel!
+    @IBOutlet weak var paragraph1Title: UILabel!
+    @IBOutlet weak var paragraph2Title: UILabel!
+    @IBOutlet weak var paragraph3Title: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var checkBoxImage: UIImageView!
@@ -85,6 +89,22 @@ class OnBoardingViewController: UIViewController {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_TITLE".localized
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        
+        viewSubtitle.isAccessibilityElement = true
+        viewSubtitle.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_SUBTITLE".localized
+        viewSubtitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        
+        paragraph1Title.isAccessibilityElement = true
+        paragraph1Title.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_PARAGRAPH1_TITLE".localized
+        paragraph1Title.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        
+        paragraph2Title.isAccessibilityElement = true
+        paragraph2Title.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_PARAGRAPH2_TITLE".localized
+        paragraph2Title.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        
+        paragraph3Title.isAccessibilityElement = true
+        paragraph3Title.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_PARAGRAPH3_TITLE".localized
+        paragraph3Title.accessibilityTraits.insert(UIAccessibilityTraits.header)
         
         acceptTermsLabel.isAccessibilityElement = true;
         acceptTermsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)

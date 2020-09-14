@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="660"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZX-eB-vJ1" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="556"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="550"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightTopShade" translatesAutoresizingMaskIntoConstraints="NO" id="26u-YC-f5R">
                                                 <rect key="frame" x="130.66666666666666" y="0.0" width="283.33333333333337" height="206.66666666666666"/>
@@ -150,8 +150,14 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwM-SS-Bb9" userLabel="CheckView">
                                                 <rect key="frame" x="16" y="443.33333333333331" width="382" height="56.666666666666686"/>
                                                 <subviews>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-E5-Lzg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="onSwithAcceptChange:" destination="5jd-jE-NO7" eventType="valueChanged" id="WQJ-mL-PJn"/>
+                                                        </connections>
+                                                    </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvQ-IX-8Bm">
-                                                        <rect key="frame" x="30" y="0.0" width="352" height="19.333333333333332"/>
+                                                        <rect key="frame" x="50" y="0.0" width="332" height="19.333333333333332"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                         </accessibility>
@@ -181,7 +187,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-Ib-LaU">
-                                                        <rect key="frame" x="30" y="37.333333333333371" width="352" height="19.333333333333329"/>
+                                                        <rect key="frame" x="50" y="37.333333333333371" width="332" height="19.333333333333329"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                         </accessibility>
@@ -236,36 +242,30 @@
                                                 <constraints>
                                                     <constraint firstItem="XRM-kg-RAx" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="top" id="05p-tR-08B"/>
                                                     <constraint firstItem="XRM-kg-RAx" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" id="2nu-Tk-PUe"/>
-                                                    <constraint firstItem="aNP-Ib-LaU" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" constant="30" id="9BW-c6-Qxd"/>
+                                                    <constraint firstItem="aNP-Ib-LaU" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" constant="50" id="9BW-c6-Qxd"/>
                                                     <constraint firstAttribute="trailing" secondItem="aNP-Ib-LaU" secondAttribute="trailing" id="DMQ-bj-FgG"/>
+                                                    <constraint firstItem="ozt-E5-Lzg" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="top" id="HQ5-SR-hsl"/>
+                                                    <constraint firstItem="ozt-E5-Lzg" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" id="Hi1-lv-RYQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="qvQ-IX-8Bm" secondAttribute="trailing" id="Xbv-dN-lQA"/>
                                                     <constraint firstAttribute="bottom" secondItem="aNP-Ib-LaU" secondAttribute="bottom" id="ffu-DQ-5s6"/>
                                                     <constraint firstItem="qvQ-IX-8Bm" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="top" id="nXk-iU-qfp"/>
                                                     <constraint firstItem="aNP-Ib-LaU" firstAttribute="top" secondItem="qvQ-IX-8Bm" secondAttribute="bottom" constant="18" id="qjU-CU-nd1"/>
-                                                    <constraint firstItem="qvQ-IX-8Bm" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" constant="30" id="tLW-cr-CZR"/>
+                                                    <constraint firstItem="qvQ-IX-8Bm" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" constant="50" id="tLW-cr-CZR"/>
                                                 </constraints>
                                             </view>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-E5-Lzg">
-                                                <rect key="frame" x="16" y="515" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="onSwithAcceptChange:" destination="5jd-jE-NO7" eventType="valueChanged" id="WQJ-mL-PJn"/>
-                                                </connections>
-                                            </switch>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="oan-rX-oAc" secondAttribute="trailing" constant="25" id="4dr-9K-Ar9"/>
                                             <constraint firstAttribute="trailing" secondItem="SwM-SS-Bb9" secondAttribute="trailing" constant="16" id="5bG-0u-nMb"/>
                                             <constraint firstAttribute="trailing" secondItem="26u-YC-f5R" secondAttribute="trailing" id="7FV-e8-SZk"/>
                                             <constraint firstItem="5oe-1F-JPZ" firstAttribute="bottom" secondItem="SwM-SS-Bb9" secondAttribute="top" constant="-30" id="EFv-9w-kTQ"/>
-                                            <constraint firstItem="ozt-E5-Lzg" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="bottom" constant="15" id="GHQ-H2-Bbv"/>
-                                            <constraint firstAttribute="bottom" secondItem="ozt-E5-Lzg" secondAttribute="bottom" constant="10" id="INE-tp-eIK"/>
+                                            <constraint firstAttribute="bottom" secondItem="SwM-SS-Bb9" secondAttribute="bottom" constant="50" id="GHQ-H2-Bbv"/>
                                             <constraint firstItem="5oe-1F-JPZ" firstAttribute="top" secondItem="RZX-eB-vJ1" secondAttribute="top" constant="120" id="MIp-Ge-xFv"/>
                                             <constraint firstItem="5oe-1F-JPZ" firstAttribute="leading" secondItem="RZX-eB-vJ1" secondAttribute="leading" constant="16" id="O7J-e3-iwJ"/>
                                             <constraint firstItem="oan-rX-oAc" firstAttribute="top" secondItem="RZX-eB-vJ1" secondAttribute="top" constant="7" id="VnH-1u-pDO"/>
                                             <constraint firstItem="SwM-SS-Bb9" firstAttribute="leading" secondItem="RZX-eB-vJ1" secondAttribute="leading" constant="16" id="YI3-rp-jf0"/>
                                             <constraint firstAttribute="trailing" secondItem="5oe-1F-JPZ" secondAttribute="trailing" constant="16" id="lXh-8c-jP2"/>
                                             <constraint firstItem="26u-YC-f5R" firstAttribute="top" secondItem="RZX-eB-vJ1" secondAttribute="top" id="odz-Jt-trs"/>
-                                            <constraint firstItem="ozt-E5-Lzg" firstAttribute="leading" secondItem="RZX-eB-vJ1" secondAttribute="leading" constant="16" id="vaY-9p-YZ8"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -319,10 +319,14 @@
                         <outlet property="acceptTermsLabel" destination="aNP-Ib-LaU" id="Swl-OP-M3y"/>
                         <outlet property="acceptView" destination="XRM-kg-RAx" id="Bc4-iU-0Eh"/>
                         <outlet property="checkBoxImage" destination="jHq-8U-BtL" id="63v-Vg-llX"/>
+                        <outlet property="paragraph1Title" destination="Ns7-D4-wdm" id="N42-NZ-YRu"/>
+                        <outlet property="paragraph2Title" destination="NXX-N4-u7T" id="8Lo-bV-B2v"/>
+                        <outlet property="paragraph3Title" destination="UEh-4f-uik" id="sDR-WB-PsP"/>
                         <outlet property="paragraph_1_description" destination="dm3-PE-YEM" id="6mk-aM-Key"/>
                         <outlet property="privacyLabel" destination="qvQ-IX-8Bm" id="KA9-TZ-gKW"/>
                         <outlet property="scrollView" destination="put-jW-Lmz" id="UnR-cA-MSy"/>
                         <outlet property="switchAccept" destination="ozt-E5-Lzg" id="2oL-s5-GAX"/>
+                        <outlet property="viewSubtitle" destination="zxa-Hb-Im5" id="Ksu-Rr-Y9S"/>
                         <outlet property="viewTitle" destination="Cjg-pU-6HI" id="eSC-L2-cq6"/>
                     </connections>
                 </viewController>
