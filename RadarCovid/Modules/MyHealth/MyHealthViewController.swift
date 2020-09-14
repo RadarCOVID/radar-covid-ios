@@ -99,12 +99,14 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         self.codeChars.forEach { (char) in
             char.text = "\u{200B}"
             char.layer.cornerRadius = 5
             char.addTarget(self, action: #selector(MyHealthViewController.textFieldDidChange(_:)), for: .editingChanged)
         }
-        super.viewWillAppear(true)
+
         backButton.isAccessibilityElement = true
         let previous = navigationController?.previousViewController
         if let title = (previous as? AccTitleView)?.accTitle ?? previous?.title {
@@ -113,17 +115,19 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
         sendDiagnosticButton.isEnabled = checkSendEnabled()
+        
+        setupAccessibility()
+        
     }
 
     override func viewDidLoad() {
-        codeTextField.delegate = self
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        codeTextField.delegate = self
+
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
 
-        //Add observers to move up/down the main view when the keyboard appears/dissapear
         NotificationCenter.default.addObserver(
             self, selector: #selector(keyboardWillShow),
             name: UIResponder.keyboardWillShowNotification,
@@ -138,10 +142,9 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
 
         sendDiagnosticButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
         
-        setupAccessibility()
     }
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         codeTextField.isAccessibilityElement = true
         codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
         codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
