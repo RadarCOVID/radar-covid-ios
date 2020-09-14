@@ -81,9 +81,9 @@ class OnBoardingViewController: UIViewController {
             paragraph_1_description.text = paragraph_1_description.text?.lowercased()
             acceptView.isHidden = true
             switchAccept.isHidden = false
-        }else{
+        } else {
             switchAccept.isHidden = true
-            acceptView.isHidden = true
+            acceptView.isHidden = false
         }
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_TITLE".localized
