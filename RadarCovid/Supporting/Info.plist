@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Necesitamos Bluetooth para compartir información con otros dispositivos cercanos</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Necesitamos Bluetooth para compartir información con otros dispositivos cercanos</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>org.dpppt.exposure-notification</string>
