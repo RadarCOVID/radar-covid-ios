@@ -28,13 +28,13 @@ protocol HTTPClient {
 class HTTPClientDefault: NSObject, HTTPClient {
     var isConfigured: Bool { return configuration != nil }
 
-    private(set) var session: URLSession
+    private(set) var session: URLSession!
     private var configuration: HTTPClientConfiguration?
 
     override init() {
-        let sessionConfiguration = URLSessionConfiguration.default
-        session = URLSession(configuration: sessionConfiguration)
         super.init()
+        let sessionConfiguration = URLSessionConfiguration.default
+        session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
     }
 
     func configure(using configuration: HTTPClientConfiguration) {
@@ -43,8 +43,6 @@ class HTTPClientDefault: NSObject, HTTPClient {
 
     func run<ResponseModel: Codable>(request: inout HTTPRequest<ResponseModel>, _ completion: @escaping (Result<ResponseModel, Error>) -> Void) {
         guard let configuration = configuration else { completion(Result<ResponseModel, Error>.failure(HTTPClientError.notConfigured)); return }
-
-
 
         request.configure(baseURL: configuration.baseURL)
         let preparedRequest = request
@@ -105,9 +103,8 @@ extension HTTPClientDefault: URLSessionDelegate {
             return
         }
 
-        let prePolicy = SecPolicyCreateSSL(true, "radarcovidpre.covid19.gob.es" as CFString)
-        let proPolicy = SecPolicyCreateSSL(true, "radarcovid.covid19.gob.es" as CFString)
-        let policies = NSArray(array: [prePolicy, proPolicy])
+        let policy = SecPolicyCreateSSL(true, nil)
+        let policies = NSArray(array: [policy])
         SecTrustSetPolicies(serverTrust, policies)
 
         let certificateCount = SecTrustGetCertificateCount(serverTrust)
