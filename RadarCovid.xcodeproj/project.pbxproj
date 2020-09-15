@@ -48,7 +48,6 @@
 		6D64132D24ED897300B33427 /* ExpositionCheckUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D64132C24ED897300B33427 /* ExpositionCheckUseCaseTest.swift */; };
 		6D662D19250B80B700AEEFE7 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D662D18250B80B700AEEFE7 /* HomeViewModelTest.swift */; };
 		6D662D1C250B964B00AEEFE7 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 6D662D1B250B964B00AEEFE7 /* RxTest */; };
-		6D662D1E250B965200AEEFE7 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 6D662D1D250B965200AEEFE7 /* RxBlocking */; };
 		6D78B44124A9F13A00FBC23F /* SetupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */; };
 		6D7AB26D24ADCC9A00F30E0B /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */; };
 		6D7AB26F24ADED7400F30E0B /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
@@ -331,7 +330,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D662D1C250B964B00AEEFE7 /* RxTest in Frameworks */,
-				6D662D1E250B965200AEEFE7 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,7 +803,6 @@
 			name = RadarCovidTests;
 			packageProductDependencies = (
 				6D662D1B250B964B00AEEFE7 /* RxTest */,
-				6D662D1D250B965200AEEFE7 /* RxBlocking */,
 			);
 			productName = RadarCovidTests;
 			productReference = 6D64131E24ED88AB00B33427 /* RadarCovidTests.xctest */;
@@ -1751,11 +1748,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxTest;
-		};
-		6D662D1D250B965200AEEFE7 /* RxBlocking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxBlocking;
 		};
 		6DF6ECA7248E7453007EAA40 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

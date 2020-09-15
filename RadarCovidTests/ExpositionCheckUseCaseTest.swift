@@ -14,6 +14,9 @@ import RxSwift
 
 @testable import Radar_COVID
 
+// XCODE bug breaks tests
+// https://bugs.swift.org/browse/SR-12303
+
 class ExpositionCheckUseCaseTest: XCTestCase {
     
     private let disposeBag = DisposeBag()
@@ -35,7 +38,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testcheckExposedToHealthyWithHealtyState() throws {
+    func checkExposedToHealthyWithHealtyState() throws {
         resetMocks()
         expositionInfoRepository!.expositionInfo = ExpositionInfo(level: .healthy)
         
@@ -48,7 +51,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
     }
     
-    func testcheckExposedToHealthyWithHealtyStateWithExposedAndNotOutdated() {
+    func checkExposedToHealthyWithHealtyStateWithExposedAndNotOutdated() {
         resetMocks()
         var exposition = ExpositionInfo(level: .exposed)
         exposition.since = Date()
@@ -69,7 +72,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
     }
     
-    func testcheckExposedToHealthyWithHealtyStateWithExposedAndOutdated() {
+    func checkExposedToHealthyWithHealtyStateWithExposedAndOutdated() {
         resetMocks()
         var exposition = ExpositionInfo(level: .exposed)
         exposition.since = Date().addingTimeInterval(-11 * 60)
@@ -89,8 +92,6 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         }).disposed(by: disposeBag)
         
     }
-    
-        
     
     func resetMocks() {
         expositionInfoRepository?.resetMock()
