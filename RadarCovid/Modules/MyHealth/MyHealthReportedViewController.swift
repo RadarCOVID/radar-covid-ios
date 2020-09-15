@@ -20,7 +20,7 @@ class MyHealthReportedViewController: UIViewController {
     @IBOutlet weak var viewTitle: UILabel!
     
     @IBAction func onBack(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+        router?.popToRoot(from: self, animated: true)
     }
 
     override func viewDidLoad() {

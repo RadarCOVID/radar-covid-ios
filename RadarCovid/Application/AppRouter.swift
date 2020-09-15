@@ -18,6 +18,8 @@ protocol Router {
         from context: UIViewController,
         parameters: Any?...
     )
+    func popToRoot(from: UIViewController, animated: Bool)
+    func pop(from: UIViewController, animated: Bool)
 }
 
 public enum Routes {
@@ -50,8 +52,12 @@ class AppRouter: Router {
     var welcomeVC: WelcomeViewController?
     var activateCovid: ActivateCovidNotificationViewController?
     var activatePush: ActivatePushNotificationViewController?
+    var homeVC: HomeViewController?
+    
+    var parentVC: UIViewController?
 
     func route(to routeID: Routes, from context: UIViewController, parameters: Any?...) {
+        parentVC = context
         switch routeID {
         case .root:
             routeToRoot(context)
@@ -135,6 +141,18 @@ class AppRouter: Router {
         navController?.viewControllers.removeAll()
         navController?.popToRootViewController(animated: false)
         navController?.pushViewController(view, animated: animated)
+    }
+    
+    func popToRoot(from: UIViewController, animated: Bool) {
+        from.navigationController?.popToRootViewController(animated: animated)
+        homeVC?.viewWillAppear(animated)
+        parentVC = nil
+    }
+    
+    func pop(from: UIViewController, animated: Bool) {
+        from.navigationController?.popViewController(animated: animated)
+        parentVC?.viewWillAppear(animated)
+        parentVC = nil
     }
 
 }

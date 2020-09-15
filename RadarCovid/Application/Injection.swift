@@ -190,6 +190,7 @@ class Injection {
             appRouter.welcomeVC = r.resolve(WelcomeViewController.self)!
             appRouter.activateCovid = r.resolve(ActivateCovidNotificationViewController.self)!
             appRouter.activatePush = r.resolve(ActivatePushNotificationViewController.self)!
+            appRouter.homeVC = r.resolve(HomeViewController.self)!
         }
 
         container.register(ProximityViewController.self) {  r in
@@ -199,11 +200,13 @@ class Injection {
             return proxVC
         }
 
-        container.register(ExpositionViewController.self) {  _ in
-            self.createViewController(
+        container.register(ExpositionViewController.self) { r  in
+            let vc = self.createViewController(
                 storyboard: "Exposition",
                 viewId: "ExpositionViewController"
             ) as? ExpositionViewController ?? ExpositionViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            return vc
         }
 
         container.register(HighExpositionViewController.self) {  r in
@@ -212,15 +215,17 @@ class Injection {
                 viewId: "HighExpositionViewController")
             as? HighExpositionViewController ?? HighExpositionViewController()
             highExposition.ccaUseCase = r.resolve(CCAAUseCase.self)!
+            highExposition.router = r.resolve(AppRouter.self)!
             return highExposition
         }
 
-        container.register(PositiveExposedViewController.self) {  _ in
-            self.createViewController(
+        container.register(PositiveExposedViewController.self) { r in
+            let vc = self.createViewController(
                 storyboard: "PositiveExposed",
                 viewId: "PositiveExposedViewController")
                 as? PositiveExposedViewController ?? PositiveExposedViewController()
-
+            vc.router = r.resolve(AppRouter.self)!
+            return vc
         }
 
         container.register(HomeViewController.self) {  r in

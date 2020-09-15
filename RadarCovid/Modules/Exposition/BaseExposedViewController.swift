@@ -23,7 +23,9 @@ class BaseExposed: UIViewController, ExpositionView {
     @IBOutlet weak var expositionBGView: BackgroundView!
     
     var lastCheck: Date?
-
+    
+    var router: AppRouter?
+    
     override func viewDidLoad() {
         moreInfoView.isUserInteractionEnabled = true
         moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapLabel(tapGestureRecognizer:))))
@@ -42,7 +44,7 @@ class BaseExposed: UIViewController, ExpositionView {
     }
 
     @IBAction func onBack(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        router?.pop(from: self, animated: true)
     }
 
     @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {

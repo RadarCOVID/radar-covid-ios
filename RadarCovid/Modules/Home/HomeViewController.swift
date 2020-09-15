@@ -54,13 +54,13 @@ class HomeViewController: UIViewController {
     var viewModel: HomeViewModel?
 
     @IBAction func onCommunicate(_ sender: Any) {
-        guard let expositionInfo = try? viewModel?.expositionInfo.value() else {
+        guard let expositionInfo = try? viewModel!.expositionInfo.value() else {
             return
         }
         if expositionInfo.level == .infected {
-            router?.route(to: Routes.myHealthReported, from: self)
+            router!.route(to: Routes.myHealthReported, from: self)
         } else {
-            router?.route(to: Routes.myHealth, from: self)
+            router!.route(to: Routes.myHealth, from: self)
         }
     }
     @IBAction func onOpenSettingsTap(_ sender: Any) {
@@ -71,7 +71,7 @@ class HomeViewController: UIViewController {
         let active = radarSwitch.isOn
 
         if active {
-            viewModel?.changeRadarStatus(true)
+            viewModel!.changeRadarStatus(true)
         } else {
             self.showAlertCancelContinue(
                 title: "ALERT_HOME_RADAR_TITLE".localized,
@@ -89,7 +89,7 @@ class HomeViewController: UIViewController {
     }
 
     func showActivationMessage() {
-        self.showAlertOk(
+        showAlertOk(
             title: "ALERT_HOME_COVID_NOTIFICATION_TITLE".localized,
             message: "HOME_COVID_NOTIFICATION_POPUP_INACTIVE".localized,
             buttonTitle: "ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON".localized,
@@ -137,7 +137,7 @@ class HomeViewController: UIViewController {
         viewModel!.checkInitialExposition()
         viewModel!.checkOnboarding()
         
-        errorHandler?.alertDelegate = self
+        errorHandler!.alertDelegate = self
 
     }
     
@@ -174,23 +174,24 @@ class HomeViewController: UIViewController {
     }
 
     private func setupBindings() {
-        viewModel?.radarStatus.subscribe { [weak self] status in
+        
+        viewModel!.radarStatus.subscribe { [weak self] status in
             self?.changeRadarMessage(status: status.element ?? .inactive)
         }.disposed(by: disposeBag)
 
-        viewModel?.expositionInfo.subscribe { [weak self] exposition in
+        viewModel!.expositionInfo.subscribe { [weak self] exposition in
             self?.updateExpositionInfo(exposition.element)
         }.disposed(by: disposeBag)
 
-        viewModel?.error.subscribe { [weak self] error in
+        viewModel!.error.subscribe { [weak self] error in
             self?.errorHandler?.handle(error: error.element)
         }.disposed(by: disposeBag)
 
-        viewModel?.alertMessage.subscribe { [weak self] message in
+        viewModel!.alertMessage.subscribe { [weak self] message in
             self?.showAlert(message: message.element)
         }.disposed(by: disposeBag)
 
-        viewModel?.checkState.subscribe { [weak self] showCheck in
+        viewModel!.checkState.subscribe { [weak self] showCheck in
             self?.showCheckState(showCheck.element)
         }.disposed(by: disposeBag)
 
@@ -198,7 +199,7 @@ class HomeViewController: UIViewController {
             self?.setErrorState(error.element ?? nil)
         }.disposed(by: disposeBag)
         
-        viewModel?.showBackToHealthyDialog.subscribe { [weak self] expositionCheck in
+        viewModel!.showBackToHealthyDialog.subscribe { [weak self] expositionCheck in
             if expositionCheck.element ?? false {
                 self?.showTimeExposed();
             }
@@ -208,12 +209,12 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel!.checkShowBackToHealthyDialog()
-        viewModel?.restoreLastStateAndSync()
+        viewModel!.restoreLastStateAndSync()
     }
 
     @IBAction func onReset(_ sender: Any) {
 
-        self.showAlertCancelContinue(
+        showAlertCancelContinue(
             title: "ALERT_HOME_RESET_TITLE".localized,
             message: "ALERT_HOME_RESET_CONTENT".localized,
             buttonOkTitle: "ALERT_OK_BUTTON".localized,
@@ -227,7 +228,7 @@ class HomeViewController: UIViewController {
     }
     
     func showTimeExposed() {
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
+        view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
         TimeExposedView.initWithParentViewController(viewController: self)
        
     }
