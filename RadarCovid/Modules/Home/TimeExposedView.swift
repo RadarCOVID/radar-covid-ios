@@ -19,6 +19,7 @@ class TimeExposedView: UIView {
     @IBAction func onCloseAction(_ sender: Any) {
         removePopUpView()
     }
+    
     var parentViewController: UIViewController?
     var viewModel: HomeViewModel?
     @IBOutlet weak var titleLabel: UILabel!
@@ -29,6 +30,7 @@ class TimeExposedView: UIView {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
+    
     @IBAction func onAcceptButton(_ sender: Any) {
         removePopUpView()
     }
