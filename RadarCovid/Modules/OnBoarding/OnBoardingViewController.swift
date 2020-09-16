@@ -34,19 +34,6 @@ class OnBoardingViewController: UIViewController {
     
     @IBOutlet weak var acceptButton: UIButton!
 
-    @IBAction func onSwithAcceptChange(_ sender: Any) {
-        let active = switchAccept.isOn
-        if active {
-            checkBoxImage.image = UIImage(named: "CheckboxSelected")
-            checkBoxImage.accessibilityHint = "ACC_HINT_DISABLE".localized
-            termsAccepted = true
-        } else {
-            checkBoxImage.image = UIImage(named: "CheckboxUnselected")
-            checkBoxImage.accessibilityHint = "ACC_HINT".localized
-            termsAccepted = false
-        }
-        acceptButton.isEnabled = termsAccepted
-    }
     @IBAction func onOk(_ sender: Any) {
         router?.route(to: Routes.proximity, from: self)
     }
@@ -105,26 +92,33 @@ class OnBoardingViewController: UIViewController {
         paragraph3Title.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_PARAGRAPH3_TITLE".localized
         paragraph3Title.accessibilityTraits.insert(UIAccessibilityTraits.header)
         
-        acceptTermsLabel.isAccessibilityElement = true;
+        acceptTermsLabel.isAccessibilityElement = true
         acceptTermsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         acceptTermsLabel.accessibilityHint = "ACC_HINT".localized
         
-        privacyLabel.isAccessibilityElement = true;
+        privacyLabel.isAccessibilityElement = true
         privacyLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         privacyLabel.accessibilityHint = "ACC_HINT".localized
         
         switchAccept.accessibilityTraits = UISwitch().accessibilityTraits
         switchAccept.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
-        
+
         acceptButton.isAccessibilityElement = true
-        acceptButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        acceptButton.accessibilityHint = "ACC_HINT".localized
     }
 
     @objc func userDidTapAccept(tapGestureRecognizer: UITapGestureRecognizer) {
+        termsToggle()
+    }
+    
+    @IBAction func onSwithAcceptChange(_ sender: Any) {
+        termsToggle()
+    }
+    
+    private func termsToggle() {
         if !termsAccepted {
             checkBoxImage.image = UIImage(named: "CheckboxSelected")
             checkBoxImage.accessibilityHint = "ACC_HINT_DISABLE".localized
+            acceptButton.accessibilityHint = "ACC_HINT".localized
             termsAccepted = true
         } else {
             checkBoxImage.image = UIImage(named: "CheckboxUnselected")
