@@ -11,7 +11,6 @@
 
 import Foundation
 
-
 /** Time between states */
 
 public struct TimeBetweenStatesDto: Codable {
@@ -26,6 +25,4 @@ public struct TimeBetweenStatesDto: Codable {
         self.infectedToHealthy = infectedToHealthy
     }
 
-
 }
-

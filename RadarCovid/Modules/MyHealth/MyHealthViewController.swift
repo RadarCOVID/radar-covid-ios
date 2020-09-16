@@ -250,7 +250,7 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-       if let x = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
+        if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil {
             guard let textFieldText = textField.text,
                 let rangeOfTextToReplace = Range(range, in: textFieldText) else {
                     return false
@@ -261,10 +261,9 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
                 sendDiagnosticButton.isEnabled = true
             }
             return count <= 12
-       }
-       else {
-                return false
-            }
+        }
+        return false
+
     }
 
 }

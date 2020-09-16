@@ -31,7 +31,7 @@ class LocalizationUseCase: LocalizationSource {
         self.textsApi = textsApi
         self.localizationRepository = localizationRepository
     }
-    
+
 //    func localizationLoaded() -> Observable<Bool> {
 //        return Observable.create { (observer) -> Disposable in
 //            if (self._localizationLoaded){

@@ -19,10 +19,10 @@ protocol ResetDataUseCase {
 }
 
 class ResetDataUseCaseImpl: ResetDataUseCase {
-    
+
     private let expositionInfoRepository: ExpositionInfoRepository
     var setupUseCase: SetupUseCase?
-    
+
     init(expositionInfoRepository: ExpositionInfoRepository) {
         self.expositionInfoRepository = expositionInfoRepository
     }
@@ -41,7 +41,7 @@ class ResetDataUseCaseImpl: ResetDataUseCase {
         }
 
     }
-    
+
     func resetExposureDays() -> Observable<Void> {
         .deferred { [weak self] in
             do {
@@ -50,10 +50,10 @@ class ResetDataUseCaseImpl: ResetDataUseCase {
             } catch {
                 return .error(error)
             }
-            
+
             return .just(())
         }
 
     }
-    
+
 }

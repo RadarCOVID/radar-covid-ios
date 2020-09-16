@@ -26,10 +26,10 @@ class CCAAUseCase {
     public func loadCCAA() -> Observable<[CaData]> {
         .deferred { [weak self] in
             let locale = self?.localizationRepository.getLocale()
-            return self?.masterDataApi.getCcaa(locale: locale,additionalInfo: true).map { values in
-                var ccaa : [CaData] = []
-                values.forEach { v in
-                    if let ca = self?.mapCa(v) {
+            return self?.masterDataApi.getCcaa(locale: locale, additionalInfo: true).map { values in
+                var ccaa: [CaData] = []
+                values.forEach { value in
+                    if let ca = self?.mapCa(value) {
                         ccaa.append(ca)
                     }
                 }
