@@ -32,16 +32,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D5703A524ED589400FFD130"
-               BuildableName = "Radar COVIDTests.xctest"
-               BlueprintName = "Radar COVIDTests"
-               ReferencedContainer = "container:RadarCovid.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "6D64131D24ED88AB00B33427"
                BuildableName = "RadarCovidTests.xctest"
                BlueprintName = "RadarCovidTests"

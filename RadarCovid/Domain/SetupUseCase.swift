@@ -38,7 +38,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     func initializeSDK() throws {
 
         let url = URL(string: Config.endpoints.dpppt)!
-//        DP3TTracing.loggingEnabled = true
+
         DP3TTracing.loggingDelegate = self
         DP3TTracing.activityDelegate = self
 
@@ -61,7 +61,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         }
         preferencesRepository.setLastSync(date: Date())
         
-        expositionCheckUseCase.checkExposedToHealthy().subscribe(onError: { error in
+        expositionCheckUseCase.checkBackToHealthy().subscribe(onError: { error in
             debugPrint("Error up checking exposed to healthy state \(error)")
         }, onCompleted: {
             debugPrint("Expostion Check completed")

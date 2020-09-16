@@ -80,7 +80,7 @@ class ErrorHandlerImpl : ErrorHandler {
         } else if enError.code == ENError.Code.bluetoothOff {
             showError(enError, "ALERT_BLUETOOTH_ERROR")
         } else {
-            showIfVervose(enError, "ENError")
+            showIfVervose(enError, "ENError: \(enError.code.rawValue)")
         }
     }
     

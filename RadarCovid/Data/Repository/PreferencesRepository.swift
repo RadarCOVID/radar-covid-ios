@@ -12,10 +12,9 @@
 import Foundation
 
 protocol PreferencesRepository {
+    
     func isOnBoardingCompleted() -> Bool
-    func isTimeExposedDismissed() -> Bool
     func setOnboarding(completed: Bool)
-    func setTimeExposedDismissed(dismissed: Bool)
     
     func isTracingActive() -> Bool
     func setTracing(active: Bool)
@@ -30,7 +29,6 @@ protocol PreferencesRepository {
 class UserDefaultsPreferencesRepository: PreferencesRepository {
 
     private static let kOnboarding = "UserDefaultsPreferencesRepository.onboarding"
-    private static let kTimeExposedDismissed = "UserDefaultsPreferencesRepository.timeExposedDismissed"
     private static let kTracing = "UserDefaultsPreferencesRepository.tracing"
     private static let kTracingInit = "UserDefaultsPreferencesRepository.tracingInit"
     private static let kSyncDate = "UserDefaultsPreferencesRepository.syncDate"
@@ -44,17 +42,9 @@ class UserDefaultsPreferencesRepository: PreferencesRepository {
     func isOnBoardingCompleted() -> Bool {
         userDefaults.object(forKey: UserDefaultsPreferencesRepository.kOnboarding) as? Bool ?? false
     }
-    
-    func isTimeExposedDismissed() -> Bool {
-        userDefaults.object(forKey: UserDefaultsPreferencesRepository.kTimeExposedDismissed) as? Bool ?? false
-    }
 
     func setOnboarding(completed: Bool) {
         userDefaults.set(completed, forKey: UserDefaultsPreferencesRepository.kOnboarding)
-    }
-    
-    func setTimeExposedDismissed(dismissed: Bool) {
-        userDefaults.set(dismissed, forKey: UserDefaultsPreferencesRepository.kTimeExposedDismissed)
     }
 
     func isTracingActive() -> Bool {

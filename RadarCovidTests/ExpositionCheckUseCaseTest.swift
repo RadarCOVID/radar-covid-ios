@@ -14,6 +14,9 @@ import RxSwift
 
 @testable import Radar_COVID
 
+// XCODE bug breaks tests
+// https://bugs.swift.org/browse/SR-12303
+
 class ExpositionCheckUseCaseTest: XCTestCase {
     
     private let disposeBag = DisposeBag()
@@ -35,11 +38,11 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testcheckExposedToHealthyWithHealtyState() throws {
+    func checkExposedToHealthyWithHealtyState() throws {
         resetMocks()
         expositionInfoRepository!.expositionInfo = ExpositionInfo(level: .healthy)
         
-        sut?.checkExposedToHealthy().subscribe(onNext: { result in
+        sut?.checkBackToHealthy().subscribe(onNext: { result in
             XCTAssertFalse(result)
             XCTAssertEqual(self.resetdataUseCase?.exposureDaysCalls, 0)
         }, onError: { error in
@@ -48,7 +51,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
     }
     
-    func testcheckExposedToHealthyWithHealtyStateWithExposedAndNotOutdated() {
+    func checkExposedToHealthyWithHealtyStateWithExposedAndNotOutdated() {
         resetMocks()
         var exposition = ExpositionInfo(level: .exposed)
         exposition.since = Date()
@@ -60,7 +63,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
         settingsRepository?.settings = settings
         
-        sut?.checkExposedToHealthy().subscribe(onNext: { result in
+        sut?.checkBackToHealthy().subscribe(onNext: { result in
             XCTAssertFalse(result)
             XCTAssertEqual(self.resetdataUseCase?.exposureDaysCalls, 0)
         }, onError: { error in
@@ -69,7 +72,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
     }
     
-    func testcheckExposedToHealthyWithHealtyStateWithExposedAndOutdated() {
+    func checkExposedToHealthyWithHealtyStateWithExposedAndOutdated() {
         resetMocks()
         var exposition = ExpositionInfo(level: .exposed)
         exposition.since = Date().addingTimeInterval(-11 * 60)
@@ -81,7 +84,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
         settingsRepository?.settings = settings
         
-        sut?.checkExposedToHealthy().subscribe(onNext: { result in
+        sut?.checkBackToHealthy().subscribe(onNext: { result in
             XCTAssertTrue(result)
             XCTAssertEqual(self.resetdataUseCase?.exposureDaysCalls, 1)
         }, onError: { error in
@@ -89,8 +92,6 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         }).disposed(by: disposeBag)
         
     }
-    
-        
     
     func resetMocks() {
         expositionInfoRepository?.resetMock()

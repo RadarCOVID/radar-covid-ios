@@ -54,7 +54,7 @@ class RootViewController: UIViewController {
                 if  settings.isUpdated ?? false {
                     self?.navigateFirst()
                 } else {
-                    let configUrl = settings.parameters?.applicationVersion?.ios?.bundleUrl ?? "itms://itunes.apple.com"
+                    let configUrl = settings.parameters?.applicationVersion?.ios?.bundleUrl ?? "itms-apps://itunes.apple.com"
                     self?.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
                                       message: "ALERT_UPDATE_TEXT_CONTENT".localized,
                                       buttonTitle: "ALERT_UPDATE_BUTTON".localized,

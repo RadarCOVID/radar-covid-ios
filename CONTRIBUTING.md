@@ -8,8 +8,7 @@ Before submitting a new GitHub issue, please make sure to
 - Check out the README pages on [this repo](https://github.com/RadarCOVID/radar-covid-ios)
 - Search for [existing GitHub issues](https://github.com/RadarCOVID/radar-covid-ios/issues)
 
-If the above doesn't help, please [submit an issue](https://github.com/RadarCOVID/radar-covid-ios/issues) on GitHub and provide information about your setup. If you feel like something is not working as it should, please provide the `log4j2`
-debug output.
+If the above doesn't help, please [submit an issue](https://github.com/RadarCOVID/radar-covid-ios/issues) on GitHub and provide information about your setup. If you feel like something is not working as it should, please provide the debug output and all contextual information you can collect.
 
 **Note**: If you want to report a regression (something that has worked before, but broke with a new release), please mark your issue title as such using `[Regression] Your title here`. This enables us to quickly detect and fix regressions.
 

@@ -21,25 +21,39 @@ class ExpositionViewController: BaseExposed {
     @IBOutlet weak var whatToDoTitle: UILabel!
     @IBOutlet weak var whatToDo: UILabel!
     @IBOutlet weak var moreinfo: UILabel!
+    
+    private let formatter = DateFormatter()
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        formatter.dateFormat = "dd.MM.YYYY"
+        
         setupAccessibility()
         whatToDo.isAccessibilityElement = true
         whatToDo.accessibilityTraits.insert(UIAccessibilityTraits.link)
         whatToDo.attributedText = "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localizedAttributed()
         whatToDo.isUserInteractionEnabled = true
         whatToDo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapWhatToDo(tapGestureRecognizer:))))
-        // Do any additional setup after loading the view.
+        
         moreinfo.isAccessibilityElement = true
         moreinfo.accessibilityTraits.insert(UIAccessibilityTraits.link)
-        self.sincontactos.attributedText = "EXPOSITION_LOW_DESCRIPTION".localizedAttributed(withParams: [expositionDateWithFormat()])
 
-//        self.expositionDate.text = "(actualizado \(expositionDateWithFormat()))"
         expositionBGView.image = bgImageGreen
 
-        super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+
+        super.viewWillAppear(animated)
+        if let lastCheck = lastCheck {
+            sincontactos.attributedText = "EXPOSITION_LOW_DESCRIPTION".localizedAttributed(withParams: [formatter.string(from: lastCheck)])
+        } else {
+            sincontactos.isHidden = true
+        }
+    }
+
     func setupAccessibility() {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
@@ -49,16 +63,7 @@ class ExpositionViewController: BaseExposed {
         whatToDoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         whatToDoTitle.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
     }
-
-    func expositionDateWithFormat() -> String {
-        if let date = self.lastCheck {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd.MM.YYYY"
-            return formatter.string(from: date)
-        }
-        return "01.07.2020"
-    }
-
+    
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSURE_LOW_INFO_URL".localized)
     }

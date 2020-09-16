@@ -31,7 +31,7 @@ It's possible to install a git hook to authomatically check commit comments base
 - Install hook:
 	> $ npm install
 - Generate changelog and tag release:
-	> $ npm release
+	> $ npm run release
 
 ## Support and Feedback
 

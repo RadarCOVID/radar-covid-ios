@@ -26,12 +26,19 @@ class ExpositionCheckUseCase {
         self.resetDataUseCase = resetDataUseCase
     }
     
-    func checkExposedToHealthy() -> Observable<Bool> {
+    func checkBackToHealthyJustChanged() -> Bool {
+        let changed = expositionInfoRepository.isChangedToHealthy() ?? false
+        expositionInfoRepository.setChangedToHealthy(changed: false)
+        return changed
+    }
+    
+    func checkBackToHealthy() -> Observable<Bool> {
         .deferred { [weak self] in
             let expositionInfo = self?.expositionInfoRepository.getExpositionInfo()
             
             if case .exposed = expositionInfo?.level  {
                 if self?.isExpositinOutdated(expositionInfo) ?? false {
+                    self?.expositionInfoRepository.setChangedToHealthy(changed: true)
                     return self?.resetDataUseCase.resetExposureDays().map { true } ?? .empty()
                 }
             }
