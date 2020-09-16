@@ -89,10 +89,6 @@ class Injection {
             UserDefaultsLocalizationRepository()
         }.inObjectScope(.container)
 
-        container.register(BluetoothHandler.self) { _ in
-            CentralManagerBluetoothHandler()
-        }.inObjectScope(.container)
-
         container.register(VersionHandler.self) { _ in
             VersionHandler()
         }.inObjectScope(.container)

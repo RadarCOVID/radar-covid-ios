@@ -20,7 +20,7 @@ protocol ExpositionInfoRepository {
 }
 
 class UserDefaultsExpositionInfoRepository: ExpositionInfoRepository {
-    
+
     private static let kData = "UserDefaultsExpositionInfoRepository.expositionInfo"
     private static let kChanged = "UserDefaultsExpositionInfoRepository.changedToHealthy"
 
@@ -44,11 +44,11 @@ class UserDefaultsExpositionInfoRepository: ExpositionInfoRepository {
         guard let encoded = try? encoder.encode(expositionInfo) else { return }
         userDefaults.set(encoded, forKey: UserDefaultsExpositionInfoRepository.kData)
     }
-    
+
     func isChangedToHealthy() -> Bool? {
         userDefaults.object(forKey: UserDefaultsExpositionInfoRepository.kChanged) as? Bool
     }
-    
+
     func setChangedToHealthy(changed: Bool) {
         userDefaults.set(changed, forKey: UserDefaultsExpositionInfoRepository.kChanged)
     }
