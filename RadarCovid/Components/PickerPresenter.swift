@@ -18,17 +18,17 @@ protocol PickerDelegate: class {
 }
 
 class PickerPresenter {
-    
+
     private var toolBar: UIToolbar?
     private let picker: UIView
     private var pickerOpened = false
-    
+
     weak var delegate: PickerDelegate?
-    
+
     init( picker: UIView ) {
         self.picker = picker
     }
-    
+
     func openPicker() {
         if !pickerOpened {
             pickerOpened = true
@@ -36,22 +36,24 @@ class PickerPresenter {
             picker.setValue(UIColor.black, forKey: "textColor")
             picker.autoresizingMask = .flexibleWidth
             picker.contentMode = .center
-            picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
+            picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300,
+                                       width: UIScreen.main.bounds.size.width, height: 300)
             delegate?.containerView.addSubview(picker)
 
-            toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
+            toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300,
+                                                        width: UIScreen.main.bounds.size.width, height: 50))
             toolBar!.barStyle = .default
-            let item = UIBarButtonItem.init(title: "SELECTOR_DONE".localized, style: .done, target: self, action: #selector(onDoneButtonTapped))
+            let item = UIBarButtonItem.init(title: "SELECTOR_DONE".localized, style: .done,
+                                            target: self, action: #selector(onDoneButtonTapped))
             item.isAccessibilityElement = true
             item.accessibilityLabel = "ACC_BUTTON_SELECTOR_DONE".localized
             item.accessibilityHint = "ACC_HINT".localized
             toolBar!.items = [item]
             delegate?.containerView.addSubview(toolBar!)
-            
-            
+
         }
     }
-    
+
     @objc func onDoneButtonTapped() {
         toolBar!.removeFromSuperview()
         picker.removeFromSuperview()

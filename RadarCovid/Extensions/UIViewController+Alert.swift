@@ -12,7 +12,7 @@
 import Foundation
 import UIKit
 
-protocol AlertController: class{
+protocol AlertController: class {
     func showAlertOk(title: String, message: String, buttonTitle: String, _ callback: ((Any) -> Void)?)
     func showAlertCancelContinue(
         title: String,
@@ -35,7 +35,7 @@ protocol AlertController: class{
     )
 }
 
-extension UIViewController : AlertController {
+extension UIViewController: AlertController {
 
     func showAlertOk(title: String, message: String, buttonTitle: String, _ callback: ((Any) -> Void)? = nil) {
 

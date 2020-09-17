@@ -10,13 +10,13 @@
 //
 
 import Foundation
-struct Certificates {
+struct CertificateUtil {
     static let pre =
-        Certificates.certificate(filename: "radarcovidpre.covid19.gob.es")
+        CertificateUtil.certificate(filename: "radarcovidpre.covid19.gob.es")
     static let pro =
-        Certificates.certificate(filename: "radarcovid.covid19.gob.es")
-    
-    private static func certificate(filename: String) -> SecCertificate {
+        CertificateUtil.certificate(filename: "radarcovid.covid19.gob.es")
+
+    static func certificate(filename: String) -> SecCertificate {
         let filePath = Bundle.main.path(forResource: filename, ofType: "cer")!
         let data = try! Data(contentsOf: URL(fileURLWithPath: filePath))
         let certificate = SecCertificateCreateWithData(nil, data as CFData)!

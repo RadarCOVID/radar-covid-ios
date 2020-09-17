@@ -15,9 +15,6 @@ import UIKit
 extension String: Localizable {
 
     var localized: String {
-        let map = LocalizationHolder.localizationMap
-        let string = LocalizationHolder.localizationMap?[self]
-        
         return LocalizationHolder.localizationMap?[self] ?? NSLocalizedString(self, comment: "")
     }
 

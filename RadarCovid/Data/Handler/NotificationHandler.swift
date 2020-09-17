@@ -59,15 +59,16 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         var title, body: String?
         var sound: UNNotificationSound?
         formatter.dateFormat = "dd.MM.YYYY"
+        
         switch expositionInfo.level {
-            case .exposed:
-                title = "NOTIFICATION_TITLE_EXPOSURE_HIGH".localized
-                body = "NOTIFICATION_MESSAGE_EXPOSURE_HIGH".localized
-
-                sound = .defaultCritical
-            default:
-                debugPrint("No notification for exposition: \(expositionInfo.level.rawValue)")
+        case .exposed:
+            title = "NOTIFICATION_TITLE_EXPOSURE_HIGH".localized
+            body = "NOTIFICATION_MESSAGE_EXPOSURE_HIGH".localized
+            sound = .defaultCritical
+        default:
+            debugPrint("No notification for exposition: \(expositionInfo.level.rawValue)")
         }
+        
         if let title = title, let body = body, let sound = sound {
             scheduleNotification(title: title, body: body, sound: sound)
         }

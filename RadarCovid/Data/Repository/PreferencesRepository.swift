@@ -12,10 +12,10 @@
 import Foundation
 
 protocol PreferencesRepository {
-    
+
     func isOnBoardingCompleted() -> Bool
     func setOnboarding(completed: Bool)
-    
+
     func isTracingActive() -> Bool
     func setTracing(active: Bool)
 
@@ -54,7 +54,7 @@ class UserDefaultsPreferencesRepository: PreferencesRepository {
     func setTracing(active: Bool) {
         userDefaults.set(active, forKey: UserDefaultsPreferencesRepository.kTracing)
     }
-    
+
     func getLastSync() -> Date? {
         userDefaults.object(forKey: UserDefaultsPreferencesRepository.kSyncDate) as? Date
     }

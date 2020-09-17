@@ -22,7 +22,8 @@ struct CaData: Codable {
     public var webName: String?
     public var additionalInfo: String?
 
-    public init(id: String?, description: String?, phone: String?, email: String?, web: String?, webName: String?, additionalInfo: String?) {
+    public init(id: String?, description: String?, phone: String?, email: String?,
+                web: String?, webName: String?, additionalInfo: String?) {
         self.id = id
         self.description = description
         self.phone = phone
