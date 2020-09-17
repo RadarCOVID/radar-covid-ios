@@ -179,12 +179,14 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
 
         // detect backspace
         if  textField.text == "" || textField.text == nil {
-            if   actualPos > 0 && actualPos < self.codeChars.count {
+            if actualPos > 0 && actualPos < self.codeChars.count {
                 let prev = codeChars[actualPos - 1]
                 prev.becomeFirstResponder()
-                prev.text = "\u{200B}"
                 textField.text = "\u{200B}"
-           }
+                if actualPos != codeChars.count - 1 {
+                    prev.text = "\u{200B}"
+                }
+            }
         }
 
         // detect new input and pass to the next one
