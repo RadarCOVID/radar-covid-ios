@@ -18,9 +18,9 @@ class MyDataViewController: UIViewController {
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var bullet2: UILabel!
     @IBOutlet weak var bullet3: UILabel!
-    
+
     @IBOutlet weak var viewTitle: UILabel!
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -31,11 +31,13 @@ class MyDataViewController: UIViewController {
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true
 
-        acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapTerms(tapGestureRecognizer:))))
+        acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                              action: #selector(userDidTapTerms(tapGestureRecognizer:))))
 
-        privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
+        privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                          action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
     }
-    
+
     func setupAccessibility() {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)

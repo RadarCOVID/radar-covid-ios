@@ -20,12 +20,13 @@ class ActivateCovidNotificationViewController: UIViewController {
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
     var radarStatusUseCase: RadarStatusUseCase?
     var errorHandler: ErrorHandler?
-    
+
     @IBOutlet weak var activateButton: UIButton!
 
     @IBOutlet weak var viewTitle: UILabel!
     @IBAction func onContinue(_ sender: Any) {
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil, "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.white)
+        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
+                            "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.white)
         radarStatusUseCase?.restoreLastStateAndSync().subscribe(
                 onError: { [weak self] error in
                 self?.errorHandler?.handle(error: error)
@@ -49,7 +50,7 @@ class ActivateCovidNotificationViewController: UIViewController {
         errorHandler?.alertDelegate = self
         setupAccessibility()
     }
-    
+
     func setupAccessibility() {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)

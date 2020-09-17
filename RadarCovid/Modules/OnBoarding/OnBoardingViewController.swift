@@ -21,17 +21,17 @@ class OnBoardingViewController: UIViewController {
     @IBOutlet weak var paragraph1Title: UILabel!
     @IBOutlet weak var paragraph2Title: UILabel!
     @IBOutlet weak var paragraph3Title: UILabel!
-    
+
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var checkBoxImage: UIImageView!
 
-    @IBOutlet weak var paragraph_1_description: UILabel!
+    @IBOutlet weak var paragraph1Description: UILabel!
     @IBOutlet weak var acceptTermsLabel: UILabel!
     @IBOutlet weak var privacyLabel: UILabel!
 
     @IBOutlet weak var acceptView: UIView!
     @IBOutlet weak var switchAccept: UISwitch!
-    
+
     @IBOutlet weak var acceptButton: UIButton!
 
     @IBAction func onOk(_ sender: Any) {
@@ -49,23 +49,26 @@ class OnBoardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true
         acceptView.isUserInteractionEnabled = true
-        
-        acceptView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapAccept(tapGestureRecognizer:))))
 
-        acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapTerms(tapGestureRecognizer:))))
+        acceptView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                        action: #selector(userDidTapAccept(tapGestureRecognizer:))))
 
-        privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
+        acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                              action: #selector(userDidTapTerms(tapGestureRecognizer:))))
+
+        privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                          action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
 
     }
-    
+
     func setupAccessibility() {
         switchAccept.isOn = false
         if UIAccessibility.isVoiceOverRunning {
-            paragraph_1_description.text = paragraph_1_description.text?.lowercased()
+            paragraph1Description.text = paragraph1Description.text?.lowercased()
             acceptView.isHidden = true
             switchAccept.isHidden = false
         } else {
@@ -75,31 +78,31 @@ class OnBoardingViewController: UIViewController {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_TITLE".localized
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        
+
         viewSubtitle.isAccessibilityElement = true
         viewSubtitle.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_SUBTITLE".localized
         viewSubtitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        
+
         paragraph1Title.isAccessibilityElement = true
         paragraph1Title.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_PARAGRAPH1_TITLE".localized
         paragraph1Title.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        
+
         paragraph2Title.isAccessibilityElement = true
         paragraph2Title.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_PARAGRAPH2_TITLE".localized
         paragraph2Title.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        
+
         paragraph3Title.isAccessibilityElement = true
         paragraph3Title.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_PARAGRAPH3_TITLE".localized
         paragraph3Title.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        
+
         acceptTermsLabel.isAccessibilityElement = true
         acceptTermsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         acceptTermsLabel.accessibilityHint = "ACC_HINT".localized
-        
+
         privacyLabel.isAccessibilityElement = true
         privacyLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         privacyLabel.accessibilityHint = "ACC_HINT".localized
-        
+
         switchAccept.accessibilityTraits = UISwitch().accessibilityTraits
         switchAccept.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
 
@@ -109,11 +112,11 @@ class OnBoardingViewController: UIViewController {
     @objc func userDidTapAccept(tapGestureRecognizer: UITapGestureRecognizer) {
         termsToggle()
     }
-    
+
     @IBAction func onSwithAcceptChange(_ sender: Any) {
         termsToggle()
     }
-    
+
     private func termsToggle() {
         if !termsAccepted {
             checkBoxImage.image = UIImage(named: "CheckboxSelected")

@@ -21,17 +21,18 @@ class BaseExposed: UIViewController, ExpositionView {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var moreInfoView: UIView!
     @IBOutlet weak var expositionBGView: BackgroundView!
-    
+
     var lastCheck: Date?
-    
+
     var router: AppRouter?
-    
+
     override func viewDidLoad() {
         moreInfoView.isUserInteractionEnabled = true
-        moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapLabel(tapGestureRecognizer:))))
+        moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                           action: #selector(userDidTapLabel(tapGestureRecognizer:))))
 
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         backButton.isAccessibilityElement = true

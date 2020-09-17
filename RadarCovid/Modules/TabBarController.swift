@@ -21,7 +21,9 @@ class TabBarController: UITabBarController {
     var preferencesRepository: PreferencesRepository?
     private let disposeBag = DisposeBag()
 
-    init(localizationUseCase: LocalizationUseCase, homeViewController: HomeViewController, myDataViewController: MyDataViewController, helpLineViewController: HelpLineViewController, preferencesRepository: PreferencesRepository) {
+    init(localizationUseCase: LocalizationUseCase, homeViewController: HomeViewController,
+         myDataViewController: MyDataViewController, helpLineViewController: HelpLineViewController,
+         preferencesRepository: PreferencesRepository) {
         self.localizationUseCase = localizationUseCase
         self.homeViewController = homeViewController
         self.myDataViewController = myDataViewController
@@ -34,6 +36,7 @@ class TabBarController: UITabBarController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     // The tabBar top border is done using the `shadowImage` and `backgroundImage` properties.
     // We need to override those properties to set the custom top border.
     // Setting the `backgroundImage` to an empty image to remove the default border. tabBar.backgroundImage = UIImage()
@@ -42,6 +45,7 @@ class TabBarController: UITabBarController {
     // This image then will get repeated and create the red top border of 5 points width.
     // A helper function that creates an image of the given size filled with the given color.
     // http://stackoverflow.com/a/39604716/1300959
+
     func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
         let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: size.width, height: size.height))
         UIGraphicsBeginImageContextWithOptions(size, false, 0)

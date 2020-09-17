@@ -24,12 +24,12 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
     var statusBar: UIView?
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var codigoTitle: UILabel!
-    
+
     @IBOutlet weak var sendDiagnosticButton: UIButton!
     var router: AppRouter?
 
     @IBOutlet var codeChars: [UITextField]!
-    
+
     @IBAction func onBack(_ sender: Any) {
         self.showAlertCancelContinue(
             title: "ALERT_MY_HEALTH_SEND_TITLE".localizedAttributed.string,
@@ -69,7 +69,7 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
                 self?.handle(error: error)
                 self?.view.hideLoading()
         }).disposed(by: disposeBag)
-        
+
     }
 
     private func handle(error: Error) {
@@ -94,13 +94,15 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
 
         showAlertOk(
             title: title,
-            message: errorMessage, buttonTitle: "ALERT_OK_BUTTON".localized, buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized
+            message: errorMessage,
+            buttonTitle: "ALERT_OK_BUTTON".localized,
+            buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized
         )
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+
         self.codeChars.forEach { (char) in
             char.text = "\u{200B}"
             char.layer.cornerRadius = 5
@@ -115,14 +117,14 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
         sendDiagnosticButton.isEnabled = checkSendEnabled()
-        
+
         setupAccessibility()
-        
+
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         codeTextField.delegate = self
 
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -141,32 +143,32 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
         )
 
         sendDiagnosticButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
-        
+
     }
-    
+
     private func setupAccessibility() {
         codeTextField.isAccessibilityElement = true
         codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
         codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
         codeTextField.accessibilityHint = "ACC_HINT".localized
         codeTextField.keyboardType = .numberPad
-        
+
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
-        
+
         codigoTitle.isAccessibilityElement = true
         codigoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         codigoTitle.accessibilityLabel = "ACC_CODE_TITLE".localized
-        
+
         sendDiagnosticButton.isAccessibilityElement = true
         sendDiagnosticButton.accessibilityLabel = "ACC_BUTTON_SEND_DIAGNOSTIC".localized
         sendDiagnosticButton.accessibilityHint = "ACC_HINT".localized
-        
+
         if UIAccessibility.isVoiceOverRunning {
             codeTextField.isHidden = false
             codeView.isHidden = true
-        }else{
+        } else {
             codeTextField.isHidden = true
             codeView.isHidden = false
         }
@@ -251,8 +253,9 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
         self.scrollViewBottonConstraint.constant = 0
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil {
             guard let textFieldText = textField.text,
                 let rangeOfTextToReplace = Range(range, in: textFieldText) else {
@@ -260,7 +263,7 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
             }
             let substringToReplace = textFieldText[rangeOfTextToReplace]
             let count = textFieldText.count - substringToReplace.count + string.count
-            if (count == 12){
+            if count == 12 {
                 sendDiagnosticButton.isEnabled = true
             }
             return count <= 12

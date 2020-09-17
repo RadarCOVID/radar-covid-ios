@@ -25,16 +25,17 @@ class PositiveExposedViewController: BaseExposed {
         setupAccessibility()
         setInfectedText()
         moreinfo.isUserInteractionEnabled = true
-        moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+        moreinfo.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                      action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
         expositionBGView.image = bgImageRed
         super.viewDidLoad()
     }
-    
+
     func setupAccessibility() {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_POSITIVE_EXPOSED_TITLE".localized
-        
+
         whatToDoTitle.isAccessibilityElement = true
         whatToDoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         whatToDoTitle.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
@@ -50,15 +51,18 @@ class PositiveExposedViewController: BaseExposed {
         if daysSinceLastInfection == 0 {
             daysSinceLastInfection = 1
         }
-        realInfectedText.attributedText = "EXPOSITION_EXPOSED_DESCRIPTION".localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
+        realInfectedText.attributedText = "EXPOSITION_EXPOSED_DESCRIPTION"
+            .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
     }
 
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSURE_INFECTED_INFO_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "EXPOSURE_INFECTED_INFO_URL".localized)
     }
-    
+
     @objc func userDidTapMoreInfo(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSITION_HIGH_MORE_INFO_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "EXPOSITION_HIGH_MORE_INFO_URL".localized)
     }
 
 }

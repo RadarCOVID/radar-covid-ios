@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var languageSelector: UIButton!
     var router: AppRouter?
     @IBOutlet weak var viewTitle: UILabel!
-    
+
     var localesKeysArray: [String] = []
     var localesArray: [String: String?]!
     var localizationRepository: LocalizationRepository!
@@ -28,9 +28,9 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var stepbullet2: UILabel!
 
     @IBOutlet weak var stepbullet3: UILabel!
-    
+
     private var pickerPresenter: PickerPresenter?
-    
+
     @IBAction func onContinue(_ sender: Any) {
         router?.route(to: .onBoarding, from: self)
     }
@@ -43,7 +43,7 @@ class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let picker = UIPickerView.init()
         picker.delegate = self
         picker.dataSource = self
@@ -51,17 +51,17 @@ class WelcomeViewController: UIViewController {
         pickerPresenter?.delegate = self
         setupAccessibility()
     }
-    
+
     func setupAccessibility() {
         languageSelector.isAccessibilityElement = true
         languageSelector.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
         languageSelector.accessibilityHint = "ACC_HINT".localized
-        
+
         continueButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityLabel = "ACC_BUTTON_CONTINUE".localized
         continueButton.accessibilityHint = "ACC_HINT".localized
-        
+
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityLabel = "ACC_WELCOME_TITLE".localized
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
@@ -116,8 +116,9 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
         self.languageSelector.setTitle(self.localesArray[key, default: ""], for: .normal)
         localizationRepository.setLocale(key)
     }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int,
+                    forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = (view as? UILabel) ?? UILabel()
         let key = localesKeysArray[row]
         let text = localesArray[key] ?? ""
@@ -127,19 +128,21 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
         label.text = text
         return label
     }
-    
+
     var containerView: UIView {
         get {
-            self.view
+            view
         }
     }
-    
+
     func onDone() {
         if currentLocale != localizationRepository.getLocale() {
-            self.showAlertOk(title: "LOCALE_CHANGE_LANGUAGE".localized, message: "LOCALE_CHANGE_WARNING".localized, buttonTitle: "ALERT_OK_BUTTON".localized, buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized) { (_) in
+            showAlertOk(title: "LOCALE_CHANGE_LANGUAGE".localized,
+                             message: "LOCALE_CHANGE_WARNING".localized,
+                             buttonTitle: "ALERT_OK_BUTTON".localized,
+                             buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized) { _ in
                 exit(0)
             }
         }
     }
 }
-

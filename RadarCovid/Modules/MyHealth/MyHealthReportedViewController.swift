@@ -18,7 +18,7 @@ class MyHealthReportedViewController: UIViewController {
     @IBOutlet weak var moreinfolabel: UILabel!
     @IBOutlet weak var moreInfoView: UIView!
     @IBOutlet weak var viewTitle: UILabel!
-    
+
     @IBAction func onBack(_ sender: Any) {
         router?.popToRoot(from: self, animated: true)
     }
@@ -28,29 +28,33 @@ class MyHealthReportedViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         moreInfoView.isUserInteractionEnabled = true
-        moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapLabel(tapGestureRecognizer:))))
+        moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                          action: #selector(userDidTapLabel(tapGestureRecognizer:))))
         moreinfolabel.isUserInteractionEnabled = true
-        moreinfolabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+        moreinfolabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                           action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
         setupAccessibility()
     }
-    
+
     func setupAccessibility() {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized
         if UIAccessibility.isVoiceOverRunning {
             viewTitle.isHidden = false
-        }else{
+        } else {
             viewTitle.isHidden = true
         }
     }
 
     @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSURE_INFECTED_INFO_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "EXPOSURE_INFECTED_INFO_URL".localized)
     }
-    
+
     @objc func userDidTapMoreInfo(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSITION_HIGH_MORE_INFO_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "EXPOSITION_HIGH_MORE_INFO_URL".localized)
     }
 
 }

@@ -53,7 +53,7 @@ extension UIViewController: AlertController {
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
         self.present(uiAlert, animated: true, completion: nil)
     }
-    
+
     func showAlertOk(title: String, message: String, buttonTitle: String, buttonVoiceover: String? = nil, _ callback: ((Any) -> Void)? = nil) {
 
         let uiAlert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
