@@ -19,7 +19,6 @@ class TabBarController: UITabBarController {
     var myDataViewController: MyDataViewController
     var helpLineViewController: HelpLineViewController
     var preferencesRepository: PreferencesRepository?
-    private let disposeBag = DisposeBag()
 
     init(localizationUseCase: LocalizationUseCase, homeViewController: HomeViewController,
          myDataViewController: MyDataViewController, helpLineViewController: HelpLineViewController,
@@ -83,6 +82,7 @@ class TabBarController: UITabBarController {
             title: "",
             image: UIImage(named: "MenuHelpNormal"),
             selectedImage: UIImage(named: "MenuHelpSelected"))
+
     }
 
     func setupAccessibility() {
@@ -103,7 +103,9 @@ class TabBarController: UITabBarController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.setupAccessibility()
         setViewControllers([homeViewController, myDataViewController, helpLineViewController], animated: false)
+
     }
 
 }
