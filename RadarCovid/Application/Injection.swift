@@ -24,10 +24,10 @@ class Injection {
     private let container: Container
 
     init() {
-        
-        container = Container();
-        
-        container.register(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue) { r in
+
+        container = Container()
+
+        container.register(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.config
             return swaggerApi
@@ -44,7 +44,7 @@ class Injection {
             swaggerApi.basePath = Config.endpoints.verification
             return swaggerApi
         }.inObjectScope(.container)
-        
+
         container.register(TokenAPI.self) { r in
             TokenAPI(clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!)
         }.inObjectScope(.container)
@@ -110,13 +110,13 @@ class Injection {
             RadarStatusUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!,
                                syncUseCase: r.resolve(SyncUseCase.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(ResetDataUseCase.self) { r in
             ResetDataUseCaseImpl(expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
         }.initCompleted {r, useCase in
             (useCase as! ResetDataUseCaseImpl).setupUseCase = r.resolve(SetupUseCase.self)!
         }.inObjectScope(.container)
-        
+
         container.register(DiagnosisCodeUseCase.self) { r in
             DiagnosisCodeUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
                                  verificationApi: r.resolve(VerificationControllerAPI.self)!)
@@ -132,7 +132,7 @@ class Injection {
         container.register(SyncUseCase.self) { r in
             SyncUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(SetupUseCase.self) { r in
             SetupUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!,
                          notificationHandler: r.resolve(NotificationHandler.self)!,
@@ -153,14 +153,14 @@ class Injection {
             LocalesUseCase(localizationRepository: r.resolve(LocalizationRepository.self)!,
                            masterDataApi: r.resolve(MasterDataAPI.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(ExpositionCheckUseCase.self) { r in
             ExpositionCheckUseCase(
                 expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
                 settingsRepository: r.resolve(SettingsRepository.self)!,
                 resetDataUseCase: r.resolve(ResetDataUseCase.self)!)
         }.inObjectScope(.container)
-        
+
         container.register(TabBarController.self) { r in
             TabBarController(
                 localizationUseCase: r.resolve(LocalizationUseCase.self)!,
@@ -319,17 +319,17 @@ class Injection {
             rootVC.router = r.resolve(AppRouter.self)!
             return rootVC
         }
-        
-        container.register(ErrorRecorder.self) { r in
+
+        container.register(ErrorRecorder.self) { _ in
             ErrorRecorderImpl()
         }
-        
+
         container.register(ErrorHandler.self) { r in
             let errorHandler = ErrorHandlerImpl(verbose: Config.errorVerbose)
             errorHandler.errorRecorder = r.resolve(ErrorRecorder.self)!
             return errorHandler
         }
-        
+
     }
 
     func resolve<Service>(_ serviceType: Service.Type) -> Service? {
