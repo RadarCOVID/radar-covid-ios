@@ -79,30 +79,19 @@ class TabBarController: UITabBarController {
             title: "",
             image: UIImage(named: "MenuHelpNormal"),
             selectedImage: UIImage(named: "MenuHelpSelected"))
-        
-        // accesibility
-        self.localizationUseCase.localizationLoaded.subscribe(
-            onNext: { [weak self] (loaded) in
-                if (loaded){
-                    // all is ok so we can continue
-                    self?.setupAccessibility()
-                }
-            }).disposed(by: self.disposeBag)
-        
-
     }
-    
+
     func setupAccessibility() {
         homeViewController.tabBarItem.isAccessibilityElement = true
         homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
         homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-        
+
         myDataViewController.tabBarItem.isAccessibilityElement = true
         myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
         myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-        
+
         helpLineViewController.tabBarItem.isAccessibilityElement = true
         helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
