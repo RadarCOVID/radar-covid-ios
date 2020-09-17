@@ -29,7 +29,7 @@ class PickerPresenter {
         self.picker = picker
     }
     
-    func openPicker() {
+    func openPicker(title: String? = nil) {
         if !pickerOpened {
             pickerOpened = true
             picker.backgroundColor = UIColor.white
@@ -46,6 +46,7 @@ class PickerPresenter {
             item.accessibilityLabel = "ACC_BUTTON_SELECTOR_DONE".localized
             item.accessibilityHint = "ACC_HINT".localized
             toolBar!.items = [item]
+            UIAccessibility.post(notification: .screenChanged, argument: title)
             delegate?.containerView.addSubview(toolBar!)
             
             
