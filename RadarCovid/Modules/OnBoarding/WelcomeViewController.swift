@@ -90,7 +90,7 @@ class WelcomeViewController: UIViewController {
     }
 
     @IBAction func selectLanguage(_ sender: Any) {
-        pickerPresenter?.openPicker()
+        pickerPresenter?.openPicker(title: "ACC_LANGUAGE_SELECTOR_PICKER".localized)
     }
 
 }
@@ -124,6 +124,8 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
         let text = localesArray[key] ?? ""
         label.isAccessibilityElement = true
         label.accessibilityLabel = (text ?? "") + "ACC_SELECTED".localized
+        let prueba = label.accessibilityHint
+        label.accessibilityHint = "Desliza hacia abajo o hacia arriba para activar y luego pulsa el boton hecho en la parte superior"
         label.contentMode = .center
         label.text = text
         return label

@@ -32,7 +32,7 @@ class ActivateCovidNotificationViewController: UIViewController {
                 self?.errorHandler?.handle(error: error)
                 self?.activationFinished()
             }, onCompleted: { [weak self] in
-                self?.activationFinished()
+//                self?.activationFinished()
         }).disposed(by: disposeBag)
 
     }
