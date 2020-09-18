@@ -107,6 +107,7 @@ class HighExpositionViewController: BaseExposed {
         if daysSinceLastInfection == 0 {
             daysSinceLastInfection = 1
         }
+        youCouldBe.font = UIFont(name: "Helvetica Neue", size: 20)
         youCouldBe.attributedText = "EXPOSITION_HIGH_DESCRIPTION"
             .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
     }

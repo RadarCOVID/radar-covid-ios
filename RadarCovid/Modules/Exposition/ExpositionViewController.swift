@@ -29,6 +29,7 @@ class ExpositionViewController: BaseExposed {
         super.viewDidLoad()
 
         formatter.dateFormat = "dd.MM.YYYY"
+        sincontactos.font = UIFont(name: "Helvetica Neue", size: 20)
 
         setupAccessibility()
         whatToDo.isAccessibilityElement = true

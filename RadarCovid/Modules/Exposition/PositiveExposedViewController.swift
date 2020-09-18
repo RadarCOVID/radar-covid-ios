@@ -51,6 +51,7 @@ class PositiveExposedViewController: BaseExposed {
         if daysSinceLastInfection == 0 {
             daysSinceLastInfection = 1
         }
+        realInfectedText.font = UIFont(name: "Helvetica Neue", size: 20)
         realInfectedText.attributedText = "EXPOSITION_EXPOSED_DESCRIPTION"
             .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
     }
