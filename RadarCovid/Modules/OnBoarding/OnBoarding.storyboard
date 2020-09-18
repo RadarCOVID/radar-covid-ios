@@ -1,53 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="muli_bold.ttf">
-            <string>Muli-Bold</string>
-        </array>
-        <array key="muli_extrabold.ttf">
-            <string>Muli-ExtraBold</string>
-        </array>
-        <array key="muli_regular.ttf">
-            <string>Muli-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--On Boarding View Controller-->
         <scene sceneID="Ilv-7D-Vbr">
             <objects>
                 <viewController storyboardIdentifier="OnBoardingViewController" id="5jd-jE-NO7" customClass="OnBoardingViewController" customModule="Radar_COVID" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BoD-dh-Smx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="put-jW-Lmz">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="524"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="742"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZX-eB-vJ1" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="552"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="637.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightTopShade" translatesAutoresizingMaskIntoConstraints="NO" id="26u-YC-f5R">
-                                                <rect key="frame" x="316.5" y="0.0" width="283.5" height="206.5"/>
+                                                <rect key="frame" x="130.5" y="0.0" width="283.5" height="206.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BoyMobileQuestions" translatesAutoresizingMaskIntoConstraints="NO" id="oan-rX-oAc">
-                                                <rect key="frame" x="451" y="7" width="124" height="151"/>
+                                                <rect key="frame" x="265" y="7" width="124" height="151"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="151" id="e2W-Vb-7UD"/>
                                                     <constraint firstAttribute="width" constant="124" id="sk2-78-hYj"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oe-1F-JPZ">
-                                                <rect key="frame" x="16" y="120" width="568" height="295"/>
+                                                <rect key="frame" x="16" y="120" width="382" height="367.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your privacy is our priority" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Cjg-pU-6HI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="533" height="33"/>
-                                                        <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="347" height="86"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -55,8 +45,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxa-Hb-Im5" userLabel="step2Title">
-                                                        <rect key="frame" x="0.0" y="53" width="568" height="26"/>
-                                                        <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="22"/>
+                                                        <rect key="frame" x="0.0" y="106" width="382" height="29"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                                         <color key="textColor" red="0.34901960780000002" green="0.27058823529999998" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -64,8 +54,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ns7-D4-wdm" userLabel="paragraph1Title">
-                                                        <rect key="frame" x="0.0" y="99" width="568" height="23.5"/>
-                                                        <fontDescription key="fontDescription" name="Muli-ExtraBold" family="Muli" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="155" width="382" height="29"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -73,8 +63,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dm3-PE-YEM" userLabel="paragraph1Description">
-                                                        <rect key="frame" x="0.0" y="127.5" width="568" height="23.5"/>
-                                                        <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="189" width="382" height="23.5"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -82,8 +72,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXX-N4-u7T" userLabel="paragraph2Title">
-                                                        <rect key="frame" x="0.0" y="171" width="568" height="23.5"/>
-                                                        <fontDescription key="fontDescription" name="Muli-ExtraBold" family="Muli" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="232.5" width="382" height="29"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -91,8 +81,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWH-9x-I7h" userLabel="paragraph2Description">
-                                                        <rect key="frame" x="0.0" y="199.5" width="568" height="23.5"/>
-                                                        <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="266.5" width="382" height="23.5"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -100,8 +90,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkq-E0-sSJ" userLabel="paragraph3Description">
-                                                        <rect key="frame" x="0.0" y="271.5" width="568" height="23.5"/>
-                                                        <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="344" width="382" height="23.5"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -109,8 +99,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEh-4f-uik" userLabel="paragraph3Title">
-                                                        <rect key="frame" x="0.0" y="243" width="568" height="23.5"/>
-                                                        <fontDescription key="fontDescription" name="Muli-ExtraBold" family="Muli" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="310" width="382" height="29"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -147,7 +137,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwM-SS-Bb9" userLabel="CheckView">
-                                                <rect key="frame" x="16" y="445" width="568" height="57"/>
+                                                <rect key="frame" x="16" y="517.5" width="382" height="70"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-E5-Lzg">
                                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -158,61 +148,25 @@
                                                             <action selector="onSwithAcceptChange:" destination="5jd-jE-NO7" eventType="valueChanged" id="WQJ-mL-PJn"/>
                                                         </connections>
                                                     </switch>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvQ-IX-8Bm">
-                                                        <rect key="frame" x="50" y="0.0" width="518" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acepto la política de privacidad " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvQ-IX-8Bm">
+                                                        <rect key="frame" x="50" y="0.0" width="332" height="26"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                         </accessibility>
-                                                        <attributedString key="attributedText">
-                                                            <fragment content="Acepto la ">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.16470588235294117" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" metaFont="system" size="16"/>
-                                                                    <real key="NSKern" value="0.0"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="1" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="política de privacidad ">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.16470588235294117" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" metaFont="system" size="16"/>
-                                                                    <real key="NSKern" value="0.0"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="1" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                    <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                                        <color key="textColor" red="0.16470588235294117" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_2_PRIVACY_POLICY"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-Ib-LaU">
-                                                        <rect key="frame" x="50" y="37.5" width="518" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="He leído las condiciones de uso" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-Ib-LaU">
+                                                        <rect key="frame" x="50" y="44" width="332" height="26"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                         </accessibility>
-                                                        <attributedString key="attributedText">
-                                                            <fragment content="He leído las ">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.16470588235294117" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" metaFont="system" size="16"/>
-                                                                    <real key="NSKern" value="0.0"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="1" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="condiciones de uso">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.16470588235294117" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" metaFont="system" size="16"/>
-                                                                    <real key="NSKern" value="0.0"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="1" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                    <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                                        <color key="textColor" red="0.16470588235294117" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_2_USAGE_CONDITIONS"/>
@@ -282,11 +236,11 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Q5y-H2-Snj"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDV-35-L2Q" userLabel="Accept Button">
-                                <rect key="frame" x="16" y="534" width="568" height="56"/>
+                                <rect key="frame" x="16" y="796" width="382" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="UXS-Se-pyq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <state key="normal" title="Continuar" backgroundImage="buttonsPrimary">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -341,7 +295,7 @@
         <image name="BoyMobileQuestions" width="124" height="151"/>
         <image name="ButtonPrimaryDisabled" width="343" height="56"/>
         <image name="CheckboxUnselected" width="16" height="16"/>
-        <image name="RightTopShade" width="283.33334350585938" height="206.33332824707031"/>
+        <image name="RightTopShade" width="283.5" height="206.5"/>
         <image name="buttonsPrimary" width="341" height="60"/>
         <namedColor name="bgColor">
             <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
