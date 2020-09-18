@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="muli_bold.ttf">
-            <string>Muli-Bold</string>
-        </array>
-        <array key="muli_regular.ttf">
-            <string>Muli-Regular</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -42,8 +34,8 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="o9T-UK-NlX"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="18"/>
-                            <state key="normal" title="Aceptar" backgroundImage="GradientBackgroundButton">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                            <state key="normal" title="Aceptar" backgroundImage="buttonsPrimary">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
@@ -63,11 +55,11 @@
                             <rect key="frame" x="0.0" y="51" width="414" height="715"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awW-ay-1eZ" userLabel="ContentView">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="233.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="248"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0z-rs-I37" userLabel="Title">
-                                            <rect key="frame" x="20" y="5" width="374" height="21.5"/>
-                                            <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="17"/>
+                                            <rect key="frame" x="20" y="5" width="374" height="24"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
@@ -75,7 +67,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8m-aL-Gw4">
-                                            <rect key="frame" x="20" y="56.5" width="20" height="29"/>
+                                            <rect key="frame" x="20" y="59" width="20" height="29"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
@@ -88,11 +80,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxP-6U-juM" userLabel="bullet1">
-                                            <rect key="frame" x="55" y="56.5" width="329" height="20.5"/>
+                                            <rect key="frame" x="55" y="59" width="329" height="23.5"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                             </accessibility>
-                                            <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="16"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
@@ -100,7 +92,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYa-HO-43a">
-                                            <rect key="frame" x="20" y="102" width="20" height="29"/>
+                                            <rect key="frame" x="20" y="107.5" width="20" height="29"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
@@ -113,11 +105,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKE-JT-D14" userLabel="bullet2">
-                                            <rect key="frame" x="55" y="102" width="329" height="20.5"/>
+                                            <rect key="frame" x="55" y="107.5" width="329" height="23.5"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                             </accessibility>
-                                            <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="16"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
@@ -125,11 +117,11 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4T-g8-zgD" userLabel="moreinfo">
-                                            <rect key="frame" x="55" y="147.5" width="329" height="20.5"/>
+                                            <rect key="frame" x="55" y="156" width="329" height="23.5"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                             </accessibility>
-                                            <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="16"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
@@ -137,8 +129,8 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EwG-6Q-NeI" userLabel="bullet3">
-                                            <rect key="frame" x="55" y="193" width="329" height="20.5"/>
-                                            <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="16"/>
+                                            <rect key="frame" x="55" y="204.5" width="329" height="23.5"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
@@ -146,7 +138,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THN-Bz-LTX">
-                                            <rect key="frame" x="20" y="193" width="20" height="29"/>
+                                            <rect key="frame" x="20" y="204.5" width="20" height="29"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
@@ -234,6 +226,6 @@
     </objects>
     <resources>
         <image name="ButtonPrimaryDisabled" width="343" height="56"/>
-        <image name="GradientBackgroundButton" width="343" height="56"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
     </resources>
 </document>
