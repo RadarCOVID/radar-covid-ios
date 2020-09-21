@@ -97,8 +97,9 @@ struct HTTPRequest<ResponseModel: Codable> {
                 return "\(osName) \(versionString)"
             }()
 
-            headersDictionary["Accept-Language"] = "\(executable)/\(appVersion) (\(bundle); build:\(appBuild); \(osNameVersion)) CFNetwork"
+            headersDictionary["User-Agent"] = "\(executable)/\(appVersion) (\(bundle); build:\(appBuild); \(osNameVersion)) CFNetwork"
         }
+        
         return headersDictionary
     }
 }
