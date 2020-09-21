@@ -23,7 +23,8 @@ class ActivatePushNotificationViewController: UIViewController {
 
     @IBAction func onContinue(_ sender: Any) {
 
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil, "ACTIVATE_PUSH_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.white)
+        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
+                                 "ACTIVATE_PUSH_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.white)
 
         self.notificationHandler?.setupNotifications().subscribe(onNext: { [weak self] _ in
             DispatchQueue.main.async {
@@ -45,12 +46,12 @@ class ActivatePushNotificationViewController: UIViewController {
         super.viewDidLoad()
         setupAccessibility()
     }
-    
+
     func setupAccessibility() {
         allowButton.setTitle("ACTIVATE_PUSH_NOTIFICATION_ALLOW_BUTTON".localized, for: .normal)
         allowButton.isAccessibilityElement = true
         allowButton.accessibilityHint = "ACC_HINT".localized
-        
+
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_ACTIVATE_PUSH_NOTIFICATION_TITLE".localized

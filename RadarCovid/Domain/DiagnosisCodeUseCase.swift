@@ -16,7 +16,6 @@ import SwiftJWT
 
 class DiagnosisCodeUseCase {
 
-    private let tokenValidity = 30 * 60 // 30 minutes
     private let dateFormatter = DateFormatter()
 
     private let settingsRepository: SettingsRepository

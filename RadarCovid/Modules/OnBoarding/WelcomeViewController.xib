@@ -7,17 +7,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="muli_bold.ttf">
-            <string>Muli-Bold</string>
-        </array>
-        <array key="muli_regular.ttf">
-            <string>Muli-Regular</string>
-        </array>
-        <array key="muli_semibold.ttf">
-            <string>Muli-SemiBold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
@@ -40,7 +29,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="494"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJg-TW-Zyr">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="628.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="708"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkC-Jh-ngm">
                                     <rect key="frame" x="113" y="0.0" width="207" height="206.5"/>
@@ -66,10 +55,10 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ln-m6-qGi">
-                                    <rect key="frame" x="16" y="150" width="288" height="65.5"/>
+                                    <rect key="frame" x="16" y="150" width="288" height="86"/>
                                     <string key="text">Bienvenido a 
 Radar COVID</string>
-                                    <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -77,8 +66,8 @@ Radar COVID</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gracias por cuidarte y ayudarnos a proteger a los demás." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cpa-3O-7Z9">
-                                    <rect key="frame" x="16" y="548.5" width="288" height="70"/>
-                                    <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="20"/>
+                                    <rect key="frame" x="16" y="612" width="288" height="86"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -86,45 +75,57 @@ Radar COVID</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kjg-12-rKN">
-                                    <rect key="frame" x="16" y="235.5" width="288" height="93.5"/>
+                                    <rect key="frame" x="16" y="256" width="288" height="112"/>
                                     <string key="text">Fase Piloto sólo operativa en San Sebastián de
 la Gomera. Recuerda que las alertas son simuladas.</string>
-                                    <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_1_SUBTITLE"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSt-AF-pW4" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                    <rect key="frame" x="16" y="349" width="288" height="60"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQe-F8-5u6">
+                                    <rect key="frame" x="16" y="388" width="288" height="62"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bst-TA-Vrn">
-                                            <rect key="frame" x="0.0" y="0.0" width="288" height="60"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSt-AF-pW4" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
+                                            <rect key="frame" x="1" y="1" width="286" height="60"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bst-TA-Vrn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="286" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="4Zy-jw-7mq"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                                    <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Selecciona tu idioma" image="CollapsableClosed">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="selectLanguage:" destination="-1" eventType="touchUpInside" id="AaR-M3-cfM"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="4Zy-jw-7mq"/>
+                                                <constraint firstAttribute="bottom" secondItem="Bst-TA-Vrn" secondAttribute="bottom" id="2aO-en-byV"/>
+                                                <constraint firstItem="Bst-TA-Vrn" firstAttribute="leading" secondItem="rSt-AF-pW4" secondAttribute="leading" id="Xiq-tU-qPw"/>
+                                                <constraint firstItem="Bst-TA-Vrn" firstAttribute="top" secondItem="rSt-AF-pW4" secondAttribute="top" id="YYa-0A-hMZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="Bst-TA-Vrn" secondAttribute="trailing" id="pNh-nh-BTL"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                            <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="Selecciona tu idioma" image="CollapsableClosed">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="selectLanguage:" destination="-1" eventType="touchUpInside" id="AaR-M3-cfM"/>
-                                            </connections>
-                                        </button>
+                                        </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="deepLilac"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="Bst-TA-Vrn" secondAttribute="bottom" id="2aO-en-byV"/>
-                                        <constraint firstItem="Bst-TA-Vrn" firstAttribute="leading" secondItem="rSt-AF-pW4" secondAttribute="leading" id="Xiq-tU-qPw"/>
-                                        <constraint firstItem="Bst-TA-Vrn" firstAttribute="top" secondItem="rSt-AF-pW4" secondAttribute="top" id="YYa-0A-hMZ"/>
-                                        <constraint firstAttribute="trailing" secondItem="Bst-TA-Vrn" secondAttribute="trailing" id="pNh-nh-BTL"/>
+                                        <constraint firstItem="rSt-AF-pW4" firstAttribute="leading" secondItem="aQe-F8-5u6" secondAttribute="leading" constant="1" id="5uS-Sg-ehJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="rSt-AF-pW4" secondAttribute="bottom" constant="1" id="8fy-XV-4no"/>
+                                        <constraint firstAttribute="trailing" secondItem="rSt-AF-pW4" secondAttribute="trailing" constant="1" id="kCb-an-XOe"/>
+                                        <constraint firstItem="rSt-AF-pW4" firstAttribute="top" secondItem="aQe-F8-5u6" secondAttribute="top" constant="1" id="urg-Ds-yDe"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMv-ck-JYx" userLabel="stepbullet1">
-                                    <rect key="frame" x="32" y="427" width="272" height="20.5"/>
-                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                    <rect key="frame" x="32" y="468" width="272" height="28"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -132,7 +133,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QR7-i5-ImM">
-                                    <rect key="frame" x="17" y="422" width="10" height="29"/>
+                                    <rect key="frame" x="17" y="463" width="10" height="29"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -141,8 +142,8 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2A-1t-Mhn" userLabel="stepbullet2">
-                                    <rect key="frame" x="32" y="462.5" width="272" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="32" y="511" width="272" height="28"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -150,7 +151,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNN-3A-qYp">
-                                    <rect key="frame" x="17" y="457.5" width="10" height="29"/>
+                                    <rect key="frame" x="17" y="506" width="10" height="29"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -159,8 +160,8 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyH-o9-UvP" userLabel="stepbullet3">
-                                    <rect key="frame" x="32" y="498" width="272" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="32" y="554" width="272" height="28"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -168,7 +169,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDd-xc-3dr">
-                                    <rect key="frame" x="17" y="493" width="10" height="29"/>
+                                    <rect key="frame" x="17" y="549" width="10" height="29"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -180,21 +181,21 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                             <color key="backgroundColor" name="bgColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="OyH-o9-UvP" secondAttribute="trailing" constant="16" id="3hH-7e-8M3"/>
+                                <constraint firstAttribute="trailing" secondItem="aQe-F8-5u6" secondAttribute="trailing" constant="16" id="54g-Fs-elC"/>
                                 <constraint firstItem="QR7-i5-ImM" firstAttribute="top" secondItem="yMv-ck-JYx" secondAttribute="top" constant="-5" id="5Hr-Yl-hng"/>
                                 <constraint firstAttribute="trailing" secondItem="yMv-ck-JYx" secondAttribute="trailing" constant="16" id="75F-IH-cmX"/>
-                                <constraint firstItem="rSt-AF-pW4" firstAttribute="trailing" secondItem="Kjg-12-rKN" secondAttribute="trailing" id="C5F-Lz-H2m"/>
                                 <constraint firstItem="8Ln-m6-qGi" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="Caw-JH-QSF"/>
+                                <constraint firstItem="yMv-ck-JYx" firstAttribute="top" secondItem="aQe-F8-5u6" secondAttribute="bottom" constant="18" id="Eht-fS-WTH"/>
                                 <constraint firstItem="OyH-o9-UvP" firstAttribute="leading" secondItem="RDd-xc-3dr" secondAttribute="trailing" constant="5" id="GWW-J0-DRt"/>
                                 <constraint firstItem="cpa-3O-7Z9" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="Hf6-a3-gBF"/>
                                 <constraint firstAttribute="trailing" secondItem="Kjg-12-rKN" secondAttribute="trailing" constant="16" id="I5L-L3-PS0"/>
+                                <constraint firstItem="aQe-F8-5u6" firstAttribute="top" secondItem="Kjg-12-rKN" secondAttribute="bottom" constant="20" id="JMW-it-SnG"/>
                                 <constraint firstItem="cpa-3O-7Z9" firstAttribute="top" secondItem="OyH-o9-UvP" secondAttribute="bottom" constant="30" id="N2m-Gw-Y2k"/>
                                 <constraint firstItem="RDd-xc-3dr" firstAttribute="top" secondItem="OyH-o9-UvP" secondAttribute="top" constant="-5" id="Q5C-B3-i4F"/>
                                 <constraint firstItem="Kjg-12-rKN" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="Rs1-jd-sGD"/>
                                 <constraint firstAttribute="bottom" secondItem="cpa-3O-7Z9" secondAttribute="bottom" constant="10" id="Vf5-PP-KX4"/>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="top" secondItem="fNN-3A-qYp" secondAttribute="top" constant="5" id="WIS-qk-HdO"/>
-                                <constraint firstItem="yMv-ck-JYx" firstAttribute="top" secondItem="rSt-AF-pW4" secondAttribute="bottom" constant="18" id="WYI-rF-abB"/>
                                 <constraint firstAttribute="trailing" secondItem="W2A-1t-Mhn" secondAttribute="trailing" constant="16" id="YoB-Pp-53o"/>
-                                <constraint firstItem="rSt-AF-pW4" firstAttribute="top" secondItem="Kjg-12-rKN" secondAttribute="bottom" constant="20" id="aIi-bF-UbJ"/>
                                 <constraint firstItem="Kjg-12-rKN" firstAttribute="top" secondItem="8Ln-m6-qGi" secondAttribute="bottom" constant="20" id="d4e-RK-UzM"/>
                                 <constraint firstAttribute="trailing" secondItem="8Ln-m6-qGi" secondAttribute="trailing" constant="16" id="dw4-fJ-q2u"/>
                                 <constraint firstItem="OyH-o9-UvP" firstAttribute="top" secondItem="W2A-1t-Mhn" secondAttribute="bottom" constant="15" id="fTK-QO-FLI"/>
@@ -204,8 +205,8 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="leading" secondItem="fNN-3A-qYp" secondAttribute="trailing" constant="5" id="gec-x5-I43"/>
                                 <constraint firstItem="lkC-Jh-ngm" firstAttribute="top" secondItem="BJg-TW-Zyr" secondAttribute="top" id="gvm-9Z-jh4"/>
                                 <constraint firstItem="yMv-ck-JYx" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="32" id="h3E-uT-sgL"/>
+                                <constraint firstItem="aQe-F8-5u6" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="hlK-h2-hOd"/>
                                 <constraint firstItem="OyH-o9-UvP" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="32" id="p4o-eh-E8m"/>
-                                <constraint firstItem="rSt-AF-pW4" firstAttribute="leading" secondItem="Kjg-12-rKN" secondAttribute="leading" id="wBf-Qz-bqi"/>
                                 <constraint firstItem="yMv-ck-JYx" firstAttribute="leading" secondItem="QR7-i5-ImM" secondAttribute="trailing" constant="5" id="yMQ-af-N0z"/>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="top" secondItem="yMv-ck-JYx" secondAttribute="bottom" constant="15" id="z6u-zw-fF9"/>
                                 <constraint firstAttribute="trailing" secondItem="cpa-3O-7Z9" secondAttribute="trailing" constant="16" id="zFa-PV-PNN"/>
@@ -231,15 +232,16 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="hQk-Nu-kUO"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="16"/>
-                    <state key="normal" title="Continuar" backgroundImage="GradientBackgroundButton">
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                    <state key="normal" title="Continuar" backgroundImage="buttonsPrimary">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath=" btn.clipsToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="view.layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="onContinue:" destination="-1" eventType="primaryActionTriggered" id="BHS-aM-Uab"/>
@@ -261,12 +263,16 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
         </view>
     </objects>
     <resources>
+        <image name="ButtonPrimaryDisabled" width="343" height="56"/>
         <image name="CollapsableClosed" width="14.5" height="8.5"/>
         <image name="GirlMobile" width="118" height="131"/>
-        <image name="GradientBackgroundButton" width="343" height="56"/>
         <image name="RightTopShade" width="283.5" height="206.5"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
         <namedColor name="bgColor">
-            <color red="0.98039215686274506" green="0.97647058823529409" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="deepLilac">
+            <color red="0.54100000858306885" green="0.48600000143051147" blue="0.71799999475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -59,7 +59,7 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         var title, body: String?
         var sound: UNNotificationSound?
         formatter.dateFormat = "dd.MM.YYYY"
-        
+
         switch expositionInfo.level {
         case .exposed:
             title = "NOTIFICATION_TITLE_EXPOSURE_HIGH".localized
@@ -68,14 +68,14 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         default:
             debugPrint("No notification for exposition: \(expositionInfo.level.rawValue)")
         }
-        
+
         if let title = title, let body = body, let sound = sound {
             scheduleNotification(title: title, body: body, sound: sound)
         }
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // Forground notifications.
         completionHandler([.alert, .sound, .badge])
     }

@@ -35,18 +35,17 @@ extension String {
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
-    
-    var getStringFromFile : String {
+
+    var getStringFromFile: String {
         if let fileURL = Bundle.main.url(forResource: self, withExtension: "") {
             do {
                 let text = try String(contentsOf: fileURL, encoding: .utf8).replacingOccurrences(of: "\n", with: "")
                 return text
-            }
-            catch {
+            } catch {
                 return ""
             }
         }
-      
+
         return ""
     }
 

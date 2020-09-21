@@ -13,7 +13,7 @@ import UIKit
 import RxSwift
 
 class HighExpositionViewController: BaseExposed {
-    
+
     private let disposeBag = DisposeBag()
 
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
@@ -30,22 +30,20 @@ class HighExpositionViewController: BaseExposed {
 
     @IBOutlet weak var phoneViewVisibleConstraint: NSLayoutConstraint!
     @IBOutlet weak var phoneViewHiddenConstraint: NSLayoutConstraint!
-    
+
     @IBOutlet weak var selectorView: BackgroundView!
     @IBOutlet weak var caSelectorButton: UIButton!
     @IBOutlet weak var otherSympthoms: UILabel!
     @IBOutlet weak var howAct: UILabel!
-    
 
     private var currentCA: CaData?
 
     var ccaUseCase: CCAAUseCase!
     var ccaArray: [CaData]?
-    
+
     var since: Date?
-    
+
     private var pickerPresenter: PickerPresenter?
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +52,7 @@ class HighExpositionViewController: BaseExposed {
         picker.delegate = self
         picker.dataSource = self
         pickerPresenter = PickerPresenter(picker: picker)
-        pickerPresenter?.delegate = self 
+        pickerPresenter?.delegate = self
 
         otherSympthoms.isUserInteractionEnabled = true
         howAct.isUserInteractionEnabled = true
@@ -62,12 +60,16 @@ class HighExpositionViewController: BaseExposed {
 
         phoneView.isUserInteractionEnabled = true
         self.covidWeb.isUserInteractionEnabled = true
-        self.covidWeb.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapWeb(tapGestureRecognizer:))))
+        self.covidWeb.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                           action: #selector(userDidTapWeb(tapGestureRecognizer:))))
 
         self.phoneLabel.isUserInteractionEnabled = true
-        self.phoneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCallTap(tapGestureRecognizer:))))
-        otherSympthoms.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapOtherSympthoms(tapGestureRecognizer:))))
-        howAct.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapHowAct(tapGestureRecognizer:))))
+        self.phoneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                             action: #selector(onCallTap(tapGestureRecognizer:))))
+        otherSympthoms.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                            action: #selector(userDidTapOtherSympthoms(tapGestureRecognizer:))))
+        howAct.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                    action: #selector(userDidTapHowAct(tapGestureRecognizer:))))
 
         phoneView.image = UIImage(named: "WhiteCard")
 
@@ -75,12 +77,12 @@ class HighExpositionViewController: BaseExposed {
         self.setCaSelector()
 
     }
-    
+
     func setupAccessibility() {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_HIGH_EXPOSED_TITLE".localized
-        
+
         whatToDoTitle.isAccessibilityElement = true
         whatToDoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         whatToDoTitle.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
@@ -105,7 +107,9 @@ class HighExpositionViewController: BaseExposed {
         if daysSinceLastInfection == 0 {
             daysSinceLastInfection = 1
         }
-        youCouldBe.attributedText = "EXPOSITION_HIGH_DESCRIPTION".localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
+        youCouldBe.font = UIFont(name: "Helvetica Neue", size: 20)
+        youCouldBe.attributedText = "EXPOSITION_HIGH_DESCRIPTION"
+            .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
     }
 
     @objc func onCallTap(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -153,7 +157,7 @@ class HighExpositionViewController: BaseExposed {
 }
 
 extension HighExpositionViewController: UIPickerViewDelegate, UIPickerViewDataSource, PickerDelegate {
-    
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -175,30 +179,32 @@ extension HighExpositionViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     var containerView: UIView {
         get {
-            self.view
+            view
         }
     }
-    
+
     func onDone() {
-        guard let _ = self.ccaUseCase.getCurrent() else {
+        guard ccaUseCase.getCurrent() != nil else {
             // if not current then we need to select the first that was selected
             guard let firstca = self.ccaArray?.first else {
-                self.setCaSelector()
+                setCaSelector()
                 return
             }
             ccaUseCase.setCurrent(cca: firstca)
-            self.setCaSelector()
+            setCaSelector()
             return
         }
-        self.setCaSelector()
+        setCaSelector()
     }
-    
+
     @objc func userDidTapOtherSympthoms(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSITION_HIGH_OTHER_SYMPTOMS_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "EXPOSITION_HIGH_OTHER_SYMPTOMS_URL".localized)
     }
 
     @objc func userDidTapHowAct(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO_URL".localized)
     }
 
 }

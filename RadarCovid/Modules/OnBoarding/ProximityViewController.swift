@@ -18,7 +18,7 @@ class ProximityViewController: UIViewController {
 
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var viewTitle: UILabel!
-    
+
     var router: AppRouter?
     var radarStatusUseCase: RadarStatusUseCase?
 
@@ -34,13 +34,13 @@ class ProximityViewController: UIViewController {
         super.viewDidLoad()
         setupAccessibility()
     }
-    
+
     func setupAccessibility() {
         continueButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
         continueButton.accessibilityHint = "ACC_HINT".localized
-        
+
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_HOW_WORKS_TITLE".localized

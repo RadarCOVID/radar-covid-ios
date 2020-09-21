@@ -7,17 +7,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="muli_bold.ttf">
-            <string>Muli-Bold</string>
-        </array>
-        <array key="muli_light.ttf">
-            <string>Muli-Light</string>
-        </array>
-        <array key="muli_semibold.ttf">
-            <string>Muli-SemiBold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--My Health Reported View Controller-->
         <scene sceneID="oLs-Uk-7B4">
@@ -45,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="94" width="414" height="1372"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAw-1x-9wh">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1112.6666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1247"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hIE-lb-u3X">
                                                 <rect key="frame" x="20" y="26" width="36" height="37"/>
@@ -54,8 +43,8 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for helping to stop the virus" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z38-OM-BVg">
-                                                <rect key="frame" x="20" y="71" width="374" height="65.333333333333314"/>
-                                                <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
+                                                <rect key="frame" x="20" y="71" width="374" height="81.333333333333314"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="34"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -63,11 +52,11 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu diagnóstico nos ayudará a proteger a los demás" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Gzt-o1-cFP">
-                                                <rect key="frame" x="20" y="164" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="180" width="374" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="5Ii-Ya-egQ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -75,9 +64,9 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yUr-Rb-k4y">
-                                                <rect key="frame" x="20" y="214" width="374" height="74.666666666666686"/>
+                                                <rect key="frame" x="20" y="230" width="374" height="141.66666666666663"/>
                                                 <string key="text">Sin revelar tu identidad en ningún momento, vamos a rastrear qué móviles han estado cerca de ti en los últimos días y les enviaremos una alerta para su seguridad.</string>
-                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -85,8 +74,8 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sigue las siguientes recomendaciones de tus servicios sanitarios" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="56o-D5-vHD">
-                                                <rect key="frame" x="20" y="402.33333333333331" width="374" height="42"/>
-                                                <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="18"/>
+                                                <rect key="frame" x="20" y="484.33333333333337" width="374" height="79"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                                 <color key="textColor" name="darkPeach"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -94,15 +83,15 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Sco-TC-ZzA">
-                                                <rect key="frame" x="32" y="477.33333333333337" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="596.33333333333337" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="mCC-Hd-djs"/>
                                                     <constraint firstAttribute="width" constant="50" id="vJY-uj-bMM"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permanece en casa, preferentemente en tu habitación y no compartas el baño" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Owx-2a-q1m">
-                                                <rect key="frame" x="122" y="474.33333333333337" width="272" height="56"/>
-                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+                                                <rect key="frame" x="122" y="574" width="272" height="94.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -110,15 +99,15 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvoidContactFrame" translatesAutoresizingMaskIntoConstraints="NO" id="cDe-pm-l0m">
-                                                <rect key="frame" x="32" y="577.33333333333337" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="696.33333333333337" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="NeS-zf-Xfv"/>
                                                     <constraint firstAttribute="height" constant="50" id="lF2-ma-0Aa"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evita el contacto con otras personas " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eEG-xU-Gcg">
-                                                <rect key="frame" x="122" y="593" width="272" height="18.666666666666629"/>
-                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+                                                <rect key="frame" x="122" y="697.66666666666663" width="272" height="47.333333333333371"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -126,15 +115,15 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mask_face" translatesAutoresizingMaskIntoConstraints="NO" id="6Kk-84-RfQ">
-                                                <rect key="frame" x="32" y="677.33333333333337" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="796.33333333333337" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="6fd-zO-lr3"/>
                                                     <constraint firstAttribute="height" constant="50" id="dq7-ou-5TC"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usa siempre mascarilla quirúrgica" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ucM-43-Ilv">
-                                                <rect key="frame" x="122" y="693" width="272" height="18.666666666666629"/>
-                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+                                                <rect key="frame" x="122" y="797.66666666666663" width="272" height="47.333333333333371"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -142,15 +131,15 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WashHandsFrame" translatesAutoresizingMaskIntoConstraints="NO" id="58w-OO-qcU">
-                                                <rect key="frame" x="32" y="777.33333333333337" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="896.33333333333337" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="6Q4-js-XyK"/>
                                                     <constraint firstAttribute="height" constant="50" id="v23-lx-bMu"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lávate las manos frecuentemente" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lOs-mw-mhU">
-                                                <rect key="frame" x="122" y="793" width="272" height="18.666666666666629"/>
-                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+                                                <rect key="frame" x="122" y="897.66666666666663" width="272" height="47.333333333333371"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -158,15 +147,15 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneFrame" translatesAutoresizingMaskIntoConstraints="NO" id="L9f-P2-Hyq">
-                                                <rect key="frame" x="32" y="877.33333333333337" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="996.33333333333326" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="DCK-Dg-xIo"/>
                                                     <constraint firstAttribute="height" constant="50" id="ec4-HQ-g0A"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si los síntomas empeoran llama al 112" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="db5-xw-gLv">
-                                                <rect key="frame" x="122" y="883.66666666666663" width="272" height="37.333333333333371"/>
-                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+                                                <rect key="frame" x="122" y="997.66666666666674" width="272" height="47.333333333333258"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -174,7 +163,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6f-Wt-5ib" userLabel="MoreInfoView">
-                                                <rect key="frame" x="16" y="981.33333333333326" width="382" height="55"/>
+                                                <rect key="frame" x="16" y="1100.3333333333333" width="382" height="55"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvg-wD-uyV" userLabel="Separator">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
@@ -191,10 +180,10 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0y-Z3-wxD">
-                                                        <rect key="frame" x="8" y="17" width="134.33333333333334" height="21"/>
+                                                        <rect key="frame" x="8" y="14.333333333333483" width="176" height="26.333333333333329"/>
                                                         <string key="text">Más información
 </string>
-                                                        <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.44085246319999999" green="0.3126067817" blue="0.61136299370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -220,8 +209,8 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gracias por seguir cuidándote y cuidando a los demás." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fh-jo-ocU">
-                                                <rect key="frame" x="32" y="1065.3333333333333" width="362" height="37.333333333333258"/>
-                                                <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="16"/>
+                                                <rect key="frame" x="20" y="1184.3333333333333" width="374" height="52.666666666666742"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -229,8 +218,8 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Qué debo hacer?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OQb-EW-WHH">
-                                                <rect key="frame" x="20" y="349.66666666666669" width="374" height="32.666666666666686"/>
-                                                <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
+                                                <rect key="frame" x="20" y="435.66666666666663" width="374" height="28.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -238,8 +227,8 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Be-Yg-h5W">
-                                                <rect key="frame" x="20" y="308.66666666666669" width="374" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="20" y="391.66666666666669" width="374" height="24"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -248,7 +237,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="diagnostico enviado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86v-5m-8Of">
                                                 <rect key="frame" x="86" y="35" width="178" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -263,7 +252,7 @@
                                             <constraint firstItem="Gzt-o1-cFP" firstAttribute="top" secondItem="z38-OM-BVg" secondAttribute="bottom" constant="27.666666666666686" id="8Sj-MU-9aj"/>
                                             <constraint firstItem="4fh-jo-ocU" firstAttribute="top" secondItem="f6f-Wt-5ib" secondAttribute="bottom" constant="29" id="B5C-RW-hwc"/>
                                             <constraint firstItem="ucM-43-Ilv" firstAttribute="centerY" secondItem="6Kk-84-RfQ" secondAttribute="centerY" id="BXv-ED-IAG"/>
-                                            <constraint firstItem="4fh-jo-ocU" firstAttribute="leading" secondItem="eAw-1x-9wh" secondAttribute="leading" constant="32" id="Beg-FV-wdT"/>
+                                            <constraint firstItem="4fh-jo-ocU" firstAttribute="leading" secondItem="eAw-1x-9wh" secondAttribute="leading" constant="20" id="Beg-FV-wdT"/>
                                             <constraint firstAttribute="trailing" secondItem="86v-5m-8Of" secondAttribute="trailing" constant="150" id="C9W-78-hbn"/>
                                             <constraint firstItem="Owx-2a-q1m" firstAttribute="leading" secondItem="Sco-TC-ZzA" secondAttribute="trailing" constant="40" id="DT7-Md-VBd"/>
                                             <constraint firstAttribute="trailing" secondItem="lOs-mw-mhU" secondAttribute="trailing" constant="20" id="GHV-uW-WJY"/>

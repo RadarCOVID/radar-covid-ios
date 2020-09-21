@@ -34,29 +34,32 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
         phoneView.image = UIImage(named: "WhiteCard")
 
         faqWebLabel.isUserInteractionEnabled = true
-        faqWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapFaq(tapGestureRecognizer:))))
+        faqWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                        action: #selector(userDidTapFaq(tapGestureRecognizer:))))
 
         infoWebLabel.isUserInteractionEnabled = true
-        infoWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapWeb(tapGestureRecognizer:))))
+        infoWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                        action: #selector(userDidTapWeb(tapGestureRecognizer:))))
 
         otherWebLabel.isUserInteractionEnabled = true
-        otherWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapOther(tapGestureRecognizer:))))
+        otherWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                        action: #selector(userDidTapOther(tapGestureRecognizer:))))
 
     }
-    
+
     func setupAccessibility() {
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         viewTitle.accessibilityLabel = "ACC_MORE_INFO".localized
-        
+
         faqWebLabel.isAccessibilityElement = true
         faqWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         faqWebLabel.accessibilityHint = "ACC_HINT".localized
-        
+
         infoWebLabel.isAccessibilityElement = true
         infoWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         infoWebLabel.accessibilityHint = "ACC_HINT".localized
-        
+
         otherWebLabel.isAccessibilityElement = true
         otherWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         otherWebLabel.accessibilityHint = "ACC_HINT".localized
@@ -66,21 +69,24 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
         open(phone: "CONTACT_PHONE".localized)
     }
 
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
-    
+
     @objc func userDidTapFaq(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "HELPLINE_FAQS_WEB_URL".localized)
-    }
-    
-    @objc func userDidTapWeb(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "HELPLINE_INFO_WEB_URL".localized)
-    }
-    
-    @objc func userDidTapOther(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "HELPLINE_OTHER_WEB_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "HELPLINE_FAQS_WEB_URL".localized)
     }
 
+    @objc func userDidTapWeb(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "HELPLINE_INFO_WEB_URL".localized)
+    }
+
+    @objc func userDidTapOther(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "HELPLINE_OTHER_WEB_URL".localized)
+    }
 
 }
