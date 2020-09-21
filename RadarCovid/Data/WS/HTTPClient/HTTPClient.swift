@@ -108,7 +108,13 @@ extension HTTPClientDefault: URLSessionDelegate {
             return
         }
 
-        let policy = SecPolicyCreateSSL(true, nil)
+        var hostname: CFString
+        switch Config.endpoints {
+        case .pre: hostname = "radarcovidpre.covid19.gob.es" as CFString
+        case .pro: hostname = "radarcovid.covid19.gob.es" as CFString
+        }
+        
+        let policy = SecPolicyCreateSSL(true, hostname)
         let policies = NSArray(array: [policy])
         SecTrustSetPolicies(serverTrust, policies)
 
