@@ -30,9 +30,9 @@ open class TokenAPI {
         let getUuidEndpoint = HTTPEndpoint(address: "/token/uuid", method: .GET)
         var getUuidRequest = HTTPRequest<UuidDto>(endpoint: getUuidEndpoint)
 
-        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return }
-        let configuration = HTTPClientConfiguration(baseURL: baseURL)
-        httpClient.configure(using: configuration)
+        if !httpClient.isConfigured {
+            configureHTTPClient { (error) in completion(nil, error) }
+        }
 
         httpClient.run(request: &getUuidRequest) { (result) in
             switch result {
@@ -58,5 +58,11 @@ open class TokenAPI {
             }
             return Disposables.create()
         }
+    }
+
+    private func configureHTTPClient(_ completion: (_ error: Error) -> Void) {
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(HTTPClientError.invalidBaseURL); return }
+        let configuration = HTTPClientConfiguration(baseURL: baseURL)
+        httpClient.configure(using: configuration)
     }
 }

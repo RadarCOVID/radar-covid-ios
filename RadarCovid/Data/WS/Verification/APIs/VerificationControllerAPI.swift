@@ -32,9 +32,9 @@ open class VerificationControllerAPI {
         let parameters = ["jsonData": CodableHelper.encode(body, prettyPrint: true)]
         var verifyCodeRequest = HTTPRequest<TokenResponse>(endpoint: verifyCodeEndpoint, parameters: parameters)
 
-        guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return }
-        let configuration = HTTPClientConfiguration(baseURL: baseURL)
-        httpClient.configure(using: configuration)
+        if !httpClient.isConfigured {
+            configureHTTPClient { (error) in completion(nil, error) }
+        }
 
         httpClient.run(request: &verifyCodeRequest) { (result) in
             switch result {
@@ -61,5 +61,11 @@ open class VerificationControllerAPI {
             }
             return Disposables.create()
         }
+    }
+
+    private func configureHTTPClient(_ completion: (_ error: Error) -> Void) {
+        guard let baseURL = URL(string: clientApi.basePath) else { completion(HTTPClientError.invalidBaseURL); return }
+        let configuration = HTTPClientConfiguration(baseURL: baseURL)
+        httpClient.configure(using: configuration)
     }
 }
