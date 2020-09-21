@@ -9,7 +9,6 @@
 // SPDX-License-Identifier: MPL-2.0
 //
 
-import Alamofire
 import Foundation
 
 /// The level of logging detail.
@@ -49,13 +48,13 @@ public class NetworkActivityLogger {
     /// Omit requests which match the specified predicate, if provided.
     public var filterPredicate: NSPredicate?
 
-    private var startDates: [URLSessionTask: Date]
+    private var startDates: [URLRequest: Date]
 
     // MARK: - Internal - Initialization
 
     init() {
         level = .info
-        startDates = [URLSessionTask: Date]()
+        startDates = [URLRequest: Date]()
     }
 
     deinit {
@@ -73,14 +72,14 @@ public class NetworkActivityLogger {
         notificationCenter.addObserver(
             self,
             selector: #selector(NetworkActivityLogger.networkRequestDidStart(notification:)),
-            name: Notification.Name.Task.DidResume,
+            name: Notification.Name("HTTPClientDidStartDataTask"),
             object: nil
         )
 
         notificationCenter.addObserver(
             self,
             selector: #selector(NetworkActivityLogger.networkRequestDidComplete(notification:)),
-            name: Notification.Name.Task.DidComplete,
+            name: Notification.Name("HTTPClientDidCompleteDataTask"),
             object: nil
         )
     }
@@ -93,20 +92,17 @@ public class NetworkActivityLogger {
     // MARK: - Private - Notifications
 
     @objc private func networkRequestDidStart(notification: Notification) {
-        guard let userInfo = notification.userInfo,
-            let task = userInfo[Notification.Key.Task] as? URLSessionTask,
+        guard let task = notification.object as? URLSessionTask,
             let request = task.originalRequest,
             let httpMethod = request.httpMethod,
             let requestURL = request.url
-            else {
-                return
-        }
+            else { return }
 
         if let filterPredicate = filterPredicate, filterPredicate.evaluate(with: request) {
             return
         }
 
-        startDates[task] = Date()
+        startDates[request] = Date()
 
         switch level {
         case .debug:
@@ -131,15 +127,12 @@ public class NetworkActivityLogger {
     }
 
     @objc private func networkRequestDidComplete(notification: Notification) {
-        guard let sessionDelegate = notification.object as? SessionDelegate,
-            let userInfo = notification.userInfo,
-            let task = userInfo[Notification.Key.Task] as? URLSessionTask,
-            let request = task.originalRequest,
+        guard let object = notification.object as? [String: Any],
+            let request = object["request"] as? URLRequest,
+            let response = object["response"] as? HTTPURLResponse,
             let httpMethod = request.httpMethod,
             let requestURL = request.url
-            else {
-                return
-        }
+            else { return }
 
         if let filterPredicate = filterPredicate, filterPredicate.evaluate(with: request) {
             return
@@ -147,12 +140,12 @@ public class NetworkActivityLogger {
 
         var elapsedTime: TimeInterval = 0.0
 
-        if let startDate = startDates[task] {
+        if let startDate = startDates[request] {
             elapsedTime = Date().timeIntervalSince(startDate)
-            startDates[task] = Date()
+            startDates[request] = Date()
         }
 
-        if let error = task.error {
+        if let error = object["error"] as? Error {
             switch level {
             case .debug, .info, .warn, .error:
                 logDivider()
@@ -163,19 +156,15 @@ public class NetworkActivityLogger {
                 break
             }
         } else {
-            guard let response = task.response as? HTTPURLResponse else {
-                return
-            }
-
             switch level {
             case .debug:
                 logDivider()
 
-                print("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
+                print("\(response.statusCode) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
 
                 logHeaders(headers: response.allHeaderFields)
 
-                guard let data = sessionDelegate[task]?.delegate.data else { break }
+                guard let data = object["data"] as? Data else { break }
 
                 do {
                     let jsonObject = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)

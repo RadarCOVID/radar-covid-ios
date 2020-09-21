@@ -29,7 +29,8 @@ open class VerificationControllerAPI {
      */
     open func verifyCode(body: Code, completion: @escaping ((_ data: TokenResponse?, _ error: Error?) -> Void)) {
         let verifyCodeEndpoint = HTTPEndpoint(address: "/masterData/ccaa", method: .POST)
-        var verifyCodeRequest = HTTPRequest<TokenResponse>(endpoint: verifyCodeEndpoint, parameters: JSONEncodingHelper.encodingParameters(forEncodableObject: body))
+        let parameters = ["jsonData": CodableHelper.encode(body, prettyPrint: true)]
+        var verifyCodeRequest = HTTPRequest<TokenResponse>(endpoint: verifyCodeEndpoint, parameters: parameters)
 
         guard let baseURL = URL(string: clientApi.basePath) else { completion(nil, HTTPClientError.invalidBaseURL); return }
         let configuration = HTTPClientConfiguration(baseURL: baseURL)

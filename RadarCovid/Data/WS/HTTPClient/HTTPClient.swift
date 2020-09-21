@@ -30,6 +30,7 @@ class HTTPClientDefault: NSObject, HTTPClient {
 
     private(set) var session: URLSession!
     private var configuration: HTTPClientConfiguration?
+    private var notificationCenter: NotificationCenter { NotificationCenter.default }
 
     override init() {
         super.init()
@@ -48,27 +49,35 @@ class HTTPClientDefault: NSObject, HTTPClient {
         let preparedRequest = request
 
         guard let urlRequest = request.urlRequest else { completion(Result<ResponseModel, Error>.failure(HTTPClientError.notConfigured)); return }
+
         let task = session.dataTask(with: urlRequest, completionHandler: { data, response, error in
             guard let urlResponse = response as? HTTPURLResponse else { completion(Result<ResponseModel, Error>.failure(HTTPClientError.invalidResponse)); return }
             switch urlResponse.statusCode {
             case 200..<226:
-                self.didCompleteDataTask(request: preparedRequest, data: data, error: error, completion: completion)
+                self.didCompleteDataTask(response: urlResponse, request: preparedRequest, data: data, error: error, completion: completion)
 
             case 400..<451:
-                self.didCompleteDataTask(request: preparedRequest, data: data, error: error, completion: completion)
+                self.didCompleteDataTask(response: urlResponse, request: preparedRequest, data: data, error: error, completion: completion)
 
             case 500..<511:
-                self.didCompleteDataTask(request: preparedRequest, data: data, error: error, completion: completion)
+                self.didCompleteDataTask(response: urlResponse, request: preparedRequest, data: data, error: error, completion: completion)
 
             default:
-                self.didCompleteDataTask(request: preparedRequest, data: data, error: error, completion: completion)
+                self.didCompleteDataTask(response: urlResponse, request: preparedRequest, data: data, error: error, completion: completion)
             }
         })
 
         task.resume()
+        notificationCenter.post(name: Notification.Name("HTTPClientDidStartDataTask"), object: task)
     }
 
-    private func didCompleteDataTask<ResponseModel: Codable>(request: HTTPRequest<ResponseModel>, data: Data?, error: Error?, completion: @escaping (Result<ResponseModel, Error>) -> Void) {
+    private func didCompleteDataTask<ResponseModel: Codable>(response: HTTPURLResponse, request: HTTPRequest<ResponseModel>, data: Data?, error: Error?, completion: @escaping (Result<ResponseModel, Error>) -> Void) {
+        var notificationObject: [String: Any] = ["response": response]
+        if let urlRequest = request.urlRequest { notificationObject["request"] = urlRequest }
+        if let responseData = data { notificationObject["data"] = responseData }
+        if let responseError = error { notificationObject["error"] = responseError }
+
+        self.notificationCenter.post(name: Notification.Name("HTTPClientDidCompleteDataTask"), object: notificationObject)
         if let error = error {
             didFail(withError: error, completion: completion)
         } else if let data = data {

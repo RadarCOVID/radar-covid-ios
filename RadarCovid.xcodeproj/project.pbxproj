@@ -39,7 +39,6 @@
 		6D5AFC902492827C00EFE838 /* muli_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8C2492827C00EFE838 /* muli_light.ttf */; };
 		6D5AFC932492883700EFE838 /* muli_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC912492883700EFE838 /* muli_regular.ttf */; };
 		6D5AFC942492883700EFE838 /* muli_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC922492883700EFE838 /* muli_italic.ttf */; };
-		6D5AFCE8249369FE00EFE838 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6D5AFCE7249369FE00EFE838 /* Alamofire */; };
 		6D5AFCEC24936E7A00EFE838 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCEB24936E7A00EFE838 /* Config.swift */; };
 		6D5AFCF024938D1900EFE838 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCEF24938D1900EFE838 /* Question.swift */; };
 		6D5AFCF22493910900EFE838 /* QuestionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCF12493910900EFE838 /* QuestionOption.swift */; };
@@ -331,7 +330,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				764C6D1524B7E5BB002FA594 /* RxCocoa in Frameworks */,
-				6D5AFCE8249369FE00EFE838 /* Alamofire in Frameworks */,
 				764C6D1324B7E5BB002FA594 /* RxSwift in Frameworks */,
 				6DF6ECA8248E7453007EAA40 /* Swinject in Frameworks */,
 				E9AF0943250E6A26005DBE1A /* Security.framework in Frameworks */,
@@ -806,7 +804,6 @@
 			name = RadarCovid;
 			packageProductDependencies = (
 				6DF6ECA7248E7453007EAA40 /* Swinject */,
-				6D5AFCE7249369FE00EFE838 /* Alamofire */,
 				764C6D1224B7E5BB002FA594 /* RxSwift */,
 				764C6D1424B7E5BB002FA594 /* RxCocoa */,
 				6D30137925067AC700E162E3 /* DP3TSDK */,
@@ -840,7 +837,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Gobierno de España";
 				TargetAttributes = {
 					39443285248939F000FF0217 = {
@@ -864,7 +861,6 @@
 			mainGroup = 3944327D248939F000FF0217;
 			packageReferences = (
 				6DF6ECA6248E7453007EAA40 /* XCRemoteSwiftPackageReference "Swinject" */,
-				6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				6D30137825067AC700E162E3 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
 			);
@@ -1102,6 +1098,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1162,6 +1159,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1553,6 +1551,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1632,6 +1631,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1737,14 +1737,6 @@
 				version = 1.2.1;
 			};
 		};
-		6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = exactVersion;
-				version = 4.9.1;
-			};
-		};
 		6DF6ECA6248E7453007EAA40 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject";
@@ -1768,11 +1760,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D30137825067AC700E162E3 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
 			productName = DP3TSDK;
-		};
-		6D5AFCE7249369FE00EFE838 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 		6DF6ECA7248E7453007EAA40 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

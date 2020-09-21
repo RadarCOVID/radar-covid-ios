@@ -69,7 +69,6 @@ struct HTTPRequest<ResponseModel: Codable> {
         headersDictionary["Accept-Language"] = acceptLanguage
 
         // User-Agent Header; see https://tools.ietf.org/html/rfc7231#section-5.5.3
-        // Example: `iOS Example/1.0 (org.alamofire.iOS-Example; build:1; iOS 10.0.0) Alamofire/4.0.0`
         if let info = Bundle.main.infoDictionary {
             let executable = info[kCFBundleExecutableKey as String] as? String ?? "Unknown"
             let bundle = info[kCFBundleIdentifierKey as String] as? String ?? "Unknown"

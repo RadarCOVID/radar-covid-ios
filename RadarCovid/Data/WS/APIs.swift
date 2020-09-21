@@ -15,7 +15,6 @@ open class SwaggerClientAPI {
     public var basePath = ""
     public static var credential: URLCredential?
     public static var customHeaders: [String: String] = [:]
-    public static var requestBuilderFactory: RequestBuilderFactory = AlamofireRequestBuilderFactory()
 }
 
 open class RequestBuilder<T> {
