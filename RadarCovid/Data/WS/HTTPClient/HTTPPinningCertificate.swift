@@ -31,6 +31,6 @@ extension HTTPPinningCertificate {
     func validate(against certData: Data, using secTrust: SecTrust) -> Bool {
         let certArray = [certificate] as CFArray
         SecTrustSetAnchorCertificates(secTrust, certArray)
-        return SecTrustEvaluateWithError(secTrust, nil) && certData == self.data
+        return SecTrustEvaluateWithError(secTrust, nil) && certData == data
     }
 }

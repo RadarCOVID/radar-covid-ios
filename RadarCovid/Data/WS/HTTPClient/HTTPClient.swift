@@ -49,25 +49,21 @@ class HTTPClientDefault: NSObject, HTTPClient {
         let preparedRequest = request
 
         guard let urlRequest = request.urlRequest else { completion(Result<ResponseModel, Error>.failure(HTTPClientError.notConfigured)); return }
-
         let task = session.dataTask(with: urlRequest, completionHandler: { data, response, error in
             guard let urlResponse = response as? HTTPURLResponse else { completion(Result<ResponseModel, Error>.failure(HTTPClientError.invalidResponse)); return }
-            switch urlResponse.statusCode {
-            case 200..<226:
-                self.didCompleteDataTask(response: urlResponse, request: preparedRequest, data: data, error: error, completion: completion)
+            self.didCompleteDataTask(response: urlResponse, request: preparedRequest, data: data, error: error, completion: completion)
 
-            case 400..<451:
-                self.didCompleteDataTask(response: urlResponse, request: preparedRequest, data: data, error: error, completion: completion)
-
-            case 500..<511:
-                self.didCompleteDataTask(response: urlResponse, request: preparedRequest, data: data, error: error, completion: completion)
-
-            default:
-                self.didCompleteDataTask(response: urlResponse, request: preparedRequest, data: data, error: error, completion: completion)
-            }
+            // Errors here can be differentiated if at some point in the future they are typed by code from the server
+            // switch urlResponse.statusCode {
+            // case 200..<226:
+            // case 400..<451:
+            // case 500..<511:
+            // default:
+            // }
         })
 
         task.resume()
+
         notificationCenter.post(name: Notification.Name("HTTPClientDidStartDataTask"), object: task)
     }
 

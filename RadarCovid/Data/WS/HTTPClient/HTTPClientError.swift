@@ -21,7 +21,7 @@ enum HTTPClientError: LocalizedError, Equatable {
 
     var errorDescription: String? {
         switch self {
-        case .invalidBaseURL: return "HTTPClient reporst invalid baseUrl"
+        case .invalidBaseURL: return "HTTPClient reports invalid baseUrl"
         case .notConfigured: return "HTTPClient is not configured."
         case .invalidResponse: return "HTTPClient reports invalid response."
         case .noData: return "HTTPClient reports there's no data to parse."
