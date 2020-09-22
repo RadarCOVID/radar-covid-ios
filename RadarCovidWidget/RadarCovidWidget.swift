@@ -46,7 +46,15 @@ struct RadarCovidWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
+        GeometryReader { geometry in
+            ZStack {
+                Color("background")
+                Image("background-image")
+                    .resizable()
+                    .aspectRatio(geometry.size, contentMode: .fill)
+                Text(entry.date, style: .time)
+            }
+        }
     }
 }
 

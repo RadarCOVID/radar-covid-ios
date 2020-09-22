@@ -155,6 +155,7 @@
 		E936F2312519CDED0089A26E /* RadarCovidWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2302519CDED0089A26E /* RadarCovidWidget.swift */; };
 		E936F2332519CDEF0089A26E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E936F2322519CDEF0089A26E /* Assets.xcassets */; };
 		E936F2372519CDEF0089A26E /* RadarCovidWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E936F22A2519CDED0089A26E /* RadarCovidWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E936F2572519D4870089A26E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E936F2482519D45B0089A26E /* Colors.xcassets */; };
 		E9AF092E250BC968005DBE1A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF092D250BC968005DBE1A /* HTTPMethod.swift */; };
 		E9AF0932250BC9FC005DBE1A /* HTTPEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */; };
 		E9AF0934250BCA98005DBE1A /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */; };
@@ -353,6 +354,7 @@
 		E936F2302519CDED0089A26E /* RadarCovidWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarCovidWidget.swift; sourceTree = "<group>"; };
 		E936F2322519CDEF0089A26E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E936F2342519CDEF0089A26E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E936F2482519D45B0089A26E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		E9AF092D250BC968005DBE1A /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndpoint.swift; sourceTree = "<group>"; };
 		E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
@@ -825,10 +827,19 @@
 			isa = PBXGroup;
 			children = (
 				E936F2302519CDED0089A26E /* RadarCovidWidget.swift */,
-				E936F2322519CDEF0089A26E /* Assets.xcassets */,
+				E936F2502519D45F0089A26E /* Resources */,
 				E936F2342519CDEF0089A26E /* Info.plist */,
 			);
 			path = RadarCovidWidget;
+			sourceTree = "<group>";
+		};
+		E936F2502519D45F0089A26E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E936F2322519CDEF0089A26E /* Assets.xcassets */,
+				E936F2482519D45B0089A26E /* Colors.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		E9AF092C250BC953005DBE1A /* HTTPClient */ = {
@@ -1020,6 +1031,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E936F2332519CDEF0089A26E /* Assets.xcassets in Resources */,
+				E936F2572519D4870089A26E /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
