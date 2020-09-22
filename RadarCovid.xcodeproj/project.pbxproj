@@ -189,6 +189,12 @@
 		E9F5C6FC251A05D1004E6340 /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
 		E9F5C703251A06A3004E6340 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3512519F6C10089A26E /* Endpoints.swift */; };
 		E9F5C704251A06A3004E6340 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCEB24936E7A00EFE838 /* Config.swift */; };
+		E9F5C708251A0A98004E6340 /* muli_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC922492883700EFE838 /* muli_italic.ttf */; };
+		E9F5C709251A0A98004E6340 /* muli_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC912492883700EFE838 /* muli_regular.ttf */; };
+		E9F5C70A251A0A98004E6340 /* muli_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8A2492827C00EFE838 /* muli_semibold.ttf */; };
+		E9F5C70B251A0A98004E6340 /* muli_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8B2492827C00EFE838 /* muli_bold.ttf */; };
+		E9F5C70C251A0A98004E6340 /* muli_extrabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC892492827B00EFE838 /* muli_extrabold.ttf */; };
+		E9F5C70D251A0A98004E6340 /* muli_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8C2492827C00EFE838 /* muli_light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1102,8 +1108,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F5C70D251A0A98004E6340 /* muli_light.ttf in Resources */,
+				E9F5C709251A0A98004E6340 /* muli_regular.ttf in Resources */,
+				E9F5C70C251A0A98004E6340 /* muli_extrabold.ttf in Resources */,
 				E936F2332519CDEF0089A26E /* Assets.xcassets in Resources */,
 				E936F2572519D4870089A26E /* Colors.xcassets in Resources */,
+				E9F5C708251A0A98004E6340 /* muli_italic.ttf in Resources */,
+				E9F5C70B251A0A98004E6340 /* muli_bold.ttf in Resources */,
+				E9F5C70A251A0A98004E6340 /* muli_semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
