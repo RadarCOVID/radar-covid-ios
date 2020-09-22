@@ -12,7 +12,6 @@
 import Foundation
 
 struct ExpositionInfo: Codable, Equatable {
-
     var level: Level
     var lastCheck: Date?
     var since: Date?
@@ -23,13 +22,9 @@ struct ExpositionInfo: Codable, Equatable {
     }
 
     enum Level: String, Codable {
-         case healthy
-         case exposed
-         case infected
+        case healthy
+        case exposed
+        case infected
+        case unknown
     }
-    
-    func isOk() -> Bool {
-        error == nil
-    }
-
 }

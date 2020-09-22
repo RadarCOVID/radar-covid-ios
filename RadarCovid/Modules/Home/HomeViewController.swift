@@ -286,6 +286,8 @@ class HomeViewController: BaseViewController {
             setHealthy()
         case .infected:
             setInfected()
+        case .unknown:
+            break
         }
     }
 
