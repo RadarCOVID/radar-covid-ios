@@ -12,7 +12,7 @@
 import Foundation
 
 protocol WidgetPresenter {
-    var expositionUseCase: ExpositionUseCase!
+    var expositionUseCase: ExpositionUseCase! { get set }
 }
 
 final class WidgetPresenterDefault: WidgetPresenter {
