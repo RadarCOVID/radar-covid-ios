@@ -27,10 +27,6 @@ struct RadarCovidWidgetEntryView : View {
                         Text(error.localizedDescription)
                             .foregroundColor(Color("accent"))
                         Spacer()
-                    } else if entry.exposition.level == .unknown {
-                        Text("Nivel de exposición desconocido. Comprueba que RadarCOVID está funcionando correctamente.")
-                            .foregroundColor(Color("accent"))
-                        Spacer()
                     } else {
                         VStack(alignment: .leading, spacing: nil, content: {
                             ZStack {
@@ -39,8 +35,16 @@ struct RadarCovidWidgetEntryView : View {
                                     .frame(height: 44, alignment: .center)
                                 Text(entry.text)
                                     .foregroundColor(entry.textColor)
-                                    .font(Font.custom("Muli-ExtraBold", size: 16.0))
+                                    .font(Font.system(size: 18, weight: .semibold, design: .rounded))
                             }
+                            VStack(alignment: .leading, spacing: nil, content: {
+                                Text("Último chequeo:")
+                                    .foregroundColor(Color("clearText"))
+                                    .font(Font.system(size: 16, weight: .regular, design: .rounded))
+                                Text(entry.dateString)
+                                    .foregroundColor(Color("clearText"))
+                                    .font(Font.system(size: 16, weight: .regular, design: .rounded))
+                            })
                             Spacer()
                         })
                     }

@@ -186,6 +186,7 @@
 		E9AF093E250BCEA3005DBE1A /* HTTPClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF093D250BCEA3005DBE1A /* HTTPClientError.swift */; };
 		E9AF0940250E6A0A005DBE1A /* HTTPPinningCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF093F250E6A0A005DBE1A /* HTTPPinningCertificate.swift */; };
 		E9AF0943250E6A26005DBE1A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9AF0942250E6A26005DBE1A /* Security.framework */; };
+		E9CBA6A6251A42D900A7A2EC /* PreferencesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECC7248F70DF007EAA40 /* PreferencesRepository.swift */; };
 		E9F5C6FC251A05D1004E6340 /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
 		E9F5C703251A06A3004E6340 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3512519F6C10089A26E /* Endpoints.swift */; };
 		E9F5C704251A06A3004E6340 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCEB24936E7A00EFE838 /* Config.swift */; };
@@ -1257,6 +1258,7 @@
 				E936F3252519F5AC0089A26E /* Settings.swift in Sources */,
 				E936F2FB2519EAF60089A26E /* WidgetTimelineProvider.swift in Sources */,
 				E936F3492519F62C0089A26E /* RiskLevelDataDto.swift in Sources */,
+				E9CBA6A6251A42D900A7A2EC /* PreferencesRepository.swift in Sources */,
 				E936F3012519EBE40089A26E /* WidgetTimelineEntry.swift in Sources */,
 				E936F3392519F6040089A26E /* AttenuationDurationThresholdsDto.swift in Sources */,
 				E936F2312519CDED0089A26E /* WidgetView.swift in Sources */,

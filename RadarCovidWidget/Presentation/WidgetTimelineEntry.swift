@@ -23,18 +23,26 @@ struct WidgetTimelineEntry: TimelineEntry {
     var text: String {
         switch exposition.level {
         case .exposed: return "Expuesto"
-        case .healthy: return "Sin exposición"
+        case .healthy: return "No expuesto"
         case .infected: return "Infectado"
         case .unknown: return "Desconocido"
         }
     }
 
+    var dateString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.current
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: date)
+    }
+
     var textColor: Color {
         switch exposition.level {
         case .exposed: return Color("darkText")
-        case .healthy: return Color("lightText")
+        case .healthy: return Color("clearText")
         case .infected: return Color("darkText")
-        case .unknown: return Color("darkText")
+        case .unknown: return Color("clearText")
         }
     }
 

@@ -42,7 +42,7 @@ struct WidgetTimelineProvider: TimelineProvider {
         if let expositionInfo = expositionInfoRepository.getExpositionInfo() {
             return WidgetTimelineEntry(exposition: expositionInfo, date: date ?? Date())
         } else {
-            return WidgetTimelineEntry(exposition: ExpositionInfo(level: .exposed), date: date ?? Date())
+            return WidgetTimelineEntry(exposition: ExpositionInfo(level: .unknown), date: date ?? Date())
         }
     }
 }
