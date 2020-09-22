@@ -178,6 +178,25 @@
 		E936F2E72519DED00089A26E /* WidgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F25B2519D93E0089A26E /* WidgetPresenter.swift */; };
 		E936F2FB2519EAF60089A26E /* WidgetTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2FA2519EAF60089A26E /* WidgetTimelineProvider.swift */; };
 		E936F3012519EBE40089A26E /* WidgetTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3002519EBE40089A26E /* WidgetTimelineEntry.swift */; };
+		E936F3112519F3D00089A26E /* SetupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */; };
+		E936F3152519F4500089A26E /* PreferencesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECC7248F70DF007EAA40 /* PreferencesRepository.swift */; };
+		E936F3192519F4730089A26E /* ExpositionChechUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDBD5524EC012D00EF2654 /* ExpositionChechUseCase.swift */; };
+		E936F31D2519F4E20089A26E /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB541962498A31700166D37 /* SettingsRepository.swift */; };
+		E936F3212519F5160089A26E /* ResetDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD76AD24A884EF00643AAD /* ResetDataUseCase.swift */; };
+		E936F3252519F5AC0089A26E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB541982498A55700166D37 /* Settings.swift */; };
+		E936F3292519F5B90089A26E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCEB24936E7A00EFE838 /* Config.swift */; };
+		E936F32D2519F5D60089A26E /* SettingsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418824989C2500166D37 /* SettingsDto.swift */; };
+		E936F3312519F5E50089A26E /* ExposureConfigurationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418B24989C2500166D37 /* ExposureConfigurationDto.swift */; };
+		E936F3352519F5FC0089A26E /* RiskScoreClassificationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418924989C2500166D37 /* RiskScoreClassificationDto.swift */; };
+		E936F3392519F6040089A26E /* AttenuationDurationThresholdsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27D3E24A76D7D00BBCF40 /* AttenuationDurationThresholdsDto.swift */; };
+		E936F33D2519F60A0089A26E /* AttenuationFactorDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB27024AE375200F30E0B /* AttenuationFactorDto.swift */; };
+		E936F3412519F6110089A26E /* ApplicationVersionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB27224AE375200F30E0B /* ApplicationVersionDto.swift */; };
+		E936F3452519F6170089A26E /* TimeBetweenStatesDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDBD5324EC00BC00EF2654 /* TimeBetweenStatesDto.swift */; };
+		E936F3492519F62C0089A26E /* RiskLevelDataDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418C24989C2500166D37 /* RiskLevelDataDto.swift */; };
+		E936F34D2519F6470089A26E /* VersionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB27124AE375200F30E0B /* VersionDto.swift */; };
+		E936F3522519F6C10089A26E /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3512519F6C10089A26E /* Endpoints.swift */; };
+		E936F3562519F6DE0089A26E /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3512519F6C10089A26E /* Endpoints.swift */; };
+		E936F35D2519F9400089A26E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9AF0942250E6A26005DBE1A /* Security.framework */; };
 		E9AF092E250BC968005DBE1A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF092D250BC968005DBE1A /* HTTPMethod.swift */; };
 		E9AF0932250BC9FC005DBE1A /* HTTPEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */; };
 		E9AF0934250BCA98005DBE1A /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */; };
@@ -385,6 +404,7 @@
 		E936F2DB2519DE680089A26E /* DataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataContainer.swift; sourceTree = "<group>"; };
 		E936F2FA2519EAF60089A26E /* WidgetTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineProvider.swift; sourceTree = "<group>"; };
 		E936F3002519EBE40089A26E /* WidgetTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineEntry.swift; sourceTree = "<group>"; };
+		E936F3512519F6C10089A26E /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		E9AF092D250BC968005DBE1A /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndpoint.swift; sourceTree = "<group>"; };
 		E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
@@ -419,6 +439,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E936F35D2519F9400089A26E /* Security.framework in Frameworks */,
 				E936F2982519DA970089A26E /* DP3TSDK in Frameworks */,
 				E936F2922519DA8B0089A26E /* RxSwift in Frameworks */,
 				E936F22E2519CDED0089A26E /* SwiftUI.framework in Frameworks */,
@@ -572,6 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				6D5AFCEB24936E7A00EFE838 /* Config.swift */,
+				E936F3512519F6C10089A26E /* Endpoints.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1190,6 +1212,7 @@
 				763489FD24B7530500B31C59 /* UIFont+Extension.swift in Sources */,
 				76D9BD2024A8992000BA6697 /* NVActivityIndicatorView.swift in Sources */,
 				76D9BD1D24A8992000BA6697 /* NVActivityIndicatorPresenter.swift in Sources */,
+				E936F3522519F6C10089A26E /* Endpoints.swift in Sources */,
 				6DF6ECD8248FBEC2007EAA40 /* MyHealthViewController.swift in Sources */,
 				6DE27C73249A6D4600BBCF40 /* APIs.swift in Sources */,
 				6DF6ECCA248F743B007EAA40 /* OnBoardingViewController.swift in Sources */,
@@ -1241,24 +1264,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				E936F26D2519D9CA0089A26E /* ExpositionUseCase.swift in Sources */,
+				E936F3192519F4730089A26E /* ExpositionChechUseCase.swift in Sources */,
 				E936F2C12519DD940089A26E /* DomainContainer.swift in Sources */,
 				E936F28D2519DA5A0089A26E /* String+Extension.swift in Sources */,
 				E936F2D42519DDE80089A26E /* InfrastructureContainer.swift in Sources */,
+				E936F3152519F4500089A26E /* PreferencesRepository.swift in Sources */,
 				E936F2792519DA260089A26E /* NotificationHandler.swift in Sources */,
 				E936F2852519DA490089A26E /* LocalizationHolder.swift in Sources */,
 				E936F2712519DA100089A26E /* ExpositionInfo.swift in Sources */,
+				E936F3252519F5AC0089A26E /* Settings.swift in Sources */,
 				E936F2FB2519EAF60089A26E /* WidgetTimelineProvider.swift in Sources */,
 				E936F2E72519DED00089A26E /* WidgetPresenter.swift in Sources */,
+				E936F31D2519F4E20089A26E /* SettingsRepository.swift in Sources */,
+				E936F3492519F62C0089A26E /* RiskLevelDataDto.swift in Sources */,
 				E936F3012519EBE40089A26E /* WidgetTimelineEntry.swift in Sources */,
+				E936F3392519F6040089A26E /* AttenuationDurationThresholdsDto.swift in Sources */,
 				E936F2312519CDED0089A26E /* WidgetView.swift in Sources */,
+				E936F3112519F3D00089A26E /* SetupUseCase.swift in Sources */,
 				E936F2892519DA500089A26E /* LocalizationSource.swift in Sources */,
 				E936F2A52519DCA70089A26E /* Injector.swift in Sources */,
+				E936F3352519F5FC0089A26E /* RiskScoreClassificationDto.swift in Sources */,
+				E936F32D2519F5D60089A26E /* SettingsDto.swift in Sources */,
+				E936F33D2519F60A0089A26E /* AttenuationFactorDto.swift in Sources */,
+				E936F3312519F5E50089A26E /* ExposureConfigurationDto.swift in Sources */,
+				E936F3412519F6110089A26E /* ApplicationVersionDto.swift in Sources */,
 				E936F2752519DA1A0089A26E /* Error.swift in Sources */,
+				E936F3292519F5B90089A26E /* Config.swift in Sources */,
+				E936F3452519F6170089A26E /* TimeBetweenStatesDto.swift in Sources */,
 				E936F2E02519DE6D0089A26E /* DataContainer.swift in Sources */,
+				E936F34D2519F6470089A26E /* VersionDto.swift in Sources */,
 				E936F2692519D9AB0089A26E /* ExpositionInfoRepository.swift in Sources */,
 				E936F2812519DA420089A26E /* Localizable.swift in Sources */,
 				E936F27D2519DA380089A26E /* String+Localizable.swift in Sources */,
 				E936F2C82519DDA80089A26E /* PresentationContainer.swift in Sources */,
+				E936F3562519F6DE0089A26E /* Endpoints.swift in Sources */,
+				E936F3212519F5160089A26E /* ResetDataUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1421,7 +1461,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 125;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1442,10 +1482,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 125;
-				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 130;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1811,10 +1851,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 125;
-				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 130;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1900,7 +1940,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 125;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1954,7 +1994,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = W762WV5CVG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1985,7 +2025,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2031,7 +2070,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = W762WV5CVG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2062,7 +2101,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2108,7 +2146,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = W762WV5CVG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2179,7 +2217,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = W762WV5CVG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

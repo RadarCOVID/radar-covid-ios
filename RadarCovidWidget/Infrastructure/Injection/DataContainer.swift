@@ -17,5 +17,8 @@ class DataContainer {
 
     internal func prepareInjections(container: Container) {
         container.register(ExpositionInfoRepository.self) { _ in UserDefaultsExpositionInfoRepository() }.inObjectScope(.container)
+        container.register(PreferencesRepository.self) { _ in UserDefaultsPreferencesRepository() }.inObjectScope(.container)
+        container.register(ExpositionInfoRepository.self) { _ in UserDefaultsExpositionInfoRepository() }.inObjectScope(.container)
+        container.register(SettingsRepository.self) { _ in UserDefaultsSettingsRepository() }.inObjectScope(.container)
     }
 }

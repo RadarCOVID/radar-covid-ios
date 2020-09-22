@@ -16,9 +16,28 @@ class DomainContainer {
     init(container: Container) { prepareInjections(container: container) }
 
     internal func prepareInjections(container: Container) {
+        container.register(SetupUseCase.self) { resolver in
+            SetupUseCase(preferencesRepository: resolver.resolve(PreferencesRepository.self)!,
+                         notificationHandler: resolver.resolve(NotificationHandler.self)!,
+                         expositionCheckUseCase: resolver.resolve(ExpositionCheckUseCase.self)!)
+        }.inObjectScope(.container)
+
+        container.register(ExpositionCheckUseCase.self) { resolver in
+            ExpositionCheckUseCase(
+                expositionInfoRepository: resolver.resolve(ExpositionInfoRepository.self)!,
+                settingsRepository: resolver.resolve(SettingsRepository.self)!,
+                resetDataUseCase: resolver.resolve(ResetDataUseCase.self)!)
+        }.inObjectScope(.container)
+
         container.register(ExpositionUseCase.self) { resolver in
             ExpositionUseCase(notificationHandler: resolver.resolve(NotificationHandler.self)!,
                               expositionInfoRepository: resolver.resolve(ExpositionInfoRepository.self)!)
+        }.inObjectScope(.container)
+
+        container.register(ResetDataUseCase.self) { resolver in
+            ResetDataUseCaseImpl(expositionInfoRepository: resolver.resolve(ExpositionInfoRepository.self)!)
+        }.initCompleted { resolver, useCase in
+            (useCase as! ResetDataUseCaseImpl).setupUseCase = resolver.resolve(SetupUseCase.self)!
         }.inObjectScope(.container)
     }
 }
