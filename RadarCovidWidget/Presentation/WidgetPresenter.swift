@@ -13,23 +13,28 @@ import Foundation
 import RxSwift
 
 protocol WidgetPresenter {
-    var expositionUseCase: ExpositionUseCase! { get set }
-    var disposeBag: DisposeBag! { get set }
+    var expositionUseCase: ExpositionUseCase! { get }
+    var expositionInfo: ExpositionInfo! { get }
 
     func suscribeToExpositionInfo()
+    func updateExpositionInfo()
 }
 
 final class WidgetPresenterDefault: WidgetPresenter {
-    var expositionUseCase: ExpositionUseCase!
-
-    internal var disposeBag: DisposeBag! = DisposeBag()
+    private(set) var expositionUseCase: ExpositionUseCase! = <~ExpositionUseCase.self
+    private(set) var expositionInfo: ExpositionInfo!
+    private var disposeBag: DisposeBag! = DisposeBag()
 
     func suscribeToExpositionInfo() {
         expositionUseCase.getExpositionInfo().subscribe(
             onNext: { exposition in
-
+                self.expositionInfo = exposition
             }, onError: { error in
 
         }).disposed(by: disposeBag)
+    }
+
+    func updateExpositionInfo() {
+        expositionUseCase.updateExpositionInfo()
     }
 }

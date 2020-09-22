@@ -176,6 +176,8 @@
 		E936F2D42519DDE80089A26E /* InfrastructureContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2CF2519DDCA0089A26E /* InfrastructureContainer.swift */; };
 		E936F2E02519DE6D0089A26E /* DataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2DB2519DE680089A26E /* DataContainer.swift */; };
 		E936F2E72519DED00089A26E /* WidgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F25B2519D93E0089A26E /* WidgetPresenter.swift */; };
+		E936F2FB2519EAF60089A26E /* WidgetTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2FA2519EAF60089A26E /* WidgetTimelineProvider.swift */; };
+		E936F3012519EBE40089A26E /* WidgetTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3002519EBE40089A26E /* WidgetTimelineEntry.swift */; };
 		E9AF092E250BC968005DBE1A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF092D250BC968005DBE1A /* HTTPMethod.swift */; };
 		E9AF0932250BC9FC005DBE1A /* HTTPEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */; };
 		E9AF0934250BCA98005DBE1A /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */; };
@@ -381,6 +383,8 @@
 		E936F2B62519DD3B0089A26E /* DomainContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainContainer.swift; sourceTree = "<group>"; };
 		E936F2CF2519DDCA0089A26E /* InfrastructureContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfrastructureContainer.swift; sourceTree = "<group>"; };
 		E936F2DB2519DE680089A26E /* DataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataContainer.swift; sourceTree = "<group>"; };
+		E936F2FA2519EAF60089A26E /* WidgetTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineProvider.swift; sourceTree = "<group>"; };
+		E936F3002519EBE40089A26E /* WidgetTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineEntry.swift; sourceTree = "<group>"; };
 		E9AF092D250BC968005DBE1A /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndpoint.swift; sourceTree = "<group>"; };
 		E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
@@ -877,6 +881,8 @@
 			isa = PBXGroup;
 			children = (
 				E936F25B2519D93E0089A26E /* WidgetPresenter.swift */,
+				E936F2FA2519EAF60089A26E /* WidgetTimelineProvider.swift */,
+				E936F3002519EBE40089A26E /* WidgetTimelineEntry.swift */,
 				E936F2302519CDED0089A26E /* WidgetView.swift */,
 			);
 			path = Presentation;
@@ -1241,7 +1247,9 @@
 				E936F2792519DA260089A26E /* NotificationHandler.swift in Sources */,
 				E936F2852519DA490089A26E /* LocalizationHolder.swift in Sources */,
 				E936F2712519DA100089A26E /* ExpositionInfo.swift in Sources */,
+				E936F2FB2519EAF60089A26E /* WidgetTimelineProvider.swift in Sources */,
 				E936F2E72519DED00089A26E /* WidgetPresenter.swift in Sources */,
+				E936F3012519EBE40089A26E /* WidgetTimelineEntry.swift in Sources */,
 				E936F2312519CDED0089A26E /* WidgetView.swift in Sources */,
 				E936F2892519DA500089A26E /* LocalizationSource.swift in Sources */,
 				E936F2A52519DCA70089A26E /* Injector.swift in Sources */,
