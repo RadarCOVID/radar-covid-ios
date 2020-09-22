@@ -36,7 +36,7 @@ class UserDefaultsPreferencesRepository: PreferencesRepository {
     private let userDefaults: UserDefaults
 
     init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
+        userDefaults = UserDefaults(suiteName: Config.userDefaultsSuiteName) ?? UserDefaults.standard
     }
 
     func isOnBoardingCompleted() -> Bool {

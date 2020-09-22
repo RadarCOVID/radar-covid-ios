@@ -156,35 +156,17 @@
 		E936F2332519CDEF0089A26E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E936F2322519CDEF0089A26E /* Assets.xcassets */; };
 		E936F2372519CDEF0089A26E /* RadarCovidWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E936F22A2519CDED0089A26E /* RadarCovidWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E936F2572519D4870089A26E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E936F2482519D45B0089A26E /* Colors.xcassets */; };
-		E936F2692519D9AB0089A26E /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
-		E936F26D2519D9CA0089A26E /* ExpositionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECDA248FD641007EAA40 /* ExpositionUseCase.swift */; };
 		E936F2712519DA100089A26E /* ExpositionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECDF248FD772007EAA40 /* ExpositionInfo.swift */; };
 		E936F2752519DA1A0089A26E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48124B3571900981DA4 /* Error.swift */; };
-		E936F2792519DA260089A26E /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */; };
-		E936F27D2519DA380089A26E /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83344824B7303500223071 /* String+Localizable.swift */; };
-		E936F2812519DA420089A26E /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48924B60F5F00981DA4 /* Localizable.swift */; };
-		E936F2852519DA490089A26E /* LocalizationHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83344624B72C3B00223071 /* LocalizationHolder.swift */; };
-		E936F2892519DA500089A26E /* LocalizationSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83344424B72BC800223071 /* LocalizationSource.swift */; };
-		E936F28D2519DA5A0089A26E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27C632499118200BBCF40 /* String+Extension.swift */; };
 		E936F2922519DA8B0089A26E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E936F2912519DA8B0089A26E /* RxSwift */; };
 		E936F2942519DA970089A26E /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = E936F2932519DA970089A26E /* Swinject */; };
 		E936F2962519DA970089A26E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E936F2952519DA970089A26E /* RxCocoa */; };
 		E936F2982519DA970089A26E /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E936F2972519DA970089A26E /* DP3TSDK */; };
 		E936F2A52519DCA70089A26E /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F29D2519DCA10089A26E /* Injector.swift */; };
-		E936F2C12519DD940089A26E /* DomainContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2B62519DD3B0089A26E /* DomainContainer.swift */; };
-		E936F2C82519DDA80089A26E /* PresentationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2AE2519DCDE0089A26E /* PresentationContainer.swift */; };
-		E936F2D42519DDE80089A26E /* InfrastructureContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2CF2519DDCA0089A26E /* InfrastructureContainer.swift */; };
 		E936F2E02519DE6D0089A26E /* DataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2DB2519DE680089A26E /* DataContainer.swift */; };
-		E936F2E72519DED00089A26E /* WidgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F25B2519D93E0089A26E /* WidgetPresenter.swift */; };
 		E936F2FB2519EAF60089A26E /* WidgetTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F2FA2519EAF60089A26E /* WidgetTimelineProvider.swift */; };
 		E936F3012519EBE40089A26E /* WidgetTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3002519EBE40089A26E /* WidgetTimelineEntry.swift */; };
-		E936F3112519F3D00089A26E /* SetupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */; };
-		E936F3152519F4500089A26E /* PreferencesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECC7248F70DF007EAA40 /* PreferencesRepository.swift */; };
-		E936F3192519F4730089A26E /* ExpositionChechUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDBD5524EC012D00EF2654 /* ExpositionChechUseCase.swift */; };
-		E936F31D2519F4E20089A26E /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB541962498A31700166D37 /* SettingsRepository.swift */; };
-		E936F3212519F5160089A26E /* ResetDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD76AD24A884EF00643AAD /* ResetDataUseCase.swift */; };
 		E936F3252519F5AC0089A26E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB541982498A55700166D37 /* Settings.swift */; };
-		E936F3292519F5B90089A26E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCEB24936E7A00EFE838 /* Config.swift */; };
 		E936F32D2519F5D60089A26E /* SettingsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418824989C2500166D37 /* SettingsDto.swift */; };
 		E936F3312519F5E50089A26E /* ExposureConfigurationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418B24989C2500166D37 /* ExposureConfigurationDto.swift */; };
 		E936F3352519F5FC0089A26E /* RiskScoreClassificationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418924989C2500166D37 /* RiskScoreClassificationDto.swift */; };
@@ -195,7 +177,6 @@
 		E936F3492519F62C0089A26E /* RiskLevelDataDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418C24989C2500166D37 /* RiskLevelDataDto.swift */; };
 		E936F34D2519F6470089A26E /* VersionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB27124AE375200F30E0B /* VersionDto.swift */; };
 		E936F3522519F6C10089A26E /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3512519F6C10089A26E /* Endpoints.swift */; };
-		E936F3562519F6DE0089A26E /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3512519F6C10089A26E /* Endpoints.swift */; };
 		E936F35D2519F9400089A26E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9AF0942250E6A26005DBE1A /* Security.framework */; };
 		E9AF092E250BC968005DBE1A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF092D250BC968005DBE1A /* HTTPMethod.swift */; };
 		E9AF0932250BC9FC005DBE1A /* HTTPEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */; };
@@ -205,6 +186,9 @@
 		E9AF093E250BCEA3005DBE1A /* HTTPClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF093D250BCEA3005DBE1A /* HTTPClientError.swift */; };
 		E9AF0940250E6A0A005DBE1A /* HTTPPinningCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF093F250E6A0A005DBE1A /* HTTPPinningCertificate.swift */; };
 		E9AF0943250E6A26005DBE1A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9AF0942250E6A26005DBE1A /* Security.framework */; };
+		E9F5C6FC251A05D1004E6340 /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
+		E9F5C703251A06A3004E6340 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3512519F6C10089A26E /* Endpoints.swift */; };
+		E9F5C704251A06A3004E6340 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCEB24936E7A00EFE838 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -396,15 +380,12 @@
 		E936F2322519CDEF0089A26E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E936F2342519CDEF0089A26E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E936F2482519D45B0089A26E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		E936F25B2519D93E0089A26E /* WidgetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPresenter.swift; sourceTree = "<group>"; };
 		E936F29D2519DCA10089A26E /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
-		E936F2AE2519DCDE0089A26E /* PresentationContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationContainer.swift; sourceTree = "<group>"; };
-		E936F2B62519DD3B0089A26E /* DomainContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainContainer.swift; sourceTree = "<group>"; };
-		E936F2CF2519DDCA0089A26E /* InfrastructureContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfrastructureContainer.swift; sourceTree = "<group>"; };
 		E936F2DB2519DE680089A26E /* DataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataContainer.swift; sourceTree = "<group>"; };
 		E936F2FA2519EAF60089A26E /* WidgetTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineProvider.swift; sourceTree = "<group>"; };
 		E936F3002519EBE40089A26E /* WidgetTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineEntry.swift; sourceTree = "<group>"; };
 		E936F3512519F6C10089A26E /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		E936F38C2519FC670089A26E /* RadarCovidWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RadarCovidWidgetExtension.entitlements; sourceTree = "<group>"; };
 		E9AF092D250BC968005DBE1A /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndpoint.swift; sourceTree = "<group>"; };
 		E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
@@ -455,6 +436,7 @@
 		3944327D248939F000FF0217 = {
 			isa = PBXGroup;
 			children = (
+				E936F38C2519FC670089A26E /* RadarCovidWidgetExtension.entitlements */,
 				39443288248939F000FF0217 /* RadarCovid */,
 				6D64131F24ED88AB00B33427 /* RadarCovidTests */,
 				E936F22F2519CDED0089A26E /* RadarCovidWidget */,
@@ -902,7 +884,6 @@
 		E936F2662519D98D0089A26E /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				E936F25B2519D93E0089A26E /* WidgetPresenter.swift */,
 				E936F2FA2519EAF60089A26E /* WidgetTimelineProvider.swift */,
 				E936F3002519EBE40089A26E /* WidgetTimelineEntry.swift */,
 				E936F2302519CDED0089A26E /* WidgetView.swift */,
@@ -922,10 +903,7 @@
 			isa = PBXGroup;
 			children = (
 				E936F29D2519DCA10089A26E /* Injector.swift */,
-				E936F2CF2519DDCA0089A26E /* InfrastructureContainer.swift */,
 				E936F2DB2519DE680089A26E /* DataContainer.swift */,
-				E936F2B62519DD3B0089A26E /* DomainContainer.swift */,
-				E936F2AE2519DCDE0089A26E /* PresentationContainer.swift */,
 			);
 			path = Injection;
 			sourceTree = "<group>";
@@ -1263,42 +1241,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E936F26D2519D9CA0089A26E /* ExpositionUseCase.swift in Sources */,
-				E936F3192519F4730089A26E /* ExpositionChechUseCase.swift in Sources */,
-				E936F2C12519DD940089A26E /* DomainContainer.swift in Sources */,
-				E936F28D2519DA5A0089A26E /* String+Extension.swift in Sources */,
-				E936F2D42519DDE80089A26E /* InfrastructureContainer.swift in Sources */,
-				E936F3152519F4500089A26E /* PreferencesRepository.swift in Sources */,
-				E936F2792519DA260089A26E /* NotificationHandler.swift in Sources */,
-				E936F2852519DA490089A26E /* LocalizationHolder.swift in Sources */,
 				E936F2712519DA100089A26E /* ExpositionInfo.swift in Sources */,
 				E936F3252519F5AC0089A26E /* Settings.swift in Sources */,
 				E936F2FB2519EAF60089A26E /* WidgetTimelineProvider.swift in Sources */,
-				E936F2E72519DED00089A26E /* WidgetPresenter.swift in Sources */,
-				E936F31D2519F4E20089A26E /* SettingsRepository.swift in Sources */,
 				E936F3492519F62C0089A26E /* RiskLevelDataDto.swift in Sources */,
 				E936F3012519EBE40089A26E /* WidgetTimelineEntry.swift in Sources */,
 				E936F3392519F6040089A26E /* AttenuationDurationThresholdsDto.swift in Sources */,
 				E936F2312519CDED0089A26E /* WidgetView.swift in Sources */,
-				E936F3112519F3D00089A26E /* SetupUseCase.swift in Sources */,
-				E936F2892519DA500089A26E /* LocalizationSource.swift in Sources */,
 				E936F2A52519DCA70089A26E /* Injector.swift in Sources */,
+				E9F5C6FC251A05D1004E6340 /* ExpositionInfoRepository.swift in Sources */,
 				E936F3352519F5FC0089A26E /* RiskScoreClassificationDto.swift in Sources */,
 				E936F32D2519F5D60089A26E /* SettingsDto.swift in Sources */,
 				E936F33D2519F60A0089A26E /* AttenuationFactorDto.swift in Sources */,
 				E936F3312519F5E50089A26E /* ExposureConfigurationDto.swift in Sources */,
 				E936F3412519F6110089A26E /* ApplicationVersionDto.swift in Sources */,
+				E9F5C703251A06A3004E6340 /* Endpoints.swift in Sources */,
 				E936F2752519DA1A0089A26E /* Error.swift in Sources */,
-				E936F3292519F5B90089A26E /* Config.swift in Sources */,
 				E936F3452519F6170089A26E /* TimeBetweenStatesDto.swift in Sources */,
+				E9F5C704251A06A3004E6340 /* Config.swift in Sources */,
 				E936F2E02519DE6D0089A26E /* DataContainer.swift in Sources */,
 				E936F34D2519F6470089A26E /* VersionDto.swift in Sources */,
-				E936F2692519D9AB0089A26E /* ExpositionInfoRepository.swift in Sources */,
-				E936F2812519DA420089A26E /* Localizable.swift in Sources */,
-				E936F27D2519DA380089A26E /* String+Localizable.swift in Sources */,
-				E936F2C82519DDA80089A26E /* PresentationContainer.swift in Sources */,
-				E936F3562519F6DE0089A26E /* Endpoints.swift in Sources */,
-				E936F3212519F5160089A26E /* ResetDataUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1457,7 +1419,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/debug.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 125;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1483,7 +1445,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 130;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
@@ -1852,7 +1814,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 130;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
@@ -1936,7 +1898,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/debug.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 125;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1958,7 +1920,9 @@
 		E936F2392519CDEF0089A26E /* DebugPre */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1990,8 +1954,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = RadarCovidWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
@@ -2023,6 +1988,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid.RadarCovidWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2034,7 +2000,9 @@
 		E936F23A2519CDEF0089A26E /* DebugPro */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2066,8 +2034,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = RadarCovidWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
@@ -2099,6 +2068,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid.RadarCovidWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2110,7 +2080,9 @@
 		E936F23B2519CDEF0089A26E /* ReleasePro */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2142,8 +2114,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = RadarCovidWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
@@ -2168,6 +2141,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid.RadarCovidWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -2181,7 +2155,9 @@
 		E936F23C2519CDEF0089A26E /* ReleasePre */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2213,8 +2189,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = RadarCovidWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
@@ -2239,6 +2216,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid.RadarCovidWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;

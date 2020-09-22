@@ -13,10 +13,10 @@ import Foundation
 import DP3TSDK
 
 struct Config {
-
     static let platform = "iOS"
     static let version:String = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "") as! String
-    
+    static let userDefaultsSuiteName = "es.gob.radarcovid.userdefaults.suite"
+
     #if DEBUG_PRE
     static let debug = true
     static let environment = "PRE"

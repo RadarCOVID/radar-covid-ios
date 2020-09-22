@@ -44,6 +44,7 @@ struct RadarCovidWidget: Widget {
         }
         .configurationDisplayName("RadarCOVID")
         .description("This is an example widget.")
+        .supportedFamilies([.systemSmall])
     }
 }
 

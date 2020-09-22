@@ -13,7 +13,7 @@ import WidgetKit
 import SwiftUI
 
 struct WidgetTimelineProvider: TimelineProvider {
-    var presenter = <~WidgetPresenter.self
+    var expositionInfoRepository: ExpositionInfoRepository! = <~ExpositionInfoRepository.self
 
     func placeholder(in context: Context) -> WidgetTimelineEntry {
         currentEntry()
@@ -39,12 +39,10 @@ struct WidgetTimelineProvider: TimelineProvider {
     }
 
     private func currentEntry(date: Date? = Date()) -> WidgetTimelineEntry {
-        if let error = presenter.expositionError {
-            return WidgetTimelineEntry(exposition: ExpositionInfo(level: .unknown), date: date ?? Date(), error: error)
-        } else if let error = presenter.expositionInfo.error {
-            return WidgetTimelineEntry(exposition: presenter.expositionInfo, date: date ?? Date(), error: error)
+        if let expositionInfo = expositionInfoRepository.getExpositionInfo() {
+            return WidgetTimelineEntry(exposition: expositionInfo, date: date ?? Date(), error: nil)
         } else {
-            return WidgetTimelineEntry(exposition: presenter.expositionInfo, date: date ?? Date(), error: nil)
+            return WidgetTimelineEntry(exposition: ExpositionInfo(level: .unknown), date: date ?? Date(), error: nil)
         }
     }
 }
