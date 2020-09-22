@@ -15,6 +15,7 @@ import SwiftUI
 
 struct WidgetTimelineEntry: TimelineEntry {
     let isTracingActive: Bool
+    let lastSyncDate: Date?
     let exposition: ExpositionInfo
     let date: Date
     var error: Error? {
@@ -30,12 +31,13 @@ struct WidgetTimelineEntry: TimelineEntry {
         }
     }
 
-    var dateString: String {
+    var lastSyncDateString: String? {
+        guard let lastSyncDate = lastSyncDate else { return nil }
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale.current
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
-        return dateFormatter.string(from: date)
+        return dateFormatter.string(from: lastSyncDate)
     }
 
     var textColor: Color {

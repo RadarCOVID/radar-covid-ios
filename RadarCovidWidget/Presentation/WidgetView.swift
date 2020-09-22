@@ -38,12 +38,18 @@ struct RadarCovidWidgetEntryView : View {
                                     .font(Font.system(size: 18, weight: .semibold, design: .rounded))
                             }
                             VStack(alignment: .leading, spacing: nil) {
-                                Text("Último chequeo:")
-                                    .foregroundColor(Color("clearText"))
-                                    .font(Font.system(size: 16, weight: .regular, design: .rounded))
-                                Text(entry.dateString)
-                                    .foregroundColor(Color("clearText"))
-                                    .font(Font.system(size: 16, weight: .regular, design: .rounded))
+                                if let syncDate = entry.lastSyncDateString {
+                                    Text("Último chequeo:")
+                                        .foregroundColor(Color("clearText"))
+                                        .font(Font.system(size: 16, weight: .regular, design: .rounded))
+                                    Text(syncDate)
+                                        .foregroundColor(Color("clearText"))
+                                        .font(Font.system(size: 16, weight: .regular, design: .rounded))
+                                } else {
+                                    Text("No existe registro de cuándo se realizó el último chequeo")
+                                        .foregroundColor(Color("clearText"))
+                                        .font(Font.system(size: 16, weight: .regular, design: .rounded))
+                                }
                             }
                             Spacer()
                             if entry.isTracingActive {
@@ -74,14 +80,13 @@ struct RadarCovidWidget: Widget {
             RadarCovidWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("RadarCOVID")
-        .description("This is an example widget.")
         .supportedFamilies([.systemSmall])
     }
 }
 
 struct RadarCovidWidget_Previews: PreviewProvider {
     static var previews: some View {
-        RadarCovidWidgetEntryView(entry: WidgetTimelineEntry(isTracingActive: true, exposition: ExpositionInfo(level: .unknown), date: Date()))
+        RadarCovidWidgetEntryView(entry: WidgetTimelineEntry(isTracingActive: true, lastSyncDate: nil, exposition: ExpositionInfo(level: .unknown), date: Date()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

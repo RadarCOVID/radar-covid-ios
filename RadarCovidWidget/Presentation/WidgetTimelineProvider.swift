@@ -17,7 +17,7 @@ struct WidgetTimelineProvider: TimelineProvider {
     var preferencesRepository: PreferencesRepository! = <~PreferencesRepository.self
 
     private var isTracingActive: Bool {
-        lastSyncDate != nil && preferencesRepository.isTracingActive()
+        preferencesRepository.isTracingActive()
     }
 
     private var lastSyncDate: Date? {
@@ -49,9 +49,9 @@ struct WidgetTimelineProvider: TimelineProvider {
 
     private func currentEntry(date: Date? = Date()) -> WidgetTimelineEntry {
         if let expositionInfo = expositionInfoRepository.getExpositionInfo() {
-            return WidgetTimelineEntry(isTracingActive: isTracingActive, exposition: expositionInfo, date: date ?? Date())
+            return WidgetTimelineEntry(isTracingActive: isTracingActive, lastSyncDate: lastSyncDate, exposition: expositionInfo, date: date ?? Date())
         } else {
-            return WidgetTimelineEntry(isTracingActive: isTracingActive, exposition: ExpositionInfo(level: .unknown), date: date ?? Date())
+            return WidgetTimelineEntry(isTracingActive: isTracingActive, lastSyncDate: lastSyncDate, exposition: ExpositionInfo(level: .unknown), date: date ?? Date())
         }
     }
 }
