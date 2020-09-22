@@ -12,9 +12,9 @@
 import Foundation
 
 protocol WidgetPresenter {
-    var expositionUseCase: ExposistionUseCase!
+    var expositionUseCase: ExpositionUseCase!
 }
 
 final class WidgetPresenterDefault: WidgetPresenter {
-    
+    var expositionUseCase: ExpositionUseCase!
 }
