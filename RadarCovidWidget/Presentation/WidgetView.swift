@@ -28,7 +28,7 @@ struct RadarCovidWidgetEntryView : View {
                             .foregroundColor(Color("accent"))
                         Spacer()
                     } else {
-                        VStack(alignment: .leading, spacing: nil, content: {
+                        VStack(alignment: .leading, spacing: nil) {
                             ZStack {
                                 Capsule()
                                     .fill(entry.color)
@@ -37,20 +37,29 @@ struct RadarCovidWidgetEntryView : View {
                                     .foregroundColor(entry.textColor)
                                     .font(Font.system(size: 18, weight: .semibold, design: .rounded))
                             }
-                            VStack(alignment: .leading, spacing: nil, content: {
+                            VStack(alignment: .leading, spacing: nil) {
                                 Text("Último chequeo:")
                                     .foregroundColor(Color("clearText"))
                                     .font(Font.system(size: 16, weight: .regular, design: .rounded))
                                 Text(entry.dateString)
                                     .foregroundColor(Color("clearText"))
                                     .font(Font.system(size: 16, weight: .regular, design: .rounded))
-                            })
+                            }
                             Spacer()
-                        })
+                            if entry.isTracingActive {
+                                Text("ACTIVO")
+                                    .foregroundColor(Color("active"))
+                                    .font(Font.system(size: 16, weight: .bold, design: .monospaced))
+                            } else {
+                                Text("INACTIVO")
+                                    .foregroundColor(Color("inactive"))
+                                    .font(Font.system(size: 16, weight: .bold, design: .monospaced))
+                            }
+                            Spacer()
+                        }
                     }
                 }
-                .padding([.leading, .trailing], 8)
-                .padding([.top], 8)
+                .padding([.leading, .trailing, .top], 8)
             }
         }
     }
@@ -72,7 +81,7 @@ struct RadarCovidWidget: Widget {
 
 struct RadarCovidWidget_Previews: PreviewProvider {
     static var previews: some View {
-        RadarCovidWidgetEntryView(entry: WidgetTimelineEntry(exposition: ExpositionInfo(level: .unknown), date: Date()))
+        RadarCovidWidgetEntryView(entry: WidgetTimelineEntry(isTracingActive: true, exposition: ExpositionInfo(level: .unknown), date: Date()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

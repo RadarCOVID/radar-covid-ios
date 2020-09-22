@@ -14,6 +14,7 @@ import WidgetKit
 import SwiftUI
 
 struct WidgetTimelineEntry: TimelineEntry {
+    let isTracingActive: Bool
     let exposition: ExpositionInfo
     let date: Date
     var error: Error? {

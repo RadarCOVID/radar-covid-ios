@@ -14,6 +14,15 @@ import SwiftUI
 
 struct WidgetTimelineProvider: TimelineProvider {
     var expositionInfoRepository: ExpositionInfoRepository! = <~ExpositionInfoRepository.self
+    var preferencesRepository: PreferencesRepository! = <~PreferencesRepository.self
+
+    private var isTracingActive: Bool {
+        lastSyncDate != nil && preferencesRepository.isTracingActive()
+    }
+
+    private var lastSyncDate: Date? {
+        preferencesRepository.getLastSync()
+    }
 
     func placeholder(in context: Context) -> WidgetTimelineEntry {
         currentEntry()
@@ -40,9 +49,9 @@ struct WidgetTimelineProvider: TimelineProvider {
 
     private func currentEntry(date: Date? = Date()) -> WidgetTimelineEntry {
         if let expositionInfo = expositionInfoRepository.getExpositionInfo() {
-            return WidgetTimelineEntry(exposition: expositionInfo, date: date ?? Date())
+            return WidgetTimelineEntry(isTracingActive: isTracingActive, exposition: expositionInfo, date: date ?? Date())
         } else {
-            return WidgetTimelineEntry(exposition: ExpositionInfo(level: .unknown), date: date ?? Date())
+            return WidgetTimelineEntry(isTracingActive: isTracingActive, exposition: ExpositionInfo(level: .unknown), date: date ?? Date())
         }
     }
 }
