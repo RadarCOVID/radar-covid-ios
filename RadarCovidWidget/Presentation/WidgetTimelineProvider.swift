@@ -40,9 +40,9 @@ struct WidgetTimelineProvider: TimelineProvider {
 
     private func currentEntry(date: Date? = Date()) -> WidgetTimelineEntry {
         if let expositionInfo = expositionInfoRepository.getExpositionInfo() {
-            return WidgetTimelineEntry(exposition: expositionInfo, date: date ?? Date(), error: nil)
+            return WidgetTimelineEntry(exposition: expositionInfo, date: date ?? Date())
         } else {
-            return WidgetTimelineEntry(exposition: ExpositionInfo(level: .unknown), date: date ?? Date(), error: nil)
+            return WidgetTimelineEntry(exposition: ExpositionInfo(level: .exposed), date: date ?? Date())
         }
     }
 }

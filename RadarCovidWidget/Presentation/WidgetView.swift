@@ -22,13 +22,31 @@ struct RadarCovidWidgetEntryView : View {
                 Image("background-image")
                     .resizable()
                     .aspectRatio(geometry.size, contentMode: .fill)
-                if let error = entry.error {
-                    Text(error.localizedDescription)
-                } else if entry.exposition.level == .unknown {
-                    Text("error.localizedDescription")
-                } else {
-                    Text(entry.exposition.level.rawValue)
+                VStack {
+                    if let error = entry.error {
+                        Text(error.localizedDescription)
+                            .foregroundColor(Color("accent"))
+                        Spacer()
+                    } else if entry.exposition.level == .unknown {
+                        Text("Nivel de exposición desconocido. Comprueba que RadarCOVID está funcionando correctamente.")
+                            .foregroundColor(Color("accent"))
+                        Spacer()
+                    } else {
+                        VStack(alignment: .leading, spacing: nil, content: {
+                            ZStack {
+                                Capsule()
+                                    .fill(entry.color)
+                                    .frame(height: 44, alignment: .center)
+                                Text(entry.text)
+                                    .foregroundColor(entry.textColor)
+                                    .font(Font.custom("Muli-ExtraBold", size: 16.0))
+                            }
+                            Spacer()
+                        })
+                    }
                 }
+                .padding([.leading, .trailing], 8)
+                .padding([.top], 8)
             }
         }
     }
@@ -50,7 +68,7 @@ struct RadarCovidWidget: Widget {
 
 struct RadarCovidWidget_Previews: PreviewProvider {
     static var previews: some View {
-        RadarCovidWidgetEntryView(entry: WidgetTimelineEntry(exposition: ExpositionInfo(level: .unknown), date: Date(), error: nil))
+        RadarCovidWidgetEntryView(entry: WidgetTimelineEntry(exposition: ExpositionInfo(level: .unknown), date: Date()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
