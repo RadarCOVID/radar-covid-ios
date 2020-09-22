@@ -22,7 +22,13 @@ struct RadarCovidWidgetEntryView : View {
                 Image("background-image")
                     .resizable()
                     .aspectRatio(geometry.size, contentMode: .fill)
-                Text(entry.exposition.level.rawValue)
+                if let error = entry.error {
+                    Text(error.localizedDescription)
+                } else if entry.exposition.level == .unknown {
+                    Text("error.localizedDescription")
+                } else {
+                    Text(entry.exposition.level.rawValue)
+                }
             }
         }
     }
@@ -36,14 +42,14 @@ struct RadarCovidWidget: Widget {
         StaticConfiguration(kind: kind, provider: WidgetTimelineProvider()) { entry in
             RadarCovidWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
+        .configurationDisplayName("RadarCOVID")
         .description("This is an example widget.")
     }
 }
 
 struct RadarCovidWidget_Previews: PreviewProvider {
     static var previews: some View {
-        RadarCovidWidgetEntryView(entry: WidgetTimelineEntry(exposition: ExpositionInfo(level: .healthy), date: Date()))
+        RadarCovidWidgetEntryView(entry: WidgetTimelineEntry(exposition: ExpositionInfo(level: .unknown), date: Date(), error: nil))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

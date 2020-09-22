@@ -15,4 +15,5 @@ import WidgetKit
 struct WidgetTimelineEntry: TimelineEntry {
     let exposition: ExpositionInfo
     let date: Date
+    let error: Error?
 }
