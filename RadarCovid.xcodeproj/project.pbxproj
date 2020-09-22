@@ -178,14 +178,6 @@
 		E936F34D2519F6470089A26E /* VersionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB27124AE375200F30E0B /* VersionDto.swift */; };
 		E936F3522519F6C10089A26E /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3512519F6C10089A26E /* Endpoints.swift */; };
 		E936F35D2519F9400089A26E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9AF0942250E6A26005DBE1A /* Security.framework */; };
-		E9AF092E250BC968005DBE1A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF092D250BC968005DBE1A /* HTTPMethod.swift */; };
-		E9AF0932250BC9FC005DBE1A /* HTTPEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */; };
-		E9AF0934250BCA98005DBE1A /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */; };
-		E9AF093A250BCDA1005DBE1A /* HTTPClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF0939250BCDA1005DBE1A /* HTTPClientConfiguration.swift */; };
-		E9AF093C250BCDE3005DBE1A /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF093B250BCDE3005DBE1A /* HTTPClient.swift */; };
-		E9AF093E250BCEA3005DBE1A /* HTTPClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF093D250BCEA3005DBE1A /* HTTPClientError.swift */; };
-		E9AF0940250E6A0A005DBE1A /* HTTPPinningCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF093F250E6A0A005DBE1A /* HTTPPinningCertificate.swift */; };
-		E9AF0943250E6A26005DBE1A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9AF0942250E6A26005DBE1A /* Security.framework */; };
 		E9CBA6A6251A42D900A7A2EC /* PreferencesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECC7248F70DF007EAA40 /* PreferencesRepository.swift */; };
 		E9F5C6FC251A05D1004E6340 /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
 		E9F5C703251A06A3004E6340 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936F3512519F6C10089A26E /* Endpoints.swift */; };
@@ -393,13 +385,6 @@
 		E936F3002519EBE40089A26E /* WidgetTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineEntry.swift; sourceTree = "<group>"; };
 		E936F3512519F6C10089A26E /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		E936F38C2519FC670089A26E /* RadarCovidWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RadarCovidWidgetExtension.entitlements; sourceTree = "<group>"; };
-		E9AF092D250BC968005DBE1A /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPEndpoint.swift; sourceTree = "<group>"; };
-		E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
-		E9AF0939250BCDA1005DBE1A /* HTTPClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientConfiguration.swift; sourceTree = "<group>"; };
-		E9AF093B250BCDE3005DBE1A /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		E9AF093D250BCEA3005DBE1A /* HTTPClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientError.swift; sourceTree = "<group>"; };
-		E9AF093F250E6A0A005DBE1A /* HTTPPinningCertificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPPinningCertificate.swift; sourceTree = "<group>"; };
 		E9AF0942250E6A26005DBE1A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -449,6 +434,7 @@
 				E936F22F2519CDED0089A26E /* RadarCovidWidget */,
 				39443287248939F000FF0217 /* Products */,
 				6D662D1A250B964B00AEEFE7 /* Frameworks */,
+				E9CBA6B4251A5ECC00A7A2EC /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -915,28 +901,14 @@
 			path = Injection;
 			sourceTree = "<group>";
 		};
-		E9AF092C250BC953005DBE1A /* HTTPClient */ = {
-			isa = PBXGroup;
-			children = (
-				E9AF092D250BC968005DBE1A /* HTTPMethod.swift */,
-				E9AF0931250BC9FC005DBE1A /* HTTPEndpoint.swift */,
-				E9AF0933250BCA98005DBE1A /* HTTPRequest.swift */,
-				E9AF0939250BCDA1005DBE1A /* HTTPClientConfiguration.swift */,
-				E9AF093B250BCDE3005DBE1A /* HTTPClient.swift */,
-				E9AF093D250BCEA3005DBE1A /* HTTPClientError.swift */,
-				E9AF093F250E6A0A005DBE1A /* HTTPPinningCertificate.swift */,
-			);
-			path = HTTPClient;
-			sourceTree = "<group>";
-		};
-		E9AF0941250E6A25005DBE1A /* Frameworks */ = {
+		E9CBA6B4251A5ECC00A7A2EC /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				E9AF0942250E6A26005DBE1A /* Security.framework */,
-				E936F22B2519CDED0089A26E /* WidgetKit.framework */,
 				E936F22D2519CDED0089A26E /* SwiftUI.framework */,
+				E936F22B2519CDED0089A26E /* WidgetKit.framework */,
 			);
-			name = Frameworks;
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1336,6 +1308,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1397,6 +1370,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1791,6 +1765,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1872,6 +1847,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2350,11 +2326,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
-		};
-		764C6D1424B7E5BB002FA594 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
 		};
 		E936F2912519DA8B0089A26E /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
