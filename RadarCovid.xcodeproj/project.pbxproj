@@ -1435,7 +1435,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 130;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W762WV5CVG;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

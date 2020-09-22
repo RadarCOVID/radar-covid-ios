@@ -4,5 +4,9 @@
 <dict>
 	<key>com.apple.developer.exposure-notification</key>
 	<true/>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.es.gob.radarcovid</string>
+	</array>
 </dict>
 </plist>
