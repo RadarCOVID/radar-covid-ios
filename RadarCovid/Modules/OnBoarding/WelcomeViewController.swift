@@ -128,8 +128,6 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
         let text = localesArray[key] ?? ""
         label.isAccessibilityElement = true
         label.accessibilityLabel = (text ?? "") + "ACC_SELECTED".localized
-        //TODO: Texto notificado a integración para incorporarlo en el servicio
-        label.accessibilityHint = "Desliza hacia abajo o hacia arriba para activar y luego pulsa el boton hecho en la parte superior"
         label.textAlignment = .center
         label.text = text
         
