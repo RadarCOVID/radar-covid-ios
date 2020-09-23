@@ -13,30 +13,27 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
+    //MARK: - Outlet.
     @IBOutlet weak var continueButton: UIButton!
-    @IBOutlet weak var languageSelector: UIButton!
+    @IBOutlet weak var languageSelectorButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var stepbullet1Label: UILabel!
+    @IBOutlet weak var selectorView: BackgroundView!
+    @IBOutlet weak var stepbullet2Label: UILabel!
+    @IBOutlet weak var stepbullet3Label: UILabel!
+    
+    // MARK: - Properties
     var router: AppRouter?
-    @IBOutlet weak var viewTitle: UILabel!
-
     var localesKeysArray: [String] = []
     var localesArray: [String: String?]!
     var localizationRepository: LocalizationRepository!
+    
     private var currentLocale: String = "es-ES"
-    @IBOutlet weak var stepbullet1: UILabel!
-    @IBOutlet weak var selectorView: BackgroundView!
-
-    @IBOutlet weak var stepbullet2: UILabel!
-
-    @IBOutlet weak var stepbullet3: UILabel!
-
     private var pickerPresenter: PickerPresenter?
-
-    @IBAction func onContinue(_ sender: Any) {
-        router?.route(to: .onBoarding, from: self)
-    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         selectorView.image = UIImage.init(named: "WhiteCard")
         loadLocaleValues()
     }
@@ -53,18 +50,18 @@ class WelcomeViewController: UIViewController {
     }
 
     func setupAccessibility() {
-        languageSelector.isAccessibilityElement = true
-        languageSelector.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
-        languageSelector.accessibilityHint = "ACC_HINT".localized
+        languageSelectorButton.isAccessibilityElement = true
+        languageSelectorButton.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
+        languageSelectorButton.accessibilityHint = "ACC_HINT".localized
 
         continueButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityLabel = "ACC_BUTTON_CONTINUE".localized
         continueButton.accessibilityHint = "ACC_HINT".localized
 
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityLabel = "ACC_WELCOME_TITLE".localized
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        titleLabel.isAccessibilityElement = true
+        titleLabel.accessibilityLabel = "ACC_WELCOME_TITLE".localized
+        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
     }
 
     private func loadLocaleValues() {
@@ -77,7 +74,7 @@ class WelcomeViewController: UIViewController {
 
         let keys = Array(self.localesArray.keys) as [String]
         if let currentLanguage = localizationRepository.getLocale() {
-            languageSelector.setTitle(localesArray[currentLanguage, default: ""], for: .normal)
+            languageSelectorButton.setTitle(localesArray[currentLanguage, default: ""], for: .normal)
         }
 
         guard let firstKey = keys.filter({ $0.contains(currentLocale) }).first else {
@@ -89,6 +86,12 @@ class WelcomeViewController: UIViewController {
         self.localesKeysArray += otherKeys
     }
 
+    //MARK: - Action methods.
+    
+    @IBAction func onContinue(_ sender: Any) {
+        router?.route(to: .onBoarding, from: self)
+    }
+    
     @IBAction func selectLanguage(_ sender: Any) {
         pickerPresenter?.openPicker(title: "ACC_LANGUAGE_SELECTOR_PICKER".localized)
     }
@@ -113,21 +116,24 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let key = localesKeysArray[row]
-        self.languageSelector.setTitle(self.localesArray[key, default: ""], for: .normal)
+        self.languageSelectorButton.setTitle(self.localesArray[key, default: ""], for: .normal)
         localizationRepository.setLocale(key)
     }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int,
                     forComponent component: Int, reusing view: UIView?) -> UIView {
+        
         let label = (view as? UILabel) ?? UILabel()
         let key = localesKeysArray[row]
         let text = localesArray[key] ?? ""
         label.isAccessibilityElement = true
         label.accessibilityLabel = (text ?? "") + "ACC_SELECTED".localized
-        let prueba = label.accessibilityHint
+        //TODO: Texto notificado a integración para incorporarlo en el servicio
         label.accessibilityHint = "Desliza hacia abajo o hacia arriba para activar y luego pulsa el boton hecho en la parte superior"
-        label.contentMode = .center
+        label.textAlignment = .center
         label.text = text
+        label.backgroundColor = .red
+        
         return label
     }
 
