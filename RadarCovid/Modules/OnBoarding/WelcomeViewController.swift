@@ -132,7 +132,6 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
         label.accessibilityHint = "Desliza hacia abajo o hacia arriba para activar y luego pulsa el boton hecho en la parte superior"
         label.textAlignment = .center
         label.text = text
-        label.backgroundColor = .red
         
         return label
     }
