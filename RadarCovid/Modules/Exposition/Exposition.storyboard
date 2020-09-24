@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,10 +31,10 @@
                                 <rect key="frame" x="0.0" y="96" width="414" height="1120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mz4-S1-tfj">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1262"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1265"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1H-mT-hEv" userLabel="ExpositionBGView" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="8" width="374" height="169.5"/>
+                                                <rect key="frame" x="20" y="8" width="374" height="172.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tu exposición es baja" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oRi-0Z-J6b">
                                                         <rect key="frame" x="26" y="46" width="332" height="33.5"/>
@@ -45,12 +46,12 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tJa-7M-psA">
-                                                        <rect key="frame" x="26" y="89.5" width="329" height="20.5"/>
+                                                        <rect key="frame" x="26" y="89.5" width="329" height="23.5"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Sin contactos de riesgos aparentes.">
                                                                 <attributes>
                                                                     <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <font key="NSFont" metaFont="system" size="17"/>
+                                                                    <font key="NSFont" size="20" name="HelveticaNeue"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                 </attributes>
                                                             </fragment>
@@ -81,7 +82,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Qué debo hacer?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vBQ-H2-P9H">
-                                                <rect key="frame" x="20" y="187.5" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="190.5" width="374" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="xKL-cp-hIN"/>
                                                 </constraints>
@@ -93,7 +94,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manten las medidas de seguridad y distanciamiento social." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fth-dZ-n17">
-                                                <rect key="frame" x="20" y="242.5" width="374" height="65"/>
+                                                <rect key="frame" x="20" y="245.5" width="374" height="65"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="65" id="vdI-xh-g2I"/>
                                                 </constraints>
@@ -105,14 +106,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SafeDistance" translatesAutoresizingMaskIntoConstraints="NO" id="MaH-n7-rlV">
-                                                <rect key="frame" x="32" y="327.5" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="330.5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="0es-Xf-Aqz"/>
                                                     <constraint firstAttribute="height" constant="50" id="gVN-7i-Liv"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mantén la distancia de seguridad de 1,5 metros  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="syr-YP-tqL">
-                                                <rect key="frame" x="136" y="327.5" width="243" height="50"/>
+                                                <rect key="frame" x="136" y="330.5" width="243" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="wTl-Uv-wGA"/>
                                                 </constraints>
@@ -124,14 +125,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MaskFrame" translatesAutoresizingMaskIntoConstraints="NO" id="PEX-K7-wuy">
-                                                <rect key="frame" x="32" y="402.5" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="405.5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="Dd1-Py-Ut0"/>
                                                     <constraint firstAttribute="height" constant="50" id="tyE-8p-i7K"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usa siempre mascarilla quirúrgica" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xqy-wU-IOR">
-                                                <rect key="frame" x="136" y="402.5" width="243" height="50"/>
+                                                <rect key="frame" x="136" y="405.5" width="243" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="31w-WT-5Em"/>
                                                 </constraints>
@@ -143,14 +144,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WashHandsFrame" translatesAutoresizingMaskIntoConstraints="NO" id="vKK-7N-nPb">
-                                                <rect key="frame" x="32" y="477.5" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="480.5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="2dg-t4-yyQ"/>
                                                     <constraint firstAttribute="height" constant="50" id="I23-6d-PFJ"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lávate las manos frecuentemente" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iHR-lm-dWN">
-                                                <rect key="frame" x="136" y="477.5" width="243" height="50"/>
+                                                <rect key="frame" x="136" y="480.5" width="243" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="oeV-Mv-cXh"/>
                                                 </constraints>
@@ -162,14 +163,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cough" translatesAutoresizingMaskIntoConstraints="NO" id="cf8-Wm-O9g">
-                                                <rect key="frame" x="32" y="552.5" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="555.5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="dMj-9q-nr7"/>
                                                     <constraint firstAttribute="width" constant="50" id="uPw-8g-xXq"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Al toser o estornudar, tápate la boca o la nariz y usa pañuelos desechables o la parte interior del codo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GeS-2i-Gcu">
-                                                <rect key="frame" x="136" y="549.5" width="243" height="100.5"/>
+                                                <rect key="frame" x="136" y="552.5" width="243" height="100.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100.5" id="F1v-Sa-gMn"/>
                                                 </constraints>
@@ -181,14 +182,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProtocolIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oeR-rl-M0m">
-                                                <rect key="frame" x="32" y="832.5" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="835.5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="NFv-Tm-wLI"/>
                                                     <constraint firstAttribute="width" constant="50" id="iQx-tH-gf0"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Respeta las normas particulares en tu territorio sobre aforos y actividades permitidas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-ZR-mh8">
-                                                <rect key="frame" x="136" y="805" width="243" height="105"/>
+                                                <rect key="frame" x="136" y="808" width="243" height="105"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="105" id="uA9-ks-3Fn"/>
                                                 </constraints>
@@ -200,14 +201,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HealthFrame" translatesAutoresizingMaskIntoConstraints="NO" id="AZm-RW-2DU">
-                                                <rect key="frame" x="32" y="932.5" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="935.5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="NfI-yR-L8f"/>
                                                     <constraint firstAttribute="height" constant="50" id="jdh-jm-Apl"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ante la aparición de algún síntoma (fiebre, tos, dificultad respiratoria) llama a tu centro de salud " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TUQ-pP-dpK">
-                                                <rect key="frame" x="136" y="915" width="243" height="100.5"/>
+                                                <rect key="frame" x="136" y="918" width="243" height="100.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100.5" id="cSJ-6b-eXD"/>
                                                 </constraints>
@@ -219,7 +220,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVv-Kt-0V0">
-                                                <rect key="frame" x="16" y="1178.5" width="382" height="82.5"/>
+                                                <rect key="frame" x="16" y="1181.5" width="382" height="82.5"/>
                                                 <string key="text">Gracias por seguir cuidándote y cuidando a los demás.
 </string>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
@@ -230,7 +231,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSh-DP-kva" userLabel="MoreInfoView">
-                                                <rect key="frame" x="16" y="1099.5" width="382" height="55"/>
+                                                <rect key="frame" x="16" y="1102.5" width="382" height="55"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9b-qz-rHQ" userLabel="Separator">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
@@ -279,14 +280,14 @@
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clean" translatesAutoresizingMaskIntoConstraints="NO" id="JZr-Td-CMZ" userLabel="CleanSurfaceFrame">
-                                                <rect key="frame" x="32" y="662.5" width="50" height="50"/>
+                                                <rect key="frame" x="32" y="665.5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="2zb-xp-Exc"/>
                                                     <constraint firstAttribute="width" constant="50" id="ATb-FR-wp1"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Limpia con regularidad las superficies que mas se tocan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ra0-WP-ygf">
-                                                <rect key="frame" x="136" y="660" width="248" height="50"/>
+                                                <rect key="frame" x="136" y="663" width="248" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="bKc-5T-tFL"/>
                                                 </constraints>
@@ -298,14 +299,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Touch" translatesAutoresizingMaskIntoConstraints="NO" id="NGW-AC-HEK" userLabel="AvoidTouchFrame">
-                                                <rect key="frame" x="30" y="752.5" width="50" height="50"/>
+                                                <rect key="frame" x="30" y="755.5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="1UX-CT-GAT"/>
                                                     <constraint firstAttribute="height" constant="50" id="7x4-tg-euv"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evita tocarte los ojos, la nariz y la boca" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ycL-q5-dUr">
-                                                <rect key="frame" x="135" y="750" width="249" height="50"/>
+                                                <rect key="frame" x="135" y="753" width="249" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="gLc-hf-Ofh"/>
                                                 </constraints>
@@ -317,7 +318,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qué debo hacer si tengo síntomas" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ged-TB-hIN">
-                                                <rect key="frame" x="16" y="1040.5" width="378" height="24"/>
+                                                <rect key="frame" x="16" y="1043.5" width="378" height="24"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" link="YES"/>
                                                 </accessibility>
@@ -406,6 +407,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="3Ci-pF-2uf"/>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="YZg-9j-EKM"/>
                         <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="1MX-SC-z1N" firstAttribute="top" secondItem="YZg-9j-EKM" secondAttribute="top" constant="20" id="Gzj-KY-SbE"/>
@@ -416,18 +418,17 @@
                             <constraint firstItem="SQn-NY-03I" firstAttribute="trailing" secondItem="YZg-9j-EKM" secondAttribute="trailing" id="aGw-A8-phQ"/>
                             <constraint firstItem="YZg-9j-EKM" firstAttribute="bottom" secondItem="SQn-NY-03I" secondAttribute="bottom" id="glo-D6-d1V"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="YZg-9j-EKM"/>
                     </view>
                     <size key="freeformSize" width="414" height="1250"/>
                     <connections>
                         <outlet property="backButton" destination="1MX-SC-z1N" id="tVK-Re-nx9"/>
                         <outlet property="expositionBGView" destination="A1H-mT-hEv" id="5Td-Gy-dyO"/>
+                        <outlet property="moreInfoLabel" destination="mfB-Xo-muc" id="Txe-HB-VqT"/>
                         <outlet property="moreInfoView" destination="xSh-DP-kva" id="hiO-Pb-RLy"/>
-                        <outlet property="moreinfo" destination="mfB-Xo-muc" id="wxH-oY-JIE"/>
-                        <outlet property="sincontactos" destination="tJa-7M-psA" id="lKX-ti-6FM"/>
-                        <outlet property="viewTitle" destination="oRi-0Z-J6b" id="tqE-5z-fLQ"/>
-                        <outlet property="whatToDo" destination="ged-TB-hIN" id="1SE-sq-2Q1"/>
-                        <outlet property="whatToDoTitle" destination="vBQ-H2-P9H" id="R4H-OQ-a17"/>
+                        <outlet property="titleLabel" destination="oRi-0Z-J6b" id="sCt-uM-VMb"/>
+                        <outlet property="whatToDoLabel" destination="ged-TB-hIN" id="zGY-Al-CKa"/>
+                        <outlet property="whatToDoTitleLabel" destination="vBQ-H2-P9H" id="8dn-Z4-ygX"/>
+                        <outlet property="withOutContactLabel" destination="tJa-7M-psA" id="PoG-2B-xJA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rvF-fs-bIi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

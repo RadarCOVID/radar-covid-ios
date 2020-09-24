@@ -12,6 +12,7 @@
 import Foundation
 import UIKit
 extension UIView {
+    
     func showTransparentBackground
         (withColor color: UIColor,
          alpha: CGFloat,

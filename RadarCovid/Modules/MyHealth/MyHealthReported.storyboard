@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -314,6 +315,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="emd-5f-CAZ"/>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Mw1-24-BfA"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Mw1-24-BfA" firstAttribute="top" secondItem="25T-xu-TQp" secondAttribute="top" constant="44" id="J2V-aD-L4d"/>
@@ -326,13 +328,12 @@
                             <constraint firstItem="Mw1-24-BfA" firstAttribute="trailing" secondItem="K6B-gd-OVh" secondAttribute="trailing" id="sTn-dO-nfN"/>
                             <constraint firstItem="K6B-gd-OVh" firstAttribute="top" secondItem="Mw1-24-BfA" secondAttribute="top" constant="50" id="yDb-aP-hSs"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Mw1-24-BfA"/>
                     </view>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
                         <outlet property="moreInfoView" destination="f6f-Wt-5ib" id="1rD-JP-S0V"/>
-                        <outlet property="moreinfolabel" destination="1Be-Yg-h5W" id="bK6-0k-l9t"/>
-                        <outlet property="viewTitle" destination="86v-5m-8Of" id="zS7-FX-2OF"/>
+                        <outlet property="moreinfoLabel" destination="1Be-Yg-h5W" id="ET6-6K-nVF"/>
+                        <outlet property="titleLabel" destination="86v-5m-8Of" id="Efj-hJ-V03"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1w-6c-uSQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -428,10 +428,10 @@
 				6D17CC3924FFC6A1009FD47F /* ActivateCovidNotificationViewController.xib */,
 				6DF6ECB8248F5E56007EAA40 /* ProximityViewController.swift */,
 				6DF6ECB9248F5E56007EAA40 /* ProximityViewController.xib */,
-				6DE27C9E24A0AA2300BBCF40 /* WelcomeViewController.xib */,
 				6DF6ECB4248EAC7F007EAA40 /* WelcomeViewController.swift */,
-				394E962B248E3F6E009F640E /* OnBoarding.storyboard */,
+				6DE27C9E24A0AA2300BBCF40 /* WelcomeViewController.xib */,
 				6DF6ECC9248F743B007EAA40 /* OnBoardingViewController.swift */,
+				394E962B248E3F6E009F640E /* OnBoarding.storyboard */,
 				766C73AB24B567C50056D2DB /* ActivatePushNotificationViewController.swift */,
 				766C73AC24B567C50056D2DB /* ActivatePushNotificationViewController.xib */,
 			);
@@ -441,10 +441,10 @@
 		394E962D248E7DE3009F640E /* MyHealth */ = {
 			isa = PBXGroup;
 			children = (
-				394E962E248E7F24009F640E /* MyHealth.storyboard */,
 				6DF6ECD7248FBEC2007EAA40 /* MyHealthViewController.swift */,
-				399CA87C24912B96000B6BF4 /* MyHealthReported.storyboard */,
+				394E962E248E7F24009F640E /* MyHealth.storyboard */,
 				399CA88024913B0E000B6BF4 /* MyHealthReportedViewController.swift */,
+				399CA87C24912B96000B6BF4 /* MyHealthReported.storyboard */,
 			);
 			path = MyHealth;
 			sourceTree = "<group>";
@@ -527,13 +527,13 @@
 		6DA18CBE24916B1800BE8AAB /* Exposition */ = {
 			isa = PBXGroup;
 			children = (
-				6D2CA48424B4C69B00981DA4 /* PositiveExposed.storyboard */,
-				6D2CA48324B4C69B00981DA4 /* PositiveExposedViewController.swift */,
-				6DA18CBF24916B3300BE8AAB /* Exposition.storyboard */,
-				6DA18CC124916B4100BE8AAB /* ExpositionViewController.swift */,
-				39A1AD45249225510049E48B /* HighExposition.storyboard */,
-				39A1AD47249225A40049E48B /* HighExpositionViewController.swift */,
 				766B026624D282C9006FBD29 /* BaseExposedViewController.swift */,
+				6D2CA48324B4C69B00981DA4 /* PositiveExposedViewController.swift */,
+				6D2CA48424B4C69B00981DA4 /* PositiveExposed.storyboard */,
+				6DA18CC124916B4100BE8AAB /* ExpositionViewController.swift */,
+				6DA18CBF24916B3300BE8AAB /* Exposition.storyboard */,
+				39A1AD47249225A40049E48B /* HighExpositionViewController.swift */,
+				39A1AD45249225510049E48B /* HighExposition.storyboard */,
 			);
 			path = Exposition;
 			sourceTree = "<group>";
@@ -630,9 +630,9 @@
 		6DF6ECC0248F68B2007EAA40 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				6DF6ECC1248F68DF007EAA40 /* Home.storyboard */,
-				6DF6ECC3248F691E007EAA40 /* HomeViewController.swift */,
 				6DF8210E24BEE12B000ED0D2 /* HomeViewModel.swift */,
+				6DF6ECC3248F691E007EAA40 /* HomeViewController.swift */,
+				6DF6ECC1248F68DF007EAA40 /* Home.storyboard */,
 				5C5474DB24F96E3900881B7C /* TimeExposedView.swift */,
 				5CE5834324FD483D00DBB3CB /* TimeExposed.xib */,
 			);
@@ -672,8 +672,8 @@
 		6DF6ECD2248FA091007EAA40 /* HelpLine */ = {
 			isa = PBXGroup;
 			children = (
-				6DF6ECD3248FA0B3007EAA40 /* HelpLine.storyboard */,
 				6DF6ECD5248FA0D0007EAA40 /* HelpLineViewController.swift */,
+				6DF6ECD3248FA0B3007EAA40 /* HelpLine.storyboard */,
 			);
 			path = HelpLine;
 			sourceTree = "<group>";

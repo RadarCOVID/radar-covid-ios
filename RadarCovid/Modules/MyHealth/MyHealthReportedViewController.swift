@@ -13,40 +13,29 @@ import UIKit
 
 class MyHealthReportedViewController: UIViewController {
 
+    //MARK: - Outlet.
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var moreinfoLabel: UILabel!
+    @IBOutlet weak var moreInfoView: UIView!
+    
+    // MARK: - Properties
     var router: AppRouter?
 
-    @IBOutlet weak var moreinfolabel: UILabel!
-    @IBOutlet weak var moreInfoView: UIView!
-    @IBOutlet weak var viewTitle: UILabel!
-
-    @IBAction func onBack(_ sender: Any) {
-        router?.popToRoot(from: self, animated: true)
-    }
-
+    //MARK: - View Life Cycle Methods.
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        moreInfoView.isUserInteractionEnabled = true
-        moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                          action: #selector(userDidTapLabel(tapGestureRecognizer:))))
-        moreinfolabel.isUserInteractionEnabled = true
-        moreinfolabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                           action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+        
+        setupView()
         setupAccessibility()
     }
 
-    func setupAccessibility() {
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized
-        if UIAccessibility.isVoiceOverRunning {
-            viewTitle.isHidden = false
-        } else {
-            viewTitle.isHidden = true
-        }
+    //MARK: - Action methods.
+    
+    @IBAction func onBack(_ sender: Any) {
+        router?.popToRoot(from: self, animated: true)
     }
-
+    
     @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
                  urlString: "EXPOSURE_INFECTED_INFO_URL".localized)
@@ -57,4 +46,34 @@ class MyHealthReportedViewController: UIViewController {
                  urlString: "EXPOSITION_HIGH_MORE_INFO_URL".localized)
     }
 
+}
+
+//MARK: - Accesibility.
+extension MyHealthReportedViewController {
+    
+    func setupAccessibility() {
+        titleLabel.isAccessibilityElement = true
+        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        titleLabel.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized
+        
+        if UIAccessibility.isVoiceOverRunning {
+            titleLabel.isHidden = false
+        } else {
+            titleLabel.isHidden = true
+        }
+    }
+}
+
+//MARK: - Private.
+private extension MyHealthReportedViewController {
+    
+    func setupView() {
+        
+        moreInfoView.isUserInteractionEnabled = true
+        moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                          action: #selector(userDidTapLabel(tapGestureRecognizer:))))
+        moreinfoLabel.isUserInteractionEnabled = true
+        moreinfoLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                           action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+    }
 }

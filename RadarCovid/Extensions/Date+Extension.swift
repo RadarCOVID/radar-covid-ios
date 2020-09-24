@@ -12,6 +12,8 @@
 import Foundation
 extension Date {
 
+    static let appDateFormat: String = "dd.MM.YYYY"
+    
     func years(sinceDate: Date) -> Int? {
         return Calendar.current.dateComponents([.year], from: sinceDate, to: self).year
     }

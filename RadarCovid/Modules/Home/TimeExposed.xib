@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +18,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C58-ev-rdO" userLabel="containerView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SY-NN-qG7">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SY-NN-qG7">
                             <rect key="frame" x="359" y="10" width="50" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="HhH-fI-S2a"/>
@@ -151,7 +153,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="t0z-rs-I37" firstAttribute="top" secondItem="awW-ay-1eZ" secondAttribute="top" constant="5" id="5TH-ob-wLY"/>
                                         <constraint firstItem="EwG-6Q-NeI" firstAttribute="leading" secondItem="THN-Bz-LTX" secondAttribute="trailing" constant="15" id="7hh-5M-d4d"/>
@@ -203,6 +205,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="0.53143276900000003" green="0.58377778759999999" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="C58-ev-rdO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="So1-wb-bG0"/>
@@ -210,15 +213,14 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="C58-ev-rdO" secondAttribute="bottom" id="wSe-UD-j7f"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="C58-ev-rdO" secondAttribute="trailing" id="zDb-AP-29H"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="acceptButton" destination="szH-xb-3qg" id="ZO8-nK-VXy"/>
-                <outlet property="bullet1" destination="jxP-6U-juM" id="Ffd-06-byH"/>
-                <outlet property="bullet2" destination="vKE-JT-D14" id="78q-lx-2F4"/>
-                <outlet property="bullet3" destination="EwG-6Q-NeI" id="Pgv-pb-HtF"/>
+                <outlet property="bullet1Label" destination="jxP-6U-juM" id="uXl-pj-MG3"/>
+                <outlet property="bullet2Label" destination="vKE-JT-D14" id="0A6-Er-lDj"/>
+                <outlet property="bullet3Label" destination="EwG-6Q-NeI" id="jbA-KC-w6k"/>
                 <outlet property="closeButton" destination="9SY-NN-qG7" id="MdV-9b-yZ7"/>
                 <outlet property="containerView" destination="C58-ev-rdO" id="yEN-BA-CHt"/>
-                <outlet property="moreinfo" destination="W4T-g8-zgD" id="ssi-e0-HM1"/>
+                <outlet property="moreInfoLabel" destination="W4T-g8-zgD" id="dZD-5n-k3B"/>
                 <outlet property="titleLabel" destination="t0z-rs-I37" id="EqX-MF-f4R"/>
             </connections>
             <point key="canvasLocation" x="140.57971014492756" y="101.78571428571428"/>
@@ -227,5 +229,8 @@
     <resources>
         <image name="ButtonPrimaryDisabled" width="343" height="56"/>
         <image name="buttonsPrimary" width="341" height="60"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

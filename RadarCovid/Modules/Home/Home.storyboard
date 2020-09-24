@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -193,7 +194,7 @@ Cuídate y cuida a los demás.</string>
                                 <viewLayoutGuide key="contentLayoutGuide" id="UtQ-SN-Kis"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="8p4-5Z-9pe"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgD-SH-6Y2">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgD-SH-6Y2">
                                 <rect key="frame" x="16" y="792" width="382" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="UKC-Bh-shj"/>
@@ -213,7 +214,7 @@ Cuídate y cuida a los demás.</string>
                                     <action selector="onCommunicate:" destination="boN-vE-v6h" eventType="primaryActionTriggered" id="V3n-sM-LVk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKG-lv-3X4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKG-lv-3X4">
                                 <rect key="frame" x="112.5" y="94" width="189" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -233,6 +234,7 @@ Cuídate y cuida a los demás.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="AA3-07-0Pc"/>
                         <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="AKG-lv-3X4" firstAttribute="leading" secondItem="AA3-07-0Pc" secondAttribute="leading" constant="112.5" id="1Np-oA-l8S"/>
@@ -250,29 +252,28 @@ Cuídate y cuida a los demás.</string>
                             <constraint firstItem="AA3-07-0Pc" firstAttribute="trailing" secondItem="mgD-SH-6Y2" secondAttribute="trailing" constant="16" id="ocB-xZ-CJp"/>
                             <constraint firstItem="JEu-F8-ZM1" firstAttribute="leading" secondItem="bH7-lt-L7E" secondAttribute="leading" id="xoj-7X-mMq"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="AA3-07-0Pc"/>
                     </view>
                     <connections>
                         <outlet property="activateNotificationButton" destination="QdH-mH-0eN" id="MGk-ZP-XGw"/>
+                        <outlet property="checkImage" destination="s47-VN-7tM" id="J2X-CI-gCb"/>
+                        <outlet property="circleImage" destination="Ker-eU-Kvi" id="SLP-LC-9KX"/>
                         <outlet property="communicationButton" destination="mgD-SH-6Y2" id="PD0-jV-Ds1"/>
+                        <outlet property="defaultImage" destination="6NQ-cJ-mH8" id="hnk-Vd-YR6"/>
                         <outlet property="envLabel" destination="iWR-aJ-g5N" id="OpB-d4-Ngt"/>
-                        <outlet property="expositionDescription" destination="XCQ-uz-Hi1" id="SgW-aX-6xj"/>
-                        <outlet property="expositionDetailView" destination="kNQ-4q-3vF" id="tOj-mE-Qhg"/>
-                        <outlet property="expositionTitle" destination="Tiy-hB-953" id="d36-84-O30"/>
+                        <outlet property="expositionDescriptionLabel" destination="XCQ-uz-Hi1" id="dNf-jt-DUu"/>
+                        <outlet property="expositionDetailImage" destination="kNQ-4q-3vF" id="cRE-qb-sfG"/>
+                        <outlet property="expositionTitleLabel" destination="Tiy-hB-953" id="d8f-zM-4Z9"/>
                         <outlet property="expositionView" destination="6hz-zu-Mhb" id="8iB-cX-vMh"/>
-                        <outlet property="imageCheck" destination="s47-VN-7tM" id="pmS-0V-GBe"/>
-                        <outlet property="imageCircle" destination="Ker-eU-Kvi" id="bfD-Fp-gvF"/>
-                        <outlet property="imageDefault" destination="6NQ-cJ-mH8" id="Vdx-I6-dIm"/>
-                        <outlet property="moreinfo" destination="8L1-q5-EhC" id="kfq-0N-ISG"/>
-                        <outlet property="notificationInactiveMessage" destination="Le3-5O-yti" id="zZ8-Wv-yLt"/>
-                        <outlet property="radarMessage" destination="5DO-YK-Xnt" id="mg3-Yj-6Kn"/>
+                        <outlet property="moreInfoLabel" destination="8L1-q5-EhC" id="uff-Lh-L2g"/>
+                        <outlet property="notificationInactiveMessageLabel" destination="Le3-5O-yti" id="sK3-rZ-fVD"/>
+                        <outlet property="radarMessageLabel" destination="5DO-YK-Xnt" id="5yU-mZ-Ive"/>
                         <outlet property="radarSwitch" destination="G5m-HH-dbd" id="eo5-R2-GwJ"/>
-                        <outlet property="radarTitle" destination="p5A-O2-cnn" id="pwU-lr-a3Q"/>
+                        <outlet property="radarTitleLabel" destination="p5A-O2-cnn" id="7yY-Oj-E1s"/>
                         <outlet property="radarView" destination="fuQ-dg-Nwm" id="bzd-Ez-hrg"/>
                         <outlet property="resetDataButton" destination="AKG-lv-3X4" id="amN-hh-hpR"/>
-                        <outlet property="topActiveNotification" destination="guG-Sw-JA8" id="RCC-7Q-Qdl"/>
+                        <outlet property="titleLabel" destination="Umm-hj-wLw" id="Cxt-a2-IM3"/>
+                        <outlet property="topActiveNotificationConstraint" destination="guG-Sw-JA8" id="X7b-4X-u0t"/>
                         <outlet property="topRadarTitle" destination="8uE-ZH-Pls" id="IY5-n2-dML"/>
-                        <outlet property="viewTitle" destination="Umm-hj-wLw" id="TOk-vX-V7A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGb-4j-Cjq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

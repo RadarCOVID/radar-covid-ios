@@ -35,13 +35,10 @@ class OnBoardingViewController: UIViewController {
 
     // MARK: - Properties
     var router: AppRouter?
+    
     private var termsAccepted: Bool = false
 
     //MARK: - View Life Cycle Methods.
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

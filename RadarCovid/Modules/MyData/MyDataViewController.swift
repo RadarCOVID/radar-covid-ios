@@ -13,21 +13,55 @@ import UIKit
 
 class MyDataViewController: UIViewController {
 
+    //MARK: - Outlet.
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var acceptTermsLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var privacyLabel: UILabel!
-    @IBOutlet weak var bullet2: UILabel!
-    @IBOutlet weak var bullet3: UILabel!
-
-    @IBOutlet weak var viewTitle: UILabel!
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
+    @IBOutlet weak var bullet2Label: UILabel!
+    @IBOutlet weak var bullet3Label: UILabel!
+    
+    //MARK: - View Life Cycle Methods.
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupView()
         setupAccessibility()
+    }
+
+    //MARK: - Action methods.
+
+    @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "USE_CONDITIONS_URL".localized)
+    }
+
+    @objc func userDidTapPrivacy(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "PRIVACY_POLICY_URL".localized)
+    }
+}
+
+//MARK: - Accesibility.
+extension MyDataViewController {
+    
+    func setupAccessibility() {
+        
+        titleLabel.isAccessibilityElement = true
+        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        titleLabel.accessibilityLabel = "ACC_MYDATA_TITLE".localized
+        
+        if UIAccessibility.isVoiceOverRunning {
+            descriptionLabel.text = descriptionLabel.text?.lowercased()
+            bullet2Label.text = bullet2Label.text?.lowercased()
+            bullet3Label.text = bullet3Label.text?.lowercased()
+        }
+    }
+}
+
+//MARK: - Private.
+private extension MyDataViewController {
+    
+    func setupView() {
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true
 
@@ -37,25 +71,4 @@ class MyDataViewController: UIViewController {
         privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                           action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
     }
-
-    func setupAccessibility() {
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        print("ACC_MYDATA_TITLE".localized)
-        viewTitle.accessibilityLabel = "ACC_MYDATA_TITLE".localized
-        if UIAccessibility.isVoiceOverRunning {
-            descriptionLabel.text = descriptionLabel.text?.lowercased()
-            bullet2.text = bullet2.text?.lowercased()
-            bullet3.text = bullet3.text?.lowercased()
-        }
-    }
-
-    @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "USE_CONDITIONS_URL".localized)
-    }
-
-    @objc func userDidTapPrivacy(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "PRIVACY_POLICY_URL".localized)
-    }
-
 }

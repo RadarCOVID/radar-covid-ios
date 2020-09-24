@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -193,6 +194,7 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="155.5"/>
                             </imageView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ucK-r6-0qo"/>
                         <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="CFd-OD-gzT" firstAttribute="leading" secondItem="ucK-r6-0qo" secondAttribute="leading" id="0Ig-nw-FUn"/>
@@ -203,14 +205,13 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                             <constraint firstItem="CFd-OD-gzT" firstAttribute="top" secondItem="NXc-EZ-zay" secondAttribute="top" id="srz-Is-L5O"/>
                             <constraint firstItem="Cui-45-0yl" firstAttribute="leading" secondItem="ucK-r6-0qo" secondAttribute="leading" id="xA5-pc-1w6"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ucK-r6-0qo"/>
                     </view>
                     <connections>
                         <outlet property="faqWebLabel" destination="IR3-qq-aZZ" id="EOb-xM-uLc"/>
                         <outlet property="infoWebLabel" destination="8bc-4v-TsW" id="tOH-gN-GOE"/>
                         <outlet property="otherWebLabel" destination="6tQ-Xe-eZr" id="MRg-7K-m9W"/>
                         <outlet property="phoneView" destination="1da-Fl-GEo" id="E5d-MT-S53"/>
-                        <outlet property="viewTitle" destination="Cst-er-eD4" id="je2-Mr-xuj"/>
+                        <outlet property="titleLabel" destination="Cst-er-eD4" id="rh6-7H-BZP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EBY-8b-jcn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
