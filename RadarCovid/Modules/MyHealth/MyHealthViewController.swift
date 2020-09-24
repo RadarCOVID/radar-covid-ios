@@ -168,10 +168,15 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
 
         if UIAccessibility.isVoiceOverRunning {
             codeTextField.isHidden = false
+            self.addDoneButtonOnKeyboard(textView: codeTextField)
             codeView.isHidden = true
         } else {
             codeTextField.isHidden = true
             codeView.isHidden = false
+            self.codeChars.forEach { (char) in
+                self.addDoneButtonOnKeyboard(textView: char)
+            }
+
         }
     }
 
@@ -269,6 +274,30 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
             currentString.replacingCharacters(in: range, with: string) as NSString
         sendDiagnosticButton.isEnabled = newString.length == 12
         return newString.length <= maxLength
+    }
+    
+    func addDoneButtonOnKeyboard(textView: UITextField)
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "ALERT_OK_BUTTON".localized, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction) )
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        textView.inputAccessoryView = doneToolbar
+        
+    }
+    
+    @objc func doneButtonAction(textView: UITextField)
+    {
+        self.view.endEditing(true)
     }
 
 }
