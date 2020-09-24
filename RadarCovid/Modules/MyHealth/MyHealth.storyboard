@@ -263,7 +263,7 @@ COVID positivo</string>
                                                             <constraint firstAttribute="height" constant="60" id="OxZ-Ho-5NK"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>

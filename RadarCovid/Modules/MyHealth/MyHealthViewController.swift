@@ -152,6 +152,7 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
         codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
         codeTextField.accessibilityHint = "ACC_HINT".localized
         codeTextField.keyboardType = .numberPad
+        
 
         viewTitle.isAccessibilityElement = true
         viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
@@ -253,23 +254,21 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
         self.scrollViewBottonConstraint.constant = 0
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
-
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil {
-            guard let textFieldText = textField.text,
-                let rangeOfTextToReplace = Range(range, in: textFieldText) else {
-                    return false
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 12
+        let currentString: NSString = (textField.text ?? "") as NSString
+        if (string != "\u{232B}"){
+            let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789").inverted
+            let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet) == nil
+            if !replacementStringIsLegal{
+                return false;
             }
-            let substringToReplace = textFieldText[rangeOfTextToReplace]
-            let count = textFieldText.count - substringToReplace.count + string.count
-            if count == 12 {
-                sendDiagnosticButton.isEnabled = true
-            }
-            return count <= 12
         }
-        return false
-
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        sendDiagnosticButton.isEnabled = newString.length == 12
+        return newString.length <= maxLength
     }
 
 }

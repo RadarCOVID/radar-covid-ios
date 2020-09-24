@@ -174,7 +174,11 @@
 		39A1AD45249225510049E48B /* HighExposition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HighExposition.storyboard; sourceTree = "<group>"; };
 		39A1AD47249225A40049E48B /* HighExpositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighExpositionViewController.swift; sourceTree = "<group>"; };
 		39C3FEC22497746900D1A13E /* DiagnosisCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisCodeUseCase.swift; sourceTree = "<group>"; };
+		5C36A712251C120000BBF5F8 /* eu-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "eu-ES"; path = "eu-ES.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5C36A713251C121B00BBF5F8 /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "ca-ES.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5C36A714251C123000BBF5F8 /* gl-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "gl-ES"; path = "gl-ES.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5C5474DB24F96E3900881B7C /* TimeExposedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeExposedView.swift; sourceTree = "<group>"; };
+		5C8E3AC0251BBD06002622F1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5CE5834324FD483D00DBB3CB /* TimeExposed.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeExposed.xib; sourceTree = "<group>"; };
 		6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMocks.swift; sourceTree = "<group>"; };
 		6D01BDD824F6719000FBADB4 /* PickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerPresenter.swift; sourceTree = "<group>"; };
@@ -826,6 +830,10 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				"eu-ES",
+				"ca-ES",
+				"gl-ES",
 			);
 			mainGroup = 3944327D248939F000FF0217;
 			packageReferences = (
@@ -1027,6 +1035,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				39443295248939F500FF0217 /* Base */,
+				5C8E3AC0251BBD06002622F1 /* es */,
+				5C36A712251C120000BBF5F8 /* eu-ES */,
+				5C36A713251C121B00BBF5F8 /* ca-ES */,
+				5C36A714251C123000BBF5F8 /* gl-ES */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1038,6 +1050,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1098,6 +1111,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1489,6 +1503,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1568,6 +1583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
