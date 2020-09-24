@@ -26,7 +26,7 @@ class ActivateCovidNotificationViewController: UIViewController {
     @IBOutlet weak var viewTitle: UILabel!
     @IBAction func onContinue(_ sender: Any) {
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
-                            "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.white)
+                            "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.black)
         radarStatusUseCase?.restoreLastStateAndSync().subscribe(
                 onError: { [weak self] error in
                 self?.errorHandler?.handle(error: error)

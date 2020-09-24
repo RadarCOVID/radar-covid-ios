@@ -24,7 +24,7 @@ class ActivatePushNotificationViewController: UIViewController {
     @IBAction func onContinue(_ sender: Any) {
 
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
-                                 "ACTIVATE_PUSH_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.white)
+                                 "ACTIVATE_PUSH_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.black)
 
         self.notificationHandler?.setupNotifications().subscribe(onNext: { [weak self] _ in
             DispatchQueue.main.async {
