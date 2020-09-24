@@ -30,7 +30,7 @@ struct RadarCovidWidgetEntryView : View {
                     } else {
                         VStack(alignment: .leading, spacing: nil) {
                             ZStack {
-                                Capsule()
+                                ContainerRelativeShape()
                                     .fill(entry.color)
                                     .frame(height: 44, alignment: .center)
                                 Text(entry.text)
