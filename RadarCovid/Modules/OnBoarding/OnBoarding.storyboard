@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -89,15 +91,6 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_2_PARAGRAPH_2_DESCRIPTION"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkq-E0-sSJ" userLabel="paragraph3Description">
-                                                        <rect key="frame" x="0.0" y="344" width="382" height="23.5"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_2_PARAGRAPH_3_DESCRIPTION"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEh-4f-uik" userLabel="paragraph3Title">
                                                         <rect key="frame" x="0.0" y="310" width="382" height="29"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
@@ -105,6 +98,15 @@
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_2_PARAGRAPH_3_TITLE"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkq-E0-sSJ" userLabel="paragraph3Description">
+                                                        <rect key="frame" x="0.0" y="344" width="382" height="23.5"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_2_PARAGRAPH_3_DESCRIPTION"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
@@ -139,11 +141,12 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwM-SS-Bb9" userLabel="CheckView">
                                                 <rect key="frame" x="16" y="517.5" width="382" height="70"/>
                                                 <subviews>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-E5-Lzg">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-E5-Lzg">
                                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" none="YES"/>
                                                         </accessibility>
+                                                        <color key="onTintColor" systemColor="systemYellowColor"/>
                                                         <connections>
                                                             <action selector="onSwithAcceptChange:" destination="5jd-jE-NO7" eventType="valueChanged" id="WQJ-mL-PJn"/>
                                                         </connections>
@@ -258,6 +261,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="C15-Ne-DdG"/>
                         <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="put-jW-Lmz" firstAttribute="top" secondItem="C15-Ne-DdG" secondAttribute="top" id="1RG-C1-I0Q"/>
@@ -268,22 +272,21 @@
                             <constraint firstItem="C15-Ne-DdG" firstAttribute="bottom" secondItem="GDV-35-L2Q" secondAttribute="bottom" constant="10" id="tlK-vp-Odt"/>
                             <constraint firstItem="put-jW-Lmz" firstAttribute="leading" secondItem="C15-Ne-DdG" secondAttribute="leading" id="v1J-7G-Wtq"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="C15-Ne-DdG"/>
                     </view>
                     <connections>
                         <outlet property="acceptButton" destination="GDV-35-L2Q" id="DI6-CX-z4Y"/>
+                        <outlet property="acceptSwitch" destination="ozt-E5-Lzg" id="ohi-0e-aDH"/>
                         <outlet property="acceptTermsLabel" destination="aNP-Ib-LaU" id="Swl-OP-M3y"/>
                         <outlet property="acceptView" destination="XRM-kg-RAx" id="Bc4-iU-0Eh"/>
                         <outlet property="checkBoxImage" destination="jHq-8U-BtL" id="63v-Vg-llX"/>
-                        <outlet property="paragraph1Description" destination="dm3-PE-YEM" id="6mk-aM-Key"/>
-                        <outlet property="paragraph1Title" destination="Ns7-D4-wdm" id="N42-NZ-YRu"/>
-                        <outlet property="paragraph2Title" destination="NXX-N4-u7T" id="8Lo-bV-B2v"/>
-                        <outlet property="paragraph3Title" destination="UEh-4f-uik" id="sDR-WB-PsP"/>
+                        <outlet property="paragraph1DescriptionLabel" destination="dm3-PE-YEM" id="YWM-kR-99m"/>
+                        <outlet property="paragraph1TitleLabel" destination="Ns7-D4-wdm" id="mWt-2E-dkb"/>
+                        <outlet property="paragraph2TitleLabel" destination="NXX-N4-u7T" id="ev8-Xa-gfQ"/>
+                        <outlet property="paragraph3TitleLabel" destination="UEh-4f-uik" id="CnC-CS-FlW"/>
                         <outlet property="privacyLabel" destination="qvQ-IX-8Bm" id="KA9-TZ-gKW"/>
                         <outlet property="scrollView" destination="put-jW-Lmz" id="UnR-cA-MSy"/>
-                        <outlet property="switchAccept" destination="ozt-E5-Lzg" id="2oL-s5-GAX"/>
-                        <outlet property="viewSubtitle" destination="zxa-Hb-Im5" id="Ksu-Rr-Y9S"/>
-                        <outlet property="viewTitle" destination="Cjg-pU-6HI" id="eSC-L2-cq6"/>
+                        <outlet property="subtitleLabel" destination="zxa-Hb-Im5" id="jxw-ah-UH3"/>
+                        <outlet property="titleLabel" destination="Cjg-pU-6HI" id="ssi-Tx-Zjj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xsl-oB-D5A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -300,5 +303,8 @@
         <namedColor name="bgColor">
             <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
