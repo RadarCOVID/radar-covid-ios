@@ -30,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="494"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJg-TW-Zyr">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="708"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="999.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkC-Jh-ngm">
                                     <rect key="frame" x="113" y="0.0" width="207" height="206.5"/>
@@ -124,7 +124,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                         <constraint firstItem="rSt-AF-pW4" firstAttribute="top" secondItem="aQe-F8-5u6" secondAttribute="top" constant="1" id="urg-Ds-yDe"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMv-ck-JYx" userLabel="stepbullet1">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEP_1_BULLET_1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMv-ck-JYx" userLabel="stepbullet1">
                                     <rect key="frame" x="32" y="468" width="272" height="28"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                     <nil key="textColor"/>
@@ -142,7 +142,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <color key="textColor" red="0.3483489293" green="0.26916854210000002" blue="0.61393559639999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2A-1t-Mhn" userLabel="stepbullet2">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEP_1_BULLET_2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2A-1t-Mhn" userLabel="stepbullet2">
                                     <rect key="frame" x="32" y="511" width="272" height="28"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                     <nil key="textColor"/>
@@ -160,7 +160,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <color key="textColor" red="0.3483489293" green="0.26916854210000002" blue="0.61393559639999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyH-o9-UvP" userLabel="stepbullet3">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEP_1_BULLET_3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyH-o9-UvP" userLabel="stepbullet3">
                                     <rect key="frame" x="32" y="554" width="272" height="28"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                     <nil key="textColor"/>
@@ -178,6 +178,16 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <color key="textColor" red="0.3483489293" green="0.26916854210000002" blue="0.61393559639999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8f3-Db-Vcu">
+                                    <rect key="frame" x="16" y="732" width="288" height="257.5"/>
+                                    <string key="text">IMPORTANTE: La App Radar COVID se ha puesto ya a disposición de todas las Comunidades Autónomas y comenzará a estar activa en cada una de ellas según éstas se vayan incorporando.</string>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_1_IMPORTANT"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" name="bgColor"/>
                             <constraints>
@@ -194,7 +204,6 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                 <constraint firstItem="cpa-3O-7Z9" firstAttribute="top" secondItem="OyH-o9-UvP" secondAttribute="bottom" constant="30" id="N2m-Gw-Y2k"/>
                                 <constraint firstItem="RDd-xc-3dr" firstAttribute="top" secondItem="OyH-o9-UvP" secondAttribute="top" constant="-5" id="Q5C-B3-i4F"/>
                                 <constraint firstItem="Kjg-12-rKN" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="Rs1-jd-sGD"/>
-                                <constraint firstAttribute="bottom" secondItem="cpa-3O-7Z9" secondAttribute="bottom" constant="10" id="Vf5-PP-KX4"/>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="top" secondItem="fNN-3A-qYp" secondAttribute="top" constant="5" id="WIS-qk-HdO"/>
                                 <constraint firstAttribute="trailing" secondItem="W2A-1t-Mhn" secondAttribute="trailing" constant="16" id="YoB-Pp-53o"/>
                                 <constraint firstItem="Kjg-12-rKN" firstAttribute="top" secondItem="8Ln-m6-qGi" secondAttribute="bottom" constant="20" id="d4e-RK-UzM"/>
@@ -202,12 +211,16 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                 <constraint firstItem="OyH-o9-UvP" firstAttribute="top" secondItem="W2A-1t-Mhn" secondAttribute="bottom" constant="15" id="fTK-QO-FLI"/>
                                 <constraint firstItem="8Ln-m6-qGi" firstAttribute="top" secondItem="BJg-TW-Zyr" secondAttribute="top" constant="150" id="fVr-J1-V9v"/>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="32" id="fvo-PW-l2E"/>
+                                <constraint firstItem="8f3-Db-Vcu" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="gCb-z1-U3x"/>
                                 <constraint firstAttribute="trailing" secondItem="lkC-Jh-ngm" secondAttribute="trailing" id="gPR-lk-4uH"/>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="leading" secondItem="fNN-3A-qYp" secondAttribute="trailing" constant="5" id="gec-x5-I43"/>
                                 <constraint firstItem="lkC-Jh-ngm" firstAttribute="top" secondItem="BJg-TW-Zyr" secondAttribute="top" id="gvm-9Z-jh4"/>
                                 <constraint firstItem="yMv-ck-JYx" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="32" id="h3E-uT-sgL"/>
                                 <constraint firstItem="aQe-F8-5u6" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="hlK-h2-hOd"/>
+                                <constraint firstItem="8f3-Db-Vcu" firstAttribute="top" secondItem="cpa-3O-7Z9" secondAttribute="bottom" constant="34" id="oNJ-Nl-sJT"/>
                                 <constraint firstItem="OyH-o9-UvP" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="32" id="p4o-eh-E8m"/>
+                                <constraint firstAttribute="trailing" secondItem="8f3-Db-Vcu" secondAttribute="trailing" constant="16" id="smU-ha-gU3"/>
+                                <constraint firstAttribute="bottom" secondItem="8f3-Db-Vcu" secondAttribute="bottom" constant="10" id="xRq-KS-atK"/>
                                 <constraint firstItem="yMv-ck-JYx" firstAttribute="leading" secondItem="QR7-i5-ImM" secondAttribute="trailing" constant="5" id="yMQ-af-N0z"/>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="top" secondItem="yMv-ck-JYx" secondAttribute="bottom" constant="15" id="z6u-zw-fF9"/>
                                 <constraint firstAttribute="trailing" secondItem="cpa-3O-7Z9" secondAttribute="trailing" constant="16" id="zFa-PV-PNN"/>
