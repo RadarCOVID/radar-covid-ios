@@ -70,6 +70,7 @@ extension HelpLineViewController {
 
         faqWebLabel.isAccessibilityElement = true
         faqWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        faqWebLabel.accessibilityLabel = ((faqWebLabel.text?.components(separatedBy: " ") ?? [""]).compactMap { $0.uppercased().contains("FAQ") ? " " + ($0.enumerated().map {"\($1)."}).joined() : " \($0)" }).joined()
         faqWebLabel.accessibilityHint = "ACC_HINT".localized
 
         infoWebLabel.isAccessibilityElement = true
@@ -111,5 +112,3 @@ private extension HelpLineViewController {
                                         action: #selector(userDidTapOther(tapGestureRecognizer:))))
     }
 }
-
-
