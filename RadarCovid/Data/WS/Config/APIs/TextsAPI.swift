@@ -72,8 +72,10 @@ open class TextsAPI {
         let parameters: [String: Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "ccaa": ccaa,
-                        "locale": locale
+            "ccaa": ccaa,
+            "locale": locale,
+            "platform" : Config.platform,
+            "version" : Config.version
         ])
 
         let requestBuilder: RequestBuilder<TextCustomMap>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

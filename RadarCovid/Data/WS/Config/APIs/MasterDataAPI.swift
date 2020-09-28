@@ -82,8 +82,10 @@ open class MasterDataAPI {
         let parameters: [String: Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "locale": locale,
-                        "additionalInfo": additionalInfo
+            "locale": locale,
+            "additionalInfo": additionalInfo,
+            "platform" : Config.platform,
+            "version" : Config.version
         ])
 
         let requestBuilder: RequestBuilder<[CcaaKeyValueDto]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -144,7 +146,9 @@ open class MasterDataAPI {
         let parameters: [String: Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "locale": locale
+            "locale": locale,
+            "platform" : Config.platform,
+            "version" : Config.version
         ])
 
         let requestBuilder: RequestBuilder<[KeyValueDto]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

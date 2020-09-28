@@ -43,6 +43,9 @@ enum Endpoits {
 
 struct Config {
 
+    static let platform = "iOS"
+    static let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? ""
+    
     #if DEBUG_PRE
     static let debug = true
     static let environment = "PRE"
