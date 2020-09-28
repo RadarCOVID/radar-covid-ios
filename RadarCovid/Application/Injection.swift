@@ -33,12 +33,6 @@ class Injection {
             return swaggerApi
         }.inObjectScope(.container)
 
-        container.register(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue) { _ in
-            let swaggerApi = SwaggerClientAPI()
-            swaggerApi.basePath = Config.endpoints.kpi
-            return swaggerApi
-        }.inObjectScope(.container)
-
         container.register(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.verification
