@@ -161,9 +161,9 @@ extension MyHealthViewController {
 //MARK: - KeyboardHelper.
 extension MyHealthViewController {
     
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification?) {
         guard let keyboardSize = (
-            notification.userInfo?[
+                notification?.userInfo?[
                 UIResponder.keyboardFrameEndUserInfoKey
             ] as? NSValue)?.cgRectValue else {
            // if keyboard size is not available for some reason, dont do anything
@@ -172,11 +172,11 @@ extension MyHealthViewController {
         // move the root view up by the distance of keyboard height
         DispatchQueue.main.async {
             self.scrollViewBottonConstraint.constant = keyboardSize.height
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height), animated: true)
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height + CGFloat(70)), animated: true)
         }
     }
 
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification?) {
         // move back the root view origin to zero
         self.scrollViewBottonConstraint.constant = 0
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
@@ -245,6 +245,8 @@ extension MyHealthViewController {
         for item in codeChars {
             item.endEditing(true)
         }
+        
+        keyboardWillHide(notification: nil)
     }
 }
 
