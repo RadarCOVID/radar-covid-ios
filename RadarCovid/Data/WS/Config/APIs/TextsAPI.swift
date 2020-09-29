@@ -26,10 +26,12 @@ open class TextsAPI {
 
      - parameter ccaa: (query)  (optional, default to ES)
      - parameter locale: (query)  (optional, default to es-ES)
+     - parameter platform: (query)  (optional, default to iOS)
+     - parameter version: (query)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open func getTexts(ccaa: String? = nil, locale: String? = nil, completion: @escaping ((_ data: TextCustomMap?, _ error: Error?) -> Void)) {
-        getTextsWithRequestBuilder(ccaa: ccaa, locale: locale).execute { (response, error) -> Void in
+    open func getTexts(ccaa: String? = nil, locale: String? = nil, platform: String? = nil, version: String? = nil, completion: @escaping ((_ data: TextCustomMap?,_ error: Error?) -> Void)) {
+        getTextsWithRequestBuilder(ccaa: ccaa, locale: locale, platform: platform, version: version).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -38,11 +40,13 @@ open class TextsAPI {
      Get texts by locale and CCAA
      - parameter ccaa: (query)  (optional, default to ES)
      - parameter locale: (query)  (optional, default to es-ES)
+     - parameter platform: (query)  (optional, default to iOS)
+     - parameter version: (query)  (optional)
      - returns: Observable<TextCustomMap>
      */
-    open func getTexts(ccaa: String? = nil, locale: String? = nil) -> Observable<TextCustomMap> {
-        return Observable.create { [weak self] observer -> Disposable in
-            self?.getTexts(ccaa: ccaa, locale: locale) { data, error in
+    open func getTexts(ccaa: String? = nil, locale: String? = nil, platform: String? = nil, version: String? = nil) -> Observable<TextCustomMap> {
+        return Observable.create { [weak self]  observer -> Disposable in
+            self?.getTexts(ccaa: ccaa, locale: locale, platform: platform, version: version) { data, error in
                 if let error = error {
                     observer.on(.error(error))
                 } else {
@@ -63,19 +67,21 @@ open class TextsAPI {
 }}]
      - parameter ccaa: (query)  (optional, default to ES)
      - parameter locale: (query)  (optional, default to es-ES)
+     - parameter platform: (query)  (optional, default to iOS)
+     - parameter version: (query)  (optional)
 
-     - returns: RequestBuilder<TextCustomMap> 
+     - returns: RequestBuilder<TextCustomMap>
      */
-    open func getTextsWithRequestBuilder(ccaa: String? = nil, locale: String? = nil) -> RequestBuilder<TextCustomMap> {
+    open func getTextsWithRequestBuilder(ccaa: String? = nil, locale: String? = nil, platform: String? = nil, version: String? = nil) -> RequestBuilder<TextCustomMap> {
         let path = "/texts"
         let URLString = clientApi.basePath + path
-        let parameters: [String: Any]? = nil
+        let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "ccaa": ccaa,
-            "locale": locale,
-            "platform" : Config.platform,
-            "version" : Config.version
+                        "ccaa": ccaa,
+                        "locale": locale,
+                        "platform": platform,
+                        "version": version
         ])
 
         let requestBuilder: RequestBuilder<TextCustomMap>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

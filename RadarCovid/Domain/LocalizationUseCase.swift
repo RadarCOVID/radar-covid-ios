@@ -31,21 +31,11 @@ class LocalizationUseCase: LocalizationSource {
         self.localizationRepository = localizationRepository
     }
 
-//    func localizationLoaded() -> Observable<Bool> {
-//        return Observable.create { (observer) -> Disposable in
-//            if (self._localizationLoaded){
-//                observer.on(.next(self._localizationLoaded)
-//            }else{
-//
-//            }
-//        }
-//    }
-
     func loadlocalization() -> Observable<[String: String]?> {
         return .deferred { [weak self] in
             let cau = self?.localizationRepository.getCurrentCA()?.id
             let locale = self?.localizationRepository.getLocale()
-            return self?.textsApi.getTexts(ccaa: cau, locale: locale).map { texts in
+            return self?.textsApi.getTexts(ccaa: cau, locale: locale, platform: Config.platform, version: Config.version).map { texts in
                 let texts = texts.additionalProperties
                 self?._localizationMap = texts
                 self?.localizationRepository.setTexts(texts)
