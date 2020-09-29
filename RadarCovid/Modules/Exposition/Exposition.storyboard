@@ -265,6 +265,9 @@
                                                         <rect key="frame" x="369" y="20.5" width="8" height="14"/>
                                                     </imageView>
                                                 </subviews>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="2fa-3m-j4N" secondAttribute="trailing" constant="5" id="FqS-in-8v0"/>
                                                     <constraint firstItem="EXp-Pz-2xt" firstAttribute="leading" secondItem="xSh-DP-kva" secondAttribute="leading" id="XNQ-mH-Z6F"/>

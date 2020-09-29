@@ -45,17 +45,17 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
 
     @objc func userDidTapFaq(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "HELPLINE_FAQS_WEB_URL".localized)
+                 urlString: "HELPLINE_FAQS_WEB_TITLE".localized.getUrlFromHref())
     }
 
     @objc func userDidTapWeb(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "HELPLINE_INFO_WEB_URL".localized)
+                 urlString: "HELPLINE_INFO_WEB_TITLE".localized.getUrlFromHref())
     }
 
     @objc func userDidTapOther(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "HELPLINE_OTHER_WEB_URL".localized)
+                 urlString: "HELPLINE_OTHER_WEB_TITLE".localized.getUrlFromHref())
     }
 }
 

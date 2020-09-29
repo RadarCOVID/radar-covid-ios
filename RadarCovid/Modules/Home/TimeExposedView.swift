@@ -67,17 +67,17 @@ class TimeExposedView: UIView {
 
     @objc func userDidTapPrecauciones(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "ALERT_HIGH_EXPOSURE_HEALED_BULLET_1_URL".localized)
+                 urlString: "ALERT_HIGH_EXPOSURE_HEALED_BULLET_1".localized.getUrlFromHref())
     }
 
     @objc func userDidTapSintomas(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "ALERT_HIGH_EXPOSURE_HEALED_BULLET_2_URL".localized)
+                 urlString: "ALERT_HIGH_EXPOSURE_HEALED_BULLET_2".localized.getUrlFromHref())
     }
 
     @objc func userDidTapInformacion(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "ALERT_HIGH_EXPOSURE_HEALED_MORE_URL".localized)
+                 urlString: "ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO".localized.getUrlFromHref())
     }
 
     @objc func onWebTap(tapGestureRecognizer: UITapGestureRecognizer, urlString: String? = nil) {
@@ -108,6 +108,21 @@ extension TimeExposedView {
         acceptButton.isAccessibilityElement = true
         acceptButton.accessibilityLabel = "ACC_BUTTON_ACCEPT".localized
         acceptButton.accessibilityHint = "ACC_HINT".localized
+        
+        bullet1Label.isAccessibilityElement = true
+        bullet1Label.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        bullet1Label.accessibilityLabel = "ALERT_HIGH_EXPOSURE_HEALED_BULLET_1".localizedAttributed().string
+        bullet1Label.accessibilityHint = "ACC_HINT".localized
+        
+        bullet2Label.isAccessibilityElement = true
+        bullet2Label.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        bullet2Label.accessibilityLabel = "ALERT_HIGH_EXPOSURE_HEALED_BULLET_2".localizedAttributed().string
+        bullet2Label.accessibilityHint = "ACC_HINT".localized
+        
+        moreInfoLabel.isAccessibilityElement = true
+        moreInfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoLabel.accessibilityLabel = "ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO".localizedAttributed().string
+        moreInfoLabel.accessibilityHint = "ACC_HINT".localized
     }
 }
 

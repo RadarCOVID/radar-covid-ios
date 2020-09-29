@@ -221,6 +221,9 @@
                                                         <rect key="frame" x="369" y="20.5" width="8" height="14"/>
                                                     </imageView>
                                                 </subviews>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="INS-dL-Qde" secondAttribute="trailing" id="0tH-LS-GBd"/>
                                                     <constraint firstAttribute="trailing" secondItem="p4P-1z-9AQ" secondAttribute="trailing" id="8OL-Xv-gFy"/>

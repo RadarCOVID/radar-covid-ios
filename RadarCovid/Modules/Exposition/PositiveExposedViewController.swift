@@ -36,12 +36,12 @@ class PositiveExposedViewController: BaseExposed {
     
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSURE_INFECTED_INFO_URL".localized)
+                 urlString: "MORE_INFO_HEALTH_REPORTED".localized)
     }
 
     @objc func userDidTapMoreInfo(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSITION_HIGH_MORE_INFO_URL".localized)
+                 urlString: "EXPOSITION_HIGH_MORE_INFO".localized.getUrlFromHref())
     }
 }
 
@@ -53,6 +53,16 @@ extension PositiveExposedViewController {
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_POSITIVE_EXPOSED_TITLE".localized
 
+        moreInfoLabel.isAccessibilityElement = true
+        moreInfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoLabel.accessibilityLabel = "EXPOSITION_HIGH_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        moreInfoLabel.accessibilityHint = "ACC_HINT".localized
+        
+        moreInfoView.isAccessibilityElement = true
+        moreInfoView.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoView.accessibilityLabel = "MORE_INFO_HEALTH_REPORTED".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        moreInfoView.accessibilityHint = "ACC_HINT".localized
+        
         whatToDoLabel.isAccessibilityElement = true
         whatToDoLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         whatToDoLabel.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized

@@ -36,12 +36,12 @@ class ExpositionViewController: BaseExposed {
     
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSURE_LOW_INFO_URL".localized)
+                 urlString: "MORE_INFO_EXPOSURE_LOW".localized.getUrlFromHref())
     }
 
     @objc func userDidTapWhatToDo(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO_URL".localized)
+                 urlString: "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localized.getUrlFromHref())
     }
 }
 
@@ -60,8 +60,13 @@ extension ExpositionViewController {
         
         whatToDoLabel.isAccessibilityElement = true
         whatToDoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
-        whatToDoLabel.attributedText = "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localizedAttributed()
-        whatToDoLabel.isUserInteractionEnabled = true
+        whatToDoLabel.accessibilityLabel = "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        whatToDoLabel.accessibilityHint = "ACC_HINT".localized
+        
+        moreInfoView.isAccessibilityElement = true
+        moreInfoView.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoView.accessibilityLabel = "MORE_INFO_EXPOSURE_LOW".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        moreInfoView.accessibilityHint = "ACC_HINT".localized
         
         moreInfoLabel.isAccessibilityElement = true
         moreInfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
@@ -73,6 +78,8 @@ private extension ExpositionViewController {
     
     func setupView() {
         
+        whatToDoLabel.attributedText = "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localizedAttributed()
+        
         let formatter = DateFormatter()
         formatter.dateFormat = Date.appDateFormat
         
@@ -83,6 +90,7 @@ private extension ExpositionViewController {
             withOutContactLabel.isHidden = true
         }
         
+        whatToDoLabel.isUserInteractionEnabled = true
         whatToDoLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                       action: #selector(userDidTapWhatToDo(tapGestureRecognizer:))))
 

@@ -65,12 +65,12 @@ class HighExpositionViewController: BaseExposed {
     
     @objc func userDidTapOtherSympthoms(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSITION_HIGH_OTHER_SYMPTOMS_URL".localized)
+                 urlString: "EXPOSITION_HIGH_OTHER_SYMPTOMS".localized.getUrlFromHref())
     }
 
     @objc func userDidTapHowAct(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO_URL".localized)
+                 urlString: "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO".localized.getUrlFromHref())
     }
     
     @objc func onCallTap(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -78,7 +78,7 @@ class HighExpositionViewController: BaseExposed {
     }
 
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSURE_HIGH_INFO_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MORE_INFO_EXPOSURE_HIGH".localized.getUrlFromHref())
     }
     
     @objc func userDidTapWeb(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -97,6 +97,21 @@ extension HighExpositionViewController {
         whatToDoTitleLabel.isAccessibilityElement = true
         whatToDoTitleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         whatToDoTitleLabel.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
+        
+        otherSympthomsLabel.isAccessibilityElement = true
+        otherSympthomsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        otherSympthomsLabel.accessibilityLabel = "EXPOSITION_HIGH_OTHER_SYMPTOMS".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        otherSympthomsLabel.accessibilityHint = "ACC_HINT".localized
+        
+        moreInfoView.isAccessibilityElement = true
+        moreInfoView.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoView.accessibilityLabel = "MORE_INFO_EXPOSURE_HIGH".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        moreInfoView.accessibilityHint = "ACC_HINT".localized
+        
+        howActLabel.isAccessibilityElement = true
+        howActLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        howActLabel.accessibilityLabel = "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        howActLabel.accessibilityHint = "ACC_HINT".localized
     }
 }
 

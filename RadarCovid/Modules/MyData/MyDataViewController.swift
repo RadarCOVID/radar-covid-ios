@@ -33,11 +33,11 @@ class MyDataViewController: UIViewController {
     //MARK: - Action methods.
 
     @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "USE_CONDITIONS_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_DATA_TERMS".localized.getUrlFromHref())
     }
 
     @objc func userDidTapPrivacy(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "PRIVACY_POLICY_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_DATA_PRIVACY".localized.getUrlFromHref())
     }
 }
 
@@ -49,6 +49,16 @@ extension MyDataViewController {
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_MYDATA_TITLE".localized
+        
+        acceptTermsLabel.isAccessibilityElement = true
+        acceptTermsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        acceptTermsLabel.accessibilityLabel = "MY_DATA_TERMS".localizedAttributed().string
+        acceptTermsLabel.accessibilityHint = "ACC_HINT".localized
+        
+        privacyLabel.isAccessibilityElement = true
+        privacyLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        privacyLabel.accessibilityLabel = "MY_DATA_PRIVACY".localizedAttributed().string
+        privacyLabel.accessibilityHint = "ACC_HINT".localized
         
         if UIAccessibility.isVoiceOverRunning {
             descriptionLabel.text = descriptionLabel.text?.lowercased()

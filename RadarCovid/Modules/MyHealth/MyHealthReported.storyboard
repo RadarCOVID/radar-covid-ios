@@ -195,6 +195,9 @@
                                                         <rect key="frame" x="369" y="20.666666666666742" width="8" height="14"/>
                                                     </imageView>
                                                 </subviews>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstItem="Y0y-Z3-wxD" firstAttribute="leading" secondItem="f6f-Wt-5ib" secondAttribute="leading" constant="8" id="4dv-wD-Nei"/>
                                                     <constraint firstItem="vvg-wD-uyV" firstAttribute="leading" secondItem="f6f-Wt-5ib" secondAttribute="leading" id="CEb-qq-qVJ"/>
@@ -229,6 +232,9 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Be-Yg-h5W">
                                                 <rect key="frame" x="20" y="391.66666666666669" width="374" height="24"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

@@ -38,12 +38,12 @@ class MyHealthReportedViewController: UIViewController {
     
     @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSURE_INFECTED_INFO_URL".localized)
+                 urlString: "MORE_INFO_INFECTED".localized.getUrlFromHref())
     }
 
     @objc func userDidTapMoreInfo(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSITION_HIGH_MORE_INFO_URL".localized)
+                 urlString: "MY_HEALTH_REPORTED_MORE_INFO".localized.getUrlFromHref())
     }
 
 }
@@ -52,9 +52,20 @@ class MyHealthReportedViewController: UIViewController {
 extension MyHealthReportedViewController {
     
     func setupAccessibility() {
+        
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized
+        
+        moreInfoView.isAccessibilityElement = true
+        moreInfoView.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoView.accessibilityLabel = "MORE_INFO_INFECTED".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        moreInfoView.accessibilityHint = "ACC_HINT".localized
+        
+        moreinfoLabel.isAccessibilityElement = true
+        moreinfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreinfoLabel.accessibilityLabel = "MY_HEALTH_REPORTED_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        moreinfoLabel.accessibilityHint = "ACC_HINT".localized
         
         if UIAccessibility.isVoiceOverRunning {
             titleLabel.isHidden = false

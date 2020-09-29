@@ -126,7 +126,7 @@ class HomeViewController: UIViewController {
 
     @objc func userDidTapMoreInfo(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSITION_HIGH_MORE_INFO_URL".localized)
+                 urlString: "EXPOSITION_HIGH_MORE_INFO".localized.getUrlFromHref())
     }
     
     @objc func onExpositionTap() {
@@ -160,6 +160,11 @@ extension HomeViewController {
         expositionTitleLabel.accessibilityTraits.insert(UIAccessibilityTraits.button)
         expositionTitleLabel.accessibilityHint = "ACC_HINT".localized
 
+        moreInfoLabel.isAccessibilityElement = true
+        moreInfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoLabel.accessibilityLabel = "EXPOSITION_HIGH_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        moreInfoLabel.accessibilityHint = "ACC_HINT".localized
+        
         titleLabel.isHidden = !UIAccessibility.isVoiceOverRunning
 
         expositionDetailImage.isAccessibilityElement = false

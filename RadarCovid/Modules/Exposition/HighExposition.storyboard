@@ -219,6 +219,9 @@
                                                         <rect key="frame" x="369" y="20.666666666666742" width="8" height="14"/>
                                                     </imageView>
                                                 </subviews>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstItem="WUS-Xl-byV" firstAttribute="leading" secondItem="XB5-Tr-IGD" secondAttribute="leading" constant="8" id="2kx-OB-QWW"/>
                                                     <constraint firstItem="xdU-a7-zoq" firstAttribute="leading" secondItem="XB5-Tr-IGD" secondAttribute="leading" id="9q0-92-GZe"/>
@@ -411,6 +414,9 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Otros síntomas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MLt-Jh-jo8">
                                                 <rect key="frame" x="16" y="1479" width="378" height="24"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -420,6 +426,9 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cómo actuar si tengo síntomas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yEg-UG-vM2">
                                                 <rect key="frame" x="16" y="1523" width="378" height="24"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
