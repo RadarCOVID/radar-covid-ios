@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -242,7 +243,7 @@ COVID positivo</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVH-3T-hqu">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVH-3T-hqu">
                                                         <rect key="frame" x="0.0" y="123" width="382" height="60"/>
                                                         <connections>
                                                             <action selector="insertCode:" destination="vmx-lJ-Xhc" eventType="touchUpInside" id="FJP-qx-35p"/>
@@ -325,6 +326,7 @@ COVID positivo</string>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="KFi-rj-J8e"/>
                                 <constraints>
                                     <constraint firstItem="fyR-wT-fHO" firstAttribute="trailing" secondItem="wt1-lT-Ot9" secondAttribute="trailing" id="8Wl-Dt-p9h"/>
                                     <constraint firstItem="fyR-wT-fHO" firstAttribute="width" secondItem="jJu-Cu-WGq" secondAttribute="width" id="9Bx-6G-Nue"/>
@@ -332,7 +334,6 @@ COVID positivo</string>
                                     <constraint firstItem="fyR-wT-fHO" firstAttribute="top" secondItem="wt1-lT-Ot9" secondAttribute="top" id="TwE-ck-0W8"/>
                                     <constraint firstItem="fyR-wT-fHO" firstAttribute="leading" secondItem="wt1-lT-Ot9" secondAttribute="leading" id="nGF-7g-csf"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="KFi-rj-J8e"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="wt1-lT-Ot9"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="jJu-Cu-WGq"/>
                             </scrollView>
@@ -359,6 +360,7 @@ COVID positivo</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="599-Qh-McL"/>
                         <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="599-Qh-McL" firstAttribute="trailing" secondItem="j1B-pg-cG8" secondAttribute="trailing" id="2bP-OY-SeE"/>
@@ -375,17 +377,16 @@ COVID positivo</string>
                             <constraint firstItem="j1B-pg-cG8" firstAttribute="top" secondItem="599-Qh-McL" secondAttribute="top" constant="-45" id="tMc-zY-ofj"/>
                             <constraint firstItem="j1B-pg-cG8" firstAttribute="leading" secondItem="599-Qh-McL" secondAttribute="leading" id="uB4-Iw-qf1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="599-Qh-McL"/>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="6r9-h6-6CB" id="Bnd-Db-ZhV"/>
                         <outlet property="codeTextField" destination="tjF-aE-P9m" id="Oad-so-ggB"/>
                         <outlet property="codeView" destination="l7M-4N-gr7" id="DWD-tI-eyP"/>
-                        <outlet property="codigoTitle" destination="gxN-3Y-ry3" id="18J-0K-Pcq"/>
+                        <outlet property="codigoTitleLabel" destination="gxN-3Y-ry3" id="H12-B7-raQ"/>
                         <outlet property="scrollView" destination="Jih-el-nlf" id="5Gw-ZO-kwg"/>
                         <outlet property="scrollViewBottonConstraint" destination="8DS-Iz-GfQ" id="Adz-qf-JBj"/>
                         <outlet property="sendDiagnosticButton" destination="xVl-Ca-TVL" id="HFL-yS-R6i"/>
-                        <outlet property="viewTitle" destination="Qdj-RI-6GS" id="gIR-zU-wX1"/>
+                        <outlet property="titleLabel" destination="Qdj-RI-6GS" id="mKL-yJ-WDG"/>
                         <outletCollection property="codeChars" destination="WUj-fi-auz" collectionClass="NSMutableArray" id="xOS-Fk-1f9"/>
                         <outletCollection property="codeChars" destination="ZSg-YA-62O" collectionClass="NSMutableArray" id="CCx-0S-cMa"/>
                         <outletCollection property="codeChars" destination="j9Y-8N-jxw" collectionClass="NSMutableArray" id="uTG-fj-LWn"/>
