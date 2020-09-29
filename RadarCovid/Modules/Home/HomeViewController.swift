@@ -31,6 +31,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var radarMessageLabel: UILabel!
     @IBOutlet weak var radarTitleLabel: UILabel!
     @IBOutlet weak var radarView: BackgroundView!
+    @IBOutlet weak var topComunicationConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomComunicationConstraint: NSLayoutConstraint!
     @IBOutlet weak var communicationButton: UIButton!
     @IBOutlet weak var activateNotificationButton: UIButton!
     @IBOutlet weak var notificationInactiveMessageLabel: UILabel!
@@ -272,6 +274,7 @@ private extension HomeViewController {
         expositionView.image = bgImageOrange
         expositionTitleLabel.textColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         communicationButton.isHidden = false
+        topComunicationConstraint.constant = 10
         moreInfoLabel.isHidden = true
     }
     
@@ -281,6 +284,7 @@ private extension HomeViewController {
         expositionView.image = bgImageGreen
         expositionTitleLabel.textColor = #colorLiteral(red: 0.3449999988, green: 0.6899999976, blue: 0.4160000086, alpha: 1)
         communicationButton.isHidden = false
+        topComunicationConstraint.constant = 10
         moreInfoLabel.isHidden = true
     }
 
@@ -290,6 +294,7 @@ private extension HomeViewController {
         expositionView.image = bgImageRed
         expositionTitleLabel.textColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         communicationButton.isHidden = true
+        topComunicationConstraint.constant = -(communicationButton.frame.size.height + bottomComunicationConstraint.constant)
         moreInfoLabel.isHidden = false
     }
 

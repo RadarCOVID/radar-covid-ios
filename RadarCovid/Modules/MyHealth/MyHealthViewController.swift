@@ -59,6 +59,11 @@ class MyHealthViewController: UIViewController {
         sendDiagnosticButton.isEnabled = checkSendEnabled()
 
         setupAccessibility()
+        
+        // Open textField
+        if UIAccessibility.isVoiceOverRunning {
+            self.codeTextField.becomeFirstResponder()
+        }
     }
     
     //MARK: - Action methods.

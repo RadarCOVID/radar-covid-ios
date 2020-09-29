@@ -255,6 +255,7 @@ Cuídate y cuida a los demás.</string>
                     </view>
                     <connections>
                         <outlet property="activateNotificationButton" destination="QdH-mH-0eN" id="MGk-ZP-XGw"/>
+                        <outlet property="bottomComunicationConstraint" destination="ium-ZE-m5v" id="12W-8S-Y4P"/>
                         <outlet property="checkImage" destination="s47-VN-7tM" id="J2X-CI-gCb"/>
                         <outlet property="circleImage" destination="Ker-eU-Kvi" id="SLP-LC-9KX"/>
                         <outlet property="communicationButton" destination="mgD-SH-6Y2" id="PD0-jV-Ds1"/>
@@ -273,6 +274,7 @@ Cuídate y cuida a los demás.</string>
                         <outlet property="resetDataButton" destination="AKG-lv-3X4" id="amN-hh-hpR"/>
                         <outlet property="titleLabel" destination="Umm-hj-wLw" id="Cxt-a2-IM3"/>
                         <outlet property="topActiveNotificationConstraint" destination="guG-Sw-JA8" id="X7b-4X-u0t"/>
+                        <outlet property="topComunicationConstraint" destination="WKe-p7-llK" id="8tH-5c-G0r"/>
                         <outlet property="topRadarTitle" destination="8uE-ZH-Pls" id="IY5-n2-dML"/>
                     </connections>
                 </viewController>
