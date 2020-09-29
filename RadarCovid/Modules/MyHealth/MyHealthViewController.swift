@@ -12,24 +12,98 @@
 import UIKit
 import RxSwift
 
-class MyHealthViewController: UIViewController, UITextFieldDelegate {
-    private let disposeBag = DisposeBag()
-
+class MyHealthViewController: UIViewController {
+    
+    //MARK: - Outlet.
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var codeView: UIView!
-    @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var backButton: UIButton!
-    var diagnosisCodeUseCase: DiagnosisCodeUseCase?
-    var statusBar: UIView?
     @IBOutlet weak var codeTextField: UITextField!
-    @IBOutlet weak var codigoTitle: UILabel!
-
+    @IBOutlet weak var codigoTitleLabel: UILabel!
     @IBOutlet weak var sendDiagnosticButton: UIButton!
-    var router: AppRouter?
-
     @IBOutlet var codeChars: [UITextField]!
+    
+    // MARK: - Properties
+    var router: AppRouter?
+    var diagnosisCodeUseCase: DiagnosisCodeUseCase?
+    
+    private let emptyText200B: String = "\u{200B}"
+    private let disposeBag = DisposeBag()
+    
+    //MARK: - View Life Cycle Methods.
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
+        setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+        self.codeChars.forEach { (char) in
+            char.text = emptyText200B
+            char.layer.cornerRadius = 5
+            char.addTarget(self, action: #selector(MyHealthViewController.textFieldDidChange(_:)), for: .editingChanged)
+        }
+
+        backButton.isAccessibilityElement = true
+        let previous = navigationController?.previousViewController
+        if let title = (previous as? AccTitleView)?.accTitle ?? previous?.title {
+            backButton.accessibilityLabel = "ACC_BUTTON_BACK_TO".localized + " " + title
+        } else {
+            backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
+        }
+        sendDiagnosticButton.isEnabled = checkSendEnabled()
+
+        setupAccessibility()
+        
+        // Open textField
+        if UIAccessibility.isVoiceOverRunning {
+            self.codeTextField.becomeFirstResponder()
+        }
+    }
+    
+    //MARK: - Action methods.
+    
+    @IBAction func onReportDiagnosis(_ sender: Any) {
+
+        view.showLoading()
+        var codigoString = ""
+        
+        if UIAccessibility.isVoiceOverRunning {
+            codigoString = self.codeTextField.text ?? ""
+        } else {
+            codeChars.forEach {
+                let string: String = $0.text ?? ""
+                codigoString += string
+            }
+        }
+
+        diagnosisCodeUseCase?.sendDiagnosisCode(code: codigoString).subscribe(
+            onNext: { [weak self] reportedCodeBool in
+                self?.view.hideLoading()
+                self?.navigateIf(reported: reportedCodeBool)
+            }, onError: {  [weak self] error in
+                self?.handle(error: error)
+                self?.view.hideLoading()
+        }).disposed(by: disposeBag)
+    }
+    
+    @IBAction func insertCode(_ sender: Any) {
+        guard let emptyInput = self.codeChars.filter({ $0.text == emptyText200B }).first else {
+            self.codeChars.last?.becomeFirstResponder()
+            return
+        }
+        emptyInput.becomeFirstResponder()
+    }
+    
+    @objc func doneButtonAction(textView: UITextField) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func onBack(_ sender: Any) {
         self.showAlertCancelContinue(
             title: "ALERT_MY_HEALTH_SEND_TITLE".localizedAttributed.string,
@@ -45,37 +119,198 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
         })
         endEditingCodeChars()
     }
+}
 
+//MARK: - Accesibility.
+extension MyHealthViewController {
+    
+    func setupAccessibility() {
+        
+        codeTextField.isAccessibilityElement = true
+        codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
+        codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
+        codeTextField.accessibilityHint = "ACC_HINT".localized
+        codeTextField.keyboardType = .numberPad
+
+        titleLabel.isAccessibilityElement = true
+        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        titleLabel.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
+
+        codigoTitleLabel.isAccessibilityElement = true
+        codigoTitleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        codigoTitleLabel.accessibilityLabel = "ACC_CODE_TITLE".localized
+
+        sendDiagnosticButton.isAccessibilityElement = true
+        sendDiagnosticButton.accessibilityLabel = "ACC_BUTTON_SEND_DIAGNOSTIC".localized
+        sendDiagnosticButton.accessibilityHint = "ACC_HINT".localized
+
+        if UIAccessibility.isVoiceOverRunning {
+            codeTextField.isHidden = false
+            self.addDoneButtonOnKeyboard(textView: codeTextField)
+            codeView.isHidden = true
+        } else {
+            codeTextField.isHidden = true
+            codeView.isHidden = false
+            self.codeChars.forEach { (char) in
+                self.addDoneButtonOnKeyboard(textView: char)
+            }
+        }
+    }
+}
+
+//MARK: - KeyboardHelper.
+extension MyHealthViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification?) {
+        guard let keyboardSize = (
+                notification?.userInfo?[
+                UIResponder.keyboardFrameEndUserInfoKey
+            ] as? NSValue)?.cgRectValue else {
+           // if keyboard size is not available for some reason, dont do anything
+           return
+        }
+        // move the root view up by the distance of keyboard height
+        DispatchQueue.main.async {
+            self.scrollViewBottonConstraint.constant = keyboardSize.height
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height + CGFloat(70)), animated: true)
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification?) {
+        // move back the root view origin to zero
+        self.scrollViewBottonConstraint.constant = 0
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let actualPos = textField.tag
+
+        // if the initial value is an empty string do nothing
+        if (textField.text == emptyText200B) {
+            return
+        }
+
+        // detect backspace
+        if  textField.text == "" || textField.text == nil {
+            if   actualPos > 0 && actualPos < self.codeChars.count {
+                let prev = codeChars[actualPos - 1]
+                prev.becomeFirstResponder()
+                prev.text = emptyText200B
+                textField.text = emptyText200B
+           }
+        }
+
+        // detect new input and pass to the next one
+        else if actualPos < self.codeChars.count - 1 {
+            // the first character is an unicode empty space
+            // so we need to take the second character and assign it to the input
+            let finalText = textField.text?.suffix(1)
+            textField.text = String(finalText ?? "")
+            let next = codeChars[actualPos + 1]
+            next.becomeFirstResponder()
+        }
+
+        // avoid multiple character in the last input
+        if actualPos == self.codeChars.count - 1 {
+            let actualText = textField.text ?? emptyText200B
+            if (actualText != emptyText200B) {
+                let trimmedString = String(actualText.prefix(2))
+                let finalString = String(trimmedString.suffix(1))
+                textField.text = finalString
+            }
+        }
+
+        sendDiagnosticButton.isEnabled = checkSendEnabled()
+    }
+    
+    func addDoneButtonOnKeyboard(textView: UITextField) {
+        
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "ALERT_OK_BUTTON".localized, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction) )
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        textView.inputAccessoryView = doneToolbar
+    }
+    
     func endEditingCodeChars() {
         for item in codeChars {
             item.endEditing(true)
         }
+        
+        keyboardWillHide(notification: nil)
     }
+}
 
-    @IBAction func onReportDiagnosis(_ sender: Any) {
-
-        view.showLoading()
-        var codigoString = ""
-        codeChars.forEach {
-            let string: String = $0.text ?? ""
-            codigoString += string
+//MARK: - UITextFieldDelegate.
+extension MyHealthViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let maxLength = 12
+        let currentString: NSString = (textField.text ?? "") as NSString
+        if (string != "\u{232B}"){
+            let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789").inverted
+            let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet) == nil
+            if !replacementStringIsLegal{
+                return false;
+            }
         }
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        sendDiagnosticButton.isEnabled = newString.length == 12
+        return newString.length <= maxLength
+    }
+}
 
-        diagnosisCodeUseCase?.sendDiagnosisCode(code: codigoString).subscribe(
-            onNext: { [weak self] reportedCodeBool in
-                self?.view.hideLoading()
-                self?.navigateIf(reported: reportedCodeBool)
-            }, onError: {  [weak self] error in
-                self?.handle(error: error)
-                self?.view.hideLoading()
-        }).disposed(by: disposeBag)
+//MARK: - Private.
+private extension MyHealthViewController {
+    
+    func setupView() {
+        codeTextField.delegate = self
 
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+
+        sendDiagnosticButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
+    }
+    
+    func checkSendEnabled() -> Bool {
+        codeChars.filter({ $0.text != emptyText200B }).count == codeChars.count
     }
 
-    private func handle(error: Error) {
+    func navigateIf(reported: Bool) {
+        if reported {
+            router?.route(to: Routes.myHealthReported, from: self)
+        }
+    }
+    
+    func handle(error: Error) {
+        
         debugPrint("Error sending diagnosis \(error)")
         var errorMessage = "ALERT_MY_HEALTH_CODE_VALIDATION_CONTENT".localized
         var title = "ALERT_MY_HEALTH_CODE_ERROR_CONTENT".localized
+        
         if let diagnosisError = error as? DiagnosisError {
             switch diagnosisError {
             case .apiRejected:
@@ -99,205 +334,5 @@ class MyHealthViewController: UIViewController, UITextFieldDelegate {
             buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized
         )
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
-        self.codeChars.forEach { (char) in
-            char.text = "\u{200B}"
-            char.layer.cornerRadius = 5
-            char.addTarget(self, action: #selector(MyHealthViewController.textFieldDidChange(_:)), for: .editingChanged)
-        }
-
-        backButton.isAccessibilityElement = true
-        let previous = navigationController?.previousViewController
-        if let title = (previous as? AccTitleView)?.accTitle ?? previous?.title {
-            backButton.accessibilityLabel = "ACC_BUTTON_BACK_TO".localized + " " + title
-        } else {
-            backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
-        }
-        sendDiagnosticButton.isEnabled = checkSendEnabled()
-
-        setupAccessibility()
-
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        codeTextField.delegate = self
-
-        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tapGesture)
-
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-
-        sendDiagnosticButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
-
-    }
-
-    private func setupAccessibility() {
-        codeTextField.isAccessibilityElement = true
-        codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
-        codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
-        codeTextField.accessibilityHint = "ACC_HINT".localized
-        codeTextField.keyboardType = .numberPad
-        
-
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
-
-        codigoTitle.isAccessibilityElement = true
-        codigoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        codigoTitle.accessibilityLabel = "ACC_CODE_TITLE".localized
-
-        sendDiagnosticButton.isAccessibilityElement = true
-        sendDiagnosticButton.accessibilityLabel = "ACC_BUTTON_SEND_DIAGNOSTIC".localized
-        sendDiagnosticButton.accessibilityHint = "ACC_HINT".localized
-
-        if UIAccessibility.isVoiceOverRunning {
-            codeTextField.isHidden = false
-            self.addDoneButtonOnKeyboard(textView: codeTextField)
-            codeView.isHidden = true
-        } else {
-            codeTextField.isHidden = true
-            codeView.isHidden = false
-            self.codeChars.forEach { (char) in
-                self.addDoneButtonOnKeyboard(textView: char)
-            }
-
-        }
-    }
-
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        let actualPos = textField.tag
-
-        // if the initial value is an empty string do nothing
-        if (textField.text == "\u{200B}") {
-            return
-        }
-
-        // detect backspace
-        if  textField.text == "" || textField.text == nil {
-            if   actualPos > 0 && actualPos < self.codeChars.count {
-                let prev = codeChars[actualPos - 1]
-                prev.becomeFirstResponder()
-                prev.text = "\u{200B}"
-                textField.text = "\u{200B}"
-           }
-        }
-
-        // detect new input and pass to the next one
-        else if actualPos < self.codeChars.count - 1 {
-            // the first character is an unicode empty space
-            // so we need to take the second character and assign it to the input
-            let finalText = textField.text?.suffix(1)
-            textField.text = String(finalText ?? "")
-            let next = codeChars[actualPos + 1]
-            next.becomeFirstResponder()
-        }
-
-        // avoid multiple character in the last input
-        if actualPos == self.codeChars.count - 1 {
-            let actualText = textField.text ?? "\u{200B}"
-            if (actualText != "\u{200B}") {
-                let trimmedString = String(actualText.prefix(2))
-                let finalString = String(trimmedString.suffix(1))
-                textField.text = finalString
-            }
-        }
-
-        sendDiagnosticButton.isEnabled = checkSendEnabled()
-    }
-
-    private func checkSendEnabled() -> Bool {
-        codeChars.filter({ $0.text != "\u{200B}" }).count == codeChars.count
-    }
-
-    @IBAction func insertCode(_ sender: Any) {
-        guard let emptyInput = self.codeChars.filter({ $0.text == "\u{200B}" }).first else {
-            self.codeChars.last?.becomeFirstResponder()
-            return
-        }
-        emptyInput.becomeFirstResponder()
-    }
-
-    private func navigateIf(reported: Bool) {
-        if reported {
-            router?.route(to: Routes.myHealthReported, from: self)
-        }
-    }
-
-    @objc func keyboardWillShow(notification: NSNotification) {
-        guard let keyboardSize = (
-            notification.userInfo?[
-                UIResponder.keyboardFrameEndUserInfoKey
-            ] as? NSValue)?.cgRectValue else {
-           // if keyboard size is not available for some reason, dont do anything
-           return
-        }
-        // move the root view up by the distance of keyboard height
-        DispatchQueue.main.async {
-            self.scrollViewBottonConstraint.constant = keyboardSize.height
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height), animated: true)
-        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        // move back the root view origin to zero
-        self.scrollViewBottonConstraint.constant = 0
-        self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let maxLength = 12
-        let currentString: NSString = (textField.text ?? "") as NSString
-        if (string != "\u{232B}"){
-            let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789").inverted
-            let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet) == nil
-            if !replacementStringIsLegal{
-                return false;
-            }
-        }
-        let newString: NSString =
-            currentString.replacingCharacters(in: range, with: string) as NSString
-        sendDiagnosticButton.isEnabled = newString.length == 12
-        return newString.length <= maxLength
-    }
-    
-    func addDoneButtonOnKeyboard(textView: UITextField)
-    {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
-        doneToolbar.barStyle = UIBarStyle.default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "ALERT_OK_BUTTON".localized, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction) )
-        
-        var items = [UIBarButtonItem]()
-        items.append(flexSpace)
-        items.append(done)
-        
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        
-        textView.inputAccessoryView = doneToolbar
-        
-    }
-    
-    @objc func doneButtonAction(textView: UITextField)
-    {
-        self.view.endEditing(true)
-    }
-
 }
+

@@ -14,148 +14,108 @@ import RxSwift
 
 class HighExpositionViewController: BaseExposed {
 
-    private let disposeBag = DisposeBag()
-
-    private let bgImageRed = UIImage(named: "GradientBackgroundRed")
-    private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
-
-    @IBOutlet weak var viewTitle: UILabel!
-    @IBOutlet weak var whatToDoTitle: UILabel!
-    @IBOutlet weak var youCouldBe: UILabel!
-    @IBOutlet weak var infectedText: UILabel!
+    //MARK: - Outlet.
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var whatToDoTitleLabel: UILabel!
+    @IBOutlet weak var youCouldBeLabel: UILabel!
     @IBOutlet weak var phoneView: BackgroundView!
     @IBOutlet weak var timeTableLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var covidWeb: UILabel!
+    @IBOutlet weak var covidWebLabel: UILabel!
 
     @IBOutlet weak var phoneViewVisibleConstraint: NSLayoutConstraint!
     @IBOutlet weak var phoneViewHiddenConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var selectorView: BackgroundView!
     @IBOutlet weak var caSelectorButton: UIButton!
-    @IBOutlet weak var otherSympthoms: UILabel!
-    @IBOutlet weak var howAct: UILabel!
-
-    private var currentCA: CaData?
-
+    @IBOutlet weak var otherSympthomsLabel: UILabel!
+    @IBOutlet weak var howActLabel: UILabel!
+    
+    // MARK: - Properties
     var ccaUseCase: CCAAUseCase!
-    var ccaArray: [CaData]?
-
     var since: Date?
-
+    private var ccaArray: [CaData]?
+    private var currentCA: CaData?
+    
     private var pickerPresenter: PickerPresenter?
-
+    
+    private let bgImageRed = UIImage(named: "GradientBackgroundRed")
+    private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
+    
+    private let disposeBag = DisposeBag()
+    
+    //MARK: - View Life Cycle Methods.
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAccessibility()
-        let picker = UIPickerView.init()
-        picker.delegate = self
-        picker.dataSource = self
-        pickerPresenter = PickerPresenter(picker: picker)
-        pickerPresenter?.delegate = self
-
-        otherSympthoms.isUserInteractionEnabled = true
-        howAct.isUserInteractionEnabled = true
-        expositionBGView.image = bgImageOrange
-
-        phoneView.isUserInteractionEnabled = true
-        self.covidWeb.isUserInteractionEnabled = true
-        self.covidWeb.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                           action: #selector(userDidTapWeb(tapGestureRecognizer:))))
-
-        self.phoneLabel.isUserInteractionEnabled = true
-        self.phoneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                             action: #selector(onCallTap(tapGestureRecognizer:))))
-        otherSympthoms.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                            action: #selector(userDidTapOtherSympthoms(tapGestureRecognizer:))))
-        howAct.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                    action: #selector(userDidTapHowAct(tapGestureRecognizer:))))
-
-        phoneView.image = UIImage(named: "WhiteCard")
-
-        caSelectorButton.setTitle("LOCALE_SELECTION_REGION_DEFAULT".localized, for: .normal)
-        self.setCaSelector()
-
-    }
-
-    func setupAccessibility() {
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_HIGH_EXPOSED_TITLE".localized
-
-        whatToDoTitle.isAccessibilityElement = true
-        whatToDoTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        whatToDoTitle.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         self.currentCA = ccaUseCase.getCurrent()
-        setInfectedText()
+        
+        setupView()
+        setupAccessibility()
+
+        setCaSelector()
     }
 
-    @objc func userDidTapWeb(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: currentCA?.web)
+    //MARK: - Action methods.
+    
+    @IBAction func caaSelectAction(_ sender: Any) {
+        pickerPresenter!.openPicker()
+    }
+    
+    @objc func userDidTapOtherSympthoms(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "EXPOSITION_HIGH_OTHER_SYMPTOMS".localized.getUrlFromHref())
     }
 
-    func setInfectedText() {
-        let date = self.since ?? Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.YYYY"
-        let actualizado = formatter.string(from: date)
-        var daysSinceLastInfection = Date().days(sinceDate: since ?? Date()) ?? 1
-        if daysSinceLastInfection == 0 {
-            daysSinceLastInfection = 1
-        }
-        youCouldBe.font = UIFont(name: "Helvetica Neue", size: 20)
-        youCouldBe.attributedText = "EXPOSITION_HIGH_DESCRIPTION"
-            .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
+    @objc func userDidTapHowAct(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
+                 urlString: "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO".localized.getUrlFromHref())
     }
-
+    
     @objc func onCallTap(tapGestureRecognizer: UITapGestureRecognizer) {
         open(phone: currentCA?.phone ?? "CONTACT_PHONE".localized)
     }
 
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "EXPOSURE_HIGH_INFO_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MORE_INFO_EXPOSURE_HIGH".localized.getUrlFromHref())
     }
-
-    func setCaSelector() {
-        self.selectorView.image = UIImage.init(named: "WhiteCard")
-        self.selectorView.isUserInteractionEnabled = true
-
-        self.ccaUseCase.getCCAA().subscribe(onNext: { (data) in
-            self.ccaArray = data
-        }, onError: { (err) in
-            print(err)
-            self.ccaArray = []
-        }).disposed(by: disposeBag)
-
-        guard let currentCa = self.ccaUseCase.getCurrent() else {
-            self.phoneView.isHidden = true
-            self.phoneViewHiddenConstraint.priority = .defaultHigh
-            self.phoneViewVisibleConstraint.priority = .defaultLow
-            return
-        }
-        var temporallyCcaArray: [CaData] = []
-        temporallyCcaArray.append(currentCa)
-        temporallyCcaArray += (self.ccaArray ?? []).filter { $0.id != currentCa.id }
-        self.ccaArray = temporallyCcaArray
-        self.phoneViewHiddenConstraint.priority = .defaultLow
-        self.phoneViewVisibleConstraint.priority = .defaultHigh
-        self.phoneView.isHidden = false
-        self.phoneLabel.text = currentCa.phone ?? "CONTACT_PHONE".localized
-        self.covidWeb.text = currentCa.webName ?? currentCa.web ?? ""
-        let title = currentCa.description ?? "LOCALE_SELECTION_REGION_DEFAULT".localized
-        self.caSelectorButton.setTitle(title, for: .normal)
+    
+    @objc func userDidTapWeb(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: currentCA?.web)
     }
-
-    @IBAction func caaSelectAction(_ sender: Any) {
-        pickerPresenter!.openPicker()
-    }
-
 }
 
+//MARK: - Accesibility.
+extension HighExpositionViewController {
+    
+    func setupAccessibility() {
+        titleLabel.isAccessibilityElement = true
+        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        titleLabel.accessibilityLabel = "ACC_HIGH_EXPOSED_TITLE".localized
+
+        whatToDoTitleLabel.isAccessibilityElement = true
+        whatToDoTitleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        whatToDoTitleLabel.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
+        
+        otherSympthomsLabel.isAccessibilityElement = true
+        otherSympthomsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        otherSympthomsLabel.accessibilityLabel = "EXPOSITION_HIGH_OTHER_SYMPTOMS".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        otherSympthomsLabel.accessibilityHint = "ACC_HINT".localized
+        
+        moreInfoView.isAccessibilityElement = true
+        moreInfoView.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoView.accessibilityLabel = "MORE_INFO_EXPOSURE_HIGH".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        moreInfoView.accessibilityHint = "ACC_HINT".localized
+        
+        howActLabel.isAccessibilityElement = true
+        howActLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        howActLabel.accessibilityLabel = "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        howActLabel.accessibilityHint = "ACC_HINT".localized
+    }
+}
+
+//MARK: - PickerView.
 extension HighExpositionViewController: UIPickerViewDelegate, UIPickerViewDataSource, PickerDelegate {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -196,15 +156,85 @@ extension HighExpositionViewController: UIPickerViewDelegate, UIPickerViewDataSo
         }
         setCaSelector()
     }
+}
 
-    @objc func userDidTapOtherSympthoms(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSITION_HIGH_OTHER_SYMPTOMS_URL".localized)
+//MARK: - Private.
+private extension HighExpositionViewController {
+    
+    func setupView() {
+        
+        let picker = UIPickerView.init()
+        picker.delegate = self
+        picker.dataSource = self
+        
+        pickerPresenter = PickerPresenter(picker: picker)
+        pickerPresenter?.delegate = self
+
+        otherSympthomsLabel.isUserInteractionEnabled = true
+        howActLabel.isUserInteractionEnabled = true
+        expositionBGView.image = bgImageOrange
+
+        phoneView.isUserInteractionEnabled = true
+        self.covidWebLabel.isUserInteractionEnabled = true
+        self.covidWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                           action: #selector(userDidTapWeb(tapGestureRecognizer:))))
+
+        self.phoneLabel.isUserInteractionEnabled = true
+        self.phoneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                             action: #selector(onCallTap(tapGestureRecognizer:))))
+        otherSympthomsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                            action: #selector(userDidTapOtherSympthoms(tapGestureRecognizer:))))
+        howActLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                    action: #selector(userDidTapHowAct(tapGestureRecognizer:))))
+
+        phoneView.image = UIImage(named: "WhiteCard")
+
+        caSelectorButton.setTitle("LOCALE_SELECTION_REGION_DEFAULT".localized, for: .normal)
+        
+        //Text Infect
+        let date = self.since ?? Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = Date.appDateFormat
+        let actualizado = formatter.string(from: date)
+        var daysSinceLastInfection = Date().days(sinceDate: since ?? Date()) ?? 1
+        if daysSinceLastInfection == 0 {
+            daysSinceLastInfection = 1
+        }
+        youCouldBeLabel.attributedText = "EXPOSITION_HIGH_DESCRIPTION"
+            .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
     }
+    
+    func setCaSelector() {
+        
+        self.selectorView.image = UIImage.init(named: "WhiteCard")
+        self.selectorView.isUserInteractionEnabled = true
 
-    @objc func userDidTapHowAct(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO_URL".localized)
+        self.ccaUseCase.getCCAA().subscribe(onNext: { (data) in
+            self.ccaArray = data
+        }, onError: { (err) in
+            print(err)
+            self.ccaArray = []
+        }).disposed(by: disposeBag)
+
+        guard let currentCa = self.ccaUseCase.getCurrent() else {
+            self.phoneView.isHidden = true
+            self.phoneViewHiddenConstraint.priority = .defaultHigh
+            self.phoneViewVisibleConstraint.priority = .defaultLow
+            return
+        }
+        
+        var temporallyCcaArray: [CaData] = []
+        temporallyCcaArray.append(currentCa)
+        temporallyCcaArray += (self.ccaArray ?? []).filter { $0.id != currentCa.id }
+        
+        self.ccaArray = temporallyCcaArray
+        self.phoneViewHiddenConstraint.priority = .defaultLow
+        self.phoneViewVisibleConstraint.priority = .defaultHigh
+        self.phoneView.isHidden = false
+        self.phoneLabel.text = currentCa.phone ?? "CONTACT_PHONE".localized
+        self.covidWebLabel.text = currentCa.webName ?? currentCa.web ?? ""
+        
+        let title = currentCa.description ?? "LOCALE_SELECTION_REGION_DEFAULT".localized
+        self.caSelectorButton.setTitle(title, for: .normal)
     }
-
 }

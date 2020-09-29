@@ -35,7 +35,6 @@ public enum Routes {
     case positiveExposed
     case activateCovid
     case activatePush
-
 }
 
 class AppRouter: Router {

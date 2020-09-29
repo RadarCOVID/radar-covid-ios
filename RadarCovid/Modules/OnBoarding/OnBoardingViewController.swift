@@ -35,13 +35,10 @@ class OnBoardingViewController: UIViewController {
 
     // MARK: - Properties
     var router: AppRouter?
+    
     private var termsAccepted: Bool = false
 
     //MARK: - View Life Cycle Methods.
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,11 +62,11 @@ class OnBoardingViewController: UIViewController {
     }
     
     @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "USE_CONDITIONS_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_HEALTH_REPORTED_MORE_INFO".localized.getUrlFromHref())
     }
 
     @objc func userDidTapPrivacy(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "PRIVACY_POLICY_URL".localized)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "ONBOARDING_STEP_2_PRIVACY_POLICY".localized.getUrlFromHref())
     }
 }
 
@@ -77,20 +74,19 @@ class OnBoardingViewController: UIViewController {
 extension OnBoardingViewController {
     
     func setupAccessibility() {
-        
+
         acceptSwitch.tintColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         acceptSwitch.layer.cornerRadius = acceptSwitch.frame.height / 2
         acceptSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
-        
-        acceptSwitch.isOn = false
+        acceptSwitch.isAccessibilityElement = false
+
+        updateTermsAccesibility()
         
         if UIAccessibility.isVoiceOverRunning {
             paragraph1DescriptionLabel.text = paragraph1DescriptionLabel.text?.lowercased()
-            acceptView.isHidden = true
             acceptSwitch.isHidden = false
         } else {
             acceptSwitch.isHidden = true
-            acceptView.isHidden = false
         }
         
         titleLabel.isAccessibilityElement = true
@@ -115,16 +111,28 @@ extension OnBoardingViewController {
 
         acceptTermsLabel.isAccessibilityElement = true
         acceptTermsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        acceptTermsLabel.accessibilityLabel = "MY_HEALTH_REPORTED_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         acceptTermsLabel.accessibilityHint = "ACC_HINT".localized
 
         privacyLabel.isAccessibilityElement = true
         privacyLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        privacyLabel.accessibilityLabel = "ONBOARDING_STEP_2_PRIVACY_POLICY".localizedAttributed().string
         privacyLabel.accessibilityHint = "ACC_HINT".localized
 
-        acceptView.accessibilityTraits = UISwitch().accessibilityTraits
-        acceptView.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
+        acceptView.isAccessibilityElement = true
 
         acceptButton.isAccessibilityElement = true
+    }
+    
+    func updateTermsAccesibility() {
+        
+        if termsAccepted {
+            acceptView.accessibilityLabel = "ACC_BUTTON_ALERT_CANCEL".localized
+            acceptView.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+        } else {
+            acceptView.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
+            acceptView.accessibilityHint = "ACC_BUTTON_ALERT_ACCEPT".localized
+        }
     }
 }
 
@@ -154,18 +162,15 @@ private extension OnBoardingViewController {
     }
     
     func termsToggle() {
+        termsAccepted = !termsAccepted
         
-        if !termsAccepted {
+        if termsAccepted {
             checkBoxImage.image = UIImage(named: "CheckboxSelected")
-            checkBoxImage.accessibilityHint = "ACC_HINT_DISABLE".localized
-            acceptButton.accessibilityHint = "ACC_HINT".localized
-            termsAccepted = true
         } else {
             checkBoxImage.image = UIImage(named: "CheckboxUnselected")
-            checkBoxImage.accessibilityHint = "ACC_HINT".localized
-            termsAccepted = false
         }
         
+        updateTermsAccesibility()
         acceptButton.isEnabled = termsAccepted
     }
 }
