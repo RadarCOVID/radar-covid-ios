@@ -14,19 +14,15 @@ import RxSwift
 
 class ActivateCovidNotificationViewController: UIViewController {
 
-    //MARK: - Outlet.
     @IBOutlet weak var activateButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
-    // MARK: - Properties
     var router: AppRouter?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
     var radarStatusUseCase: RadarStatusUseCase?
     var errorHandler: ErrorHandler?
     
     private let disposeBag = DisposeBag()
-
-    //MARK: - View Life Cycle Methods.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +30,6 @@ class ActivateCovidNotificationViewController: UIViewController {
         setupView()
         setupAccessibility()
     }
-
-    //MARK: - Action methods.
 
     @IBAction func onContinue(_ sender: Any) {
         
@@ -50,28 +44,20 @@ class ActivateCovidNotificationViewController: UIViewController {
                 self?.activationFinished()
         }).disposed(by: disposeBag)
     }
-}
-
-//MARK: - Accesibility.
-extension ActivateCovidNotificationViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_ACTIVATE_COVID_NOTIFICATION_TITLE".localized
     }
-}
-
-//MARK: - Private.
-private extension ActivateCovidNotificationViewController {
     
-    func setupView() {
+    private func setupView() {
         activateButton.setTitle("ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON".localized, for: .normal)
         errorHandler?.alertDelegate = self
     }
     
-    func activationFinished() {
+    private func activationFinished() {
         router?.route(to: .activatePush, from: self)
     }
 }

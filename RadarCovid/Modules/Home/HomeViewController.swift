@@ -15,7 +15,6 @@ import DP3TSDK
 
 class HomeViewController: UIViewController {
 
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreInfoLabel: UILabel!
     @IBOutlet weak var topRadarTitle: NSLayoutConstraint!
@@ -38,8 +37,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var notificationInactiveMessageLabel: UILabel!
     @IBOutlet weak var resetDataButton: UIButton!
     @IBOutlet weak var expositionDetailImage: UIImageView!
-    
-    // MARK: - Properties
+
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
     private let bgImageGreen = UIImage(named: "GradientBackgroundGreen")
@@ -53,8 +51,6 @@ class HomeViewController: UIViewController {
     var viewModel: HomeViewModel?
 
     private let disposeBag = DisposeBag()
-
-    //MARK: - View Life Cycle Methods.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +67,6 @@ class HomeViewController: UIViewController {
         viewModel!.checkShowBackToHealthyDialog()
         viewModel!.restoreLastStateAndSync()
     }
-    
-    //MARK: - Action methods.
     
     @IBAction func onReset(_ sender: Any) {
 
@@ -134,22 +128,8 @@ class HomeViewController: UIViewController {
             navigateToDetail(level)
         }
     }
-}
-
-//MARK: - AccTitleView.
-extension HomeViewController: AccTitleView {
-
-    var accTitle: String? {
-        get {
-            "ACC_HOME_TITLE".localized
-        }
-    }
-}
-
-//MARK: - Accesibility.
-extension HomeViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         radarSwitch.isAccessibilityElement = true
 
         titleLabel.isAccessibilityElement = true
@@ -178,12 +158,8 @@ extension HomeViewController {
 
         activateNotificationButton.isAccessibilityElement = false
     }
-}
-
-//MARK: - Binding.
-extension HomeViewController {
     
-    func setupBindings() {
+    private func setupBindings() {
 
         viewModel!.radarStatus.subscribe { [weak self] status in
             self?.changeRadarMessage(status: status.element ?? .inactive)
@@ -215,12 +191,8 @@ extension HomeViewController {
             }
         }.disposed(by: disposeBag)
     }
-}
-
-//MARK: - Private.
-private extension HomeViewController {
     
-    func setupView() {
+    private func setupView() {
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
 
         radarView.image = UIImage(named: "WhiteCard")
@@ -238,7 +210,7 @@ private extension HomeViewController {
         errorHandler!.alertDelegate = self
     }
     
-    func setupUserInteraction() {
+    private func setupUserInteraction() {
         moreInfoLabel.isUserInteractionEnabled = true
         moreInfoLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                       action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
@@ -252,12 +224,12 @@ private extension HomeViewController {
                                                          action: #selector(self.onOpenSettingsTap)))
     }
     
-    func showTimeExposed() {
+    private func showTimeExposed() {
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
         TimeExposedView.initWithParentViewController(viewController: self)
     }
 
-    func updateExpositionInfo(_ exposition: ExpositionInfo?) {
+    private func updateExpositionInfo(_ exposition: ExpositionInfo?) {
         guard let exposition = exposition else {
             return
         }
@@ -271,7 +243,7 @@ private extension HomeViewController {
         }
     }
 
-    func setExposed() {
+    private func setExposed() {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_HIGH".localized
         expositionDescriptionLabel.attributedText = "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
             withParams: ["CONTACT_PHONE".localized]
@@ -283,7 +255,7 @@ private extension HomeViewController {
         moreInfoLabel.isHidden = true
     }
     
-    func setHealthy() {
+    private func setHealthy() {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_LOW".localized
         expositionDescriptionLabel.locKey  = "HOME_EXPOSITION_MESSAGE_LOW"
         expositionView.image = bgImageGreen
@@ -293,7 +265,7 @@ private extension HomeViewController {
         moreInfoLabel.isHidden = true
     }
 
-    func setInfected() {
+    private func setInfected() {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_POSITIVE".localized
         expositionDescriptionLabel.locKey = "HOME_EXPOSITION_MESSAGE_INFECTED"
         expositionView.image = bgImageRed
@@ -303,7 +275,7 @@ private extension HomeViewController {
         moreInfoLabel.isHidden = false
     }
 
-    func setImagesInactive(_ inactive: Bool) {
+    private func setImagesInactive(_ inactive: Bool) {
         if inactive {
             defaultImage.image = imageHomeGray
             circleImage.image = circleGray
@@ -313,7 +285,7 @@ private extension HomeViewController {
         }
     }
 
-    func setErrorState(_ error: DomainError?) {
+    private func setErrorState(_ error: DomainError?) {
 
         if let error = error {
             switch error {
@@ -336,7 +308,7 @@ private extension HomeViewController {
         }
     }
     
-    func changeRadarMessage(status: RadarStatus) {
+    private func changeRadarMessage(status: RadarStatus) {
 
         switch status {
         case .active:
@@ -364,7 +336,7 @@ private extension HomeViewController {
         }
     }
 
-    func showExtraMessage() {
+    private func showExtraMessage() {
         topActiveNotificationConstraint.priority = .defaultHigh
         topRadarTitle.priority = .defaultLow
         notificationInactiveMessageLabel.isHidden = false
@@ -372,7 +344,7 @@ private extension HomeViewController {
         radarSwitch.isEnabled = false
     }
     
-    func hideExtraMessage() {
+    private func hideExtraMessage() {
         topActiveNotificationConstraint.priority = .defaultLow
         topRadarTitle.priority = .defaultHigh
         notificationInactiveMessageLabel.isHidden = true
@@ -380,7 +352,7 @@ private extension HomeViewController {
         radarSwitch.isEnabled = true
     }
 
-    func showError(message: String?) {
+    private func showError(message: String?) {
         if let message = message {
             showAlertOk(
                 title: "ALERT_GENERIC_ERROR_TITLE".localized,
@@ -390,7 +362,7 @@ private extension HomeViewController {
         }
     }
 
-    func showAlert(message: String?) {
+    private func showAlert(message: String?) {
         if let message = message {
             showAlertOk(
                 title: "MESSAGE_POPUP".localized,
@@ -400,13 +372,13 @@ private extension HomeViewController {
         }
     }
 
-    func showCheckState(_ showCheck: Bool?) {
+    private func showCheckState(_ showCheck: Bool?) {
         let showCheck = showCheck ?? false
         checkImage.isHidden = !showCheck
         defaultImage.isHidden = showCheck
     }
     
-    func navigateToDetail(_ info: ExpositionInfo) {
+    private func navigateToDetail(_ info: ExpositionInfo) {
         switch info.level {
         case .healthy:
             router?.route(to: Routes.exposition, from: self, parameters: info.lastCheck)
@@ -417,13 +389,22 @@ private extension HomeViewController {
         }
     }
     
-    func showActivationMessage() {
+    private func showActivationMessage() {
         self.showAlertOk(
             title: "ALERT_HOME_COVID_NOTIFICATION_TITLE".localized,
             message: "HOME_COVID_NOTIFICATION_POPUP_INACTIVE".localized,
             buttonTitle: "ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON".localized,
             buttonVoiceover: "ACC_HINT".localized) { (_) in
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
+    }
+}
+
+extension HomeViewController: AccTitleView {
+
+    var accTitle: String? {
+        get {
+            "ACC_HOME_TITLE".localized
         }
     }
 }

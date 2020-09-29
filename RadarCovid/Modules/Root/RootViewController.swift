@@ -14,7 +14,6 @@ import RxSwift
 
 class RootViewController: UIViewController {
 
-    //MARK: - Properties
     var router: AppRouter?
     var configurationUseCasee: ConfigurationUseCase?
     var ccaaUseCase: CCAAUseCase?
@@ -23,8 +22,6 @@ class RootViewController: UIViewController {
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
     
     private let disposeBag = DisposeBag()
-
-    //MARK: - View Life Cycle Methods.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,12 +49,8 @@ class RootViewController: UIViewController {
             }
         }).disposed(by: self.disposeBag)
     }
-}
-
-//MARK: - Private
-private extension RootViewController {
     
-    func loadConfiguration() {
+    private func loadConfiguration() {
         configurationUseCasee!.loadConfig().subscribe(
             onNext: { [weak self] settings in
                 debugPrint("Configuration  finished")
@@ -91,7 +84,7 @@ private extension RootViewController {
         }).disposed(by: disposeBag)
     }
 
-    func navigateFirst() {
+    private  func navigateFirst() {
         if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
             router?.route(to: Routes.home, from: self)
         } else {

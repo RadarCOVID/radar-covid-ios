@@ -15,15 +15,12 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    // MARK: - Properties
     var localizationUseCase: LocalizationUseCase
     var homeViewController: HomeViewController
     var myDataViewController: MyDataViewController
     var helpLineViewController: HelpLineViewController
     var preferencesRepository: PreferencesRepository?
 
-    
-    // MARK: - Constructor
     init(localizationUseCase: LocalizationUseCase,
          homeViewController: HomeViewController,
          myDataViewController: MyDataViewController,
@@ -43,8 +40,6 @@ class TabBarController: UITabBarController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - View Life Cycle Methods.
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,12 +52,8 @@ class TabBarController: UITabBarController {
         setupAccessibility()
         setViewControllers([homeViewController, myDataViewController, helpLineViewController], animated: false)
     }
-}
-
-//MARK: - Accesibility.
-extension TabBarController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         homeViewController.tabBarItem.isAccessibilityElement = true
         homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
@@ -78,19 +69,8 @@ extension TabBarController {
         helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
         helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
     }
-}
-
-//MARK: - AccTitleView.
-extension TabBarController: AccTitleView {
-    var accTitle: String? {
-        (selectedViewController as? AccTitleView)?.accTitle ?? selectedViewController?.title
-    }
-}
-
-//MARK: - Private.
-extension TabBarController {
-     
-    func setupView() {
+    
+    private func setupView() {
         
         tabBar.layer.masksToBounds = true
         tabBar.isTranslucent = true
@@ -114,5 +94,11 @@ extension TabBarController {
             title: "",
             image: UIImage(named: "MenuHelpNormal"),
             selectedImage: UIImage(named: "MenuHelpSelected"))
+    }
+}
+
+extension TabBarController: AccTitleView {
+    var accTitle: String? {
+        (selectedViewController as? AccTitleView)?.accTitle ?? selectedViewController?.title
     }
 }

@@ -16,7 +16,6 @@ import SafariServices
 
 class TimeExposedView: UIView {
 
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bullet1Label: UILabel!
     @IBOutlet weak var bullet2Label: UILabel!
@@ -26,11 +25,9 @@ class TimeExposedView: UIView {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
     
-    // MARK: - Properties
     var parentViewController: UIViewController?
     var viewModel: HomeViewModel?
 
-    // MARK: - Constructor
     class func initWithParentViewController(viewController: HomeViewController) {
         
         guard let timeExposedView = UINib(nibName: "TimeExposed", bundle: nil)
@@ -51,8 +48,6 @@ class TimeExposedView: UIView {
         viewController.view.addSubview(timeExposedView)
     }
 
-    //MARK: - Action methods.
-    
     @IBAction func onCloseAction(_ sender: Any) {
         removePopUpView()
     }
@@ -95,12 +90,8 @@ class TimeExposedView: UIView {
             parentViewController?.present(viewController, animated: true)
         }
     }
-}
-
-//MARK: - Accesibility.
-extension TimeExposedView {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         closeButton.isAccessibilityElement = true
         closeButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
         closeButton.accessibilityHint = "ACC_HINT".localized
@@ -124,12 +115,8 @@ extension TimeExposedView {
         moreInfoLabel.accessibilityLabel = "ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO".localizedAttributed().string
         moreInfoLabel.accessibilityHint = "ACC_HINT".localized
     }
-}
-
-//MARK: - Private.
-private extension TimeExposedView {
     
-    func initValues() {
+    private func initValues() {
         
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 8
@@ -146,7 +133,7 @@ private extension TimeExposedView {
         setupAccessibility()
     }
     
-    func removePopUpView() {
+    private func removePopUpView() {
         for view in parentViewController?.view.subviews ?? [] where view.tag == 1111 {
             view.fadeOut { (_) in
                 view.removeFromSuperview()

@@ -13,7 +13,6 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
-    //MARK: - Outlet.
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var languageSelectorButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -22,7 +21,6 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var stepbullet2Label: UILabel!
     @IBOutlet weak var stepbullet3Label: UILabel!
     
-    // MARK: - Properties
     var router: AppRouter?
     var localesKeysArray: [String] = []
     var localesArray: [String: String?]!
@@ -31,16 +29,12 @@ class WelcomeViewController: UIViewController {
     private var currentLocale: String = "es-ES"
     private var pickerPresenter: PickerPresenter?
 
-    //MARK: - View Life Cycle Methods.
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
         loadLocaleValues()
     }
-
-    //MARK: - Action methods.
     
     @IBAction func onContinue(_ sender: Any) {
         router?.route(to: .onBoarding, from: self)
@@ -49,12 +43,8 @@ class WelcomeViewController: UIViewController {
     @IBAction func selectLanguage(_ sender: Any) {
         pickerPresenter?.openPicker(title: "ACC_LANGUAGE_SELECTOR_PICKER".localized)
     }
-}
-
-//MARK: - Accesibility.
-extension WelcomeViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         
         languageSelectorButton.isAccessibilityElement = true
         languageSelectorButton.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
@@ -69,9 +59,42 @@ extension WelcomeViewController {
         titleLabel.accessibilityLabel = "ACC_WELCOME_TITLE".localized
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
     }
+    
+    private func setupView() {
+        
+        selectorView.image = #imageLiteral(resourceName: "tabBarBG")
+        
+        let picker = UIPickerView.init()
+        picker.delegate = self
+        picker.dataSource = self
+        pickerPresenter = PickerPresenter(picker: picker)
+        pickerPresenter?.delegate = self
+        setupAccessibility()
+    }
+    
+    private func loadLocaleValues() {
+
+        if let locale = localizationRepository.getLocale() {
+            currentLocale = locale
+        }
+
+        localesArray = localizationRepository.getLocales()
+
+        let keys = Array(self.localesArray.keys) as [String]
+        if let currentLanguage = localizationRepository.getLocale() {
+            languageSelectorButton.setTitle(localesArray[currentLanguage, default: ""], for: .normal)
+        }
+
+        guard let firstKey = keys.filter({ $0.contains(currentLocale) }).first else {
+            self.localesKeysArray = keys
+            return
+        }
+        let otherKeys = keys.filter {!$0.contains(currentLocale)}
+        self.localesKeysArray.append(firstKey)
+        self.localesKeysArray += otherKeys
+    }
 }
 
-//MARK: - Picker
 extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, PickerDelegate {
 
     var containerView: UIView {
@@ -123,43 +146,5 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
                 exit(0)
             }
         }
-    }
-}
-
-//MARK: - Private.
-private extension WelcomeViewController {
-    
-    func setupView() {
-        
-        selectorView.image = #imageLiteral(resourceName: "tabBarBG") 
-        
-        let picker = UIPickerView.init()
-        picker.delegate = self
-        picker.dataSource = self
-        pickerPresenter = PickerPresenter(picker: picker)
-        pickerPresenter?.delegate = self
-        setupAccessibility()
-    }
-    
-    func loadLocaleValues() {
-
-        if let locale = localizationRepository.getLocale() {
-            currentLocale = locale
-        }
-
-        localesArray = localizationRepository.getLocales()
-
-        let keys = Array(self.localesArray.keys) as [String]
-        if let currentLanguage = localizationRepository.getLocale() {
-            languageSelectorButton.setTitle(localesArray[currentLanguage, default: ""], for: .normal)
-        }
-
-        guard let firstKey = keys.filter({ $0.contains(currentLocale) }).first else {
-            self.localesKeysArray = keys
-            return
-        }
-        let otherKeys = keys.filter {!$0.contains(currentLocale)}
-        self.localesKeysArray.append(firstKey)
-        self.localesKeysArray += otherKeys
     }
 }

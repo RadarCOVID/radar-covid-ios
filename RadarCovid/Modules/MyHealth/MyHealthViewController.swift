@@ -14,7 +14,6 @@ import RxSwift
 
 class MyHealthViewController: UIViewController {
     
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -25,14 +24,11 @@ class MyHealthViewController: UIViewController {
     @IBOutlet weak var sendDiagnosticButton: UIButton!
     @IBOutlet var codeChars: [UITextField]!
     
-    // MARK: - Properties
     var router: AppRouter?
     var diagnosisCodeUseCase: DiagnosisCodeUseCase?
     
     private let emptyText200B: String = "\u{200B}"
     private let disposeBag = DisposeBag()
-    
-    //MARK: - View Life Cycle Methods.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,9 +61,7 @@ class MyHealthViewController: UIViewController {
             self.codeTextField.becomeFirstResponder()
         }
     }
-    
-    //MARK: - Action methods.
-    
+
     @IBAction func onReportDiagnosis(_ sender: Any) {
 
         view.showLoading()
@@ -119,12 +113,8 @@ class MyHealthViewController: UIViewController {
         })
         endEditingCodeChars()
     }
-}
-
-//MARK: - Accesibility.
-extension MyHealthViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         
         codeTextField.isAccessibilityElement = true
         codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
@@ -156,10 +146,6 @@ extension MyHealthViewController {
             }
         }
     }
-}
-
-//MARK: - KeyboardHelper.
-extension MyHealthViewController {
     
     @objc func keyboardWillShow(notification: NSNotification?) {
         guard let keyboardSize = (
@@ -223,7 +209,7 @@ extension MyHealthViewController {
         sendDiagnosticButton.isEnabled = checkSendEnabled()
     }
     
-    func addDoneButtonOnKeyboard(textView: UITextField) {
+    private func addDoneButtonOnKeyboard(textView: UITextField) {
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle = UIBarStyle.default
@@ -241,40 +227,15 @@ extension MyHealthViewController {
         textView.inputAccessoryView = doneToolbar
     }
     
-    func endEditingCodeChars() {
+    private func endEditingCodeChars() {
         for item in codeChars {
             item.endEditing(true)
         }
         
         keyboardWillHide(notification: nil)
     }
-}
-
-//MARK: - UITextFieldDelegate.
-extension MyHealthViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let maxLength = 12
-        let currentString: NSString = (textField.text ?? "") as NSString
-        if (string != "\u{232B}"){
-            let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789").inverted
-            let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet) == nil
-            if !replacementStringIsLegal{
-                return false;
-            }
-        }
-        let newString: NSString =
-            currentString.replacingCharacters(in: range, with: string) as NSString
-        sendDiagnosticButton.isEnabled = newString.length == 12
-        return newString.length <= maxLength
-    }
-}
-
-//MARK: - Private.
-private extension MyHealthViewController {
-    
-    func setupView() {
+    private func setupView() {
         codeTextField.delegate = self
 
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -295,17 +256,17 @@ private extension MyHealthViewController {
         sendDiagnosticButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
     }
     
-    func checkSendEnabled() -> Bool {
+    private func checkSendEnabled() -> Bool {
         codeChars.filter({ $0.text != emptyText200B }).count == codeChars.count
     }
 
-    func navigateIf(reported: Bool) {
+    private func navigateIf(reported: Bool) {
         if reported {
             router?.route(to: Routes.myHealthReported, from: self)
         }
     }
     
-    func handle(error: Error) {
+    private func handle(error: Error) {
         
         debugPrint("Error sending diagnosis \(error)")
         var errorMessage = "ALERT_MY_HEALTH_CODE_VALIDATION_CONTENT".localized
@@ -336,3 +297,22 @@ private extension MyHealthViewController {
     }
 }
 
+extension MyHealthViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let maxLength = 12
+        let currentString: NSString = (textField.text ?? "") as NSString
+        if (string != "\u{232B}"){
+            let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789").inverted
+            let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet) == nil
+            if !replacementStringIsLegal{
+                return false;
+            }
+        }
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        sendDiagnosticButton.isEnabled = newString.length == 12
+        return newString.length <= maxLength
+    }
+}

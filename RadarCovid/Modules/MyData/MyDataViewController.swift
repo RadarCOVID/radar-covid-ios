@@ -13,7 +13,6 @@ import UIKit
 
 class MyDataViewController: UIViewController {
 
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var acceptTermsLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -21,17 +20,13 @@ class MyDataViewController: UIViewController {
     @IBOutlet weak var bullet2Label: UILabel!
     @IBOutlet weak var bullet3Label: UILabel!
     
-    //MARK: - View Life Cycle Methods.
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         setupAccessibility()
     }
-
-    //MARK: - Action methods.
-
+    
     @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_DATA_TERMS".localized.getUrlFromHref())
     }
@@ -39,12 +34,8 @@ class MyDataViewController: UIViewController {
     @objc func userDidTapPrivacy(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_DATA_PRIVACY".localized.getUrlFromHref())
     }
-}
-
-//MARK: - Accesibility.
-extension MyDataViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
@@ -66,12 +57,8 @@ extension MyDataViewController {
             bullet3Label.text = bullet3Label.text?.lowercased()
         }
     }
-}
-
-//MARK: - Private.
-private extension MyDataViewController {
     
-    func setupView() {
+    private func setupView() {
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true
 

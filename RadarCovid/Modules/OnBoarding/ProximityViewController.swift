@@ -14,24 +14,18 @@ import RxSwift
 
 class ProximityViewController: UIViewController {
 
-    //MARK: - Outlet.
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
-    
-    // MARK: - Properties
+
     var router: AppRouter?
     var radarStatusUseCase: RadarStatusUseCase?
     
     private let disposeBag = DisposeBag()
-
-    //MARK: - View Life Cycle Methods.
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAccessibility()
     }
-    
-    //MARK: - Action methods.
     
     @IBAction func onContinue(_ sender: Any) {
         
@@ -41,12 +35,8 @@ class ProximityViewController: UIViewController {
             router!.route(to: .activateCovid, from: self)
         }
     }
-}
-
-//MARK: - Accesibility.
-extension ProximityViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         
         continueButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
         continueButton.isAccessibilityElement = true

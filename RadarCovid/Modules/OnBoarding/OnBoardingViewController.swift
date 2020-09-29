@@ -13,7 +13,6 @@ import UIKit
 
 class OnBoardingViewController: UIViewController {
 
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
@@ -33,12 +32,9 @@ class OnBoardingViewController: UIViewController {
 
     @IBOutlet weak var acceptButton: UIButton!
 
-    // MARK: - Properties
     var router: AppRouter?
     
     private var termsAccepted: Bool = false
-
-    //MARK: - View Life Cycle Methods.
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +42,6 @@ class OnBoardingViewController: UIViewController {
         setupView()
         setupAccessibility()
     }
-
-    //MARK: - Action methods.
     
     @IBAction func onSwithAcceptChange(_ sender: Any) {
         termsToggle()
@@ -68,12 +62,8 @@ class OnBoardingViewController: UIViewController {
     @objc func userDidTapPrivacy(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "ONBOARDING_STEP_2_PRIVACY_POLICY".localized.getUrlFromHref())
     }
-}
-
-//MARK: - Accesibility.
-extension OnBoardingViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
 
         acceptSwitch.tintColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         acceptSwitch.layer.cornerRadius = acceptSwitch.frame.height / 2
@@ -124,7 +114,7 @@ extension OnBoardingViewController {
         acceptButton.isAccessibilityElement = true
     }
     
-    func updateTermsAccesibility() {
+    private func updateTermsAccesibility() {
         
         if termsAccepted {
             acceptView.accessibilityLabel = "ACC_BUTTON_ALERT_CANCEL".localized
@@ -134,12 +124,8 @@ extension OnBoardingViewController {
             acceptView.accessibilityHint = "ACC_BUTTON_ALERT_ACCEPT".localized
         }
     }
-}
-
-//MARK: - Private.
-private extension OnBoardingViewController {
     
-    func setupView() {
+    private func setupView() {
         
         acceptButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
 
@@ -161,7 +147,7 @@ private extension OnBoardingViewController {
                                           action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
     }
     
-    func termsToggle() {
+    private func termsToggle() {
         termsAccepted = !termsAccepted
         
         if termsAccepted {

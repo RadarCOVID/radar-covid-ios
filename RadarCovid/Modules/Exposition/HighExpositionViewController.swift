@@ -14,7 +14,6 @@ import RxSwift
 
 class HighExpositionViewController: BaseExposed {
 
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var whatToDoTitleLabel: UILabel!
     @IBOutlet weak var youCouldBeLabel: UILabel!
@@ -31,7 +30,6 @@ class HighExpositionViewController: BaseExposed {
     @IBOutlet weak var otherSympthomsLabel: UILabel!
     @IBOutlet weak var howActLabel: UILabel!
     
-    // MARK: - Properties
     var ccaUseCase: CCAAUseCase!
     var since: Date?
     private var ccaArray: [CaData]?
@@ -44,8 +42,6 @@ class HighExpositionViewController: BaseExposed {
     
     private let disposeBag = DisposeBag()
     
-    //MARK: - View Life Cycle Methods.
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,8 +52,6 @@ class HighExpositionViewController: BaseExposed {
 
         setCaSelector()
     }
-
-    //MARK: - Action methods.
     
     @IBAction func caaSelectAction(_ sender: Any) {
         pickerPresenter!.openPicker()
@@ -84,12 +78,8 @@ class HighExpositionViewController: BaseExposed {
     @objc func userDidTapWeb(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: currentCA?.web)
     }
-}
-
-//MARK: - Accesibility.
-extension HighExpositionViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_HIGH_EXPOSED_TITLE".localized
@@ -113,55 +103,8 @@ extension HighExpositionViewController {
         howActLabel.accessibilityLabel = "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         howActLabel.accessibilityHint = "ACC_HINT".localized
     }
-}
-
-//MARK: - PickerView.
-extension HighExpositionViewController: UIPickerViewDelegate, UIPickerViewDataSource, PickerDelegate {
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return ccaArray?.count ?? 0
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return ccaArray?[row].description
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard let currentCa =  self.ccaArray?[row] ?? self.ccaArray?.first else {
-            return
-        }
-        ccaUseCase.setCurrent(cca: currentCa)
-        self.currentCA = currentCa
-    }
-    var containerView: UIView {
-        get {
-            view
-        }
-    }
-
-    func onDone() {
-        guard ccaUseCase.getCurrent() != nil else {
-            // if not current then we need to select the first that was selected
-            guard let firstca = self.ccaArray?.first else {
-                setCaSelector()
-                return
-            }
-            ccaUseCase.setCurrent(cca: firstca)
-            setCaSelector()
-            return
-        }
-        setCaSelector()
-    }
-}
-
-//MARK: - Private.
-private extension HighExpositionViewController {
     
-    func setupView() {
+    private func setupView() {
         
         let picker = UIPickerView.init()
         picker.delegate = self
@@ -204,7 +147,7 @@ private extension HighExpositionViewController {
             .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
     }
     
-    func setCaSelector() {
+    private func setCaSelector() {
         
         self.selectorView.image = UIImage.init(named: "WhiteCard")
         self.selectorView.isUserInteractionEnabled = true
@@ -236,5 +179,47 @@ private extension HighExpositionViewController {
         
         let title = currentCa.description ?? "LOCALE_SELECTION_REGION_DEFAULT".localized
         self.caSelectorButton.setTitle(title, for: .normal)
+    }
+}
+
+extension HighExpositionViewController: UIPickerViewDelegate, UIPickerViewDataSource, PickerDelegate {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return ccaArray?.count ?? 0
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return ccaArray?[row].description
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard let currentCa =  self.ccaArray?[row] ?? self.ccaArray?.first else {
+            return
+        }
+        ccaUseCase.setCurrent(cca: currentCa)
+        self.currentCA = currentCa
+    }
+    var containerView: UIView {
+        get {
+            view
+        }
+    }
+
+    func onDone() {
+        guard ccaUseCase.getCurrent() != nil else {
+            // if not current then we need to select the first that was selected
+            guard let firstca = self.ccaArray?.first else {
+                setCaSelector()
+                return
+            }
+            ccaUseCase.setCurrent(cca: firstca)
+            setCaSelector()
+            return
+        }
+        setCaSelector()
     }
 }

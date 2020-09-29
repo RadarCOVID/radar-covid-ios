@@ -57,12 +57,8 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
                  urlString: "HELPLINE_OTHER_WEB_TITLE".localized.getUrlFromHref())
     }
-}
-
-//MARK: - Accesibility.
-extension HelpLineViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
@@ -81,21 +77,13 @@ extension HelpLineViewController {
         otherWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         otherWebLabel.accessibilityHint = "ACC_HINT".localized
     }
-}
-
-//MARK: - MFMailComposeViewControllerDelegate.
-extension HelpLineViewController {
     
-    func mailComposeController(_ controller: MFMailComposeViewController,
+    private func mailComposeController(_ controller: MFMailComposeViewController,
                                didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
-}
-
-//MARK: - Private.
-private extension HelpLineViewController {
     
-    func setupView() {
+    private func setupView() {
         
         phoneView.image = UIImage(named: "WhiteCard")
 

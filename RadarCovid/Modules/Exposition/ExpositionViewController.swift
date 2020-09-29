@@ -13,18 +13,14 @@ import UIKit
 
 class ExpositionViewController: BaseExposed {
 
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var withOutContactLabel: UILabel!
     @IBOutlet weak var whatToDoTitleLabel: UILabel!
     @IBOutlet weak var whatToDoLabel: UILabel!
     @IBOutlet weak var moreInfoLabel: UILabel!
-    
-    // MARK: - Properties
+
     private let bgImageGreen = UIImage(named: "GradientBackgroundGreen")
 
-    //MARK: - View Life Cycle Methods.
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,8 +28,6 @@ class ExpositionViewController: BaseExposed {
         setupAccessibility()
     }
 
-    //MARK: - Action methods.
-    
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
                  urlString: "MORE_INFO_EXPOSURE_LOW".localized.getUrlFromHref())
@@ -43,12 +37,8 @@ class ExpositionViewController: BaseExposed {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
                  urlString: "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localized.getUrlFromHref())
     }
-}
-
-//MARK: - Accesibility.
-extension ExpositionViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
@@ -71,12 +61,8 @@ extension ExpositionViewController {
         moreInfoLabel.isAccessibilityElement = true
         moreInfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
     }
-}
-
-//MARK: - Private.
-private extension ExpositionViewController {
     
-    func setupView() {
+    private func setupView() {
         
         whatToDoLabel.attributedText = "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localizedAttributed()
         

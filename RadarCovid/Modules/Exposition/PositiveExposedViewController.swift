@@ -13,17 +13,13 @@ import UIKit
 
 class PositiveExposedViewController: BaseExposed {
     
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var realInfectedLabel: UILabel!
     @IBOutlet weak var moreInfoLabel: UILabel!
     @IBOutlet weak var whatToDoLabel: UILabel!
     
-    // MARK: - Properties
     var since: Date?
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
-
-    //MARK: - View Life Cycle Methods.
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +27,6 @@ class PositiveExposedViewController: BaseExposed {
         setupView()
         setupAccessibility()
     }
-    
-    //MARK: - Action methods.
     
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
@@ -43,12 +37,8 @@ class PositiveExposedViewController: BaseExposed {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
                  urlString: "EXPOSITION_HIGH_MORE_INFO".localized.getUrlFromHref())
     }
-}
-
-//MARK: - Accesibility.
-extension PositiveExposedViewController {
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_POSITIVE_EXPOSED_TITLE".localized
@@ -67,12 +57,8 @@ extension PositiveExposedViewController {
         whatToDoLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         whatToDoLabel.accessibilityLabel = "ACC_WHAT_TO_DO_TITLE".localized
     }
-}
-
-//MARK: - Private.
-private extension PositiveExposedViewController {
     
-    func setupView() {
+    private func setupView() {
         
         moreInfoLabel.isUserInteractionEnabled = true
         moreInfoLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
@@ -82,7 +68,7 @@ private extension PositiveExposedViewController {
         setInfectedText()
     }
     
-    func setInfectedText() {
+    private func setInfectedText() {
         
         let date = self.since ?? Date()
         let formatter = DateFormatter()

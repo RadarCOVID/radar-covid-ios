@@ -13,15 +13,11 @@ import UIKit
 
 class MyHealthReportedViewController: UIViewController {
 
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreinfoLabel: UILabel!
     @IBOutlet weak var moreInfoView: UIView!
     
-    // MARK: - Properties
     var router: AppRouter?
-
-    //MARK: - View Life Cycle Methods.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +25,6 @@ class MyHealthReportedViewController: UIViewController {
         setupView()
         setupAccessibility()
     }
-
-    //MARK: - Action methods.
     
     @IBAction func onBack(_ sender: Any) {
         router?.popToRoot(from: self, animated: true)
@@ -46,12 +40,7 @@ class MyHealthReportedViewController: UIViewController {
                  urlString: "MY_HEALTH_REPORTED_MORE_INFO".localized.getUrlFromHref())
     }
 
-}
-
-//MARK: - Accesibility.
-extension MyHealthReportedViewController {
-    
-    func setupAccessibility() {
+    private func setupAccessibility() {
         
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
@@ -73,12 +62,8 @@ extension MyHealthReportedViewController {
             titleLabel.isHidden = true
         }
     }
-}
-
-//MARK: - Private.
-private extension MyHealthReportedViewController {
     
-    func setupView() {
+    private func setupView() {
         
         moreInfoView.isUserInteractionEnabled = true
         moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self,

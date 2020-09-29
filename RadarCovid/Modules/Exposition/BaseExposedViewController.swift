@@ -18,16 +18,12 @@ protocol ExpositionView {
 
 class BaseExposed: UIViewController, ExpositionView {
 
-    //MARK: - Outlet.
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var moreInfoView: UIView!
     @IBOutlet weak var expositionBGView: BackgroundView!
 
-    // MARK: - Properties
     var lastCheck: Date?
     var router: AppRouter?
-
-    //MARK: - View Life Cycle Methods.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +32,6 @@ class BaseExposed: UIViewController, ExpositionView {
         setupBaseAccessibility()
     }
 
-    //MARK: - Action methods.
-    
     @IBAction func onBack(_ sender: Any) {
         router?.pop(from: self, animated: true)
     }
@@ -45,12 +39,8 @@ class BaseExposed: UIViewController, ExpositionView {
     @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         //Nothing to do here
     }
-}
-
-//MARK: - Accesibility.
-extension BaseExposed {
     
-    func setupBaseAccessibility() {
+    private func setupBaseAccessibility() {
         
         backButton.isAccessibilityElement = true
         let previous = navigationController?.previousViewController
@@ -60,12 +50,8 @@ extension BaseExposed {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
     }
-}
-
-//MARK: - Private.
-private extension BaseExposed {
     
-    func setupBaseView() {
+    private func setupBaseView() {
         moreInfoView.isUserInteractionEnabled = true
         moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                            action: #selector(userDidTapLabel(tapGestureRecognizer:))))
