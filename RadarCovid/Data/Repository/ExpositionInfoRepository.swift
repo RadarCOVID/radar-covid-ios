@@ -48,6 +48,7 @@ class UserDefaultsExpositionInfoRepository: ExpositionInfoRepository {
     func isChangedToHealthy() -> Bool? {
         userDefaults.object(forKey: UserDefaultsExpositionInfoRepository.kChanged) as? Bool
     }
+    
 
     func setChangedToHealthy(changed: Bool) {
         userDefaults.set(changed, forKey: UserDefaultsExpositionInfoRepository.kChanged)

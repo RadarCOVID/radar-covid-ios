@@ -115,6 +115,11 @@ class Injection {
             DiagnosisCodeUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
                                  verificationApi: r.resolve(VerificationControllerAPI.self)!)
         }.inObjectScope(.container)
+        
+        container.register(FakeRequestUseCase.self) { r in
+            FakeRequestUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
+                                 verificationApi: r.resolve(VerificationControllerAPI.self)!)
+        }.inObjectScope(.container)
 
         container.register(ConfigurationUseCase.self) { r in
             ConfigurationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
@@ -130,7 +135,8 @@ class Injection {
         container.register(SetupUseCase.self) { r in
             SetupUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!,
                          notificationHandler: r.resolve(NotificationHandler.self)!,
-                         expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!)
+                         expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!,
+                         fakeRequestUseCase: r.resolve(FakeRequestUseCase.self)!)
         }.inObjectScope(.container)
 
         container.register(LocalizationUseCase.self) { r in
