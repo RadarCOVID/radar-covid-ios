@@ -60,13 +60,6 @@ class MyHealthViewController: UIViewController {
         if UIAccessibility.isVoiceOverRunning {
             self.codeTextField.becomeFirstResponder()
         }
-        
-        diagnosisCodeUseCase?.sendDiagnosisCode(code: "112358132134").subscribe(
-            onNext: { [weak self] reportedCodeBool in
-                debugPrint(reportedCodeBool)
-            }, onError: {  [weak self] error in
-                debugPrint(error)
-            }).disposed(by: disposeBag)
     }
 
     @IBAction func onReportDiagnosis(_ sender: Any) {
