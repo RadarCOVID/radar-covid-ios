@@ -101,8 +101,11 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                 body: "Last sync: \(sync)",
                 sound: .default)
         }
-        fakeRequestUseCase.sendFalsePositive()
-       
+        fakeRequestUseCase.sendFalsePositive().subscribe { (err) in
+            completionHandler(err)
+        } onError: { (error) in
+            completionHandler(false)
+        }
         
     }
 

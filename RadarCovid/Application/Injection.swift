@@ -74,6 +74,10 @@ class Injection {
         container.register(SettingsRepository.self) { _ in
             UserDefaultsSettingsRepository()
         }.inObjectScope(.container)
+        
+        container.register(FakeRequestRepository.self) { _ in
+            FakeRequestRepository()
+        }.inObjectScope(.container)
 
         container.register(ExpositionInfoRepository.self) { _ in
             UserDefaultsExpositionInfoRepository()
@@ -118,7 +122,8 @@ class Injection {
         
         container.register(FakeRequestUseCase.self) { r in
             FakeRequestUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
-                                 verificationApi: r.resolve(VerificationControllerAPI.self)!)
+                               verificationApi: r.resolve(VerificationControllerAPI.self)!,
+                               fakeRequestRepository: r.resolve(FakeRequestRepository.self)!)
         }.inObjectScope(.container)
 
         container.register(ConfigurationUseCase.self) { r in

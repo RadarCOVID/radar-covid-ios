@@ -14,30 +14,37 @@ import RxSwift
 
 class FakeRequestUseCase: DiagnosisCodeUseCase {
     public static let FALSE_POSITIVE_CODE = "112358132134"
-    private static let lastFake = "UserDefaultsFakeRequestUseCase.lastFake"
+    private let minFakeRequestTimeSpan = Double(3 * 60 * 60)
     private let disposeBag = DisposeBag()
+    private var fakeRequestRepository: FakeRequestRepository
     
-    func sendFalsePositive(){
-        let defaults = UserDefaults.standard
-        if checkTimeInterval(defaults: defaults) {
-            self.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE).subscribe(
-                onNext: { _ in
-                    defaults.set(Date(), forKey: "LastDate")
-            }).disposed(by: disposeBag)
-        }
+    init(settingsRepository: SettingsRepository, verificationApi: VerificationControllerAPI, fakeRequestRepository: FakeRequestRepository) {
+        self.fakeRequestRepository = fakeRequestRepository
+        super.init(settingsRepository: settingsRepository, verificationApi: verificationApi)
     }
     
-    func checkTimeInterval(defaults: UserDefaults) -> Bool{
-        let storedDate = defaults.object(forKey: "LastDate")
-        let storedDateString = String(describing: storedDate)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:ii"
-        if let compareDate = dateFormatter.date(from: storedDateString){
-            let actualDate = Date()
-            let diffComponents = Calendar.current.dateComponents([.hour], from: compareDate, to: actualDate)
-            let hours = diffComponents.hour ?? 0
-            return hours >= 3
+    func sendFalsePositive() -> Observable<Bool> {
+        return Observable.create { [weak self] (observer) -> Disposable in
+            if self?.needToSendFalsePositive() ?? false {
+                self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE).subscribe(
+                    onNext: { _ in
+                        
+                        self?.fakeRequestRepository.fakeRequestDate = Date()
+                        return observer.onNext(true)
+                        
+                    }
+                    ,onError: { (err) in
+                        return observer.onError(err)
+                    }).disposed(by: self?.disposeBag ?? DisposeBag())
+            }
+            return Disposables.create()
         }
-        return false
+        
+       
     }
+    
+    private func needToSendFalsePositive() -> Bool{
+        return Date().timeIntervalSince(fakeRequestRepository.fakeRequestDate) >= minFakeRequestTimeSpan
+    }
+    
 }
