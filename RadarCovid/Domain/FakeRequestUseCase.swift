@@ -18,10 +18,26 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
     private let disposeBag = DisposeBag()
     
     func sendFalsePositive(){
-        self.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE).subscribe(
-            onNext: { _ in
-                
-//                UserDefaults.set(Date(), forKey: FakeRequestUseCase.lastFake)
+        let defaults = UserDefaults.standard
+        if checkTimeInterval(defaults: defaults) {
+            self.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE).subscribe(
+                onNext: { _ in
+                    defaults.set(Date(), forKey: "LastDate")
             }).disposed(by: disposeBag)
+        }
+    }
+    
+    func checkTimeInterval(defaults: UserDefaults) -> Bool{
+        let storedDate = defaults.object(forKey: "LastDate")
+        let storedDateString = String(describing: storedDate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:ii"
+        if let compareDate = dateFormatter.date(from: storedDateString){
+            let actualDate = Date()
+            let diffComponents = Calendar.current.dateComponents([.hour], from: compareDate, to: actualDate)
+            let hours = diffComponents.hour ?? 0
+            return hours >= 3
+        }
+        return false
     }
 }
