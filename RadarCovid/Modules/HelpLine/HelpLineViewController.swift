@@ -78,7 +78,7 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
         otherWebLabel.accessibilityHint = "ACC_HINT".localized
     }
     
-    private func mailComposeController(_ controller: MFMailComposeViewController,
+    func mailComposeController(_ controller: MFMailComposeViewController,
                                didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
