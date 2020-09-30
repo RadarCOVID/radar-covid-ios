@@ -56,7 +56,7 @@ class OnBoardingViewController: UIViewController {
     }
     
     @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_HEALTH_REPORTED_MORE_INFO".localized.getUrlFromHref())
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "ONBOARDING_STEP_2_USAGE_CONDITIONS".localized.getUrlFromHref())
     }
 
     @objc func userDidTapPrivacy(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -101,7 +101,7 @@ class OnBoardingViewController: UIViewController {
 
         acceptTermsLabel.isAccessibilityElement = true
         acceptTermsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
-        acceptTermsLabel.accessibilityLabel = "MY_HEALTH_REPORTED_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
+        acceptTermsLabel.accessibilityLabel = "ONBOARDING_STEP_2_USAGE_CONDITIONS".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         acceptTermsLabel.accessibilityHint = "ACC_HINT".localized
 
         privacyLabel.isAccessibilityElement = true
