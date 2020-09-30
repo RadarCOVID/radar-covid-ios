@@ -18,6 +18,10 @@ extension String: Localizable {
         return LocalizationHolder.localizationMap?[self] ?? NSLocalizedString(self, comment: "")
     }
 
+    var isHrefText: Bool {
+        localized.contains("href=")
+    }
+    
     var isAttributedText: Bool {
         localized.contains("</") || localized.contains("<br")
     }

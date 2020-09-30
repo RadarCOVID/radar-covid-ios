@@ -17,8 +17,16 @@ extension UILabel: XibLocalizable {
     @IBInspectable var locKey: String? {
         get { return nil }
         set(key) {
+            
             if key?.isAttributedText ?? false {
-                attributedText = key?.localizedAttributed(
+                var strValue: String = key ?? ""
+                if strValue.isHrefText {
+                    //Hyperlink to Link
+                    strValue = strValue.localized.replacingOccurrences(of: "<a", with: "<link ")
+                    strValue = strValue.localized.replacingOccurrences(of: "</a>", with: "</link>")
+                }
+                
+                attributedText = strValue.localizedAttributed(
                     attributes: attributedText?.attributes(at: 0, effectiveRange: nil) ?? [:])
             } else {
                 let finalText = key?.localized
