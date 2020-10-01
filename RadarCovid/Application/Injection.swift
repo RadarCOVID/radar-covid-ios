@@ -33,12 +33,6 @@ class Injection {
             return swaggerApi
         }.inObjectScope(.container)
 
-        container.register(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue) { _ in
-            let swaggerApi = SwaggerClientAPI()
-            swaggerApi.basePath = Config.endpoints.kpi
-            return swaggerApi
-        }.inObjectScope(.container)
-
         container.register(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.verification
@@ -79,6 +73,10 @@ class Injection {
 
         container.register(SettingsRepository.self) { _ in
             UserDefaultsSettingsRepository()
+        }.inObjectScope(.container)
+        
+        container.register(FakeRequestRepository.self) { _ in
+            FakeRequestRepository()
         }.inObjectScope(.container)
 
         container.register(ExpositionInfoRepository.self) { _ in
@@ -121,6 +119,12 @@ class Injection {
             DiagnosisCodeUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
                                  verificationApi: r.resolve(VerificationControllerAPI.self)!)
         }.inObjectScope(.container)
+        
+        container.register(FakeRequestUseCase.self) { r in
+            FakeRequestUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
+                               verificationApi: r.resolve(VerificationControllerAPI.self)!,
+                               fakeRequestRepository: r.resolve(FakeRequestRepository.self)!)
+        }.inObjectScope(.container)
 
         container.register(ConfigurationUseCase.self) { r in
             ConfigurationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
@@ -136,7 +140,8 @@ class Injection {
         container.register(SetupUseCase.self) { r in
             SetupUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!,
                          notificationHandler: r.resolve(NotificationHandler.self)!,
-                         expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!)
+                         expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!,
+                         fakeRequestUseCase: r.resolve(FakeRequestUseCase.self)!)
         }.inObjectScope(.container)
 
         container.register(LocalizationUseCase.self) { r in

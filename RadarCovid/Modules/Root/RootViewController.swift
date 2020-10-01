@@ -14,15 +14,15 @@ import RxSwift
 
 class RootViewController: UIViewController {
 
-    private let disposeBag = DisposeBag()
-
     var router: AppRouter?
     var configurationUseCasee: ConfigurationUseCase?
     var ccaaUseCase: CCAAUseCase?
     var localesUseCase: LocalesUseCase?
     var localizationUseCase: LocalizationUseCase?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
-
+    
+    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,9 +48,8 @@ class RootViewController: UIViewController {
                 exit(0)
             }
         }).disposed(by: self.disposeBag)
-
     }
-
+    
     private func loadConfiguration() {
         configurationUseCasee!.loadConfig().subscribe(
             onNext: { [weak self] settings in
@@ -85,12 +84,11 @@ class RootViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
 
-    private func navigateFirst() {
+    private  func navigateFirst() {
         if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
             router?.route(to: Routes.home, from: self)
         } else {
             router!.route(to: Routes.welcome, from: self)
         }
     }
-
 }

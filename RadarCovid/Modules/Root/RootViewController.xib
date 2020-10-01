@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,6 +34,7 @@
                             <rect key="frame" x="122.5" y="94" width="169" height="80"/>
                         </imageView>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="vyP-JW-NFe"/>
                     <color key="backgroundColor" name="bgColor"/>
                     <constraints>
                         <constraint firstItem="WM6-5V-y9a" firstAttribute="centerX" secondItem="vyP-JW-NFe" secondAttribute="centerX" id="E42-MD-6zg"/>
@@ -43,11 +46,10 @@
                         <constraint firstItem="5gX-Vq-Tij" firstAttribute="top" secondItem="vyP-JW-NFe" secondAttribute="top" constant="50" id="ruJ-ro-nfN"/>
                         <constraint firstItem="ELU-4J-y74" firstAttribute="top" secondItem="vyP-JW-NFe" secondAttribute="top" constant="-44" id="rwr-eB-TBw"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="vyP-JW-NFe"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <point key="canvasLocation" x="132" y="110"/>
         </view>
     </objects>
@@ -56,7 +58,10 @@
         <image name="GobImage" width="169" height="80"/>
         <image name="semiCircle" width="375" height="812"/>
         <namedColor name="bgColor">
-            <color red="0.98039215686274506" green="0.97647058823529409" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -21,7 +21,7 @@ class DiagnosisCodeUseCase {
     private let settingsRepository: SettingsRepository
     private let verificationApi: VerificationControllerAPI
 
-    private let isfake = false
+    private var isfake = false
 
     init(settingsRepository: SettingsRepository,
          verificationApi: VerificationControllerAPI) {
@@ -32,6 +32,10 @@ class DiagnosisCodeUseCase {
     }
 
     func sendDiagnosisCode(code: String) -> Observable<Bool> {
+
+        if code == FakeRequestUseCase.FALSE_POSITIVE_CODE {
+            self.isfake = true
+        }
 
         return verificationApi.verifyCode(body: Code( date: nil, code: code ) )
             .catchError { [weak self] error in throw self?.mapError(error) ?? error }

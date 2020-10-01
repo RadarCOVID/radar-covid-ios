@@ -13,7 +13,6 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
-    //MARK: - Outlet.
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var languageSelectorButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -22,7 +21,6 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var stepbullet2Label: UILabel!
     @IBOutlet weak var stepbullet3Label: UILabel!
     
-    // MARK: - Properties
     var router: AppRouter?
     var localesKeysArray: [String] = []
     var localesArray: [String: String?]!
@@ -31,25 +29,23 @@ class WelcomeViewController: UIViewController {
     private var currentLocale: String = "es-ES"
     private var pickerPresenter: PickerPresenter?
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        selectorView.image = UIImage.init(named: "WhiteCard")
-        loadLocaleValues()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let picker = UIPickerView.init()
-        picker.delegate = self
-        picker.dataSource = self
-        pickerPresenter = PickerPresenter(picker: picker)
-        pickerPresenter?.delegate = self
-        setupAccessibility()
+        setupView()
+        loadLocaleValues()
     }
-
-    func setupAccessibility() {
+    
+    @IBAction func onContinue(_ sender: Any) {
+        router?.route(to: .onBoarding, from: self)
+    }
+    
+    @IBAction func selectLanguage(_ sender: Any) {
+        pickerPresenter?.openPicker(title: "ACC_LANGUAGE_SELECTOR_PICKER".localized)
+    }
+    
+    private func setupAccessibility() {
+        
         languageSelectorButton.isAccessibilityElement = true
         languageSelectorButton.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
         languageSelectorButton.accessibilityHint = "ACC_HINT".localized
@@ -63,7 +59,19 @@ class WelcomeViewController: UIViewController {
         titleLabel.accessibilityLabel = "ACC_WELCOME_TITLE".localized
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
     }
-
+    
+    private func setupView() {
+        
+        selectorView.image = #imageLiteral(resourceName: "tabBarBG")
+        
+        let picker = UIPickerView.init()
+        picker.delegate = self
+        picker.dataSource = self
+        pickerPresenter = PickerPresenter(picker: picker)
+        pickerPresenter?.delegate = self
+        setupAccessibility()
+    }
+    
     private func loadLocaleValues() {
 
         if let locale = localizationRepository.getLocale() {
@@ -85,21 +93,16 @@ class WelcomeViewController: UIViewController {
         self.localesKeysArray.append(firstKey)
         self.localesKeysArray += otherKeys
     }
-
-    //MARK: - Action methods.
-    
-    @IBAction func onContinue(_ sender: Any) {
-        router?.route(to: .onBoarding, from: self)
-    }
-    
-    @IBAction func selectLanguage(_ sender: Any) {
-        pickerPresenter?.openPicker(title: "ACC_LANGUAGE_SELECTOR_PICKER".localized)
-    }
-
 }
 
 extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, PickerDelegate {
 
+    var containerView: UIView {
+        get {
+            view
+        }
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -132,12 +135,6 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
         label.text = text
         
         return label
-    }
-
-    var containerView: UIView {
-        get {
-            view
-        }
     }
 
     func onDone() {

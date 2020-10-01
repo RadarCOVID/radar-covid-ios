@@ -14,19 +14,28 @@ import RxSwift
 
 class ActivateCovidNotificationViewController: UIViewController {
 
-    private let disposeBag = DisposeBag()
-
+    @IBOutlet weak var activateButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     var router: AppRouter?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
     var radarStatusUseCase: RadarStatusUseCase?
     var errorHandler: ErrorHandler?
+    
+    private let disposeBag = DisposeBag()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupView()
+        setupAccessibility()
+    }
 
-    @IBOutlet weak var activateButton: UIButton!
-
-    @IBOutlet weak var viewTitle: UILabel!
     @IBAction func onContinue(_ sender: Any) {
+        
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
                             "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.black)
+        
         radarStatusUseCase?.restoreLastStateAndSync().subscribe(
                 onError: { [weak self] error in
                 self?.errorHandler?.handle(error: error)
@@ -34,27 +43,21 @@ class ActivateCovidNotificationViewController: UIViewController {
             }, onCompleted: { [weak self] in
                 self?.activationFinished()
         }).disposed(by: disposeBag)
-
     }
-
-    func activationFinished() {
-        router?.route(to: .activatePush, from: self)
+    
+    private func setupAccessibility() {
+        
+        titleLabel.isAccessibilityElement = true
+        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        titleLabel.accessibilityLabel = "ACC_ACTIVATE_COVID_NOTIFICATION_TITLE".localized
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    private func setupView() {
         activateButton.setTitle("ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON".localized, for: .normal)
         errorHandler?.alertDelegate = self
-        setupAccessibility()
     }
-
-    func setupAccessibility() {
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_ACTIVATE_COVID_NOTIFICATION_TITLE".localized
+    
+    private func activationFinished() {
+        router?.route(to: .activatePush, from: self)
     }
-
 }

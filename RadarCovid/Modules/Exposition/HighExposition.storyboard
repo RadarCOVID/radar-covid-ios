@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,10 +28,10 @@
                                 <rect key="frame" x="0.0" y="163" width="414" height="1453"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pj8-2B-jti">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1716.6666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1719.6666666666667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Qué debo hacer?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ksB-JD-OWW">
-                                                <rect key="frame" x="20" y="158" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="161" width="374" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="mbr-4L-Qvv"/>
                                                 </constraints>
@@ -42,7 +43,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sigue las siguientes recomendaciones y los consejos de tu centro de salud:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lM2-VT-RXX">
-                                                <rect key="frame" x="20" y="558" width="374" height="79"/>
+                                                <rect key="frame" x="20" y="561" width="374" height="79"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -51,14 +52,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvoidContact" translatesAutoresizingMaskIntoConstraints="NO" id="Pfq-Xx-yb0">
-                                                <rect key="frame" x="20" y="812" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="815" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="RQy-RO-zL3"/>
                                                     <constraint firstAttribute="width" constant="50" id="Wep-b4-95c"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evita el contacto con otras personas " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KYl-bp-nbE">
-                                                <rect key="frame" x="95" y="813.33333333333337" width="299" height="47.333333333333371"/>
+                                                <rect key="frame" x="95" y="816.33333333333337" width="299" height="47.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -67,14 +68,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SafeDistance" translatesAutoresizingMaskIntoConstraints="NO" id="OI9-B1-It2" userLabel="keepDistance">
-                                                <rect key="frame" x="20" y="662" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="665" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="8rn-ZP-B6t"/>
                                                     <constraint firstAttribute="width" constant="50" id="R6J-fd-Ym6"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manten la distancia de seguridad de al menos 1.5 metros" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2N9-uM-Idk">
-                                                <rect key="frame" x="95" y="663.33333333333337" width="299" height="47.333333333333371"/>
+                                                <rect key="frame" x="95" y="666.33333333333337" width="299" height="47.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -83,14 +84,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mask_face" translatesAutoresizingMaskIntoConstraints="NO" id="B3A-a7-gSz">
-                                                <rect key="frame" x="20" y="892" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="895" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="AFF-0G-iJM"/>
                                                     <constraint firstAttribute="height" constant="50" id="gkn-RM-fzx"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usa siempre mascarilla quirúrgica" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z7v-iu-qxV">
-                                                <rect key="frame" x="95" y="905.33333333333326" width="299" height="23.666666666666629"/>
+                                                <rect key="frame" x="95" y="908.33333333333326" width="299" height="23.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -99,14 +100,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WashHandsFrame" translatesAutoresizingMaskIntoConstraints="NO" id="E8L-mt-ohG">
-                                                <rect key="frame" x="20" y="972" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="975" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="GaL-aR-gr3"/>
                                                     <constraint firstAttribute="width" constant="50" id="NUt-vj-4py"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lávate las manos frecuentemente" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Alx-RX-Ecu">
-                                                <rect key="frame" x="95" y="985.33333333333326" width="299" height="23.666666666666629"/>
+                                                <rect key="frame" x="95" y="988.33333333333326" width="299" height="23.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -115,7 +116,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBR-5L-ywI" userLabel="ExpositionBGView" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="8" width="378" height="140"/>
+                                                <rect key="frame" x="16" y="8" width="378" height="143"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tu exposición es alta" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7G0-Fd-EDb">
                                                         <rect key="frame" x="26" y="46" width="336" height="33.666666666666657"/>
@@ -127,12 +128,12 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qbx-0G-Sye">
-                                                        <rect key="frame" x="26" y="89.666666666666686" width="333" height="20.333333333333329"/>
+                                                        <rect key="frame" x="26" y="89.666666666666686" width="333" height="23.333333333333329"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Podrías estar infectado desde hace">
                                                                 <attributes>
                                                                     <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <font key="NSFont" metaFont="system" size="17"/>
+                                                                    <font key="NSFont" size="20" name="HelveticaNeue"/>
                                                                 </attributes>
                                                             </fragment>
                                                         </attributedString>
@@ -161,7 +162,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Por favor, aíslate durante 14 días y llama al siguiente teléfono:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aoZ-sh-yH7">
-                                                <rect key="frame" x="20" y="213" width="374" height="65"/>
+                                                <rect key="frame" x="20" y="216" width="374" height="65"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="65" id="amu-zK-oiN"/>
                                                 </constraints>
@@ -173,7 +174,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWC-7c-dCx">
-                                                <rect key="frame" x="20" y="1640.3333333333333" width="374" height="61"/>
+                                                <rect key="frame" x="20" y="1643.3333333333333" width="374" height="61"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="61" id="vFW-NL-HhS"/>
                                                 </constraints>
@@ -187,7 +188,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XB5-Tr-IGD" userLabel="MoreInfoView">
-                                                <rect key="frame" x="16" y="1574" width="382" height="55"/>
+                                                <rect key="frame" x="16" y="1577" width="382" height="55"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJP-M5-az1" userLabel="Separator">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
@@ -218,6 +219,9 @@
                                                         <rect key="frame" x="369" y="20.666666666666742" width="8" height="14"/>
                                                     </imageView>
                                                 </subviews>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstItem="WUS-Xl-byV" firstAttribute="leading" secondItem="XB5-Tr-IGD" secondAttribute="leading" constant="8" id="2kx-OB-QWW"/>
                                                     <constraint firstItem="xdU-a7-zoq" firstAttribute="leading" secondItem="XB5-Tr-IGD" secondAttribute="leading" id="9q0-92-GZe"/>
@@ -233,7 +237,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEw-0H-yKe" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="18" y="378" width="378" height="160"/>
+                                                <rect key="frame" x="18" y="381" width="378" height="160"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="6Ha-AP-Kmy">
                                                         <rect key="frame" x="16" y="19" width="22" height="22"/>
@@ -302,7 +306,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bN3-KM-Seu" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="298" width="374" height="60"/>
+                                                <rect key="frame" x="20" y="301" width="374" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVx-3c-EyF">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
@@ -312,7 +316,7 @@
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                         <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="Selecciona tu Comunidad Autónoma" image="CollapsableClosed">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" systemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="caaSelectAction:" destination="Q7K-4K-XeD" eventType="touchUpInside" id="Ukh-Wv-TrQ"/>
@@ -329,14 +333,14 @@
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoughIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fGh-4f-UcC">
-                                                <rect key="frame" x="20" y="1156" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="1159" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="B92-fG-xdO"/>
                                                     <constraint firstAttribute="height" constant="50" id="nRO-Zz-zHf"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tos persistente" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="s71-Rb-kIG">
-                                                <rect key="frame" x="95" y="1169.3333333333333" width="299" height="23.666666666666742"/>
+                                                <rect key="frame" x="95" y="1172.3333333333333" width="299" height="23.666666666666742"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -345,14 +349,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeberIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zvx-Yh-ViQ">
-                                                <rect key="frame" x="20" y="1236" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="1239" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="Gk6-nE-dfx"/>
                                                     <constraint firstAttribute="height" constant="50" id="nHa-tB-25d"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fiebre Alta Continua" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uc1-xB-SzH">
-                                                <rect key="frame" x="95" y="1249.3333333333333" width="299" height="23.666666666666742"/>
+                                                <rect key="frame" x="95" y="1252.3333333333333" width="299" height="23.666666666666742"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -361,14 +365,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenseLossIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OT5-IY-BGO">
-                                                <rect key="frame" x="20" y="1316" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="1319" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="cum-qS-eDv"/>
                                                     <constraint firstAttribute="width" constant="50" id="h1a-Hl-qrA"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pérdida del gusto y del olfato" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nv7-0q-9Ah">
-                                                <rect key="frame" x="95" y="1329.3333333333333" width="299" height="23.666666666666742"/>
+                                                <rect key="frame" x="95" y="1332.3333333333333" width="299" height="23.666666666666742"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -377,7 +381,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presta atención a la aparición de cualquiera de los siguientes síntomas:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Pxh-kG-BXN">
-                                                <rect key="frame" x="20" y="1047" width="374" height="79"/>
+                                                <rect key="frame" x="20" y="1050" width="374" height="79"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -386,21 +390,21 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TasteOrSmell" translatesAutoresizingMaskIntoConstraints="NO" id="1o6-Wa-Wcf" userLabel="AirLossIcon">
-                                                <rect key="frame" x="20" y="1396" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="1399" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="3Du-Kh-1fO"/>
                                                     <constraint firstAttribute="width" constant="50" id="W1R-Ve-B9o"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avoidCrowds" translatesAutoresizingMaskIntoConstraints="NO" id="ze2-QG-Eo5" userLabel="AvoidPublicFrame">
-                                                <rect key="frame" x="20" y="737" width="50" height="50"/>
+                                                <rect key="frame" x="20" y="740" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="HHu-Jj-yQ7"/>
                                                     <constraint firstAttribute="height" constant="50" id="ktx-dD-XJq"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evita acudir a eventos o lugares con muchas personas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0BM-cl-NgN">
-                                                <rect key="frame" x="95" y="723.33333333333337" width="299" height="47.333333333333371"/>
+                                                <rect key="frame" x="95" y="726.33333333333337" width="299" height="47.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -409,7 +413,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Otros síntomas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MLt-Jh-jo8">
-                                                <rect key="frame" x="16" y="1476" width="378" height="24"/>
+                                                <rect key="frame" x="16" y="1479" width="378" height="24"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -418,7 +425,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cómo actuar si tengo síntomas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yEg-UG-vM2">
-                                                <rect key="frame" x="16" y="1520" width="378" height="24"/>
+                                                <rect key="frame" x="16" y="1523" width="378" height="24"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -427,7 +437,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensación de falta de aire" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3EL-LN-Eu7" userLabel="Falta de aire">
-                                                <rect key="frame" x="95" y="1403.3333333333333" width="299" height="35.666666666666742"/>
+                                                <rect key="frame" x="95" y="1406.3333333333333" width="299" height="35.666666666666742"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -536,6 +546,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="L6a-Oe-6ht"/>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="pkY-Wo-8bj"/>
                         <color key="backgroundColor" red="0.9804140925" green="0.97666078810000001" blue="0.96814030409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="u8Y-yv-ZK5" firstAttribute="top" secondItem="pkY-Wo-8bj" secondAttribute="top" constant="20" id="WaL-VI-lh2"/>
@@ -547,26 +558,25 @@
                             <constraint firstItem="pkY-Wo-8bj" firstAttribute="trailing" secondItem="u8Y-yv-ZK5" secondAttribute="trailing" constant="20" id="vB6-yl-D7j"/>
                             <constraint firstItem="fpW-j5-VBB" firstAttribute="top" secondItem="u8Y-yv-ZK5" secondAttribute="bottom" constant="13.999999999999972" id="xr9-Uc-ko7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="pkY-Wo-8bj"/>
                     </view>
                     <size key="freeformSize" width="414" height="1650"/>
                     <connections>
                         <outlet property="backButton" destination="u8Y-yv-ZK5" id="WHx-m3-qw6"/>
                         <outlet property="caSelectorButton" destination="GVx-3c-EyF" id="9Pd-St-qgW"/>
-                        <outlet property="covidWeb" destination="TPI-5h-zJC" id="eG1-Up-7u3"/>
+                        <outlet property="covidWebLabel" destination="TPI-5h-zJC" id="THy-ct-w2P"/>
                         <outlet property="expositionBGView" destination="UBR-5L-ywI" id="wiM-fJ-hDf"/>
-                        <outlet property="howAct" destination="yEg-UG-vM2" id="e7G-gz-Yag"/>
+                        <outlet property="howActLabel" destination="yEg-UG-vM2" id="oH0-WQ-aeq"/>
                         <outlet property="moreInfoView" destination="XB5-Tr-IGD" id="XLb-ce-b9D"/>
-                        <outlet property="otherSympthoms" destination="MLt-Jh-jo8" id="Ntn-l2-q2f"/>
+                        <outlet property="otherSympthomsLabel" destination="MLt-Jh-jo8" id="mV3-d6-6Er"/>
                         <outlet property="phoneLabel" destination="EFk-2i-ncm" id="eSF-Zz-J1M"/>
                         <outlet property="phoneView" destination="TEw-0H-yKe" id="r4r-N9-MSq"/>
                         <outlet property="phoneViewHiddenConstraint" destination="1NV-EZ-peQ" id="hdX-xf-3r9"/>
                         <outlet property="phoneViewVisibleConstraint" destination="dCO-c8-68j" id="awG-HF-UA3"/>
                         <outlet property="selectorView" destination="bN3-KM-Seu" id="csm-tU-3qc"/>
                         <outlet property="timeTableLabel" destination="pcd-dI-oHv" id="djX-jZ-G0a"/>
-                        <outlet property="viewTitle" destination="7G0-Fd-EDb" id="GbA-ta-nTs"/>
-                        <outlet property="whatToDoTitle" destination="ksB-JD-OWW" id="VGy-Kc-bFK"/>
-                        <outlet property="youCouldBe" destination="Qbx-0G-Sye" id="dub-EN-XPU"/>
+                        <outlet property="titleLabel" destination="7G0-Fd-EDb" id="1hK-7j-PH8"/>
+                        <outlet property="whatToDoTitleLabel" destination="ksB-JD-OWW" id="sbs-hy-de4"/>
+                        <outlet property="youCouldBeLabel" destination="Qbx-0G-Sye" id="bTM-zG-uTJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="srF-TI-VvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -596,5 +606,8 @@
         <namedColor name="darkPeach">
             <color red="0.87800002098083496" green="0.42399999499320984" blue="0.34099999070167542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

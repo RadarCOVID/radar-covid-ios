@@ -27,7 +27,7 @@ class LocalesUseCase {
 
     public func loadLocales() -> Observable<[String: String?]> {
         let currentLocale = localizationRepository.getLocale()
-        return masterDataApi.getLocales(locale: currentLocale).map { [weak self] masterLocales in
+        return masterDataApi.getLocales(locale: currentLocale, platform: Config.platform, version: Config.version).map { [weak self] masterLocales in
             var locales: [String: String?] = [:]
             masterLocales.forEach { loc in
                 if let localId = loc.id {

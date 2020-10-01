@@ -23,16 +23,20 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     private let preferencesRepository: PreferencesRepository
     private let notificationHandler: NotificationHandler
     private let expositionCheckUseCase: ExpositionCheckUseCase
+    private let fakeRequestUseCase: FakeRequestUseCase
+
 
     init(preferencesRepository: PreferencesRepository,
          notificationHandler: NotificationHandler,
-         expositionCheckUseCase: ExpositionCheckUseCase) {
+         expositionCheckUseCase: ExpositionCheckUseCase,
+         fakeRequestUseCase: FakeRequestUseCase) {
 
         self.preferencesRepository = preferencesRepository
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
 
         self.notificationHandler = notificationHandler
         self.expositionCheckUseCase = expositionCheckUseCase
+        self.fakeRequestUseCase = fakeRequestUseCase
     }
 
     func initializeSDK() throws {
@@ -97,7 +101,12 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                 body: "Last sync: \(sync)",
                 sound: .default)
         }
-        completionHandler(true)
+        fakeRequestUseCase.sendFalsePositive().subscribe { (err) in
+            completionHandler(err)
+        } onError: { (error) in
+            completionHandler(false)
+        }
+        
     }
 
     func didScheduleBackgrounTask() {

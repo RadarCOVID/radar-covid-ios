@@ -21,12 +21,6 @@ enum Endpoits {
         case .pro: return "https://radarcovid.covid19.gob.es/configuration"
         }
     }
-    var kpi: String {
-        switch self {
-        case .pre: return "https://radarcovidpre.covid19.gob.es/kpi"
-        case .pro: return "https://radarcovid.covid19.gob.es/kpi"
-        }
-    }
     var dpppt: String {
         switch self {
         case .pre: return "https://radarcovidpre.covid19.gob.es/dp3t"
@@ -43,6 +37,9 @@ enum Endpoits {
 
 struct Config {
 
+    static let platform = "iOS"
+    static let version:String = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "") as! String
+    
     #if DEBUG_PRE
     static let debug = true
     static let environment = "PRE"

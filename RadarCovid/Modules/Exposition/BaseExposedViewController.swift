@@ -23,18 +23,25 @@ class BaseExposed: UIViewController, ExpositionView {
     @IBOutlet weak var expositionBGView: BackgroundView!
 
     var lastCheck: Date?
-
     var router: AppRouter?
-
+    
     override func viewDidLoad() {
-        moreInfoView.isUserInteractionEnabled = true
-        moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                           action: #selector(userDidTapLabel(tapGestureRecognizer:))))
-
+        super.viewDidLoad()
+        
+        setupBaseView()
+        setupBaseAccessibility()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    @IBAction func onBack(_ sender: Any) {
+        router?.pop(from: self, animated: true)
+    }
+
+    @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
+        //Nothing to do here
+    }
+    
+    private func setupBaseAccessibility() {
+        
         backButton.isAccessibilityElement = true
         let previous = navigationController?.previousViewController
         if let title = (previous as? AccTitleView)?.accTitle ?? previous?.title {
@@ -43,13 +50,10 @@ class BaseExposed: UIViewController, ExpositionView {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
     }
-
-    @IBAction func onBack(_ sender: Any) {
-        router?.pop(from: self, animated: true)
+    
+    private func setupBaseView() {
+        moreInfoView.isUserInteractionEnabled = true
+        moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                           action: #selector(userDidTapLabel(tapGestureRecognizer:))))
     }
-
-    @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
-
-    }
-
 }

@@ -17,6 +17,7 @@ extension String: LocalizedError {
 }
 
 extension String {
+    
     var htmlToAttributedString: NSMutableAttributedString? {
         guard let data = data(using: .utf8) else { return NSMutableAttributedString() }
         do {
@@ -32,6 +33,7 @@ extension String {
             return NSMutableAttributedString()
         }
     }
+    
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
@@ -48,7 +50,28 @@ extension String {
 
         return ""
     }
+    
+    // Regex matches
+    func match(_ regex: String) -> [[String]] {
+            let nsString = self as NSString
+            return (try? NSRegularExpression(pattern: regex, options: []))?.matches(in: self, options: [], range: NSMakeRange(0, count)).map { match in
+                (0..<match.numberOfRanges).map { match.range(at: $0).location == NSNotFound ? "" : nsString.substring(with: match.range(at: $0)) }
+            } ?? []
+        }
 
+    func getUrlFromHref() -> String {
+        let regexFromGetHref: String = "<a\\s+(?:[^>]*?\\s+)?href=\"([^\"]*)\""
+        let aMatches = self.match(regexFromGetHref)
+        
+        return aMatches.last?.last ?? ""
+    }
+    
+    func getTextFromHref() -> String {
+        let regexFromGetHref: String = ">(.*)<\\/a>"
+        let aMatches = self.match(regexFromGetHref)
+        
+        return aMatches.last?.last ?? ""
+    }
 }
 
 extension NSMutableAttributedString {
