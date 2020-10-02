@@ -14,7 +14,6 @@ import RxSwift
 
 class MyHealthViewController: UIViewController {
     
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -29,7 +28,7 @@ class MyHealthViewController: UIViewController {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
-    // MARK: - Properties
+
     var router: AppRouter?
     var diagnosisCodeUseCase: DiagnosisCodeUseCase?
     
@@ -39,8 +38,6 @@ class MyHealthViewController: UIViewController {
     private let datePicker = UIDatePicker()
     
     private var date : Date?
-    
-    //MARK: - View Life Cycle Methods.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +70,6 @@ class MyHealthViewController: UIViewController {
             self.codeTextField.becomeFirstResponder()
         }
     }
-    
-    //MARK: - Action methods.
     
     @IBAction func onReportDiagnosis(_ sender: Any) {
 
