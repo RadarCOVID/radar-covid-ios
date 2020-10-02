@@ -42,6 +42,9 @@ class WelcomeViewController: UIViewController {
     
     @IBAction func selectLanguage(_ sender: Any) {
         pickerPresenter?.openPicker(title: "ACC_LANGUAGE_SELECTOR_PICKER".localized)
+        
+        //Because voiceOver call continue when show pickerview
+        self.continueButton.isAccessibilityElement = false
     }
     
     private func setupAccessibility() {
@@ -138,6 +141,8 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
     }
 
     func onDone() {
+        self.continueButton.isAccessibilityElement = true
+        
         if currentLocale != localizationRepository.getLocale() {
             showAlertOk(title: "LOCALE_CHANGE_LANGUAGE".localized,
                              message: "LOCALE_CHANGE_WARNING".localized,
