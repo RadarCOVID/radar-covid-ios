@@ -21,7 +21,7 @@ class DiagnosisCodeUseCase {
     private let settingsRepository: SettingsRepository
     private let verificationApi: VerificationControllerAPI
 
-    private var isfake = false
+    private let isfake = false
 
     init(settingsRepository: SettingsRepository,
          verificationApi: VerificationControllerAPI) {
@@ -31,13 +31,9 @@ class DiagnosisCodeUseCase {
         dateFormatter.locale = Locale(identifier: "es_ES")
     }
 
-    func sendDiagnosisCode(code: String) -> Observable<Bool> {
+    func sendDiagnosisCode(code: String, date: Date) -> Observable<Bool> {
 
-        if code == FakeRequestUseCase.FALSE_POSITIVE_CODE {
-            self.isfake = true
-        }
-
-        return verificationApi.verifyCode(body: Code( date: nil, code: code ) )
+        return verificationApi.verifyCode(body: Code( date: date, code: code ) )
             .catchError { [weak self] error in throw self?.mapError(error) ?? error }
             .flatMap { [weak self] tokenResponse -> Observable<Bool> in
                 guard let jwtOnset = try self?.parseToken(tokenResponse.token).claims.onset,

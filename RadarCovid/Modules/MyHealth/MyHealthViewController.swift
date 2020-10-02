@@ -14,6 +14,7 @@ import RxSwift
 
 class MyHealthViewController: UIViewController {
     
+    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -24,11 +25,22 @@ class MyHealthViewController: UIViewController {
     @IBOutlet weak var sendDiagnosticButton: UIButton!
     @IBOutlet var codeChars: [UITextField]!
     
+    @IBOutlet weak var dateView: UIView!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
+    // MARK: - Properties
     var router: AppRouter?
     var diagnosisCodeUseCase: DiagnosisCodeUseCase?
     
     private let emptyText200B: String = "\u{200B}"
     private let disposeBag = DisposeBag()
+    private var pickerPresenter: PickerPresenter?
+    private let datePicker = UIDatePicker()
+    
+    private var date : Date?
+    
+    //MARK: - View Life Cycle Methods.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +73,9 @@ class MyHealthViewController: UIViewController {
             self.codeTextField.becomeFirstResponder()
         }
     }
-
+    
+    //MARK: - Action methods.
+    
     @IBAction func onReportDiagnosis(_ sender: Any) {
 
         view.showLoading()
@@ -76,7 +90,7 @@ class MyHealthViewController: UIViewController {
             }
         }
 
-        diagnosisCodeUseCase?.sendDiagnosisCode(code: codigoString).subscribe(
+        diagnosisCodeUseCase?.sendDiagnosisCode(code: codigoString, date: date ?? Date()).subscribe(
             onNext: { [weak self] reportedCodeBool in
                 self?.view.hideLoading()
                 self?.navigateIf(reported: reportedCodeBool)
@@ -235,7 +249,23 @@ class MyHealthViewController: UIViewController {
         keyboardWillHide(notification: nil)
     }
     
+    @objc private func showDatePicker() {
+            pickerPresenter?.openPicker()
+    }
+    
     private func setupView() {
+        
+        datePicker.minimumDate = Date().addingTimeInterval(-TimeInterval(14*60*60*24))
+        datePicker.maximumDate = Date()
+        datePicker.datePickerMode = .date
+    
+        datePicker.preferredDatePickerStyle = .wheels
+        pickerPresenter = PickerPresenter(picker: datePicker)
+        pickerPresenter?.delegate = self
+        
+        dateView.isUserInteractionEnabled = true
+        dateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDatePicker)))
+       
         codeTextField.delegate = self
 
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -314,5 +344,38 @@ extension MyHealthViewController: UITextFieldDelegate {
             currentString.replacingCharacters(in: range, with: string) as NSString
         sendDiagnosticButton.isEnabled = newString.length == 12
         return newString.length <= maxLength
+    }
+}
+
+extension MyHealthViewController: PickerDelegate {
+    
+    var cancelHandler: (() -> Void)? {
+        onCancel
+    }
+    
+    var containerView: UIView {
+        get {
+            self.view
+        }
+    }
+    
+    private func onCancel() {
+        date = nil
+        yearLabel.text = "----"
+        monthLabel.text = "--"
+        dayLabel.text = "--"
+    }
+    
+    func onDone() {
+        date = datePicker.date
+        if let date = date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy"
+            yearLabel.text = formatter.string(from: date)
+            formatter.dateFormat = "MM"
+            monthLabel.text = formatter.string(from: date)
+            formatter.dateFormat = "dd"
+            dayLabel.text = formatter.string(from: date)
+        }
     }
 }
