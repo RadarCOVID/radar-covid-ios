@@ -31,7 +31,7 @@ class DiagnosisCodeUseCase {
         dateFormatter.locale = Locale(identifier: "es_ES")
     }
 
-    func sendDiagnosisCode(code: String, date: Date) -> Observable<Bool> {
+    func sendDiagnosisCode(code: String, date: Date? = nil) -> Observable<Bool> {
 
         return verificationApi.verifyCode(body: Code( date: date, code: code ) )
             .catchError { [weak self] error in throw self?.mapError(error) ?? error }
