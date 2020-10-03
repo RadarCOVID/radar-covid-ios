@@ -11,7 +11,7 @@
 Native iOS implementation of RadarCOVID tracing client using [DP3T iOS SDK](https://github.com/DP-3T/dp3t-sdk-ios)
 
 ## Prerequisites
-These are the tools used to buid the solution:
+These are the tools used to build the solution:
 - XCode 11.6
 
 ## Installation and Getting Started
