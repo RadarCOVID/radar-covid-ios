@@ -516,12 +516,15 @@ COVID positivo</string>
                         <outlet property="codigoTitleLabel" destination="gxN-3Y-ry3" id="H12-B7-raQ"/>
                         <outlet property="dateView" destination="Tqc-IA-KYT" id="Pjp-k0-GCB"/>
                         <outlet property="dayLabel" destination="aQt-tZ-wj3" id="Eje-73-HOz"/>
+                        <outlet property="dayView" destination="DBh-fT-Z3I" id="gRb-oD-Pgw"/>
                         <outlet property="monthLabel" destination="WGa-n2-YBh" id="UcZ-RH-AAB"/>
+                        <outlet property="monthView" destination="OPJ-EB-e4j" id="IHJ-qv-9Yd"/>
                         <outlet property="scrollView" destination="Jih-el-nlf" id="5Gw-ZO-kwg"/>
                         <outlet property="scrollViewBottonConstraint" destination="8DS-Iz-GfQ" id="Adz-qf-JBj"/>
                         <outlet property="sendDiagnosticButton" destination="xVl-Ca-TVL" id="HFL-yS-R6i"/>
                         <outlet property="titleLabel" destination="Qdj-RI-6GS" id="mKL-yJ-WDG"/>
                         <outlet property="yearLabel" destination="ern-KL-bER" id="WKO-BX-1jK"/>
+                        <outlet property="yearView" destination="t9P-7i-962" id="IuM-Jz-ERo"/>
                         <outletCollection property="codeChars" destination="WUj-fi-auz" collectionClass="NSMutableArray" id="xOS-Fk-1f9"/>
                         <outletCollection property="codeChars" destination="ZSg-YA-62O" collectionClass="NSMutableArray" id="CCx-0S-cMa"/>
                         <outletCollection property="codeChars" destination="j9Y-8N-jxw" collectionClass="NSMutableArray" id="uTG-fj-LWn"/>
