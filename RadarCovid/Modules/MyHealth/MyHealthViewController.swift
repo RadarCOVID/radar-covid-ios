@@ -28,7 +28,7 @@ class MyHealthViewController: UIViewController {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
-
+    
     var router: AppRouter?
     var diagnosisCodeUseCase: DiagnosisCodeUseCase?
     
@@ -41,19 +41,19 @@ class MyHealthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-
+        
         self.codeChars.forEach { (char) in
             char.text = emptyText200B
             char.layer.cornerRadius = 5
             char.addTarget(self, action: #selector(MyHealthViewController.textFieldDidChange(_:)), for: .editingChanged)
         }
-
+        
         backButton.isAccessibilityElement = true
         let previous = navigationController?.previousViewController
         if let title = (previous as? AccTitleView)?.accTitle ?? previous?.title {
@@ -62,17 +62,18 @@ class MyHealthViewController: UIViewController {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
         sendDiagnosticButton.isEnabled = checkSendEnabled()
-
+        
         setupAccessibility()
         
         // Open textField
         if UIAccessibility.isVoiceOverRunning {
             self.codeTextField.becomeFirstResponder()
         }
+        
     }
     
     @IBAction func onReportDiagnosis(_ sender: Any) {
-
+        
         view.showLoading()
         var codigoString = ""
         
@@ -84,7 +85,7 @@ class MyHealthViewController: UIViewController {
                 codigoString += string
             }
         }
-
+        
         diagnosisCodeUseCase?.sendDiagnosisCode(code: codigoString, date: date ?? Date()).subscribe(
             onNext: { [weak self] reportedCodeBool in
                 self?.view.hideLoading()
@@ -92,7 +93,7 @@ class MyHealthViewController: UIViewController {
             }, onError: {  [weak self] error in
                 self?.handle(error: error)
                 self?.view.hideLoading()
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     @IBAction func insertCode(_ sender: Any) {
@@ -117,9 +118,9 @@ class MyHealthViewController: UIViewController {
             buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localizedAttributed.string,
             okHandler: { (_) in
                 self.navigationController?.popViewController(animated: true)
-        }, cancelHandler: { (_) in
-
-        })
+            }, cancelHandler: { (_) in
+                
+            })
         endEditingCodeChars()
     }
     
@@ -130,19 +131,19 @@ class MyHealthViewController: UIViewController {
         codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
         codeTextField.accessibilityHint = "ACC_HINT".localized
         codeTextField.keyboardType = .numberPad
-
+        
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
-
+        
         codigoTitleLabel.isAccessibilityElement = true
         codigoTitleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         codigoTitleLabel.accessibilityLabel = "ACC_CODE_TITLE".localized
-
+        
         sendDiagnosticButton.isAccessibilityElement = true
         sendDiagnosticButton.accessibilityLabel = "ACC_BUTTON_SEND_DIAGNOSTIC".localized
         sendDiagnosticButton.accessibilityHint = "ACC_HINT".localized
-
+        
         if UIAccessibility.isVoiceOverRunning {
             codeTextField.isHidden = false
             self.addDoneButtonOnKeyboard(textView: codeTextField)
@@ -159,10 +160,10 @@ class MyHealthViewController: UIViewController {
     @objc func keyboardWillShow(notification: NSNotification?) {
         guard let keyboardSize = (
                 notification?.userInfo?[
-                UIResponder.keyboardFrameEndUserInfoKey
-            ] as? NSValue)?.cgRectValue else {
-           // if keyboard size is not available for some reason, dont do anything
-           return
+                    UIResponder.keyboardFrameEndUserInfoKey
+                ] as? NSValue)?.cgRectValue else {
+            // if keyboard size is not available for some reason, dont do anything
+            return
         }
         // move the root view up by the distance of keyboard height
         DispatchQueue.main.async {
@@ -170,7 +171,7 @@ class MyHealthViewController: UIViewController {
             self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height + CGFloat(70)), animated: true)
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification?) {
         // move back the root view origin to zero
         self.scrollViewBottonConstraint.constant = 0
@@ -179,12 +180,12 @@ class MyHealthViewController: UIViewController {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         let actualPos = textField.tag
-
+        
         // if the initial value is an empty string do nothing
         if (textField.text == emptyText200B) {
             return
         }
-
+        
         // detect backspace
         if  textField.text == "" || textField.text == nil {
             if   actualPos > 0 && actualPos < self.codeChars.count {
@@ -192,9 +193,9 @@ class MyHealthViewController: UIViewController {
                 prev.becomeFirstResponder()
                 prev.text = emptyText200B
                 textField.text = emptyText200B
-           }
+            }
         }
-
+        
         // detect new input and pass to the next one
         else if actualPos < self.codeChars.count - 1 {
             // the first character is an unicode empty space
@@ -204,7 +205,7 @@ class MyHealthViewController: UIViewController {
             let next = codeChars[actualPos + 1]
             next.becomeFirstResponder()
         }
-
+        
         // avoid multiple character in the last input
         if actualPos == self.codeChars.count - 1 {
             let actualText = textField.text ?? emptyText200B
@@ -214,7 +215,7 @@ class MyHealthViewController: UIViewController {
                 textField.text = finalString
             }
         }
-
+        
         sendDiagnosticButton.isEnabled = checkSendEnabled()
     }
     
@@ -245,7 +246,7 @@ class MyHealthViewController: UIViewController {
     }
     
     @objc private func showDatePicker() {
-            pickerPresenter?.openPicker()
+        pickerPresenter?.openPicker()
     }
     
     private func setupView() {
@@ -253,38 +254,38 @@ class MyHealthViewController: UIViewController {
         datePicker.minimumDate = Date().addingTimeInterval(-TimeInterval(14*60*60*24))
         datePicker.maximumDate = Date()
         datePicker.datePickerMode = .date
-    
+        
         datePicker.preferredDatePickerStyle = .wheels
         pickerPresenter = PickerPresenter(picker: datePicker)
         pickerPresenter?.delegate = self
         
         dateView.isUserInteractionEnabled = true
         dateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDatePicker)))
-       
+        
         codeTextField.delegate = self
-
+        
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
-
+        
         NotificationCenter.default.addObserver(
             self, selector: #selector(keyboardWillShow),
             name: UIResponder.keyboardWillShowNotification,
             object: nil
         )
-
+        
         NotificationCenter.default.addObserver(
             self, selector: #selector(keyboardWillHide),
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
-
+        
         sendDiagnosticButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
     }
     
     private func checkSendEnabled() -> Bool {
         codeChars.filter({ $0.text != emptyText200B }).count == codeChars.count
     }
-
+    
     private func navigateIf(reported: Bool) {
         if reported {
             router?.route(to: Routes.myHealthReported, from: self)
@@ -299,20 +300,20 @@ class MyHealthViewController: UIViewController {
         
         if let diagnosisError = error as? DiagnosisError {
             switch diagnosisError {
-            case .apiRejected:
-                errorMessage = "ALERT_SHARING_REJECTED_ERROR".localized
-            case .idAlreadyUsed:
-                errorMessage = "ALERT_ID_ALREADY_USED".localized
-            case .wrongId:
-                errorMessage = "ALERT_WRONG_ID".localized
-            case .noConnection:
-                title  = "ALERT_NETWORK_ERROR_TITLE".localized
-                errorMessage = "ALERT_POSITIVE_REPORT_NETWORK_ERROR_MESSAGE".localized
-            default:
-                break
+                case .apiRejected:
+                    errorMessage = "ALERT_SHARING_REJECTED_ERROR".localized
+                case .idAlreadyUsed:
+                    errorMessage = "ALERT_ID_ALREADY_USED".localized
+                case .wrongId:
+                    errorMessage = "ALERT_WRONG_ID".localized
+                case .noConnection:
+                    title  = "ALERT_NETWORK_ERROR_TITLE".localized
+                    errorMessage = "ALERT_POSITIVE_REPORT_NETWORK_ERROR_MESSAGE".localized
+                default:
+                    break
             }
         }
-
+        
         showAlertOk(
             title: title,
             message: errorMessage,

@@ -24,7 +24,7 @@ class FakeRequestRepository {
             to: currentDate)
             ?? Date()
     }
-
+    
     private var _fakeRequestDate: Date?
     var fakeRequestDate: Date {
         get {
@@ -42,5 +42,5 @@ class FakeRequestRepository {
     init() {
         self.userDefaults = UserDefaults.standard
     }
-   
+    
 }

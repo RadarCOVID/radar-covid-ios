@@ -40,7 +40,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
             return Disposables.create()
         }
         
-       
+        
     }
     
     private func needToSendFalsePositive() -> Bool{
