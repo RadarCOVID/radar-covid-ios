@@ -317,7 +317,7 @@ class MyHealthViewController: UIViewController {
             case .idAlreadyUsed:
                 errorMessage = "ALERT_ID_ALREADY_USED".localized
             case .wrongId:
-                errorMessage = "ALERT_WRONG_ID".localized
+                errorMessage = "ALERT_MY_HEALTH_CODE_ERROR_CONTENT".localized
             case .noConnection:
                 title  = "ALERT_NETWORK_ERROR_TITLE".localized
                 errorMessage = "ALERT_POSITIVE_REPORT_NETWORK_ERROR_MESSAGE".localized
