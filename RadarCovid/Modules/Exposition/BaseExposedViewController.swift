@@ -49,6 +49,7 @@ class BaseExposed: UIViewController, ExpositionView {
         } else {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
+        backButton.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupBaseView() {
