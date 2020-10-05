@@ -307,8 +307,8 @@ class MyHealthViewController: UIViewController {
     private func handle(error: Error) {
         
         debugPrint("Error sending diagnosis \(error)")
-        var errorMessage = "ALERT_MY_HEALTH_CODE_VALIDATION_CONTENT".localized
-        var title = "ALERT_MY_HEALTH_CODE_ERROR_CONTENT".localized
+        var title = ""
+        var errorMessage = "ALERT_MY_HEALTH_CODE_ERROR_CONTENT".localized
         
         if let diagnosisError = error as? DiagnosisError {
             switch diagnosisError {
@@ -367,7 +367,7 @@ extension MyHealthViewController: PickerDelegate {
         }
     }
     
-    private func onCancel() {
+    func onCancel() {
         date = nil
         yearLabel.text = "----"
         monthLabel.text = "--"
