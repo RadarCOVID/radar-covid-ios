@@ -80,14 +80,14 @@ class MyHealthViewController: UIViewController {
         view.showLoading()
         var codigoString = ""
         
-        if UIAccessibility.isVoiceOverRunning {
+//        if UIAccessibility.isVoiceOverRunning {
             codigoString = self.codeTextField.text ?? ""
-        } else {
-            codeChars.forEach {
-                let string: String = $0.text ?? ""
-                codigoString += string
-            }
-        }
+//        } else {
+//            codeChars.forEach {
+//                let string: String = $0.text ?? ""
+//                codigoString += string
+//            }
+//        }
 
         diagnosisCodeUseCase?.sendDiagnosisCode(code: codigoString, date: date ?? Date()).subscribe(
             onNext: { [weak self] reportedCodeBool in
@@ -147,17 +147,17 @@ class MyHealthViewController: UIViewController {
         sendDiagnosticButton.accessibilityLabel = "ACC_BUTTON_SEND_DIAGNOSTIC".localized
         sendDiagnosticButton.accessibilityHint = "ACC_HINT".localized
 
-        if UIAccessibility.isVoiceOverRunning {
+//        if UIAccessibility.isVoiceOverRunning {
             codeTextField.isHidden = false
             self.addDoneButtonOnKeyboard(textView: codeTextField)
             codeView.isHidden = true
-        } else {
-            codeTextField.isHidden = true
-            codeView.isHidden = false
-            self.codeChars.forEach { (char) in
-                self.addDoneButtonOnKeyboard(textView: char)
-            }
-        }
+//        } else {
+//            codeTextField.isHidden = true
+//            codeView.isHidden = false
+//            self.codeChars.forEach { (char) in
+//                self.addDoneButtonOnKeyboard(textView: char)
+//            }
+//        }
         
         dayLabel.accessibilityHint = "ACC_HINT".localized
         monthLabel.accessibilityHint = "ACC_HINT".localized
@@ -350,7 +350,7 @@ extension MyHealthViewController: UITextFieldDelegate {
         }
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-        sendDiagnosticButton.isEnabled = newString.length == 12
+        sendDiagnosticButton.isEnabled = newString.length >= 12
         return newString.length <= maxLength
     }
 }
