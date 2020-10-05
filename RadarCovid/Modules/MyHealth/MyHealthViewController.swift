@@ -190,7 +190,7 @@ class MyHealthViewController: UIViewController {
         datePicker.datePickerMode = .date
     
         datePicker.preferredDatePickerStyle = .wheels
-        pickerPresenter = PickerPresenter(picker: datePicker)
+        pickerPresenter = PickerPresenter(picker: datePicker, isNeedCancelButton: true)
         pickerPresenter?.delegate = self
         
         dateView.isUserInteractionEnabled = true

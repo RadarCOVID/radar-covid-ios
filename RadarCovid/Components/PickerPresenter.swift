@@ -15,6 +15,7 @@ import UIKit
 protocol PickerDelegate: class {
     var containerView: UIView { get }
     func onDone()
+    func onCancel()
 }
 
 class PickerPresenter {
@@ -22,11 +23,13 @@ class PickerPresenter {
     private var toolBar: UIToolbar?
     private let picker: UIView
     private var pickerOpened = false
-
+    private var isNeedCancelButton: Bool = false
+    
     weak var delegate: PickerDelegate?
 
-    init( picker: UIView ) {
+    init( picker: UIView, isNeedCancelButton: Bool = false) {
         self.picker = picker
+        self.isNeedCancelButton = isNeedCancelButton
     }
     
     func openPicker(title: String? = nil) {
@@ -43,12 +46,27 @@ class PickerPresenter {
             toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300,
                                                         width: UIScreen.main.bounds.size.width, height: 50))
             toolBar!.barStyle = .default
-            let item = UIBarButtonItem.init(title: "SELECTOR_DONE".localized, style: .done,
+            
+            let itemDoneButton = UIBarButtonItem.init(title: "SELECTOR_DONE".localized, style: .done,
                                             target: self, action: #selector(onDoneButtonTapped))
-            item.isAccessibilityElement = true
-            item.accessibilityLabel = "ACC_BUTTON_SELECTOR_DONE".localized
-            item.accessibilityHint = "ACC_HINT".localized
-            toolBar!.items = [item]
+            itemDoneButton.isAccessibilityElement = true
+            itemDoneButton.accessibilityLabel = "ACC_BUTTON_SELECTOR_DONE".localized
+            itemDoneButton.accessibilityHint = "ACC_HINT".localized
+            toolBar!.items = []
+            toolBar!.items?.append(itemDoneButton)
+            
+            if isNeedCancelButton {
+                let itemFlexibleButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                toolBar!.items?.append(itemFlexibleButton)
+                
+                let itemCancelButton = UIBarButtonItem.init(title: "ALERT_CANCEL_BUTTON".localized, style: .done,
+                                                target: self, action: #selector(onCancelButtonTapped))
+                itemCancelButton.isAccessibilityElement = true
+                itemCancelButton.accessibilityLabel = "ALERT_CANCEL_BUTTON".localized
+                itemCancelButton.accessibilityHint = "ACC_HINT".localized
+                toolBar!.items?.append(itemCancelButton)
+            }
+            
             UIAccessibility.post(notification: .screenChanged, argument: title)
             delegate?.containerView.addSubview(toolBar!)
 
@@ -60,5 +78,12 @@ class PickerPresenter {
         picker.removeFromSuperview()
         pickerOpened = false
         delegate?.onDone()
+    }
+    
+    @objc func onCancelButtonTapped() {
+        toolBar!.removeFromSuperview()
+        picker.removeFromSuperview()
+        pickerOpened = false
+        delegate?.onCancel()
     }
 }

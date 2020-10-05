@@ -152,4 +152,8 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
             }
         }
     }
+    
+    func onCancel() {
+        //Nothing to do here
+    }
 }
