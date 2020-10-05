@@ -25,8 +25,11 @@ class MyHealthViewController: UIViewController {
     @IBOutlet var codeChars: [UITextField]!
     
     @IBOutlet weak var dateView: UIView!
+    @IBOutlet weak var dayView: UIView!
     @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var monthView: UIView!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var yearView: UIView!
     @IBOutlet weak var yearLabel: UILabel!
 
     var router: AppRouter?
@@ -69,6 +72,7 @@ class MyHealthViewController: UIViewController {
         if UIAccessibility.isVoiceOverRunning {
             self.codeTextField.becomeFirstResponder()
         }
+      
     }
     
     @IBAction func onReportDiagnosis(_ sender: Any) {
@@ -154,6 +158,10 @@ class MyHealthViewController: UIViewController {
                 self.addDoneButtonOnKeyboard(textView: char)
             }
         }
+        
+        dayLabel.accessibilityHint = "ACC_HINT".localized
+        monthLabel.accessibilityHint = "ACC_HINT".localized
+        yearLabel.accessibilityHint = "ACC_HINT".localized
     }
     
     @objc func keyboardWillShow(notification: NSNotification?) {
@@ -262,7 +270,12 @@ class MyHealthViewController: UIViewController {
         dateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDatePicker)))
        
         codeTextField.delegate = self
+        codeTextField.layer.borderColor = UIColor.purpleApp.cgColor
 
+        dayView.layer.borderColor = UIColor.purpleApp.cgColor
+        monthView.layer.borderColor = UIColor.purpleApp.cgColor
+        yearView.layer.borderColor = UIColor.purpleApp.cgColor
+        
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
 
@@ -359,6 +372,11 @@ extension MyHealthViewController: PickerDelegate {
         yearLabel.text = "----"
         monthLabel.text = "--"
         dayLabel.text = "--"
+        
+        //Setup accessibility
+        dayLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
+        monthLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + (monthLabel.text ?? "")
+        yearLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + " " + (yearLabel.text ?? "")
     }
     
     func onDone() {
@@ -371,6 +389,11 @@ extension MyHealthViewController: PickerDelegate {
             monthLabel.text = formatter.string(from: date)
             formatter.dateFormat = "dd"
             dayLabel.text = formatter.string(from: date)
+            
+            //Setup accessibility
+            dayLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
+            monthLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + (monthLabel.text ?? "")
+            yearLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + " " + (yearLabel.text ?? "")
         }
     }
 }

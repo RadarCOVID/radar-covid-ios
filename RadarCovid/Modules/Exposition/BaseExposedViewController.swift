@@ -17,11 +17,11 @@ protocol ExpositionView {
 }
 
 class BaseExposed: UIViewController, ExpositionView {
-
+    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var moreInfoView: UIView!
     @IBOutlet weak var expositionBGView: BackgroundView!
-
+    
     var lastCheck: Date?
     var router: AppRouter?
     
@@ -31,11 +31,11 @@ class BaseExposed: UIViewController, ExpositionView {
         setupBaseView()
         setupBaseAccessibility()
     }
-
+    
     @IBAction func onBack(_ sender: Any) {
         router?.pop(from: self, animated: true)
     }
-
+    
     @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         //Nothing to do here
     }
@@ -49,11 +49,12 @@ class BaseExposed: UIViewController, ExpositionView {
         } else {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
+        backButton.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupBaseView() {
         moreInfoView.isUserInteractionEnabled = true
         moreInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                           action: #selector(userDidTapLabel(tapGestureRecognizer:))))
+                                                                 action: #selector(userDidTapLabel(tapGestureRecognizer:))))
     }
 }

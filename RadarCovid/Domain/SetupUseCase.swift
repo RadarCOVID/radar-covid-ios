@@ -94,18 +94,21 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
 
     func performBackgroundTasks(completionHandler: @escaping (Bool) -> Void) {
         debugPrint("performBackgroundTasks")
-        if Config.debug {
-            let sync = preferencesRepository.getLastSync()?.description ?? "no Sync"
-            notificationHandler.scheduleNotification(
-                title: "BackgroundTask",
-                body: "Last sync: \(sync)",
-                sound: .default)
-        }
-        fakeRequestUseCase.sendFalsePositive().subscribe { (err) in
-            completionHandler(err)
+
+        fakeRequestUseCase.sendFalsePositive().subscribe { [weak self] (sent) in
+            if Config.debug {
+                let sync = self?.preferencesRepository.getLastSync()?.description ?? "no Sync"
+                self?.notificationHandler.scheduleNotification(
+                    title: "BackgroundTask",
+                    body: "Last sync: \(sync), positive sent \(sent)",
+                    sound: .default)
+            }
+            completionHandler(sent)
         } onError: { (error) in
             completionHandler(false)
         }
+        
+        
         
     }
 
@@ -122,3 +125,4 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     }
 
 }
+

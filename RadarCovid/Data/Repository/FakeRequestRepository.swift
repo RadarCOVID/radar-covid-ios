@@ -19,12 +19,13 @@ class FakeRequestRepository {
         let currentDate = Date()
         var dateComponent = DateComponents()
         dateComponent.hour = 3
+        dateComponent.minute = -30
         return Calendar.current.date(
             byAdding: dateComponent,
             to: currentDate)
             ?? Date()
     }
-
+    
     private var _fakeRequestDate: Date?
     var fakeRequestDate: Date {
         get {
@@ -42,5 +43,5 @@ class FakeRequestRepository {
     init() {
         self.userDefaults = UserDefaults.standard
     }
-   
+    
 }
