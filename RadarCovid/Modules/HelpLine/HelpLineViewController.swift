@@ -15,20 +15,16 @@ import RxSwift
 
 class HelpLineViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
-    //MARK: - Outlet.
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var phoneView: BackgroundView!
     @IBOutlet weak var faqWebLabel: UILabel!
     @IBOutlet weak var infoWebLabel: UILabel!
     @IBOutlet weak var otherWebLabel: UILabel!
     
-    // MARK: - Properties
     var router: AppRouter?
     var preferencesRepository: PreferencesRepository?
     
     private let disposeBag = DisposeBag()
-
-    //MARK: - View Life Cycle Methods.
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +33,6 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
         setupView()
     }
 
-    //MARK: - Action methods.
-    
     @objc func onCallTap(tapGestureRecognizer: UITapGestureRecognizer) {
         open(phone: "CONTACT_PHONE".localized)
     }

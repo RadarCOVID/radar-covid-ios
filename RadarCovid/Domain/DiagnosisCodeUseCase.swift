@@ -15,14 +15,14 @@ import DP3TSDK
 import SwiftJWT
 
 class DiagnosisCodeUseCase {
-    
+
     private let dateFormatter = DateFormatter()
-    
+
     private let settingsRepository: SettingsRepository
     private let verificationApi: VerificationControllerAPI
-    
+
     private var isfake = false
-    
+
     init(settingsRepository: SettingsRepository,
          verificationApi: VerificationControllerAPI) {
         self.settingsRepository = settingsRepository
@@ -30,7 +30,7 @@ class DiagnosisCodeUseCase {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "es_ES")
     }
-    
+
     func sendDiagnosisCode(code: String, date: Date? = nil) -> Observable<Bool> {
         self.isfake = FakeRequestUseCase.FALSE_POSITIVE_CODE == code
         return verificationApi.verifyCode(body: Code( date: date, code: code ) )
@@ -42,18 +42,18 @@ class DiagnosisCodeUseCase {
                 }
                 return self?.iWasExposed(onset: onset, token: tokenResponse.token) ?? .empty()
             }
-        
+
     }
-    
+
     private func iWasExposed(onset: Date, token: String) -> Observable<Bool> {
         .create { [weak self] observer in
             DP3TTracing.iWasExposed(onset: onset,
                                     authentication: .HTTPAuthorizationBearer(token: token),
                                     isFakeRequest: self?.isfake ?? false) {  result in
                 switch result {
-                    case let .failure(error):
+                case let .failure(error):
                         observer.onError(self?.mapError(error) ?? error)
-                    default:
+                default:
                         observer.onNext(true)
                         observer.onCompleted()
                 }
@@ -61,7 +61,7 @@ class DiagnosisCodeUseCase {
             return Disposables.create()
         }
     }
-    
+
     private func parseToken(_ signedJWT: String) throws -> JWT<MyClaims> {
         let key = Config.verificationKey
         print(key.base64EncodedString())
@@ -69,21 +69,21 @@ class DiagnosisCodeUseCase {
         let jwtDecoder = JWTDecoder(jwtVerifier: jwtVerifier)
         return try jwtDecoder.decode(JWT<MyClaims>.self, fromString: signedJWT)
     }
-    
+
     private func is404(_ error: Error) -> Bool {
         if let code = getErrorCode(error) {
             return code == 404
         }
         return false
     }
-    
+
     private func is400(_ error: Error) -> Bool {
         if let code = getErrorCode(error) {
             return code == 400
         }
         return false
     }
-    
+
     private func isPermissionRejected(_ error: Error) -> Bool {
         if let error = error as? DP3TTracingError {
             if case .exposureNotificationError = error {
@@ -92,14 +92,14 @@ class DiagnosisCodeUseCase {
         }
         return false
     }
-    
+
     private func isNetworkError(_ error: Error) -> Bool {
         if let errorCode = getErrorDomain(error) {
             return errorCode <= -999
         }
         return false
     }
-    
+
     private func getErrorCode(_ error: Error) -> Int? {
         if let error = error as? ErrorResponse {
             if case .error(let code, _, _) = error {
@@ -108,7 +108,7 @@ class DiagnosisCodeUseCase {
         }
         return nil
     }
-    
+
     private func getErrorDomain(_ error: Error) -> Int? {
         if let error = error as? ErrorResponse {
             if case .error(_, _, let errorDomain) = error {
@@ -117,7 +117,7 @@ class DiagnosisCodeUseCase {
         }
         return nil
     }
-    
+
     private func mapError(_ error: Error) -> DiagnosisError {
         if is404(error) {
             return .wrongId(error)
@@ -128,14 +128,14 @@ class DiagnosisCodeUseCase {
         if isPermissionRejected(error) {
             return .apiRejected(error)
         }
-        
+
         if isNetworkError(error) {
             return .noConnection(error)
         }
-        
+
         return .unknownError(error)
     }
-    
+
 }
 
 struct MyClaims: Claims {

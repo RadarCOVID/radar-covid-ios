@@ -36,15 +36,17 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
                     ,onError: { (err) in
                         return observer.onError(err)
                     }).disposed(by: self?.disposeBag ?? DisposeBag())
+            }else {
+                observer.onNext(false)
             }
             return Disposables.create()
         }
         
-        
+       
     }
     
     private func needToSendFalsePositive() -> Bool{
-        return Date().timeIntervalSince(fakeRequestRepository.fakeRequestDate) >= minFakeRequestTimeSpan
+        return abs(fakeRequestRepository.fakeRequestDate.timeIntervalSinceNow) >= minFakeRequestTimeSpan
     }
     
 }
