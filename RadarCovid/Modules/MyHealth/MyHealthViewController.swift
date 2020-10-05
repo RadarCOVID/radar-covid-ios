@@ -367,7 +367,7 @@ extension MyHealthViewController: PickerDelegate {
         }
     }
     
-    private func onCancel() {
+    func onCancel() {
         date = nil
         yearLabel.text = "----"
         monthLabel.text = "--"
