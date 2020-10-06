@@ -50,9 +50,9 @@ extension UIFont {
         case .regular:
             return UIFont.systemFont(ofSize: fontSizeScaled)
         case .bold:
-            return UIFont.boldSystemFont(ofSize: fontSizeScale)
+            return UIFont.boldSystemFont(ofSize: fontSizeScaled)
         case .italic:
-            return UIFont.italicSystemFont(ofSize: fontSizeScale)
+            return UIFont.italicSystemFont(ofSize: fontSizeScaled)
         }
     }
 }
