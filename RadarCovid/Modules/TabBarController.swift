@@ -48,7 +48,6 @@ class TabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupAccessibility()
         setViewControllers([homeViewController, myDataViewController, helpLineViewController], animated: false)
     }
@@ -81,18 +80,20 @@ class TabBarController: UITabBarController {
         apareance.backgroundImage = UIImage.init(named: "tabBarBG")
         tabBar.clipsToBounds = true
         tabBar.standardAppearance = apareance
-
+        tabBar.unselectedItemTintColor = UIColor.red;
+        tabBar.tintColor = UIColor.purpleApp
+       
         homeViewController.tabBarItem = UITabBarItem(
             title: "",
-            image: UIImage(named: "MenuHomeNormal"),
+            image: UIImage(named: "MenuHomeNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuHomeSelected"))
         myDataViewController.tabBarItem = UITabBarItem(
             title: "",
-            image: UIImage(named: "MenuInfoNormal"),
+            image: UIImage(named: "MenuInfoNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuInfoSelected"))
         helpLineViewController.tabBarItem = UITabBarItem(
             title: "",
-            image: UIImage(named: "MenuHelpNormal"),
+            image: UIImage(named: "MenuHelpNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuHelpSelected"))
     }
 }
