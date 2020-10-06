@@ -17,12 +17,10 @@ class MyHealthViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var codeView: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var codigoTitleLabel: UILabel!
     @IBOutlet weak var sendDiagnosticButton: UIButton!
-    @IBOutlet var codeChars: [UITextField]!
     
     @IBOutlet weak var dateView: UIView!
     @IBOutlet weak var dayView: UIView!
@@ -51,12 +49,6 @@ class MyHealthViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
-        self.codeChars.forEach { (char) in
-            char.text = emptyText200B
-            char.layer.cornerRadius = 5
-            char.addTarget(self, action: #selector(MyHealthViewController.textFieldDidChange(_:)), for: .editingChanged)
-        }
-
         backButton.isAccessibilityElement = true
         let previous = navigationController?.previousViewController
         if let title = (previous as? AccTitleView)?.accTitle ?? previous?.title {
@@ -64,7 +56,7 @@ class MyHealthViewController: UIViewController {
         } else {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
-        sendDiagnosticButton.isEnabled = checkSendEnabled()
+        sendDiagnosticButton.isEnabled = false
 
         setupAccessibility()
         
@@ -78,16 +70,7 @@ class MyHealthViewController: UIViewController {
     @IBAction func onReportDiagnosis(_ sender: Any) {
 
         view.showLoading()
-        var codigoString = ""
-        
-//        if UIAccessibility.isVoiceOverRunning {
-            codigoString = self.codeTextField.text ?? ""
-//        } else {
-//            codeChars.forEach {
-//                let string: String = $0.text ?? ""
-//                codigoString += string
-//            }
-//        }
+        let codigoString = self.codeTextField.text ?? ""
 
         diagnosisCodeUseCase?.sendDiagnosisCode(code: codigoString, date: date ?? Date()).subscribe(
             onNext: { [weak self] reportedCodeBool in
@@ -99,13 +82,7 @@ class MyHealthViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    @IBAction func insertCode(_ sender: Any) {
-        guard let emptyInput = self.codeChars.filter({ $0.text == emptyText200B }).first else {
-            self.codeChars.last?.becomeFirstResponder()
-            return
-        }
-        emptyInput.becomeFirstResponder()
-    }
+   
     
     @objc func doneButtonAction(textView: UITextField) {
         self.view.endEditing(true)
@@ -124,7 +101,6 @@ class MyHealthViewController: UIViewController {
         }, cancelHandler: { (_) in
 
         })
-        endEditingCodeChars()
     }
     
     private func setupAccessibility() {
@@ -147,17 +123,7 @@ class MyHealthViewController: UIViewController {
         sendDiagnosticButton.accessibilityLabel = "ACC_BUTTON_SEND_DIAGNOSTIC".localized
         sendDiagnosticButton.accessibilityHint = "ACC_HINT".localized
 
-//        if UIAccessibility.isVoiceOverRunning {
-            codeTextField.isHidden = false
-            self.addDoneButtonOnKeyboard(textView: codeTextField)
-            codeView.isHidden = true
-//        } else {
-//            codeTextField.isHidden = true
-//            codeView.isHidden = false
-//            self.codeChars.forEach { (char) in
-//                self.addDoneButtonOnKeyboard(textView: char)
-//            }
-//        }
+        self.addDoneButtonOnKeyboard(textView: codeTextField)
         
         dayLabel.accessibilityHint = "ACC_HINT".localized
         monthLabel.accessibilityHint = "ACC_HINT".localized
@@ -184,47 +150,7 @@ class MyHealthViewController: UIViewController {
         self.scrollViewBottonConstraint.constant = 0
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        let actualPos = textField.tag
-
-        // if the initial value is an empty string do nothing
-        if (textField.text == emptyText200B) {
-            return
-        }
-
-        // detect backspace
-        if  textField.text == "" || textField.text == nil {
-            if   actualPos > 0 && actualPos < self.codeChars.count {
-                let prev = codeChars[actualPos - 1]
-                prev.becomeFirstResponder()
-                prev.text = emptyText200B
-                textField.text = emptyText200B
-           }
-        }
-
-        // detect new input and pass to the next one
-        else if actualPos < self.codeChars.count - 1 {
-            // the first character is an unicode empty space
-            // so we need to take the second character and assign it to the input
-            let finalText = textField.text?.suffix(1)
-            textField.text = String(finalText ?? "")
-            let next = codeChars[actualPos + 1]
-            next.becomeFirstResponder()
-        }
-
-        // avoid multiple character in the last input
-        if actualPos == self.codeChars.count - 1 {
-            let actualText = textField.text ?? emptyText200B
-            if (actualText != emptyText200B) {
-                let trimmedString = String(actualText.prefix(2))
-                let finalString = String(trimmedString.suffix(1))
-                textField.text = finalString
-            }
-        }
-
-        sendDiagnosticButton.isEnabled = checkSendEnabled()
-    }
+   
     
     private func addDoneButtonOnKeyboard(textView: UITextField) {
         
@@ -244,14 +170,7 @@ class MyHealthViewController: UIViewController {
         textView.inputAccessoryView = doneToolbar
     }
     
-    private func endEditingCodeChars() {
-        for item in codeChars {
-            item.endEditing(true)
-        }
-        
-        keyboardWillHide(notification: nil)
-    }
-    
+   
     @objc private func showDatePicker() {
             pickerPresenter?.openPicker()
     }
@@ -292,10 +211,6 @@ class MyHealthViewController: UIViewController {
         )
 
         sendDiagnosticButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
-    }
-    
-    private func checkSendEnabled() -> Bool {
-        codeChars.filter({ $0.text != emptyText200B }).count == codeChars.count
     }
 
     private func navigateIf(reported: Bool) {
