@@ -56,7 +56,7 @@ class MyHealthViewController: UIViewController {
         } else {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
-        sendDiagnosticButton.isEnabled = false
+        setEnableButton(isEnable: false)
 
         setupAccessibility()
         
@@ -151,6 +151,14 @@ class MyHealthViewController: UIViewController {
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
    
+    private func setEnableButton(isEnable: Bool) {
+        sendDiagnosticButton.isEnabled = isEnable
+        if isEnable {
+            sendDiagnosticButton.titleLabel?.font = UIFont.mainFont(size: .twentytwo, fontType: .bold)
+        } else {
+            sendDiagnosticButton.titleLabel?.font = UIFont.mainFont(size: .twentytwo, fontType: .regular)
+        }
+    }
     
     private func addDoneButtonOnKeyboard(textView: UITextField) {
         
