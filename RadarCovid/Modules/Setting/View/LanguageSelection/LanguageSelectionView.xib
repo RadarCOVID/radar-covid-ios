@@ -37,7 +37,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="o9T-UK-NlX"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             <state key="normal" title="Aceptar" backgroundImage="buttonsPrimary">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -66,7 +66,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="Qtu-UD-xWW"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                             <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Cancelar">
                                                 <color key="titleColor" systemColor="darkTextColor"/>
