@@ -64,7 +64,8 @@ class MyHealthViewController: UIViewController {
         } else {
             backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }
-        sendDiagnosticButton.isEnabled = checkSendEnabled()
+        
+        setEnableButton(isEnable: checkSendEnabled())
 
         setupAccessibility()
         
@@ -223,7 +224,16 @@ class MyHealthViewController: UIViewController {
             }
         }
 
-        sendDiagnosticButton.isEnabled = checkSendEnabled()
+        setEnableButton(isEnable: checkSendEnabled())
+    }
+    
+    private func setEnableButton(isEnable: Bool) {
+        sendDiagnosticButton.isEnabled = isEnable
+        if isEnable {
+            sendDiagnosticButton.titleLabel?.font = UIFont.mainFont(size: .twentytwo, fontType: .bold)
+        } else {
+            sendDiagnosticButton.titleLabel?.font = UIFont.mainFont(size: .twentytwo, fontType: .regular)
+        }
     }
     
     private func addDoneButtonOnKeyboard(textView: UITextField) {
@@ -350,7 +360,7 @@ extension MyHealthViewController: UITextFieldDelegate {
         }
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-        sendDiagnosticButton.isEnabled = newString.length >= 12
+        setEnableButton(isEnable: newString.length >= 12)
         return newString.length <= maxLength
     }
 }
