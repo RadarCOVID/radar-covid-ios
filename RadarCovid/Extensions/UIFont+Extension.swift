@@ -40,23 +40,6 @@ enum FontSize: CGFloat {
 }
 
 extension UIFont {
-    func defaultFont(
-        withSize size: CGFloat,
-        _ light: Bool = false,
-        _ cursive: Bool = false,
-        _ bold: Bool = false
-    ) -> UIFont {
-        var fontName = "Muli-Regular"
-        if light {
-            fontName = "Muli-Light"
-        } else if cursive {
-            fontName = "Muli-Italic"
-        } else if bold {
-            fontName = "Muli-Bold"
-        }
-        
-        return UIFont(name: fontName, size: size) ?? UIFont.systemFont(ofSize: size)
-    }
     
     class func mainFont(size: FontSize, fontType: FontType) -> UIFont {
         let fontSizeScale: CGFloat = 1.0
@@ -65,11 +48,11 @@ extension UIFont {
 
         switch fontType {
         case .regular:
-            return UIFont.init(name: "HelveticaNeue", size: fontSizeScaled)! //.systemFont(ofSize: fontSizeScaled)
+            return UIFont.systemFont(ofSize: fontSizeScaled)
         case .bold:
-            return UIFont.init(name: "HelveticaNeue-Bold", size: fontSizeScaled)!
+            return UIFont.boldSystemFont(ofSize: fontSizeScale)
         case .italic:
-            return UIFont.init(name: "HelveticaNeue-Italic", size: fontSizeScaled)!
+            return UIFont.italicSystemFont(ofSize: fontSizeScale)
         }
     }
 }
