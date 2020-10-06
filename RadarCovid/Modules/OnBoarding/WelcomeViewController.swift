@@ -148,7 +148,7 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource, P
                              message: "LOCALE_CHANGE_WARNING".localized,
                              buttonTitle: "ALERT_OK_BUTTON".localized,
                              buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized) { _ in
-                exit(0)
+                self.router?.route(to: Routes.changeLanguage, from: self)
             }
         }
     }

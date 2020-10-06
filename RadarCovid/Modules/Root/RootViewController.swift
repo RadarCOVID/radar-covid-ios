@@ -25,7 +25,12 @@ class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        loadLocalesAndCCAA()
+    }
+    
+    private func loadLocalesAndCCAA() {
+        
         LocalizationHolder.source = localizationUseCase
         // change to wait for all request before load localization
         Observable.zip(localesUseCase!.loadLocales(),
@@ -91,4 +96,5 @@ class RootViewController: UIViewController {
             router!.route(to: Routes.welcome, from: self)
         }
     }
+
 }

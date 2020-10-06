@@ -15,6 +15,7 @@ import RxSwift
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private let disposeBag = DisposeBag()
+    private let router = AppDelegate.shared?.injection.resolve(AppRouter.self)!
 
     var window: UIWindow?
 
@@ -32,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 
-        let router = AppDelegate.shared?.injection.resolve(AppRouter.self)!
+        
 
         router?.route(to: Routes.root, from: navigationController)
 

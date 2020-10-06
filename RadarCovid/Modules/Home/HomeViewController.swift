@@ -225,8 +225,9 @@ class HomeViewController: UIViewController {
     }
     
     private func showTimeExposed() {
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
-        TimeExposedView.initWithParentViewController(viewController: self)
+        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+            TimeExposedView.initWithParentViewController(viewController: self)
+        }
     }
 
     private func updateExpositionInfo(_ exposition: ExpositionInfo?) {

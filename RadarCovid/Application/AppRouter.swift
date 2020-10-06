@@ -35,23 +35,10 @@ public enum Routes {
     case positiveExposed
     case activateCovid
     case activatePush
+    case changeLanguage
 }
 
 class AppRouter: Router {
-
-    var proxymityVC: ProximityViewController?
-    var onBoardingVC: OnBoardingViewController?
-    var rootVC: RootViewController?
-    var tabBarController: TabBarController?
-    var myHealthVC: MyHealthViewController?
-    var myHealthReportedVC: MyHealthReportedViewController?
-    var expositionVC: ExpositionViewController?
-    var highExpositionVC: HighExpositionViewController?
-    var positiveExposedVC: PositiveExposedViewController?
-    var welcomeVC: WelcomeViewController?
-    var activateCovid: ActivateCovidNotificationViewController?
-    var activatePush: ActivatePushNotificationViewController?
-    var homeVC: HomeViewController?
 
     var parentVC: UIViewController?
 
@@ -82,58 +69,77 @@ class AppRouter: Router {
             routeToHighExposition(context, since: parameters[0] as? Date)
         case .positiveExposed:
             routeToPositiveExposed(context, since: parameters[0] as? Date)
+        case .changeLanguage:
+            routeToRootAndResetView(context)
         }
     }
 
     private func routeToOnboarding(_ context: UIViewController) {
+        let onBoardingVC = AppDelegate.shared?.injection.resolve(OnBoardingViewController.self)!
         context.navigationController?.pushViewController(onBoardingVC!, animated: true)
     }
 
     private func routeToRoot(_ context: UIViewController) {
+        let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
         loadViewAsRoot(navController: context as? UINavigationController, view: rootVC!)
+    }
+    
+    private func routeToRootAndResetView(_ context: UIViewController) {
+        let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
+        loadViewAsRoot(navController: context.navigationController, view: rootVC!)
     }
 
     private func routeToHome(_ context: UIViewController) {
+        let tabBarController = AppDelegate.shared?.injection.resolve(TabBarController.self)!
         loadViewAsRoot(navController: context.navigationController, view: tabBarController!)
     }
 
     private func routeToProximity(_ context: UIViewController) {
+        let proxymityVC = AppDelegate.shared?.injection.resolve(ProximityViewController.self)!
         context.navigationController?.pushViewController(proxymityVC!, animated: true)
     }
 
     private func routeToCovid(_ context: UIViewController) {
+        let activateCovid = AppDelegate.shared?.injection.resolve(ActivateCovidNotificationViewController.self)!
        context.navigationController?.pushViewController(activateCovid!, animated: true)
     }
 
     private func routeToPush(_ context: UIViewController) {
+        let activatePush = AppDelegate.shared?.injection.resolve(ActivatePushNotificationViewController.self)!
        context.navigationController?.pushViewController(activatePush!, animated: true)
     }
 
     private func routeToMyHealth(_ context: UIViewController) {
+        let myHealthVC = AppDelegate.shared?.injection.resolve(MyHealthViewController.self)!
         context.navigationController?.pushViewController(myHealthVC!, animated: true)
     }
 
     private func routeToMyHealthReported(_ context: UIViewController) {
+        let myHealthReportedVC = AppDelegate.shared?.injection.resolve(MyHealthReportedViewController.self)!
         context.navigationController?.pushViewController(myHealthReportedVC!, animated: true)
     }
 
     private func routeToExposition(_ context: UIViewController, lastCheck: Date?) {
+        let expositionVC = AppDelegate.shared?.injection.resolve(ExpositionViewController.self)!
         expositionVC?.lastCheck = lastCheck
         context.navigationController?.pushViewController(expositionVC!, animated: true)
     }
 
     private func routeToHighExposition(_ context: UIViewController, since: Date?) {
+        let highExpositionVC = AppDelegate.shared?.injection.resolve(HighExpositionViewController.self)!
         highExpositionVC?.since = since
         context.navigationController?.pushViewController(highExpositionVC!, animated: true)
     }
 
     private func routeToPositiveExposed(_ context: UIViewController, since: Date?) {
+        let positiveExposedVC = AppDelegate.shared?.injection.resolve(PositiveExposedViewController.self)!
         positiveExposedVC?.since = since
         context.navigationController?.pushViewController(positiveExposedVC!, animated: true)
     }
 
     private func routeToWelcome(_ context: UIViewController) {
-        loadViewAsRoot(navController: context.navigationController, view: welcomeVC!)
+        let welcomeVC = AppDelegate.shared!.injection.resolve(WelcomeViewController.self)!
+        loadViewAsRoot(navController: context.navigationController, view: welcomeVC)
     }
 
     private func loadViewAsRoot(navController: UINavigationController?, view: UIViewController, animated: Bool = false) {
@@ -144,7 +150,6 @@ class AppRouter: Router {
 
     func popToRoot(from: UIViewController, animated: Bool) {
         from.navigationController?.popToRootViewController(animated: animated)
-        homeVC?.viewWillAppear(animated)
         parentVC = nil
     }
 

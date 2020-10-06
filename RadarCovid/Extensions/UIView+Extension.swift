@@ -18,8 +18,8 @@ extension UIView {
          alpha: CGFloat,
          _ message: String? = nil,
          _ attributedMessage: NSAttributedString? = nil,
-         _ textColor: UIColor? = nil
-        ) {
+         _ textColor: UIColor? = nil,
+         _ completion: (() -> Void)? = nil ) {
         let transparentView = Bundle.main.loadNibNamed(
             "TransparentView",
             owner: self,
@@ -45,7 +45,11 @@ extension UIView {
         }
         DispatchQueue.main.async { [weak self] in
             self?.addSubview(transparentView!)
-            transparentView?.fadeIn(alpha)
+            transparentView?.fadeIn(alpha, { _ in
+                if let completion = completion {
+                    completion()
+                }
+            })
         }
     }
 

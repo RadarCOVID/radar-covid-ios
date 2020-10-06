@@ -168,30 +168,18 @@ class Injection {
         
         container.register(TabBarController.self) { r in
             TabBarController(
-                localizationUseCase: r.resolve(LocalizationUseCase.self)!,
                 homeViewController: r.resolve(HomeViewController.self)!,
                 myDataViewController: r.resolve(MyDataViewController.self)!,
                 helpLineViewController: r.resolve(HelpLineViewController.self)!,
-                preferencesRepository: r.resolve(PreferencesRepository.self)!
+                settingViewController: r.resolve(SettingViewController.self)!,
+                preferencesRepository: r.resolve(PreferencesRepository.self)!,
+                localizationUseCase: r.resolve(LocalizationUseCase.self)!
             )
         }
         
         container.register(AppRouter.self) { _ in
             AppRouter()
         }.initCompleted {r, appRouter in
-            appRouter.rootVC = r.resolve(RootViewController.self)!
-            appRouter.proxymityVC  = r.resolve(ProximityViewController.self)!
-            appRouter.onBoardingVC = r.resolve(OnBoardingViewController.self)!
-            appRouter.tabBarController = r.resolve(TabBarController.self)!
-            appRouter.myHealthVC = r.resolve(MyHealthViewController.self)!
-            appRouter.myHealthReportedVC = r.resolve(MyHealthReportedViewController.self)!
-            appRouter.expositionVC = r.resolve(ExpositionViewController.self)!
-            appRouter.highExpositionVC = r.resolve(HighExpositionViewController.self)!
-            appRouter.positiveExposedVC = r.resolve(PositiveExposedViewController.self)!
-            appRouter.welcomeVC = r.resolve(WelcomeViewController.self)!
-            appRouter.activateCovid = r.resolve(ActivateCovidNotificationViewController.self)!
-            appRouter.activatePush = r.resolve(ActivatePushNotificationViewController.self)!
-            appRouter.homeVC = r.resolve(HomeViewController.self)!
         }
         
         container.register(ProximityViewController.self) {  r in
@@ -266,12 +254,25 @@ class Injection {
             return helpVC!
         }
         
+        container.register(SettingViewController.self) {  route in
+            let settingVC = SettingViewController()
+            settingVC.router = route.resolve(AppRouter.self)!
+            settingVC.viewModel = route.resolve(SettingViewModel.self)!
+            return settingVC
+        }
+        
+        container.register(SettingViewModel.self) { route in
+            let settingVM = SettingViewModel(localesUseCase: route.resolve(LocalesUseCase.self)!)
+            return settingVM
+        }
+
         container.register(MyHealthViewController.self) {  route in
             let myHealthVC = self.createViewController(
                 storyboard: "MyHealth",
                 viewId: "MyHealthViewController") as? MyHealthViewController
             myHealthVC?.diagnosisCodeUseCase = route.resolve(DiagnosisCodeUseCase.self)!
             myHealthVC?.router = route.resolve(AppRouter.self)!
+            
             return myHealthVC!
         }
         
