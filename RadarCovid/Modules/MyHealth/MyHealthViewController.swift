@@ -166,7 +166,7 @@ class MyHealthViewController: UIViewController {
         doneToolbar.barStyle = UIBarStyle.default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "ALERT_OK_BUTTON".localized, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction) )
+        let done: UIBarButtonItem = UIBarButtonItem(title: "SELECTOR_DONE".localized, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction) )
         
         var items = [UIBarButtonItem]()
         items.append(flexSpace)
