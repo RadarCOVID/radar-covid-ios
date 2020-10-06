@@ -12,6 +12,7 @@
 import Foundation
 import UIKit
 extension UIView {
+    
     func showTransparentBackground
         (withColor color: UIColor,
          alpha: CGFloat,
@@ -35,8 +36,8 @@ extension UIView {
             } else {
                 messageView.attributedText = attributedMessage
             }
-            messageView.textColor = textColor ?? UIColor.white
-            messageView.font = UIFont().defaultFont(withSize: 26)
+            messageView.textColor = textColor ?? UIColor.black
+            messageView.font = UIFont(name: "Helvetica Neue", size: 26)
             messageView.numberOfLines = 0
             messageView.minimumScaleFactor = 0.1
             messageView.tag = 1122

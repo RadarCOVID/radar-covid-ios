@@ -18,7 +18,6 @@ class LocalizationUseCase: LocalizationSource {
     private let localizationRepository: LocalizationRepository
     private var _localizationLoaded: Bool = false
     private var _localizationMap: [String: String]?
-    public var localizationLoaded: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     var localizationMap: [String: String]? {
             if _localizationMap == nil {
                 _localizationMap = localizationRepository.getTexts()
@@ -31,27 +30,15 @@ class LocalizationUseCase: LocalizationSource {
         self.textsApi = textsApi
         self.localizationRepository = localizationRepository
     }
-    
-//    func localizationLoaded() -> Observable<Bool> {
-//        return Observable.create { (observer) -> Disposable in
-//            if (self._localizationLoaded){
-//                observer.on(.next(self._localizationLoaded)
-//            }else{
-//
-//            }
-//        }
-//    }
 
     func loadlocalization() -> Observable<[String: String]?> {
         return .deferred { [weak self] in
             let cau = self?.localizationRepository.getCurrentCA()?.id
             let locale = self?.localizationRepository.getLocale()
-            return self?.textsApi.getTexts(ccaa: cau, locale: locale).map { texts in
+            return self?.textsApi.getTexts(ccaa: cau, locale: locale, platform: Config.platform, version: Config.version).map { texts in
                 let texts = texts.additionalProperties
                 self?._localizationMap = texts
                 self?.localizationRepository.setTexts(texts)
-                print(texts)
-                self?.localizationLoaded.on(.next(true))
                 return texts
             }.catchError { [weak self] error -> Observable<[String: String]?> in
                 guard let localization = self?.localizationMap else {

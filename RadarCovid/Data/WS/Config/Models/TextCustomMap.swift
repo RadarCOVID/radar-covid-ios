@@ -29,7 +29,6 @@ public struct TextCustomMap: Codable {
     }
 
     // Encodable protocol methods
-
     public func encode(to encoder: Encoder) throws {
 
         var container = encoder.container(keyedBy: String.self)
@@ -38,12 +37,10 @@ public struct TextCustomMap: Codable {
     }
 
     // Decodable protocol methods
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: String.self)
 
-        var nonAdditionalPropertyKeys = Set<String>()
-        additionalProperties = try container.decodeMap(String.self, excludedKeys: nonAdditionalPropertyKeys)
+        additionalProperties = try container.decodeMap(String.self, excludedKeys: Set<String>())
     }
 
 }

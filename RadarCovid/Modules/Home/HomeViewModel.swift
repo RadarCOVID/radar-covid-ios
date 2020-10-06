@@ -95,9 +95,9 @@ class HomeViewModel {
            }
         }
     }
-    
+
     func checkShowBackToHealthyDialog() {
-        if (expositionCheckUseCase?.checkBackToHealthyJustChanged() ?? false) {
+        if expositionCheckUseCase?.checkBackToHealthyJustChanged() ?? false {
             showBackToHealthyDialog.onNext(true)
         }
     }

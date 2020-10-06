@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="muli_bold.ttf">
-            <string>Muli-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Help Line View Controller-->
         <scene sceneID="PDA-62-Nfe">
@@ -25,11 +21,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJ6-m7-TJp">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="580.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="575"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Para más información..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cst-er-eD4">
-                                                <rect key="frame" x="23" y="100" width="329" height="33"/>
-                                                <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
+                                                <rect key="frame" x="23" y="100" width="329" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -37,48 +33,34 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HelplineBoyGirl" translatesAutoresizingMaskIntoConstraints="NO" id="w9H-Jy-4ca">
-                                                <rect key="frame" x="71.5" y="153" width="232" height="158"/>
+                                                <rect key="frame" x="71.5" y="153.5" width="232" height="158"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="232" id="I00-gL-GWp"/>
                                                     <constraint firstAttribute="height" constant="158" id="aDC-h2-llN"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geQ-iZ-DDL">
-                                                <rect key="frame" x="16" y="327" width="343" height="83"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment>
-                                                        <string key="content">Reportar incidencia
-</string>
-                                                        <attributes>
-                                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <font key="NSFont" metaFont="system" size="18"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="4" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                    <fragment content="Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes contactar con nosotros de forma rápida">
-                                                        <attributes>
-                                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <font key="NSFont" metaFont="system" size="16"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="9" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geQ-iZ-DDL">
+                                                <rect key="frame" x="16" y="327.5" width="343" height="76.5"/>
+                                                <string key="text">Reportar incidencia
+Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes contactar con nosotros de forma rápida</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="HELP_LINE_PHONE_PARAGRAPH_1"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1da-Fl-GEo" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="14" y="430" width="347" height="134.5"/>
+                                                <rect key="frame" x="14" y="424" width="347" height="135"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xA-oN-6Af">
-                                                        <rect key="frame" x="23" y="20" width="308" height="20.5"/>
+                                                        <rect key="frame" x="23" y="20" width="308" height="21"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAQs Radar COVID" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IR3-qq-aZZ">
-                                                                <rect key="frame" x="36" y="-0.5" width="272" height="21"/>
+                                                                <rect key="frame" x="36" y="-0.5" width="272" height="21.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" link="YES"/>
                                                                 </accessibility>
-                                                                <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="18"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                                 <color key="textColor" name="deepLilac"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -103,14 +85,14 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSS-US-QPY">
-                                                        <rect key="frame" x="23" y="55.5" width="308" height="20"/>
+                                                        <rect key="frame" x="23" y="56" width="308" height="20"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Web información COVID" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bc-4v-TsW">
-                                                                <rect key="frame" x="36" y="-0.5" width="272" height="21"/>
+                                                                <rect key="frame" x="36" y="-1" width="272" height="21.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" link="YES"/>
                                                                 </accessibility>
-                                                                <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="18"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                                 <color key="textColor" name="deepLilac"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -135,14 +117,14 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyg-ZL-yeX">
-                                                        <rect key="frame" x="23" y="90.5" width="308" height="20"/>
+                                                        <rect key="frame" x="23" y="91" width="308" height="20"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Otros enlaces" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tQ-Xe-eZr">
-                                                                <rect key="frame" x="36" y="-0.5" width="272" height="21"/>
+                                                                <rect key="frame" x="36" y="-1" width="272" height="21.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" link="YES"/>
                                                                 </accessibility>
-                                                                <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="18"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                                 <color key="textColor" name="deepLilac"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -212,6 +194,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="155.5"/>
                             </imageView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ucK-r6-0qo"/>
                         <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="CFd-OD-gzT" firstAttribute="leading" secondItem="ucK-r6-0qo" secondAttribute="leading" id="0Ig-nw-FUn"/>
@@ -222,14 +205,13 @@
                             <constraint firstItem="CFd-OD-gzT" firstAttribute="top" secondItem="NXc-EZ-zay" secondAttribute="top" id="srz-Is-L5O"/>
                             <constraint firstItem="Cui-45-0yl" firstAttribute="leading" secondItem="ucK-r6-0qo" secondAttribute="leading" id="xA5-pc-1w6"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ucK-r6-0qo"/>
                     </view>
                     <connections>
                         <outlet property="faqWebLabel" destination="IR3-qq-aZZ" id="EOb-xM-uLc"/>
                         <outlet property="infoWebLabel" destination="8bc-4v-TsW" id="tOH-gN-GOE"/>
                         <outlet property="otherWebLabel" destination="6tQ-Xe-eZr" id="MRg-7K-m9W"/>
                         <outlet property="phoneView" destination="1da-Fl-GEo" id="E5d-MT-S53"/>
-                        <outlet property="viewTitle" destination="Cst-er-eD4" id="je2-Mr-xuj"/>
+                        <outlet property="titleLabel" destination="Cst-er-eD4" id="rh6-7H-BZP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EBY-8b-jcn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -244,7 +226,7 @@
         <image name="organicColor" width="375" height="155.5"/>
         <image name="web" width="256" height="256"/>
         <namedColor name="bgColor">
-            <color red="0.98039215686274506" green="0.97647058823529409" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="deepLilac">
             <color red="0.54100000858306885" green="0.48600000143051147" blue="0.71799999475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
