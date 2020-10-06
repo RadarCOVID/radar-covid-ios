@@ -30,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="494"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJg-TW-Zyr">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="999.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="837.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkC-Jh-ngm">
                                     <rect key="frame" x="113" y="0.0" width="207" height="206.5"/>
@@ -56,10 +56,10 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ln-m6-qGi">
-                                    <rect key="frame" x="16" y="150" width="288" height="86"/>
+                                    <rect key="frame" x="16" y="150" width="288" height="67"/>
                                     <string key="text">Bienvenido a 
 Radar COVID</string>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -67,8 +67,8 @@ Radar COVID</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gracias por cuidarte y ayudarnos a proteger a los demás." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cpa-3O-7Z9">
-                                    <rect key="frame" x="16" y="612" width="288" height="86"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                    <rect key="frame" x="16" y="554" width="288" height="72"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -76,10 +76,10 @@ Radar COVID</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kjg-12-rKN">
-                                    <rect key="frame" x="16" y="256" width="288" height="112"/>
+                                    <rect key="frame" x="16" y="237" width="288" height="95.5"/>
                                     <string key="text">Fase Piloto sólo operativa en San Sebastián de
 la Gomera. Recuerda que las alertas son simuladas.</string>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -87,7 +87,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQe-F8-5u6">
-                                    <rect key="frame" x="16" y="388" width="288" height="62"/>
+                                    <rect key="frame" x="16" y="352.5" width="288" height="62"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSt-AF-pW4" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
                                             <rect key="frame" x="1" y="1" width="286" height="60"/>
@@ -97,7 +97,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="4Zy-jw-7mq"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" title="Selecciona tu idioma" image="CollapsableClosed">
                                                         <color key="titleColor" systemColor="darkTextColor"/>
@@ -125,8 +125,8 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEP_1_BULLET_1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMv-ck-JYx" userLabel="stepbullet1">
-                                    <rect key="frame" x="32" y="468" width="272" height="28"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                    <rect key="frame" x="32" y="432.5" width="272" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -134,7 +134,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QR7-i5-ImM">
-                                    <rect key="frame" x="16" y="463" width="11" height="29"/>
+                                    <rect key="frame" x="16" y="427.5" width="11" height="29"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -143,8 +143,8 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEP_1_BULLET_2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2A-1t-Mhn" userLabel="stepbullet2">
-                                    <rect key="frame" x="32" y="511" width="272" height="28"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                    <rect key="frame" x="32" y="468" width="272" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -152,7 +152,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNN-3A-qYp">
-                                    <rect key="frame" x="16" y="506" width="11" height="29"/>
+                                    <rect key="frame" x="16" y="463" width="11" height="29"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -161,8 +161,8 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEP_1_BULLET_3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyH-o9-UvP" userLabel="stepbullet3">
-                                    <rect key="frame" x="32" y="554" width="272" height="28"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                    <rect key="frame" x="32" y="503.5" width="272" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -170,7 +170,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDd-xc-3dr">
-                                    <rect key="frame" x="16" y="549" width="11" height="29"/>
+                                    <rect key="frame" x="16" y="498.5" width="11" height="29"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -179,9 +179,9 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8f3-Db-Vcu">
-                                    <rect key="frame" x="16" y="732" width="288" height="257.5"/>
+                                    <rect key="frame" x="16" y="660" width="288" height="167.5"/>
                                     <string key="text">IMPORTANTE: La App Radar COVID se ha puesto ya a disposición de todas las Comunidades Autónomas y comenzará a estar activa en cada una de ellas según éstas se vayan incorporando.</string>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -246,7 +246,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="hQk-Nu-kUO"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                     <state key="normal" title="Continuar" backgroundImage="buttonsPrimary">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
