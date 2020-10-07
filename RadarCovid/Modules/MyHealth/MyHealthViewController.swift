@@ -65,6 +65,12 @@ class MyHealthViewController: UIViewController {
             self.codeTextField.becomeFirstResponder()
         }
       
+        //Reset component
+        date = nil
+        yearLabel.text = "----"
+        monthLabel.text = "--"
+        dayLabel.text = "--"
+        codeTextField.text = ""
     }
     
     @IBAction func onReportDiagnosis(_ sender: Any) {
