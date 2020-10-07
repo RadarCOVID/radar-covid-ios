@@ -101,7 +101,8 @@ class Injection {
         
         container.register(ExpositionUseCase.self) { r in
             ExpositionUseCase(notificationHandler: r.resolve(NotificationHandler.self)!,
-                              expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
+                              expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+                              localizationUseCase: r.resolve(LocalizationUseCase.self)!)
         }.inObjectScope(.container)
         
         container.register(RadarStatusUseCase.self) { r in

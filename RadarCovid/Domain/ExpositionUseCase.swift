@@ -21,13 +21,17 @@ class ExpositionUseCase: DP3TTracingDelegate {
 
     private let subject: BehaviorSubject<ExpositionInfo>
     private let expositionInfoRepository: ExpositionInfoRepository
+    private let localizationUseCase: LocalizationUseCase
     private let notificationHandler: NotificationHandler
-
+    
     init(notificationHandler: NotificationHandler,
-         expositionInfoRepository: ExpositionInfoRepository) {
+         expositionInfoRepository: ExpositionInfoRepository,
+         localizationUseCase: LocalizationUseCase) {
 
         self.notificationHandler = notificationHandler
         self.expositionInfoRepository = expositionInfoRepository
+        self.localizationUseCase = localizationUseCase
+        
         self.subject = BehaviorSubject<ExpositionInfo>(
             value: expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: .healthy)
         )
@@ -35,11 +39,10 @@ class ExpositionUseCase: DP3TTracingDelegate {
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss.SSS z"
 
         DP3TTracing.delegate = self
-
     }
-
+    
     func DP3TTracingStateChanged(_ state: TracingState) {
-
+        
         if var expositionInfo = tracingStatusToExpositionInfo(tStatus: state) {
 
             let localEI  = expositionInfoRepository.getExpositionInfo()
@@ -48,7 +51,12 @@ class ExpositionUseCase: DP3TTracingDelegate {
                 expositionInfo.since = Date()
             }
             if showNotification(localEI, expositionInfo) {
-                notificationHandler.scheduleNotification(expositionInfo: expositionInfo)
+                
+                //Check if have localization sending notifications with key text
+                localizationUseCase.loadlocalization().subscribe(
+                    onNext: { [weak self] _ in
+                        self?.notificationHandler.scheduleNotification(expositionInfo: expositionInfo)
+                }).disposed(by: self.disposeBag)
             }
             if expositionInfo.error == nil {
                 expositionInfoRepository.save(expositionInfo: expositionInfo)
