@@ -99,6 +99,9 @@ COVID positivo</string>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_DIAGNOSTIC_DATE_DAY"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DBh-fT-Z3I">
                                                                 <rect key="frame" x="12" y="21.5" width="65" height="55"/>
@@ -132,6 +135,9 @@ COVID positivo</string>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_DIAGNOSTIC_DATE_MONTH"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPJ-EB-e4j">
                                                                 <rect key="frame" x="137" y="21.5" width="65" height="55"/>
@@ -165,6 +171,9 @@ COVID positivo</string>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_DIAGNOSTIC_DATE_YEAR"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t9P-7i-962">
                                                                 <rect key="frame" x="268" y="21.5" width="106" height="55"/>
@@ -311,6 +320,9 @@ COVID positivo</string>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_PARAGRAPH_4"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <constraints>
