@@ -71,6 +71,7 @@ class MyHealthViewController: UIViewController {
         monthLabel.text = "--"
         dayLabel.text = "--"
         codeTextField.text = ""
+        pickerPresenter?.hiddenPickerView()
     }
     
     @IBAction func onReportDiagnosis(_ sender: Any) {

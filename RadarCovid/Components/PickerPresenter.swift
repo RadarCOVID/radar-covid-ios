@@ -73,17 +73,19 @@ class PickerPresenter {
         }
     }
 
-    @objc func onDoneButtonTapped() {
-        toolBar!.removeFromSuperview()
+    func hiddenPickerView() {
+        toolBar?.removeFromSuperview()
         picker.removeFromSuperview()
         pickerOpened = false
+    }
+    
+    @objc func onDoneButtonTapped() {
+        hiddenPickerView()
         delegate?.onDone()
     }
     
     @objc func onCancelButtonTapped() {
-        toolBar!.removeFromSuperview()
-        picker.removeFromSuperview()
-        pickerOpened = false
+        hiddenPickerView()
         delegate?.onCancel()
     }
 }
