@@ -65,6 +65,13 @@ class MyHealthViewController: UIViewController {
             self.codeTextField.becomeFirstResponder()
         }
       
+        //Reset component
+        date = nil
+        yearLabel.text = "----"
+        monthLabel.text = "--"
+        dayLabel.text = "--"
+        codeTextField.text = ""
+        pickerPresenter?.hiddenPickerView()
     }
     
     @IBAction func onReportDiagnosis(_ sender: Any) {
@@ -107,7 +114,7 @@ class MyHealthViewController: UIViewController {
         
         codeTextField.isAccessibilityElement = true
         codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
-        codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
+        codeTextField.accessibilityLabel = "ACC_MY_HEALTH_CODE_EDIT_TEXT".localized
         codeTextField.accessibilityHint = "ACC_HINT".localized
         codeTextField.keyboardType = .numberPad
 
@@ -190,7 +197,7 @@ class MyHealthViewController: UIViewController {
         datePicker.datePickerMode = .date
     
         datePicker.preferredDatePickerStyle = .wheels
-        pickerPresenter = PickerPresenter(picker: datePicker)
+        pickerPresenter = PickerPresenter(picker: datePicker, isNeedCancelButton: true)
         pickerPresenter?.delegate = self
         
         dateView.isUserInteractionEnabled = true
