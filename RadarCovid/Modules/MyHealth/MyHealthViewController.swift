@@ -114,7 +114,7 @@ class MyHealthViewController: UIViewController {
         
         codeTextField.isAccessibilityElement = true
         codeTextField.accessibilityTraits.insert(UIAccessibilityTraits.allowsDirectInteraction)
-        codeTextField.accessibilityLabel = "ACC_DIAGNOSTIC_CODE_FIELD".localized
+        codeTextField.accessibilityLabel = "ACC_MY_HEALTH_CODE_EDIT_TEXT".localized
         codeTextField.accessibilityHint = "ACC_HINT".localized
         codeTextField.keyboardType = .numberPad
 
