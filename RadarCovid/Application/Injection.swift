@@ -237,6 +237,7 @@ class Injection {
             homeVM.expositionCheckUseCase = route.resolve(ExpositionCheckUseCase.self)!
             homeVM.syncUseCase = route.resolve(SyncUseCase.self)!
             homeVM.onBoardingCompletedUseCase = route.resolve(OnboardingCompletedUseCase.self)!
+            homeVM.fakeRequestUseCase = route.resolve(FakeRequestUseCase.self)!
             return homeVM
         }
         
