@@ -22,6 +22,7 @@ class HomeViewModel {
     var syncUseCase: SyncUseCase?
     var resetDataUseCase: ResetDataUseCase?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
+    var fakeRequestUseCase: FakeRequestUseCase?
 
     var radarStatus = BehaviorSubject<RadarStatus>(value: .active)
     var checkState = BehaviorSubject<Bool>(value: false)
@@ -65,6 +66,7 @@ class HomeViewModel {
     }
 
     func restoreLastStateAndSync() {
+        fakeRequestUseCase?.sendFalsePositive().subscribe().disposed(by: disposeBag)
         radarStatusUseCase?.restoreLastStateAndSync().subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)

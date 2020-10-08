@@ -29,7 +29,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
                 self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE).subscribe(
                     onNext: { _ in
                         
-                        self?.fakeRequestRepository.fakeRequestDate = Date()
+                       self?.fakeRequestRepository.updateScheduledFakeRequestDate()
                         return observer.onNext(true)
                         
                     }
@@ -46,7 +46,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
     }
     
     private func needToSendFalsePositive() -> Bool{
-        return abs(fakeRequestRepository.fakeRequestDate.timeIntervalSinceNow) >= minFakeRequestTimeSpan
+        return Date().timeIntervalSince(self.fakeRequestRepository.getNextScheduledFakeRequestDate()) <= 2 * 24 * 60 * 60
     }
     
 }
