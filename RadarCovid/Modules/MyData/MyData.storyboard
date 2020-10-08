@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Muli-VariableFont_wght.ttf">
-            <string>Muli-Regular_Bold</string>
-        </array>
-        <array key="muli_bold.ttf">
-            <string>Muli-Bold</string>
-        </array>
-        <array key="muli_light.ttf">
-            <string>Muli-Light</string>
-        </array>
-        <array key="muli_regular.ttf">
-            <string>Muli-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--My Data View Controller-->
         <scene sceneID="fWE-1a-aLh">
@@ -34,20 +21,20 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VwZ-tl-fSP">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="609.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="599.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MIS DATOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9Bl-bV-W3d">
-                                                <rect key="frame" x="16" y="100" width="343" height="14"/>
-                                                <fontDescription key="fontDescription" name="Muli-Regular_Bold" family="Muli" pointSize="12"/>
-                                                <color key="textColor" red="0.5764058232" green="0.57650798560000005" blue="0.57639932630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="16" y="100" width="343" height="21"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_TOP_PLACEHOLDER"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu privacidad es lo más importante" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KyZ-ry-hvw">
-                                                <rect key="frame" x="16" y="124" width="343" height="70.333333333333314"/>
-                                                <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
+                                                <rect key="frame" x="16" y="131" width="343" height="67"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -55,8 +42,8 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO recogemos ningún dato pesonal (nombre, dirección, edad, teléfono, correo electrónico...)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uiy-SU-ykG">
-                                                <rect key="frame" x="32" y="224.33333333333334" width="327" height="75.333333333333343"/>
-                                                <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                                <rect key="frame" x="32" y="227.99999999999997" width="327" height="71.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -64,17 +51,20 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cJ-Rr-DdP">
-                                                <rect key="frame" x="16" y="221.33333333333331" width="10" height="29"/>
+                                                <rect key="frame" x="16" y="225" width="10" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <color key="textColor" red="0.34901960784313724" green="0.27058823529411763" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aC-xr-L9s" userLabel="CheckView">
-                                                <rect key="frame" x="16" y="540.66666666666663" width="343" height="58.666666666666629"/>
+                                                <rect key="frame" x="16" y="533" width="343" height="56.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consulta la política de privacidad" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-rQ-MAh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="19.333333333333332"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" link="YES"/>
+                                                        </accessibility>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                         <color key="textColor" red="0.16470588235294117" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -82,8 +72,11 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consulta las condiciones de uso" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fH-8T-cla">
-                                                        <rect key="frame" x="0.0" y="38.333333333333371" width="343" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+                                                        <rect key="frame" x="0.0" y="37.333333333333371" width="343" height="19.333333333333329"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" link="YES"/>
+                                                        </accessibility>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -108,8 +101,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO recogemos ningún dato pesonal (nombre, dirección, ed" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfk-6L-D4d">
-                                                <rect key="frame" x="32" y="319.66666666666669" width="327" height="50.333333333333314"/>
-                                                <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                                <rect key="frame" x="32" y="319.66666666666669" width="327" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -117,8 +110,8 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO recogemos ningún dato pesonal (nombre, dirección, ed" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILT-Tp-LEw">
-                                                <rect key="frame" x="32" y="390" width="327" height="50.333333333333314"/>
-                                                <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                                <rect key="frame" x="32" y="387.66666666666669" width="327" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -126,10 +119,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OpI-sc-jmF" userLabel="Los datos son guardados en tu teléfono y la conexión con el servidor están encriptados">
-                                                <rect key="frame" x="16" y="460.33333333333331" width="343" height="60.333333333333314"/>
+                                                <rect key="frame" x="16" y="455.66666666666669" width="343" height="57.333333333333314"/>
                                                 <string key="text">Los datos son guardados en tu teléfono y la conexión con el servidor están encriptados
 </string>
-                                                <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -182,6 +175,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="155.66666666666666"/>
                             </imageView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="LcH-Cx-Sa2"/>
                         <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="xUj-bT-z4d" firstAttribute="leading" secondItem="LcH-Cx-Sa2" secondAttribute="leading" id="7ty-AB-sc9"/>
@@ -192,15 +186,14 @@
                             <constraint firstItem="LcH-Cx-Sa2" firstAttribute="bottom" secondItem="xUj-bT-z4d" secondAttribute="bottom" id="rR4-7d-PJS"/>
                             <constraint firstItem="Rvd-uR-G5b" firstAttribute="leading" secondItem="LcH-Cx-Sa2" secondAttribute="leading" id="yBA-OA-Orj"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="LcH-Cx-Sa2"/>
                     </view>
                     <connections>
                         <outlet property="acceptTermsLabel" destination="8fH-8T-cla" id="y5C-9N-06Y"/>
-                        <outlet property="bullet2" destination="Rfk-6L-D4d" id="nie-7V-ogk"/>
-                        <outlet property="bullet3" destination="ILT-Tp-LEw" id="EDo-Wp-cGB"/>
+                        <outlet property="bullet2Label" destination="Rfk-6L-D4d" id="eKc-Ec-VBC"/>
+                        <outlet property="bullet3Label" destination="ILT-Tp-LEw" id="SyZ-hG-w6s"/>
                         <outlet property="descriptionLabel" destination="Uiy-SU-ykG" id="3Kz-7P-Cfg"/>
                         <outlet property="privacyLabel" destination="XwU-rQ-MAh" id="hAM-UG-3yc"/>
-                        <outlet property="viewTitle" destination="9Bl-bV-W3d" id="6Ks-qP-0D2"/>
+                        <outlet property="titleLabel" destination="9Bl-bV-W3d" id="2bl-Ka-Fep"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yh7-yu-SIT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -211,7 +204,7 @@
     <resources>
         <image name="organicColor" width="375" height="155.33332824707031"/>
         <namedColor name="bgColor">
-            <color red="0.98039215686274506" green="0.97647058823529409" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

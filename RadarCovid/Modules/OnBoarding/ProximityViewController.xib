@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="muli_bold.ttf">
-            <string>Muli-Bold</string>
-        </array>
-        <array key="muli_light.ttf">
-            <string>Muli-Light</string>
-        </array>
-        <array key="muli_regular.ttf">
-            <string>Muli-Regular</string>
-        </array>
-        <array key="muli_semibold.ttf">
-            <string>Muli-SemiBold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProximityViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="continueButton" destination="Gh7-C2-OVe" id="dgK-cd-i3s"/>
+                <outlet property="titleLabel" destination="OkV-ML-gs8" id="88z-Gb-bff"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="viewTitle" destination="OkV-ML-gs8" id="cGH-g5-Rmp"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -38,7 +25,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l55-Aw-9eh">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="581.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="590"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUN-Rp-dez">
                                     <rect key="frame" x="168" y="0.0" width="207" height="206.5"/>
@@ -54,6 +41,7 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
+                                    <viewLayoutGuide key="safeArea" id="QFz-FT-HWn"/>
                                     <constraints>
                                         <constraint firstItem="iEV-BF-PAO" firstAttribute="top" secondItem="QUN-Rp-dez" secondAttribute="top" id="B0g-vc-naB"/>
                                         <constraint firstAttribute="bottom" secondItem="iEV-BF-PAO" secondAttribute="bottom" id="BLz-1D-0t6"/>
@@ -62,11 +50,10 @@
                                         <constraint firstItem="I4c-w7-Rwa" firstAttribute="top" secondItem="QUN-Rp-dez" secondAttribute="top" constant="21" id="QlF-76-rLt"/>
                                         <constraint firstAttribute="width" constant="207" id="w5n-PC-d8k"/>
                                     </constraints>
-                                    <viewLayoutGuide key="safeArea" id="QFz-FT-HWn"/>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cómo funciona" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OkV-ML-gs8">
-                                    <rect key="frame" x="16" y="145" width="343" height="33"/>
-                                    <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="28"/>
+                                    <rect key="frame" x="16" y="145" width="343" height="33.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -74,11 +61,11 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pB4-tP-eNW">
-                                    <rect key="frame" x="16" y="198" width="36" height="37.5"/>
+                                    <rect key="frame" x="16" y="198.5" width="33.5" height="38.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
-                                    <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="32"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
                                     <color key="textColor" red="0.4392156862745098" green="0.31372549019607843" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -86,11 +73,11 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3x-dp-zNZ">
-                                    <rect key="frame" x="16" y="310.5" width="36" height="37.5"/>
+                                    <rect key="frame" x="16" y="313" width="38" height="38.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
-                                    <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="32"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
                                     <color key="textColor" red="0.43921568630000002" green="0.31372549020000001" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -98,11 +85,11 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSf-Zq-yVw">
-                                    <rect key="frame" x="16" y="446" width="36" height="37.5"/>
+                                    <rect key="frame" x="16" y="451.5" width="38.5" height="38.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
-                                    <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="32"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
                                     <color key="textColor" red="0.43921568630000002" green="0.31372549020000001" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -110,8 +97,8 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activa tu Bluetooth. Eso es todo lo que te pedimos. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRE-DP-Oha">
-                                    <rect key="frame" x="16" y="243.5" width="343" height="47"/>
-                                    <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                    <rect key="frame" x="16" y="245" width="343" height="48"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -119,8 +106,8 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="En caso de tener un diagnóstico positivo, introduce de forma anónima el código entregado en Radar COVID." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLu-AC-alt">
-                                    <rect key="frame" x="16" y="356" width="343" height="70"/>
-                                    <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                    <rect key="frame" x="16" y="359.5" width="343" height="72"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -128,8 +115,8 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="En caso de haber estado expuesto sigue las indicaciones que te enviaremos." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2g-Q2-hb8">
-                                    <rect key="frame" x="16" y="491.5" width="343" height="70"/>
-                                    <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="20"/>
+                                    <rect key="frame" x="16" y="498" width="343" height="72"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
@@ -163,6 +150,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="f2o-dy-RuU"/>
                     <constraints>
                         <constraint firstItem="l55-Aw-9eh" firstAttribute="top" secondItem="Y8x-1w-7Ql" secondAttribute="top" id="8cF-tO-ic6"/>
                         <constraint firstItem="l55-Aw-9eh" firstAttribute="leading" secondItem="ynP-56-ZDW" secondAttribute="leading" id="F0u-lo-JaI"/>
@@ -171,21 +159,20 @@
                         <constraint firstItem="l55-Aw-9eh" firstAttribute="trailing" secondItem="ynP-56-ZDW" secondAttribute="trailing" id="lJQ-vG-mig"/>
                         <constraint firstItem="l55-Aw-9eh" firstAttribute="trailing" secondItem="Y8x-1w-7Ql" secondAttribute="trailing" constant="375" id="oya-ib-mns"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="f2o-dy-RuU"/>
                     <viewLayoutGuide key="contentLayoutGuide" id="Y8x-1w-7Ql"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="ynP-56-ZDW"/>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QJN-UP-OSP">
                     <rect key="frame" x="0.0" y="581" width="375" height="86"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh7-C2-OVe">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh7-C2-OVe">
                             <rect key="frame" x="16" y="10" width="343" height="56"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="3cO-0b-3sv"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Muli-SemiBold" family="Muli" pointSize="16"/>
-                            <state key="normal" title="Continuar" backgroundImage="GradientBackgroundButton">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <state key="normal" title="Continuar" backgroundImage="buttonsPrimary">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -209,6 +196,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="bgColor"/>
             <constraints>
                 <constraint firstItem="clA-8A-tCK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6JS-AK-0ZD"/>
@@ -219,16 +207,15 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QJN-UP-OSP" secondAttribute="trailing" id="uC2-lP-fMt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="clA-8A-tCK" secondAttribute="trailing" id="vhd-gN-L3e"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="110"/>
         </view>
     </objects>
     <resources>
         <image name="GirlMobilePois" width="122" height="128"/>
-        <image name="GradientBackgroundButton" width="343" height="56"/>
         <image name="RightTopShade" width="283.5" height="206.5"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
         <namedColor name="bgColor">
-            <color red="0.98039215686274506" green="0.97647058823529409" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

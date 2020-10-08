@@ -13,47 +13,45 @@ import UIKit
 import RxSwift
 
 class ActivatePushNotificationViewController: UIViewController {
-    private let disposeBag = DisposeBag()
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var allowButton: UIButton!
+    
     var router: AppRouter?
-
-    @IBOutlet weak var viewTitle: UILabel!
+    private let disposeBag = DisposeBag()
     var notificationHandler: NotificationHandler?
 
-    @IBOutlet weak var allowButton: UIButton!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupAccessibility()
+    }
+    
     @IBAction func onContinue(_ sender: Any) {
 
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil, "ACTIVATE_PUSH_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.white)
-
+        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
+                                 "ACTIVATE_PUSH_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.black)
+        
         self.notificationHandler?.setupNotifications().subscribe(onNext: { [weak self] _ in
             DispatchQueue.main.async {
                 self?.navigateHome()
             }
         }).disposed(by: disposeBag)
-
-    }
-
-    private func navigateHome() {
-         router?.route(to: .home, from: self)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupAccessibility()
     }
     
-    func setupAccessibility() {
+    private func setupAccessibility() {
+        
         allowButton.setTitle("ACTIVATE_PUSH_NOTIFICATION_ALLOW_BUTTON".localized, for: .normal)
         allowButton.isAccessibilityElement = true
         allowButton.accessibilityHint = "ACC_HINT".localized
-        
-        viewTitle.isAccessibilityElement = true
-        viewTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        viewTitle.accessibilityLabel = "ACC_ACTIVATE_PUSH_NOTIFICATION_TITLE".localized
-    }
 
+        titleLabel.isAccessibilityElement = true
+        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        titleLabel.accessibilityLabel = "ACC_ACTIVATE_PUSH_NOTIFICATION_TITLE".localized
+    }
+    
+    private func navigateHome() {
+         router?.route(to: .home, from: self)
+    }
 }

@@ -63,7 +63,7 @@ class RadarStatusUseCase {
         }
 
     }
-    
+
     private func handle(error: Error, observer: AnyObserver<RadarStatus>) {
         if case .userAlreadyMarkedAsInfected = (error as? DP3TTracingError) {
             observer.onNext(.disabled)
@@ -74,18 +74,18 @@ class RadarStatusUseCase {
     }
 
     func restoreLastStateAndSync() -> Observable<RadarStatus> {
-        changeTracingStatus(active: preferencesRepository.isTracingActive()).flatMap { [weak self] status -> Observable<RadarStatus> in
-            self?.preferencesRepository.setTracing(initialized: true)
-            if case .active = status {
-                return self?.syncUseCase.syncIfNeeded().map { status } ?? .empty()
+        changeTracingStatus(active: preferencesRepository.isTracingActive())
+            .flatMap {[weak self] status -> Observable<RadarStatus> in
+                self?.preferencesRepository.setTracing(initialized: true)
+                if case .active = status {
+                    return self?.syncUseCase.syncIfNeeded().map { status } ?? .empty()
+                }
+                return .just(status)
             }
-            return .just(status)
-        }
     }
-    
+
     func isTracingInit() -> Bool {
         preferencesRepository.isTracingInit()
     }
 
 }
-

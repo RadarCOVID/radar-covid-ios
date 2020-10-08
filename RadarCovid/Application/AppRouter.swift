@@ -35,7 +35,6 @@ public enum Routes {
     case positiveExposed
     case activateCovid
     case activatePush
-
 }
 
 class AppRouter: Router {
@@ -53,7 +52,7 @@ class AppRouter: Router {
     var activateCovid: ActivateCovidNotificationViewController?
     var activatePush: ActivatePushNotificationViewController?
     var homeVC: HomeViewController?
-    
+
     var parentVC: UIViewController?
 
     func route(to routeID: Routes, from context: UIViewController, parameters: Any?...) {
@@ -142,13 +141,13 @@ class AppRouter: Router {
         navController?.popToRootViewController(animated: false)
         navController?.pushViewController(view, animated: animated)
     }
-    
+
     func popToRoot(from: UIViewController, animated: Bool) {
         from.navigationController?.popToRootViewController(animated: animated)
         homeVC?.viewWillAppear(animated)
         parentVC = nil
     }
-    
+
     func pop(from: UIViewController, animated: Bool) {
         from.navigationController?.popViewController(animated: animated)
         parentVC?.viewWillAppear(animated)

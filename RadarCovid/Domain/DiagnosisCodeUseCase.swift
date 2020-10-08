@@ -16,13 +16,12 @@ import SwiftJWT
 
 class DiagnosisCodeUseCase {
 
-    private let tokenValidity = 30 * 60 // 30 minutes
     private let dateFormatter = DateFormatter()
 
     private let settingsRepository: SettingsRepository
     private let verificationApi: VerificationControllerAPI
 
-    private let isfake = false
+    private var isfake = false
 
     init(settingsRepository: SettingsRepository,
          verificationApi: VerificationControllerAPI) {
@@ -32,9 +31,9 @@ class DiagnosisCodeUseCase {
         dateFormatter.locale = Locale(identifier: "es_ES")
     }
 
-    func sendDiagnosisCode(code: String) -> Observable<Bool> {
-
-        return verificationApi.verifyCode(body: Code( date: nil, code: code ) )
+    func sendDiagnosisCode(code: String, date: Date? = nil) -> Observable<Bool> {
+        self.isfake = FakeRequestUseCase.FALSE_POSITIVE_CODE == code
+        return verificationApi.verifyCode(body: Code( date: date, code: code ) )
             .catchError { [weak self] error in throw self?.mapError(error) ?? error }
             .flatMap { [weak self] tokenResponse -> Observable<Bool> in
                 guard let jwtOnset = try self?.parseToken(tokenResponse.token).claims.onset,
@@ -49,11 +48,12 @@ class DiagnosisCodeUseCase {
     private func iWasExposed(onset: Date, token: String) -> Observable<Bool> {
         .create { [weak self] observer in
             DP3TTracing.iWasExposed(onset: onset,
-                                    authentication: .HTTPAuthorizationBearer(token: token), isFakeRequest: self?.isfake ?? false) {  result in
+                                    authentication: .HTTPAuthorizationBearer(token: token),
+                                    isFakeRequest: self?.isfake ?? false) {  result in
                 switch result {
-                    case let .failure(error):
+                case let .failure(error):
                         observer.onError(self?.mapError(error) ?? error)
-                    default:
+                default:
                         observer.onNext(true)
                         observer.onCompleted()
                 }
@@ -92,7 +92,7 @@ class DiagnosisCodeUseCase {
         }
         return false
     }
-    
+
     private func isNetworkError(_ error: Error) -> Bool {
         if let errorCode = getErrorDomain(error) {
             return errorCode <= -999
@@ -108,7 +108,7 @@ class DiagnosisCodeUseCase {
         }
         return nil
     }
-    
+
     private func getErrorDomain(_ error: Error) -> Int? {
         if let error = error as? ErrorResponse {
             if case .error(_, _, let errorDomain) = error {
@@ -128,11 +128,11 @@ class DiagnosisCodeUseCase {
         if isPermissionRejected(error) {
             return .apiRejected(error)
         }
-        
+
         if isNetworkError(error) {
             return .noConnection(error)
         }
-        
+
         return .unknownError(error)
     }
 

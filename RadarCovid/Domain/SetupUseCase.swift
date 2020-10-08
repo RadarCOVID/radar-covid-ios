@@ -23,16 +23,20 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     private let preferencesRepository: PreferencesRepository
     private let notificationHandler: NotificationHandler
     private let expositionCheckUseCase: ExpositionCheckUseCase
-    
+    private let fakeRequestUseCase: FakeRequestUseCase
+
+
     init(preferencesRepository: PreferencesRepository,
          notificationHandler: NotificationHandler,
-         expositionCheckUseCase: ExpositionCheckUseCase) {
-        
+         expositionCheckUseCase: ExpositionCheckUseCase,
+         fakeRequestUseCase: FakeRequestUseCase) {
+
         self.preferencesRepository = preferencesRepository
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
 
         self.notificationHandler = notificationHandler
         self.expositionCheckUseCase = expositionCheckUseCase
+        self.fakeRequestUseCase = fakeRequestUseCase
     }
 
     func initializeSDK() throws {
@@ -42,7 +46,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         DP3TTracing.loggingDelegate = self
         DP3TTracing.activityDelegate = self
 
-        try! DP3TTracing.initialize(with: .init(appId: "es.gob.radarcovid",
+        try DP3TTracing.initialize(with: .init(appId: "es.gob.radarcovid",
                                                 bucketBaseUrl: url,
                                                 reportBaseUrl: url,
                                                 jwtPublicKey: Config.dp3tValidationKey,
@@ -60,7 +64,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
             debugPrint("DP3T Sync error \(error)")
         }
         preferencesRepository.setLastSync(date: Date())
-        
+
         expositionCheckUseCase.checkBackToHealthy().subscribe(onError: { error in
             debugPrint("Error up checking exposed to healthy state \(error)")
         }, onCompleted: {
@@ -90,11 +94,22 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
 
     func performBackgroundTasks(completionHandler: @escaping (Bool) -> Void) {
         debugPrint("performBackgroundTasks")
-        if Config.debug {
-            let sync = preferencesRepository.getLastSync()?.description ?? "no Sync"
-            notificationHandler.scheduleNotification(title: "BackgroundTask", body: "Last sync: \(sync)", sound: .default)
+
+        fakeRequestUseCase.sendFalsePositive().subscribe { [weak self] (sent) in
+            if Config.debug {
+                let sync = self?.preferencesRepository.getLastSync()?.description ?? "no Sync"
+                self?.notificationHandler.scheduleNotification(
+                    title: "BackgroundTask",
+                    body: "Last sync: \(sync), positive sent \(sent)",
+                    sound: .default)
+            }
+            completionHandler(sent)
+        } onError: { (error) in
+            completionHandler(false)
         }
-        completionHandler(true)
+        
+        
+        
     }
 
     func didScheduleBackgrounTask() {
@@ -102,11 +117,12 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     }
 
     private func mapInitializeError(_ error: Error) -> DomainError {
-        if let e = error as? DP3TTracingError {
-            debugPrint("Error \(e)")
+        if let dpt3Error = error as? DP3TTracingError {
+            debugPrint("Error \(dpt3Error)")
         }
 
         return DomainError.unexpected
     }
 
 }
+

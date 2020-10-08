@@ -12,13 +12,15 @@
 import Foundation
 import UIKit
 
-protocol AlertController: class{
+protocol AlertController: class {
     func showAlertOk(title: String, message: String, buttonTitle: String, _ callback: ((Any) -> Void)?)
     func showAlertCancelContinue(
         title: String,
         message: String,
         buttonOkTitle: String,
         buttonCancelTitle: String,
+        buttonOkVoiceover: String?,
+        buttonCancelVoiceover: String?,
         okHandler: ((UIAlertAction) -> Void)?,
         cancelHandler: ((UIAlertAction) -> Void)?
     )
@@ -27,11 +29,13 @@ protocol AlertController: class{
         message: String,
         buttonOkTitle: String,
         buttonCancelTitle: String,
+        buttonOkVoiceover: String?,
+        buttonCancelVoiceover: String?,
         okHandler: ((UIAlertAction) -> Void)?
     )
 }
 
-extension UIViewController : AlertController {
+extension UIViewController: AlertController {
 
     func showAlertOk(title: String, message: String, buttonTitle: String, _ callback: ((Any) -> Void)? = nil) {
 
@@ -44,7 +48,26 @@ extension UIViewController : AlertController {
         uiAlert.addAction(action)
         let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
         uiAlert.view.tintColor = UIColor.white
-        buttonView?.backgroundColor  = #colorLiteral(red: 0.4550000131, green: 0.5799999833, blue: 0.92900002, alpha: 1)
+        buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
+
+        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
+        self.present(uiAlert, animated: true, completion: nil)
+    }
+
+    func showAlertOk(title: String, message: String, buttonTitle: String, buttonVoiceover: String? = nil, _ callback: ((Any) -> Void)? = nil) {
+
+        let uiAlert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let action = UIAlertAction(title: buttonTitle, style: .default) { (alert) in
+            self.view.removeTransparentBackGround()
+            callback?(alert)
+        }
+        action.isAccessibilityElement = true
+        action.accessibilityLabel = buttonVoiceover
+        uiAlert.addAction(action)
+        let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
+        uiAlert.view.tintColor = UIColor.white
+        buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
 
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
         self.present(uiAlert, animated: true, completion: nil)
@@ -55,6 +78,8 @@ extension UIViewController : AlertController {
         message: String,
         buttonOkTitle: String,
         buttonCancelTitle: String,
+        buttonOkVoiceover: String? = nil,
+        buttonCancelVoiceover: String? = nil,
         okHandler: ((UIAlertAction) -> Void)? = nil,
         cancelHandler: ((UIAlertAction) -> Void)? = nil
     ) {
@@ -65,16 +90,20 @@ extension UIViewController : AlertController {
             self.view.removeTransparentBackGround()
             okHandler?(action)
         }
+        action.isAccessibilityElement = true
+        action.accessibilityLabel = buttonOkVoiceover
         uiAlert.addAction(action)
 
         let actionCancel = UIAlertAction(title: buttonCancelTitle, style: .default) { (action) in
             self.view.removeTransparentBackGround()
             cancelHandler?(action)
         }
+        actionCancel.isAccessibilityElement = true
+        actionCancel.accessibilityLabel = buttonCancelVoiceover
         uiAlert.addAction(actionCancel)
         let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
         uiAlert.view.tintColor = UIColor.white
-        buttonView?.backgroundColor  = #colorLiteral(red: 0.4550000131, green: 0.5799999833, blue: 0.92900002, alpha: 1)
+        buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
 
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
         self.present(uiAlert, animated: true, completion: nil)
@@ -86,6 +115,8 @@ extension UIViewController : AlertController {
         message: String,
         buttonOkTitle: String,
         buttonCancelTitle: String,
+        buttonOkVoiceover: String? = nil,
+        buttonCancelVoiceover: String? = nil,
         okHandler: ((UIAlertAction) -> Void)? = nil
     ) {
         showAlertCancelContinue(
@@ -93,6 +124,8 @@ extension UIViewController : AlertController {
             message: message,
             buttonOkTitle: buttonOkTitle,
             buttonCancelTitle: buttonCancelTitle,
+            buttonOkVoiceover: buttonOkVoiceover,
+            buttonCancelVoiceover: buttonCancelVoiceover,
             okHandler: okHandler,
             cancelHandler: nil
         )
