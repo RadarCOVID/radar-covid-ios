@@ -101,7 +101,8 @@ class Injection {
         
         container.register(ExpositionUseCase.self) { r in
             ExpositionUseCase(notificationHandler: r.resolve(NotificationHandler.self)!,
-                              expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
+                              expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+                              localizationUseCase: r.resolve(LocalizationUseCase.self)!)
         }.inObjectScope(.container)
         
         container.register(RadarStatusUseCase.self) { r in
@@ -248,6 +249,7 @@ class Injection {
             homeVM.expositionCheckUseCase = route.resolve(ExpositionCheckUseCase.self)!
             homeVM.syncUseCase = route.resolve(SyncUseCase.self)!
             homeVM.onBoardingCompletedUseCase = route.resolve(OnboardingCompletedUseCase.self)!
+            homeVM.fakeRequestUseCase = route.resolve(FakeRequestUseCase.self)!
             return homeVM
         }
         

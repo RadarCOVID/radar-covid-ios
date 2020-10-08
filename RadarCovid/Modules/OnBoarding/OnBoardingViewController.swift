@@ -69,8 +69,6 @@ class OnBoardingViewController: UIViewController {
         acceptSwitch.layer.cornerRadius = acceptSwitch.frame.height / 2
         acceptSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         acceptSwitch.isAccessibilityElement = false
-
-        updateTermsAccesibility()
         
         if UIAccessibility.isVoiceOverRunning {
             paragraph1DescriptionLabel.text = paragraph1DescriptionLabel.text?.lowercased()
@@ -109,20 +107,11 @@ class OnBoardingViewController: UIViewController {
         privacyLabel.accessibilityLabel = "ONBOARDING_STEP_2_PRIVACY_POLICY".localizedAttributed().string
         privacyLabel.accessibilityHint = "ACC_HINT".localized
 
-        acceptView.isAccessibilityElement = true
+        acceptSwitch.isAccessibilityElement = true
+        acceptSwitch.accessibilityTraits = UISwitch().accessibilityTraits
+        acceptSwitch.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
 
         acceptButton.isAccessibilityElement = true
-    }
-    
-    private func updateTermsAccesibility() {
-        
-        if termsAccepted {
-            acceptView.accessibilityLabel = "ACC_BUTTON_ALERT_CANCEL".localized
-            acceptView.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
-        } else {
-            acceptView.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
-            acceptView.accessibilityHint = "ACC_BUTTON_ALERT_ACCEPT".localized
-        }
     }
     
     private func setupView() {
@@ -156,7 +145,6 @@ class OnBoardingViewController: UIViewController {
             checkBoxImage.image = UIImage(named: "CheckboxUnselected")
         }
         
-        updateTermsAccesibility()
         acceptButton.isEnabled = termsAccepted
     }
 }

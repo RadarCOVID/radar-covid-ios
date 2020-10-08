@@ -14,6 +14,7 @@ import RxSwift
 
 class ExpositionCheckUseCase {
 
+    private let disposeBag = DisposeBag()
     private let expositionInfoRepository: ExpositionInfoRepository
     private let settingsRepository: SettingsRepository
     private let resetDataUseCase: ResetDataUseCase
@@ -29,6 +30,7 @@ class ExpositionCheckUseCase {
     func checkBackToHealthyJustChanged() -> Bool {
         let changed = expositionInfoRepository.isChangedToHealthy() ?? false
         expositionInfoRepository.setChangedToHealthy(changed: false)
+        self.resetDataUseCase.resetExposureDays().subscribe().disposed(by: disposeBag)
         return changed
     }
 
@@ -39,7 +41,7 @@ class ExpositionCheckUseCase {
             if case .exposed = expositionInfo?.level {
                 if self?.isExpositinOutdated(expositionInfo) ?? false {
                     self?.expositionInfoRepository.setChangedToHealthy(changed: true)
-                    return self?.resetDataUseCase.resetExposureDays().map { true } ?? .empty()
+                    return .just(true)
                 }
             }
             return .just(false)
