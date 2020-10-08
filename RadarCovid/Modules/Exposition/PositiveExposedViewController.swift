@@ -30,7 +30,7 @@ class PositiveExposedViewController: BaseExposed {
     
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer,
-                 urlString: "MORE_INFO_HEALTH_REPORTED".localized.getUrlFromHref())
+                 urlString: "MORE_INFO_INFECTED".localized.getUrlFromHref())
     }
 
     @objc func userDidTapMoreInfo(tapGestureRecognizer: UITapGestureRecognizer) {
