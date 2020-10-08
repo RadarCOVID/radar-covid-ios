@@ -154,7 +154,7 @@ class MyHealthViewController: UIViewController {
 
     @objc func keyboardWillHide(notification: NSNotification?) {
         // move back the root view origin to zero
-        self.scrollViewBottonConstraint.constant = 0
+        self.scrollViewBottonConstraint.constant = 20
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
    
