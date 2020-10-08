@@ -448,6 +448,8 @@ class HomeViewController: BaseViewController {
             router?.route(to: Routes.highExposition, from: self, parameters: info.since)
         case .infected:
             router?.route(to: Routes.positiveExposed, from: self, parameters: info.since)
+        case .unknown:
+            break
         }
     }
     
