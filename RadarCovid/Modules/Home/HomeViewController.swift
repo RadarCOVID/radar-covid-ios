@@ -212,6 +212,8 @@ class HomeViewController: UIViewController {
         radarSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
 
         resetDataButton.isHidden = !Config.debug
+        let bundleVersion = (Bundle.main.infoDictionary?["CFBundleVersion"] ?? "") as! String
+        envLabel.text = "\(Config.environment) - V_\(Config.version)_\(bundleVersion)"
         envLabel.isHidden = Config.environment == "PRO"
 
         viewModel!.checkInitialExposition()
