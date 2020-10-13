@@ -17,8 +17,9 @@ class LanguageTableViewCell: UITableViewCell {
     
     var keyModel: String = ""
     
-    func setupModel(title: String, key: String) {
+    func setupModel(title: String, key: String, totalItems: Int, indexItem: Int) {
         titleLabel.text = title
+        titleLabel.accessibilityLabel = title + "\(indexItem) " + "TODO_PREPOSICION_DE".localized + " \(totalItems)"
         keyModel = key
     }
     
@@ -38,22 +39,18 @@ class LanguageTableViewCell: UITableViewCell {
     private func logicToSelected(_ selected: Bool) {
         if UIAccessibility.isVoiceOverRunning {
             if selected {
-                titleLabel.font = UIFont.mainFont(size: .twentytwo, fontType: .bold)
-                titleLabel.textColor = UIColor.white
-                self.backgroundColor = UIColor.gray
+                self.backgroundColor = UIColor.purpleLigthApp
             } else {
-                titleLabel.font = UIFont.mainFont(size: .twenty, fontType: .regular)
-                titleLabel.textColor = UIColor.black
-                self.backgroundColor = UIColor.white
+                self.backgroundColor = UIColor.clear
             }
+        }
+        
+        if selected {
+            titleLabel.font = UIFont.mainFont(size: .twentytwo, fontType: .bold)
+            titleLabel.textColor = UIColor.black
         } else {
-            if selected {
-                titleLabel.font = UIFont.mainFont(size: .twentytwo, fontType: .bold)
-                titleLabel.textColor = UIColor.black
-            } else {
-                titleLabel.font = UIFont.mainFont(size: .twenty, fontType: .regular)
-                titleLabel.textColor = UIColor.purpleApp
-            }
+            titleLabel.font = UIFont.mainFont(size: .twenty, fontType: .regular)
+            titleLabel.textColor = UIColor.purpleApp
         }
     }
     

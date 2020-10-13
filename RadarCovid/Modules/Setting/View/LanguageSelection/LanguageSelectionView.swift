@@ -108,12 +108,19 @@ class LanguageSelectionView: UIView {
         
         languageTableView.register(UINib(nibName: "LanguageTableViewCell", bundle: nil), forCellReuseIdentifier: "LanguageTableViewCell")
         
+        var totalLanguages: Int = 6
+        self.viewModel?.getLenguages()
+            .flatMap(generateTransformation).subscribe(onNext: { (value) in
+                totalLanguages = value
+            })
+            .disposed(by: disposeBag)
+        
         //DataSourceCell
         self.viewModel?.getLenguages()
             .bind(to: languageTableView.rx.items(cellIdentifier: "LanguageTableViewCell", cellType: LanguageTableViewCell.self)) {
             [weak self] row, element, cell in
-                
-                cell.setupModel(title: element.value ?? "", key: element.key)
+
+                cell.setupModel(title: element.value ?? "", key: element.key, totalItems: totalLanguages, indexItem: row)
 
                 if (self?.currentLanguageSelected == element.key) {
                     self?.languageTableView.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .none)
@@ -126,6 +133,10 @@ class LanguageSelectionView: UIView {
             let cell = self?.languageTableView.cellForRow(at: indexPath) as? LanguageTableViewCell
             self?.currentLanguageSelected = cell?.keyModel
           }).disposed(by: disposeBag)
+    }
+
+    func generateTransformation(val: [String: String?]) -> Observable<Int> {
+        return Observable.just(val.keys.count)
     }
     
     private func removePopUpView() {
