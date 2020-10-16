@@ -91,7 +91,7 @@ class HomeViewController: UIViewController {
             if expositionInfo.level == .infected {
                 router!.route(to: Routes.myHealthReported, from: self)
             } else {
-                router!.route(to: Routes.myHealth, from: self)
+                router!.route(to: Routes.myHealthStep0, from: self)
             }
         } else {
             showAlertOk(

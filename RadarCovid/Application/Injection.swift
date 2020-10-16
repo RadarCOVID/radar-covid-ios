@@ -268,14 +268,23 @@ class Injection {
             return settingVM
         }
 
-        container.register(MyHealthViewController.self) {  route in
-            let myHealthVC = self.createViewController(
-                storyboard: "MyHealth",
-                viewId: "MyHealthViewController") as? MyHealthViewController
-            myHealthVC?.diagnosisCodeUseCase = route.resolve(DiagnosisCodeUseCase.self)!
-            myHealthVC?.router = route.resolve(AppRouter.self)!
-            
-            return myHealthVC!
+        container.register(MyHealthStep0ViewController.self) {  route in
+            let myHealthStep0 = MyHealthStep0ViewController()
+            myHealthStep0.router = route.resolve(AppRouter.self)!
+            return myHealthStep0
+        }
+        
+        container.register(MyHealthStep1ViewController.self) {  route in
+            let myHealthStep1 = MyHealthStep1ViewController()
+            myHealthStep1.router = route.resolve(AppRouter.self)!
+            return myHealthStep1
+        }
+        
+        container.register(MyHealthStep2ViewController.self) {  route in
+            let myHealthStep2 = MyHealthStep2ViewController()
+            myHealthStep2.router = route.resolve(AppRouter.self)!
+            myHealthStep2.diagnosisCodeUseCase = route.resolve(DiagnosisCodeUseCase.self)!
+            return myHealthStep2
         }
         
         container.register(MyHealthReportedViewController.self) { route in

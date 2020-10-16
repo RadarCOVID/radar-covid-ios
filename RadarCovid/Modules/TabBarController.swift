@@ -98,7 +98,7 @@ class TabBarController: UITabBarController {
         tabBar.clipsToBounds = true
         tabBar.standardAppearance = apareance
         tabBar.unselectedItemTintColor = UIColor.red;
-        tabBar.tintColor = UIColor.purpleApp
+        tabBar.tintColor = UIColor.twilight
        
         homeViewController.tabBarItem = UITabBarItem(
             title: "",

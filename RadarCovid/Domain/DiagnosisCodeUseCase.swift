@@ -31,7 +31,7 @@ class DiagnosisCodeUseCase {
         dateFormatter.locale = Locale(identifier: "es_ES")
     }
 
-    func sendDiagnosisCode(code: String, date: Date? = nil) -> Observable<Bool> {
+    func sendDiagnosisCode(code: String, date: Date? = nil, share: Bool = false) -> Observable<Bool> {
         self.isfake = FakeRequestUseCase.FALSE_POSITIVE_CODE == code
         return verificationApi.verifyCode(body: Code( date: date, code: code ) )
             .catchError { [weak self] error in throw self?.mapError(error) ?? error }
@@ -45,11 +45,12 @@ class DiagnosisCodeUseCase {
 
     }
 
-    private func iWasExposed(onset: Date, token: String) -> Observable<Bool> {
+    private func iWasExposed(onset: Date, token: String, share: Bool = false) -> Observable<Bool> {
         .create { [weak self] observer in
             DP3TTracing.iWasExposed(onset: onset,
                                     authentication: .HTTPAuthorizationBearer(token: token),
-                                    isFakeRequest: self?.isfake ?? false) {  result in
+                                    isFakeRequest: self?.isfake ?? false,
+                                    share: share) {  result in
                 switch result {
                 case let .failure(error):
                         observer.onError(self?.mapError(error) ?? error)

@@ -114,4 +114,12 @@ extension UIView {
                 self.alpha = 0.0
             }, completion: callBack)
     }
+    
+    func setShadow() {
+        self.layer.shadowColor = UIColor.powderBlue.cgColor
+        self.layer.shadowRadius = 3.0
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.layer.masksToBounds = false
+    }
 }

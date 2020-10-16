@@ -11,9 +11,6 @@
 		3944328C248939F000FF0217 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944328B248939F000FF0217 /* SceneDelegate.swift */; };
 		39443293248939F500FF0217 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39443292248939F500FF0217 /* Assets.xcassets */; };
 		39443296248939F500FF0217 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39443294248939F500FF0217 /* LaunchScreen.storyboard */; };
-		394E962F248E7F25009F640E /* MyHealth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394E962E248E7F24009F640E /* MyHealth.storyboard */; };
-		399CA87D24912B96000B6BF4 /* MyHealthReported.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399CA87C24912B96000B6BF4 /* MyHealthReported.storyboard */; };
-		399CA88124913B0E000B6BF4 /* MyHealthReportedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CA88024913B0E000B6BF4 /* MyHealthReportedViewController.swift */; };
 		39A1AD46249225510049E48B /* HighExposition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39A1AD45249225510049E48B /* HighExposition.storyboard */; };
 		39A1AD48249225A40049E48B /* HighExpositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1AD47249225A40049E48B /* HighExpositionViewController.swift */; };
 		39C3FEC32497746900D1A13E /* DiagnosisCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C3FEC22497746900D1A13E /* DiagnosisCodeUseCase.swift */; };
@@ -29,7 +26,6 @@
 		6D2CA48824B60EFD00981DA4 /* LocalizableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48724B60EFD00981DA4 /* LocalizableLabel.swift */; };
 		6D2CA48A24B60F5F00981DA4 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48924B60F5F00981DA4 /* Localizable.swift */; };
 		6D2CA48C24B612E000981DA4 /* XibLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48B24B612E000981DA4 /* XibLocalizable.swift */; };
-		6D30137A25067AC700E162E3 /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6D30137925067AC700E162E3 /* DP3TSDK */; };
 		6D5AFC8D2492827C00EFE838 /* muli_extrabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC892492827B00EFE838 /* muli_extrabold.ttf */; };
 		6D5AFC8E2492827C00EFE838 /* muli_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8A2492827C00EFE838 /* muli_semibold.ttf */; };
 		6D5AFC8F2492827C00EFE838 /* muli_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8B2492827C00EFE838 /* muli_bold.ttf */; };
@@ -106,7 +102,6 @@
 		6DF6ECD1248FA044007EAA40 /* MyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECD0248FA044007EAA40 /* MyDataViewController.swift */; };
 		6DF6ECD4248FA0B3007EAA40 /* HelpLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6ECD3248FA0B3007EAA40 /* HelpLine.storyboard */; };
 		6DF6ECD6248FA0D0007EAA40 /* HelpLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECD5248FA0D0007EAA40 /* HelpLineViewController.swift */; };
-		6DF6ECD8248FBEC2007EAA40 /* MyHealthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECD7248FBEC2007EAA40 /* MyHealthViewController.swift */; };
 		6DF6ECDB248FD641007EAA40 /* ExpositionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECDA248FD641007EAA40 /* ExpositionUseCase.swift */; };
 		6DF6ECE0248FD772007EAA40 /* ExpositionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECDF248FD772007EAA40 /* ExpositionInfo.swift */; };
 		6DF8210F24BEE12B000ED0D2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF8210E24BEE12B000ED0D2 /* HomeViewModel.swift */; };
@@ -124,6 +119,7 @@
 		7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */; };
 		7603469E24F42DF70038CFC7 /* radarcovid.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */; };
 		76290D862524D3D20010CACD /* FakeRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76290D852524D3D20010CACD /* FakeRequestUseCase.swift */; };
+		7629516625387FDE0078CC5E /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 7629516525387FDE0078CC5E /* DP3TSDK */; };
 		763489FB24B637ED00B31C59 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763489FA24B637ED00B31C59 /* UIImage+Extension.swift */; };
 		763489FD24B7530500B31C59 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763489FC24B7530500B31C59 /* UIFont+Extension.swift */; };
 		763489FF24B75A6900B31C59 /* TransparentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763489FE24B75A6900B31C59 /* TransparentView.xib */; };
@@ -140,25 +136,43 @@
 		76D9BD4524A8996700BA6697 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BD4424A8996700BA6697 /* UIView+Extension.swift */; };
 		76D9BD4724A8CA8800BA6697 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BD4624A8CA8800BA6697 /* UIColor+Extension.swift */; };
 		76D9BD4D24A950CF00BA6697 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BD4C24A950CF00BA6697 /* Date+Extension.swift */; };
-		A91D8E062539800300EB23D4 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91D8DF72539800200EB23D4 /* OnBoarding.storyboard */; };
-		A91D8E072539800300EB23D4 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8DF82539800200EB23D4 /* OnBoardingViewController.swift */; };
-		A91D8E082539800300EB23D4 /* ActivateCovidNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8DFA2539800200EB23D4 /* ActivateCovidNotificationViewController.swift */; };
-		A91D8E092539800300EB23D4 /* ActivateCovidNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91D8DFB2539800200EB23D4 /* ActivateCovidNotificationViewController.xib */; };
-		A91D8E0A2539800300EB23D4 /* ProximityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91D8DFD2539800200EB23D4 /* ProximityViewController.xib */; };
-		A91D8E0B2539800300EB23D4 /* ProximityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8DFE2539800200EB23D4 /* ProximityViewController.swift */; };
-		A91D8E0C2539800300EB23D4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E002539800300EB23D4 /* WelcomeViewController.swift */; };
-		A91D8E0D2539800300EB23D4 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E012539800300EB23D4 /* WelcomeViewModel.swift */; };
-		A91D8E0E2539800300EB23D4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91D8E022539800300EB23D4 /* WelcomeViewController.xib */; };
-		A91D8E0F2539800300EB23D4 /* ActivatePushNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E042539800300EB23D4 /* ActivatePushNotificationViewController.swift */; };
-		A91D8E102539800300EB23D4 /* ActivatePushNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91D8E052539800300EB23D4 /* ActivatePushNotificationViewController.xib */; };
+		A91D8E292539947500EB23D4 /* ActivateCovidNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E1A2539947500EB23D4 /* ActivateCovidNotificationViewController.swift */; };
+		A91D8E2A2539947500EB23D4 /* ActivateCovidNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91D8E1B2539947500EB23D4 /* ActivateCovidNotificationViewController.xib */; };
+		A91D8E2B2539947500EB23D4 /* ActivatePushNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E1D2539947500EB23D4 /* ActivatePushNotificationViewController.swift */; };
+		A91D8E2C2539947500EB23D4 /* ActivatePushNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91D8E1E2539947500EB23D4 /* ActivatePushNotificationViewController.xib */; };
+		A91D8E2D2539947500EB23D4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E202539947500EB23D4 /* WelcomeViewController.swift */; };
+		A91D8E2E2539947500EB23D4 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E212539947500EB23D4 /* WelcomeViewModel.swift */; };
+		A91D8E2F2539947500EB23D4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91D8E222539947500EB23D4 /* WelcomeViewController.xib */; };
+		A91D8E302539947500EB23D4 /* ProximityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91D8E242539947500EB23D4 /* ProximityViewController.xib */; };
+		A91D8E312539947500EB23D4 /* ProximityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E252539947500EB23D4 /* ProximityViewController.swift */; };
+		A91D8E322539947500EB23D4 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91D8E272539947500EB23D4 /* OnBoarding.storyboard */; };
+		A91D8E332539947500EB23D4 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E282539947500EB23D4 /* OnBoardingViewController.swift */; };
 		A9508EB425247DE7008E6A8B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9508EAF25247DE7008E6A8B /* SettingViewController.swift */; };
 		A9508EB525247DE7008E6A8B /* SettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9508EB025247DE7008E6A8B /* SettingView.xib */; };
 		A9508EBA25248177008E6A8B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9508EB925248177008E6A8B /* SettingViewModel.swift */; };
+		A96E31222537188800C3EC59 /* MyHealthStep2View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A96E31212537188800C3EC59 /* MyHealthStep2View.xib */; };
+		A97717F32535B5AB0070AD51 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97717F22535B5AB0070AD51 /* BaseViewController.swift */; };
+		A97717F92535CFEA0070AD51 /* MyHealthStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97717F82535CFEA0070AD51 /* MyHealthStep1ViewController.swift */; };
+		A97717FF2535CFFA0070AD51 /* MyHealthStep1View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97717FE2535CFFA0070AD51 /* MyHealthStep1View.xib */; };
 		A978D72D2525D0E800B93983 /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A978D72B2525D0E800B93983 /* LanguageSelectionView.swift */; };
 		A978D72E2525D0E800B93983 /* LanguageSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A978D72C2525D0E800B93983 /* LanguageSelectionView.xib */; };
 		A978D7352525DC4200B93983 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A978D7332525DC4200B93983 /* LanguageTableViewCell.swift */; };
 		A978D7362525DC4200B93983 /* LanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A978D7342525DC4200B93983 /* LanguageTableViewCell.xib */; };
 		A9A7D11C2524B03A009091A5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A9A7D11B2524B03A009091A5 /* RxCocoa */; };
+		A9C9AC0525383FEB00637067 /* XibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C9AC0425383FEB00637067 /* XibInstantiatable.swift */; };
+		A9C9AC1225385BA100637067 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C9AC0F25385BA100637067 /* CustomSlider.swift */; };
+		A9C9AC1325385BA100637067 /* CustomSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C9AC1025385BA100637067 /* CustomSliderView.xib */; };
+		A9C9AC1425385BA100637067 /* CustomSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C9AC1125385BA100637067 /* CustomSliderView.swift */; };
+		A9EB48012535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EB47F52535ADBB00F3A122 /* MyHealthReported.storyboard */; };
+		A9EB48022535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EB47F52535ADBB00F3A122 /* MyHealthReported.storyboard */; };
+		A9EB48032535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47F62535ADBB00F3A122 /* MyHealthReportedViewController.swift */; };
+		A9EB48042535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47F62535ADBB00F3A122 /* MyHealthReportedViewController.swift */; };
+		A9EB480B2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47FC2535ADBB00F3A122 /* MyHealthStep2ViewController.swift */; };
+		A9EB480C2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47FC2535ADBB00F3A122 /* MyHealthStep2ViewController.swift */; };
+		A9EB481D2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB481B2535AF2500F3A122 /* MyHealthStep0ViewController.swift */; };
+		A9EB481E2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB481B2535AF2500F3A122 /* MyHealthStep0ViewController.swift */; };
+		A9EB481F2535AF2500F3A122 /* MyHealthStep0View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9EB481C2535AF2500F3A122 /* MyHealthStep0View.xib */; };
+		A9EB48202535AF2500F3A122 /* MyHealthStep0View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9EB481C2535AF2500F3A122 /* MyHealthStep0View.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,9 +192,6 @@
 		39443292248939F500FF0217 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39443295248939F500FF0217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39443297248939F500FF0217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		394E962E248E7F24009F640E /* MyHealth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyHealth.storyboard; sourceTree = "<group>"; };
-		399CA87C24912B96000B6BF4 /* MyHealthReported.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyHealthReported.storyboard; sourceTree = "<group>"; };
-		399CA88024913B0E000B6BF4 /* MyHealthReportedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHealthReportedViewController.swift; sourceTree = "<group>"; };
 		39A1AD45249225510049E48B /* HighExposition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HighExposition.storyboard; sourceTree = "<group>"; };
 		39A1AD47249225A40049E48B /* HighExpositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighExpositionViewController.swift; sourceTree = "<group>"; };
 		39C3FEC22497746900D1A13E /* DiagnosisCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisCodeUseCase.swift; sourceTree = "<group>"; };
@@ -278,7 +289,6 @@
 		6DF6ECD0248FA044007EAA40 /* MyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataViewController.swift; sourceTree = "<group>"; };
 		6DF6ECD3248FA0B3007EAA40 /* HelpLine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HelpLine.storyboard; sourceTree = "<group>"; };
 		6DF6ECD5248FA0D0007EAA40 /* HelpLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLineViewController.swift; sourceTree = "<group>"; };
-		6DF6ECD7248FBEC2007EAA40 /* MyHealthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHealthViewController.swift; sourceTree = "<group>"; };
 		6DF6ECDA248FD641007EAA40 /* ExpositionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionUseCase.swift; sourceTree = "<group>"; };
 		6DF6ECDF248FD772007EAA40 /* ExpositionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionInfo.swift; sourceTree = "<group>"; };
 		6DF8210E24BEE12B000ED0D2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -312,24 +322,37 @@
 		76D9BD4424A8996700BA6697 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		76D9BD4624A8CA8800BA6697 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		76D9BD4C24A950CF00BA6697 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		A91D8DF72539800200EB23D4 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
-		A91D8DF82539800200EB23D4 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
-		A91D8DFA2539800200EB23D4 /* ActivateCovidNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivateCovidNotificationViewController.swift; sourceTree = "<group>"; };
-		A91D8DFB2539800200EB23D4 /* ActivateCovidNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivateCovidNotificationViewController.xib; sourceTree = "<group>"; };
-		A91D8DFD2539800200EB23D4 /* ProximityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProximityViewController.xib; sourceTree = "<group>"; };
-		A91D8DFE2539800200EB23D4 /* ProximityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProximityViewController.swift; sourceTree = "<group>"; };
-		A91D8E002539800300EB23D4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		A91D8E012539800300EB23D4 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
-		A91D8E022539800300EB23D4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
-		A91D8E042539800300EB23D4 /* ActivatePushNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivatePushNotificationViewController.swift; sourceTree = "<group>"; };
-		A91D8E052539800300EB23D4 /* ActivatePushNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivatePushNotificationViewController.xib; sourceTree = "<group>"; };
+		A91D8E1A2539947500EB23D4 /* ActivateCovidNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivateCovidNotificationViewController.swift; sourceTree = "<group>"; };
+		A91D8E1B2539947500EB23D4 /* ActivateCovidNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivateCovidNotificationViewController.xib; sourceTree = "<group>"; };
+		A91D8E1D2539947500EB23D4 /* ActivatePushNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivatePushNotificationViewController.swift; sourceTree = "<group>"; };
+		A91D8E1E2539947500EB23D4 /* ActivatePushNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivatePushNotificationViewController.xib; sourceTree = "<group>"; };
+		A91D8E202539947500EB23D4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		A91D8E212539947500EB23D4 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
+		A91D8E222539947500EB23D4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		A91D8E242539947500EB23D4 /* ProximityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProximityViewController.xib; sourceTree = "<group>"; };
+		A91D8E252539947500EB23D4 /* ProximityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProximityViewController.swift; sourceTree = "<group>"; };
+		A91D8E272539947500EB23D4 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
+		A91D8E282539947500EB23D4 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		A9508EAF25247DE7008E6A8B /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A9508EB025247DE7008E6A8B /* SettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingView.xib; sourceTree = "<group>"; };
 		A9508EB925248177008E6A8B /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		A96E31212537188800C3EC59 /* MyHealthStep2View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyHealthStep2View.xib; sourceTree = "<group>"; };
+		A97717F22535B5AB0070AD51 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A97717F82535CFEA0070AD51 /* MyHealthStep1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHealthStep1ViewController.swift; sourceTree = "<group>"; };
+		A97717FE2535CFFA0070AD51 /* MyHealthStep1View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyHealthStep1View.xib; sourceTree = "<group>"; };
 		A978D72B2525D0E800B93983 /* LanguageSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
 		A978D72C2525D0E800B93983 /* LanguageSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LanguageSelectionView.xib; sourceTree = "<group>"; };
 		A978D7332525DC4200B93983 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
 		A978D7342525DC4200B93983 /* LanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageTableViewCell.xib; sourceTree = "<group>"; };
+		A9C9AC0425383FEB00637067 /* XibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibInstantiatable.swift; sourceTree = "<group>"; };
+		A9C9AC0F25385BA100637067 /* CustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		A9C9AC1025385BA100637067 /* CustomSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSliderView.xib; sourceTree = "<group>"; };
+		A9C9AC1125385BA100637067 /* CustomSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSliderView.swift; sourceTree = "<group>"; };
+		A9EB47F52535ADBB00F3A122 /* MyHealthReported.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyHealthReported.storyboard; sourceTree = "<group>"; };
+		A9EB47F62535ADBB00F3A122 /* MyHealthReportedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHealthReportedViewController.swift; sourceTree = "<group>"; };
+		A9EB47FC2535ADBB00F3A122 /* MyHealthStep2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHealthStep2ViewController.swift; sourceTree = "<group>"; };
+		A9EB481B2535AF2500F3A122 /* MyHealthStep0ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHealthStep0ViewController.swift; sourceTree = "<group>"; };
+		A9EB481C2535AF2500F3A122 /* MyHealthStep0View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyHealthStep0View.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,9 +362,9 @@
 			files = (
 				6D5AFCE8249369FE00EFE838 /* Alamofire in Frameworks */,
 				764C6D1324B7E5BB002FA594 /* RxSwift in Frameworks */,
+				7629516625387FDE0078CC5E /* DP3TSDK in Frameworks */,
 				A9A7D11C2524B03A009091A5 /* RxCocoa in Frameworks */,
 				6DF6ECA8248E7453007EAA40 /* Swinject in Frameworks */,
-				6D30137A25067AC700E162E3 /* DP3TSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,11 +470,11 @@
 		394E962A248E3EEB009F640E /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
-				A91D8DFF2539800300EB23D4 /* 0_Welcome */,
-				A91D8DF62539800200EB23D4 /* 1_OnBoarding */,
-				A91D8DFC2539800200EB23D4 /* 2_Proximity */,
-				A91D8DF92539800200EB23D4 /* 3_ActivateCovidNotification */,
-				A91D8E032539800300EB23D4 /* 4_ActivatePushNotification */,
+				A91D8E1F2539947500EB23D4 /* 0_Welcome */,
+				A91D8E262539947500EB23D4 /* 1_OnBoarding */,
+				A91D8E232539947500EB23D4 /* 2_Proximity */,
+				A91D8E192539947500EB23D4 /* 3_ActivateCovidNotification */,
+				A91D8E1C2539947500EB23D4 /* 4_ActivatePushNotification */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";
@@ -459,10 +482,10 @@
 		394E962D248E7DE3009F640E /* MyHealth */ = {
 			isa = PBXGroup;
 			children = (
-				6DF6ECD7248FBEC2007EAA40 /* MyHealthViewController.swift */,
-				394E962E248E7F24009F640E /* MyHealth.storyboard */,
-				399CA88024913B0E000B6BF4 /* MyHealthReportedViewController.swift */,
-				399CA87C24912B96000B6BF4 /* MyHealthReported.storyboard */,
+				A9EB47F72535ADBB00F3A122 /* MyHealthStep0 */,
+				A9EB47F12535ADBB00F3A122 /* MyHealthStep1 */,
+				A9EB47FA2535ADBB00F3A122 /* MyHealthStep2 */,
+				A9EB47F42535ADBB00F3A122 /* MyHealthReported */,
 			);
 			path = MyHealth;
 			sourceTree = "<group>";
@@ -527,7 +550,10 @@
 		6DA18CB92491053700BE8AAB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A9C9AC0325383FEB00637067 /* CustomView */,
+				A97717F12535B59A0070AD51 /* BaseViewController */,
 				76D9BCF024A8992000BA6697 /* NVActivityIndicatorView */,
+				A9C9AC0E25385BA100637067 /* CustomSliderView */,
 				6DA18CBA2491055D00BE8AAB /* BackgroundView.swift */,
 				6D2CA48724B60EFD00981DA4 /* LocalizableLabel.swift */,
 				6D2CA48924B60F5F00981DA4 /* Localizable.swift */,
@@ -776,50 +802,50 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
-		A91D8DF62539800200EB23D4 /* 1_OnBoarding */ = {
+		A91D8E192539947500EB23D4 /* 3_ActivateCovidNotification */ = {
 			isa = PBXGroup;
 			children = (
-				A91D8DF72539800200EB23D4 /* OnBoarding.storyboard */,
-				A91D8DF82539800200EB23D4 /* OnBoardingViewController.swift */,
-			);
-			path = 1_OnBoarding;
-			sourceTree = "<group>";
-		};
-		A91D8DF92539800200EB23D4 /* 3_ActivateCovidNotification */ = {
-			isa = PBXGroup;
-			children = (
-				A91D8DFA2539800200EB23D4 /* ActivateCovidNotificationViewController.swift */,
-				A91D8DFB2539800200EB23D4 /* ActivateCovidNotificationViewController.xib */,
+				A91D8E1A2539947500EB23D4 /* ActivateCovidNotificationViewController.swift */,
+				A91D8E1B2539947500EB23D4 /* ActivateCovidNotificationViewController.xib */,
 			);
 			path = 3_ActivateCovidNotification;
 			sourceTree = "<group>";
 		};
-		A91D8DFC2539800200EB23D4 /* 2_Proximity */ = {
+		A91D8E1C2539947500EB23D4 /* 4_ActivatePushNotification */ = {
 			isa = PBXGroup;
 			children = (
-				A91D8DFD2539800200EB23D4 /* ProximityViewController.xib */,
-				A91D8DFE2539800200EB23D4 /* ProximityViewController.swift */,
+				A91D8E1D2539947500EB23D4 /* ActivatePushNotificationViewController.swift */,
+				A91D8E1E2539947500EB23D4 /* ActivatePushNotificationViewController.xib */,
 			);
-			path = 2_Proximity;
+			path = 4_ActivatePushNotification;
 			sourceTree = "<group>";
 		};
-		A91D8DFF2539800300EB23D4 /* 0_Welcome */ = {
+		A91D8E1F2539947500EB23D4 /* 0_Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				A91D8E012539800300EB23D4 /* WelcomeViewModel.swift */,
-				A91D8E002539800300EB23D4 /* WelcomeViewController.swift */,
-				A91D8E022539800300EB23D4 /* WelcomeViewController.xib */,
+				A91D8E202539947500EB23D4 /* WelcomeViewController.swift */,
+				A91D8E212539947500EB23D4 /* WelcomeViewModel.swift */,
+				A91D8E222539947500EB23D4 /* WelcomeViewController.xib */,
 			);
 			path = 0_Welcome;
 			sourceTree = "<group>";
 		};
-		A91D8E032539800300EB23D4 /* 4_ActivatePushNotification */ = {
+		A91D8E232539947500EB23D4 /* 2_Proximity */ = {
 			isa = PBXGroup;
 			children = (
-				A91D8E042539800300EB23D4 /* ActivatePushNotificationViewController.swift */,
-				A91D8E052539800300EB23D4 /* ActivatePushNotificationViewController.xib */,
+				A91D8E242539947500EB23D4 /* ProximityViewController.xib */,
+				A91D8E252539947500EB23D4 /* ProximityViewController.swift */,
 			);
-			path = 4_ActivatePushNotification;
+			path = 2_Proximity;
+			sourceTree = "<group>";
+		};
+		A91D8E262539947500EB23D4 /* 1_OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				A91D8E272539947500EB23D4 /* OnBoarding.storyboard */,
+				A91D8E282539947500EB23D4 /* OnBoardingViewController.swift */,
+			);
+			path = 1_OnBoarding;
 			sourceTree = "<group>";
 		};
 		A9508EA925247DE7008E6A8B /* Setting */ = {
@@ -849,6 +875,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		A97717F12535B59A0070AD51 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A97717F22535B5AB0070AD51 /* BaseViewController.swift */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
 		A978D72A2525D0E700B93983 /* LanguageSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,6 +892,60 @@
 				A978D7342525DC4200B93983 /* LanguageTableViewCell.xib */,
 			);
 			path = LanguageSelection;
+			sourceTree = "<group>";
+		};
+		A9C9AC0325383FEB00637067 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				A9C9AC0425383FEB00637067 /* XibInstantiatable.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		A9C9AC0E25385BA100637067 /* CustomSliderView */ = {
+			isa = PBXGroup;
+			children = (
+				A9C9AC0F25385BA100637067 /* CustomSlider.swift */,
+				A9C9AC1125385BA100637067 /* CustomSliderView.swift */,
+				A9C9AC1025385BA100637067 /* CustomSliderView.xib */,
+			);
+			path = CustomSliderView;
+			sourceTree = "<group>";
+		};
+		A9EB47F12535ADBB00F3A122 /* MyHealthStep1 */ = {
+			isa = PBXGroup;
+			children = (
+				A97717F82535CFEA0070AD51 /* MyHealthStep1ViewController.swift */,
+				A97717FE2535CFFA0070AD51 /* MyHealthStep1View.xib */,
+			);
+			path = MyHealthStep1;
+			sourceTree = "<group>";
+		};
+		A9EB47F42535ADBB00F3A122 /* MyHealthReported */ = {
+			isa = PBXGroup;
+			children = (
+				A9EB47F52535ADBB00F3A122 /* MyHealthReported.storyboard */,
+				A9EB47F62535ADBB00F3A122 /* MyHealthReportedViewController.swift */,
+			);
+			path = MyHealthReported;
+			sourceTree = "<group>";
+		};
+		A9EB47F72535ADBB00F3A122 /* MyHealthStep0 */ = {
+			isa = PBXGroup;
+			children = (
+				A9EB481B2535AF2500F3A122 /* MyHealthStep0ViewController.swift */,
+				A9EB481C2535AF2500F3A122 /* MyHealthStep0View.xib */,
+			);
+			path = MyHealthStep0;
+			sourceTree = "<group>";
+		};
+		A9EB47FA2535ADBB00F3A122 /* MyHealthStep2 */ = {
+			isa = PBXGroup;
+			children = (
+				A9EB47FC2535ADBB00F3A122 /* MyHealthStep2ViewController.swift */,
+				A96E31212537188800C3EC59 /* MyHealthStep2View.xib */,
+			);
+			path = MyHealthStep2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -880,8 +968,8 @@
 				6DF6ECA7248E7453007EAA40 /* Swinject */,
 				6D5AFCE7249369FE00EFE838 /* Alamofire */,
 				764C6D1224B7E5BB002FA594 /* RxSwift */,
-				6D30137925067AC700E162E3 /* DP3TSDK */,
 				A9A7D11B2524B03A009091A5 /* RxCocoa */,
+				7629516525387FDE0078CC5E /* DP3TSDK */,
 			);
 			productName = "Covid Pilot";
 			productReference = 39443286248939F000FF0217 /* Radar COVID.app */;
@@ -915,7 +1003,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Gobierno de España";
 				TargetAttributes = {
 					39443285248939F000FF0217 = {
@@ -945,7 +1033,7 @@
 				6DF6ECA6248E7453007EAA40 /* XCRemoteSwiftPackageReference "Swinject" */,
 				6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				6D30137825067AC700E162E3 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
+				7629516425387FDE0078CC5E /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
 			);
 			productRefGroup = 39443287248939F000FF0217 /* Products */;
 			projectDirPath = "";
@@ -963,34 +1051,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D5AFC902492827C00EFE838 /* muli_light.ttf in Resources */,
-				A91D8E0E2539800300EB23D4 /* WelcomeViewController.xib in Resources */,
 				A978D7362525DC4200B93983 /* LanguageTableViewCell.xib in Resources */,
 				763489FF24B75A6900B31C59 /* TransparentView.xib in Resources */,
 				6D5AFC8E2492827C00EFE838 /* muli_semibold.ttf in Resources */,
 				6DF6ECC2248F68DF007EAA40 /* Home.storyboard in Resources */,
+				A91D8E2F2539947500EB23D4 /* WelcomeViewController.xib in Resources */,
 				39A1AD46249225510049E48B /* HighExposition.storyboard in Resources */,
 				6D5AFC8D2492827C00EFE838 /* muli_extrabold.ttf in Resources */,
+				A9EB48012535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */,
 				6DA18CC024916B3300BE8AAB /* Exposition.storyboard in Resources */,
+				A96E31222537188800C3EC59 /* MyHealthStep2View.xib in Resources */,
 				39443296248939F500FF0217 /* LaunchScreen.storyboard in Resources */,
 				6DF6ECD4248FA0B3007EAA40 /* HelpLine.storyboard in Resources */,
+				A91D8E2A2539947500EB23D4 /* ActivateCovidNotificationViewController.xib in Resources */,
+				A91D8E302539947500EB23D4 /* ProximityViewController.xib in Resources */,
+				A91D8E322539947500EB23D4 /* OnBoarding.storyboard in Resources */,
+				A9C9AC1325385BA100637067 /* CustomSliderView.xib in Resources */,
 				5CE5834424FD483E00DBB3CB /* TimeExposed.xib in Resources */,
 				7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */,
 				6DF6ECCF248FA032007EAA40 /* MyData.storyboard in Resources */,
 				6D2CA48624B4C69B00981DA4 /* PositiveExposed.storyboard in Resources */,
 				6D5AFC932492883700EFE838 /* muli_regular.ttf in Resources */,
-				399CA87D24912B96000B6BF4 /* MyHealthReported.storyboard in Resources */,
-				394E962F248E7F25009F640E /* MyHealth.storyboard in Resources */,
 				39443293248939F500FF0217 /* Assets.xcassets in Resources */,
+				A91D8E2C2539947500EB23D4 /* ActivatePushNotificationViewController.xib in Resources */,
+				A97717FF2535CFFA0070AD51 /* MyHealthStep1View.xib in Resources */,
 				A978D72E2525D0E800B93983 /* LanguageSelectionView.xib in Resources */,
-				A91D8E102539800300EB23D4 /* ActivatePushNotificationViewController.xib in Resources */,
+				A9EB481F2535AF2500F3A122 /* MyHealthStep0View.xib in Resources */,
 				A9508EB525247DE7008E6A8B /* SettingView.xib in Resources */,
 				6D5AFC8F2492827C00EFE838 /* muli_bold.ttf in Resources */,
 				7603469E24F42DF70038CFC7 /* radarcovid.covid19.gob.es.cer in Resources */,
-				A91D8E092539800300EB23D4 /* ActivateCovidNotificationViewController.xib in Resources */,
-				A91D8E0A2539800300EB23D4 /* ProximityViewController.xib in Resources */,
 				6D5AFC942492883700EFE838 /* muli_italic.ttf in Resources */,
 				6D83345024B8350300223071 /* RootViewController.xib in Resources */,
-				A91D8E062539800300EB23D4 /* OnBoarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1089,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9EB48022535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */,
+				A9EB48202535AF2500F3A122 /* MyHealthStep0View.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,9 +1101,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9C9AC1425385BA100637067 /* CustomSliderView.swift in Sources */,
 				6DE27C79249A6D4600BBCF40 /* APIHelper.swift in Sources */,
 				6D7AB27424AE375200F30E0B /* VersionDto.swift in Sources */,
 				766B31BC252510F600D4B461 /* FakeRequestRepository.swift in Sources */,
+				A91D8E292539947500EB23D4 /* ActivateCovidNotificationViewController.swift in Sources */,
 				A978D72D2525D0E800B93983 /* LanguageSelectionView.swift in Sources */,
 				6DA18CBB2491055D00BE8AAB /* BackgroundView.swift in Sources */,
 				6DE27C642499118200BBCF40 /* String+Extension.swift in Sources */,
@@ -1019,12 +1114,13 @@
 				6D83344724B72C3B00223071 /* LocalizationHolder.swift in Sources */,
 				6DE27C74249A6D4600BBCF40 /* JSONEncodableEncoding.swift in Sources */,
 				6D2CA48C24B612E000981DA4 /* XibLocalizable.swift in Sources */,
+				A91D8E2D2539947500EB23D4 /* WelcomeViewController.swift in Sources */,
 				A9508EB425247DE7008E6A8B /* SettingViewController.swift in Sources */,
 				6DAD76AE24A884EF00643AAD /* ResetDataUseCase.swift in Sources */,
+				A91D8E332539947500EB23D4 /* OnBoardingViewController.swift in Sources */,
+				A97717F92535CFEA0070AD51 /* MyHealthStep1ViewController.swift in Sources */,
 				A978D7352525DC4200B93983 /* LanguageTableViewCell.swift in Sources */,
-				A91D8E082539800300EB23D4 /* ActivateCovidNotificationViewController.swift in Sources */,
 				6DF8212524D07D2E000ED0D2 /* MessageResponse.swift in Sources */,
-				A91D8E0B2539800300EB23D4 /* ProximityViewController.swift in Sources */,
 				6DF8211B24CF02E9000ED0D2 /* CCAAUseCase.swift in Sources */,
 				6DF8210F24BEE12B000ED0D2 /* HomeViewModel.swift in Sources */,
 				6D5AFCEC24936E7A00EFE838 /* Config.swift in Sources */,
@@ -1034,6 +1130,7 @@
 				6DF8212224D028E5000ED0D2 /* Code.swift in Sources */,
 				6DB5419324989C2500166D37 /* RiskLevelDataDto.swift in Sources */,
 				6D9F3A8E25029B0E005EE842 /* UIViewController+Alert.swift in Sources */,
+				A91D8E2E2539947500EB23D4 /* WelcomeViewModel.swift in Sources */,
 				6DE27CAB24A25F9D00BBCF40 /* JailBreakDetect.swift in Sources */,
 				6DB5418D24989C2500166D37 /* TokenAPI.swift in Sources */,
 				6D7AB27724AF1CBD00F30E0B /* VersionHandler.swift in Sources */,
@@ -1041,6 +1138,7 @@
 				76290D862524D3D20010CACD /* FakeRequestUseCase.swift in Sources */,
 				6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */,
 				39A1AD48249225A40049E48B /* HighExpositionViewController.swift in Sources */,
+				A9C9AC1225385BA100637067 /* CustomSlider.swift in Sources */,
 				76D9BD1E24A8992000BA6697 /* NVActivityIndicatorViewable.swift in Sources */,
 				6DF6ECD1248FA044007EAA40 /* MyDataViewController.swift in Sources */,
 				6D2CA48524B4C69B00981DA4 /* PositiveExposedViewController.swift in Sources */,
@@ -1061,7 +1159,6 @@
 				6DE27D4124A7A08C00BBCF40 /* SyncUseCase.swift in Sources */,
 				76D9BD1C24A8992000BA6697 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
 				6DA18CC224916B4100BE8AAB /* ExpositionViewController.swift in Sources */,
-				A91D8E072539800300EB23D4 /* OnBoardingViewController.swift in Sources */,
 				6DB5418F24989C2500166D37 /* SettingsDto.swift in Sources */,
 				6DE27C78249A6D4600BBCF40 /* AlamofireImplementations.swift in Sources */,
 				5C5474DC24F96E3900881B7C /* TimeExposedView.swift in Sources */,
@@ -1081,41 +1178,43 @@
 				6DB5419124989C2500166D37 /* UuidDto.swift in Sources */,
 				6DF6ECE0248FD772007EAA40 /* ExpositionInfo.swift in Sources */,
 				6DB541992498A55700166D37 /* Settings.swift in Sources */,
-				A91D8E0D2539800300EB23D4 /* WelcomeViewModel.swift in Sources */,
 				76D9BD4724A8CA8800BA6697 /* UIColor+Extension.swift in Sources */,
 				6D83344524B72BC800223071 /* LocalizationSource.swift in Sources */,
 				6D63108E2501197B000CDCB4 /* AccTitleView.swift in Sources */,
 				6DF6ECAC248E79C1007EAA40 /* Injection.swift in Sources */,
 				763489FD24B7530500B31C59 /* UIFont+Extension.swift in Sources */,
+				A9EB48032535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */,
 				76D9BD2024A8992000BA6697 /* NVActivityIndicatorView.swift in Sources */,
 				76D9BD1D24A8992000BA6697 /* NVActivityIndicatorPresenter.swift in Sources */,
-				6DF6ECD8248FBEC2007EAA40 /* MyHealthViewController.swift in Sources */,
 				6DE27C73249A6D4600BBCF40 /* APIs.swift in Sources */,
 				76D9BD3924A8992000BA6697 /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,
 				6D9F3A9225029E9E005EE842 /* ErrorHandler.swift in Sources */,
 				6DF6ECC8248F70DF007EAA40 /* PreferencesRepository.swift in Sources */,
 				6D83344F24B8350300223071 /* RootViewController.swift in Sources */,
 				3944328C248939F000FF0217 /* SceneDelegate.swift in Sources */,
-				A91D8E0C2539800300EB23D4 /* WelcomeViewController.swift in Sources */,
 				6D2CA48A24B60F5F00981DA4 /* Localizable.swift in Sources */,
+				A9EB480B2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */,
 				6D7AB26D24ADCC9A00F30E0B /* NotificationHandler.swift in Sources */,
 				6DD0420A2512763D00799D58 /* CertificateUtil.swift in Sources */,
 				6D01BDE124FD619900FBADB4 /* RadarStatus.swift in Sources */,
-				A91D8E0F2539800300EB23D4 /* ActivatePushNotificationViewController.swift in Sources */,
 				766B026724D282C9006FBD29 /* BaseExposedViewController.swift in Sources */,
+				A97717F32535B5AB0070AD51 /* BaseViewController.swift in Sources */,
+				A9EB481D2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */,
 				763489FB24B637ED00B31C59 /* UIImage+Extension.swift in Sources */,
-				399CA88124913B0E000B6BF4 /* MyHealthReportedViewController.swift in Sources */,
 				6DB541972498A31700166D37 /* SettingsRepository.swift in Sources */,
 				6DE27C7A249A6D4600BBCF40 /* CodableHelper.swift in Sources */,
 				6DE27C77249A6D4600BBCF40 /* JSONValue.swift in Sources */,
 				6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */,
 				76D9BD1F24A8992000BA6697 /* NVActivityIndicatorShape.swift in Sources */,
+				A91D8E312539947500EB23D4 /* ProximityViewController.swift in Sources */,
 				39C3FEC32497746900D1A13E /* DiagnosisCodeUseCase.swift in Sources */,
 				6DF8211324CEDA17000ED0D2 /* KeyValueDto.swift in Sources */,
 				6DF8211724CEDB49000ED0D2 /* TextsAPI.swift in Sources */,
 				6DF8212A24D1DC00000ED0D2 /* CcaaKeyValueDto.swift in Sources */,
 				76348A0124B75A8500B31C59 /* TransparentView.swift in Sources */,
 				6DE27C75249A6D4600BBCF40 /* Extensions.swift in Sources */,
+				A91D8E2B2539947500EB23D4 /* ActivatePushNotificationViewController.swift in Sources */,
+				A9C9AC0525383FEB00637067 /* XibInstantiatable.swift in Sources */,
 				6DD0420825120DD700799D58 /* CaData.swift in Sources */,
 				6D7AB27524AE375200F30E0B /* ApplicationVersionDto.swift in Sources */,
 				6DF6ECC4248F691E007EAA40 /* HomeViewController.swift in Sources */,
@@ -1129,7 +1228,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D01BDCF24EFEFCB00FBADB4 /* MyMocks.swift in Sources */,
+				A9EB481E2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */,
+				A9EB480C2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */,
 				6D9F3A9025029C5C005EE842 /* ErrorHandlerTest.swift in Sources */,
+				A9EB48042535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */,
 				6D64132D24ED897300B33427 /* ExpositionCheckUseCaseTest.swift in Sources */,
 				6D662D19250B80B700AEEFE7 /* HomeViewModelTest.swift in Sources */,
 			);
@@ -1188,6 +1290,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1249,6 +1352,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1286,7 +1390,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/debug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 151;
+				CURRENT_PROJECT_VERSION = 125;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
@@ -1294,7 +1398,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
 				PROVISIONING_PROFILE_SPECIFIER = RadarCovidDevelopmentExposure;
@@ -1311,14 +1415,14 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 151;
+				CURRENT_PROJECT_VERSION = 125;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
 				PROVISIONING_PROFILE_SPECIFIER = RadarCovidAdHocExposure;
@@ -1643,6 +1747,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1680,14 +1785,14 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 151;
+				CURRENT_PROJECT_VERSION = 125;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
 				PROVISIONING_PROFILE_SPECIFIER = RadarCovidAdHocExposure;
@@ -1724,6 +1829,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1765,7 +1871,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/debug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 151;
+				CURRENT_PROJECT_VERSION = 125;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
@@ -1773,7 +1879,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
 				PROVISIONING_PROFILE_SPECIFIER = RadarCovidDevelopmentExposure;
@@ -1822,14 +1928,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6D30137825067AC700E162E3 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/DP-3T/dp3t-sdk-ios";
-			requirement = {
-				kind = exactVersion;
-				version = 1.2.1;
-			};
-		};
 		6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1846,6 +1944,14 @@
 				version = 2.7.1;
 			};
 		};
+		7629516425387FDE0078CC5E /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://bitbucket.org/movilidadTecnocom/dp3t-sdk-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -1857,11 +1963,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6D30137925067AC700E162E3 /* DP3TSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6D30137825067AC700E162E3 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
-			productName = DP3TSDK;
-		};
 		6D5AFCE7249369FE00EFE838 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -1876,6 +1977,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6DF6ECA6248E7453007EAA40 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		7629516525387FDE0078CC5E /* DP3TSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7629516425387FDE0078CC5E /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
+			productName = DP3TSDK;
 		};
 		764C6D1224B7E5BB002FA594 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;

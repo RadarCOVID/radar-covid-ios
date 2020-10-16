@@ -90,11 +90,12 @@ class RootViewController: UIViewController {
     }
 
     private  func navigateFirst() {
-        if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
-            router?.route(to: Routes.home, from: self)
-        } else {
-            router!.route(to: Routes.welcome, from: self)
-        }
+        router?.route(to: Routes.home, from: self)
+//        if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
+//            router?.route(to: Routes.home, from: self)
+//        } else {
+//            router!.route(to: Routes.welcome, from: self)
+//        }
     }
 
 }

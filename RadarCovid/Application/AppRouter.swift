@@ -28,7 +28,9 @@ public enum Routes {
     case onBoarding
     case home
     case proximity
-    case myHealth
+    case myHealthStep0
+    case myHealthStep1
+    case myHealthStep2
     case myHealthReported
     case exposition
     case highExposition
@@ -59,8 +61,12 @@ class AppRouter: Router {
             routeToCovid(context)
         case .activatePush:
             routeToPush(context)
-        case .myHealth:
-            routeToMyHealth(context)
+        case .myHealthStep0:
+            routeToMyHealthStep0(context)
+        case .myHealthStep1:
+            routeToMyHealthStep1(context)
+        case .myHealthStep2:
+            routeToMyHealthStep2(context, codeString: parameters[0] as? String ?? "", dateNotificationPositive: parameters[1] as? Date)
         case .myHealthReported:
             routeToMyHealthReported(context)
         case .exposition:
@@ -109,9 +115,21 @@ class AppRouter: Router {
        context.navigationController?.pushViewController(activatePush!, animated: true)
     }
 
-    private func routeToMyHealth(_ context: UIViewController) {
-        let myHealthVC = AppDelegate.shared?.injection.resolve(MyHealthViewController.self)!
-        context.navigationController?.pushViewController(myHealthVC!, animated: true)
+    private func routeToMyHealthStep0(_ context: UIViewController) {
+        let myHealthStep0VC = AppDelegate.shared?.injection.resolve(MyHealthStep0ViewController.self)!
+        context.navigationController?.pushViewController(myHealthStep0VC!, animated: true)
+    }
+    
+    private func routeToMyHealthStep1(_ context: UIViewController) {
+        let myHealthStep1VC = AppDelegate.shared?.injection.resolve(MyHealthStep1ViewController.self)!
+        context.navigationController?.pushViewController(myHealthStep1VC!, animated: true)
+    }
+    
+    private func routeToMyHealthStep2(_ context: UIViewController, codeString: String, dateNotificationPositive: Date?) {
+        let myHealthStep2VC = AppDelegate.shared?.injection.resolve(MyHealthStep2ViewController.self)!
+        myHealthStep2VC?.codeString = codeString
+        myHealthStep2VC?.dateNotificationPositive = dateNotificationPositive
+        context.navigationController?.pushViewController(myHealthStep2VC!, animated: true)
     }
 
     private func routeToMyHealthReported(_ context: UIViewController) {

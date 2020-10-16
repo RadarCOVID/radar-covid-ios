@@ -41,7 +41,7 @@ class LanguageTableViewCell: UITableViewCell {
     private func logicToSelected(_ selected: Bool) {
         if UIAccessibility.isVoiceOverRunning {
             if selected {
-                self.backgroundColor = UIColor.purpleLigthApp
+                self.backgroundColor = UIColor.deepLilac
             } else {
                 self.backgroundColor = UIColor.clear
             }
@@ -52,7 +52,7 @@ class LanguageTableViewCell: UITableViewCell {
             titleLabel.textColor = UIColor.black
         } else {
             titleLabel.font = UIFont.mainFont(size: .twenty, fontType: .regular)
-            titleLabel.textColor = UIColor.purpleApp
+            titleLabel.textColor = UIColor.twilight
         }
     }
     
