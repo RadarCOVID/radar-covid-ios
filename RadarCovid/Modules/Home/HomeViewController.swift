@@ -87,20 +87,21 @@ class HomeViewController: UIViewController {
             return
         }
         
-        if radarSwitch.isOn {
-            if expositionInfo.level == .infected {
-                router!.route(to: Routes.myHealthReported, from: self)
-            } else {
-                router!.route(to: Routes.myHealthStep0, from: self)
-            }
-        } else {
-            showAlertOk(
-                title: "",
-                message: "ALERT_RADAR_REQUIRED_TO_REPORT".localized,
-                buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
-                buttonVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized
-            )
-        }
+        router!.route(to: Routes.myHealthStep0, from: self)
+//        if radarSwitch.isOn {
+//            if expositionInfo.level == .infected {
+//                router!.route(to: Routes.myHealthReported, from: self)
+//            } else {
+//                router!.route(to: Routes.myHealthStep0, from: self)
+//            }
+//        } else {
+//            showAlertOk(
+//                title: "",
+//                message: "ALERT_RADAR_REQUIRED_TO_REPORT".localized,
+//                buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
+//                buttonVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized
+//            )
+//        }
     }
     
     @IBAction func onOpenSettingsTap(_ sender: Any) {

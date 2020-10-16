@@ -81,7 +81,6 @@ class TabBarController: UITabBarController {
         
         settingViewController.tabBarItem.isAccessibilityElement = true
         settingViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        //TODO Falta texto Ajustes
         settingViewController.tabBarItem.accessibilityLabel = "ACC_SETTINGS_TITLE".localized
         settingViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
     }

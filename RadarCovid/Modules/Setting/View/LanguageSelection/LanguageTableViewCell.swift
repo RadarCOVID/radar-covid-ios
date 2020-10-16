@@ -19,7 +19,7 @@ class LanguageTableViewCell: UITableViewCell {
     
     func setupModel(title: String, key: String, totalItems: Int, indexItem: Int) {
         titleLabel.text = title
-        titleLabel.accessibilityLabel = "MY_HEALTH_RANGER".localized
+        titleLabel.accessibilityLabel = "MY_HEALTH_RANGER".localized + " \(title)"
         titleLabel.accessibilityLabel = titleLabel.accessibilityLabel?.replacingOccurrences(of: "$1", with: "\(indexItem + 1)")
         titleLabel.accessibilityLabel = titleLabel.accessibilityLabel?.replacingOccurrences(of: "$2", with: "\(totalItems)")
         keyModel = key

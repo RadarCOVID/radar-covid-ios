@@ -34,6 +34,8 @@ class CustomSliderView: UIView, XibInstantiatable {
         stepLabel.text = stepLabel.text?.replacingOccurrences(of: "$1", with: "\(indexStep)")
         stepLabel.text = stepLabel.text?.replacingOccurrences(of: "$2", with: "\(totalStep)")
 
+        viewContainer.accessibilityLabel = stepLabel.text
+        
         //Config slider
         slider.maximumValue = 1
         slider.maximumValue = Float(totalStep)

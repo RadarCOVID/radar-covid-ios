@@ -22,6 +22,7 @@ class MyHealthStep1ViewController: BaseViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    @IBOutlet weak var helperDateLabel: UILabel!
     @IBOutlet weak var dateView: UIView!
     @IBOutlet weak var dayView: UIView!
     @IBOutlet weak var dayLabel: UILabel!
@@ -108,7 +109,6 @@ class MyHealthStep1ViewController: BaseViewController {
         
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        titleLabel.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
         
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityLabel = "ACC_BUTTON_ALERT_CONTINUE".localized
@@ -116,9 +116,11 @@ class MyHealthStep1ViewController: BaseViewController {
         cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityLabel = "ACC_BUTTON_ALERT_CANCEL".localized
         
-        dayLabel.accessibilityHint = "ACC_HINT".localized
-        monthLabel.accessibilityHint = "ACC_HINT".localized
-        yearLabel.accessibilityHint = "ACC_HINT".localized
+        dateView.isAccessibilityElement = true
+        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized
+        dateView.accessibilityHint = "ACC_HINT".localized
+        
+        datePicker.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SHOW".localized
     }
     
     private func setEnableButton(isEnable: Bool) {
@@ -132,7 +134,9 @@ class MyHealthStep1ViewController: BaseViewController {
     
     @objc private func showDatePicker() {
         self.view.endEditing(true)
+
         pickerPresenter?.openPicker()
+        UIAccessibility.post(notification: .layoutChanged, argument: self.datePicker)
     }
     
     @objc func keyboardWillShow(notification: NSNotification?) {
@@ -147,6 +151,7 @@ class MyHealthStep1ViewController: BaseViewController {
         DispatchQueue.main.async {
             self.scrollViewBottonConstraint.constant = keyboardSize.height
             self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height + CGFloat(70)), animated: false)
+            self.pickerPresenter?.hiddenPickerView()
         }
     }
 
@@ -242,6 +247,8 @@ extension MyHealthStep1ViewController: PickerDelegate {
         monthLabel.text = "--"
         dayLabel.text = "--"
         
+        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized
+        
         //Setup accessibility
         dayLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
         monthLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + (monthLabel.text ?? "")
@@ -260,9 +267,11 @@ extension MyHealthStep1ViewController: PickerDelegate {
             dayLabel.text = formatter.string(from: date)
             
             //Setup accessibility
-            dayLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
-            monthLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + (monthLabel.text ?? "")
-            yearLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + " " + (yearLabel.text ?? "")
+            let daySelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
+            let monthSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + (monthLabel.text ?? "")
+            let yearSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + " " + (yearLabel.text ?? "")
+
+            dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + " " + monthSelected + " " + yearSelected)
         }
     }
 }

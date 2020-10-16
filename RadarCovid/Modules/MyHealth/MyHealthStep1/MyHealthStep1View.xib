@@ -24,6 +24,7 @@
                 <outlet property="dateView" destination="lEC-TV-Fff" id="gHP-ka-UMG"/>
                 <outlet property="dayLabel" destination="XcI-5O-MOs" id="Igm-zg-ynL"/>
                 <outlet property="dayView" destination="eC3-ht-fHe" id="jPQ-Gk-c5D"/>
+                <outlet property="helperDateLabel" destination="uJt-aN-DB0" id="ygo-KX-cTr"/>
                 <outlet property="monthLabel" destination="qCP-5y-9Dh" id="N86-c7-Nx8"/>
                 <outlet property="monthView" destination="ZSl-le-gy9" id="N4i-QH-X9D"/>
                 <outlet property="scrollView" destination="pzc-Oe-DiC" id="5wT-E7-gYP"/>
@@ -129,6 +130,13 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEC-TV-Fff" userLabel="dateView">
                                     <rect key="frame" x="16" y="336.5" width="382" height="98"/>
                                     <subviews>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJt-aN-DB0">
+                                            <rect key="frame" x="170" y="38.5" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Día" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YB-Ye-XfY">
                                             <rect key="frame" x="32" y="0.0" width="25.5" height="19.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>

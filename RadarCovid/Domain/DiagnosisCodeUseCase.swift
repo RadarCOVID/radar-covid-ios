@@ -40,9 +40,8 @@ class DiagnosisCodeUseCase {
                       let onset = self?.dateFormatter.date(from: jwtOnset) else {
                     throw DiagnosisError.unknownError("Onset parameter not found in token")
                 }
-                return self?.iWasExposed(onset: onset, token: tokenResponse.token) ?? .empty()
+                return self?.iWasExposed(onset: onset, token: tokenResponse.token, share: share) ?? .empty()
             }
-
     }
 
     private func iWasExposed(onset: Date, token: String, share: Bool = false) -> Observable<Bool> {

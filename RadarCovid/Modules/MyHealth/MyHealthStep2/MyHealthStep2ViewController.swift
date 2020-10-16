@@ -30,6 +30,16 @@ class MyHealthStep2ViewController: UIViewController {
     var codeString: String?
     var dateNotificationPositive: Date?
     
+    private var shareEuropean: Bool {
+        return self.checkShareEuropeImage.isHidden == false
+            && self.checkShareSpainImage.isHidden == true
+    }
+
+    private var shareSpain: Bool {
+        return self.checkShareEuropeImage.isHidden == true
+            && self.checkShareSpainImage.isHidden == false
+    }
+    
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -62,13 +72,15 @@ class MyHealthStep2ViewController: UIViewController {
 
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        titleLabel.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
         
-        sendButton.isAccessibilityElement = true
-        sendButton.accessibilityLabel = "ACC_BUTTON_ALERT_CONTINUE".localized
+        shareSpainRadioView.isAccessibilityElement = true
+        shareSpainRadioView.accessibilityLabel =  "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
+        shareSpainRadioView.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        shareSpainRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
         
-        cancelButton.isAccessibilityElement = true
-        cancelButton.accessibilityLabel = "ACC_BUTTON_ALERT_CANCEL".localized
+        shareEuropeRadioView.isAccessibilityElement = true
+        shareEuropeRadioView.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
+        shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.button)
     }
 
     private func navigateIf(reported: Bool) {
@@ -78,13 +90,25 @@ class MyHealthStep2ViewController: UIViewController {
     }
     
     @objc private func onShareSpain() {
-        self.checkShareEuropeImage.isHidden = true
-        self.checkShareSpainImage.isHidden = false
+        checkShareEuropeImage.isHidden = true
+        checkShareSpainImage.isHidden = false
+        
+        shareEuropeRadioView.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
+        checkShareSpainImage.accessibilityLabel = "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
+        
+        checkShareSpainImage.accessibilityTraits.insert(UIAccessibilityTraits.selected)
+        shareEuropeRadioView.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
     
     @objc private func onShareEurope() {
-        self.checkShareEuropeImage.isHidden = false
-        self.checkShareSpainImage.isHidden = true
+        checkShareEuropeImage.isHidden = false
+        checkShareSpainImage.isHidden = true
+        
+        shareEuropeRadioView.accessibilityLabel = "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
+        checkShareSpainImage.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
+        
+        checkShareSpainImage.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
     }
     
     @IBAction func onReportDiagnosis(_ sender: Any) {
@@ -95,7 +119,7 @@ class MyHealthStep2ViewController: UIViewController {
         
         view.showLoading()
 
-        diagnosisCodeUseCase?.sendDiagnosisCode(code: codigoString, date: dateNotificationPositive ?? Date()).subscribe(
+        diagnosisCodeUseCase?.sendDiagnosisCode(code: codigoString, date: dateNotificationPositive ?? Date(), share: self.shareEuropean).subscribe(
             onNext: { [weak self] reportedCodeBool in
                 self?.view.hideLoading()
                 self?.navigateIf(reported: reportedCodeBool)
