@@ -47,7 +47,8 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
     }
     
     private func needToSendFalsePositive() -> Bool{
-        return Date().timeIntervalSince(self.fakeRequestRepository.getNextScheduledFakeRequestDate()) <= 2 * 24 * 60 * 60
+        let interval = self.fakeRequestRepository.getNextScheduledFakeRequestDate().timeIntervalSince(Date())
+        return interval <= 2 * 24 * 60 * 60
     }
     
 }
