@@ -111,16 +111,6 @@ class MyHealthStep2ViewController: UIViewController {
         shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
     }
     
-    private var shareEuropean: Bool {
-        return self.checkShareEuropeImage.isHidden == false
-            && self.checkShareSpainImage.isHidden == true
-    }
-    
-    private var shareSpain: Bool {
-        return self.checkShareEuropeImage.isHidden == true
-            && self.checkShareSpainImage.isHidden == false
-    }
-    
     @IBAction func onReportDiagnosis(_ sender: Any) {
         
         guard let codigoString = codeString  else {
