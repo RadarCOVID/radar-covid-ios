@@ -64,11 +64,12 @@ class FakeRequestRepository {
     private func setNextScheduledFakeRequestDate() -> Date {
         let nextFakeDate = Date(timeInterval: ExponentialDistribution.sample(rate: rate) * daySecs, since: now)
         self._nextScheduledFakeRequestDate = nextFakeDate
+        print("setting new scheduled fake request date", nextFakeDate, "actualDate", Date())
         return nextFakeDate
     }
     
     public func updateScheduledFakeRequestDate() {
-        self._nextScheduledFakeRequestDate = Date(timeInterval: ExponentialDistribution.sample(rate: rate) * daySecs, since: now)
+        let _ = self.setNextScheduledFakeRequestDate()
     }
     
 }

@@ -28,8 +28,8 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
             if self?.needToSendFalsePositive() ?? false {
                 self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE).subscribe(
                     onNext: { _ in
-                        
-                       self?.fakeRequestRepository.updateScheduledFakeRequestDate()
+                        print("fake request sended with date", Date())
+                        self?.fakeRequestRepository.updateScheduledFakeRequestDate()
                         return observer.onNext(true)
                         
                     }
