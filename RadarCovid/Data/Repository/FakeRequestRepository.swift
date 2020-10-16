@@ -29,7 +29,8 @@ class FakeRequestRepository {
     private var userDefaults: UserDefaults
     private let nextFakeRequestDate = "UserDefaultsFakeRequestUseCase.lastFake"
     var rate: Double
-    
+    let daySecs: Double = 24 * 60 * 60
+
     private var now: Date {
         Date()
     }
@@ -45,6 +46,10 @@ class FakeRequestRepository {
     }
     
     init() {
+        rate = 1.0
+        if Config.debug {
+            rate = 1
+        }
         self.userDefaults = UserDefaults.standard
         rate = 1.0
         if Config.debug {
@@ -57,14 +62,13 @@ class FakeRequestRepository {
     }
     
     private func setNextScheduledFakeRequestDate() -> Date {
-        
-        let nextFakeDate = Date(timeInterval: ExponentialDistribution.sample(rate: rate), since: now)
+        let nextFakeDate = Date(timeInterval: ExponentialDistribution.sample(rate: rate) * daySecs, since: now)
         self._nextScheduledFakeRequestDate = nextFakeDate
         return nextFakeDate
     }
     
     public func updateScheduledFakeRequestDate() {
-        self._nextScheduledFakeRequestDate = Date(timeInterval: ExponentialDistribution.sample(rate: rate), since: now)
+        self._nextScheduledFakeRequestDate = Date(timeInterval: ExponentialDistribution.sample(rate: rate) * daySecs, since: now)
     }
     
 }

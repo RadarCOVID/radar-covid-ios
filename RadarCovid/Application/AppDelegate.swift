@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var injection: Injection = Injection()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UIApplication.shared.setMinimumBackgroundFetchInterval(<#T##minimumBackgroundFetchInterval: TimeInterval##TimeInterval#>)
         if JailBreakDetect.isJailbroken() {
             exit(-1)
         }
@@ -58,4 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        return UIApplication.shared.delegate as? AppDelegate
     }
 
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+       
+    }
 }
