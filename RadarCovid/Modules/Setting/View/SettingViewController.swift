@@ -48,8 +48,10 @@ class SettingViewController: UIViewController {
     }
     
     private func showLanguageSelection() {
+        guard let viewModel = self.viewModel else { return }
+        
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
-            LanguageSelectionView.initWithParentViewController(viewController: self, delegateOutput: self)
+            LanguageSelectionView.initWithParentViewController(viewController: self, viewModel: viewModel, delegateOutput: self)
         }
     }
 }

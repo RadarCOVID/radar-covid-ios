@@ -17,6 +17,12 @@ protocol LanguageSelectionProtocol {
     func userChangeLanguage()
 }
 
+protocol LanguageSelectionModelProtocol {
+    func getCurrenLenguage() -> String
+    func setCurrentLocale(key: String)
+    func getLenguages() -> Observable<[String: String?]>
+}
+
 class LanguageSelectionView: UIView {
     
     @IBOutlet weak var containerView: UIView!
@@ -26,12 +32,12 @@ class LanguageSelectionView: UIView {
     
     var parentViewController: UIViewController?
     var delegateOutput: LanguageSelectionProtocol?
-    var viewModel: SettingViewModel?
+    var viewModel: LanguageSelectionModelProtocol?
     var currentLanguageSelected: String?
     
     private var disposeBag = DisposeBag()
     
-    class func initWithParentViewController(viewController: SettingViewController, delegateOutput: LanguageSelectionProtocol) {
+    class func initWithParentViewController(viewController: UIViewController, viewModel: LanguageSelectionModelProtocol, delegateOutput: LanguageSelectionProtocol) {
         
         guard let languageSelectionView = UINib(nibName: "LanguageSelectionView", bundle: nil)
             .instantiate(withOwner: nil, options: nil)[0] as? LanguageSelectionView else {
@@ -51,7 +57,7 @@ class LanguageSelectionView: UIView {
         languageSelectionView.languageTableView.layoutIfNeeded()
         
         languageSelectionView.parentViewController = viewController
-        languageSelectionView.viewModel = viewController.viewModel
+        languageSelectionView.viewModel = viewModel
         
         languageSelectionView.initValues()
         
@@ -108,14 +114,21 @@ class LanguageSelectionView: UIView {
         
         languageTableView.register(UINib(nibName: "LanguageTableViewCell", bundle: nil), forCellReuseIdentifier: "LanguageTableViewCell")
         
-        var totalLanguages: Int = 6
         self.viewModel?.getLenguages()
-            .flatMap(generateTransformation).subscribe(onNext: { (value) in
-                totalLanguages = value
+            .flatMap(generateTransformation).subscribe(onNext: { [weak self] (value) in
+                self?.setDataSourceCell(totalLanguages: value)
             })
             .disposed(by: disposeBag)
         
-        //DataSourceCell
+        //Logic to selected item
+        languageTableView.rx.itemSelected
+          .subscribe(onNext: { [weak self] indexPath in
+            let cell = self?.languageTableView.cellForRow(at: indexPath) as? LanguageTableViewCell
+            self?.currentLanguageSelected = cell?.keyModel
+          }).disposed(by: disposeBag)
+    }
+    
+    func setDataSourceCell(totalLanguages: Int) {
         self.viewModel?.getLenguages()
             .bind(to: languageTableView.rx.items(cellIdentifier: "LanguageTableViewCell", cellType: LanguageTableViewCell.self)) {
             [weak self] row, element, cell in
@@ -126,13 +139,6 @@ class LanguageSelectionView: UIView {
                     self?.languageTableView.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .none)
                 }
             }.disposed(by: disposeBag)
-        
-        //Logic to selected item
-        languageTableView.rx.itemSelected
-          .subscribe(onNext: { [weak self] indexPath in
-            let cell = self?.languageTableView.cellForRow(at: indexPath) as? LanguageTableViewCell
-            self?.currentLanguageSelected = cell?.keyModel
-          }).disposed(by: disposeBag)
     }
 
     func generateTransformation(val: [String: String?]) -> Observable<Int> {

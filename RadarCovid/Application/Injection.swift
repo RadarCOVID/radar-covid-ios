@@ -296,9 +296,14 @@ class Injection {
         
         container.register(WelcomeViewController.self) {  r in
             let welcomeVC = WelcomeViewController()
-            welcomeVC.localizationRepository = r.resolve(LocalizationRepository.self)!
+            welcomeVC.viewModel = r.resolve(WelcomeViewModel.self)!
             welcomeVC.router = r.resolve(AppRouter.self)!
             return welcomeVC
+        }
+        
+        container.register(WelcomeViewModel.self) { route in
+            let welcomeVM = WelcomeViewModel(localesUseCase: route.resolve(LocalesUseCase.self)!)
+            return welcomeVM
         }
         
         container.register(ActivateCovidNotificationViewController.self) {  r in
