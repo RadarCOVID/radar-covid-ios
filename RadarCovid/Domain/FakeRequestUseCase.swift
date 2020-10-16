@@ -26,7 +26,8 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
     func sendFalsePositive() -> Observable<Bool> {
         return Observable.create { [weak self] (observer) -> Disposable in
             if self?.needToSendFalsePositive() ?? false {
-                self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE).subscribe(
+                let randomBoolean = Bool.random()
+                self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
                     onNext: { _ in
                         print("fake request sended with date", Date())
                         self?.fakeRequestRepository.updateScheduledFakeRequestDate()
