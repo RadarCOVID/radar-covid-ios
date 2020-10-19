@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="742"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZX-eB-vJ1" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="556"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="572"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightTopShade" translatesAutoresizingMaskIntoConstraints="NO" id="26u-YC-f5R">
                                                 <rect key="frame" x="130.5" y="0.0" width="283.5" height="206.5"/>
@@ -138,10 +138,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwM-SS-Bb9" userLabel="CheckView">
-                                                <rect key="frame" x="16" y="449" width="382" height="57"/>
+                                                <rect key="frame" x="16" y="449" width="382" height="73"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acepto la política de privacidad " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvQ-IX-8Bm">
-                                                        <rect key="frame" x="51" y="0.0" width="331" height="19.5"/>
+                                                        <rect key="frame" x="57" y="2" width="325" height="19.5"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                         </accessibility>
@@ -153,7 +153,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="He leído las condiciones de uso" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-Ib-LaU">
-                                                        <rect key="frame" x="51" y="37.5" width="331" height="19.5"/>
+                                                        <rect key="frame" x="57" y="53.5" width="325" height="19.5"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                         </accessibility>
@@ -201,17 +201,56 @@
                                                             <constraint firstItem="ozt-E5-Lzg" firstAttribute="top" secondItem="XRM-kg-RAx" secondAttribute="top" id="WY0-qs-NUn"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O4z-58-DkD">
+                                                        <rect key="frame" x="0.0" y="51.5" width="49" height="40"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckboxUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="hyi-7L-guJ">
+                                                                <rect key="frame" x="15.5" y="3" width="18" height="18"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                                    <bool key="isElement" value="NO"/>
+                                                                </accessibility>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="18" id="19X-BP-Y5A"/>
+                                                                    <constraint firstAttribute="height" constant="18" id="OFK-Ty-DsE"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3xW-BD-0hS">
+                                                                <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                                </accessibility>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="49" id="wAV-Jk-IMb"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <action selector="onSwithAcceptTermsAndUseChange:" destination="5jd-jE-NO7" eventType="valueChanged" id="UHN-lY-aY0"/>
+                                                                </connections>
+                                                            </switch>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="hyi-7L-guJ" firstAttribute="top" secondItem="O4z-58-DkD" secondAttribute="top" constant="3" id="Ais-XH-hKF"/>
+                                                            <constraint firstAttribute="height" constant="40" id="BUr-tF-xT1"/>
+                                                            <constraint firstItem="3xW-BD-0hS" firstAttribute="top" secondItem="O4z-58-DkD" secondAttribute="top" id="Jp7-Kg-zPT"/>
+                                                            <constraint firstItem="hyi-7L-guJ" firstAttribute="centerX" secondItem="O4z-58-DkD" secondAttribute="centerX" id="VVc-0a-hbe"/>
+                                                            <constraint firstItem="3xW-BD-0hS" firstAttribute="leading" secondItem="O4z-58-DkD" secondAttribute="leading" id="bgt-3A-4M7"/>
+                                                            <constraint firstAttribute="trailing" secondItem="3xW-BD-0hS" secondAttribute="trailing" id="hHA-kE-38h"/>
+                                                            <constraint firstItem="3xW-BD-0hS" firstAttribute="centerX" secondItem="O4z-58-DkD" secondAttribute="centerX" id="yNW-o2-b3e"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="XRM-kg-RAx" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="top" id="05p-tR-08B"/>
                                                     <constraint firstItem="XRM-kg-RAx" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" id="2nu-Tk-PUe"/>
                                                     <constraint firstAttribute="trailing" secondItem="aNP-Ib-LaU" secondAttribute="trailing" id="DMQ-bj-FgG"/>
+                                                    <constraint firstItem="aNP-Ib-LaU" firstAttribute="top" secondItem="3xW-BD-0hS" secondAttribute="top" constant="2" id="GRe-EA-2Gq"/>
+                                                    <constraint firstItem="O4z-58-DkD" firstAttribute="top" secondItem="qvQ-IX-8Bm" secondAttribute="bottom" constant="30" id="Vdu-H8-9j5"/>
                                                     <constraint firstAttribute="trailing" secondItem="qvQ-IX-8Bm" secondAttribute="trailing" id="Xbv-dN-lQA"/>
-                                                    <constraint firstItem="qvQ-IX-8Bm" firstAttribute="leading" secondItem="XRM-kg-RAx" secondAttribute="trailing" constant="2" id="bRA-NU-iNJ"/>
+                                                    <constraint firstItem="qvQ-IX-8Bm" firstAttribute="leading" secondItem="XRM-kg-RAx" secondAttribute="trailing" constant="8" id="bRA-NU-iNJ"/>
                                                     <constraint firstItem="aNP-Ib-LaU" firstAttribute="leading" secondItem="qvQ-IX-8Bm" secondAttribute="leading" id="bi8-K2-jtn"/>
                                                     <constraint firstAttribute="bottom" secondItem="aNP-Ib-LaU" secondAttribute="bottom" id="ffu-DQ-5s6"/>
-                                                    <constraint firstItem="qvQ-IX-8Bm" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="top" id="nXk-iU-qfp"/>
-                                                    <constraint firstItem="aNP-Ib-LaU" firstAttribute="top" secondItem="qvQ-IX-8Bm" secondAttribute="bottom" constant="18" id="qjU-CU-nd1"/>
+                                                    <constraint firstItem="qvQ-IX-8Bm" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="top" constant="2" id="nXk-iU-qfp"/>
+                                                    <constraint firstItem="O4z-58-DkD" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" id="pOC-8G-cdQ"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -278,8 +317,11 @@
                     <connections>
                         <outlet property="acceptButton" destination="GDV-35-L2Q" id="DI6-CX-z4Y"/>
                         <outlet property="acceptSwitch" destination="ozt-E5-Lzg" id="ohi-0e-aDH"/>
+                        <outlet property="acceptTermsAndUseSwitch" destination="3xW-BD-0hS" id="hv4-Ta-EVW"/>
+                        <outlet property="acceptTermsAndUseView" destination="O4z-58-DkD" id="BEr-xN-hL3"/>
                         <outlet property="acceptTermsLabel" destination="aNP-Ib-LaU" id="Swl-OP-M3y"/>
                         <outlet property="acceptView" destination="XRM-kg-RAx" id="Bc4-iU-0Eh"/>
+                        <outlet property="checkBoxAcceptTermsAndUseImage" destination="hyi-7L-guJ" id="Qtd-4M-Cyx"/>
                         <outlet property="checkBoxImage" destination="jHq-8U-BtL" id="63v-Vg-llX"/>
                         <outlet property="paragraph1DescriptionLabel" destination="dm3-PE-YEM" id="YWM-kR-99m"/>
                         <outlet property="paragraph1TitleLabel" destination="Ns7-D4-wdm" id="mWt-2E-dkb"/>
@@ -303,7 +345,7 @@
         <image name="RightTopShade" width="283.5" height="206.5"/>
         <image name="buttonsPrimary" width="341" height="60"/>
         <namedColor name="bgColor">
-            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.91399997472763062" green="0.91399997472763062" blue="0.91399997472763062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

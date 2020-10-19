@@ -13,28 +13,31 @@ import UIKit
 
 class OnBoardingViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
-    
     @IBOutlet weak var paragraph1TitleLabel: UILabel!
     @IBOutlet weak var paragraph1DescriptionLabel: UILabel!
     @IBOutlet weak var paragraph2TitleLabel: UILabel!
     @IBOutlet weak var paragraph3TitleLabel: UILabel!
-
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var checkBoxImage: UIImageView!
-    
     @IBOutlet weak var acceptTermsLabel: UILabel!
     @IBOutlet weak var privacyLabel: UILabel!
 
     @IBOutlet weak var acceptView: UIView!
+    @IBOutlet weak var checkBoxImage: UIImageView!
     @IBOutlet weak var acceptSwitch: UISwitch!
-
+    
+    @IBOutlet weak var acceptTermsAndUseView: UIView!
+    @IBOutlet weak var acceptTermsAndUseSwitch: UISwitch!
+    @IBOutlet weak var checkBoxAcceptTermsAndUseImage: UIImageView!
+    
     @IBOutlet weak var acceptButton: UIButton!
-
+    
     var router: AppRouter?
     
-    private var termsAccepted: Bool = false
+    private var privacyAccepted: Bool = false
+    private var termsAndUseAccepted: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +47,11 @@ class OnBoardingViewController: UIViewController {
     }
     
     @IBAction func onSwithAcceptChange(_ sender: Any) {
-        termsToggle()
+        privacyToggle()
+    }
+    
+    @IBAction func onSwithAcceptTermsAndUseChange(_ sender: Any) {
+        termsAndUseToggle()
     }
 
     @IBAction func onOk(_ sender: Any) {
@@ -52,7 +59,11 @@ class OnBoardingViewController: UIViewController {
     }
     
     @objc func userDidTapAccept(tapGestureRecognizer: UITapGestureRecognizer) {
-        termsToggle()
+        privacyToggle()
+    }
+    
+    @objc func userDidTapAcceptTermsAndUse(tapGestureRecognizer: UITapGestureRecognizer) {
+        termsAndUseToggle()
     }
     
     @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -70,11 +81,18 @@ class OnBoardingViewController: UIViewController {
         acceptSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         acceptSwitch.isAccessibilityElement = false
         
+        acceptTermsAndUseSwitch.tintColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
+        acceptTermsAndUseSwitch.layer.cornerRadius = acceptTermsAndUseSwitch.frame.height / 2
+        acceptTermsAndUseSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
+        acceptTermsAndUseSwitch.isAccessibilityElement = false
+        
         if UIAccessibility.isVoiceOverRunning {
             paragraph1DescriptionLabel.text = paragraph1DescriptionLabel.text?.lowercased()
             acceptSwitch.isHidden = false
+            acceptTermsAndUseSwitch.isHidden = false
         } else {
             acceptSwitch.isHidden = true
+            acceptTermsAndUseSwitch.isHidden = true
         }
         
         titleLabel.isAccessibilityElement = true
@@ -118,16 +136,20 @@ class OnBoardingViewController: UIViewController {
         
         acceptButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
 
-        acceptButton.isEnabled = termsAccepted
+        acceptButton.isEnabled = privacyAccepted && termsAndUseAccepted
         scrollView.alwaysBounceVertical = false
         
         acceptTermsLabel.isUserInteractionEnabled = true
         privacyLabel.isUserInteractionEnabled = true
         acceptView.isUserInteractionEnabled = true
-
+        acceptTermsAndUseView.isUserInteractionEnabled = true
+        
         // Add Gesture
         acceptView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                         action: #selector(userDidTapAccept(tapGestureRecognizer:))))
+        
+        acceptTermsAndUseView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                        action: #selector(userDidTapAcceptTermsAndUse(tapGestureRecognizer:))))
 
         acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                               action: #selector(userDidTapTerms(tapGestureRecognizer:))))
@@ -136,15 +158,27 @@ class OnBoardingViewController: UIViewController {
                                           action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
     }
     
-    private func termsToggle() {
-        termsAccepted = !termsAccepted
+    private func privacyToggle() {
+        privacyAccepted = !privacyAccepted
         
-        if termsAccepted {
+        if privacyAccepted {
             checkBoxImage.image = UIImage(named: "CheckboxSelected")
         } else {
             checkBoxImage.image = UIImage(named: "CheckboxUnselected")
         }
         
-        acceptButton.isEnabled = termsAccepted
+        acceptButton.isEnabled = privacyAccepted && termsAndUseAccepted
+    }
+    
+    private func termsAndUseToggle() {
+        termsAndUseAccepted = !termsAndUseAccepted
+        
+        if termsAndUseAccepted {
+            checkBoxAcceptTermsAndUseImage.image = UIImage(named: "CheckboxSelected")
+        } else {
+            checkBoxAcceptTermsAndUseImage.image = UIImage(named: "CheckboxUnselected")
+        }
+        
+        acceptButton.isEnabled = privacyAccepted && termsAndUseAccepted
     }
 }
