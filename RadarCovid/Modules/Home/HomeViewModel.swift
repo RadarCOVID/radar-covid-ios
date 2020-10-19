@@ -103,5 +103,10 @@ class HomeViewModel {
             showBackToHealthyDialog.onNext(true)
         }
     }
+    
+    func heplerQAChangeHealthy() {
+        let expositionInf = ExpositionInfo(level: .exposed)
+        checkExpositionLevel(expositionInf)
+    }
 
 }

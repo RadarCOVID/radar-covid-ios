@@ -152,7 +152,7 @@
             </constraints>
             <connections>
                 <outlet property="acceptButton" destination="szH-xb-3qg" id="ZO8-nK-VXy"/>
-                <outlet property="cancelButton" destination="XYi-de-lcn" id="oF5-06-Ufk"/>
+                <outlet property="cancelButton" destination="8TS-L3-r8l" id="WJM-JL-O2S"/>
                 <outlet property="containerView" destination="C58-ev-rdO" id="yEN-BA-CHt"/>
                 <outlet property="languageTableView" destination="XFt-8u-EHi" id="OLh-Xl-oVn"/>
             </connections>
