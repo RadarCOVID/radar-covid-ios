@@ -22,7 +22,7 @@ class WelcomeViewModel: LanguageSelectionModelProtocol {
         self.localesUseCase = localesUseCase
     }
     
-    func getLenguages() -> Observable<[String: String?]> {
+    func getLenguages() -> Observable<[ItemLocale]> {
         return localesUseCase.getLocales()
     }
     
@@ -41,14 +41,19 @@ class WelcomeViewModel: LanguageSelectionModelProtocol {
                 .observeOn(MainScheduler.instance)
                 .subscribe(
                     onNext: { arrayCurrentLanguages in
-                        let strLanguage = arrayCurrentLanguages[self?.localesUseCase.getCurrent() ?? "", default: ""]
+                        
+                        let strLanguage = arrayCurrentLanguages
+                            .filter({ (itemLocale) -> Bool in
+                                itemLocale.id.contains(self?.localesUseCase.getCurrent() ?? "")
+                            }).first?.description
+                        
                         observer.onNext(strLanguage ?? "")
-                }, onError: { error in
-                    observer.onError(error)
-                }, onCompleted: {
-                }).disposed(by: self?.disposeBag ?? DisposeBag())
+                    }, onError: { error in
+                        observer.onError(error)
+                    }, onCompleted: {
+                    }).disposed(by: self?.disposeBag ?? DisposeBag())
             observer.onCompleted()
-
+            
             return Disposables.create {
             }
         }

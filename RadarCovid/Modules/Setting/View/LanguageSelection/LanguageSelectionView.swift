@@ -20,7 +20,7 @@ protocol LanguageSelectionProtocol {
 protocol LanguageSelectionModelProtocol {
     func getCurrenLenguage() -> String
     func setCurrentLocale(key: String)
-    func getLenguages() -> Observable<[String: String?]>
+    func getLenguages() -> Observable<[ItemLocale]>
 }
 
 class LanguageSelectionView: UIView {
@@ -133,16 +133,16 @@ class LanguageSelectionView: UIView {
             .bind(to: languageTableView.rx.items(cellIdentifier: "LanguageTableViewCell", cellType: LanguageTableViewCell.self)) {
             [weak self] row, element, cell in
 
-                cell.setupModel(title: element.value ?? "", key: element.key, totalItems: totalLanguages, indexItem: row)
+                cell.setupModel(title: element.description, key: element.id   , totalItems: totalLanguages, indexItem: row)
 
-                if (self?.currentLanguageSelected == element.key) {
+                if (self?.currentLanguageSelected == element.id) {
                     self?.languageTableView.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .none)
                 }
             }.disposed(by: disposeBag)
     }
 
-    func generateTransformation(val: [String: String?]) -> Observable<Int> {
-        return Observable.just(val.keys.count)
+    func generateTransformation(val: [ItemLocale]) -> Observable<Int> {
+        return Observable.just(val.count)
     }
     
     private func removePopUpView() {

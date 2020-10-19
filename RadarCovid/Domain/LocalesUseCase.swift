@@ -17,7 +17,7 @@ class LocalesUseCase {
     private let localizationRepository: LocalizationRepository
     private let masterDataApi: MasterDataAPI
 
-    private var locales: [String: String?]?
+    private var locales: [ItemLocale]?
 
     init(localizationRepository: LocalizationRepository,
          masterDataApi: MasterDataAPI) {
@@ -25,14 +25,13 @@ class LocalesUseCase {
         self.masterDataApi = masterDataApi
     }
 
-    public func loadLocales() -> Observable<[String: String?]> {
+    public func loadLocales() -> Observable<[ItemLocale]> {
         let currentLocale = localizationRepository.getLocale()
         return masterDataApi.getLocales(locale: currentLocale, platform: Config.platform, version: Config.version).map { [weak self] masterLocales in
-            var locales: [String: String?] = [:]
+            var locales: [ItemLocale] = []
+            
             masterLocales.forEach { loc in
-                if let localId = loc.id {
-                    locales[localId] = loc.description
-                }
+                locales.append(ItemLocale.mappertToKeyValueDto(keyValueDto: loc))
             }
             print(locales)
             self?.locales = locales
@@ -41,7 +40,7 @@ class LocalesUseCase {
         }
     }
 
-    public func getLocales() -> Observable<[String: String?]> {
+    public func getLocales() -> Observable<[ItemLocale]> {
         .deferred { [weak self] in
             if let locales = self?.locales {
                 return .just(locales)
