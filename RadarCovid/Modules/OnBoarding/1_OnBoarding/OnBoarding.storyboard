@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="put-jW-Lmz">
-                                <rect key="frame" x="0.0" y="44" width="414" height="742"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZX-eB-vJ1" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="572"/>
@@ -305,7 +305,7 @@
                         <viewLayoutGuide key="safeArea" id="C15-Ne-DdG"/>
                         <color key="backgroundColor" name="bgColor"/>
                         <constraints>
-                            <constraint firstItem="put-jW-Lmz" firstAttribute="top" secondItem="C15-Ne-DdG" secondAttribute="top" id="1RG-C1-I0Q"/>
+                            <constraint firstItem="put-jW-Lmz" firstAttribute="top" secondItem="BoD-dh-Smx" secondAttribute="top" id="1RG-C1-I0Q"/>
                             <constraint firstItem="C15-Ne-DdG" firstAttribute="trailing" secondItem="GDV-35-L2Q" secondAttribute="trailing" constant="16" id="74T-qD-TzM"/>
                             <constraint firstItem="put-jW-Lmz" firstAttribute="bottom" secondItem="GDV-35-L2Q" secondAttribute="top" constant="-10" id="CdO-gK-KWx"/>
                             <constraint firstItem="C15-Ne-DdG" firstAttribute="trailing" secondItem="put-jW-Lmz" secondAttribute="trailing" id="XS3-Vr-BDa"/>

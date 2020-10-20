@@ -20,11 +20,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="25T-xu-TQp">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="156"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zj9-AF-moz">
-                                <rect key="frame" x="16" y="64" width="23" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zj9-AF-moz">
+                                <rect key="frame" x="16" y="64" width="200" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="6Js-5z-6Y1"/>
-                                    <constraint firstAttribute="width" constant="23" id="Cdp-sY-S5g"/>
+                                    <constraint firstAttribute="width" constant="200" id="Cdp-sY-S5g"/>
                                 </constraints>
                                 <state key="normal" image="iconsBack"/>
                                 <connections>
@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K6B-gd-OVh">
-                                <rect key="frame" x="0.0" y="94" width="414" height="1372"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="1406"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAw-1x-9wh">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1115"/>
@@ -328,12 +328,12 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mw1-24-BfA"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="Mw1-24-BfA" firstAttribute="top" secondItem="25T-xu-TQp" secondAttribute="top" constant="44" id="J2V-aD-L4d"/>
                             <constraint firstItem="zj9-AF-moz" firstAttribute="leading" secondItem="Mw1-24-BfA" secondAttribute="leading" constant="16" id="KMM-Ld-n1O"/>
                             <constraint firstItem="zj9-AF-moz" firstAttribute="top" secondItem="Mw1-24-BfA" secondAttribute="top" constant="20" id="Kd7-fs-uRc"/>
-                            <constraint firstItem="K6B-gd-OVh" firstAttribute="bottom" secondItem="Mw1-24-BfA" secondAttribute="bottom" id="LFt-Z4-wqS"/>
+                            <constraint firstItem="K6B-gd-OVh" firstAttribute="bottom" secondItem="N0J-IB-7e2" secondAttribute="bottom" id="LFt-Z4-wqS"/>
                             <constraint firstItem="25T-xu-TQp" firstAttribute="leading" secondItem="Mw1-24-BfA" secondAttribute="leading" id="Pb8-8d-hTo"/>
                             <constraint firstItem="K6B-gd-OVh" firstAttribute="leading" secondItem="Mw1-24-BfA" secondAttribute="leading" id="jUT-Mz-SYR"/>
                             <constraint firstItem="Mw1-24-BfA" firstAttribute="trailing" secondItem="25T-xu-TQp" secondAttribute="trailing" id="jVZ-Jw-B2f"/>
@@ -363,6 +363,9 @@
         <image name="iconsBack" width="25.666666030883789" height="17"/>
         <image name="mask_face" width="42" height="42"/>
         <image name="organicColor" width="375" height="155.33332824707031"/>
+        <namedColor name="bgColor">
+            <color red="0.91399997472763062" green="0.91399997472763062" blue="0.91399997472763062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="darkPeach">
             <color red="0.87800002098083496" green="0.42399999499320984" blue="0.34099999070167542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

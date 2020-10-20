@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQn-NY-03I">
-                                <rect key="frame" x="0.0" y="96" width="414" height="1120"/>
+                                <rect key="frame" x="0.0" y="96" width="414" height="1154"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mz4-S1-tfj">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1244"/>
@@ -412,7 +412,7 @@
                             <constraint firstItem="SQn-NY-03I" firstAttribute="leading" secondItem="YZg-9j-EKM" secondAttribute="leading" id="ULJ-WH-1kW"/>
                             <constraint firstItem="YZg-9j-EKM" firstAttribute="trailing" secondItem="1MX-SC-z1N" secondAttribute="trailing" constant="20" id="Us2-Lo-t2v"/>
                             <constraint firstItem="SQn-NY-03I" firstAttribute="trailing" secondItem="YZg-9j-EKM" secondAttribute="trailing" id="aGw-A8-phQ"/>
-                            <constraint firstItem="YZg-9j-EKM" firstAttribute="bottom" secondItem="SQn-NY-03I" secondAttribute="bottom" id="glo-D6-d1V"/>
+                            <constraint firstAttribute="bottom" secondItem="SQn-NY-03I" secondAttribute="bottom" id="glo-D6-d1V"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="1250"/>

@@ -311,7 +311,7 @@
                                     <constraint firstAttribute="trailing" secondItem="SjK-xg-WJh" secondAttribute="trailing" id="1iu-hu-mBh"/>
                                     <constraint firstItem="SjK-xg-WJh" firstAttribute="centerX" secondItem="eXl-SL-typ" secondAttribute="centerX" id="Fgu-8q-E3f"/>
                                     <constraint firstItem="SjK-xg-WJh" firstAttribute="top" secondItem="eXl-SL-typ" secondAttribute="top" id="SI6-Tk-jVP"/>
-                                    <constraint firstAttribute="bottom" secondItem="SjK-xg-WJh" secondAttribute="bottom" constant="-28" id="m3P-8F-Og4"/>
+                                    <constraint firstAttribute="bottom" secondItem="SjK-xg-WJh" secondAttribute="bottom" id="m3P-8F-Og4"/>
                                     <constraint firstItem="SjK-xg-WJh" firstAttribute="width" secondItem="eXl-SL-typ" secondAttribute="width" id="swU-WG-des"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="OrA-O3-jG3"/>
@@ -319,7 +319,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="O64-h6-M5h"/>
-                        <color key="backgroundColor" red="0.9804140925" green="0.97666078810000001" blue="0.96814030409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="O64-h6-M5h" firstAttribute="trailing" secondItem="AOX-5N-3Fl" secondAttribute="trailing" constant="20" id="2JF-gL-W8y"/>
                             <constraint firstAttribute="bottomMargin" secondItem="eXl-SL-typ" secondAttribute="bottom" id="CNA-Xy-oBy"/>
@@ -356,7 +356,7 @@
         <image name="iconsBack" width="25.5" height="17"/>
         <image name="mask_face" width="42" height="42"/>
         <namedColor name="bgColor">
-            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.91399997472763062" green="0.91399997472763062" blue="0.91399997472763062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="darkPeach">
             <color red="0.87800002098083496" green="0.42399999499320984" blue="0.34099999070167542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

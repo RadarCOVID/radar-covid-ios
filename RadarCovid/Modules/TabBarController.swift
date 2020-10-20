@@ -73,12 +73,6 @@ class TabBarController: UITabBarController {
         helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
         helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
         
-        helpLineViewController.tabBarItem.isAccessibilityElement = true
-        helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
-        helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-        
-        
         settingViewController.tabBarItem.isAccessibilityElement = true
         settingViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         settingViewController.tabBarItem.accessibilityLabel = "ACC_SETTINGS_TITLE".localized
@@ -96,7 +90,7 @@ class TabBarController: UITabBarController {
         apareance.backgroundImage = UIImage.init(named: "tabBarBG")
         tabBar.clipsToBounds = true
         tabBar.standardAppearance = apareance
-        tabBar.unselectedItemTintColor = UIColor.red;
+        tabBar.unselectedItemTintColor = UIColor.black;
         tabBar.tintColor = UIColor.twilight
        
         homeViewController.tabBarItem = UITabBarItem(
@@ -113,7 +107,7 @@ class TabBarController: UITabBarController {
             selectedImage: UIImage(named: "MenuHelpSelected"))
         settingViewController.tabBarItem = UITabBarItem(
             title: "",
-            image: UIImage(named: "MenuSettingNormal"),
+            image: UIImage(named: "MenuSettingNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuSettingSelected"))
     }
 }
