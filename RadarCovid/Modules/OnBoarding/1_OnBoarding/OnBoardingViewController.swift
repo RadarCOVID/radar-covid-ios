@@ -128,6 +128,10 @@ class OnBoardingViewController: UIViewController {
         acceptSwitch.isAccessibilityElement = true
         acceptSwitch.accessibilityTraits = UISwitch().accessibilityTraits
         acceptSwitch.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
+        
+        acceptTermsAndUseSwitch.isAccessibilityElement = true
+        acceptTermsAndUseSwitch.accessibilityTraits = UISwitch().accessibilityTraits
+        acceptTermsAndUseSwitch.accessibilityLabel = "ACC_CHECKBOX_USAGE_CONDITIONS".localized
 
         acceptButton.isAccessibilityElement = true
     }

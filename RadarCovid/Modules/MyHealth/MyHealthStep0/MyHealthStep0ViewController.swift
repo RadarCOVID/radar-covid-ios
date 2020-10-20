@@ -27,6 +27,7 @@ class MyHealthStep0ViewController: BaseViewController {
     
     private func setupView() {
         startButton.setTitle("MY_HEALTH_STEP0_START".localized, for: .normal)
+        self.title = "MY_HEALTH_TITLE_PAGE".localized
     }
     
     private func setupAccessibility() {

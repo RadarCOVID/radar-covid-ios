@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyHealthStep2ViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="MiS-le-CP9" id="lOr-JS-YOJ"/>
                 <outlet property="cancelButton" destination="e8K-CW-bJJ" id="B6f-II-qOJ"/>
                 <outlet property="checkShareEuropeImage" destination="LjL-Pn-lp4" id="DGI-61-fe7"/>
                 <outlet property="checkShareSpainImage" destination="bMl-9b-M5I" id="alX-BK-zyS"/>

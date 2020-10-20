@@ -49,11 +49,16 @@ class MyHealthStep1ViewController: BaseViewController {
         // Open textField
         if UIAccessibility.isVoiceOverRunning {
             self.codeTextField.becomeFirstResponder()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                UIAccessibility.post(notification: .screenChanged, argument: self.codeTextField)
+            }
         }
     }
     
     private func setupView() {
         setEnableButton(isEnable: false)
+        
+        self.title = "MY_HEALTH_TITLE_STEP1".localized
         
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.twilight.cgColor

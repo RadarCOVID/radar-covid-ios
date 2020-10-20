@@ -218,15 +218,16 @@ class HomeViewController: UIViewController {
             let bundleVersion = (Bundle.main.infoDictionary?["CFBundleVersion"] ?? "") as! String
             envLabel.text = "\(Config.environment) - V_\(Config.version)_\(bundleVersion)"
             
+            self.envLabel.isUserInteractionEnabled = true
+            self.envLabel.isAccessibilityElement = true
             let tapGestureHeplerQAChangeHealthy = UITapGestureRecognizer(target: self, action: #selector(self.heplerQAChangeHealthy))
-            tapGestureHeplerQAChangeHealthy.numberOfTapsRequired = 2
-            tapGestureHeplerQAChangeHealthy.numberOfTouchesRequired = 2
-            self.view.addGestureRecognizer(tapGestureHeplerQAChangeHealthy)
+            self.envLabel.addGestureRecognizer(tapGestureHeplerQAChangeHealthy)
             
+            
+            self.defaultImage.isUserInteractionEnabled = true
+            self.defaultImage.isAccessibilityElement = true
             let tapGestureHeplerQAShowAlert = UITapGestureRecognizer(target: self, action: #selector(self.heplerQAShowAlert))
-            tapGestureHeplerQAShowAlert.numberOfTapsRequired = 3
-            tapGestureHeplerQAShowAlert.numberOfTouchesRequired = 3
-            self.view.addGestureRecognizer(tapGestureHeplerQAShowAlert)
+            self.defaultImage.addGestureRecognizer(tapGestureHeplerQAShowAlert)
         }
 
         viewModel!.checkInitialExposition()

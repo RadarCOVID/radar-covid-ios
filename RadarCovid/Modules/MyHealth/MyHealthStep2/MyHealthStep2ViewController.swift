@@ -12,7 +12,7 @@
 import UIKit
 import RxSwift
 
-class MyHealthStep2ViewController: UIViewController {
+class MyHealthStep2ViewController: BaseViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var customSliderView: CustomSliderView!
@@ -50,6 +50,7 @@ class MyHealthStep2ViewController: UIViewController {
     }
     
     private func setupView() {
+        self.title = "MY_HEALTH_TITLE_STEP2".localized
         
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.twilight.cgColor
