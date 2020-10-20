@@ -14,6 +14,10 @@ import RxSwift
 import DP3TSDK
 import SafariServices
 
+protocol TimeExposedProtocol {
+    func hiddenTimeExposedView()
+}
+
 class TimeExposedView: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -26,9 +30,10 @@ class TimeExposedView: UIView {
     @IBOutlet weak var acceptButton: UIButton!
     
     var parentViewController: UIViewController?
+    var delegate: TimeExposedProtocol?
     var viewModel: HomeViewModel?
 
-    class func initWithParentViewController(viewController: HomeViewController) {
+    class func initWithParentViewController(viewController: HomeViewController, delegate: TimeExposedProtocol) {
         
         guard let timeExposedView = UINib(nibName: "TimeExposed", bundle: nil)
             .instantiate(withOwner: nil, options: nil)[0] as? TimeExposedView else {
@@ -36,6 +41,7 @@ class TimeExposedView: UIView {
         }
         
         timeExposedView.parentViewController = viewController
+        timeExposedView.delegate = delegate
         timeExposedView.viewModel = viewController.viewModel
         timeExposedView.initValues()
         
@@ -45,18 +51,22 @@ class TimeExposedView: UIView {
                               height: viewController.view.frame.height * 85 / 100)
         timeExposedView.frame = newFrame
         timeExposedView.center = viewController.view.center
+        
         viewController.view.addSubview(timeExposedView)
     }
 
     @IBAction func onCloseAction(_ sender: Any) {
+        self.delegate?.hiddenTimeExposedView()
         removePopUpView()
     }
     
     @IBAction func onAcceptButton(_ sender: Any) {
+        self.delegate?.hiddenTimeExposedView()
         removePopUpView()
     }
     
     @objc func userDidTapClose(tapGestureRecognizer: UITapGestureRecognizer) {
+        self.delegate?.hiddenTimeExposedView()
         removePopUpView()
     }
 

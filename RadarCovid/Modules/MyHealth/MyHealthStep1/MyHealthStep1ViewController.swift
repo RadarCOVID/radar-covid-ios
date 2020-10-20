@@ -45,14 +45,6 @@ class MyHealthStep1ViewController: BaseViewController {
 
         setupView()
         setupAccessibility()
-        
-        // Open textField
-        if UIAccessibility.isVoiceOverRunning {
-            self.codeTextField.becomeFirstResponder()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                UIAccessibility.post(notification: .screenChanged, argument: self.codeTextField)
-            }
-        }
     }
     
     private func setupView() {
@@ -79,6 +71,7 @@ class MyHealthStep1ViewController: BaseViewController {
        
         codeTextField.delegate = self
         codeTextField.layer.borderColor = UIColor.twilight.cgColor
+        codeTextField.accessibilityLabel = "MY_HEALTH_TITLE_STEP1".localized
 
         dayView.layer.borderColor = UIColor.twilight.cgColor
         monthView.layer.borderColor = UIColor.twilight.cgColor
