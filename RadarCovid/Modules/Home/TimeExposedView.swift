@@ -28,6 +28,7 @@ class TimeExposedView: UIView {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var parentViewController: UIViewController?
     var delegate: TimeExposedProtocol?
@@ -44,6 +45,7 @@ class TimeExposedView: UIView {
         timeExposedView.delegate = delegate
         timeExposedView.viewModel = viewController.viewModel
         timeExposedView.initValues()
+        
         
         let newFrame = CGRect(x: viewController.view.frame.origin.x,
                               y: viewController.view.frame.origin.y,
@@ -102,13 +104,17 @@ class TimeExposedView: UIView {
     }
     
     private func setupAccessibility() {
-        closeButton.isAccessibilityElement = true
         closeButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
         closeButton.accessibilityHint = "ACC_HINT".localized
-
-        acceptButton.isAccessibilityElement = true
+        closeButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        
         acceptButton.accessibilityLabel = "ACC_BUTTON_ACCEPT".localized
         acceptButton.accessibilityHint = "ACC_HINT".localized
+        acceptButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        
+        cancelButton.accessibilityLabel = "ALERT_CANCEL_BUTTON".localized
+        cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+        cancelButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
         bullet1Label.isAccessibilityElement = true
         bullet1Label.accessibilityTraits.insert(UIAccessibilityTraits.link)
@@ -133,6 +139,8 @@ class TimeExposedView: UIView {
         bullet1Label.isUserInteractionEnabled = true
         bullet2Label.isUserInteractionEnabled = true
         moreInfoLabel.isUserInteractionEnabled = true
+        
+        cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
         
         bullet1Label.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                      action: #selector(userDidTapPrecauciones(tapGestureRecognizer:))))

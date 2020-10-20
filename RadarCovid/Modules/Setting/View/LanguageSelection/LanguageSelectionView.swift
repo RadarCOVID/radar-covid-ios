@@ -40,7 +40,7 @@ class LanguageSelectionView: UIView {
     class func initWithParentViewController(viewController: UIViewController, viewModel: LanguageSelectionModelProtocol, delegateOutput: LanguageSelectionProtocol) {
         
         guard let languageSelectionView = UINib(nibName: "LanguageSelectionView", bundle: nil)
-            .instantiate(withOwner: nil, options: nil)[0] as? LanguageSelectionView else {
+                .instantiate(withOwner: nil, options: nil)[0] as? LanguageSelectionView else {
             return
         }
         
@@ -63,30 +63,35 @@ class LanguageSelectionView: UIView {
         
         languageSelectionView.delegateOutput = delegateOutput
     }
-
+    
     @IBAction func onCancelAction(_ sender: Any) {
         removePopUpView()
     }
     
     @IBAction func onAcceptButton(_ sender: Any) {
+        
         if let languageKeySelected = self.currentLanguageSelected,
            languageKeySelected != viewModel?.getCurrenLenguage() {
             
-            parentViewController?.showAlertOk(title: "LOCALE_CHANGE_LANGUAGE".localized,
-                                              message: "LOCALE_CHANGE_WARNING".localized,
-                                              buttonTitle: "ALERT_OK_BUTTON".localized,
-                                              buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized) { [weak self] _ in
-                
-                self?.viewModel?.setCurrentLocale(key: languageKeySelected)
-                self?.delegateOutput?.userChangeLanguage()
-            }
+            parentViewController?.showAlertCancelContinue(title: "LOCALE_CHANGE_LANGUAGE".localized,
+                                                          message: "LOCALE_CHANGE_WARNING".localized,
+                                                          buttonOkTitle: "ALERT_OK_BUTTON".localized,
+                                                          buttonCancelTitle: "ALERT_CANCEL_BUTTON".localized,
+                                                          buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localized,
+                                                          buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localized,
+                                                          okHandler: { [weak self]_ in
+                                                            self?.viewModel?.setCurrentLocale(key: languageKeySelected)
+                                                            self?.delegateOutput?.userChangeLanguage()
+                                                          }, cancelHandler: { _ in
+                                                            //Nothing to do here
+                                                          })
         } else {
             removePopUpView()
         }
     }
     
     private func setupAccessibility() {
-
+        
         acceptButton.isAccessibilityElement = true
         acceptButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
         acceptButton.accessibilityHint = "ACC_BUTTON_ALERT_ACCEPT".localized
@@ -100,7 +105,9 @@ class LanguageSelectionView: UIView {
         
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 8
-
+        
+        cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
+        
         self.cancelButton.setTitle("ALERT_CANCEL_BUTTON".localized, for: .normal)
         
         currentLanguageSelected = self.viewModel?.getCurrenLenguage()
@@ -122,25 +129,25 @@ class LanguageSelectionView: UIView {
         
         //Logic to selected item
         languageTableView.rx.itemSelected
-          .subscribe(onNext: { [weak self] indexPath in
-            let cell = self?.languageTableView.cellForRow(at: indexPath) as? LanguageTableViewCell
-            self?.currentLanguageSelected = cell?.keyModel
-          }).disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] indexPath in
+                let cell = self?.languageTableView.cellForRow(at: indexPath) as? LanguageTableViewCell
+                self?.currentLanguageSelected = cell?.keyModel
+            }).disposed(by: disposeBag)
     }
     
     func setDataSourceCell(totalLanguages: Int) {
         self.viewModel?.getLenguages()
             .bind(to: languageTableView.rx.items(cellIdentifier: "LanguageTableViewCell", cellType: LanguageTableViewCell.self)) {
-            [weak self] row, element, cell in
-
+                [weak self] row, element, cell in
+                
                 cell.setupModel(title: element.description, key: element.id   , totalItems: totalLanguages, indexItem: row)
-
+                
                 if (self?.currentLanguageSelected == element.id) {
                     self?.languageTableView.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .none)
                 }
             }.disposed(by: disposeBag)
     }
-
+    
     func generateTransformation(val: [ItemLocale]) -> Observable<Int> {
         return Observable.just(val.count)
     }

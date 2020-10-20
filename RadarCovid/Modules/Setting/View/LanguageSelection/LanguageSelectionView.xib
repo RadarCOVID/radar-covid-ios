@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,11 +28,11 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XFt-8u-EHi">
-                            <rect key="frame" x="0.0" y="78.5" width="414" height="587.5"/>
+                            <rect key="frame" x="0.0" y="78.5" width="414" height="603.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szH-xb-3qg" userLabel="Accept Button">
-                            <rect key="frame" x="16" y="686" width="382" height="60"/>
+                            <rect key="frame" x="16" y="702" width="382" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="o9T-UK-NlX"/>
                             </constraints>
@@ -54,60 +53,6 @@
                                 <action selector="onAcceptButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="AgH-vb-wl2"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bhk-1J-zqw">
-                            <rect key="frame" x="10" y="766" width="394" height="62"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Qo-V5-tc2">
-                                    <rect key="frame" x="1" y="1" width="392" height="60"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TS-L3-r8l">
-                                            <rect key="frame" x="0.0" y="0.0" width="392" height="60"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="Qtu-UD-xWW"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                            <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="Cancelar">
-                                                <color key="titleColor" systemColor="darkTextColor"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="6"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="onCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="j4X-iu-xW9"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="8TS-L3-r8l" secondAttribute="trailing" id="2mj-Xn-zJ7"/>
-                                        <constraint firstItem="8TS-L3-r8l" firstAttribute="top" secondItem="6Qo-V5-tc2" secondAttribute="top" id="8cg-fo-5He"/>
-                                        <constraint firstItem="8TS-L3-r8l" firstAttribute="leading" secondItem="6Qo-V5-tc2" secondAttribute="leading" id="aD9-Nk-hIL"/>
-                                        <constraint firstAttribute="bottom" secondItem="8TS-L3-r8l" secondAttribute="bottom" id="z5m-yh-Ref"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="6"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" name="deepLilac"/>
-                            <constraints>
-                                <constraint firstItem="6Qo-V5-tc2" firstAttribute="leading" secondItem="Bhk-1J-zqw" secondAttribute="leading" constant="1" id="12a-64-s9f"/>
-                                <constraint firstAttribute="bottom" secondItem="6Qo-V5-tc2" secondAttribute="bottom" constant="1" id="Fk3-sc-3mc"/>
-                                <constraint firstItem="6Qo-V5-tc2" firstAttribute="top" secondItem="Bhk-1J-zqw" secondAttribute="top" constant="1" id="cJg-Qy-dnm"/>
-                                <constraint firstAttribute="trailing" secondItem="6Qo-V5-tc2" secondAttribute="trailing" constant="1" id="mdl-Xx-mFN"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="6"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYi-de-lcn">
                             <rect key="frame" x="359" y="10" width="50" height="36"/>
                             <constraints>
@@ -121,24 +66,47 @@
                                 <action selector="onCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mSU-Fy-UVI"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TS-L3-r8l">
+                            <rect key="frame" x="16" y="782" width="382" height="60"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="Qtu-UD-xWW"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Cancelar">
+                                <color key="titleColor" systemColor="darkTextColor"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="j4X-iu-xW9"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="bNS-yD-V3i" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="20" id="4KX-AT-tTa"/>
                         <constraint firstItem="szH-xb-3qg" firstAttribute="top" secondItem="XFt-8u-EHi" secondAttribute="bottom" constant="20" id="5dX-Ig-gsF"/>
-                        <constraint firstItem="Bhk-1J-zqw" firstAttribute="top" secondItem="szH-xb-3qg" secondAttribute="bottom" constant="20" id="7rS-TC-tjT"/>
                         <constraint firstItem="XFt-8u-EHi" firstAttribute="top" secondItem="bNS-yD-V3i" secondAttribute="bottom" constant="20" id="9vB-L3-JWh"/>
                         <constraint firstAttribute="trailing" secondItem="XFt-8u-EHi" secondAttribute="trailing" id="BLu-bM-Fdw"/>
+                        <constraint firstItem="8TS-L3-r8l" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="16" id="EYr-f0-emx"/>
+                        <constraint firstAttribute="bottom" secondItem="8TS-L3-r8l" secondAttribute="bottom" constant="20" id="F4S-yW-f5b"/>
                         <constraint firstItem="XYi-de-lcn" firstAttribute="leading" secondItem="bNS-yD-V3i" secondAttribute="trailing" id="FCP-o2-6dP"/>
-                        <constraint firstAttribute="bottom" secondItem="Bhk-1J-zqw" secondAttribute="bottom" constant="34" id="Pl9-NN-og3"/>
                         <constraint firstItem="XYi-de-lcn" firstAttribute="top" secondItem="C58-ev-rdO" secondAttribute="top" constant="10" id="SSJ-s8-YfT"/>
                         <constraint firstItem="szH-xb-3qg" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="16" id="Upl-6J-Rxs"/>
                         <constraint firstItem="bNS-yD-V3i" firstAttribute="top" secondItem="C58-ev-rdO" secondAttribute="top" constant="37" id="Xcz-QL-E33"/>
-                        <constraint firstAttribute="trailing" secondItem="Bhk-1J-zqw" secondAttribute="trailing" constant="10" id="XfB-Vx-gQe"/>
                         <constraint firstAttribute="trailing" secondItem="szH-xb-3qg" secondAttribute="trailing" constant="16" id="dQx-Mv-EaC"/>
-                        <constraint firstItem="Bhk-1J-zqw" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="10" id="kTB-ca-eGY"/>
+                        <constraint firstItem="8TS-L3-r8l" firstAttribute="top" secondItem="szH-xb-3qg" secondAttribute="bottom" constant="20" id="mgq-lf-WcT"/>
                         <constraint firstAttribute="trailing" secondItem="XYi-de-lcn" secondAttribute="trailing" constant="5" id="sLe-8n-Hp3"/>
                         <constraint firstItem="XFt-8u-EHi" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" id="tM2-ko-aVV"/>
+                        <constraint firstAttribute="trailing" secondItem="8TS-L3-r8l" secondAttribute="trailing" constant="16" id="xdC-mb-0XN"/>
                     </constraints>
                 </view>
             </subviews>
@@ -162,9 +130,6 @@
     <resources>
         <image name="ButtonPrimaryDisabled" width="343" height="56"/>
         <image name="buttonsPrimary" width="341" height="60"/>
-        <namedColor name="deepLilac">
-            <color red="0.54100000858306885" green="0.48600000143051147" blue="0.71799999475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -19,7 +19,9 @@ extension UIView {
          _ message: String? = nil,
          _ attributedMessage: NSAttributedString? = nil,
          _ textColor: UIColor? = nil,
-         _ completion: (() -> Void)? = nil ) {
+         _ completion: (() -> Void)? = nil,
+         tagTransparentView: Int = 1111,
+         tagMenssagetView: Int = 1122) {
         let transparentView = Bundle.main.loadNibNamed(
             "TransparentView",
             owner: self,
@@ -29,7 +31,7 @@ extension UIView {
         transparentView?.frame = self.frame
         transparentView!.backgroundColor = color
         transparentView!.alpha = 0
-        transparentView!.tag = 1111
+        transparentView!.tag = tagTransparentView
         if let messageView = transparentView?.messageView {
             if let regularText = message {
                 messageView.text = regularText
@@ -40,7 +42,7 @@ extension UIView {
             messageView.font = UIFont(name: "Helvetica Neue", size: 26)
             messageView.numberOfLines = 0
             messageView.minimumScaleFactor = 0.1
-            messageView.tag = 1122
+            messageView.tag = tagMenssagetView
             messageView.textAlignment = .center
         }
         DispatchQueue.main.async { [weak self] in
@@ -53,10 +55,11 @@ extension UIView {
         }
     }
 
-    func removeTransparentBackGround() {
+    func removeTransparentBackGround(tagTransparentView: Int = 1111,
+                                     tagMenssagetView: Int = 1122) {
         DispatchQueue.main.async { [weak self] in
             for view in self?.subviews ?? [] {
-                if view.tag == 1111 || view.tag == 1122 {
+                if view.tag == tagTransparentView || view.tag == tagMenssagetView {
                     view.fadeOut { (_) in
                         view.removeFromSuperview()
                     }

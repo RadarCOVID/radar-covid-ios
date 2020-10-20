@@ -57,6 +57,7 @@ class WelcomeViewController: UIViewController {
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityLabel = "ACC_BUTTON_CONTINUE".localized
         continueButton.accessibilityHint = "ACC_HINT".localized
+        continueButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
 
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityLabel = "ACC_WELCOME_TITLE".localized

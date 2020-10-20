@@ -42,7 +42,7 @@ extension UIViewController: AlertController {
         let uiAlert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let action = UIAlertAction(title: buttonTitle, style: .default) { (alert) in
-            self.view.removeTransparentBackGround()
+            self.view.removeTransparentBackGround(tagTransparentView: 998, tagMenssagetView: 999)
             callback?(alert)
         }
         uiAlert.addAction(action)
@@ -50,7 +50,7 @@ extension UIViewController: AlertController {
         uiAlert.view.tintColor = UIColor.white
         buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
 
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
+        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, tagTransparentView: 998, tagMenssagetView: 999)
         self.present(uiAlert, animated: true, completion: nil)
     }
 
@@ -59,7 +59,7 @@ extension UIViewController: AlertController {
         let uiAlert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let action = UIAlertAction(title: buttonTitle, style: .default) { (alert) in
-            self.view.removeTransparentBackGround()
+            self.view.removeTransparentBackGround(tagTransparentView: 998, tagMenssagetView: 999)
             callback?(alert)
         }
         action.isAccessibilityElement = true
@@ -69,7 +69,7 @@ extension UIViewController: AlertController {
         uiAlert.view.tintColor = UIColor.white
         buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
 
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
+        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, tagTransparentView: 998, tagMenssagetView: 999)
         self.present(uiAlert, animated: true, completion: nil)
     }
 
@@ -87,7 +87,7 @@ extension UIViewController: AlertController {
         let uiAlert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let action = UIAlertAction(title: buttonOkTitle, style: .default) { (action) in
-            self.view.removeTransparentBackGround()
+            self.view.removeTransparentBackGround(tagTransparentView: 998, tagMenssagetView: 999)
             okHandler?(action)
         }
         action.isAccessibilityElement = true
@@ -95,7 +95,7 @@ extension UIViewController: AlertController {
         uiAlert.addAction(action)
 
         let actionCancel = UIAlertAction(title: buttonCancelTitle, style: .default) { (action) in
-            self.view.removeTransparentBackGround()
+            self.view.removeTransparentBackGround(tagTransparentView: 998, tagMenssagetView: 999)
             cancelHandler?(action)
         }
         actionCancel.isAccessibilityElement = true
@@ -104,8 +104,8 @@ extension UIViewController: AlertController {
         let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
         uiAlert.view.tintColor = UIColor.white
         buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
-
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
+        
+        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, tagTransparentView: 998, tagMenssagetView: 999)
         self.present(uiAlert, animated: true, completion: nil)
 
     }

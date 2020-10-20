@@ -31,8 +31,8 @@ class MyHealthStep0ViewController: BaseViewController {
     }
     
     private func setupAccessibility() {
-        startButton.isAccessibilityElement = true
-        startButton.accessibilityLabel = "MY_HEALTH_STEP0_ALERT_START".localized
+        startButton.accessibilityHint = "MY_HEALTH_STEP0_ALERT_START".localized
+        startButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)

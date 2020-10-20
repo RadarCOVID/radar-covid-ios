@@ -134,6 +134,7 @@ class OnBoardingViewController: UIViewController {
         acceptTermsAndUseSwitch.accessibilityLabel = "ACC_CHECKBOX_USAGE_CONDITIONS".localized
 
         acceptButton.isAccessibilityElement = true
+        acceptButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
     
     private func setupView() {

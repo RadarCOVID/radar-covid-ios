@@ -43,8 +43,8 @@ class ActivatePushNotificationViewController: UIViewController {
     private func setupAccessibility() {
         
         allowButton.setTitle("ACTIVATE_PUSH_NOTIFICATION_ALLOW_BUTTON".localized, for: .normal)
-        allowButton.isAccessibilityElement = true
         allowButton.accessibilityHint = "ACC_HINT".localized
+        allowButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
 
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)

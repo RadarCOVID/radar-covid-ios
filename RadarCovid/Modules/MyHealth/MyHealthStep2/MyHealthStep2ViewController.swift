@@ -82,6 +82,14 @@ class MyHealthStep2ViewController: BaseViewController {
         shareEuropeRadioView.isAccessibilityElement = true
         shareEuropeRadioView.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
         shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        
+        sendButton.isAccessibilityElement = true
+        sendButton.accessibilityHint = "ACC_BUTTON_ALERT_ACCEPT".localized
+        sendButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        
+        cancelButton.isAccessibilityElement = true
+        cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+        cancelButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
 
     private func navigateIf(reported: Bool) {

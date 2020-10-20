@@ -836,8 +836,8 @@
 		A91D8E232539947500EB23D4 /* 2_Proximity */ = {
 			isa = PBXGroup;
 			children = (
-				A91D8E242539947500EB23D4 /* ProximityViewController.xib */,
 				A91D8E252539947500EB23D4 /* ProximityViewController.swift */,
+				A91D8E242539947500EB23D4 /* ProximityViewController.xib */,
 			);
 			path = 2_Proximity;
 			sourceTree = "<group>";
@@ -845,8 +845,8 @@
 		A91D8E262539947500EB23D4 /* 1_OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
-				A91D8E272539947500EB23D4 /* OnBoarding.storyboard */,
 				A91D8E282539947500EB23D4 /* OnBoardingViewController.swift */,
+				A91D8E272539947500EB23D4 /* OnBoarding.storyboard */,
 			);
 			path = 1_OnBoarding;
 			sourceTree = "<group>";
