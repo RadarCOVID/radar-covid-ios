@@ -119,7 +119,6 @@
 		7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */; };
 		7603469E24F42DF70038CFC7 /* radarcovid.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */; };
 		76290D862524D3D20010CACD /* FakeRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76290D852524D3D20010CACD /* FakeRequestUseCase.swift */; };
-		7629516625387FDE0078CC5E /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 7629516525387FDE0078CC5E /* DP3TSDK */; };
 		763489FB24B637ED00B31C59 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763489FA24B637ED00B31C59 /* UIImage+Extension.swift */; };
 		763489FD24B7530500B31C59 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763489FC24B7530500B31C59 /* UIFont+Extension.swift */; };
 		763489FF24B75A6900B31C59 /* TransparentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763489FE24B75A6900B31C59 /* TransparentView.xib */; };
@@ -129,6 +128,7 @@
 		76357AC7253FAA31004C9AE5 /* TermsUpdated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76357AC5253FAA31004C9AE5 /* TermsUpdated.swift */; };
 		76357AD0253FC27F004C9AE5 /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76357ACF253FC27F004C9AE5 /* CustomSwitch.swift */; };
 		76357AD4253FC297004C9AE5 /* CustomSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76357AD3253FC297004C9AE5 /* CustomSwitch.xib */; };
+		76357ADD2540447B004C9AE5 /* DP3TSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 76357ADC2540447B004C9AE5 /* DP3TSDK */; };
 		764C6D1324B7E5BB002FA594 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 764C6D1224B7E5BB002FA594 /* RxSwift */; };
 		766B026724D282C9006FBD29 /* BaseExposedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B026624D282C9006FBD29 /* BaseExposedViewController.swift */; };
 		766B31BC252510F600D4B461 /* FakeRequestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B31BB252510F600D4B461 /* FakeRequestRepository.swift */; };
@@ -374,7 +374,7 @@
 			files = (
 				6D5AFCE8249369FE00EFE838 /* Alamofire in Frameworks */,
 				764C6D1324B7E5BB002FA594 /* RxSwift in Frameworks */,
-				7629516625387FDE0078CC5E /* DP3TSDK in Frameworks */,
+				76357ADD2540447B004C9AE5 /* DP3TSDK in Frameworks */,
 				A9A7D11C2524B03A009091A5 /* RxCocoa in Frameworks */,
 				6DF6ECA8248E7453007EAA40 /* Swinject in Frameworks */,
 			);
@@ -1011,7 +1011,7 @@
 				6D5AFCE7249369FE00EFE838 /* Alamofire */,
 				764C6D1224B7E5BB002FA594 /* RxSwift */,
 				A9A7D11B2524B03A009091A5 /* RxCocoa */,
-				7629516525387FDE0078CC5E /* DP3TSDK */,
+				76357ADC2540447B004C9AE5 /* DP3TSDK */,
 			);
 			productName = "Covid Pilot";
 			productReference = 39443286248939F000FF0217 /* Radar COVID.app */;
@@ -1075,7 +1075,7 @@
 				6DF6ECA6248E7453007EAA40 /* XCRemoteSwiftPackageReference "Swinject" */,
 				6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				7629516425387FDE0078CC5E /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
+				76357ADB2540447B004C9AE5 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
 			);
 			productRefGroup = 39443287248939F000FF0217 /* Products */;
 			projectDirPath = "";
@@ -1992,12 +1992,12 @@
 				version = 2.7.1;
 			};
 		};
-		7629516425387FDE0078CC5E /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
+		76357ADB2540447B004C9AE5 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://bitbucket.org/movilidadTecnocom/dp3t-sdk-ios";
+			repositoryURL = "https://github.com/DP-3T/dp3t-sdk-ios.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = exactVersion;
+				version = 1.3.0;
 			};
 		};
 		764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
@@ -2026,9 +2026,9 @@
 			package = 6DF6ECA6248E7453007EAA40 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
 		};
-		7629516525387FDE0078CC5E /* DP3TSDK */ = {
+		76357ADC2540447B004C9AE5 /* DP3TSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7629516425387FDE0078CC5E /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
+			package = 76357ADB2540447B004C9AE5 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */;
 			productName = DP3TSDK;
 		};
 		764C6D1224B7E5BB002FA594 /* RxSwift */ = {

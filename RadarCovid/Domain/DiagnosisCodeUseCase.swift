@@ -33,23 +33,22 @@ class DiagnosisCodeUseCase {
 
     func sendDiagnosisCode(code: String, date: Date? = nil, share: Bool = false) -> Observable<Bool> {
         self.isfake = FakeRequestUseCase.FALSE_POSITIVE_CODE == code
-        return verificationApi.verifyCode(body: Code( date: date, code: code ) )
+        return verificationApi.verifyCode(body: Code( date: date, code: code ), share: share )
             .catchError { [weak self] error in throw self?.mapError(error) ?? error }
             .flatMap { [weak self] tokenResponse -> Observable<Bool> in
                 guard let jwtOnset = try self?.parseToken(tokenResponse.token).claims.onset,
                       let onset = self?.dateFormatter.date(from: jwtOnset) else {
                     throw DiagnosisError.unknownError("Onset parameter not found in token")
                 }
-                return self?.iWasExposed(onset: onset, token: tokenResponse.token, share: share) ?? .empty()
+                return self?.iWasExposed(onset: onset, token: tokenResponse.token) ?? .empty()
             }
     }
 
-    private func iWasExposed(onset: Date, token: String, share: Bool = false) -> Observable<Bool> {
+    private func iWasExposed(onset: Date, token: String) -> Observable<Bool> {
         .create { [weak self] observer in
             DP3TTracing.iWasExposed(onset: onset,
                                     authentication: .HTTPAuthorizationBearer(token: token),
-                                    isFakeRequest: self?.isfake ?? false,
-                                    share: share) {  result in
+                                    isFakeRequest: self?.isfake ?? false) {  result in
                 switch result {
                 case let .failure(error):
                         observer.onError(self?.mapError(error) ?? error)
