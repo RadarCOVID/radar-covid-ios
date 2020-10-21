@@ -212,7 +212,8 @@ class HomeViewController: UIViewController {
     
     private func setupView() {
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
-
+        communicationButton.titleLabel?.textAlignment = .center
+        
         radarView.image = UIImage(named: "WhiteCard")
 
         radarSwitch.tintColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
