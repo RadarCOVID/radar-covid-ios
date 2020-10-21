@@ -129,7 +129,7 @@ class TimeExposedView: UIView {
         
         moreInfoLabel.isAccessibilityElement = true
         moreInfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
-        moreInfoLabel.accessibilityLabel = "ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO".localizedAttributed().string
+        moreInfoLabel.accessibilityLabel = "ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         moreInfoLabel.accessibilityHint = "ACC_HINT".localized
     }
     
