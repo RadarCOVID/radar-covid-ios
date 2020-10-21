@@ -71,6 +71,10 @@ class Injection {
             UserDefaultsPreferencesRepository()
         }.inObjectScope(.container)
         
+        container.register(TermsAcceptedRepository.self) { _ in
+            TermsAcceptedRepository()
+        }.inObjectScope(.container)
+        
         container.register(SettingsRepository.self) { _ in
             UserDefaultsSettingsRepository()
         }.inObjectScope(.container)
@@ -226,6 +230,7 @@ class Injection {
             homeVC?.router = r.resolve(AppRouter.self)!
             homeVC?.viewModel = r.resolve(HomeViewModel.self)!
             homeVC?.errorHandler = r.resolve(ErrorHandler.self)!
+            homeVC?.termsRepository = r.resolve(TermsAcceptedRepository.self)!
             return homeVC!
         }
         
@@ -300,6 +305,7 @@ class Injection {
                 storyboard: "OnBoarding",
                 viewId: "OnBoardingViewController") as? OnBoardingViewController
             onbVC?.router = route.resolve(AppRouter.self)!
+            onbVC?.termsRepository = route.resolve(TermsAcceptedRepository.self)!
             return onbVC!
         }
         

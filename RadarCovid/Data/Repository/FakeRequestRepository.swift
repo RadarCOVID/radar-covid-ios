@@ -23,7 +23,6 @@ enum ExponentialDistribution {
     }
 }
 
-import Foundation
 class FakeRequestRepository {
     
     private var userDefaults: UserDefaults

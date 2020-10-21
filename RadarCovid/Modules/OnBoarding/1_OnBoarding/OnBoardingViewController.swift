@@ -38,6 +38,7 @@ class OnBoardingViewController: UIViewController {
     
     private var privacyAccepted: Bool = false
     private var termsAndUseAccepted: Bool = false
+    var termsRepository: TermsAcceptedRepository!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,7 @@ class OnBoardingViewController: UIViewController {
     }
 
     @IBAction func onOk(_ sender: Any) {
+        termsRepository.termsAccepted = true
         router?.route(to: Routes.proximity, from: self)
     }
     

@@ -38,6 +38,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var notificationInactiveMessageLabel: UILabel!
     @IBOutlet weak var resetDataButton: UIButton!
     @IBOutlet weak var expositionDetailImage: UIImageView!
+    var termsRepository: TermsAcceptedRepository!
 
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
@@ -50,6 +51,7 @@ class HomeViewController: UIViewController {
     var errorHandler: ErrorHandler!
     var router: AppRouter?
     var viewModel: HomeViewModel?
+    
 
     private let disposeBag = DisposeBag()
     
@@ -60,6 +62,12 @@ class HomeViewController: UIViewController {
         setupBindings()
         setupUserInteraction()
         setupView()
+        if !termsRepository.termsAccepted {
+            self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+                TermsView.initWithParentViewController(viewController: self, delegate: self)
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -451,9 +459,10 @@ extension HomeViewController: AccTitleView {
     }
 }
 
-extension HomeViewController: TimeExposedProtocol {
+extension HomeViewController: TimeExposedProtocol, TermsUpdatedProtocol {
     
     func hiddenTimeExposedView() {
         dissableAccesibility(isDissable: false)
     }
 }
+
