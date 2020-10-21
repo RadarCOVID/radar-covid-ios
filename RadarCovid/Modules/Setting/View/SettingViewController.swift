@@ -47,6 +47,9 @@ class SettingViewController: UIViewController {
         viewModel?.getCurrenLenguageLocalizable()
             .bind(to: languageSelectorButton.rx.title())
             .disposed(by: disposeBag)
+            
+        let leftImageSelectorButton:CGFloat = ((self.languageSelectorButton.frame.size.width / 2) + 30) 
+        self.languageSelectorButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageSelectorButton , bottom: 0, right: 0)
     }
     
     private func showLanguageSelection() {
