@@ -211,6 +211,8 @@ class HomeViewController: UIViewController {
     }
     
     private func setupView() {
+        self.title = "ACC_HOME_TITLE".localized
+        
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
         communicationButton.titleLabel?.textAlignment = .center
         
@@ -447,15 +449,6 @@ class HomeViewController: UIViewController {
     
     @objc private func heplerQAShowAlert() {
         showTimeExposed()
-    }
-}
-
-extension HomeViewController: AccTitleView {
-
-    var accTitle: String? {
-        get {
-            "ACC_HOME_TITLE".localized
-        }
     }
 }
 
