@@ -48,14 +48,14 @@ class SettingViewController: UIViewController {
             .bind(to: languageSelectorButton.rx.title())
             .disposed(by: disposeBag)
             
-        let leftImageSelectorButton:CGFloat = ((self.languageSelectorButton.frame.size.width / 2) + 30) 
+        let leftImageSelectorButton:CGFloat = ((self.languageSelectorButton.frame.size.width / 2) + 30)
         self.languageSelectorButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageSelectorButton , bottom: 0, right: 0)
     }
     
     private func showLanguageSelection() {
         guard let viewModel = self.viewModel else { return }
         
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+        self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
             LanguageSelectionView.initWithParentViewController(viewController: self, viewModel: viewModel, delegateOutput: self)
         }
     }

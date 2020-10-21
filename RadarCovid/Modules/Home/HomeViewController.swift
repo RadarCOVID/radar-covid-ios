@@ -63,11 +63,10 @@ class HomeViewController: UIViewController {
         setupUserInteraction()
         setupView()
         if !termsRepository.termsAccepted {
-            self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+            self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
                 TermsView.initWithParentViewController(viewController: self, delegate: self)
             }
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -261,7 +260,7 @@ class HomeViewController: UIViewController {
     
     private func showTimeExposed() {
         dissableAccesibility(isDissable: true)
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+        self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
             TimeExposedView.initWithParentViewController(viewController: self, delegate: self)
         }
     }

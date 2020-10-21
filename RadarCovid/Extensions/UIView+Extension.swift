@@ -22,6 +22,7 @@ extension UIView {
          _ completion: (() -> Void)? = nil,
          tagTransparentView: Int = 1111,
          tagMenssagetView: Int = 1122) {
+        
         let transparentView = Bundle.main.loadNibNamed(
             "TransparentView",
             owner: self,
@@ -32,6 +33,7 @@ extension UIView {
         transparentView!.backgroundColor = color
         transparentView!.alpha = 0
         transparentView!.tag = tagTransparentView
+        
         if let messageView = transparentView?.messageView {
             if let regularText = message {
                 messageView.text = regularText
@@ -45,6 +47,7 @@ extension UIView {
             messageView.tag = tagMenssagetView
             messageView.textAlignment = .center
         }
+        
         DispatchQueue.main.async { [weak self] in
             self?.addSubview(transparentView!)
             transparentView?.fadeIn(alpha, { _ in

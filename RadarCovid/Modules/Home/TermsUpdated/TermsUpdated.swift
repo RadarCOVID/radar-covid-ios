@@ -58,7 +58,8 @@ class TermsView: UIView {
         termsUpdatedView.frame = newFrame
         termsUpdatedView.center = viewController.view.center
         
-        viewController.view.addSubview(termsUpdatedView)
+        viewController.navigationController?.topViewController?.view.addSubview(termsUpdatedView)
+        viewController.navigationController?.topViewController?.view.bringSubviewToFront(termsUpdatedView)
     }
 
     
@@ -120,7 +121,7 @@ class TermsView: UIView {
     }
     
     private func removePopUpView() {
-        for view in parentViewController?.view.subviews ?? [] where view.tag == 1111 {
+        for view in parentViewController?.navigationController?.topViewController?.view.subviews ?? [] where view.tag == 1111 {
             view.fadeOut { (_) in
                 view.removeFromSuperview()
             }
