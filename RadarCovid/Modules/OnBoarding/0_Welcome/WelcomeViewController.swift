@@ -15,7 +15,6 @@ import RxCocoa
 
 class WelcomeViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var languageSelectorButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -43,7 +42,6 @@ class WelcomeViewController: UIViewController {
     @IBAction func selectLanguage(_ sender: Any) {
         guard let viewModel = self.viewModel else { return }
         
-        dissableAccesibility(isDissable: true)
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
             LanguageSelectionView.initWithParentViewController(viewController: self, viewModel: viewModel, delegateOutput: self)
         }
@@ -77,19 +75,11 @@ class WelcomeViewController: UIViewController {
         
         setupAccessibility()
     }
-    
-    private func dissableAccesibility(isDissable: Bool) {
-        self.scrollView.accessibilityElementsHidden = isDissable
-    }
 }
 
 extension WelcomeViewController: LanguageSelectionProtocol {
     
     func userChangeLanguage() {
         self.router?.route(to: Routes.changeLanguage, from: self)
-    }
-    
-    func hiddenTimeExposedView() {
-        dissableAccesibility(isDissable: false)
     }
 }

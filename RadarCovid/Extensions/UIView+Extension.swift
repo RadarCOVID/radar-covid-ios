@@ -33,6 +33,7 @@ extension UIView {
         transparentView!.backgroundColor = color
         transparentView!.alpha = 0
         transparentView!.tag = tagTransparentView
+        transparentView!.isAccessibilityElement = true
         
         if let messageView = transparentView?.messageView {
             if let regularText = message {

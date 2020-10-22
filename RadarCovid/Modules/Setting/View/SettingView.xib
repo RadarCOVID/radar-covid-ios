@@ -12,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="languageSelectorButton" destination="YSQ-jc-eYO" id="iHS-7h-9OW"/>
-                <outlet property="scrollView" destination="hlz-jn-ck7" id="j2J-Wn-h5h"/>
                 <outlet property="titleLabel" destination="3iW-K5-1Nb" id="1GV-Ps-GfP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -277,7 +277,6 @@ Cuídate y cuida a los demás.</string>
                         <outlet property="radarTitleLabel" destination="p5A-O2-cnn" id="7yY-Oj-E1s"/>
                         <outlet property="radarView" destination="fuQ-dg-Nwm" id="bzd-Ez-hrg"/>
                         <outlet property="resetDataButton" destination="AKG-lv-3X4" id="amN-hh-hpR"/>
-                        <outlet property="scrollView" destination="JEu-F8-ZM1" id="gCh-gO-YsG"/>
                         <outlet property="titleLabel" destination="Umm-hj-wLw" id="Cxt-a2-IM3"/>
                         <outlet property="topActiveNotificationConstraint" destination="guG-Sw-JA8" id="X7b-4X-u0t"/>
                         <outlet property="topComunicationConstraint" destination="WKe-p7-llK" id="8tH-5c-G0r"/>

@@ -17,7 +17,6 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreInfoLabel: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topRadarTitle: NSLayoutConstraint!
     @IBOutlet weak var topActiveNotificationConstraint: NSLayoutConstraint!
     @IBOutlet weak var circleImage: UIImageView!
@@ -64,7 +63,7 @@ class HomeViewController: UIViewController {
         setupView()
         if !termsRepository.termsAccepted {
             self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
-                TermsView.initWithParentViewController(viewController: self, delegate: self)
+                TermsView.initWithParentViewController(viewController: self)
             }
         }
     }
@@ -262,9 +261,8 @@ class HomeViewController: UIViewController {
     }
     
     private func showTimeExposed() {
-        dissableAccesibility(isDissable: true)
         self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
-            TimeExposedView.initWithParentViewController(viewController: self, delegate: self)
+            TimeExposedView.initWithParentViewController(viewController: self)
         }
     }
 
@@ -435,11 +433,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func dissableAccesibility(isDissable: Bool) {
-        self.scrollView.accessibilityElementsHidden = isDissable
-        self.communicationButton.accessibilityElementsHidden = isDissable
-    }
-    
     @objc private func heplerQAChangeHealthy() {
         self.viewModel?.heplerQAChangeHealthy()
     }
@@ -448,11 +441,3 @@ class HomeViewController: UIViewController {
         showTimeExposed()
     }
 }
-
-extension HomeViewController: TimeExposedProtocol, TermsUpdatedProtocol {
-    
-    func hiddenTimeExposedView() {
-        dissableAccesibility(isDissable: false)
-    }
-}
-

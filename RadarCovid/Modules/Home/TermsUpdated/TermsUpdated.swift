@@ -14,12 +14,7 @@ import RxSwift
 import DP3TSDK
 import SafariServices
 
-protocol TermsUpdatedProtocol {
-    func hiddenTimeExposedView()
-}
-
 class TermsView: UIView {
-
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var acceptButton: UIButton!
@@ -29,7 +24,6 @@ class TermsView: UIView {
     @IBOutlet var switchers: [CustomSwitch]!
 
     var parentViewController: UIViewController?
-    var delegate: TermsUpdatedProtocol?
     var viewModel: HomeViewModel?
     var policyAccepted = false
     var termsAccepted = false
@@ -37,16 +31,14 @@ class TermsView: UIView {
         return policyAccepted && termsAccepted
     }
 
-    class func initWithParentViewController(viewController: HomeViewController, delegate: TermsUpdatedProtocol) {
+    class func initWithParentViewController(viewController: HomeViewController) {
         
         guard let termsUpdatedView = UINib(nibName: "TermsUpdated", bundle: nil)
             .instantiate(withOwner: nil, options: nil)[0] as? TermsView else {
             return
         }
         
-        
         termsUpdatedView.parentViewController = viewController
-        termsUpdatedView.delegate = delegate
         termsUpdatedView.viewModel = viewController.viewModel
         termsUpdatedView.initValues()
         
@@ -61,18 +53,14 @@ class TermsView: UIView {
         viewController.navigationController?.topViewController?.view.addSubview(termsUpdatedView)
         viewController.navigationController?.topViewController?.view.bringSubviewToFront(termsUpdatedView)
     }
-
     
     @IBAction func onAcceptButton(_ sender: Any) {
         if self.allTermsAccepted {
             let termsRepo = TermsAcceptedRepository()
             termsRepo.termsAccepted = true
-            self.delegate?.hiddenTimeExposedView()
             removePopUpView()
         }
-       
     }
-    
  
     @objc func onWebTap(urlString: String? = nil) {
         guard var urlString = urlString else {
@@ -147,5 +135,4 @@ extension TermsView: SwitchStateListener {
         }
         updateButtonStatus()
     }
-
 }
