@@ -210,7 +210,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupView() {
-        self.title = "ACC_HOME_TITLE".localized
+//        self.title = "ACC_HOME_TITLE".localized
         
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
         communicationButton.titleLabel?.textAlignment = .center
