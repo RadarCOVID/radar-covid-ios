@@ -213,9 +213,9 @@ class MyHealthStep1ViewController: BaseViewController {
     }
     
     func isDisabblePricipalAccesibility(isDisabble: Bool) {
-        self.scrollView.isAccessibilityElement = isDisabble
-        self.continueButton.isAccessibilityElement = isDisabble
-        self.cancelButton.isAccessibilityElement = isDisabble
+        self.scrollView.isAccessibilityElement = !isDisabble
+        self.continueButton.isAccessibilityElement = !isDisabble
+        self.cancelButton.isAccessibilityElement = !isDisabble
     }
 }
 
