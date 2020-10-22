@@ -145,8 +145,6 @@ class HighExpositionViewController: BaseExposed {
 
         phoneView.image = UIImage(named: "WhiteCard")
 
-        caSelectorButton.setTitle("LOCALE_SELECTION_REGION_DEFAULT".localized, for: .normal)
-        
         //Text Infect
         let date = self.since ?? Date()
         let formatter = DateFormatter()
@@ -158,6 +156,12 @@ class HighExpositionViewController: BaseExposed {
         }
         youCouldBeLabel.attributedText = "EXPOSITION_HIGH_DESCRIPTION"
             .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
+        
+        caSelectorButton.setTitle("LOCALE_SELECTION_REGION_DEFAULT".localized, for: .normal)
+        caSelectorButton.layer.cornerRadius = 8
+        caSelectorButton.layer.borderColor = UIColor.deepLilac.cgColor
+        let leftImageSelectorButton:CGFloat = ((self.caSelectorButton.frame.size.width / 2) + 10)
+        self.caSelectorButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageSelectorButton , bottom: 0, right: 0)
     }
     
     private func setCaSelector() {
