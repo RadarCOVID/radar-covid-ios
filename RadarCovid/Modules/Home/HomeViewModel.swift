@@ -51,6 +51,8 @@ class HomeViewModel {
             }, onError: { [weak self] error in
                 self?.error.onNext(error)
         }).disposed(by: disposeBag)
+        
+        
     }
 
     private func checkExpositionLevel(_ exposition: ExpositionInfo?) {
