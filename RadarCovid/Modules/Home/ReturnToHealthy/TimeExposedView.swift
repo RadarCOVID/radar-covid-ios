@@ -104,8 +104,8 @@ class TimeExposedView: UIView {
         acceptButton.accessibilityHint = "ACC_HINT".localized
         acceptButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
-        cancelButton.accessibilityLabel = "ALERT_CANCEL_BUTTON".localized
-        cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+        cancelButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
+        cancelButton.accessibilityHint = "ACC_HINT".localized
         cancelButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
         bullet1Label.isAccessibilityElement = true
@@ -125,6 +125,7 @@ class TimeExposedView: UIView {
     }
     
     private func initValues() {
+        cancelButton.setTitle("ACC_BUTTON_CLOSE".localized, for: .normal)
         
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 8
