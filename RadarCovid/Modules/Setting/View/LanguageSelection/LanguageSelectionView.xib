@@ -51,7 +51,6 @@
                                     <integer key="value" value="10"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="btn.clipsToBounds" value="YES"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ACC_BUTTON_ACCEPT"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="onAcceptButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="AgH-vb-wl2"/>

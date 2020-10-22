@@ -108,6 +108,7 @@ class LanguageSelectionView: UIView {
         
         cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
         
+        self.acceptButton.setTitle("ACC_BUTTON_ACCEPT".localized, for: .normal)
         self.cancelButton.setTitle("ALERT_CANCEL_BUTTON".localized, for: .normal)
         
         currentLanguageSelected = self.viewModel?.getCurrenLenguage()
