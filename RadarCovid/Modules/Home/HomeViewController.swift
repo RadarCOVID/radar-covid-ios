@@ -288,7 +288,6 @@ class HomeViewController: UIViewController {
             withParams: ["CONTACT_PHONE".localized]
         )
         expositionView.image = bgImageOrange
-        expositionTitleLabel.textColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
         moreInfoLabel.isHidden = true
@@ -298,7 +297,6 @@ class HomeViewController: UIViewController {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_LOW".localized
         expositionDescriptionLabel.locKey  = "HOME_EXPOSITION_MESSAGE_LOW"
         expositionView.image = bgImageGreen
-        expositionTitleLabel.textColor = #colorLiteral(red: 0.3449999988, green: 0.6899999976, blue: 0.4160000086, alpha: 1)
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
         moreInfoLabel.isHidden = true
@@ -308,7 +306,6 @@ class HomeViewController: UIViewController {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_POSITIVE".localized
         expositionDescriptionLabel.locKey = "HOME_EXPOSITION_MESSAGE_INFECTED"
         expositionView.image = bgImageRed
-        expositionTitleLabel.textColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         communicationButton.isHidden = true
         topComunicationConstraint.constant = -(communicationButton.frame.size.height + bottomComunicationConstraint.constant)
         moreInfoLabel.isHidden = false

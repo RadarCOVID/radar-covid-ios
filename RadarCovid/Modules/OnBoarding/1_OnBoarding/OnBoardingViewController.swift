@@ -134,9 +134,6 @@ class OnBoardingViewController: UIViewController {
         acceptTermsAndUseSwitch.isAccessibilityElement = true
         acceptTermsAndUseSwitch.accessibilityTraits = UISwitch().accessibilityTraits
         acceptTermsAndUseSwitch.accessibilityLabel = "ACC_CHECKBOX_USAGE_CONDITIONS".localized
-
-        acceptButton.isAccessibilityElement = true
-        acceptButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
     
     private func setupView() {
@@ -144,6 +141,7 @@ class OnBoardingViewController: UIViewController {
         acceptButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
 
         acceptButton.isEnabled = privacyAccepted && termsAndUseAccepted
+        
         scrollView.alwaysBounceVertical = false
         
         acceptTermsLabel.isUserInteractionEnabled = true
