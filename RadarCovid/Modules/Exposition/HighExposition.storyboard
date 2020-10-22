@@ -3,7 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -339,7 +339,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="08j-fd-CET"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                         <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="Selecciona tu Comunidad Autónoma" image="CollapsableClosed">
                                                             <color key="titleColor" systemColor="darkTextColor"/>
@@ -523,6 +523,7 @@
                                             <constraint firstItem="0BM-cl-NgN" firstAttribute="leading" secondItem="ze2-QG-Eo5" secondAttribute="trailing" constant="25" id="VD2-Ve-pfX"/>
                                             <constraint firstItem="bN3-KM-Seu" firstAttribute="trailing" secondItem="aoZ-sh-yH7" secondAttribute="trailing" id="XuP-so-tzM"/>
                                             <constraint firstItem="s71-Rb-kIG" firstAttribute="leading" secondItem="fGh-4f-UcC" secondAttribute="trailing" constant="25" id="Zj1-Af-K4e"/>
+                                            <constraint firstItem="0BM-cl-NgN" firstAttribute="centerY" secondItem="ze2-QG-Eo5" secondAttribute="centerY" id="Zl8-G3-KmK"/>
                                             <constraint firstItem="Pfq-Xx-yb0" firstAttribute="top" secondItem="ze2-QG-Eo5" secondAttribute="bottom" constant="25" id="apV-R9-0lI"/>
                                             <constraint firstItem="1o6-Wa-Wcf" firstAttribute="top" secondItem="OT5-IY-BGO" secondAttribute="bottom" constant="30" id="ayr-tA-Q0W"/>
                                             <constraint firstAttribute="trailing" secondItem="UBR-5L-ywI" secondAttribute="trailing" constant="20" id="bj2-z4-nNj"/>
@@ -551,7 +552,6 @@
                                             <constraint firstItem="aoZ-sh-yH7" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="rTd-kY-W8a"/>
                                             <constraint firstItem="UBR-5L-ywI" firstAttribute="top" secondItem="Pj8-2B-jti" secondAttribute="top" constant="8" id="sBY-kY-65u"/>
                                             <constraint firstItem="3EL-LN-Eu7" firstAttribute="top" secondItem="Nv7-0q-9Ah" secondAttribute="top" constant="74" id="tCQ-qQ-3SZ"/>
-                                            <constraint firstItem="KYl-bp-nbE" firstAttribute="top" secondItem="0BM-cl-NgN" secondAttribute="bottom" constant="42.666666666666629" id="vCT-Vb-jjo"/>
                                             <constraint firstItem="E8L-mt-ohG" firstAttribute="top" secondItem="B3A-a7-gSz" secondAttribute="bottom" constant="30" id="vEd-oy-ghK"/>
                                             <constraint firstAttribute="trailing" secondItem="ksB-JD-OWW" secondAttribute="trailing" constant="20" id="w1Y-UD-IOf"/>
                                             <constraint firstItem="1o6-Wa-Wcf" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="wrn-0I-tn4"/>
