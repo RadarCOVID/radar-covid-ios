@@ -299,6 +299,9 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.xxx.es" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="TPI-5h-zJC">
                                                                 <rect key="frame" x="50" y="42.666666666666629" width="288" height="21.666666666666671"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" link="YES"/>
+                                                                </accessibility>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                                 <color key="textColor" red="0.4392156862745098" green="0.31372549019607843" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
