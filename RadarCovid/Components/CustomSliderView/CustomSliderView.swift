@@ -28,13 +28,15 @@ class CustomSliderView: UIView, XibInstantiatable {
         instantiate()
     }
     
-    func configure(indexStep: Int, totalStep: Int) {
+    func configure(indexStep: Int, totalStep: Int, accesibilityHelper: String? = nil) {
 
         stepLabel.text = "MY_HEALTH_RANGER".localized
         stepLabel.text = stepLabel.text?.replacingOccurrences(of: "$1", with: "\(indexStep)")
         stepLabel.text = stepLabel.text?.replacingOccurrences(of: "$2", with: "\(totalStep)")
 
-        viewContainer.accessibilityLabel = stepLabel.text
+        if let strAccesibility = accesibilityHelper {
+            viewContainer.accessibilityLabel = strAccesibility
+        }
         
         //Config slider
         slider.maximumValue = 1

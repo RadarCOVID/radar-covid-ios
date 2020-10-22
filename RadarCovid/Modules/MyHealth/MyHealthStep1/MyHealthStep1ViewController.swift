@@ -94,7 +94,10 @@ class MyHealthStep1ViewController: BaseViewController {
         
         addDoneButtonOnKeyboard(textView: codeTextField)
         
-        customSliderView.configure(indexStep: 1, totalStep: 2)
+        var accesibilityHelperSlider = "MY_HEALTH_SCREEN_POSITION".localized
+        accesibilityHelperSlider = accesibilityHelperSlider.replacingOccurrences(of: "$1", with: "\(1)")
+        accesibilityHelperSlider = accesibilityHelperSlider.replacingOccurrences(of: "$2", with: "\(2)")
+        customSliderView.configure(indexStep: 1, totalStep: 2, accesibilityHelper: accesibilityHelperSlider)
     }
     
     private func setupAccessibility() {

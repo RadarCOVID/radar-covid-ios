@@ -66,7 +66,10 @@ class MyHealthStep2ViewController: BaseViewController {
         shareEuropeRadioView.isUserInteractionEnabled = true
         shareEuropeRadioView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onShareEurope)))
         
-        customSliderView.configure(indexStep: 2, totalStep: 2)
+        var accesibilityHelperSlider = "MY_HEALTH_SCREEN_POSITION".localized
+        accesibilityHelperSlider = accesibilityHelperSlider.replacingOccurrences(of: "$1", with: "\(2)")
+        accesibilityHelperSlider = accesibilityHelperSlider.replacingOccurrences(of: "$2", with: "\(2)")
+        customSliderView.configure(indexStep: 2, totalStep: 2, accesibilityHelper: accesibilityHelperSlider)
     }
     
     private func setupAccessibility() {
