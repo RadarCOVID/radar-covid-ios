@@ -117,6 +117,8 @@ class HighExpositionViewController: BaseExposed {
         
         covidWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         covidWebLabel.accessibilityHint = "ACC_HINT".localized
+        
+        caSelectorButton.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupView() {
