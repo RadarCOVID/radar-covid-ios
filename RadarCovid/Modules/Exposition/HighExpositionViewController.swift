@@ -102,6 +102,12 @@ class HighExpositionViewController: BaseExposed {
         howActLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         howActLabel.accessibilityLabel = "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         howActLabel.accessibilityHint = "ACC_HINT".localized
+        
+        phoneLabel.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        phoneLabel.accessibilityHint = "ACC_HINT".localized
+        
+        covidWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        covidWebLabel.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupView() {

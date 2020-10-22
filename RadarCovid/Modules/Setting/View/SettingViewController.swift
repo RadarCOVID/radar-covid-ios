@@ -15,6 +15,7 @@ import RxCocoa
 
 class SettingViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var languageSelectorButton: UIButton!
     
@@ -37,6 +38,7 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func onLanguageSelectionAction(_ sender: Any) {
+        dissableAccesibility(isDissable: true)
         showLanguageSelection()
     }
     
@@ -45,14 +47,21 @@ class SettingViewController: UIViewController {
         viewModel?.getCurrenLenguageLocalizable()
             .bind(to: languageSelectorButton.rx.title())
             .disposed(by: disposeBag)
+            
+        let leftImageSelectorButton:CGFloat = ((self.languageSelectorButton.frame.size.width / 2) + 30)
+        self.languageSelectorButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageSelectorButton , bottom: 0, right: 0)
     }
     
     private func showLanguageSelection() {
         guard let viewModel = self.viewModel else { return }
         
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+        self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
             LanguageSelectionView.initWithParentViewController(viewController: self, viewModel: viewModel, delegateOutput: self)
         }
+    }
+    
+    private func dissableAccesibility(isDissable: Bool) {
+        self.scrollView.accessibilityElementsHidden = isDissable
     }
 }
 
@@ -60,5 +69,9 @@ extension SettingViewController: LanguageSelectionProtocol {
     
     func userChangeLanguage() {
         self.router?.route(to: Routes.changeLanguage, from: self)
+    }
+    
+    func hiddenTimeExposedView() {
+        dissableAccesibility(isDissable: false)
     }
 }

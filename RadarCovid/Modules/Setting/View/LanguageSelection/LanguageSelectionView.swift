@@ -15,6 +15,7 @@ import RxCocoa
 
 protocol LanguageSelectionProtocol {
     func userChangeLanguage()
+    func hiddenTimeExposedView()
 }
 
 protocol LanguageSelectionModelProtocol {
@@ -50,8 +51,8 @@ class LanguageSelectionView: UIView {
                               height: viewController.view.frame.height * 85 / 100)
         languageSelectionView.frame = newFrame
         languageSelectionView.center = viewController.view.center
-        viewController.view.addSubview(languageSelectionView)
-        viewController.view.bringSubviewToFront(languageSelectionView)
+        viewController.navigationController?.topViewController?.view.addSubview(languageSelectionView)
+        viewController.navigationController?.topViewController?.view.bringSubviewToFront(languageSelectionView)
         
         //Resolved warning from tableView
         languageSelectionView.languageTableView.layoutIfNeeded()
@@ -153,7 +154,8 @@ class LanguageSelectionView: UIView {
     }
     
     private func removePopUpView() {
-        for view in parentViewController?.view.subviews ?? [] where view.tag == 1111 {
+        self.delegateOutput?.hiddenTimeExposedView()
+        for view in parentViewController?.navigationController?.topViewController?.view.subviews ?? [] where view.tag == 1111 {
             view.fadeOut { (_) in
                 view.removeFromSuperview()
             }

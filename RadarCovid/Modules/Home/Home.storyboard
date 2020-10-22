@@ -197,7 +197,7 @@ Cuídate y cuida a los demás.</string>
                                 <viewLayoutGuide key="contentLayoutGuide" id="UtQ-SN-Kis"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="8p4-5Z-9pe"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="mgD-SH-6Y2">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgD-SH-6Y2">
                                 <rect key="frame" x="16" y="792" width="382" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="UKC-Bh-shj"/>
@@ -211,6 +211,9 @@ Cuídate y cuida a los demás.</string>
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="HOME_BUTTON_SEND_POSITIVE"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="titleLabel.numberOfLines">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onCommunicate:" destination="boN-vE-v6h" eventType="primaryActionTriggered" id="V3n-sM-LVk"/>

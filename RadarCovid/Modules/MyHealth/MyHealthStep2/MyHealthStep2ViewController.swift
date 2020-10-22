@@ -84,7 +84,7 @@ class MyHealthStep2ViewController: BaseViewController {
         shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.button)
         
         sendButton.isAccessibilityElement = true
-        sendButton.accessibilityHint = "ACC_BUTTON_ALERT_ACCEPT".localized
+        sendButton.accessibilityHint = "ACC_HINT".localized
         sendButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
         cancelButton.isAccessibilityElement = true

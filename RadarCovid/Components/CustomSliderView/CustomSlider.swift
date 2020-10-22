@@ -23,16 +23,10 @@ class CustomSlider: UISlider {
     }
     
     override func draw(_ rect: CGRect) {
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return
-        }
-        
+
         if self.value == self.maximumValue {
-            self.value = (self.value - 1)
-            context.setFillColor(UIColor.twilight.cgColor)
-            let path = UIBezierPath(roundedRect: CGRect(origin: rect.origin, size: CGSize(width: rect.width, height: trackLineHeight)), cornerRadius: rect.size.height / 2).cgPath
-            context.addPath(path)
-            context.fillPath()
+            self.value = (self.value - 0.1)
+            self.maximumTrackTintColor = UIColor.degradado
         }
     }
 }

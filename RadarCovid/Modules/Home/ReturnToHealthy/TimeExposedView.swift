@@ -54,7 +54,8 @@ class TimeExposedView: UIView {
         timeExposedView.frame = newFrame
         timeExposedView.center = viewController.view.center
         
-        viewController.view.addSubview(timeExposedView)
+        viewController.navigationController?.topViewController?.view.addSubview(timeExposedView)
+        viewController.navigationController?.topViewController?.view.bringSubviewToFront(timeExposedView)
     }
 
     @IBAction func onCloseAction(_ sender: Any) {
@@ -128,7 +129,7 @@ class TimeExposedView: UIView {
         
         moreInfoLabel.isAccessibilityElement = true
         moreInfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
-        moreInfoLabel.accessibilityLabel = "ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO".localizedAttributed().string
+        moreInfoLabel.accessibilityLabel = "ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         moreInfoLabel.accessibilityHint = "ACC_HINT".localized
     }
     
@@ -152,7 +153,7 @@ class TimeExposedView: UIView {
     }
     
     private func removePopUpView() {
-        for view in parentViewController?.view.subviews ?? [] where view.tag == 1111 {
+        for view in parentViewController?.navigationController?.topViewController?.view.subviews ?? [] where view.tag == 1111 {
             view.fadeOut { (_) in
                 view.removeFromSuperview()
             }

@@ -63,11 +63,10 @@ class HomeViewController: UIViewController {
         setupUserInteraction()
         setupView()
         if !termsRepository.termsAccepted {
-            self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+            self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
                 TermsView.initWithParentViewController(viewController: self, delegate: self)
             }
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -212,8 +211,11 @@ class HomeViewController: UIViewController {
     }
     
     private func setupView() {
+        self.title = "ACC_HOME_TITLE".localized
+        
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
-
+        communicationButton.titleLabel?.textAlignment = .center
+        
         radarView.image = UIImage(named: "WhiteCard")
 
         radarSwitch.tintColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
@@ -261,7 +263,7 @@ class HomeViewController: UIViewController {
     
     private func showTimeExposed() {
         dissableAccesibility(isDissable: true)
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+        self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
             TimeExposedView.initWithParentViewController(viewController: self, delegate: self)
         }
     }
@@ -447,15 +449,6 @@ class HomeViewController: UIViewController {
     
     @objc private func heplerQAShowAlert() {
         showTimeExposed()
-    }
-}
-
-extension HomeViewController: AccTitleView {
-
-    var accTitle: String? {
-        get {
-            "ACC_HOME_TITLE".localized
-        }
     }
 }
 

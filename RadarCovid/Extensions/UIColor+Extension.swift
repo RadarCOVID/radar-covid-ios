@@ -50,6 +50,10 @@ extension UIColor {
         return UIColor(named: "white") ?? UIColor(red: 250.0 / 255.0, green: 249.0 / 255.0, blue: 247.0 / 255.0, alpha: 1.0)
     }
     
+    @nonobjc class var degradado: UIColor {
+        return UIColor(named: "degradado") ?? UIColor(red: 73.0 / 255.0, green: 59.0 / 255.0, blue: 167.0 / 255.0, alpha: 1.0)
+    }
+    
     @nonobjc class var blueyGrey90: UIColor {
         return UIColor(red: 129.0 / 255.0, green: 140.0 / 255.0, blue: 193.0 / 255.0, alpha: 0.9)
     }
