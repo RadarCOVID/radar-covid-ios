@@ -37,6 +37,14 @@ class HighExpositionViewController: BaseExposed {
     
     private var pickerPresenter: PickerPresenter?
     
+    private lazy var picker: UIPickerView = {
+        let picker = UIPickerView.init()
+        picker.delegate = self
+        picker.dataSource = self
+      
+        return picker
+    }()
+    
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
     
@@ -54,6 +62,7 @@ class HighExpositionViewController: BaseExposed {
     }
     
     @IBAction func caaSelectAction(_ sender: Any) {
+        UIAccessibility.post(notification: .layoutChanged, argument: self.picker)
         pickerPresenter!.openPicker()
     }
     
@@ -111,11 +120,7 @@ class HighExpositionViewController: BaseExposed {
     }
     
     private func setupView() {
-        
-        let picker = UIPickerView.init()
-        picker.delegate = self
-        picker.dataSource = self
-        
+
         pickerPresenter = PickerPresenter(picker: picker)
         pickerPresenter?.delegate = self
 
