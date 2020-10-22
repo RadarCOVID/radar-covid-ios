@@ -130,10 +130,12 @@ class OnBoardingViewController: UIViewController {
         acceptSwitch.isAccessibilityElement = true
         acceptSwitch.accessibilityTraits = UISwitch().accessibilityTraits
         acceptSwitch.accessibilityLabel = "ACC_CHECKBOX_PRIVACY".localized
+        acceptSwitch.accessibilityLabel = "ACC_HINT".localized
         
         acceptTermsAndUseSwitch.isAccessibilityElement = true
         acceptTermsAndUseSwitch.accessibilityTraits = UISwitch().accessibilityTraits
         acceptTermsAndUseSwitch.accessibilityLabel = "ACC_CHECKBOX_USAGE_CONDITIONS".localized
+        acceptTermsAndUseSwitch.accessibilityLabel = "ACC_HINT".localized
     }
     
     private func setupView() {
