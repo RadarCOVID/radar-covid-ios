@@ -121,7 +121,7 @@ class MyHealthStep1ViewController: BaseViewController {
         cancelButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
         dateView.isAccessibilityElement = true
-        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized
+        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
         dateView.accessibilityHint = "ACC_HINT".localized
     }
     
@@ -257,7 +257,7 @@ extension MyHealthStep1ViewController: PickerDelegate {
         monthLabel.text = "--"
         dayLabel.text = "--"
         
-        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized
+        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
         
         //Setup accessibility
         dayLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
