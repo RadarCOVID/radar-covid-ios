@@ -123,8 +123,6 @@ class MyHealthStep1ViewController: BaseViewController {
         dateView.isAccessibilityElement = true
         dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized
         dateView.accessibilityHint = "ACC_HINT".localized
-        
-        datePicker.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SHOW".localized
     }
     
     private func setEnableButton(isEnable: Bool) {
