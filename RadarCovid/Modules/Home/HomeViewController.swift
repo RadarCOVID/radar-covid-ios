@@ -50,7 +50,6 @@ class HomeViewController: UIViewController {
     var errorHandler: ErrorHandler!
     var router: AppRouter?
     var viewModel: HomeViewModel?
-    
 
     private let disposeBag = DisposeBag()
     
