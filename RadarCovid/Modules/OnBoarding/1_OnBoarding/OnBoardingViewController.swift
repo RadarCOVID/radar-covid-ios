@@ -136,6 +136,10 @@ class OnBoardingViewController: UIViewController {
         acceptTermsAndUseSwitch.accessibilityTraits = UISwitch().accessibilityTraits
         acceptTermsAndUseSwitch.accessibilityLabel = "ACC_CHECKBOX_USAGE_CONDITIONS".localized
         acceptTermsAndUseSwitch.accessibilityLabel = "ACC_HINT".localized
+        
+        acceptButton.isAccessibilityElement = true
+        acceptButton.accessibilityLabel = "ONBOARDING_CONTINUE_BUTTON".localized
+        acceptButton.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupView() {
