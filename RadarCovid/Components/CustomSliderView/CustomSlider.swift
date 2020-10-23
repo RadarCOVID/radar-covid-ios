@@ -27,6 +27,7 @@ class CustomSlider: UISlider {
         if self.value == self.maximumValue {
             self.value = (self.value - 0.1)
             self.maximumTrackTintColor = UIColor.degradado
+            self.minimumTrackTintColor = UIColor.degradado
         }
     }
 }
