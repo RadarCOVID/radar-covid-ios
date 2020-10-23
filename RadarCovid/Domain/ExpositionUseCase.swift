@@ -21,16 +21,13 @@ class ExpositionUseCase: DP3TTracingDelegate {
 
     private let subject: BehaviorSubject<ExpositionInfo>
     private let expositionInfoRepository: ExpositionInfoRepository
-    private let localizationUseCase: LocalizationUseCase
     private let notificationHandler: NotificationHandler
     
     init(notificationHandler: NotificationHandler,
-         expositionInfoRepository: ExpositionInfoRepository,
-         localizationUseCase: LocalizationUseCase) {
+         expositionInfoRepository: ExpositionInfoRepository) {
 
         self.notificationHandler = notificationHandler
         self.expositionInfoRepository = expositionInfoRepository
-        self.localizationUseCase = localizationUseCase
         
         self.subject = BehaviorSubject<ExpositionInfo>(
             value: expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: .healthy)
@@ -51,12 +48,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
                 expositionInfo.since = Date()
             }
             if showNotification(localEI, expositionInfo) {
-                
-                //Check if have localization sending notifications with key text
-                localizationUseCase.loadlocalization().subscribe(
-                    onNext: { [weak self] _ in
-                        self?.notificationHandler.scheduleNotification(expositionInfo: expositionInfo)
-                }).disposed(by: self.disposeBag)
+                notificationHandler.scheduleNotification(expositionInfo: expositionInfo)
             }
             if expositionInfo.error == nil {
                 expositionInfoRepository.save(expositionInfo: expositionInfo)

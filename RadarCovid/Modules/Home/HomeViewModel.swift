@@ -45,14 +45,14 @@ class HomeViewModel {
     }
 
     func checkInitialExposition() {
+        expositionUseCase?.updateExpositionInfo()
+        
         expositionUseCase?.getExpositionInfo().subscribe(
             onNext: { [weak self] exposition in
                 self?.checkExpositionLevel(exposition)
             }, onError: { [weak self] error in
                 self?.error.onNext(error)
         }).disposed(by: disposeBag)
-        
-        
     }
 
     private func checkExpositionLevel(_ exposition: ExpositionInfo?) {
