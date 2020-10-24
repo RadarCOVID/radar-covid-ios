@@ -55,6 +55,8 @@ class ExpositionUseCase: DP3TTracingDelegate {
             }
 
             subject.onNext(expositionInfo)
+        if expositionInfo.isOk() {
+            expositionInfoRepository.save(expositionInfo: expositionInfo)
         }
     }
 
