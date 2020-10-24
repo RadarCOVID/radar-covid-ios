@@ -13,8 +13,11 @@ import DP3TSDK
 import Foundation
 import ExposureNotification
 import RxSwift
+import Logging
 
 class ExpositionUseCase: DP3TTracingDelegate {
+    
+    private let logger = Logger(label: "ExpositionUseCase")
 
     private let disposeBag = DisposeBag()
     private let dateFormatter = DateFormatter()
@@ -40,32 +43,28 @@ class ExpositionUseCase: DP3TTracingDelegate {
     
     func DP3TTracingStateChanged(_ state: TracingState) {
         
-        if var expositionInfo = tracingStatusToExpositionInfo(tStatus: state) {
+        log(tracingState: state)
+        
+        var expositionInfo = tracingStatusToExpositionInfo(tStatus: state)
 
-            let localEI  = expositionInfoRepository.getExpositionInfo()
+        let localEI = expositionInfoRepository.getExpositionInfo()
 
-            if isNewInfected(localEI, expositionInfo) {
-                expositionInfo.since = Date()
-            }
-            if showNotification(localEI, expositionInfo) {
-                notificationHandler.scheduleNotification(expositionInfo: expositionInfo)
-            }
-            if expositionInfo.error == nil {
-                expositionInfoRepository.save(expositionInfo: expositionInfo)
-            }
-
-            subject.onNext(expositionInfo)
+        if isNewInfected(localEI, expositionInfo) {
+            expositionInfo.since = Date()
+        }
+        if showNotification(localEI, expositionInfo) {
+            notificationHandler.scheduleNotification(expositionInfo: expositionInfo)
+        }
         if expositionInfo.isOk() {
             expositionInfoRepository.save(expositionInfo: expositionInfo)
         }
+
+        subject.onNext(expositionInfo)
+        
     }
 
     func getExpositionInfo() -> Observable<ExpositionInfo> {
         subject.asObservable()
-    }
-
-    func getExpositionInfoFromRepository() -> ExpositionInfo! {
-        return expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: .healthy)
     }
 
     func updateExpositionInfo() {
@@ -73,9 +72,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
         DP3TTracing.status { result in
             switch result {
             case let .success(state):
-                if let eis = tracingStatusToExpositionInfo(tStatus: state) {
-                    subject.onNext(eis)
-                }
+                subject.onNext(tracingStatusToExpositionInfo(tStatus: state))
             case let .failure(error):
                 subject.onError(error)
             }
@@ -84,7 +81,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
     }
 
     // Metodo para mapear un TracingState a un ExpositionInfo
-    private func tracingStatusToExpositionInfo(tStatus: TracingState) -> ExpositionInfo? {
+    private func tracingStatusToExpositionInfo(tStatus: TracingState) -> ExpositionInfo {
 
         switch tStatus.trackingState {
         case .inactive(let error):
@@ -143,6 +140,17 @@ class ExpositionUseCase: DP3TTracingDelegate {
             return nil
         }
 
+    }
+    
+    private func log(tracingState: TracingState) {
+        logger.debug("New Tracing State --->")
+        logger.debug("Status: \(tracingState.infectionStatus)")
+        logger.debug("lastSync: \(String(describing: tracingState.lastSync))")
+        logger.debug("tracingState \(tracingState.trackingState)")
+        if case let .inactive(error) = tracingState.trackingState {
+            logger.debug("Error: \(error)")
+        }
+        logger.debug("<---")
     }
 
 }
