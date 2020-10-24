@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import Logging
 
 @UIApplicationMain
 
@@ -20,12 +21,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var injection: Injection = Injection()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        UIApplication.shared.setMinimumBackgroundFetchInterval(<#T##minimumBackgroundFetchInterval: TimeInterval##TimeInterval#>)
+
         if JailBreakDetect.isJailbroken() {
             exit(-1)
         }
+        
         if Config.debug {
-             NetworkActivityLogger.shared.startLogging()
+            NetworkActivityLogger.shared.startLogging()
+            
+            do {
+                let logFileURL = getDocumentsDirectory().appendingPathComponent("radarcovid.log")
+                let fileLogger = try FileLogging(to: logFileURL)
+                
+                LoggingSystem.bootstrap { label in
+                    var fileHandler = FileLogHandler(label: label, fileLogger: fileLogger)
+                    fileHandler.logLevel = .debug
+                    var stdHandler = StreamLogHandler.standardOutput(label: label)
+                    stdHandler.logLevel = .debug
+                    let handlers:[LogHandler] = [
+                        fileHandler,
+                        stdHandler
+                    ]
+                    return MultiplexLogHandler(handlers)
+                }
+                
+            } catch {
+                debugPrint("Error initializing log \(error)")
+            }
+            
+            let logger = Logger(label: "Foobar")
+            
+            logger.error("Test Test Test")
         }
 
         debugPrint("Current Environment: \(Config.environment)")
@@ -40,6 +66,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
 
         return true
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
 
     // MARK: UISceneSession Lifecycle
