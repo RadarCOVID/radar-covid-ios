@@ -103,12 +103,10 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                     body: "Last sync: \(sync), positive sent \(sent)",
                     sound: .default)
             }
-            completionHandler(sent)
+            completionHandler(true)
         } onError: { (error) in
-            completionHandler(false)
-        }
-        
-        
+            completionHandler(true)
+        }.disposed(by: disposeBag)
         
     }
 
