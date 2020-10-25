@@ -13,12 +13,15 @@ import Foundation
 import ExposureNotification
 import DP3TSDK
 import RxSwift
+import Logging
 
 class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
 
     private let dateFormatter = DateFormatter()
 
     private let disposeBag = DisposeBag()
+    
+    private let logger = Logger(label: "DP3TSDK")
 
     private let preferencesRepository: PreferencesRepository
     private let notificationHandler: NotificationHandler
@@ -42,6 +45,8 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     func initializeSDK() throws {
 
         let url = URL(string: Config.endpoints.dpppt)!
+        
+        DP3TTracing.loggingEnabled = true
 
         DP3TTracing.loggingDelegate = self
         DP3TTracing.activityDelegate = self
@@ -55,7 +60,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     }
 
     func log(_ string: String, type: OSLogType) {
-//        debugPrint(string)
+        logger.debug("\(string)")
     }
 
     func syncCompleted(totalRequest: Int, errors: [DP3TTracingError]) {

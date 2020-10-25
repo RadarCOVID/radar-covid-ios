@@ -48,10 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } catch {
                 debugPrint("Error initializing log \(error)")
             }
-            
-            let logger = Logger(label: "Foobar")
-            
-            logger.error("Test Test Test")
         }
 
         debugPrint("Current Environment: \(Config.environment)")
