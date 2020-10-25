@@ -108,11 +108,11 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                     body: "Last sync: \(sync), positive sent \(sent)",
                     sound: .default)
             }
-            completionHandler(true)
         } onError: { (error) in
-            completionHandler(true)
+            debugPrint("Error sending fake positive \(error) ")
         }.disposed(by: disposeBag)
         
+        completionHandler(true)
     }
 
     func didScheduleBackgrounTask() {
