@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var injection: Injection = Injection()
+    
+    private let logger = Logger(label: "AppDelegate")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -27,37 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if Config.debug {
-            NetworkActivityLogger.shared.startLogging()
-            
-            do {
-                let logFileURL = getDocumentsDirectory().appendingPathComponent("radarcovid.log")
-                let fileLogger = try FileLogging(to: logFileURL)
-                
-                LoggingSystem.bootstrap { label in
-                    var fileHandler = FileLogHandler(label: label, fileLogger: fileLogger)
-                    fileHandler.logLevel = .debug
-                    var stdHandler = StreamLogHandler.standardOutput(label: label)
-                    stdHandler.logLevel = .debug
-                    let handlers:[LogHandler] = [
-                        fileHandler,
-                        stdHandler
-                    ]
-                    return MultiplexLogHandler(handlers)
-                }
-                
-            } catch {
-                debugPrint("Error initializing log \(error)")
-            }
+            setupLog()
         }
 
-        debugPrint("Current Environment: \(Config.environment)")
+        logger.info("Current Environment: \(Config.environment)")
 
         let setupUseCase = injection.resolve(SetupUseCase.self)!
 
         do {
             try setupUseCase.initializeSDK()
         } catch {
-            debugPrint("Error initializing DP3T \(error)")
+            logger.error("Error initializing DP3T \(error)")
         }
         UIApplication.shared.applicationIconBadgeNumber = 0
 
@@ -88,6 +70,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-       
+    }
+    
+    private func setupLog() {
+        NetworkActivityLogger.shared.startLogging()
+        
+        do {
+            let logFileURL = getDocumentsDirectory().appendingPathComponent("radarcovid.log")
+            let fileLogger = try FileLogging(to: logFileURL)
+            
+            LoggingSystem.bootstrap { label in
+                var fileHandler = FileLogHandler(label: label, fileLogger: fileLogger)
+                fileHandler.logLevel = .debug
+                var stdHandler = StreamLogHandler.standardOutput(label: label)
+                stdHandler.logLevel = .debug
+                let handlers:[LogHandler] = [
+                    fileHandler,
+                    stdHandler
+                ]
+                return MultiplexLogHandler(handlers)
+            }
+            
+        } catch {
+            debugPrint("Error initializing log \(error)")
+        }
     }
 }

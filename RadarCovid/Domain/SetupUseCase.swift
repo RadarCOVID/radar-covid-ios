@@ -64,25 +64,25 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     }
 
     func syncCompleted(totalRequest: Int, errors: [DP3TTracingError]) {
-        debugPrint("DP3T Sync totalRequest \(totalRequest)")
+        logger.debug("DP3T Sync totalRequest \(totalRequest)")
         for error in errors {
-            debugPrint("DP3T Sync error \(error)")
+            logger.error("DP3T Sync error \(error)")
         }
         preferencesRepository.setLastSync(date: Date())
 
-        expositionCheckUseCase.checkBackToHealthy().subscribe(onError: { error in
-            debugPrint("Error up checking exposed to healthy state \(error)")
-        }, onCompleted: {
-            debugPrint("Expostion Check completed")
+        expositionCheckUseCase.checkBackToHealthy().subscribe(onError: { [weak self] error in
+            self?.logger.error("Error up checking exposed to healthy state \(error)")
+        }, onCompleted: { [weak self] in
+            self?.logger.error("Expostion Check completed")
         }).disposed(by: disposeBag)
     }
 
     func fakeRequestCompleted(result: Result<Int, DP3TNetworkingError>) {
-        debugPrint("DP3T Fake request completed...")
+        logger.debug("DP3T Fake request completed...")
     }
 
     func outstandingKeyUploadCompleted(result: Result<Int, DP3TNetworkingError>) {
-        debugPrint("DP3T OutstandingKeyUpload...")
+        logger.debug("DP3T OutstandingKeyUpload...")
     }
 
     func exposureSummaryLoaded(summary: ENExposureDetectionSummary) {
@@ -90,15 +90,16 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     }
 
     private func traceSummary(_ summary: ENExposureDetectionSummary ) {
-        debugPrint("ENExposureDetectionSummary received")
-        debugPrint("- daysSinceLastExposure: \(summary.daysSinceLastExposure)")
-        debugPrint("- matchedKeyCount: \(summary.matchedKeyCount)")
-        debugPrint("- maximumRiskScore: \(summary.maximumRiskScore)")
-        debugPrint("- riskScoreSumFullRange: \(String(describing: summary.metadata?["riskScoreSumFullRange"]))")
+        logger.debug("ENExposureDetectionSummary received")
+        logger.debug("- daysSinceLastExposure: \(summary.daysSinceLastExposure)")
+        logger.debug("- matchedKeyCount: \(summary.matchedKeyCount)")
+        logger.debug("- maximumRiskScore: \(summary.maximumRiskScore)")
+        logger.debug("- riskScoreSumFullRange: \(String(describing: summary.metadata?["riskScoreSumFullRange"]))")
     }
 
     func performBackgroundTasks(completionHandler: @escaping (Bool) -> Void) {
-        debugPrint("performBackgroundTasks")
+        
+        logger.debug("performBackgroundTasks")
 
         fakeRequestUseCase.sendFalsePositive().subscribe { [weak self] (sent) in
             if Config.debug {
@@ -108,8 +109,8 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                     body: "Last sync: \(sync), positive sent \(sent)",
                     sound: .default)
             }
-        } onError: { (error) in
-            debugPrint("Error sending fake positive \(error) ")
+        } onError: { [weak self] (error) in
+            self?.logger.debug("Error sending fake positive \(error) ")
         }.disposed(by: disposeBag)
         
         DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionCheckUseCase.self) as? DP3TTracingDelegate
