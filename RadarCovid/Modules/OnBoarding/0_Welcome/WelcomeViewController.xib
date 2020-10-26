@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="continueButton" destination="0ks-pf-IGN" id="NSG-Ea-ygE"/>
                 <outlet property="languageSelectorButton" destination="Bst-TA-Vrn" id="I9s-cS-dwi"/>
+                <outlet property="scrollView" destination="QAR-Iy-hQc" id="Ll4-a7-w2a"/>
                 <outlet property="stepbullet1Label" destination="yMv-ck-JYx" id="uuV-LX-QOV"/>
                 <outlet property="stepbullet2Label" destination="W2A-1t-Mhn" id="gzV-aT-pah"/>
                 <outlet property="stepbullet3Label" destination="OyH-o9-UvP" id="gyF-Lm-B7V"/>

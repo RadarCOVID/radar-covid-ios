@@ -14,8 +14,13 @@ import RxSwift
 import DP3TSDK
 import SafariServices
 
+protocol TermsViewProtocol {
+    func hiddenTermsdView()
+}
+
 class TermsView: UIView {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var acceptTermsLabel: UILabel!
@@ -30,8 +35,9 @@ class TermsView: UIView {
     var allTermsAccepted: Bool {
         return policyAccepted && termsAccepted
     }
+    var delegate: TimeExposedProtocol?
 
-    class func initWithParentViewController(viewController: HomeViewController) {
+    class func initWithParentViewController(viewController: HomeViewController, delegate: TimeExposedProtocol) {
         
         guard let termsUpdatedView = UINib(nibName: "TermsUpdated", bundle: nil)
             .instantiate(withOwner: nil, options: nil)[0] as? TermsView else {
@@ -39,6 +45,7 @@ class TermsView: UIView {
         }
         
         termsUpdatedView.parentViewController = viewController
+        termsUpdatedView.delegate = delegate
         termsUpdatedView.viewModel = viewController.viewModel
         termsUpdatedView.initValues()
         
@@ -52,6 +59,8 @@ class TermsView: UIView {
         
         viewController.navigationController?.topViewController?.view.addSubview(termsUpdatedView)
         viewController.navigationController?.topViewController?.view.bringSubviewToFront(termsUpdatedView)
+        
+        UIAccessibility.post(notification: .layoutChanged, argument: termsUpdatedView.titleLabel)
     }
     
     @IBAction func onAcceptButton(_ sender: Any) {
@@ -109,6 +118,7 @@ class TermsView: UIView {
     }
     
     private func removePopUpView() {
+        self.delegate?.hiddenTimeExposedView()
         for view in parentViewController?.navigationController?.topViewController?.view.subviews ?? [] where view.tag == 1111 {
             view.fadeOut { (_) in
                 view.removeFromSuperview()

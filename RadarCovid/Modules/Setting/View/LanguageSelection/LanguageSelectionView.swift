@@ -15,6 +15,7 @@ import RxCocoa
 
 protocol LanguageSelectionProtocol {
     func userChangeLanguage()
+    func hiddenLanguageSelectionView()
 }
 
 protocol LanguageSelectionModelProtocol {
@@ -154,6 +155,7 @@ class LanguageSelectionView: UIView {
     }
     
     private func removePopUpView() {
+        self.delegateOutput?.hiddenLanguageSelectionView()
         for view in parentViewController?.navigationController?.topViewController?.view.subviews ?? [] where view.tag == 1111 {
             view.fadeOut { (_) in
                 view.removeFromSuperview()

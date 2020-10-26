@@ -15,6 +15,7 @@ import RxCocoa
 
 class SettingViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var languageSelectorButton: UIButton!
     
@@ -56,11 +57,23 @@ class SettingViewController: UIViewController {
             LanguageSelectionView.initWithParentViewController(viewController: self, viewModel: viewModel, delegateOutput: self)
         }
     }
+    
+    private func isDisableAccesibility(isDisabble: Bool) {
+        self.scrollView.isHidden = isDisabble
+        
+        if let tab = self.parent as? TabBarController {
+            tab.isDissableAccesibility(isDisabble: isDisabble)
+        }
+    }
 }
 
 extension SettingViewController: LanguageSelectionProtocol {
     
     func userChangeLanguage() {
         self.router?.route(to: Routes.changeLanguage, from: self)
+    }
+    
+    func hiddenLanguageSelectionView() {
+        isDisableAccesibility(isDisabble: false)
     }
 }

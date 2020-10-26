@@ -15,6 +15,7 @@ import DP3TSDK
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreInfoLabel: UILabel!
     @IBOutlet weak var topRadarTitle: NSLayoutConstraint!
@@ -61,8 +62,9 @@ class HomeViewController: UIViewController {
         setupUserInteraction()
         setupView()
         if !termsRepository.termsAccepted {
+            isDisableAccesibility(isDisabble: true)
             self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
-                TermsView.initWithParentViewController(viewController: self)
+                TermsView.initWithParentViewController(viewController: self, delegate: self)
             }
         }
     }
@@ -220,10 +222,10 @@ class HomeViewController: UIViewController {
         radarSwitch.layer.cornerRadius = radarSwitch.frame.height / 2
         radarSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
 
-        resetDataButton.isHidden = !Config.debug
-        envLabel.isHidden = !Config.debug
+        resetDataButton.isHidden = !(Config.environment == "PRE")
+        envLabel.isHidden = !(Config.environment == "PRE")
         
-        if Config.debug {
+        if Config.environment == "PRE" {
             let bundleVersion = (Bundle.main.infoDictionary?["CFBundleVersion"] ?? "") as! String
             envLabel.text = "\(Config.environment) - V_\(Config.version)_\(bundleVersion)"
             
@@ -260,8 +262,9 @@ class HomeViewController: UIViewController {
     }
     
     private func showTimeExposed() {
+        isDisableAccesibility(isDisabble: true)
         self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
-            TimeExposedView.initWithParentViewController(viewController: self)
+            TimeExposedView.initWithParentViewController(viewController: self, delegate: self)
         }
     }
 
@@ -432,11 +435,32 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private func isDisableAccesibility(isDisabble: Bool) {
+        self.scrollView.isHidden = isDisabble
+        self.communicationButton.isHidden = isDisabble
+        
+        if let tab = self.parent as? TabBarController {
+            tab.isDissableAccesibility(isDisabble: isDisabble)
+        }
+    }
+    
     @objc private func heplerQAChangeHealthy() {
         self.viewModel?.heplerQAChangeHealthy()
     }
     
     @objc private func heplerQAShowAlert() {
         showTimeExposed()
+    }
+}
+
+extension HomeViewController: TermsViewProtocol {
+    func hiddenTermsdView() {
+        isDisableAccesibility(isDisabble: false)
+    }
+}
+
+extension HomeViewController: TimeExposedProtocol {
+    func hiddenTimeExposedView() {
+        isDisableAccesibility(isDisabble: false)
     }
 }

@@ -57,7 +57,7 @@ struct Config {
     static let dp3tValidationKey = Data(base64Encoded: "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFdmx1bzYyTFVVcFllcVVGM3haWVhYSG03cjBGWApScENFbVBqTUlxUHVERjcvYmRua1FIbndxbVNoVzIvOU9BcllEd09FUUZmdEE4ZDV6T3NEZmh0T2NRPT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t")!
     static let verificationKey =  Data(base64Encoded: "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CQUdCeXFHU000OUFnRUdCU3VCQkFBakE0R0dBQVFBWjM1ZzlhN1M2MjdXMVlpOEVsVmdNS012dkdUUAo5R0hiUHZHTzhLekNLQk84WTZOc0JSTHlJeWUwZmdxR0ZXM2Z5dHVxcnFSNi9wSllDUWFXN1IyUnY3OEF4OXJhCmlYbmRVSmVyVk9KSHJRaFgxbnMrTjZxaVUxT0I4a3dUaWVuaCtuZDVVbXZUN24vK3hod3djK1RYa1lnNDBxOVcKUTRiVjBMbHRWbGRUSUlTK1QxOD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg====")!
     #elseif RELEASE_PRE
-    static let debug = true
+    static let debug = false
     static let environment = "PRE"
     static let endpoints: Endpoits = .pre
     static let dp3tMode: ApplicationDescriptor.Mode = .production

@@ -178,6 +178,7 @@
                 <outlet property="acceptPrivacyPolicyLabel" destination="r0Y-XV-x55" id="WAB-9T-XxR"/>
                 <outlet property="acceptTermsLabel" destination="jfV-ih-TQd" id="tcp-rv-PHv"/>
                 <outlet property="containerView" destination="C58-ev-rdO" id="yEN-BA-CHt"/>
+                <outlet property="titleLabel" destination="t0z-rs-I37" id="oZP-a3-y2w"/>
                 <outletCollection property="switchers" destination="naz-Nz-GIV" collectionClass="NSMutableArray" id="6jV-lA-d8R"/>
                 <outletCollection property="switchers" destination="Rcq-fX-Y98" collectionClass="NSMutableArray" id="50N-WS-jha"/>
             </connections>

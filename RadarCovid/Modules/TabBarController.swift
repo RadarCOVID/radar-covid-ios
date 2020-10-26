@@ -51,6 +51,10 @@ class TabBarController: UITabBarController {
         setupView()
     }
     
+    func isDissableAccesibility(isDisabble: Bool) {
+        self.tabBar.isHidden = isDisabble
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAccessibility()
