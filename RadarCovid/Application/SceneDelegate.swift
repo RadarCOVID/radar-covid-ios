@@ -33,8 +33,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 
-        
-
         router?.route(to: Routes.root, from: navigationController)
 
     }

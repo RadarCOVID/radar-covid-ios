@@ -113,8 +113,8 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
             self?.logger.debug("Error sending fake positive \(error) ")
         }.disposed(by: disposeBag)
         
-        DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionCheckUseCase.self) as? DP3TTracingDelegate
-        
+        DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionUseCase.self)
+        logger.debug("DP3TTracing.delegate \(String(describing: DP3TTracing.delegate))")
         completionHandler(true)
     }
 
