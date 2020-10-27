@@ -164,11 +164,12 @@ class MyHealthStep2ViewController: BaseViewController {
         debugPrint("Error sending diagnosis \(error)")
         var title = ""
         var errorMessage = "ALERT_MY_HEALTH_CODE_ERROR_CONTENT".localized
+        var showAlet: Bool = true
         
         if let diagnosisError = error as? DiagnosisError {
             switch diagnosisError {
-            case .apiRejected:
-                errorMessage = "ALERT_SHARING_REJECTED_ERROR".localized
+            case .apiRejected: showAlet = false
+                break
             case .idAlreadyUsed:
                 errorMessage = "ALERT_ID_ALREADY_USED".localized
             case .wrongId:
@@ -181,11 +182,13 @@ class MyHealthStep2ViewController: BaseViewController {
             }
         }
 
-        showAlertOk(
-            title: title,
-            message: errorMessage,
-            buttonTitle: "ALERT_OK_BUTTON".localized,
-            buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized
-        )
+        if showAlet {
+            showAlertOk(
+                title: title,
+                message: errorMessage,
+                buttonTitle: "ALERT_OK_BUTTON".localized,
+                buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized)
+        }
+        
     }
 }
