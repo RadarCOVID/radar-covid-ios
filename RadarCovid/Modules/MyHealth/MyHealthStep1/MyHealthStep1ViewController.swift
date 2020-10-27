@@ -114,11 +114,9 @@ class MyHealthStep1ViewController: BaseViewController {
         
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityHint = "ACC_BUTTON_ALERT_CONTINUE".localized
-        continueButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
         cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
-        cancelButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
         dateView.isAccessibilityElement = true
         dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
