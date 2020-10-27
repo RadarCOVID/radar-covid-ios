@@ -153,7 +153,7 @@ class MyHealthStep1ViewController: BaseViewController {
         // move the root view up by the distance of keyboard height
         DispatchQueue.main.async {
             self.scrollViewBottonConstraint.constant = keyboardSize.height
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height + CGFloat(70)), animated: false)
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
             self.pickerPresenter?.hiddenPickerView()
         }
     }
