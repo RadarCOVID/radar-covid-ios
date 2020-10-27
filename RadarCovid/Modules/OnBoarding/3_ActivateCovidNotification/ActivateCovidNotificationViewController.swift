@@ -47,6 +47,7 @@ class ActivateCovidNotificationViewController: UIViewController {
     
     private func setupAccessibility() {
         activateButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        activateButton.accessibilityHint = "ACC_HINT".localized
         
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
