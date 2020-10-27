@@ -435,6 +435,8 @@ class HomeViewController: UIViewController {
     private func isDisableAccesibility(isDisabble: Bool) {
         self.scrollView.isHidden = isDisabble
         self.communicationButton.isHidden = isDisabble
+        self.envLabel.isHidden = isDisabble
+        self.resetDataButton.isHidden = isDisabble
         
         if let tab = self.parent as? TabBarController {
             tab.isDissableAccesibility(isDisabble: isDisabble)

@@ -43,6 +43,7 @@ class WelcomeViewController: UIViewController {
     @IBAction func selectLanguage(_ sender: Any) {
         guard let viewModel = self.viewModel else { return }
         
+        isDisableAccesibility(isDisabble: true)
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
             LanguageSelectionView.initWithParentViewController(viewController: self, viewModel: viewModel, delegateOutput: self)
         }
