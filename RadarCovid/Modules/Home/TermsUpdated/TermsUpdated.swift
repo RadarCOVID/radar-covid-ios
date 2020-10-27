@@ -90,7 +90,6 @@ class TermsView: UIView {
     private func setupAccessibility() {
         acceptButton.accessibilityLabel = "ACC_BUTTON_ACCEPT".localized
         acceptButton.accessibilityHint = "ACC_HINT".localized
-        acceptButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
     
     private func initValues() {
