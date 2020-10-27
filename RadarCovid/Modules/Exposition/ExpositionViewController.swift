@@ -41,7 +41,7 @@ class ExpositionViewController: BaseExposed {
     private func setupAccessibility() {
         
         titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+
         titleLabel.accessibilityLabel = "EXPOSITION_LOW_TITLE_2".localized
 
         whatToDoTitleLabel.isAccessibilityElement = true

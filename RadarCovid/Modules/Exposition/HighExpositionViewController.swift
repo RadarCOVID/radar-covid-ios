@@ -90,7 +90,6 @@ class HighExpositionViewController: BaseExposed {
     
     private func setupAccessibility() {
         titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_HIGH_EXPOSED_TITLE".localized
 
         whatToDoTitleLabel.isAccessibilityElement = true
