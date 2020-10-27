@@ -160,8 +160,6 @@ class HighExpositionViewController: BaseExposed {
         caSelectorButton.layer.cornerRadius = 8
         caSelectorButton.layer.borderWidth = 1
         caSelectorButton.layer.borderColor = UIColor.deepLilac.cgColor
-        let leftImageSelectorButton:CGFloat = ((self.caSelectorButton.frame.size.width / 2) + 10)
-        self.caSelectorButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageSelectorButton , bottom: 0, right: 0)
     }
     
     private func setCaSelector() {
