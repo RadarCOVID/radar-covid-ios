@@ -23,10 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let logger = Logger(label: "AppDelegate")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        if JailBreakDetect.isJailbroken() {
-            exit(-1)
-        }
         
         if Config.debug {
             setupLog()
