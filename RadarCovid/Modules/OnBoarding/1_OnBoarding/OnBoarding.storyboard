@@ -279,7 +279,7 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="kTL-66-zlq"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Q5y-H2-Snj"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDV-35-L2Q" userLabel="Accept Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDV-35-L2Q" userLabel="Accept Button">
                                 <rect key="frame" x="16" y="796" width="382" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="UXS-Se-pyq"/>
