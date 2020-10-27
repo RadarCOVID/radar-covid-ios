@@ -346,7 +346,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="08j-fd-CET"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                         <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="Selecciona tu Comunidad Autónoma" image="CollapsableClosed">
                                                             <color key="titleColor" systemColor="darkTextColor"/>
