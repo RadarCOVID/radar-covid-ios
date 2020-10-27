@@ -26,8 +26,8 @@ class BaseViewController: UIViewController {
         //Set Accesibility logic
         backButton?.isAccessibilityElement = true
         let previous = navigationController?.previousViewController
-        if let title = (previous as? AccTitleView)?.accTitle ?? previous?.title {
-            backButton?.accessibilityLabel =  "\(title)," + "ACC_BUTTON_BACK_TO".localized 
+        if let strTitle = (previous as? AccTitleView)?.accTitle ?? previous?.title {
+            backButton?.accessibilityLabel =  "\(strTitle)," + "ACC_BUTTON_BACK_TO".localized 
         } else {
             backButton?.accessibilityLabel = "ACC_BUTTON_BACK".localized
         }

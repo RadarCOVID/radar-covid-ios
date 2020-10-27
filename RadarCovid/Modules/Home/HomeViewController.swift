@@ -153,7 +153,8 @@ class HomeViewController: UIViewController {
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_HOME_TITLE".localized
-
+        titleLabel.isHidden = !UIAccessibility.isVoiceOverRunning
+        
         expositionTitleLabel.isAccessibilityElement = true
         expositionTitleLabel.accessibilityTraits.insert(UIAccessibilityTraits.button)
         expositionTitleLabel.accessibilityHint = "ACC_HINT".localized
@@ -163,8 +164,6 @@ class HomeViewController: UIViewController {
         moreInfoLabel.accessibilityLabel = "EXPOSITION_HIGH_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         moreInfoLabel.accessibilityHint = "ACC_HINT".localized
         
-        titleLabel.isHidden = !UIAccessibility.isVoiceOverRunning
-
         expositionDetailImage.isAccessibilityElement = false
         expositionDetailImage.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized
         expositionDetailImage.accessibilityTraits.insert(UIAccessibilityTraits.button)
@@ -460,5 +459,14 @@ extension HomeViewController: TermsViewProtocol {
 extension HomeViewController: TimeExposedProtocol {
     func hiddenTimeExposedView() {
         isDisableAccesibility(isDisabble: false)
+    }
+}
+
+extension HomeViewController: AccTitleView {
+
+    var accTitle: String? {
+        get {
+            "ACC_HOME_TITLE".localized
+        }
     }
 }
