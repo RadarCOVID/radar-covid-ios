@@ -26,7 +26,8 @@ class TermsView: UIView {
     @IBOutlet weak var acceptTermsLabel: UILabel!
     @IBOutlet weak var acceptPrivacyPolicyLabel: UILabel!
 
-    @IBOutlet var switchers: [CustomSwitch]!
+    @IBOutlet weak var acceptSwitch: CustomSwitch!
+    @IBOutlet weak var acceptTermsAndUseSwitch: CustomSwitch!
 
     var parentViewController: UIViewController?
     var viewModel: HomeViewModel?
@@ -90,15 +91,19 @@ class TermsView: UIView {
     private func setupAccessibility() {
         acceptButton.accessibilityLabel = "ACC_BUTTON_ACCEPT".localized
         acceptButton.accessibilityHint = "ACC_HINT".localized
+        
+        self.acceptSwitch.setAccesibilityLabel(accessibilityLabel: "ACC_CHECKBOX_PRIVACY".localized)
+        self.acceptTermsAndUseSwitch.setAccesibilityLabel(accessibilityLabel: "ACC_CHECKBOX_USAGE_CONDITIONS".localized)
     }
     
     private func initValues() {
         self.acceptButton.isEnabled = self.allTermsAccepted
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 8
-        self.switchers.forEach { (switcher) in
-            switcher.delegate = self
-        }
+        
+        self.acceptSwitch.delegate = self
+        self.acceptTermsAndUseSwitch.delegate = self
+        
         acceptTermsLabel.isUserInteractionEnabled = true
         acceptPrivacyPolicyLabel.isUserInteractionEnabled = true
         

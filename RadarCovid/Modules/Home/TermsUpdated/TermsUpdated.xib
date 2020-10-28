@@ -182,11 +182,11 @@
             <connections>
                 <outlet property="acceptButton" destination="szH-xb-3qg" id="ZO8-nK-VXy"/>
                 <outlet property="acceptPrivacyPolicyLabel" destination="r0Y-XV-x55" id="WAB-9T-XxR"/>
+                <outlet property="acceptSwitch" destination="naz-Nz-GIV" id="p1O-yU-pMa"/>
+                <outlet property="acceptTermsAndUseSwitch" destination="Rcq-fX-Y98" id="dk9-QF-k1O"/>
                 <outlet property="acceptTermsLabel" destination="jfV-ih-TQd" id="tcp-rv-PHv"/>
                 <outlet property="containerView" destination="C58-ev-rdO" id="yEN-BA-CHt"/>
                 <outlet property="titleLabel" destination="t0z-rs-I37" id="oZP-a3-y2w"/>
-                <outletCollection property="switchers" destination="naz-Nz-GIV" collectionClass="NSMutableArray" id="6jV-lA-d8R"/>
-                <outletCollection property="switchers" destination="Rcq-fX-Y98" collectionClass="NSMutableArray" id="50N-WS-jha"/>
             </connections>
             <point key="canvasLocation" x="140.57971014492756" y="101.78571428571428"/>
         </view>

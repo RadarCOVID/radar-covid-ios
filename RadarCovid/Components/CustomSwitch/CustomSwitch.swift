@@ -15,10 +15,13 @@ protocol SwitchStateListener {
     func stateChanged(active: Bool, switcher: CustomSwitch)
 }
 class CustomSwitch: UIView, XibInstantiatable {
+    
     @IBOutlet weak var stateImage: UIImageView!
     @IBOutlet weak var regularSwitch: UISwitch!
     @IBOutlet weak var container: UIView!
+    
     @IBInspectable var swicherType: String?
+    
     var isTermSwitcher: Bool {
         return swicherType == "terms"
     }
@@ -48,26 +51,33 @@ class CustomSwitch: UIView, XibInstantiatable {
     }
     
     
-    func updateViews(){
+    func updateViews() {
         if !UIAccessibility.isVoiceOverRunning {
             self.stateImage.image = self.switchStateImage
         }
     }
     
-    func setupAccessibility(){
+    func setupAccessibility() {
         container.isUserInteractionEnabled = true
+        
         if UIAccessibility.isVoiceOverRunning {
             self.stateImage.isHidden = true
             self.regularSwitch.isHidden = false
-           
-        }else{
+        } else {
             container.addGestureRecognizer(
                 UITapGestureRecognizer(target: self, action: #selector(toggleState))
             )
             self.stateImage.isHidden = false
             self.regularSwitch.isHidden = true
-            self.regularSwitch.accessibilityTraits = UISwitch.accessibilityTraits()
+            
         }
+        
+        regularSwitch.accessibilityTraits = UISwitch().accessibilityTraits
+        regularSwitch.accessibilityHint = "ACC_HINT".localized
+    }
+    
+    func setAccesibilityLabel(accessibilityLabel: String) {
+        regularSwitch.accessibilityLabel = accessibilityLabel
     }
     
     @objc func toggleState(){
