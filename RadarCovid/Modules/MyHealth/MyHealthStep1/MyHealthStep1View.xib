@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -107,9 +107,6 @@
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indica la fecha de inicio de síntomas. Si no has tenido síntomas, introduce la prueba PCR positiva." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iu-V8-YeH">
                                     <rect key="frame" x="16" y="227.5" width="382" height="38.5"/>
-                                    <accessibility key="accessibilityConfiguration">
-                                        <accessibilityTraits key="traits" staticText="YES" header="YES"/>
-                                    </accessibility>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -385,7 +382,7 @@
         </view>
     </objects>
     <resources>
-        <image name="ButtonPrimaryDisabled" width="343" height="56"/>
+        <image name="ButtonPrimaryDisabled" width="341" height="60"/>
         <image name="buttonsPrimary" width="341" height="60"/>
         <image name="iconsBack" width="25.5" height="17"/>
         <image name="organicColor" width="375" height="155.5"/>
