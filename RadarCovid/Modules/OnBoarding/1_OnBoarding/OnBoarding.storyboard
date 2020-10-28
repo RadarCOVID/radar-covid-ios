@@ -340,7 +340,7 @@
     </scenes>
     <resources>
         <image name="BoyMobileQuestions" width="124" height="151"/>
-        <image name="ButtonPrimaryDisabled" width="343" height="56"/>
+        <image name="ButtonPrimaryDisabled" width="341" height="60"/>
         <image name="CheckboxUnselected" width="16" height="16"/>
         <image name="RightTopShade" width="283.5" height="206.5"/>
         <image name="buttonsPrimary" width="341" height="60"/>
