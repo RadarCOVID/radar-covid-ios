@@ -40,6 +40,7 @@ class PositiveExposedViewController: BaseExposed {
     
     private func setupAccessibility() {
         titleLabel.isAccessibilityElement = true
+        
         titleLabel.accessibilityLabel = "ACC_POSITIVE_EXPOSED_TITLE".localized
 
         moreInfoLabel.isAccessibilityElement = true

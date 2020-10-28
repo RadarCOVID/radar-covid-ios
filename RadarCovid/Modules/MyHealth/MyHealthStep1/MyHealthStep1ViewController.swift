@@ -14,6 +14,7 @@ import UIKit
 class MyHealthStep1ViewController: BaseViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var sympthomsStartSubTitle: UILabel!
     @IBOutlet weak var customSliderView: CustomSliderView!
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -111,6 +112,9 @@ class MyHealthStep1ViewController: BaseViewController {
         
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        
+        sympthomsStartSubTitle.isAccessibilityElement = true
+        sympthomsStartSubTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
         
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityHint = "ACC_BUTTON_ALERT_CONTINUE".localized
