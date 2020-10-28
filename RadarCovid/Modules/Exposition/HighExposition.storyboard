@@ -3,7 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -340,29 +340,42 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bN3-KM-Seu" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="298" width="374" height="60"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVx-3c-EyF">
+                                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="GVx-3c-EyF">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="08j-fd-CET"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                        <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="Selecciona tu Comunidad Autónoma" image="CollapsableClosed">
+                                                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal">
                                                             <color key="titleColor" systemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="caaSelectAction:" destination="Q7K-4K-XeD" eventType="touchUpInside" id="Ukh-Wv-TrQ"/>
-                                                            <action selector="performSelection:" destination="FFb-xE-W66" eventType="touchUpInside" id="pg4-hV-pkM"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Selecciona tu Comunidad Autónoma" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqt-TM-DWj">
+                                                        <rect key="frame" x="10" y="19.333333333333314" width="323.66666666666669" height="21.666666666666671"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollapsableClosed" translatesAutoresizingMaskIntoConstraints="NO" id="bNn-uc-qlS">
+                                                        <rect key="frame" x="343.66666666666669" y="26" width="14.333333333333314" height="8.3333333333333357"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="GVx-3c-EyF" firstAttribute="leading" secondItem="bN3-KM-Seu" secondAttribute="leading" id="364-g7-fhd"/>
+                                                    <constraint firstItem="bNn-uc-qlS" firstAttribute="leading" secondItem="Kqt-TM-DWj" secondAttribute="trailing" constant="10" id="FFN-iO-EoB"/>
                                                     <constraint firstAttribute="bottom" secondItem="GVx-3c-EyF" secondAttribute="bottom" id="L7E-bn-LsC"/>
                                                     <constraint firstItem="GVx-3c-EyF" firstAttribute="top" secondItem="bN3-KM-Seu" secondAttribute="top" id="PtI-Lr-hiS"/>
                                                     <constraint firstAttribute="trailing" secondItem="GVx-3c-EyF" secondAttribute="trailing" id="RuB-47-Py0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bNn-uc-qlS" secondAttribute="trailing" constant="16" id="XTM-CP-4eT"/>
+                                                    <constraint firstItem="Kqt-TM-DWj" firstAttribute="centerY" secondItem="bN3-KM-Seu" secondAttribute="centerY" id="e51-tX-OkD"/>
+                                                    <constraint firstItem="bNn-uc-qlS" firstAttribute="centerY" secondItem="bN3-KM-Seu" secondAttribute="centerY" id="trm-fs-zDM"/>
+                                                    <constraint firstItem="Kqt-TM-DWj" firstAttribute="leading" secondItem="bN3-KM-Seu" secondAttribute="leading" constant="10" id="yhZ-F8-mye"/>
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoughIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fGh-4f-UcC">
@@ -596,6 +609,7 @@
                     <connections>
                         <outlet property="backButton" destination="u8Y-yv-ZK5" id="WHx-m3-qw6"/>
                         <outlet property="caSelectorButton" destination="GVx-3c-EyF" id="9Pd-St-qgW"/>
+                        <outlet property="caSelectorLabel" destination="Kqt-TM-DWj" id="720-0v-RUQ"/>
                         <outlet property="covidWebLabel" destination="TPI-5h-zJC" id="THy-ct-w2P"/>
                         <outlet property="expositionBGView" destination="UBR-5L-ywI" id="wiM-fJ-hDf"/>
                         <outlet property="howActLabel" destination="yEg-UG-vM2" id="oH0-WQ-aeq"/>
@@ -613,7 +627,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="srF-TI-VvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="FFb-xE-W66" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="57.600000000000001" y="20.689655172413794"/>
         </scene>

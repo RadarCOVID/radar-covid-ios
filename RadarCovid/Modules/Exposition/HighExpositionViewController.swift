@@ -26,6 +26,7 @@ class HighExpositionViewController: BaseExposed {
     @IBOutlet weak var phoneViewHiddenConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var selectorView: BackgroundView!
+    @IBOutlet weak var caSelectorLabel: UILabel!
     @IBOutlet weak var caSelectorButton: UIButton!
     @IBOutlet weak var otherSympthomsLabel: UILabel!
     @IBOutlet weak var howActLabel: UILabel!
@@ -118,6 +119,7 @@ class HighExpositionViewController: BaseExposed {
         covidWebLabel.accessibilityHint = "ACC_HINT".localized
         
         caSelectorButton.accessibilityHint = "ACC_HINT".localized
+        caSelectorButton.accessibilityLabel = self.caSelectorLabel.text
     }
     
     private func setupView() {
@@ -156,7 +158,7 @@ class HighExpositionViewController: BaseExposed {
         youCouldBeLabel.attributedText = "EXPOSITION_HIGH_DESCRIPTION"
             .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
         
-        caSelectorButton.setTitle("LOCALE_SELECTION_REGION_DEFAULT".localized, for: .normal)
+        caSelectorLabel.text = "LOCALE_SELECTION_REGION_DEFAULT".localized
         caSelectorButton.layer.cornerRadius = 8
         caSelectorButton.layer.borderWidth = 1
         caSelectorButton.layer.borderColor = UIColor.deepLilac.cgColor
@@ -193,7 +195,8 @@ class HighExpositionViewController: BaseExposed {
         self.covidWebLabel.text = currentCa.webName ?? currentCa.web ?? ""
         
         let title = currentCa.description ?? "LOCALE_SELECTION_REGION_DEFAULT".localized
-        self.caSelectorButton.setTitle(title, for: .normal)
+        self.caSelectorLabel.text = title
+        caSelectorButton.accessibilityLabel = title
     }
 }
 
