@@ -112,7 +112,7 @@ extension WelcomeViewController: SelectorProtocol {
         
         if selectorItem.id != self.viewModel?.getCurrenLenguage() {
 
-            self.showAlertCancelContinue(title: "LOCALE_CHANGE_Selector".localized,
+            self.showAlertCancelContinue(title: "LOCALE_CHANGE_LANGUAGE".localized,
                                                           message: "LOCALE_CHANGE_WARNING".localized,
                                                           buttonOkTitle: "ALERT_OK_BUTTON".localized,
                                                           buttonCancelTitle: "ALERT_CANCEL_BUTTON".localized,
