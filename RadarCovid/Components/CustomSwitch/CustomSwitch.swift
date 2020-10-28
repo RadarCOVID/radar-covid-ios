@@ -66,6 +66,7 @@ class CustomSwitch: UIView, XibInstantiatable {
             )
             self.stateImage.isHidden = false
             self.regularSwitch.isHidden = true
+            self.regularSwitch.accessibilityTraits = UISwitch.accessibilityTraits()
         }
     }
     
