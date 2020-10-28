@@ -189,7 +189,6 @@
                                     <integer key="value" value="10"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath=" btn.clipsToBounds" value="YES"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ACC_BUTTON_ACCEPT"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="onAcceptButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="AgH-vb-wl2"/>
@@ -259,7 +258,7 @@
         </view>
     </objects>
     <resources>
-        <image name="ButtonPrimaryDisabled" width="343" height="56"/>
+        <image name="ButtonPrimaryDisabled" width="341" height="60"/>
         <image name="buttonsPrimary" width="341" height="60"/>
         <namedColor name="degradado">
             <color red="0.28600001335144043" green="0.23100000619888306" blue="0.65499997138977051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -133,8 +133,9 @@ class TimeExposedView: UIView {
     }
     
     private func initValues() {
+        acceptButton.setTitle("ACC_BUTTON_ACCEPT".localized, for: .normal)
         cancelButton.setTitle("ACC_BUTTON_CLOSE".localized, for: .normal)
-        
+
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 8
         bullet1Label.isUserInteractionEnabled = true
