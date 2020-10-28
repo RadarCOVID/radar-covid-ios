@@ -138,6 +138,9 @@
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_DIAGNOSTIC_DATE_DAY"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eC3-ht-fHe">
                                             <rect key="frame" x="12" y="21.5" width="65" height="55"/>
@@ -170,6 +173,9 @@
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_DIAGNOSTIC_DATE_MONTH"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZSl-le-gy9">
                                             <rect key="frame" x="137" y="21.5" width="65" height="55"/>
@@ -202,6 +208,9 @@
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_DIAGNOSTIC_DATE_YEAR"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IkX-iD-6aJ">
                                             <rect key="frame" x="268" y="21.5" width="106" height="55"/>
