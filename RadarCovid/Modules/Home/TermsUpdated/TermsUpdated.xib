@@ -83,7 +83,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ACC_CHECKBOX_PRIVACY"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_2_PRIVACY_POLICY"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acepto las condiciones de uso" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfV-ih-TQd">
@@ -95,7 +95,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ACC_CHECKBOX_USAGE_CONDITIONS"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_2_USAGE_CONDITIONS"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
