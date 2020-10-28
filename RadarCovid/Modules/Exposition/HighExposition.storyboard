@@ -368,7 +368,7 @@
                                                         <rect key="frame" x="343.66666666666669" y="26" width="14.333333333333314" height="8.3333333333333357"/>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="GVx-3c-EyF" firstAttribute="leading" secondItem="bN3-KM-Seu" secondAttribute="leading" id="364-g7-fhd"/>
                                                     <constraint firstItem="bNn-uc-qlS" firstAttribute="leading" secondItem="Kqt-TM-DWj" secondAttribute="trailing" constant="10" id="FFN-iO-EoB"/>
