@@ -101,10 +101,15 @@ class TermsView: UIView {
         }
         acceptTermsLabel.isUserInteractionEnabled = true
         acceptPrivacyPolicyLabel.isUserInteractionEnabled = true
+        
         acceptPrivacyPolicyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                      action: #selector(userDidTapPolicy)))
         acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                      action: #selector(userDidTapTerms)))
+        
+        acceptTermsLabel.attributedText = NSAttributedString(string: acceptTermsLabel.text ?? "", attributes:[.underlineStyle: NSUnderlineStyle.single.rawValue])
+        acceptPrivacyPolicyLabel.attributedText = NSAttributedString(string: acceptPrivacyPolicyLabel.text ?? "", attributes:[.underlineStyle: NSUnderlineStyle.single.rawValue])
+        
         setupAccessibility()
     }
     

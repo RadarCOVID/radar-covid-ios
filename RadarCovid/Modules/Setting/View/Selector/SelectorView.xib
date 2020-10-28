@@ -11,14 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view tag="1111" contentMode="scaleToFill" id="iN0-l3-epB" customClass="LanguageSelectionView" customModule="Radar_COVID" customModuleProvider="target">
+        <view tag="1111" contentMode="scaleToFill" id="iN0-l3-epB" customClass="SelectorView" customModule="Radar_COVID" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C58-ev-rdO" userLabel="containerView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecciona un idioma" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNS-yD-V3i">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seleccione" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNS-yD-V3i">
                             <rect key="frame" x="20" y="37" width="339" height="21.5"/>
                             <accessibility key="accessibilityConfiguration">
                                 <accessibilityTraits key="traits" staticText="YES" header="YES"/>
@@ -26,9 +26,6 @@
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="SETTINGS_LANGUAGE_TITLE"/>
-                            </userDefinedRuntimeAttributes>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XFt-8u-EHi">
                             <rect key="frame" x="0.0" y="78.5" width="414" height="603.5"/>
@@ -126,7 +123,8 @@
                 <outlet property="acceptButton" destination="szH-xb-3qg" id="ZO8-nK-VXy"/>
                 <outlet property="cancelButton" destination="8TS-L3-r8l" id="WJM-JL-O2S"/>
                 <outlet property="containerView" destination="C58-ev-rdO" id="yEN-BA-CHt"/>
-                <outlet property="languageTableView" destination="XFt-8u-EHi" id="OLh-Xl-oVn"/>
+                <outlet property="selectorTableView" destination="XFt-8u-EHi" id="hyo-VE-CP7"/>
+                <outlet property="titleLabel" destination="bNS-yD-V3i" id="FYl-c4-3et"/>
             </connections>
             <point key="canvasLocation" x="140.57971014492756" y="101.78571428571428"/>
         </view>

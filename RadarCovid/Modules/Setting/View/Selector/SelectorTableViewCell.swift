@@ -11,18 +11,18 @@
 
 import UIKit
 
-class LanguageTableViewCell: UITableViewCell {
+class SelectorTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     
-    var keyModel: String = ""
+    var itemModel: SelectorItem?
     
-    func setupModel(title: String, key: String, totalItems: Int, indexItem: Int) {
-        titleLabel.text = title
-        titleLabel.accessibilityLabel = "\(title) " + "MY_HEALTH_RANGER".localized
+    func setupModel(itemModel: SelectorItem, totalItems: Int, indexItem: Int) {
+        titleLabel.text = itemModel.description
+        titleLabel.accessibilityLabel = "\(itemModel.description) " + "MY_HEALTH_RANGER".localized
         titleLabel.accessibilityLabel = titleLabel.accessibilityLabel?.replacingOccurrences(of: "$1", with: "\(indexItem + 1)")
         titleLabel.accessibilityLabel = titleLabel.accessibilityLabel?.replacingOccurrences(of: "$2", with: "\(totalItems)")
-        keyModel = key
+        self.itemModel = itemModel
     }
     
     override func awakeFromNib() {

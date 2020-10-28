@@ -44,8 +44,30 @@ class WelcomeViewController: UIViewController {
         guard let viewModel = self.viewModel else { return }
         
         isDisableAccesibility(isDisabble: true)
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
-            LanguageSelectionView.initWithParentViewController(viewController: self, viewModel: viewModel, delegateOutput: self)
+        self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+            SelectorView.initWithParentViewController(viewController: self,
+                                                      title: "SETTINGS_LANGUAGE_TITLE".localized,
+                                                      getArray:{ [weak self] () -> Observable<[SelectorItem]> in
+                
+                return Observable.create { [weak self] observer in
+                    viewModel.getLenguages().subscribe(onNext: {(value) in
+                        observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
+                        observer.onCompleted()
+                    }).disposed(by: self?.disposeBag ?? DisposeBag())
+                    return Disposables.create {
+                    }
+                }
+            }, getSelectedItem: { () -> Observable<SelectorItem> in
+                
+                return Observable.create { [weak self] observer in
+                    viewModel.getCurrenLenguageLocalizable().subscribe(onNext: {(value) in
+                        observer.onNext(SelectorHelperViewModel.generateTransformation(val: ItemLocale(id: viewModel.getCurrenLenguage(), description: value)))
+                        observer.onCompleted()
+                    }).disposed(by: self?.disposeBag ?? DisposeBag())
+                    return Disposables.create {
+                    }
+                }
+            }, delegateOutput: self)
         }
     }
     
@@ -84,13 +106,31 @@ class WelcomeViewController: UIViewController {
     }
 }
 
-extension WelcomeViewController: LanguageSelectionProtocol {
+extension WelcomeViewController: SelectorProtocol {
     
-    func userChangeLanguage() {
-        self.router?.route(to: Routes.changeLanguage, from: self)
+    func userSelectorSelected(selectorItem: SelectorItem, completionCloseView: @escaping (Bool) -> Void) {
+        
+        if selectorItem.id != self.viewModel?.getCurrenLenguage() {
+
+            self.showAlertCancelContinue(title: "LOCALE_CHANGE_Selector".localized,
+                                                          message: "LOCALE_CHANGE_WARNING".localized,
+                                                          buttonOkTitle: "ALERT_OK_BUTTON".localized,
+                                                          buttonCancelTitle: "ALERT_CANCEL_BUTTON".localized,
+                                                          buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localized,
+                                                          buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localized,
+                                                          okHandler: { _ in
+                                                            completionCloseView(true)
+                                                            self.viewModel?.setCurrentLocale(key: selectorItem.id)
+                                                            self.router?.route(to: Routes.changeLanguage, from: self)
+                                                          }, cancelHandler: { _ in
+                                                            completionCloseView(false)
+                                                          })
+        } else {
+            completionCloseView(true)
+        }
     }
     
-    func hiddenLanguageSelectionView() {
+    func hiddenSelectorSelectionView() {
         isDisableAccesibility(isDisabble: false)
     }
 }

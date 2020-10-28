@@ -32,5 +32,9 @@ struct CaData: Codable {
         self.web = web
         self.webName = webName
     }
+    
+    static func emptyCaData() -> CaData {
+        return CaData.init(id: "", description: "", phone: "", email: "", web: "", webName: "", additionalInfo: "")
+    }
 
 }

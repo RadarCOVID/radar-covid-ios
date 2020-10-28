@@ -12,7 +12,7 @@
 import Foundation
 import RxSwift
 
-class SettingViewModel: LanguageSelectionModelProtocol {
+class SettingViewModel {
     
     let localesUseCase: LocalesUseCase!
     

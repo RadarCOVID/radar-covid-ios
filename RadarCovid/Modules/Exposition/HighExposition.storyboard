@@ -357,6 +357,9 @@
                                                     </button>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Selecciona tu Comunidad Autónoma" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqt-TM-DWj">
                                                         <rect key="frame" x="10" y="19.333333333333314" width="323.66666666666669" height="21.666666666666671"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <bool key="isElement" value="NO"/>
+                                                        </accessibility>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -619,6 +622,7 @@
                         <outlet property="phoneView" destination="TEw-0H-yKe" id="r4r-N9-MSq"/>
                         <outlet property="phoneViewHiddenConstraint" destination="1NV-EZ-peQ" id="hdX-xf-3r9"/>
                         <outlet property="phoneViewVisibleConstraint" destination="dCO-c8-68j" id="awG-HF-UA3"/>
+                        <outlet property="scrollView" destination="fpW-j5-VBB" id="mfO-VA-zb1"/>
                         <outlet property="selectorView" destination="bN3-KM-Seu" id="csm-tU-3qc"/>
                         <outlet property="timeTableLabel" destination="pcd-dI-oHv" id="djX-jZ-G0a"/>
                         <outlet property="titleLabel" destination="7G0-Fd-EDb" id="1hK-7j-PH8"/>
