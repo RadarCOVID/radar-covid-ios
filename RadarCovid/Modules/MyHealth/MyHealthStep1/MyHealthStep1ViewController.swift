@@ -264,6 +264,9 @@ extension MyHealthStep1ViewController: PickerDelegate {
         dayLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
         monthLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + (monthLabel.text ?? "")
         yearLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + " " + (yearLabel.text ?? "")
+        
+        //Restore focus from dateView
+        UIAccessibility.post(notification: .layoutChanged, argument: self.dateView)
     }
     
     func onDone() {
@@ -285,5 +288,8 @@ extension MyHealthStep1ViewController: PickerDelegate {
 
             dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + " " + monthSelected + " " + yearSelected)
         }
+        
+        //Restore focus from dateView
+        UIAccessibility.post(notification: .layoutChanged, argument: self.dateView)
     }
 }
