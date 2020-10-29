@@ -64,9 +64,7 @@ class ExpositionViewController: BaseExposed {
     }
     
     private func setupView() {
-        
-        whatToDoLabel.attributedText = "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO".localizedAttributed()
-        
+                
         let formatter = DateFormatter()
         formatter.dateFormat = Date.appDateFormat
         
