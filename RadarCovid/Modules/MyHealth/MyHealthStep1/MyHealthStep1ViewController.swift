@@ -170,6 +170,9 @@ class MyHealthStep1ViewController: BaseViewController {
     
     @objc func doneButtonAction(textView: UITextField) {
         self.view.endEditing(true)
+        
+        //Restore focus from textView
+        UIAccessibility.post(notification: .layoutChanged, argument: self.codeTextField)
     }
     
     private func addDoneButtonOnKeyboard(textView: UITextField) {
@@ -178,7 +181,7 @@ class MyHealthStep1ViewController: BaseViewController {
         doneToolbar.barStyle = UIBarStyle.default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "SELECTOR_DONE".localized, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction) )
+        let done: UIBarButtonItem = UIBarButtonItem(title: "SELECTOR_DONE".localized, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction(textView: )) )
         
         var items = [UIBarButtonItem]()
         items.append(flexSpace)

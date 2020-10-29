@@ -15,6 +15,7 @@ class MyHealthReportedViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreinfoLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var moreInfoView: UIView!
     
     var router: AppRouter?
@@ -61,6 +62,10 @@ class MyHealthReportedViewController: UIViewController {
         } else {
             titleLabel.isHidden = true
         }
+        
+        let strTitleFromBack: String = "ACC_HOME_TITLE".localized
+        backButton.accessibilityLabel = "\(strTitleFromBack)," + "ACC_BUTTON_BACK_TO".localized
+        backButton.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupView() {
