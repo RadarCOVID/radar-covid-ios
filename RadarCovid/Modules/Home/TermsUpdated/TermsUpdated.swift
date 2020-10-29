@@ -44,7 +44,7 @@ class TermsView: UIView {
             .instantiate(withOwner: nil, options: nil)[0] as? TermsView else {
             return
         }
-        
+        termsUpdatedView.setFontTextStyle()
         termsUpdatedView.parentViewController = viewController
         termsUpdatedView.delegate = delegate
         termsUpdatedView.viewModel = viewController.viewModel

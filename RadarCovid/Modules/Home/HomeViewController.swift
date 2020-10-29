@@ -56,7 +56,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.setFontTextStyle()
         setupAccessibility()
         setupBindings()
         setupUserInteraction()
