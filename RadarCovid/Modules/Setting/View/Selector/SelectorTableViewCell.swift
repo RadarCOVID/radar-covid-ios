@@ -19,6 +19,10 @@ class SelectorTableViewCell: UITableViewCell {
     
     func setupModel(itemModel: SelectorItem, totalItems: Int, indexItem: Int) {
         titleLabel.text = itemModel.description
+        let font = UIFont.mainFont(size: .twenty, fontType: .regular)
+        let metric = UIFontMetrics(forTextStyle: .body)
+        titleLabel.font = metric.scaledFont(for: font)
+        titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.accessibilityLabel = "\(itemModel.description) " + "MY_HEALTH_RANGER".localized
         titleLabel.accessibilityLabel = titleLabel.accessibilityLabel?.replacingOccurrences(of: "$1", with: "\(indexItem + 1)")
         titleLabel.accessibilityLabel = titleLabel.accessibilityLabel?.replacingOccurrences(of: "$2", with: "\(totalItems)")
@@ -48,11 +52,18 @@ class SelectorTableViewCell: UITableViewCell {
         }
         
         if selected {
-            titleLabel.font = UIFont.mainFont(size: .twentytwo, fontType: .bold)
+            let font = UIFont.mainFont(size: .twentytwo, fontType: .bold)
+            let metric = UIFontMetrics(forTextStyle: .headline)
+            titleLabel.font = metric.scaledFont(for: font)
             titleLabel.textColor = UIColor.black
+            titleLabel.adjustsFontForContentSizeCategory = true
         } else {
-            titleLabel.font = UIFont.mainFont(size: .twenty, fontType: .regular)
+            let font = UIFont.mainFont(size: .twenty, fontType: .regular)
+            let metric = UIFontMetrics(forTextStyle: .body)
+            titleLabel.font = metric.scaledFont(for: font)
             titleLabel.textColor = UIColor.twilight
+            titleLabel.adjustsFontForContentSizeCategory = true
+
         }
     }
     
