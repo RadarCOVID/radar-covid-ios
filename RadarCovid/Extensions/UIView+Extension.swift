@@ -165,7 +165,12 @@ extension UIView {
                 let index = sizes.firstIndex(of: Double(fontSize))
                 let fontStyle = styles[index ?? 0]
                 let metrics = UIFontMetrics(forTextStyle: fontStyle)
-                label.font = metrics.scaledFont(for: label.font)
+                do {
+                    try label.font = metrics.scaledFont(for: label.font)
+                } catch let err {
+                    print(err)
+                }
+                
                 label.adjustsFontForContentSizeCategory = true
                 
             }
@@ -175,12 +180,16 @@ extension UIView {
                 return
             }
             let fontSize = label.font.pointSize
-            if (sizes.contains(Double(fontSize)) && button.tag != 55){
+            if (sizes.contains(Double(fontSize)) && button.tag != 55 && button.titleLabel?.text != nil){
                 button.tag = 55
                 let index = sizes.firstIndex(of: Double(fontSize))
                 let fontStyle = styles[index ?? 0]
                 let metrics = UIFontMetrics(forTextStyle: fontStyle)
-                button.titleLabel?.font = metrics.scaledFont(for: label.font)
+                do {
+                    try button.titleLabel?.font = metrics.scaledFont(for: label.font)
+                } catch let err {
+                    print(err)
+                }
                 button.titleLabel?.adjustsFontForContentSizeCategory = true
                 
             }

@@ -45,6 +45,7 @@ class HighExpositionViewController: BaseExposed {
                 
         setupView()
         setupAccessibility()
+        self.view.setFontTextStyle()
 
         setCaSelector()
     }

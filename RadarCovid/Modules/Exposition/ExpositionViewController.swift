@@ -23,6 +23,7 @@ class ExpositionViewController: BaseExposed {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.setFontTextStyle()
 
         setupView()
         setupAccessibility()
