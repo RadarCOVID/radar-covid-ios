@@ -23,7 +23,6 @@ class MyHealthStep1ViewController: BaseViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
-    @IBOutlet weak var helperDateLabel: UILabel!
     @IBOutlet weak var dateView: UIView!
     @IBOutlet weak var dayView: UIView!
     @IBOutlet weak var dayLabel: UILabel!
