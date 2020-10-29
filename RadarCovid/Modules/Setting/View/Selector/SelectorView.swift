@@ -65,7 +65,7 @@ class SelectorView: UIView {
                 .instantiate(withOwner: nil, options: nil)[0] as? SelectorView else {
             return
         }
-//        selectorView.setFontTextStyle()
+        selectorView.setFontTextStyle()
         let newFrame = CGRect(x: viewController.view.frame.origin.x,
                               y: viewController.view.frame.origin.y,
                               width: viewController.view.frame.width * 92 / 100,
