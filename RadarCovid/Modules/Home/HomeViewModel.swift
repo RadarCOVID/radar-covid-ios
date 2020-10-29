@@ -11,6 +11,7 @@
 
 import Foundation
 import RxSwift
+import DP3TSDK
 
 class HomeViewModel {
 
@@ -36,8 +37,9 @@ class HomeViewModel {
     func changeRadarStatus(_ active: Bool) {
         radarStatusUseCase?.changeTracingStatus(active: active).subscribe(
             onNext: { [weak self] status in
-                self?.checkInitialExposition()
                 self?.radarStatus.onNext(status)
+                self?.checkInitialExposition()
+
             }, onError: {  [weak self] error in
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
@@ -45,6 +47,7 @@ class HomeViewModel {
     }
 
     func checkInitialExposition() {
+      
         expositionUseCase?.updateExpositionInfo()
         
         expositionUseCase?.getExpositionInfo().subscribe(
@@ -59,22 +62,24 @@ class HomeViewModel {
         guard let exposition = exposition else {
             return
         }
-        expositionInfo.onNext(exposition)
         if let error = exposition.error {
             errorState.onNext(error)
         } else {
+            expositionInfo.onNext(exposition)
             errorState.onNext(nil)
         }
     }
 
-    func restoreLastStateAndSync() {
+    func restoreLastStateAndSync(cb: (() -> Void)? = nil) {
         fakeRequestUseCase?.sendFalsePositive().subscribe().disposed(by: disposeBag)
         radarStatusUseCase?.restoreLastStateAndSync().subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
+                cb?()
             }, onError: { [weak self] error in
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
+                cb?()
         }).disposed(by: disposeBag)
     }
 

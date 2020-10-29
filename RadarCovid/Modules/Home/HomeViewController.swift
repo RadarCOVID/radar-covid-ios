@@ -73,7 +73,6 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         viewModel!.checkShowBackToHealthyDialog()
-        viewModel!.restoreLastStateAndSync()
     }
     
     @IBAction func onReset(_ sender: Any) {
@@ -237,9 +236,11 @@ class HomeViewController: UIViewController {
             let tapGestureHeplerQAShowAlert = UITapGestureRecognizer(target: self, action: #selector(self.heplerQAShowAlert))
             self.defaultImage.addGestureRecognizer(tapGestureHeplerQAShowAlert)
         }
-
-        viewModel!.checkInitialExposition()
-        viewModel!.checkOnboarding()
+        viewModel!.restoreLastStateAndSync { [weak self] in
+            self?.viewModel!.checkInitialExposition()
+            self?.viewModel!.checkOnboarding()
+        }
+        
 
         errorHandler!.alertDelegate = self
     }
@@ -374,7 +375,7 @@ class HomeViewController: UIViewController {
         topRadarTitle.priority = .defaultLow
         notificationInactiveMessageLabel.isHidden = false
         activateNotificationButton.isHidden = false
-        radarSwitch.isEnabled = false
+        radarSwitch.isOn = false
     }
     
     private func hideExtraMessage() {
