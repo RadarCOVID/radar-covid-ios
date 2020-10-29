@@ -41,6 +41,7 @@ class PickerPresenter {
             picker.contentMode = .center
             picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300,
                                        width: UIScreen.main.bounds.size.width, height: 300)
+            picker.setFontTextStyle();
             delegate?.containerView.addSubview(picker)
 
             toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300,

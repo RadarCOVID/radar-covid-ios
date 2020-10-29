@@ -40,7 +40,7 @@ class TimeExposedView: UIView {
             .instantiate(withOwner: nil, options: nil)[0] as? TimeExposedView else {
             return
         }
-        
+        timeExposedView.setFontTextStyle()
         timeExposedView.parentViewController = viewController
         timeExposedView.delegate = delegate
         timeExposedView.viewModel = viewController.viewModel
