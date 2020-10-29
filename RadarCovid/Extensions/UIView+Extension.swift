@@ -129,4 +129,33 @@ extension UIView {
         self.layer.shadowOffset = CGSize(width: 2, height: 2)
         self.layer.masksToBounds = false
     }
+    
+    
+    private func getLabelsInView(view: UIView) -> [UILabel] {
+        var results = [UILabel]()
+        for subview in view.subviews as [UIView] {
+            if let labelView = subview as? UILabel {
+                results += [labelView]
+            } else {
+                results += getLabelsInView(view: subview)
+            }
+        }
+        return results
+    }
+    
+    func setFontTextStyle(){
+        let styles = [UIFont.TextStyle.caption2, UIFont.TextStyle.caption1,  UIFont.TextStyle.body, UIFont.TextStyle.callout, UIFont.TextStyle.subheadline, UIFont.TextStyle.headline, UIFont.TextStyle.title3, UIFont.TextStyle.title2, UIFont.TextStyle.title1, UIFont.TextStyle.largeTitle ]
+        let sizes = [15.0, 16.0, 17.0, 18.0, 20.0, 22.0, 24.0, 26.0, 28.0, 32.0]
+        for label in self.getLabelsInView(view: self) {
+            let fontSize = label.font.pointSize
+            if (sizes.contains(Double(fontSize))){
+                let index = sizes.firstIndex(of: Double(fontSize))
+                let fontStyle = styles[index ?? 0]
+                let metrics = UIFontMetrics(forTextStyle: fontStyle)
+                label.font = metrics.scaledFont(for: label.font)
+                label.adjustsFontForContentSizeCategory = true
+                
+            }
+        }
+    }
 }

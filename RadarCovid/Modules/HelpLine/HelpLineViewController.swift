@@ -28,7 +28,7 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.setFontTextStyle()
         setupAccessibility()
         setupView()
     }
