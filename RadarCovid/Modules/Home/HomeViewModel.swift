@@ -45,6 +45,8 @@ class HomeViewModel {
     }
 
     func checkInitialExposition() {
+        expositionUseCase?.updateExpositionInfo()
+        
         expositionUseCase?.getExpositionInfo().subscribe(
             onNext: { [weak self] exposition in
                 self?.checkExpositionLevel(exposition)
@@ -102,6 +104,11 @@ class HomeViewModel {
         if expositionCheckUseCase?.checkBackToHealthyJustChanged() ?? false {
             showBackToHealthyDialog.onNext(true)
         }
+    }
+    
+    func heplerQAChangeHealthy() {
+        let expositionInf = ExpositionInfo(level: .exposed)
+        checkExpositionLevel(expositionInf)
     }
 
 }

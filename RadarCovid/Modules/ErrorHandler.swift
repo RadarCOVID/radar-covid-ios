@@ -14,6 +14,7 @@ import Foundation
 import UIKit
 import ExposureNotification
 import DP3TSDK
+import Logging
 
 protocol ErrorHandler {
     func handle(error: Error?)
@@ -102,7 +103,10 @@ class ErrorHandlerImpl: ErrorHandler {
 }
 
 class ErrorRecorderImpl: ErrorRecorder {
+    
+    private let logger = Logger(label: "ErrorRecorderImpl")
+    
     func record(error: Error) {
-        debugPrint("Error \(error)")
+        logger.error("Error \(error)")
     }
 }

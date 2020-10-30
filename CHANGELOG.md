@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.0 (2020-10-30)
+### Features
+* added functionallity to send fake request at random exponential rate
+* possibility to share positive code between European countries
+* new popup announcing changes in terms and conditions
+* new settings section
+
+### Bug Fixes
+* accesibility issues
+* other bug fix
+
 ### 1.0.8 (2020-10-08)
 * Improved accessibility
 * Changed header structure to improve accebility

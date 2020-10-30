@@ -15,22 +15,27 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    var localizationUseCase: LocalizationUseCase
     var homeViewController: HomeViewController
     var myDataViewController: MyDataViewController
     var helpLineViewController: HelpLineViewController
+    var settingViewController: SettingViewController
+    
+    var localizationUseCase: LocalizationUseCase
     var preferencesRepository: PreferencesRepository?
 
-    init(localizationUseCase: LocalizationUseCase,
-         homeViewController: HomeViewController,
+    init(homeViewController: HomeViewController,
          myDataViewController: MyDataViewController,
          helpLineViewController: HelpLineViewController,
-         preferencesRepository: PreferencesRepository) {
+         settingViewController: SettingViewController,
+         preferencesRepository: PreferencesRepository,
+         localizationUseCase: LocalizationUseCase) {
         
-        self.localizationUseCase = localizationUseCase
         self.homeViewController = homeViewController
         self.myDataViewController = myDataViewController
         self.helpLineViewController = helpLineViewController
+        self.settingViewController = settingViewController
+        
+        self.localizationUseCase = localizationUseCase
         self.preferencesRepository = preferencesRepository
 
         super.init(nibName: nil, bundle: nil)
@@ -46,10 +51,14 @@ class TabBarController: UITabBarController {
         setupView()
     }
     
+    func isDissableAccesibility(isDisabble: Bool) {
+        self.tabBar.isHidden = isDisabble
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAccessibility()
-        setViewControllers([homeViewController, myDataViewController, helpLineViewController], animated: false)
+        setViewControllers([homeViewController, myDataViewController, helpLineViewController, settingViewController], animated: false)
     }
     
     private func setupAccessibility() {
@@ -67,6 +76,11 @@ class TabBarController: UITabBarController {
         helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         helpLineViewController.tabBarItem.accessibilityLabel = "ACC_HELPLINE_TITLE".localized
         helpLineViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+        
+        settingViewController.tabBarItem.isAccessibilityElement = true
+        settingViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        settingViewController.tabBarItem.accessibilityLabel = "ACC_SETTINGS_TITLE".localized
+        settingViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupView() {
@@ -80,8 +94,8 @@ class TabBarController: UITabBarController {
         apareance.backgroundImage = UIImage.init(named: "tabBarBG")
         tabBar.clipsToBounds = true
         tabBar.standardAppearance = apareance
-        tabBar.unselectedItemTintColor = UIColor.red;
-        tabBar.tintColor = UIColor.purpleApp
+        tabBar.unselectedItemTintColor = UIColor.black;
+        tabBar.tintColor = UIColor.twilight
        
         homeViewController.tabBarItem = UITabBarItem(
             title: "",
@@ -95,6 +109,10 @@ class TabBarController: UITabBarController {
             title: "",
             image: UIImage(named: "MenuHelpNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuHelpSelected"))
+        settingViewController.tabBarItem = UITabBarItem(
+            title: "",
+            image: UIImage(named: "MenuSettingNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
+            selectedImage: UIImage(named: "MenuSettingSelected"))
     }
 }
 

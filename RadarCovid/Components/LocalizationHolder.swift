@@ -19,6 +19,8 @@ class LocalizationHolder {
         get {
             if let source = source {
                 _localizationMap = source.localizationMap
+            }else{
+                _localizationMap = UserDefaultsLocalizationRepository().getTexts()
             }
             return _localizationMap
         }

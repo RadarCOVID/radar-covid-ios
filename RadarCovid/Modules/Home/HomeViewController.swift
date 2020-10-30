@@ -15,6 +15,7 @@ import DP3TSDK
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreInfoLabel: UILabel!
     @IBOutlet weak var topRadarTitle: NSLayoutConstraint!
@@ -37,6 +38,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var notificationInactiveMessageLabel: UILabel!
     @IBOutlet weak var resetDataButton: UIButton!
     @IBOutlet weak var expositionDetailImage: UIImageView!
+    var termsRepository: TermsAcceptedRepository!
 
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
@@ -59,6 +61,12 @@ class HomeViewController: UIViewController {
         setupBindings()
         setupUserInteraction()
         setupView()
+        if !termsRepository.termsAccepted {
+            isDisableAccesibility(isDisabble: true)
+            self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+                TermsView.initWithParentViewController(viewController: self, delegate: self)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +99,7 @@ class HomeViewController: UIViewController {
             if expositionInfo.level == .infected {
                 router!.route(to: Routes.myHealthReported, from: self)
             } else {
-                router!.route(to: Routes.myHealth, from: self)
+                router!.route(to: Routes.myHealthStep0, from: self)
             }
         } else {
             showAlertOk(
@@ -145,7 +153,8 @@ class HomeViewController: UIViewController {
         titleLabel.isAccessibilityElement = true
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_HOME_TITLE".localized
-
+        titleLabel.isHidden = !UIAccessibility.isVoiceOverRunning
+        
         expositionTitleLabel.isAccessibilityElement = true
         expositionTitleLabel.accessibilityTraits.insert(UIAccessibilityTraits.button)
         expositionTitleLabel.accessibilityHint = "ACC_HINT".localized
@@ -155,8 +164,6 @@ class HomeViewController: UIViewController {
         moreInfoLabel.accessibilityLabel = "EXPOSITION_HIGH_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         moreInfoLabel.accessibilityHint = "ACC_HINT".localized
         
-        titleLabel.isHidden = !UIAccessibility.isVoiceOverRunning
-
         expositionDetailImage.isAccessibilityElement = false
         expositionDetailImage.accessibilityLabel = "ACC_BUTTON_NAVIGATE_TO_EXPOSITION".localized
         expositionDetailImage.accessibilityTraits.insert(UIAccessibilityTraits.button)
@@ -204,15 +211,32 @@ class HomeViewController: UIViewController {
     
     private func setupView() {
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
-
+        communicationButton.titleLabel?.textAlignment = .center
+        
         radarView.image = UIImage(named: "WhiteCard")
 
         radarSwitch.tintColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         radarSwitch.layer.cornerRadius = radarSwitch.frame.height / 2
         radarSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
 
-        resetDataButton.isHidden = !Config.debug
-        envLabel.isHidden = Config.environment == "PRO"
+        resetDataButton.isHidden = !(Config.environment == "PRE")
+        envLabel.isHidden = !(Config.environment == "PRE")
+        
+        if Config.environment == "PRE" {
+            let bundleVersion = (Bundle.main.infoDictionary?["CFBundleVersion"] ?? "") as! String
+            envLabel.text = "\(Config.environment) - V_\(Config.version)_\(bundleVersion)"
+            
+            self.envLabel.isUserInteractionEnabled = true
+            self.envLabel.isAccessibilityElement = true
+            let tapGestureHeplerQAChangeHealthy = UITapGestureRecognizer(target: self, action: #selector(self.heplerQAChangeHealthy))
+            self.envLabel.addGestureRecognizer(tapGestureHeplerQAChangeHealthy)
+            
+            
+            self.defaultImage.isUserInteractionEnabled = true
+            self.defaultImage.isAccessibilityElement = true
+            let tapGestureHeplerQAShowAlert = UITapGestureRecognizer(target: self, action: #selector(self.heplerQAShowAlert))
+            self.defaultImage.addGestureRecognizer(tapGestureHeplerQAShowAlert)
+        }
 
         viewModel!.checkInitialExposition()
         viewModel!.checkOnboarding()
@@ -235,8 +259,10 @@ class HomeViewController: UIViewController {
     }
     
     private func showTimeExposed() {
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1)
-        TimeExposedView.initWithParentViewController(viewController: self)
+        isDisableAccesibility(isDisabble: true)
+        self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+            TimeExposedView.initWithParentViewController(viewController: self, delegate: self)
+        }
     }
 
     private func updateExpositionInfo(_ exposition: ExpositionInfo?) {
@@ -259,7 +285,6 @@ class HomeViewController: UIViewController {
             withParams: ["CONTACT_PHONE".localized]
         )
         expositionView.image = bgImageOrange
-        expositionTitleLabel.textColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
         moreInfoLabel.isHidden = true
@@ -269,7 +294,6 @@ class HomeViewController: UIViewController {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_LOW".localized
         expositionDescriptionLabel.locKey  = "HOME_EXPOSITION_MESSAGE_LOW"
         expositionView.image = bgImageGreen
-        expositionTitleLabel.textColor = #colorLiteral(red: 0.3449999988, green: 0.6899999976, blue: 0.4160000086, alpha: 1)
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
         moreInfoLabel.isHidden = true
@@ -279,7 +303,6 @@ class HomeViewController: UIViewController {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_POSITIVE".localized
         expositionDescriptionLabel.locKey = "HOME_EXPOSITION_MESSAGE_INFECTED"
         expositionView.image = bgImageRed
-        expositionTitleLabel.textColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         communicationButton.isHidden = true
         topComunicationConstraint.constant = -(communicationButton.frame.size.height + bottomComunicationConstraint.constant)
         moreInfoLabel.isHidden = false
@@ -407,6 +430,37 @@ class HomeViewController: UIViewController {
             buttonVoiceover: "ACC_HINT".localized) { (_) in
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         }
+    }
+    
+    private func isDisableAccesibility(isDisabble: Bool) {
+        self.scrollView.isHidden = isDisabble
+        self.communicationButton.isHidden = isDisabble
+        self.envLabel.isHidden = isDisabble
+        self.resetDataButton.isHidden = isDisabble
+        
+        if let tab = self.parent as? TabBarController {
+            tab.isDissableAccesibility(isDisabble: isDisabble)
+        }
+    }
+    
+    @objc private func heplerQAChangeHealthy() {
+        self.viewModel?.heplerQAChangeHealthy()
+    }
+    
+    @objc private func heplerQAShowAlert() {
+        showTimeExposed()
+    }
+}
+
+extension HomeViewController: TermsViewProtocol {
+    func hiddenTermsdView() {
+        isDisableAccesibility(isDisabble: false)
+    }
+}
+
+extension HomeViewController: TimeExposedProtocol {
+    func hiddenTimeExposedView() {
+        isDisableAccesibility(isDisabble: false)
     }
 }
 

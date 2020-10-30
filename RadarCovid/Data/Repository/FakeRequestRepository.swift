@@ -23,12 +23,13 @@ enum ExponentialDistribution {
     }
 }
 
-import Foundation
 class FakeRequestRepository {
     
     private var userDefaults: UserDefaults
     private let nextFakeRequestDate = "UserDefaultsFakeRequestUseCase.lastFake"
-    
+    var rate: Double
+    let daySecs: Double = 24 * 60 * 60
+
     private var now: Date {
         Date()
     }
@@ -44,7 +45,15 @@ class FakeRequestRepository {
     }
     
     init() {
+        rate = 1.0
+        if Config.debug {
+            rate = 1
+        }
         self.userDefaults = UserDefaults.standard
+        rate = 1.0
+        if Config.debug {
+            rate = 0.1
+        }
     }
     
     public func getNextScheduledFakeRequestDate() -> Date {
@@ -52,13 +61,14 @@ class FakeRequestRepository {
     }
     
     private func setNextScheduledFakeRequestDate() -> Date {
-        let nextFakeDate = Date(timeInterval: ExponentialDistribution.sample(), since: now)
+        let nextFakeDate = Date(timeInterval: ExponentialDistribution.sample(rate: rate) * daySecs, since: now)
         self._nextScheduledFakeRequestDate = nextFakeDate
+        print("setting new scheduled fake request date", nextFakeDate, "actualDate", Date())
         return nextFakeDate
     }
     
     public func updateScheduledFakeRequestDate() {
-        self._nextScheduledFakeRequestDate = Date(timeInterval: ExponentialDistribution.sample(), since: now)
+        let _ = self.setNextScheduledFakeRequestDate()
     }
     
 }

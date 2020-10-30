@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyHealthStep2ViewController" customModule="Radar_COVID" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="MiS-le-CP9" id="lOr-JS-YOJ"/>
+                <outlet property="cancelButton" destination="e8K-CW-bJJ" id="B6f-II-qOJ"/>
+                <outlet property="checkShareEuropeImage" destination="LjL-Pn-lp4" id="DGI-61-fe7"/>
+                <outlet property="checkShareSpainImage" destination="bMl-9b-M5I" id="alX-BK-zyS"/>
+                <outlet property="customSliderView" destination="XYS-UW-1h5" id="xcX-B2-oki"/>
+                <outlet property="sendButton" destination="c8a-41-d9l" id="q37-qE-hL4"/>
+                <outlet property="shareEuropeRadioView" destination="78O-7J-bGF" id="j7F-JQ-QOn"/>
+                <outlet property="shareSpainRadioView" destination="fbA-Br-dcs" id="X3J-J9-aDc"/>
+                <outlet property="titleLabel" destination="4Bc-CU-SbS" id="ehx-Xc-T8w"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzc-Oe-DiC">
+                    <rect key="frame" x="0.0" y="116" width="414" height="578"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqs-jf-GzU">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="780.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compartir diagnóstico" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-CU-SbS">
+                                    <rect key="frame" x="16" y="40" width="193" height="22"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_TITLE_STEP2"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comparte tu diagnóstico anónimo con otras aplicaciones europeas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="D5K-o9-kaY">
+                                    <rect key="frame" x="16" y="82" width="382" height="38.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_STEP2_PARAGRAPH_1"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Es necesario para avisar a las personas con las que hayas podido tener contacto mientras podías transmitir el coronavirus." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q6b-9Y-Kvk">
+                                    <rect key="frame" x="16" y="136.5" width="382" height="57.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_STEP2_PARAGRAPH_2"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Jwd-7J-mex">
+                                    <rect key="frame" x="16" y="679" width="382" height="81.5"/>
+                                    <string key="text">Radar COVID forma parte de una red de países en la Unión Europea cuyas aplicaciones  
+interoperan entre sí, funcionando más allá de sus fronteras.</string>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_STEP2_PARAGRAPH_3"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-Br-dcs">
+                                    <rect key="frame" x="16" y="214" width="382" height="90.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compartir con personas usuarias Radar COVID" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cq9-es-rp8">
+                                            <rect key="frame" x="19" y="26" width="311" height="38.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_STEP2_RADIO1"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkOn" translatesAutoresizingMaskIntoConstraints="NO" id="bMl-9b-M5I">
+                                            <rect key="frame" x="338" y="33.5" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="8Rn-xd-lZk"/>
+                                                <constraint firstAttribute="height" constant="24" id="SDG-xu-ANS"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="cq9-es-rp8" secondAttribute="bottom" constant="26" id="9Eh-fM-0bN"/>
+                                        <constraint firstItem="bMl-9b-M5I" firstAttribute="leading" secondItem="cq9-es-rp8" secondAttribute="trailing" constant="8" id="HhT-by-KDT"/>
+                                        <constraint firstItem="cq9-es-rp8" firstAttribute="top" secondItem="fbA-Br-dcs" secondAttribute="top" constant="26" id="Twz-Vh-bwb"/>
+                                        <constraint firstAttribute="trailing" secondItem="bMl-9b-M5I" secondAttribute="trailing" constant="20" id="qRK-qE-sJR"/>
+                                        <constraint firstItem="cq9-es-rp8" firstAttribute="leading" secondItem="fbA-Br-dcs" secondAttribute="leading" constant="19" id="wCy-w5-N8e"/>
+                                        <constraint firstItem="bMl-9b-M5I" firstAttribute="centerY" secondItem="fbA-Br-dcs" secondAttribute="centerY" id="zDG-5a-y2s"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78O-7J-bGF">
+                                    <rect key="frame" x="16" y="324.5" width="382" height="82.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compartir con personas usuarias Radar COVID y aplicaciones europeas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YL7-Hx-rZ8">
+                                            <rect key="frame" x="16" y="26" width="312" height="38.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_STEP2_RADIO2"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkOn" translatesAutoresizingMaskIntoConstraints="NO" id="LjL-Pn-lp4">
+                                            <rect key="frame" x="338" y="29.5" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="Wr8-Cd-yh3"/>
+                                                <constraint firstAttribute="height" constant="24" id="jwZ-8r-4bN"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="LjL-Pn-lp4" firstAttribute="leading" secondItem="YL7-Hx-rZ8" secondAttribute="trailing" constant="10" id="9r6-LF-HMn"/>
+                                        <constraint firstAttribute="bottom" secondItem="YL7-Hx-rZ8" secondAttribute="bottom" constant="18" id="BWE-pB-vjK"/>
+                                        <constraint firstItem="YL7-Hx-rZ8" firstAttribute="leading" secondItem="78O-7J-bGF" secondAttribute="leading" constant="16" id="Rww-Qv-zEQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="LjL-Pn-lp4" secondAttribute="trailing" constant="20" id="cTi-rD-OJ7"/>
+                                        <constraint firstItem="YL7-Hx-rZ8" firstAttribute="top" secondItem="78O-7J-bGF" secondAttribute="top" constant="26" id="eoo-CD-Ty4"/>
+                                        <constraint firstItem="LjL-Pn-lp4" firstAttribute="centerY" secondItem="78O-7J-bGF" secondAttribute="centerY" id="iSj-K2-qDO"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myHealthStep2Frame" translatesAutoresizingMaskIntoConstraints="NO" id="sqQ-QU-hBG">
+                                    <rect key="frame" x="0.0" y="450" width="414" height="203"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" name="veryLightPink"/>
+                            <constraints>
+                                <constraint firstItem="sqQ-QU-hBG" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" id="0nP-0e-TIj"/>
+                                <constraint firstAttribute="trailing" secondItem="Jwd-7J-mex" secondAttribute="trailing" constant="16" id="2hq-3Q-ZLc"/>
+                                <constraint firstItem="Jwd-7J-mex" firstAttribute="top" secondItem="sqQ-QU-hBG" secondAttribute="bottom" constant="26" id="3Ul-45-EH7"/>
+                                <constraint firstItem="fbA-Br-dcs" firstAttribute="top" secondItem="Q6b-9Y-Kvk" secondAttribute="bottom" constant="20" id="6BX-GZ-rF1"/>
+                                <constraint firstItem="D5K-o9-kaY" firstAttribute="top" secondItem="4Bc-CU-SbS" secondAttribute="bottom" constant="20" id="AoZ-vz-BTz"/>
+                                <constraint firstItem="Q6b-9Y-Kvk" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="HTv-Lx-0bp"/>
+                                <constraint firstItem="fbA-Br-dcs" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="QI2-UH-YNn"/>
+                                <constraint firstItem="Q6b-9Y-Kvk" firstAttribute="top" secondItem="D5K-o9-kaY" secondAttribute="bottom" constant="16" id="QcL-3u-w8c"/>
+                                <constraint firstItem="78O-7J-bGF" firstAttribute="top" secondItem="fbA-Br-dcs" secondAttribute="bottom" constant="20" id="RmX-jJ-Msg"/>
+                                <constraint firstAttribute="trailing" secondItem="78O-7J-bGF" secondAttribute="trailing" constant="16" id="UeS-R5-jfz"/>
+                                <constraint firstItem="4Bc-CU-SbS" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="Vq7-wl-thW"/>
+                                <constraint firstItem="4Bc-CU-SbS" firstAttribute="top" secondItem="wqs-jf-GzU" secondAttribute="top" constant="40" id="Xlp-BM-aRp"/>
+                                <constraint firstAttribute="trailing" secondItem="D5K-o9-kaY" secondAttribute="trailing" constant="16" id="YcQ-Bs-F5I"/>
+                                <constraint firstAttribute="trailing" secondItem="Q6b-9Y-Kvk" secondAttribute="trailing" constant="16" id="Z6g-OI-nKn"/>
+                                <constraint firstAttribute="trailing" secondItem="fbA-Br-dcs" secondAttribute="trailing" constant="16" id="Zby-aY-rLd"/>
+                                <constraint firstAttribute="bottom" secondItem="Jwd-7J-mex" secondAttribute="bottom" constant="20" id="dAb-CL-JNy"/>
+                                <constraint firstItem="78O-7J-bGF" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="hsP-BU-XpD"/>
+                                <constraint firstAttribute="trailing" secondItem="sqQ-QU-hBG" secondAttribute="trailing" id="pTr-zc-hqk"/>
+                                <constraint firstItem="D5K-o9-kaY" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="r8e-iB-ydD"/>
+                                <constraint firstItem="Jwd-7J-mex" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="yAH-Cx-mMj"/>
+                                <constraint firstItem="sqQ-QU-hBG" firstAttribute="top" secondItem="78O-7J-bGF" secondAttribute="bottom" constant="43" id="yqy-JR-49e"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="GiG-HY-4MI"/>
+                    <constraints>
+                        <constraint firstItem="wqs-jf-GzU" firstAttribute="trailing" secondItem="iuJ-jV-s9F" secondAttribute="trailing" id="4rh-mn-YY2"/>
+                        <constraint firstItem="wqs-jf-GzU" firstAttribute="width" secondItem="QGV-px-6Uq" secondAttribute="width" id="HQo-Df-Lm3"/>
+                        <constraint firstItem="wqs-jf-GzU" firstAttribute="leading" secondItem="iuJ-jV-s9F" secondAttribute="leading" id="VE9-MN-sPM"/>
+                        <constraint firstItem="wqs-jf-GzU" firstAttribute="bottom" secondItem="iuJ-jV-s9F" secondAttribute="bottom" id="Ysr-tf-z07"/>
+                        <constraint firstItem="wqs-jf-GzU" firstAttribute="top" secondItem="iuJ-jV-s9F" secondAttribute="top" id="te4-aV-Z52"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="iuJ-jV-s9F"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="QGV-px-6Uq"/>
+                </scrollView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="3N8-c8-HD0">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="155.5"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiS-le-CP9">
+                    <rect key="frame" x="20" y="64" width="155" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="WdC-1w-ws0"/>
+                    </constraints>
+                    <state key="normal" image="iconsBack"/>
+                    <connections>
+                        <action selector="onBack:" destination="-1" eventType="touchUpInside" id="pPF-DN-ZZF"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYS-UW-1h5" customClass="CustomSliderView" customModule="Radar_COVID" customModuleProvider="target">
+                    <rect key="frame" x="175" y="76" width="219" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="fq9-Id-Ng7"/>
+                        <constraint firstAttribute="width" constant="219" id="wUI-XV-HGJ"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8a-41-d9l" userLabel="Accept Button">
+                    <rect key="frame" x="16" y="710" width="382" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="keU-Mo-nEN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="Enviar diagnóstico anónimo" backgroundImage="buttonsPrimary">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onReportDiagnosis:" destination="-1" eventType="touchUpInside" id="ba0-SS-ZHR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8K-CW-bJJ" userLabel="Accept Button">
+                    <rect key="frame" x="16" y="786" width="382" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="Mlr-bP-GsK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="Cancelar">
+                        <color key="titleColor" name="twilight"/>
+                    </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onCancel:" destination="-1" eventType="touchUpInside" id="0vX-hx-l6X"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="veryLightPink"/>
+            <constraints>
+                <constraint firstItem="pzc-Oe-DiC" firstAttribute="top" secondItem="XYS-UW-1h5" secondAttribute="bottom" id="4om-NT-PKS"/>
+                <constraint firstItem="3N8-c8-HD0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8XV-uP-8TZ"/>
+                <constraint firstItem="3N8-c8-HD0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DZJ-bG-3Vc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XYS-UW-1h5" secondAttribute="trailing" constant="20" id="Fxr-1k-Lod"/>
+                <constraint firstItem="MiS-le-CP9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Gkg-Ee-AzX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3N8-c8-HD0" secondAttribute="trailing" id="Jn9-vi-1kf"/>
+                <constraint firstItem="pzc-Oe-DiC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="KD5-VO-TxA"/>
+                <constraint firstItem="MiS-le-CP9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="M8b-D9-AaB"/>
+                <constraint firstItem="XYS-UW-1h5" firstAttribute="leading" secondItem="MiS-le-CP9" secondAttribute="trailing" id="MAf-3i-sX1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="c8a-41-d9l" secondAttribute="trailing" constant="16" id="NWv-BC-S2N"/>
+                <constraint firstItem="e8K-CW-bJJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="VLV-Ig-XtK"/>
+                <constraint firstItem="e8K-CW-bJJ" firstAttribute="top" secondItem="c8a-41-d9l" secondAttribute="bottom" constant="20" id="dU4-BH-SnA"/>
+                <constraint firstItem="c8a-41-d9l" firstAttribute="top" secondItem="pzc-Oe-DiC" secondAttribute="bottom" constant="16" id="hQ5-GP-tt0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="e8K-CW-bJJ" secondAttribute="trailing" constant="16" id="qmT-2m-roY"/>
+                <constraint firstItem="XYS-UW-1h5" firstAttribute="top" secondItem="MiS-le-CP9" secondAttribute="top" constant="12" id="taF-gJ-X8b"/>
+                <constraint firstItem="c8a-41-d9l" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="uTu-9U-8Do"/>
+                <constraint firstItem="pzc-Oe-DiC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vir-8I-3jv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="e8K-CW-bJJ" secondAttribute="bottom" constant="20" id="wA4-FD-nNM"/>
+            </constraints>
+            <point key="canvasLocation" x="18.840579710144929" y="75.669642857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonPrimaryDisabled" width="343" height="56"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
+        <image name="checkOn" width="24" height="24"/>
+        <image name="iconsBack" width="25.5" height="17"/>
+        <image name="myHealthStep2Frame" width="375" height="203"/>
+        <image name="organicColor" width="375" height="155.5"/>
+        <namedColor name="twilight">
+            <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

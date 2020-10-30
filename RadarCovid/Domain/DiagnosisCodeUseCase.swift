@@ -31,9 +31,9 @@ class DiagnosisCodeUseCase {
         dateFormatter.locale = Locale(identifier: "es_ES")
     }
 
-    func sendDiagnosisCode(code: String, date: Date? = nil) -> Observable<Bool> {
+    func sendDiagnosisCode(code: String, date: Date? = nil, share: Bool = false) -> Observable<Bool> {
         self.isfake = FakeRequestUseCase.FALSE_POSITIVE_CODE == code
-        return verificationApi.verifyCode(body: Code( date: date, code: code ) )
+        return verificationApi.verifyCode(body: Code( date: date, code: code ), share: share )
             .catchError { [weak self] error in throw self?.mapError(error) ?? error }
             .flatMap { [weak self] tokenResponse -> Observable<Bool> in
                 guard let jwtOnset = try self?.parseToken(tokenResponse.token).claims.onset,
@@ -42,7 +42,6 @@ class DiagnosisCodeUseCase {
                 }
                 return self?.iWasExposed(onset: onset, token: tokenResponse.token) ?? .empty()
             }
-
     }
 
     private func iWasExposed(onset: Date, token: String) -> Observable<Bool> {

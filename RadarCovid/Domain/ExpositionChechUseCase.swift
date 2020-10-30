@@ -30,7 +30,6 @@ class ExpositionCheckUseCase {
     func checkBackToHealthyJustChanged() -> Bool {
         let changed = expositionInfoRepository.isChangedToHealthy() ?? false
         expositionInfoRepository.setChangedToHealthy(changed: false)
-        self.resetDataUseCase.resetExposureDays().subscribe().disposed(by: disposeBag)
         return changed
     }
 

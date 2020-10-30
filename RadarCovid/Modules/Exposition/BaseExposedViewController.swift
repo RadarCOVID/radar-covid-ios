@@ -16,9 +16,8 @@ protocol ExpositionView {
     func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer)
 }
 
-class BaseExposed: UIViewController, ExpositionView {
+class BaseExposed: BaseViewController, ExpositionView {
     
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var moreInfoView: UIView!
     @IBOutlet weak var expositionBGView: BackgroundView!
     
@@ -29,7 +28,6 @@ class BaseExposed: UIViewController, ExpositionView {
         super.viewDidLoad()
         
         setupBaseView()
-        setupBaseAccessibility()
     }
     
     @IBAction func onBack(_ sender: Any) {
@@ -38,18 +36,6 @@ class BaseExposed: UIViewController, ExpositionView {
     
     @objc func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
         //Nothing to do here
-    }
-    
-    private func setupBaseAccessibility() {
-        
-        backButton.isAccessibilityElement = true
-        let previous = navigationController?.previousViewController
-        if let title = (previous as? AccTitleView)?.accTitle ?? previous?.title {
-            backButton.accessibilityLabel = "ACC_BUTTON_BACK_TO".localized + " " + title
-        } else {
-            backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
-        }
-        backButton.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupBaseView() {
