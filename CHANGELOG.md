@@ -1,26 +1,23 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
 
-## 1.2.0 (2020-10-30)
-
-
+## 1.1.0 (2020-10-30)
 ### Features
-
-* exponential fake request 3e21920
-* new logic to shared from Europe d4f8198
-* new popup announcing terms and conditions changed a7ac7ee
-* new sections settings b5e04e2
-
+* added functionallity to send fake request at random exponential rate
+* possibility to share positive code between European countries
+* new popup announcing changes in terms and conditions
+* new settings section
 
 ### Bug Fixes
+* accesibility issues
+* other bug fix
 
-* accesibility issues 32abadd
-* accessibility issues  c778774
-* change version number due to expedited publishing d258e72
-* Header structure accebility issues dc0a5b9
-* **onboarding:** crash the when activating: ViewController added twice c888bc8
-* don't show fixed date when date is unknown ae904d7
+### 1.0.8 (2020-10-08)
+* Improved accessibility
+* Changed header structure to improve accebility
+* **onboarding:** fixed crash when activating
+* **exposition detail**avoid showing fixed date when date is unknown
 
 ### 1.0.6 (2020-09-15)
 * Return to healthy state implemented for alerted contacts (close contacts) after 14 days.
