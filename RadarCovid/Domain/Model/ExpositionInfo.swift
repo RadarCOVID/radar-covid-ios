@@ -27,5 +27,9 @@ struct ExpositionInfo: Codable, Equatable {
          case exposed
          case infected
     }
+    
+    func isOk() -> Bool {
+        error == nil
+    }
 
 }

@@ -26,10 +26,11 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
     func sendFalsePositive() -> Observable<Bool> {
         return Observable.create { [weak self] (observer) -> Disposable in
             if self?.needToSendFalsePositive() ?? false {
-                self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE).subscribe(
+                let randomBoolean = Bool.random()
+                self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
                     onNext: { _ in
-                        
-                        self?.fakeRequestRepository.fakeRequestDate = Date()
+                        print("fake request sended with date", Date())
+                        self?.fakeRequestRepository.updateScheduledFakeRequestDate()
                         return observer.onNext(true)
                         
                     }
@@ -46,7 +47,8 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
     }
     
     private func needToSendFalsePositive() -> Bool{
-        return abs(fakeRequestRepository.fakeRequestDate.timeIntervalSinceNow) >= minFakeRequestTimeSpan
+        let interval = self.fakeRequestRepository.getNextScheduledFakeRequestDate().timeIntervalSince(Date())
+        return interval <= 2 * 24 * 60 * 60
     }
     
 }

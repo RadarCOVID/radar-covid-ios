@@ -32,7 +32,7 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
         setupAccessibility()
         setupView()
     }
-
+    
     @objc func onCallTap(tapGestureRecognizer: UITapGestureRecognizer) {
         open(phone: "CONTACT_PHONE".localized)
     }

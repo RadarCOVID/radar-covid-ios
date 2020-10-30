@@ -27,8 +27,9 @@ open class VerificationControllerAPI {
      - parameter body: (body)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open func verifyCode(body: Code, completion: @escaping ((_ data: TokenResponse?, _ error: Error?) -> Void)) {
-        verifyCodeWithRequestBuilder(body: body).execute { (response, error) -> Void in
+    open func verifyCode(body: Code, share: Bool, completion: @escaping ((_ data: TokenResponse?, _ error: Error?) -> Void)) {
+        let headers = ["X-EFGS-Sharing": share ? "1" : "0"]
+        verifyCodeWithRequestBuilder(body: body, headers: headers).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -38,9 +39,9 @@ open class VerificationControllerAPI {
      - parameter body: (body)
      - returns: Observable<TokenResponse>
      */
-    open func verifyCode(body: Code) -> Observable<TokenResponse> {
+    open func verifyCode(body: Code, share: Bool) -> Observable<TokenResponse> {
         return Observable.create { [weak self] observer -> Disposable in
-            self?.verifyCode(body: body) {  data, error in
+            self?.verifyCode(body: body, share: share) {  data, error in
                 if let error = error {
                     observer.on(.error(error))
                 } else {
@@ -63,7 +64,7 @@ open class VerificationControllerAPI {
 
      - returns: RequestBuilder<TokenResponse>
      */
-    open func verifyCodeWithRequestBuilder(body: Code) -> RequestBuilder<TokenResponse> {
+    open func verifyCodeWithRequestBuilder(body: Code, headers: [String: String] = [:] ) -> RequestBuilder<TokenResponse> {
         let path = "/verify/code"
         let URLString = clientApi.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
@@ -71,8 +72,8 @@ open class VerificationControllerAPI {
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<TokenResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+        
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headers)
     }
 
 }

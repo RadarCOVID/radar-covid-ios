@@ -71,6 +71,10 @@ class Injection {
             UserDefaultsPreferencesRepository()
         }.inObjectScope(.container)
         
+        container.register(TermsAcceptedRepository.self) { _ in
+            TermsAcceptedRepository()
+        }.inObjectScope(.container)
+        
         container.register(SettingsRepository.self) { _ in
             UserDefaultsSettingsRepository()
         }.inObjectScope(.container)
@@ -101,8 +105,7 @@ class Injection {
         
         container.register(ExpositionUseCase.self) { r in
             ExpositionUseCase(notificationHandler: r.resolve(NotificationHandler.self)!,
-                              expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
-                              localizationUseCase: r.resolve(LocalizationUseCase.self)!)
+                              expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
         }.inObjectScope(.container)
         
         container.register(RadarStatusUseCase.self) { r in
@@ -169,30 +172,18 @@ class Injection {
         
         container.register(TabBarController.self) { r in
             TabBarController(
-                localizationUseCase: r.resolve(LocalizationUseCase.self)!,
                 homeViewController: r.resolve(HomeViewController.self)!,
                 myDataViewController: r.resolve(MyDataViewController.self)!,
                 helpLineViewController: r.resolve(HelpLineViewController.self)!,
-                preferencesRepository: r.resolve(PreferencesRepository.self)!
+                settingViewController: r.resolve(SettingViewController.self)!,
+                preferencesRepository: r.resolve(PreferencesRepository.self)!,
+                localizationUseCase: r.resolve(LocalizationUseCase.self)!
             )
         }
         
         container.register(AppRouter.self) { _ in
             AppRouter()
         }.initCompleted {r, appRouter in
-            appRouter.rootVC = r.resolve(RootViewController.self)!
-            appRouter.proxymityVC  = r.resolve(ProximityViewController.self)!
-            appRouter.onBoardingVC = r.resolve(OnBoardingViewController.self)!
-            appRouter.tabBarController = r.resolve(TabBarController.self)!
-            appRouter.myHealthVC = r.resolve(MyHealthViewController.self)!
-            appRouter.myHealthReportedVC = r.resolve(MyHealthReportedViewController.self)!
-            appRouter.expositionVC = r.resolve(ExpositionViewController.self)!
-            appRouter.highExpositionVC = r.resolve(HighExpositionViewController.self)!
-            appRouter.positiveExposedVC = r.resolve(PositiveExposedViewController.self)!
-            appRouter.welcomeVC = r.resolve(WelcomeViewController.self)!
-            appRouter.activateCovid = r.resolve(ActivateCovidNotificationViewController.self)!
-            appRouter.activatePush = r.resolve(ActivatePushNotificationViewController.self)!
-            appRouter.homeVC = r.resolve(HomeViewController.self)!
         }
         
         container.register(ProximityViewController.self) {  r in
@@ -238,6 +229,7 @@ class Injection {
             homeVC?.router = r.resolve(AppRouter.self)!
             homeVC?.viewModel = r.resolve(HomeViewModel.self)!
             homeVC?.errorHandler = r.resolve(ErrorHandler.self)!
+            homeVC?.termsRepository = r.resolve(TermsAcceptedRepository.self)!
             return homeVC!
         }
         
@@ -249,6 +241,7 @@ class Injection {
             homeVM.expositionCheckUseCase = route.resolve(ExpositionCheckUseCase.self)!
             homeVM.syncUseCase = route.resolve(SyncUseCase.self)!
             homeVM.onBoardingCompletedUseCase = route.resolve(OnboardingCompletedUseCase.self)!
+            homeVM.fakeRequestUseCase = route.resolve(FakeRequestUseCase.self)!
             return homeVM
         }
         
@@ -267,13 +260,35 @@ class Injection {
             return helpVC!
         }
         
-        container.register(MyHealthViewController.self) {  route in
-            let myHealthVC = self.createViewController(
-                storyboard: "MyHealth",
-                viewId: "MyHealthViewController") as? MyHealthViewController
-            myHealthVC?.diagnosisCodeUseCase = route.resolve(DiagnosisCodeUseCase.self)!
-            myHealthVC?.router = route.resolve(AppRouter.self)!
-            return myHealthVC!
+        container.register(SettingViewController.self) {  route in
+            let settingVC = SettingViewController()
+            settingVC.router = route.resolve(AppRouter.self)!
+            settingVC.viewModel = route.resolve(SettingViewModel.self)!
+            return settingVC
+        }
+        
+        container.register(SettingViewModel.self) { route in
+            let settingVM = SettingViewModel(localesUseCase: route.resolve(LocalesUseCase.self)!)
+            return settingVM
+        }
+
+        container.register(MyHealthStep0ViewController.self) {  route in
+            let myHealthStep0 = MyHealthStep0ViewController()
+            myHealthStep0.router = route.resolve(AppRouter.self)!
+            return myHealthStep0
+        }
+        
+        container.register(MyHealthStep1ViewController.self) {  route in
+            let myHealthStep1 = MyHealthStep1ViewController()
+            myHealthStep1.router = route.resolve(AppRouter.self)!
+            return myHealthStep1
+        }
+        
+        container.register(MyHealthStep2ViewController.self) {  route in
+            let myHealthStep2 = MyHealthStep2ViewController()
+            myHealthStep2.router = route.resolve(AppRouter.self)!
+            myHealthStep2.diagnosisCodeUseCase = route.resolve(DiagnosisCodeUseCase.self)!
+            return myHealthStep2
         }
         
         container.register(MyHealthReportedViewController.self) { route in
@@ -289,14 +304,20 @@ class Injection {
                 storyboard: "OnBoarding",
                 viewId: "OnBoardingViewController") as? OnBoardingViewController
             onbVC?.router = route.resolve(AppRouter.self)!
+            onbVC?.termsRepository = route.resolve(TermsAcceptedRepository.self)!
             return onbVC!
         }
         
         container.register(WelcomeViewController.self) {  r in
             let welcomeVC = WelcomeViewController()
-            welcomeVC.localizationRepository = r.resolve(LocalizationRepository.self)!
+            welcomeVC.viewModel = r.resolve(WelcomeViewModel.self)!
             welcomeVC.router = r.resolve(AppRouter.self)!
             return welcomeVC
+        }
+        
+        container.register(WelcomeViewModel.self) { route in
+            let welcomeVM = WelcomeViewModel(localesUseCase: route.resolve(LocalesUseCase.self)!)
+            return welcomeVM
         }
         
         container.register(ActivateCovidNotificationViewController.self) {  r in

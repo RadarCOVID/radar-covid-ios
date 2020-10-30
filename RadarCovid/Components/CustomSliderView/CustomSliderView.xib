@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomSliderView" customModule="Radar_COVID" customModuleProvider="target">
+            <connections>
+                <outlet property="slider" destination="cLw-D7-Kjk" id="gfM-eP-8LX"/>
+                <outlet property="stepLabel" destination="o6R-S9-XpD" id="RjR-iM-bOP"/>
+                <outlet property="viewContainer" destination="k7M-g6-tVc" id="0fq-IJ-GkA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="258" height="54"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7M-g6-tVc">
+                    <rect key="frame" x="0.0" y="0.0" width="258" height="54"/>
+                    <subviews>
+                        <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLw-D7-Kjk" customClass="CustomSlider" customModule="Radar_COVID" customModuleProvider="target">
+                            <rect key="frame" x="-2" y="0.0" width="262" height="55"/>
+                            <color key="tintColor" name="degradado"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <bool key="isElement" value="NO"/>
+                            </accessibility>
+                            <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="trackLineHeight">
+                                    <real key="value" value="18"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </slider>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6R-S9-XpD">
+                            <rect key="frame" x="0.0" y="54" width="258" height="0.0"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <bool key="isElement" value="NO"/>
+                            </accessibility>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <bool key="isElement" value="YES"/>
+                    </accessibility>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="o6R-S9-XpD" secondAttribute="trailing" id="12C-gf-tqx"/>
+                        <constraint firstItem="o6R-S9-XpD" firstAttribute="top" secondItem="cLw-D7-Kjk" secondAttribute="bottom" id="1uv-Zn-gsf"/>
+                        <constraint firstItem="cLw-D7-Kjk" firstAttribute="leading" secondItem="k7M-g6-tVc" secondAttribute="leading" id="INv-DW-0Rf"/>
+                        <constraint firstAttribute="trailing" secondItem="cLw-D7-Kjk" secondAttribute="trailing" id="RXe-U5-WPE"/>
+                        <constraint firstAttribute="bottom" secondItem="o6R-S9-XpD" secondAttribute="bottom" id="T5a-F1-0JX"/>
+                        <constraint firstItem="o6R-S9-XpD" firstAttribute="leading" secondItem="k7M-g6-tVc" secondAttribute="leading" id="haI-Zn-PBM"/>
+                        <constraint firstItem="cLw-D7-Kjk" firstAttribute="top" secondItem="k7M-g6-tVc" secondAttribute="top" id="uzk-kQ-u6Y"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="k7M-g6-tVc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5GO-DQ-9kA"/>
+                <constraint firstAttribute="bottom" secondItem="k7M-g6-tVc" secondAttribute="bottom" id="VKj-I1-HQv"/>
+                <constraint firstItem="k7M-g6-tVc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gLp-8q-5nI"/>
+                <constraint firstAttribute="trailing" secondItem="k7M-g6-tVc" secondAttribute="trailing" id="moa-Mr-I6S"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-423" y="-74"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="degradado">
+            <color red="0.28627450980392155" green="0.23137254901960785" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

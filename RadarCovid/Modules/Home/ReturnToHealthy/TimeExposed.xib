@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view tag="1111" contentMode="scaleToFill" id="iN0-l3-epB" customClass="TimeExposedView" customModule="Radar_COVID" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C58-ev-rdO" userLabel="containerView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SY-NN-qG7">
+                            <rect key="frame" x="359" y="10" width="50" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="HhH-fI-S2a"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="x">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onCloseAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="U65-ID-A1G"/>
+                            </connections>
+                        </button>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7eW-6o-2yx">
+                            <rect key="frame" x="0.0" y="51" width="414" height="621"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awW-ay-1eZ" userLabel="ContentView">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="228.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0z-rs-I37" userLabel="Title">
+                                            <rect key="frame" x="20" y="5" width="374" height="20.5"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ALERT_HIGH_EXPOSURE_HEALED_TITLE"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8m-aL-Gw4">
+                                            <rect key="frame" x="20" y="55.5" width="20" height="29"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="NO"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="29" id="pAk-nd-J2b"/>
+                                                <constraint firstAttribute="width" constant="20" id="xnb-1p-SCa"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <color key="textColor" red="0.3483489293" green="0.26916854210000002" blue="0.61393559639999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxP-6U-juM" userLabel="bullet1">
+                                            <rect key="frame" x="55" y="55.5" width="329" height="19.5"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" link="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ALERT_HIGH_EXPOSURE_HEALED_BULLET_1"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYa-HO-43a">
+                                            <rect key="frame" x="20" y="100" width="20" height="29"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="NO"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="29" id="Sem-Wy-kws"/>
+                                                <constraint firstAttribute="width" constant="20" id="hr1-CN-6TW"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <color key="textColor" red="0.3483489293" green="0.26916854210000002" blue="0.61393559639999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKE-JT-D14" userLabel="bullet2">
+                                            <rect key="frame" x="55" y="100" width="329" height="19.5"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" link="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ALERT_HIGH_EXPOSURE_HEALED_BULLET_2"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4T-g8-zgD" userLabel="moreinfo">
+                                            <rect key="frame" x="55" y="144.5" width="329" height="19.5"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" link="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EwG-6Q-NeI" userLabel="bullet3">
+                                            <rect key="frame" x="55" y="189" width="329" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ALERT_HIGH_EXPOSURE_HEALED_BULLET_3"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THN-Bz-LTX">
+                                            <rect key="frame" x="20" y="189" width="20" height="29"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="NO"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="GTc-aR-s6z"/>
+                                                <constraint firstAttribute="height" constant="29" id="fdb-Hg-L07"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <color key="textColor" red="0.3483489293" green="0.26916854210000002" blue="0.61393559639999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="t0z-rs-I37" firstAttribute="top" secondItem="awW-ay-1eZ" secondAttribute="top" constant="5" id="5TH-ob-wLY"/>
+                                        <constraint firstItem="EwG-6Q-NeI" firstAttribute="leading" secondItem="THN-Bz-LTX" secondAttribute="trailing" constant="15" id="7hh-5M-d4d"/>
+                                        <constraint firstItem="WYa-HO-43a" firstAttribute="leading" secondItem="awW-ay-1eZ" secondAttribute="leading" constant="20" id="AOb-tk-xoc"/>
+                                        <constraint firstItem="vKE-JT-D14" firstAttribute="top" secondItem="WYa-HO-43a" secondAttribute="top" id="BO3-L6-ycc"/>
+                                        <constraint firstAttribute="bottom" secondItem="EwG-6Q-NeI" secondAttribute="bottom" constant="20" id="L6z-O1-dA7"/>
+                                        <constraint firstItem="vKE-JT-D14" firstAttribute="leading" secondItem="WYa-HO-43a" secondAttribute="trailing" constant="15" id="M2B-UC-hoR"/>
+                                        <constraint firstItem="vKE-JT-D14" firstAttribute="top" secondItem="jxP-6U-juM" secondAttribute="bottom" constant="25" id="QYk-h7-4Yj"/>
+                                        <constraint firstItem="EwG-6Q-NeI" firstAttribute="top" secondItem="W4T-g8-zgD" secondAttribute="bottom" constant="25" id="VOh-1Y-zc5"/>
+                                        <constraint firstItem="jxP-6U-juM" firstAttribute="top" secondItem="t0z-rs-I37" secondAttribute="bottom" constant="30" id="Vrd-eu-qva"/>
+                                        <constraint firstItem="D8m-aL-Gw4" firstAttribute="leading" secondItem="awW-ay-1eZ" secondAttribute="leading" constant="20" id="bbJ-fU-dMd"/>
+                                        <constraint firstItem="THN-Bz-LTX" firstAttribute="top" secondItem="EwG-6Q-NeI" secondAttribute="top" id="dax-N9-6T7"/>
+                                        <constraint firstItem="jxP-6U-juM" firstAttribute="top" secondItem="D8m-aL-Gw4" secondAttribute="top" id="dkr-kh-rjL"/>
+                                        <constraint firstItem="W4T-g8-zgD" firstAttribute="top" secondItem="vKE-JT-D14" secondAttribute="bottom" constant="25" id="eE7-YO-bsR"/>
+                                        <constraint firstAttribute="trailing" secondItem="t0z-rs-I37" secondAttribute="trailing" constant="20" id="fWF-i6-KpR"/>
+                                        <constraint firstItem="t0z-rs-I37" firstAttribute="leading" secondItem="awW-ay-1eZ" secondAttribute="leading" constant="20" id="gl0-Mv-Fyi"/>
+                                        <constraint firstAttribute="trailing" secondItem="jxP-6U-juM" secondAttribute="trailing" constant="30" id="hgk-mg-QeI"/>
+                                        <constraint firstAttribute="trailing" secondItem="W4T-g8-zgD" secondAttribute="trailing" constant="30" id="jSn-z2-TjC"/>
+                                        <constraint firstItem="W4T-g8-zgD" firstAttribute="leading" secondItem="vKE-JT-D14" secondAttribute="leading" id="mK9-S5-xFR"/>
+                                        <constraint firstAttribute="trailing" secondItem="EwG-6Q-NeI" secondAttribute="trailing" constant="30" id="pxn-IE-hIR"/>
+                                        <constraint firstAttribute="trailing" secondItem="vKE-JT-D14" secondAttribute="trailing" constant="30" id="sDc-3x-Xle"/>
+                                        <constraint firstItem="THN-Bz-LTX" firstAttribute="leading" secondItem="awW-ay-1eZ" secondAttribute="leading" constant="20" id="vyp-Tx-k1c"/>
+                                        <constraint firstItem="jxP-6U-juM" firstAttribute="leading" secondItem="D8m-aL-Gw4" secondAttribute="trailing" constant="15" id="wnG-rc-cTy"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="awW-ay-1eZ" firstAttribute="width" secondItem="v2G-XX-Qi2" secondAttribute="width" id="3Oi-sD-pKW"/>
+                                <constraint firstItem="bUb-ef-1Jg" firstAttribute="trailing" secondItem="awW-ay-1eZ" secondAttribute="trailing" id="USY-Gq-zTI"/>
+                                <constraint firstItem="bUb-ef-1Jg" firstAttribute="bottom" secondItem="awW-ay-1eZ" secondAttribute="bottom" id="VRO-5C-S9U"/>
+                                <constraint firstItem="awW-ay-1eZ" firstAttribute="leading" secondItem="bUb-ef-1Jg" secondAttribute="leading" id="mGy-Tb-1QR"/>
+                                <constraint firstItem="awW-ay-1eZ" firstAttribute="top" secondItem="bUb-ef-1Jg" secondAttribute="top" id="uyg-Ho-KtX"/>
+                            </constraints>
+                            <viewLayoutGuide key="contentLayoutGuide" id="bUb-ef-1Jg"/>
+                            <viewLayoutGuide key="frameLayoutGuide" id="v2G-XX-Qi2"/>
+                        </scrollView>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szH-xb-3qg" userLabel="Accept Button">
+                            <rect key="frame" x="16" y="692" width="382" height="56"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="o9T-UK-NlX"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <state key="normal" title="Aceptar" backgroundImage="buttonsPrimary">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath=" btn.clipsToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onAcceptButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="AgH-vb-wl2"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcj-kH-AA0">
+                            <rect key="frame" x="16" y="768" width="382" height="60"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="c0d-P9-SbD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Cerrar">
+                                <color key="titleColor" name="degradado"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onCloseAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ncm-O6-zmh"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="7eW-6o-2yx" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" id="Bca-lK-88e"/>
+                        <constraint firstAttribute="bottom" secondItem="dcj-kH-AA0" secondAttribute="bottom" constant="34" id="EFX-Fm-Bwk"/>
+                        <constraint firstAttribute="trailing" secondItem="dcj-kH-AA0" secondAttribute="trailing" constant="16" id="Ibg-xY-UYM"/>
+                        <constraint firstItem="9SY-NN-qG7" firstAttribute="top" secondItem="C58-ev-rdO" secondAttribute="top" constant="10" id="KTS-IZ-BBA"/>
+                        <constraint firstAttribute="trailing" secondItem="9SY-NN-qG7" secondAttribute="trailing" constant="5" id="OBD-ZY-JVJ"/>
+                        <constraint firstItem="szH-xb-3qg" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="16" id="Upl-6J-Rxs"/>
+                        <constraint firstItem="dcj-kH-AA0" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="16" id="WpG-k6-ik3"/>
+                        <constraint firstItem="dcj-kH-AA0" firstAttribute="top" secondItem="szH-xb-3qg" secondAttribute="bottom" constant="20" id="Zlw-QU-tG4"/>
+                        <constraint firstAttribute="trailing" secondItem="szH-xb-3qg" secondAttribute="trailing" constant="16" id="dQx-Mv-EaC"/>
+                        <constraint firstItem="7eW-6o-2yx" firstAttribute="top" secondItem="9SY-NN-qG7" secondAttribute="bottom" constant="5" id="fOd-ZV-Qt6"/>
+                        <constraint firstAttribute="trailing" secondItem="7eW-6o-2yx" secondAttribute="trailing" id="ns9-gv-7Td"/>
+                        <constraint firstItem="szH-xb-3qg" firstAttribute="top" secondItem="7eW-6o-2yx" secondAttribute="bottom" constant="20" id="uAh-Pt-g3D"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.53143276900000003" green="0.58377778759999999" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="C58-ev-rdO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="So1-wb-bG0"/>
+                <constraint firstItem="C58-ev-rdO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hPP-QI-hMq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="C58-ev-rdO" secondAttribute="bottom" id="wSe-UD-j7f"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="C58-ev-rdO" secondAttribute="trailing" id="zDb-AP-29H"/>
+            </constraints>
+            <connections>
+                <outlet property="acceptButton" destination="szH-xb-3qg" id="ZO8-nK-VXy"/>
+                <outlet property="bullet1Label" destination="jxP-6U-juM" id="uXl-pj-MG3"/>
+                <outlet property="bullet2Label" destination="vKE-JT-D14" id="0A6-Er-lDj"/>
+                <outlet property="bullet3Label" destination="EwG-6Q-NeI" id="jbA-KC-w6k"/>
+                <outlet property="cancelButton" destination="dcj-kH-AA0" id="zja-CT-Urc"/>
+                <outlet property="closeButton" destination="9SY-NN-qG7" id="MdV-9b-yZ7"/>
+                <outlet property="containerView" destination="C58-ev-rdO" id="yEN-BA-CHt"/>
+                <outlet property="moreInfoLabel" destination="W4T-g8-zgD" id="dZD-5n-k3B"/>
+                <outlet property="titleLabel" destination="t0z-rs-I37" id="EqX-MF-f4R"/>
+            </connections>
+            <point key="canvasLocation" x="140.57971014492756" y="101.78571428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonPrimaryDisabled" width="341" height="60"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
+        <namedColor name="degradado">
+            <color red="0.28600001335144043" green="0.23100000619888306" blue="0.65499997138977051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

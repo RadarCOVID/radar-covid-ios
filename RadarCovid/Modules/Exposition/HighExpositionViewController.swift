@@ -14,6 +14,7 @@ import RxSwift
 
 class HighExpositionViewController: BaseExposed {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var whatToDoTitleLabel: UILabel!
     @IBOutlet weak var youCouldBeLabel: UILabel!
@@ -26,16 +27,13 @@ class HighExpositionViewController: BaseExposed {
     @IBOutlet weak var phoneViewHiddenConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var selectorView: BackgroundView!
+    @IBOutlet weak var caSelectorLabel: UILabel!
     @IBOutlet weak var caSelectorButton: UIButton!
     @IBOutlet weak var otherSympthomsLabel: UILabel!
     @IBOutlet weak var howActLabel: UILabel!
     
     var ccaUseCase: CCAAUseCase!
     var since: Date?
-    private var ccaArray: [CaData]?
-    private var currentCA: CaData?
-    
-    private var pickerPresenter: PickerPresenter?
     
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
@@ -44,9 +42,7 @@ class HighExpositionViewController: BaseExposed {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.currentCA = ccaUseCase.getCurrent()
-        
+                
         setupView()
         setupAccessibility()
 
@@ -54,7 +50,30 @@ class HighExpositionViewController: BaseExposed {
     }
     
     @IBAction func caaSelectAction(_ sender: Any) {
-        pickerPresenter!.openPicker()
+        isDisableAccesibility(isDisabble: true)
+        self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
+            SelectorView.initWithParentViewController(viewController: self,
+                                                      title: "LOCALE_SELECTION_REGION_DEFAULT".localized,
+                                                      getArray:{ [weak self] () -> Observable<[SelectorItem]> in
+                
+                return Observable.create { [weak self] observer in
+                    self?.ccaUseCase.getCCAA().subscribe(onNext: {(value) in
+                        observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
+                        observer.onCompleted()
+                    }).disposed(by: self?.disposeBag ?? DisposeBag())
+                    return Disposables.create {
+                    }
+                }
+            }, getSelectedItem: { () -> Observable<SelectorItem> in
+                
+                return Observable.create { [weak self] observer in
+                    observer.onNext(SelectorHelperViewModel.generateTransformation(val: self?.ccaUseCase.getCurrent() ?? CaData.emptyCaData()))
+                    observer.onCompleted()
+                    return Disposables.create {
+                    }
+                }
+            }, delegateOutput: self)
+        }
     }
     
     @objc func userDidTapOtherSympthoms(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -68,7 +87,7 @@ class HighExpositionViewController: BaseExposed {
     }
     
     @objc func onCallTap(tapGestureRecognizer: UITapGestureRecognizer) {
-        open(phone: currentCA?.phone ?? "CONTACT_PHONE".localized)
+        open(phone: ccaUseCase.getCurrent()?.phone ?? "CONTACT_PHONE".localized)
     }
 
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -76,12 +95,11 @@ class HighExpositionViewController: BaseExposed {
     }
     
     @objc func userDidTapWeb(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: currentCA?.web)
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: ccaUseCase.getCurrent()?.web)
     }
     
     private func setupAccessibility() {
         titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         titleLabel.accessibilityLabel = "ACC_HIGH_EXPOSED_TITLE".localized
 
         whatToDoTitleLabel.isAccessibilityElement = true
@@ -102,16 +120,18 @@ class HighExpositionViewController: BaseExposed {
         howActLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         howActLabel.accessibilityLabel = "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         howActLabel.accessibilityHint = "ACC_HINT".localized
+        
+        phoneLabel.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        phoneLabel.accessibilityHint = "ACC_HINT".localized
+        
+        covidWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        covidWebLabel.accessibilityHint = "ACC_HINT".localized
+        
+        caSelectorButton.accessibilityHint = "ACC_HINT".localized
+        caSelectorButton.accessibilityLabel = self.caSelectorLabel.text
     }
     
     private func setupView() {
-        
-        let picker = UIPickerView.init()
-        picker.delegate = self
-        picker.dataSource = self
-        
-        pickerPresenter = PickerPresenter(picker: picker)
-        pickerPresenter?.delegate = self
 
         otherSympthomsLabel.isUserInteractionEnabled = true
         howActLabel.isUserInteractionEnabled = true
@@ -132,8 +152,6 @@ class HighExpositionViewController: BaseExposed {
 
         phoneView.image = UIImage(named: "WhiteCard")
 
-        caSelectorButton.setTitle("LOCALE_SELECTION_REGION_DEFAULT".localized, for: .normal)
-        
         //Text Infect
         let date = self.since ?? Date()
         let formatter = DateFormatter()
@@ -145,19 +163,17 @@ class HighExpositionViewController: BaseExposed {
         }
         youCouldBeLabel.attributedText = "EXPOSITION_HIGH_DESCRIPTION"
             .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
+        
+        caSelectorLabel.text = "LOCALE_SELECTION_REGION_DEFAULT".localized
+        caSelectorButton.layer.cornerRadius = 8
+        caSelectorButton.layer.borderWidth = 1
+        caSelectorButton.layer.borderColor = UIColor.deepLilac.cgColor
     }
     
     private func setCaSelector() {
         
         self.selectorView.image = UIImage.init(named: "WhiteCard")
         self.selectorView.isUserInteractionEnabled = true
-
-        self.ccaUseCase.getCCAA().subscribe(onNext: { (data) in
-            self.ccaArray = data
-        }, onError: { (err) in
-            print(err)
-            self.ccaArray = []
-        }).disposed(by: disposeBag)
 
         guard let currentCa = self.ccaUseCase.getCurrent() else {
             self.phoneView.isHidden = true
@@ -166,11 +182,6 @@ class HighExpositionViewController: BaseExposed {
             return
         }
         
-        var temporallyCcaArray: [CaData] = []
-        temporallyCcaArray.append(currentCa)
-        temporallyCcaArray += (self.ccaArray ?? []).filter { $0.id != currentCa.id }
-        
-        self.ccaArray = temporallyCcaArray
         self.phoneViewHiddenConstraint.priority = .defaultLow
         self.phoneViewVisibleConstraint.priority = .defaultHigh
         self.phoneView.isHidden = false
@@ -178,52 +189,33 @@ class HighExpositionViewController: BaseExposed {
         self.covidWebLabel.text = currentCa.webName ?? currentCa.web ?? ""
         
         let title = currentCa.description ?? "LOCALE_SELECTION_REGION_DEFAULT".localized
-        self.caSelectorButton.setTitle(title, for: .normal)
+        self.caSelectorLabel.text = title
+        caSelectorButton.accessibilityLabel = title
+    }
+    
+    private func isDisableAccesibility(isDisabble: Bool) {
+        self.scrollView.isHidden = isDisabble
+        self.backButton?.isHidden = isDisabble
+        
+        if let tab = self.parent as? TabBarController {
+            tab.isDissableAccesibility(isDisabble: isDisabble)
+        }
     }
 }
 
-extension HighExpositionViewController: UIPickerViewDelegate, UIPickerViewDataSource, PickerDelegate {
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return ccaArray?.count ?? 0
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return ccaArray?[row].description
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard let currentCa =  self.ccaArray?[row] ?? self.ccaArray?.first else {
-            return
-        }
-        ccaUseCase.setCurrent(cca: currentCa)
-        self.currentCA = currentCa
-    }
-    var containerView: UIView {
-        get {
-            view
-        }
-    }
-
-    func onDone() {
-        guard ccaUseCase.getCurrent() != nil else {
-            // if not current then we need to select the first that was selected
-            guard let firstca = self.ccaArray?.first else {
-                setCaSelector()
-                return
-            }
-            ccaUseCase.setCurrent(cca: firstca)
+extension HighExpositionViewController: SelectorProtocol {
+    
+    func userSelectorSelected(selectorItem: SelectorItem, completionCloseView: @escaping (Bool) -> Void) {
+        
+        if let selectedCaData = selectorItem.objectOrigin as? CaData {
+            ccaUseCase.setCurrent(cca: selectedCaData)
             setCaSelector()
-            return
         }
-        setCaSelector()
+        
+        completionCloseView(true)
     }
     
-    func onCancel() {
-        //Nothing to do here
+    func hiddenSelectorSelectionView() {
+        isDisableAccesibility(isDisabble: false)
     }
 }

@@ -22,6 +22,7 @@ class HomeViewModel {
     var syncUseCase: SyncUseCase?
     var resetDataUseCase: ResetDataUseCase?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
+    var fakeRequestUseCase: FakeRequestUseCase?
 
     var radarStatus = BehaviorSubject<RadarStatus>(value: .active)
     var checkState = BehaviorSubject<Bool>(value: false)
@@ -44,6 +45,8 @@ class HomeViewModel {
     }
 
     func checkInitialExposition() {
+        expositionUseCase?.updateExpositionInfo()
+        
         expositionUseCase?.getExpositionInfo().subscribe(
             onNext: { [weak self] exposition in
                 self?.checkExpositionLevel(exposition)
@@ -65,6 +68,7 @@ class HomeViewModel {
     }
 
     func restoreLastStateAndSync() {
+        fakeRequestUseCase?.sendFalsePositive().subscribe().disposed(by: disposeBag)
         radarStatusUseCase?.restoreLastStateAndSync().subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
@@ -100,6 +104,11 @@ class HomeViewModel {
         if expositionCheckUseCase?.checkBackToHealthyJustChanged() ?? false {
             showBackToHealthyDialog.onNext(true)
         }
+    }
+    
+    func heplerQAChangeHealthy() {
+        let expositionInf = ExpositionInfo(level: .exposed)
+        checkExpositionLevel(expositionInf)
     }
 
 }

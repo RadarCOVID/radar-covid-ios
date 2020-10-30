@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view tag="1111" contentMode="scaleToFill" id="iN0-l3-epB" customClass="SelectorView" customModule="Radar_COVID" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C58-ev-rdO" userLabel="containerView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seleccione" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNS-yD-V3i">
+                            <rect key="frame" x="20" y="37" width="339" height="21.5"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                            </accessibility>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XFt-8u-EHi">
+                            <rect key="frame" x="0.0" y="78.5" width="414" height="603.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </tableView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szH-xb-3qg" userLabel="Accept Button">
+                            <rect key="frame" x="16" y="702" width="382" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="o9T-UK-NlX"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <state key="normal" title="Aceptar" backgroundImage="buttonsPrimary">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="btn.clipsToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onAcceptButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="AgH-vb-wl2"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYi-de-lcn">
+                            <rect key="frame" x="359" y="10" width="50" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="ws8-un-Wwv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="x">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mSU-Fy-UVI"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TS-L3-r8l">
+                            <rect key="frame" x="16" y="782" width="382" height="60"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="Qtu-UD-xWW"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Cancelar">
+                                <color key="titleColor" systemColor="darkTextColor"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ALERT_CANCEL_BUTTON"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="j4X-iu-xW9"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="bNS-yD-V3i" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="20" id="4KX-AT-tTa"/>
+                        <constraint firstItem="szH-xb-3qg" firstAttribute="top" secondItem="XFt-8u-EHi" secondAttribute="bottom" constant="20" id="5dX-Ig-gsF"/>
+                        <constraint firstItem="XFt-8u-EHi" firstAttribute="top" secondItem="bNS-yD-V3i" secondAttribute="bottom" constant="20" id="9vB-L3-JWh"/>
+                        <constraint firstAttribute="trailing" secondItem="XFt-8u-EHi" secondAttribute="trailing" id="BLu-bM-Fdw"/>
+                        <constraint firstItem="8TS-L3-r8l" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="16" id="EYr-f0-emx"/>
+                        <constraint firstAttribute="bottom" secondItem="8TS-L3-r8l" secondAttribute="bottom" constant="20" id="F4S-yW-f5b"/>
+                        <constraint firstItem="XYi-de-lcn" firstAttribute="leading" secondItem="bNS-yD-V3i" secondAttribute="trailing" id="FCP-o2-6dP"/>
+                        <constraint firstItem="XYi-de-lcn" firstAttribute="top" secondItem="C58-ev-rdO" secondAttribute="top" constant="10" id="SSJ-s8-YfT"/>
+                        <constraint firstItem="szH-xb-3qg" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="16" id="Upl-6J-Rxs"/>
+                        <constraint firstItem="bNS-yD-V3i" firstAttribute="top" secondItem="C58-ev-rdO" secondAttribute="top" constant="37" id="Xcz-QL-E33"/>
+                        <constraint firstAttribute="trailing" secondItem="szH-xb-3qg" secondAttribute="trailing" constant="16" id="dQx-Mv-EaC"/>
+                        <constraint firstItem="8TS-L3-r8l" firstAttribute="top" secondItem="szH-xb-3qg" secondAttribute="bottom" constant="20" id="mgq-lf-WcT"/>
+                        <constraint firstAttribute="trailing" secondItem="XYi-de-lcn" secondAttribute="trailing" constant="5" id="sLe-8n-Hp3"/>
+                        <constraint firstItem="XFt-8u-EHi" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" id="tM2-ko-aVV"/>
+                        <constraint firstAttribute="trailing" secondItem="8TS-L3-r8l" secondAttribute="trailing" constant="16" id="xdC-mb-0XN"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="C58-ev-rdO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="So1-wb-bG0"/>
+                <constraint firstItem="C58-ev-rdO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hPP-QI-hMq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="C58-ev-rdO" secondAttribute="bottom" id="wSe-UD-j7f"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="C58-ev-rdO" secondAttribute="trailing" id="zDb-AP-29H"/>
+            </constraints>
+            <connections>
+                <outlet property="acceptButton" destination="szH-xb-3qg" id="ZO8-nK-VXy"/>
+                <outlet property="cancelButton" destination="8TS-L3-r8l" id="WJM-JL-O2S"/>
+                <outlet property="containerView" destination="C58-ev-rdO" id="yEN-BA-CHt"/>
+                <outlet property="selectorTableView" destination="XFt-8u-EHi" id="hyo-VE-CP7"/>
+                <outlet property="titleLabel" destination="bNS-yD-V3i" id="FYl-c4-3et"/>
+            </connections>
+            <point key="canvasLocation" x="140.57971014492756" y="101.78571428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonPrimaryDisabled" width="343" height="56"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
