@@ -218,10 +218,10 @@ class HomeViewController: UIViewController {
         radarSwitch.layer.cornerRadius = radarSwitch.frame.height / 2
         radarSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
 
-        resetDataButton.isHidden = !(Config.environment == "PRE")
-        envLabel.isHidden = !(Config.environment == "PRE")
-        
         if Config.environment == "PRE" {
+            envLabel.isHidden = false
+            resetDataButton.isHidden = false
+            
             let bundleVersion = (Bundle.main.infoDictionary?["CFBundleVersion"] ?? "") as! String
             envLabel.text = "\(Config.environment) - V_\(Config.version)_\(bundleVersion)"
             
@@ -235,7 +235,11 @@ class HomeViewController: UIViewController {
             self.defaultImage.isAccessibilityElement = true
             let tapGestureHeplerQAShowAlert = UITapGestureRecognizer(target: self, action: #selector(self.heplerQAShowAlert))
             self.defaultImage.addGestureRecognizer(tapGestureHeplerQAShowAlert)
+        } else {
+            resetDataButton.isHidden = true
+            envLabel.isHidden = true
         }
+        
         viewModel!.restoreLastStateAndSync { [weak self] in
             self?.viewModel!.checkInitialExposition()
             self?.viewModel!.checkOnboarding()
@@ -436,8 +440,6 @@ class HomeViewController: UIViewController {
     private func isDisableAccesibility(isDisabble: Bool) {
         self.scrollView.isHidden = isDisabble
         self.communicationButton.isHidden = isDisabble
-        self.envLabel.isHidden = isDisabble
-        self.resetDataButton.isHidden = isDisabble
         
         if let tab = self.parent as? TabBarController {
             tab.isDissableAccesibility(isDisabble: isDisabble)
