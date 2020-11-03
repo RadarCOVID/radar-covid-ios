@@ -41,10 +41,21 @@ class UserDefaultsLocalizationRepository: LocalizationRepository {
     }
     
     func getLocale() -> String? {
-        userDefaults.object(forKey: UserDefaultsLocalizationRepository.kLocale) as? String ?? self.getLocales()?
-            .filter({ (itemLocale) -> Bool in
-                itemLocale.id.contains("es")
-            }).first?.id
+        
+        if let userDefaultLanguage = userDefaults.object(forKey: UserDefaultsLocalizationRepository.kLocale) as? String {
+            return userDefaultLanguage
+        } else {
+            if let languageCode = Locale.current.languageCode?.replacingOccurrences(of: "_", with: "-"),
+               let languageId = self.getLocales()?.filter({ (itemLocale) -> Bool in itemLocale.id.contains(languageCode)}).first?.id {
+                
+                return languageId
+            } else {
+                return self.getLocales()?
+                    .filter({ (itemLocale) -> Bool in
+                        itemLocale.id.contains("en")
+                    }).first?.id
+            }
+        }
     }
     
     func setLocale(_ locale: String) {

@@ -27,8 +27,6 @@ class WelcomeViewController: UIViewController {
     var viewModel: WelcomeViewModel?
     
     private var disposeBag = DisposeBag()
-    
-    private var currentLocale: String = "es-ES"
 
     override func viewDidLoad() {
         super.viewDidLoad()
