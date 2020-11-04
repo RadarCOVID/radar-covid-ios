@@ -21,27 +21,43 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="782"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUO-V4-jee" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="720.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="652"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="Ker-eU-Kvi" userLabel="circleBG">
-                                                <rect key="frame" x="0.0" y="-20" width="414" height="409"/>
+                                                <rect key="frame" x="0.0" y="-20" width="414" height="272"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageHome" translatesAutoresizingMaskIntoConstraints="NO" id="6NQ-cJ-mH8">
-                                                <rect key="frame" x="88" y="128.5" width="238" height="177"/>
+                                                <rect key="frame" x="88" y="60" width="238" height="177"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="177" id="LUJ-Lw-sdv"/>
                                                     <constraint firstAttribute="width" constant="238" id="rRz-TQ-CGn"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckWhite" translatesAutoresizingMaskIntoConstraints="NO" id="s47-VN-7tM">
-                                                <rect key="frame" x="162" y="129" width="90" height="90"/>
+                                                <rect key="frame" x="162" y="60.5" width="90" height="90"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="5rp-cy-SZ4"/>
                                                     <constraint firstAttribute="width" constant="90" id="wUK-6X-b5G"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umm-hj-wLw">
+                                                <rect key="frame" x="20" y="0.0" width="374" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="65F-8J-Za9"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ACC_HOME_TITLE"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hz-zu-Mhb" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="290.5" width="382" height="175"/>
+                                                <rect key="frame" x="16" y="222" width="382" height="175"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Exposición baja" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tiy-hB-953">
                                                         <rect key="frame" x="20" y="15" width="272" height="37"/>
@@ -90,7 +106,7 @@ Cuídate y cuida a los demás.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuQ-dg-Nwm" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="485.5" width="382" height="215"/>
+                                                <rect key="frame" x="16" y="417" width="382" height="215"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radar COVID activo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5A-O2-cnn">
                                                         <rect key="frame" x="26" y="20" width="275.5" height="24"/>
@@ -150,31 +166,15 @@ Cuídate y cuida a los demás.</string>
                                                     <constraint firstAttribute="trailing" secondItem="QdH-mH-0eN" secondAttribute="trailing" constant="20" id="x7J-hb-6YZ"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umm-hj-wLw">
-                                                <rect key="frame" x="20" y="60" width="374" height="60"/>
-                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" staticText="YES" header="YES"/>
-                                                </accessibility>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="65F-8J-Za9"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ACC_HOME_TITLE"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="6NQ-cJ-mH8" firstAttribute="top" secondItem="Umm-hj-wLw" secondAttribute="bottom" constant="8.5" id="7qR-dM-QHf"/>
+                                            <constraint firstItem="6NQ-cJ-mH8" firstAttribute="top" secondItem="Umm-hj-wLw" secondAttribute="bottom" id="7qR-dM-QHf"/>
                                             <constraint firstAttribute="trailing" secondItem="fuQ-dg-Nwm" secondAttribute="trailing" constant="16" id="9nF-Y7-5lJ"/>
                                             <constraint firstAttribute="trailing" secondItem="Umm-hj-wLw" secondAttribute="trailing" constant="20" id="ETe-JB-uJ0"/>
                                             <constraint firstItem="s47-VN-7tM" firstAttribute="centerX" secondItem="Ker-eU-Kvi" secondAttribute="centerX" id="HWK-xR-S1W"/>
                                             <constraint firstItem="Umm-hj-wLw" firstAttribute="leading" secondItem="uUO-V4-jee" secondAttribute="leading" constant="20" id="I0U-Do-TRf"/>
                                             <constraint firstItem="Ker-eU-Kvi" firstAttribute="centerY" secondItem="6NQ-cJ-mH8" secondAttribute="centerY" constant="-32.500000000000028" id="Nd7-rE-95Y"/>
-                                            <constraint firstItem="Umm-hj-wLw" firstAttribute="top" secondItem="uUO-V4-jee" secondAttribute="top" constant="60" id="SoT-rb-40s"/>
+                                            <constraint firstItem="Umm-hj-wLw" firstAttribute="top" secondItem="uUO-V4-jee" secondAttribute="top" id="SoT-rb-40s"/>
                                             <constraint firstAttribute="trailing" secondItem="6hz-zu-Mhb" secondAttribute="trailing" constant="16" id="SxU-Cc-w0U"/>
                                             <constraint firstAttribute="trailing" secondItem="Ker-eU-Kvi" secondAttribute="trailing" id="VZS-Ix-BhM"/>
                                             <constraint firstItem="6hz-zu-Mhb" firstAttribute="leading" secondItem="uUO-V4-jee" secondAttribute="leading" constant="16" id="XeF-xr-zmm"/>
