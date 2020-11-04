@@ -211,6 +211,7 @@ class HomeViewController: UIViewController {
     private func setupView() {
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
         communicationButton.titleLabel?.textAlignment = .center
+        communicationButton.titleLabel?.lineBreakMode = .byWordWrapping
         
         radarView.image = UIImage(named: "WhiteCard")
 
