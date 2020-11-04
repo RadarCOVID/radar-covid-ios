@@ -75,6 +75,16 @@ class HomeViewController: UIViewController {
         viewModel!.checkShowBackToHealthyDialog()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if UIAccessibility.isVoiceOverRunning {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(notification: .layoutChanged, argument: self.titleLabel)
+            }
+        }
+    }
+    
     @IBAction func onReset(_ sender: Any) {
 
         showAlertCancelContinue(

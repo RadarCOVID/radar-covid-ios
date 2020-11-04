@@ -27,6 +27,16 @@ class MyDataViewController: UIViewController {
         setupAccessibility()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if UIAccessibility.isVoiceOverRunning {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(notification: .layoutChanged, argument: self.titleLabel)
+            }
+        }
+    }
+    
     @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_DATA_TERMS".localized.getUrlFromHref())
     }
