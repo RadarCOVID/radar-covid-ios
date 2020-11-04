@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -29,6 +29,7 @@
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoronaSplashLogo" translatesAutoresizingMaskIntoConstraints="NO" id="WM6-5V-y9a">
                             <rect key="frame" x="71.5" y="403" width="271" height="100"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GobImage" translatesAutoresizingMaskIntoConstraints="NO" id="5gX-Vq-Tij">
                             <rect key="frame" x="122.5" y="94" width="169" height="80"/>
@@ -37,14 +38,14 @@
                     <viewLayoutGuide key="safeArea" id="vyP-JW-NFe"/>
                     <color key="backgroundColor" name="bgColor"/>
                     <constraints>
+                        <constraint firstItem="5gX-Vq-Tij" firstAttribute="centerX" secondItem="vyP-JW-NFe" secondAttribute="centerX" id="9eT-tq-lpZ"/>
                         <constraint firstItem="WM6-5V-y9a" firstAttribute="centerX" secondItem="vyP-JW-NFe" secondAttribute="centerX" id="E42-MD-6zg"/>
-                        <constraint firstItem="5gX-Vq-Tij" firstAttribute="centerX" secondItem="ELU-4J-y74" secondAttribute="centerX" id="IoL-8H-JxJ"/>
-                        <constraint firstItem="vyP-JW-NFe" firstAttribute="trailing" secondItem="ELU-4J-y74" secondAttribute="trailing" id="To3-Hs-HAw"/>
-                        <constraint firstItem="vyP-JW-NFe" firstAttribute="bottom" secondItem="ELU-4J-y74" secondAttribute="bottom" constant="-34" id="ko5-S8-J1x"/>
-                        <constraint firstItem="ELU-4J-y74" firstAttribute="leading" secondItem="vyP-JW-NFe" secondAttribute="leading" id="p5f-72-3sO"/>
+                        <constraint firstAttribute="bottom" secondItem="ELU-4J-y74" secondAttribute="bottom" id="Neg-iZ-bST"/>
+                        <constraint firstItem="ELU-4J-y74" firstAttribute="trailing" secondItem="vyP-JW-NFe" secondAttribute="trailing" id="Y0d-sx-17z"/>
+                        <constraint firstItem="ELU-4J-y74" firstAttribute="top" secondItem="7Nd-5I-tTQ" secondAttribute="top" id="bCM-8J-dbW"/>
+                        <constraint firstItem="ELU-4J-y74" firstAttribute="leading" secondItem="vyP-JW-NFe" secondAttribute="leading" id="jz4-ua-kfC"/>
                         <constraint firstItem="WM6-5V-y9a" firstAttribute="centerY" secondItem="vyP-JW-NFe" secondAttribute="centerY" id="pgK-zW-EOv"/>
                         <constraint firstItem="5gX-Vq-Tij" firstAttribute="top" secondItem="vyP-JW-NFe" secondAttribute="top" constant="50" id="ruJ-ro-nfN"/>
-                        <constraint firstItem="ELU-4J-y74" firstAttribute="top" secondItem="vyP-JW-NFe" secondAttribute="top" constant="-44" id="rwr-eB-TBw"/>
                     </constraints>
                 </view>
             </subviews>
@@ -58,7 +59,7 @@
         <image name="GobImage" width="169" height="80"/>
         <image name="semiCircle" width="375" height="812"/>
         <namedColor name="bgColor">
-            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

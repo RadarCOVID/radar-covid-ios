@@ -45,6 +45,8 @@
 	<string>Necesitamos Bluetooth para compartir información con otros dispositivos cercanos</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Necesitamos Bluetooth para compartir información con otros dispositivos cercanos</string>
+	<key>NSMainNibFile</key>
+	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>muli_italic.ttf</string>
