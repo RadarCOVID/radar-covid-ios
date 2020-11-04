@@ -17,6 +17,8 @@ class SettingViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var languageSelectorContainerView: UIView!
+    @IBOutlet weak var languageSelectorLabel: UILabel!
     @IBOutlet weak var languageSelectorButton: UIButton!
     
     var router: AppRouter?
@@ -41,13 +43,16 @@ class SettingViewController: UIViewController {
         showLanguageSelection()
     }
     
-    private func setupView() {        
-        viewModel?.getCurrenLenguageLocalizable()
-            .bind(to: languageSelectorButton.rx.title())
-            .disposed(by: disposeBag)
-            
-        let leftImageSelectorButton:CGFloat = ((self.languageSelectorButton.frame.size.width / 2) + 30)
-        self.languageSelectorButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageSelectorButton , bottom: 0, right: 0)
+    private func setupView() {
+        viewModel?.getCurrenLenguageLocalizable().subscribe(onNext: { [weak self] (value) in
+            self?.languageSelectorLabel.text = value
+            self?.languageSelectorButton.accessibilityLabel = value
+        }).disposed(by: disposeBag)
+        
+        languageSelectorContainerView.layer.borderWidth = 1
+        languageSelectorContainerView.layer.borderColor = UIColor.deepLilac.cgColor
+        languageSelectorContainerView.layer.cornerRadius = 8
+        
     }
     
     private func showLanguageSelection() {
