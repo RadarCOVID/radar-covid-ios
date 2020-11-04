@@ -47,19 +47,9 @@ class PickerPresenter {
             toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300,
                                                         width: UIScreen.main.bounds.size.width, height: 50))
             toolBar!.barStyle = .default
-            
-            let itemDoneButton = UIBarButtonItem.init(title: "SELECTOR_DONE".localized, style: .done,
-                                            target: self, action: #selector(onDoneButtonTapped))
-            itemDoneButton.isAccessibilityElement = true
-            itemDoneButton.accessibilityLabel = "ACC_BUTTON_SELECTOR_DONE".localized
-            itemDoneButton.accessibilityHint = "ACC_HINT".localized
             toolBar!.items = []
-            toolBar!.items?.append(itemDoneButton)
-            
+           
             if isNeedCancelButton {
-                let itemFlexibleButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                toolBar!.items?.append(itemFlexibleButton)
-                
                 let itemCancelButton = UIBarButtonItem.init(title: "ALERT_CANCEL_BUTTON".localized, style: .done,
                                                 target: self, action: #selector(onCancelButtonTapped))
                 itemCancelButton.isAccessibilityElement = true
@@ -67,6 +57,14 @@ class PickerPresenter {
                 itemCancelButton.accessibilityHint = "ACC_HINT".localized
                 toolBar!.items?.append(itemCancelButton)
             }
+            let itemFlexibleButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            toolBar!.items?.append(itemFlexibleButton)
+            
+            let itemDoneButton = UIBarButtonItem.init(title: "SELECTOR_DONE".localized, style: .done, target: self, action: #selector(onDoneButtonTapped))
+            itemDoneButton.isAccessibilityElement = true
+            itemDoneButton.accessibilityLabel = "ACC_BUTTON_SELECTOR_DONE".localized
+            itemDoneButton.accessibilityHint = "ACC_HINT".localized
+            toolBar!.items?.append(itemDoneButton)
             
             UIAccessibility.post(notification: .screenChanged, argument: title)
             delegate?.containerView.addSubview(toolBar!)
