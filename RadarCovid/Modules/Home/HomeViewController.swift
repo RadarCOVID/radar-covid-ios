@@ -241,10 +241,8 @@ class HomeViewController: UIViewController {
             envLabel.isHidden = true
         }
         
-        viewModel!.restoreLastStateAndSync { [weak self] in
-            self?.viewModel!.checkInitialExposition()
-            self?.viewModel!.checkOnboarding()
-        }
+        viewModel?.checkInitialExposition()
+        viewModel?.checkOnboarding()
         
 
         errorHandler!.alertDelegate = self
