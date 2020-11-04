@@ -17,6 +17,8 @@ class WelcomeViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var languageSelectorContainerView: UIView!
+    @IBOutlet weak var languageSelectorLabel: UILabel!
     @IBOutlet weak var languageSelectorButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var stepbullet1Label: UILabel!
@@ -88,12 +90,14 @@ class WelcomeViewController: UIViewController {
     
     private func setupView() {
 
-        languageSelectorButton.layer.borderWidth = 1
-        languageSelectorButton.layer.borderColor = UIColor.deepLilac.cgColor
+        languageSelectorContainerView.layer.borderWidth = 1
+        languageSelectorContainerView.layer.borderColor = UIColor.deepLilac.cgColor
+        languageSelectorContainerView.layer.cornerRadius = 8
         
-        viewModel?.getCurrenLenguageLocalizable()
-            .bind(to: languageSelectorButton.rx.title())
-            .disposed(by: disposeBag)
+        viewModel?.getCurrenLenguageLocalizable().subscribe(onNext: { [weak self] (value) in
+            self?.languageSelectorLabel.text = value
+            self?.languageSelectorButton.accessibilityLabel = value
+        }).disposed(by: disposeBag)
         
         setupAccessibility()
     }
