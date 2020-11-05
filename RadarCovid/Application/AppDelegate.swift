@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         logger.info("Current Environment: \(Config.environment)")
 
         let setupUseCase = injection.resolve(SetupUseCase.self)!
+        let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!
+        fakeRequestUseCase.initBackgroundTask()
 
         do {
             try setupUseCase.initializeSDK()
@@ -38,9 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             logger.error("Error initializing DP3T \(error)")
         }
         UIApplication.shared.applicationIconBadgeNumber = 0
-
         return true
     }
+    
+    
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)

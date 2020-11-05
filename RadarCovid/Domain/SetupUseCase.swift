@@ -26,20 +26,17 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     private let preferencesRepository: PreferencesRepository
     private let notificationHandler: NotificationHandler
     private let expositionCheckUseCase: ExpositionCheckUseCase
-    private let fakeRequestUseCase: FakeRequestUseCase
 
 
     init(preferencesRepository: PreferencesRepository,
          notificationHandler: NotificationHandler,
-         expositionCheckUseCase: ExpositionCheckUseCase,
-         fakeRequestUseCase: FakeRequestUseCase) {
+         expositionCheckUseCase: ExpositionCheckUseCase) {
 
         self.preferencesRepository = preferencesRepository
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
 
         self.notificationHandler = notificationHandler
         self.expositionCheckUseCase = expositionCheckUseCase
-        self.fakeRequestUseCase = fakeRequestUseCase
     }
 
     func initializeSDK() throws {
@@ -100,18 +97,14 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     func performBackgroundTasks(completionHandler: @escaping (Bool) -> Void) {
         
         logger.debug("performBackgroundTasks")
-
-        fakeRequestUseCase.sendFalsePositive().subscribe { [weak self] (sent) in
-            if Config.debug {
-                let sync = self?.preferencesRepository.getLastSync()?.description ?? "no Sync"
-                self?.notificationHandler.scheduleNotification(
-                    title: "BackgroundTask",
-                    body: "Last sync: \(sync), positive sent \(sent)",
-                    sound: .default)
-            }
-        } onError: { [weak self] (error) in
-            self?.logger.debug("Error sending fake positive \(error) ")
-        }.disposed(by: disposeBag)
+        if Config.debug {
+            let sync = self.preferencesRepository.getLastSync()?.description ?? "no Sync"
+            self.notificationHandler.scheduleNotification(
+                title: "BackgroundTask",
+                body: "Last sync: \(sync)",
+                sound: .default)
+        }
+            
         
         DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionUseCase.self)
         logger.debug("DP3TTracing.delegate \(String(describing: DP3TTracing.delegate))")

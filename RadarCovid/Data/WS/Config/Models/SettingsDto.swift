@@ -28,8 +28,9 @@ public struct SettingsDto: Codable {
     public var attenuationFactor: AttenuationFactorDto?
     public var applicationVersion: ApplicationVersionDto?
     public var timeBetweenStates: TimeBetweenStatesDto?
+    public var legalTermsVersion: String?
 
-    public init(responseDate: Int64?, exposureConfiguration: ExposureConfigurationDto?, minRiskScore: Int64?, minDurationForExposure: Int64?, riskScoreClassification: [RiskScoreClassificationDto]?, attenuationDurationThresholds: AttenuationDurationThresholdsDto?, attenuationFactor: AttenuationFactorDto?, applicationVersion: ApplicationVersionDto?, timeBetweenStates: TimeBetweenStatesDto?) {
+    public init(responseDate: Int64?, exposureConfiguration: ExposureConfigurationDto?, minRiskScore: Int64?, minDurationForExposure: Int64?, riskScoreClassification: [RiskScoreClassificationDto]?, attenuationDurationThresholds: AttenuationDurationThresholdsDto?, attenuationFactor: AttenuationFactorDto?, applicationVersion: ApplicationVersionDto?, timeBetweenStates: TimeBetweenStatesDto?, legalTermsVersion: String?) {
         self.responseDate = responseDate
         self.exposureConfiguration = exposureConfiguration
         self.minRiskScore = minRiskScore
@@ -39,6 +40,8 @@ public struct SettingsDto: Codable {
         self.attenuationFactor = attenuationFactor
         self.applicationVersion = applicationVersion
         self.timeBetweenStates = timeBetweenStates
+        self.legalTermsVersion = legalTermsVersion
+
     }
 
 }
