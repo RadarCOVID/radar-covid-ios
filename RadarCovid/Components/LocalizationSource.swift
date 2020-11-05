@@ -13,4 +13,5 @@ import Foundation
 
 protocol LocalizationSource {
     var localizationMap: [String: String]? { get }
+    func getLocale() -> String?
 }

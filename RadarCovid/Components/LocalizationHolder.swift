@@ -19,9 +19,16 @@ class LocalizationHolder {
         get {
             if let source = source {
                 _localizationMap = source.localizationMap
-            }else{
-                _localizationMap = UserDefaultsLocalizationRepository().getTexts()
+            } else if let userBack = UserDefaultsLocalizationRepository().getTexts() {
+                _localizationMap = userBack
+            } else {
+                if let url = Bundle.main.url(forResource: "Localizable", withExtension: "strings"),
+                    let stringsDict = NSDictionary(contentsOf: url) as? [String: String] {
+                    print(stringsDict)
+                    _localizationMap = stringsDict
+                }
             }
+            
             return _localizationMap
         }
         set (newLocalizationMap) {

@@ -18,11 +18,11 @@ class LocalizationUseCase: LocalizationSource {
     private let localizationRepository: LocalizationRepository
     private var _localizationLoaded: Bool = false
     private var _localizationMap: [String: String]?
+    
     var localizationMap: [String: String]? {
             if _localizationMap == nil {
                 _localizationMap = localizationRepository.getTexts()
             }
-
             return _localizationMap
     }
 
@@ -47,7 +47,9 @@ class LocalizationUseCase: LocalizationSource {
                 return .just(localization)
             } ?? .empty()
         }
-
     }
-
+    
+    func getLocale() -> String? {
+        return localizationRepository.getLocale()
+    }
 }

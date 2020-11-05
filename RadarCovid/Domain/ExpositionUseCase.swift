@@ -72,19 +72,11 @@ class ExpositionUseCase: DP3TTracingDelegate {
         DP3TTracing.status { result in
             switch result {
             case let .success(state):
-//                switch state.trackingState {
-//                    case let .inactive(error):
-//                        subject.onError(error)
-//                    default:
-//                        subject.onNext(tracingStatusToExpositionInfo(tStatus: state))
-//                }
                 subject.onNext(tracingStatusToExpositionInfo(tStatus: state))
-
             case let .failure(error):
                 subject.onError(error)
             }
         }
-
     }
 
     // Metodo para mapear un TracingState a un ExpositionInfo

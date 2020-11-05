@@ -64,9 +64,6 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         case .exposed:
             title = "NOTIFICATION_TITLE_EXPOSURE_HIGH".localized
             body = "NOTIFICATION_MESSAGE_EXPOSURE_HIGH".localized
-            
-            title = title == "NOTIFICATION_TITLE_EXPOSURE_HIGH" ? "Riesgo de exposición alto." : title
-            body = body == "NOTIFICATION_TITLE_EXPOSURE_HIGH" ? "Tu exposición ahora es alta" : body
 
             sound = .defaultCritical
         default:
