@@ -12,7 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="continueButton" destination="0ks-pf-IGN" id="NSG-Ea-ygE"/>
-                <outlet property="languageSelectorButton" destination="Bst-TA-Vrn" id="I9s-cS-dwi"/>
+                <outlet property="languageSelectorContainerView" destination="QPk-ea-yOp" id="mmo-uU-Q90"/>
+                <outlet property="languageSelectorLabel" destination="4H9-Xq-Z9K" id="kii-vf-9fU"/>
                 <outlet property="scrollView" destination="QAR-Iy-hQc" id="Ll4-a7-w2a"/>
                 <outlet property="stepbullet1Label" destination="yMv-ck-JYx" id="uuV-LX-QOV"/>
                 <outlet property="stepbullet2Label" destination="W2A-1t-Mhn" id="gzV-aT-pah"/>
@@ -86,26 +87,33 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                         <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ONBOARDING_STEP_1_SUBTITLE"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bst-TA-Vrn">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPk-ea-yOp">
                                     <rect key="frame" x="16" y="352.5" width="382" height="60"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4H9-Xq-Z9K">
+                                            <rect key="frame" x="20" y="19.5" width="317.5" height="21"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="NO"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollapsableClosed" translatesAutoresizingMaskIntoConstraints="NO" id="pux-Ea-UPo">
+                                            <rect key="frame" x="357.5" y="26" width="14.5" height="8.5"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="60" id="4Zy-jw-7mq"/>
+                                        <constraint firstItem="4H9-Xq-Z9K" firstAttribute="top" secondItem="QPk-ea-yOp" secondAttribute="top" constant="19.5" id="0Mt-3I-PtK"/>
+                                        <constraint firstItem="pux-Ea-UPo" firstAttribute="centerY" secondItem="QPk-ea-yOp" secondAttribute="centerY" id="33E-fA-3qf"/>
+                                        <constraint firstItem="pux-Ea-UPo" firstAttribute="leading" secondItem="4H9-Xq-Z9K" secondAttribute="trailing" constant="20" id="G3p-Te-yRc"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="K1p-fD-raL"/>
+                                        <constraint firstAttribute="trailing" secondItem="pux-Ea-UPo" secondAttribute="trailing" constant="10" id="cNC-Ii-7JU"/>
+                                        <constraint firstAttribute="bottom" secondItem="4H9-Xq-Z9K" secondAttribute="bottom" constant="19.5" id="kcY-FU-rRT"/>
+                                        <constraint firstItem="4H9-Xq-Z9K" firstAttribute="leading" secondItem="QPk-ea-yOp" secondAttribute="leading" constant="20" id="rhV-OW-3ng"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                    <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Selecciona tu idioma" image="CollapsableClosed">
-                                        <color key="titleColor" systemColor="darkTextColor"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="6"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="selectLanguage:" destination="-1" eventType="touchUpInside" id="AaR-M3-cfM"/>
-                                    </connections>
-                                </button>
+                                </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEP_1_BULLET_1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMv-ck-JYx" userLabel="stepbullet1">
                                     <rect key="frame" x="32" y="435.5" width="366" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -174,19 +182,21 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                             <color key="backgroundColor" name="bgColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="OyH-o9-UvP" secondAttribute="trailing" constant="16" id="3hH-7e-8M3"/>
-                                <constraint firstItem="Bst-TA-Vrn" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="5Bs-BA-nPb"/>
                                 <constraint firstItem="QR7-i5-ImM" firstAttribute="top" secondItem="yMv-ck-JYx" secondAttribute="top" constant="-5" id="5Hr-Yl-hng"/>
                                 <constraint firstAttribute="trailing" secondItem="yMv-ck-JYx" secondAttribute="trailing" constant="16" id="75F-IH-cmX"/>
                                 <constraint firstItem="8Ln-m6-qGi" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="Caw-JH-QSF"/>
+                                <constraint firstAttribute="trailing" secondItem="QPk-ea-yOp" secondAttribute="trailing" constant="16" id="EIl-VE-n2B"/>
                                 <constraint firstItem="OyH-o9-UvP" firstAttribute="leading" secondItem="RDd-xc-3dr" secondAttribute="trailing" constant="5" id="GWW-J0-DRt"/>
                                 <constraint firstItem="cpa-3O-7Z9" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="Hf6-a3-gBF"/>
                                 <constraint firstAttribute="trailing" secondItem="Kjg-12-rKN" secondAttribute="trailing" constant="16" id="I5L-L3-PS0"/>
                                 <constraint firstItem="cpa-3O-7Z9" firstAttribute="top" secondItem="OyH-o9-UvP" secondAttribute="bottom" constant="30" id="N2m-Gw-Y2k"/>
-                                <constraint firstItem="QR7-i5-ImM" firstAttribute="top" secondItem="Bst-TA-Vrn" secondAttribute="bottom" constant="18" id="OQM-PB-9Jg"/>
                                 <constraint firstItem="RDd-xc-3dr" firstAttribute="top" secondItem="OyH-o9-UvP" secondAttribute="top" constant="-5" id="Q5C-B3-i4F"/>
                                 <constraint firstItem="Kjg-12-rKN" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="Rs1-jd-sGD"/>
+                                <constraint firstItem="QPk-ea-yOp" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="16" id="Vk1-aZ-oYv"/>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="top" secondItem="fNN-3A-qYp" secondAttribute="top" constant="5" id="WIS-qk-HdO"/>
                                 <constraint firstAttribute="trailing" secondItem="W2A-1t-Mhn" secondAttribute="trailing" constant="16" id="YoB-Pp-53o"/>
+                                <constraint firstItem="QPk-ea-yOp" firstAttribute="top" secondItem="Kjg-12-rKN" secondAttribute="bottom" constant="20" id="YzV-TJ-4c5"/>
+                                <constraint firstItem="QR7-i5-ImM" firstAttribute="top" secondItem="QPk-ea-yOp" secondAttribute="bottom" constant="18" id="bY1-bn-mKD"/>
                                 <constraint firstItem="Kjg-12-rKN" firstAttribute="top" secondItem="8Ln-m6-qGi" secondAttribute="bottom" constant="20" id="d4e-RK-UzM"/>
                                 <constraint firstAttribute="trailing" secondItem="8Ln-m6-qGi" secondAttribute="trailing" constant="16" id="dw4-fJ-q2u"/>
                                 <constraint firstItem="OyH-o9-UvP" firstAttribute="top" secondItem="W2A-1t-Mhn" secondAttribute="bottom" constant="15" id="fTK-QO-FLI"/>
@@ -197,13 +207,11 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="leading" secondItem="fNN-3A-qYp" secondAttribute="trailing" constant="5" id="gec-x5-I43"/>
                                 <constraint firstItem="lkC-Jh-ngm" firstAttribute="top" secondItem="BJg-TW-Zyr" secondAttribute="top" id="gvm-9Z-jh4"/>
                                 <constraint firstItem="yMv-ck-JYx" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="32" id="h3E-uT-sgL"/>
-                                <constraint firstAttribute="trailing" secondItem="Bst-TA-Vrn" secondAttribute="trailing" constant="16" id="jgm-NF-esH"/>
                                 <constraint firstItem="8f3-Db-Vcu" firstAttribute="top" secondItem="cpa-3O-7Z9" secondAttribute="bottom" constant="34" id="oNJ-Nl-sJT"/>
                                 <constraint firstItem="OyH-o9-UvP" firstAttribute="leading" secondItem="BJg-TW-Zyr" secondAttribute="leading" constant="32" id="p4o-eh-E8m"/>
                                 <constraint firstAttribute="trailing" secondItem="8f3-Db-Vcu" secondAttribute="trailing" constant="16" id="smU-ha-gU3"/>
                                 <constraint firstAttribute="bottom" secondItem="8f3-Db-Vcu" secondAttribute="bottom" constant="10" id="xRq-KS-atK"/>
                                 <constraint firstItem="yMv-ck-JYx" firstAttribute="leading" secondItem="QR7-i5-ImM" secondAttribute="trailing" constant="5" id="yMQ-af-N0z"/>
-                                <constraint firstItem="Bst-TA-Vrn" firstAttribute="top" secondItem="Kjg-12-rKN" secondAttribute="bottom" constant="20" id="yU8-sp-yAW"/>
                                 <constraint firstItem="W2A-1t-Mhn" firstAttribute="top" secondItem="yMv-ck-JYx" secondAttribute="bottom" constant="15" id="z6u-zw-fF9"/>
                                 <constraint firstAttribute="trailing" secondItem="cpa-3O-7Z9" secondAttribute="trailing" constant="16" id="zFa-PV-PNN"/>
                             </constraints>
@@ -267,8 +275,5 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
         <namedColor name="bgColor">
             <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
