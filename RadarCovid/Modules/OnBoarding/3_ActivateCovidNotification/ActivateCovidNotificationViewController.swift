@@ -27,6 +27,7 @@ class ActivateCovidNotificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.setFontTextStyle()
+        
         setupView()
         setupAccessibility()
     }

@@ -131,6 +131,7 @@
 		764C6D1324B7E5BB002FA594 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 764C6D1224B7E5BB002FA594 /* RxSwift */; };
 		766B026724D282C9006FBD29 /* BaseExposedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B026624D282C9006FBD29 /* BaseExposedViewController.swift */; };
 		766B31BC252510F600D4B461 /* FakeRequestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B31BB252510F600D4B461 /* FakeRequestRepository.swift */; };
+		768856892554683100992F8B /* UIView+Magnifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768856882554683100992F8B /* UIView+Magnifier+Extension.swift */; };
 		76D9BD1C24A8992000BA6697 /* NVActivityIndicatorAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BCF124A8992000BA6697 /* NVActivityIndicatorAnimationDelegate.swift */; };
 		76D9BD1D24A8992000BA6697 /* NVActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BCF324A8992000BA6697 /* NVActivityIndicatorPresenter.swift */; };
 		76D9BD1E24A8992000BA6697 /* NVActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BCF424A8992000BA6697 /* NVActivityIndicatorViewable.swift */; };
@@ -320,6 +321,7 @@
 		76357AD3253FC297004C9AE5 /* CustomSwitch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSwitch.xib; sourceTree = "<group>"; };
 		766B026624D282C9006FBD29 /* BaseExposedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseExposedViewController.swift; sourceTree = "<group>"; };
 		766B31BB252510F600D4B461 /* FakeRequestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRequestRepository.swift; sourceTree = "<group>"; };
+		768856882554683100992F8B /* UIView+Magnifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Magnifier+Extension.swift"; sourceTree = "<group>"; };
 		76D9BCF124A8992000BA6697 /* NVActivityIndicatorAnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationDelegate.swift; sourceTree = "<group>"; };
 		76D9BCF324A8992000BA6697 /* NVActivityIndicatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorPresenter.swift; sourceTree = "<group>"; };
 		76D9BCF424A8992000BA6697 /* NVActivityIndicatorViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorViewable.swift; sourceTree = "<group>"; };
@@ -646,6 +648,7 @@
 				763489FC24B7530500B31C59 /* UIFont+Extension.swift */,
 				6D9F3A8D25029B0E005EE842 /* UIViewController+Alert.swift */,
 				6D63108B2501194F000CDCB4 /* UINavigationController+Extension.swift */,
+				768856882554683100992F8B /* UIView+Magnifier+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1245,6 +1248,7 @@
 				6D63108E2501197B000CDCB4 /* AccTitleView.swift in Sources */,
 				6DF6ECAC248E79C1007EAA40 /* Injection.swift in Sources */,
 				763489FD24B7530500B31C59 /* UIFont+Extension.swift in Sources */,
+				768856892554683100992F8B /* UIView+Magnifier+Extension.swift in Sources */,
 				A9EB48032535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */,
 				76D9BD2024A8992000BA6697 /* NVActivityIndicatorView.swift in Sources */,
 				76D9BD1D24A8992000BA6697 /* NVActivityIndicatorPresenter.swift in Sources */,

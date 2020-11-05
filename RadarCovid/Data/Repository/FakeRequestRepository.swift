@@ -45,14 +45,10 @@ class FakeRequestRepository {
     }
     
     init() {
-        rate = 1.0
-        if Config.debug {
-            rate = 1
-        }
         self.userDefaults = UserDefaults.standard
         rate = 1.0
         if Config.debug {
-            rate = 0.1
+            rate = 2
         }
     }
     

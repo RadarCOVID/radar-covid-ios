@@ -26,6 +26,7 @@ class BaseExposed: BaseViewController, ExpositionView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.setFontTextStyle()
         
         setupBaseView()
     }

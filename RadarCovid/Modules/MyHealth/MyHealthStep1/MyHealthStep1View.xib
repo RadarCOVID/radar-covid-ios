@@ -36,13 +36,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzc-Oe-DiC">
-                    <rect key="frame" x="0.0" y="72" width="375" height="427"/>
+                    <rect key="frame" x="0.0" y="72" width="375" height="423"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqs-jf-GzU">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="566"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="567.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código diagnóstico" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-CU-SbS">
-                                    <rect key="frame" x="16" y="40" width="167" height="22"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código diagnóstico" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-CU-SbS">
+                                    <rect key="frame" x="16" y="40" width="343" height="21.5"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLR-vU-8eY" userLabel="CodeView">
-                                    <rect key="frame" x="16" y="82" width="343" height="125.5"/>
+                                    <rect key="frame" x="16" y="81.5" width="343" height="127.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Introduce el código que te han enviado" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="32F-ac-GaU">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="19.5"/>
@@ -80,8 +80,8 @@
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ej. 123456789123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oPC-Vz-iwZ">
-                                            <rect key="frame" x="0.0" y="109.5" width="343" height="16"/>
-                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                            <rect key="frame" x="0.0" y="109.5" width="343" height="18"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
@@ -105,7 +105,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indica la fecha de inicio de síntomas. Si no has tenido síntomas, introduce la prueba PCR positiva." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iu-V8-YeH">
-                                    <rect key="frame" x="16" y="227.5" width="343" height="57.5"/>
+                                    <rect key="frame" x="16" y="229" width="343" height="57.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -114,7 +114,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si no conoces ninguna de estas dos fechas, déjalo en blanco." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONY-6C-RTy">
-                                    <rect key="frame" x="16" y="301" width="343" height="38.5"/>
+                                    <rect key="frame" x="16" y="302.5" width="343" height="38.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -123,7 +123,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEC-TV-Fff" userLabel="dateView">
-                                    <rect key="frame" x="16" y="355.5" width="343" height="98"/>
+                                    <rect key="frame" x="16" y="357" width="343" height="98"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Día" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YB-Ye-XfY">
                                             <rect key="frame" x="37" y="0.0" width="25.5" height="19.5"/>
@@ -252,7 +252,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSt-nv-PMq">
-                                    <rect key="frame" x="16" y="469.5" width="343" height="76.5"/>
+                                    <rect key="frame" x="16" y="471" width="343" height="76.5"/>
                                     <string key="text">Esta información permite poder avisar a las personas que han estado en contacto contigo mientras podías transmitir el coronavirus.
 </string>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
@@ -274,6 +274,7 @@
                                 <constraint firstAttribute="trailing" secondItem="ONY-6C-RTy" secondAttribute="trailing" constant="16" id="JNY-RD-Dk0"/>
                                 <constraint firstItem="4Bc-CU-SbS" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="Vq7-wl-thW"/>
                                 <constraint firstItem="4Bc-CU-SbS" firstAttribute="top" secondItem="wqs-jf-GzU" secondAttribute="top" constant="40" id="Xlp-BM-aRp"/>
+                                <constraint firstAttribute="trailing" secondItem="4Bc-CU-SbS" secondAttribute="trailing" constant="16" id="Zfs-ey-aG0"/>
                                 <constraint firstItem="5iu-V8-YeH" firstAttribute="top" secondItem="gLR-vU-8eY" secondAttribute="bottom" constant="20" id="abo-0C-pMa"/>
                                 <constraint firstAttribute="trailing" secondItem="HSt-nv-PMq" secondAttribute="trailing" constant="16" id="ijH-jl-JhH"/>
                                 <constraint firstAttribute="trailing" secondItem="5iu-V8-YeH" secondAttribute="trailing" constant="16" id="jps-Lm-N8Y"/>
@@ -319,9 +320,9 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8a-41-d9l" userLabel="Accept Button">
-                    <rect key="frame" x="16" y="515" width="343" height="56"/>
+                    <rect key="frame" x="16" y="511" width="343" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="keU-Mo-nEN"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="keU-Mo-nEN"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                     <state key="normal" title="Continuar" backgroundImage="buttonsPrimary">
@@ -338,7 +339,7 @@
                     <rect key="frame" x="16" y="591" width="343" height="56"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="oYg-s6-jBE"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="oYg-s6-jBE"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                     <state key="normal" title="Cancelar">

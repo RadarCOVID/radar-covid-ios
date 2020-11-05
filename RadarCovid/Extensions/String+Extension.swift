@@ -37,7 +37,7 @@ extension String {
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
-
+    
     var getStringFromFile: String {
         if let fileURL = Bundle.main.url(forResource: self, withExtension: "") {
             do {
@@ -47,18 +47,18 @@ extension String {
                 return ""
             }
         }
-
+        
         return ""
     }
     
     // Regex matches
     func match(_ regex: String) -> [[String]] {
-            let nsString = self as NSString
-            return (try? NSRegularExpression(pattern: regex, options: []))?.matches(in: self, options: [], range: NSMakeRange(0, count)).map { match in
-                (0..<match.numberOfRanges).map { match.range(at: $0).location == NSNotFound ? "" : nsString.substring(with: match.range(at: $0)) }
-            } ?? []
-        }
-
+        let nsString = self as NSString
+        return (try? NSRegularExpression(pattern: regex, options: []))?.matches(in: self, options: [], range: NSMakeRange(0, count)).map { match in
+            (0..<match.numberOfRanges).map { match.range(at: $0).location == NSNotFound ? "" : nsString.substring(with: match.range(at: $0)) }
+        } ?? []
+    }
+    
     func getUrlFromHref() -> String {
         let regexFromGetHref: String = "<a\\s+(?:[^>]*?\\s+)?href=\"([^\"]*)\""
         let aMatches = self.match(regexFromGetHref)
@@ -72,10 +72,16 @@ extension String {
         
         return aMatches.last?.last ?? ""
     }
+    
+    func height(withWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let maxSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let actualSize = self.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], attributes: [.font : font], context: nil)
+        return actualSize.height
+    }
 }
 
 extension NSMutableAttributedString {
-
+    
     /// Replaces the base font (typically Times) with the given font, while preserving traits like bold and italic
     func setBaseFont(baseFont: UIFont, preserveFontSizes: Bool = false) -> NSMutableAttributedString {
         let baseDescriptor = baseFont.fontDescriptor
@@ -94,17 +100,38 @@ extension NSMutableAttributedString {
         endEditing()
         return self
     }
-
+    
 }
 
 extension NSAttributedString {
-
+    
     func formatHtmlString(withBaseFont font: UIFont?, perserveFont: Bool = false) -> NSMutableAttributedString {
-            let attributedString = self
-            let fontFamily =  font ?? UIFont.systemFont(ofSize: 16)
-            return NSMutableAttributedString(
-                attributedString: attributedString
-            ).setBaseFont(baseFont: fontFamily, preserveFontSizes: perserveFont)
+        let attributedString = self
+        let fontFamily =  font ?? UIFont.systemFont(ofSize: 16)
+        return NSMutableAttributedString(
+            attributedString: attributedString
+        ).setBaseFont(baseFont: fontFamily, preserveFontSizes: perserveFont)
     }
+    
+    func height(withWidth width: CGFloat) -> CGFloat {
+        let maxSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let actualSize = boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], context: nil)
+        return actualSize.height
+    }
+}
 
+extension UILabel {
+    func textHeight(withWidth width: CGFloat) -> CGFloat {
+        guard let text = text else {
+            return 0
+        }
+        return text.height(withWidth: width, font: font)
+    }
+    
+    func attributedTextHeight(withWidth width: CGFloat) -> CGFloat {
+        guard let attributedText = attributedText else {
+            return 0
+        }
+        return attributedText.height(withWidth: width)
+    }
 }

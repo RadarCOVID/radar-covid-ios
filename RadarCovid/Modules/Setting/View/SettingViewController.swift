@@ -19,7 +19,6 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var languageSelectorContainerView: UIView!
     @IBOutlet weak var languageSelectorLabel: UILabel!
-    @IBOutlet weak var languageSelectorButton: UIButton!
     
     var router: AppRouter?
     var viewModel: SettingViewModel?
@@ -29,6 +28,7 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.setFontTextStyle()
+        
         setupView()
         setupAccessibility()
     }
@@ -44,25 +44,27 @@ class SettingViewController: UIViewController {
     }
     
     private func setupAccessibility() {
-        languageSelectorButton.isAccessibilityElement = true
-        languageSelectorButton.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
-        languageSelectorButton.accessibilityHint = "ACC_HINT".localized
+        languageSelectorContainerView.isAccessibilityElement = true
+        languageSelectorContainerView.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
+        languageSelectorContainerView.accessibilityHint = "ACC_HINT".localized
     }
     
-    @IBAction func onLanguageSelectionAction(_ sender: Any) {
+    @objc func onLanguageSelectionAction(_ sender: Any) {
         showLanguageSelection()
     }
     
     private func setupView() {
         viewModel?.getCurrenLenguageLocalizable().subscribe(onNext: { [weak self] (value) in
             self?.languageSelectorLabel.text = value
-            self?.languageSelectorButton.accessibilityLabel = value
+            self?.languageSelectorContainerView.accessibilityLabel = value
         }).disposed(by: disposeBag)
         
         languageSelectorContainerView.layer.borderWidth = 1
         languageSelectorContainerView.layer.borderColor = UIColor.deepLilac.cgColor
         languageSelectorContainerView.layer.cornerRadius = 8
         
+        languageSelectorContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                                  action: #selector(onLanguageSelectionAction(_ :))))   
     }
     
     private func showLanguageSelection() {

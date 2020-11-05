@@ -20,7 +20,7 @@ class MyHealthStep0ViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
         setupAccessibility()
     }
