@@ -23,8 +23,9 @@ class ProximityViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
-        self.view.setFontTextStyle()
         super.viewDidLoad()
+        self.view.setFontTextStyle()
+        
         setupAccessibility()
     }
     

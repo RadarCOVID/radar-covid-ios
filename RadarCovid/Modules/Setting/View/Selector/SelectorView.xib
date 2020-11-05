@@ -91,7 +91,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemYellowColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="bNS-yD-V3i" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="20" id="4KX-AT-tTa"/>
                         <constraint firstItem="szH-xb-3qg" firstAttribute="top" secondItem="XFt-8u-EHi" secondAttribute="bottom" constant="20" id="5dX-Ig-gsF"/>
@@ -134,9 +134,6 @@
         <image name="buttonsPrimary" width="341" height="60"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
