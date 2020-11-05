@@ -55,37 +55,50 @@ extension UIView {
         }
     }
     
-    func setFontTextStyle(){
+    private func setFontSizeThatFitSize(size: Double, font: UIFont) -> UIFont{
         let styles = [UIFont.TextStyle.caption2, UIFont.TextStyle.caption1, UIFont.TextStyle.subheadline, UIFont.TextStyle.callout, UIFont.TextStyle.body,  UIFont.TextStyle.headline, UIFont.TextStyle.title3, UIFont.TextStyle.title2, UIFont.TextStyle.title1, UIFont.TextStyle.largeTitle ]
         let sizes = [15.0, 16.0, 17.0, 18.0, 20.0, 22.0, 24.0, 26.0, 28.0, 32.0]
-        for label in self.getLabelsInView(view: self) {
-            let fontSize = label.font.pointSize
-            if (sizes.contains(Double(fontSize)) && label.tag != 55){
-                label.tag = 55
-                let index = sizes.firstIndex(of: Double(fontSize))
-                let fontStyle = styles[index ?? 0]
-                let metrics = UIFontMetrics(forTextStyle: fontStyle)
-                label.font = metrics.scaledFont(for: label.font)
-                label.adjustsFontForContentSizeCategory = true
-                
-            }
-        }
         
-        for button in self.getButtonsInView(view: self) {
+        if (sizes.contains(size)) {
+            let index = sizes.firstIndex(of: size)
+            let fontStyle = styles[index ?? 0]
+            let metrics = UIFontMetrics(forTextStyle: fontStyle)
+            return metrics.scaledFont(for: font)
+        }
+        return font
+
+    }
+    
+    private func setLabelFontSize(label: UILabel) {
+        if label.tag != 55 {
+            label.tag = 55
             
+            let fontSize = Double(label.font.pointSize)
+            label.font = self.setFontSizeThatFitSize(size: fontSize, font: label.font)
+            label.adjustsFontForContentSizeCategory = true
+        }
+    }
+    
+    private func setButtonFontSize(button: UIButton) {
+        if button.tag != 55 {
+            button.tag = 55
             guard let label = button.titleLabel else {
                 return
             }
-            let fontSize = label.font.pointSize
-            if (sizes.contains(Double(fontSize)) && button.tag != 55 && button.titleLabel?.text != nil){
-                button.tag = 55
-                let index = sizes.firstIndex(of: Double(fontSize))
-                let fontStyle = styles[index ?? 0]
-                let metrics = UIFontMetrics(forTextStyle: fontStyle)
-                button.titleLabel?.font = metrics.scaledFont(for: label.font)
-                self.setHeightForButton(button: button)
-                
-            }
+            let fontSize = Double(label.font.pointSize)
+            button.titleLabel?.font = self.setFontSizeThatFitSize(size: fontSize, font: label.font)
+            self.setHeightForButton(button: button)
+        }
+       
+    }
+    
+    func setFontTextStyle(){
+        for label in self.getLabelsInView(view: self) {
+            self.setLabelFontSize(label: label)
+        }
+        
+        for button in self.getButtonsInView(view: self) {
+            self.setButtonFontSize(button: button)
         }
     }
 }
