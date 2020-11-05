@@ -47,7 +47,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szH-xb-3qg" userLabel="Accept Button">
                             <rect key="frame" x="16" y="702" width="382" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="o9T-UK-NlX"/>
+                                <constraint firstAttribute="height" constant="60" id="o9T-UK-NlX"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             <state key="normal" title="Aceptar" backgroundImage="buttonsPrimary">
@@ -70,7 +70,7 @@
                             <rect key="frame" x="16" y="782" width="382" height="60"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Qtu-UD-xWW"/>
+                                <constraint firstAttribute="height" constant="60" id="Qtu-UD-xWW"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>

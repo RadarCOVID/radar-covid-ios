@@ -147,7 +147,6 @@ extension UIView {
         var results = [UIButton]()
         for subview in view.subviews as [UIView] {
             if let button = subview as? UIButton {
-                subview.isHidden = true
                 results += [button]
             } else {
                 results += getButtonsInView(view: subview)
