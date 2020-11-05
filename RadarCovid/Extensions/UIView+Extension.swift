@@ -147,6 +147,7 @@ extension UIView {
         var results = [UIButton]()
         for subview in view.subviews as [UIView] {
             if let button = subview as? UIButton {
+                subview.isHidden = true
                 results += [button]
             } else {
                 results += getButtonsInView(view: subview)
@@ -175,7 +176,9 @@ extension UIView {
                 
             }
         }
+        
         for button in self.getButtonsInView(view: self) {
+
             guard let label = button.titleLabel else {
                 return
             }
@@ -190,7 +193,25 @@ extension UIView {
                 } catch let err {
                     print(err)
                 }
-                button.titleLabel?.adjustsFontForContentSizeCategory = true
+
+                if let estimateHeight = button.titleLabel?.textHeight(withWidth: button.frame.size.width) {
+
+                    if estimateHeight > button.frame.size.height {
+
+                        let cons = button.constraints.filter {
+                            $0.firstAttribute == NSLayoutConstraint.Attribute.height
+                        }
+                        _ = cons.map({self.removeConstraint($0)})
+                        // do something with the constraints array, e.g.
+//                        NSLayoutConstraint.deactivate(cons)
+                        
+                        
+                        // Add 20px padding
+                        let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: estimateHeight + 20)
+                        NSLayoutConstraint.activate([heightConstraint])
+                    }
+                }
+                
                 
             }
         }

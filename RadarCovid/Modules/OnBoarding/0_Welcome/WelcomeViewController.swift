@@ -19,7 +19,6 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var languageSelectorContainerView: UIView!
     @IBOutlet weak var languageSelectorLabel: UILabel!
-    @IBOutlet weak var languageSelectorButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var stepbullet1Label: UILabel!
     @IBOutlet weak var stepbullet2Label: UILabel!
@@ -40,7 +39,7 @@ class WelcomeViewController: UIViewController {
         router?.route(to: .onBoarding, from: self)
     }
     
-    @IBAction func selectLanguage(_ sender: Any) {
+    @objc func selectLanguage(_ sender: Any) {
         guard let viewModel = self.viewModel else { return }
         
         isDisableAccesibility(isDisabble: true)
@@ -73,9 +72,9 @@ class WelcomeViewController: UIViewController {
     
     private func setupAccessibility() {
         
-        languageSelectorButton.isAccessibilityElement = true
-        languageSelectorButton.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
-        languageSelectorButton.accessibilityHint = "ACC_HINT".localized
+        languageSelectorContainerView.isAccessibilityElement = true
+        languageSelectorContainerView.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
+        languageSelectorContainerView.accessibilityHint = "ACC_HINT".localized
 
         continueButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
         continueButton.isAccessibilityElement = true
@@ -94,9 +93,12 @@ class WelcomeViewController: UIViewController {
         languageSelectorContainerView.layer.borderColor = UIColor.deepLilac.cgColor
         languageSelectorContainerView.layer.cornerRadius = 8
         
+        languageSelectorContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                                  action: #selector(selectLanguage(_ :))))
+        
         viewModel?.getCurrenLenguageLocalizable().subscribe(onNext: { [weak self] (value) in
             self?.languageSelectorLabel.text = value
-            self?.languageSelectorButton.accessibilityLabel = value
+            self?.languageSelectorContainerView.accessibilityLabel = value
         }).disposed(by: disposeBag)
         
         setupAccessibility()

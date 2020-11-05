@@ -83,6 +83,8 @@ class HomeViewController: UIViewController {
                 UIAccessibility.post(notification: .layoutChanged, argument: self.titleLabel)
             }
         }
+        
+        print("activateNotificationButton.frame.size.height \(activateNotificationButton.frame.size.height)")
     }
     
     @IBAction func onReset(_ sender: Any) {

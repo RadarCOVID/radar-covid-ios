@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
-                <outlet property="languageSelectorButton" destination="YSQ-jc-eYO" id="iHS-7h-9OW"/>
                 <outlet property="languageSelectorContainerView" destination="pjU-hI-3cH" id="N5s-xb-UGe"/>
                 <outlet property="languageSelectorLabel" destination="Fvh-YP-VmW" id="fk8-Wr-ikm"/>
                 <outlet property="scrollView" destination="hlz-jn-ck7" id="DAu-pc-oIm"/>
@@ -72,29 +71,13 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollapsableClosed" translatesAutoresizingMaskIntoConstraints="NO" id="XCT-Zp-3tl">
                                                     <rect key="frame" x="349.5" y="26" width="14.5" height="8.5"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSQ-jc-eYO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal">
-                                                        <color key="titleColor" systemColor="darkTextColor"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="onLanguageSelectionAction:" destination="-1" eventType="touchUpInside" id="Mnm-3w-5Wl"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Fvh-YP-VmW" secondAttribute="bottom" constant="19.5" id="SdK-JV-Fxq"/>
-                                                <constraint firstItem="YSQ-jc-eYO" firstAttribute="top" secondItem="pjU-hI-3cH" secondAttribute="top" id="UZa-QQ-O2N"/>
                                                 <constraint firstAttribute="trailing" secondItem="XCT-Zp-3tl" secondAttribute="trailing" constant="10" id="XUg-tQ-6yN"/>
-                                                <constraint firstAttribute="bottom" secondItem="YSQ-jc-eYO" secondAttribute="bottom" id="Xg6-6n-cCF"/>
-                                                <constraint firstItem="YSQ-jc-eYO" firstAttribute="leading" secondItem="pjU-hI-3cH" secondAttribute="leading" id="Zgb-XM-itu"/>
                                                 <constraint firstItem="XCT-Zp-3tl" firstAttribute="leading" secondItem="Fvh-YP-VmW" secondAttribute="trailing" constant="20" id="bHL-IJ-sWn"/>
                                                 <constraint firstItem="Fvh-YP-VmW" firstAttribute="leading" secondItem="pjU-hI-3cH" secondAttribute="leading" constant="20" id="dj7-3i-FKz"/>
-                                                <constraint firstAttribute="trailing" secondItem="YSQ-jc-eYO" secondAttribute="trailing" id="lcj-ZZ-hH8"/>
                                                 <constraint firstItem="Fvh-YP-VmW" firstAttribute="top" secondItem="pjU-hI-3cH" secondAttribute="top" constant="19.5" id="qUa-cz-1iG"/>
                                                 <constraint firstItem="XCT-Zp-3tl" firstAttribute="centerY" secondItem="pjU-hI-3cH" secondAttribute="centerY" id="sJg-X4-p0q"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="yB9-EJ-O71"/>
@@ -181,8 +164,5 @@
         <namedColor name="bgColor">
             <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

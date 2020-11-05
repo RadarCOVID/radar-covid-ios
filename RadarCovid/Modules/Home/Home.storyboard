@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEu-F8-ZM1">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="782"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="776"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUO-V4-jee" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="652"/>
@@ -199,9 +199,9 @@ Cuídate y cuida a los demás.</string>
                                 <viewLayoutGuide key="frameLayoutGuide" id="8p4-5Z-9pe"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgD-SH-6Y2">
-                                <rect key="frame" x="16" y="792" width="382" height="54"/>
+                                <rect key="frame" x="16" y="786" width="382" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="UKC-Bh-shj"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="54" id="UKC-Bh-shj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <state key="normal" title="Comunica tu positivo COVID" backgroundImage="buttonsPrimary">
@@ -218,11 +218,8 @@ Cuídate y cuida a los demás.</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKG-lv-3X4">
-                                <rect key="frame" x="112.5" y="94" width="189" height="50"/>
+                                <rect key="frame" x="112.5" y="94" width="189" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="cLY-FJ-P9P"/>
-                                </constraints>
                                 <state key="normal" title="RESET DATA">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -231,7 +228,7 @@ Cuídate y cuida a los demás.</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWR-aJ-g5N">
-                                <rect key="frame" x="182.5" y="144" width="49" height="31.5"/>
+                                <rect key="frame" x="182.5" y="124" width="49" height="31.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

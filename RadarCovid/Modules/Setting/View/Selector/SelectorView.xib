@@ -27,6 +27,19 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYi-de-lcn">
+                            <rect key="frame" x="359" y="10" width="50" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="ws8-un-Wwv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="x">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mSU-Fy-UVI"/>
+                            </connections>
+                        </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XFt-8u-EHi">
                             <rect key="frame" x="0.0" y="83.5" width="414" height="598.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -34,7 +47,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szH-xb-3qg" userLabel="Accept Button">
                             <rect key="frame" x="16" y="702" width="382" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="o9T-UK-NlX"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="o9T-UK-NlX"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             <state key="normal" title="Aceptar" backgroundImage="buttonsPrimary">
@@ -53,24 +66,11 @@
                                 <action selector="onAcceptButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="AgH-vb-wl2"/>
                             </connections>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYi-de-lcn">
-                            <rect key="frame" x="359" y="10" width="50" height="36"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="50" id="ws8-un-Wwv"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <state key="normal" title="x">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="onCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mSU-Fy-UVI"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TS-L3-r8l">
                             <rect key="frame" x="16" y="782" width="382" height="60"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="Qtu-UD-xWW"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Qtu-UD-xWW"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -91,7 +91,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="systemYellowColor"/>
                     <constraints>
                         <constraint firstItem="bNS-yD-V3i" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="20" id="4KX-AT-tTa"/>
                         <constraint firstItem="szH-xb-3qg" firstAttribute="top" secondItem="XFt-8u-EHi" secondAttribute="bottom" constant="20" id="5dX-Ig-gsF"/>
@@ -134,6 +134,9 @@
         <image name="buttonsPrimary" width="341" height="60"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
