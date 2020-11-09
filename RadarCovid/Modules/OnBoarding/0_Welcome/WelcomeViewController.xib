@@ -104,6 +104,9 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" button="YES"/>
+                                    </accessibility>
                                     <constraints>
                                         <constraint firstItem="4H9-Xq-Z9K" firstAttribute="top" secondItem="QPk-ea-yOp" secondAttribute="top" constant="19.5" id="0Mt-3I-PtK"/>
                                         <constraint firstItem="pux-Ea-UPo" firstAttribute="centerY" secondItem="QPk-ea-yOp" secondAttribute="centerY" id="33E-fA-3qf"/>

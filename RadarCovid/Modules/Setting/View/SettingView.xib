@@ -73,6 +73,9 @@
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" button="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Fvh-YP-VmW" secondAttribute="bottom" constant="19.5" id="SdK-JV-Fxq"/>
                                                 <constraint firstAttribute="trailing" secondItem="XCT-Zp-3tl" secondAttribute="trailing" constant="10" id="XUg-tQ-6yN"/>
