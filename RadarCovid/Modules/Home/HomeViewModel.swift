@@ -45,7 +45,12 @@ class HomeViewModel {
             }).disposed(by: disposeBag)
     }
     
-    func checkInitialExposition() {
+    func checkInitial() {
+        changeRadarStatus(radarStatusUseCase?.isTracingActive() ?? false)
+        checkInitialExposition()
+    }
+    
+    private func checkInitialExposition() {
         
         expositionUseCase?.updateExpositionInfo()
         

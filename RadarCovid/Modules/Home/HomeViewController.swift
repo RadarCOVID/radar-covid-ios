@@ -252,7 +252,7 @@ class HomeViewController: UIViewController {
             envLabel.isHidden = true
         }
         
-        viewModel?.checkInitialExposition()
+        viewModel?.checkInitial()
         viewModel?.checkOnboarding()
         
 
