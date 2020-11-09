@@ -61,6 +61,7 @@ class ActivateCovidNotificationViewController: UIViewController {
     }
     
     private func activationFinished() {
+        self.view.hideLoading()
         router?.route(to: .activatePush, from: self)
     }
 }

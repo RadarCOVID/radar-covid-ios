@@ -96,7 +96,11 @@ extension UIView {
     func hideLoading() {
         DispatchQueue.main.async { [weak self] in
             for view in self?.subviews ?? [] {
-                if view is NVActivityIndicatorView || view.tag == 99 {
+                if view is NVActivityIndicatorView ||
+                    view.tag == 99 ||
+                    view.tag == 1111 ||
+                    view.tag == 1122 {
+                    
                     view.fadeOut { (_) in
                         view.removeFromSuperview()
                     }
