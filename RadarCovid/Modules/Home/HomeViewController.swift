@@ -303,6 +303,7 @@ class HomeViewController: UIViewController {
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
         moreInfoLabel.isHidden = true
+        radarSwitch.isHidden = false
     }
     
     private func setHealthy() {
@@ -312,6 +313,7 @@ class HomeViewController: UIViewController {
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
         moreInfoLabel.isHidden = true
+        radarSwitch.isHidden = false
     }
 
     private func setInfected() {
@@ -321,6 +323,7 @@ class HomeViewController: UIViewController {
         communicationButton.isHidden = true
         topComunicationConstraint.constant = -(communicationButton.frame.size.height + bottomComunicationConstraint.constant)
         moreInfoLabel.isHidden = false
+        radarSwitch.isHidden = true
     }
 
     private func setImagesInactive(_ inactive: Bool) {
