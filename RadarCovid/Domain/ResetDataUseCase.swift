@@ -16,6 +16,7 @@ import DP3TSDK
 protocol ResetDataUseCase {
     func reset() -> Observable<Void>
     func resetExposureDays() -> Observable<Void>
+    func resetInfectionStatus() -> Observable<Void>
 }
 
 class ResetDataUseCaseImpl: ResetDataUseCase {
@@ -26,7 +27,7 @@ class ResetDataUseCaseImpl: ResetDataUseCase {
     init(expositionInfoRepository: ExpositionInfoRepository) {
         self.expositionInfoRepository = expositionInfoRepository
     }
-
+    
     func reset() -> Observable<Void> {
         .deferred { [weak self] in
             do {
@@ -39,7 +40,6 @@ class ResetDataUseCaseImpl: ResetDataUseCase {
 
             return .just(())
         }
-
     }
 
     func resetExposureDays() -> Observable<Void> {
@@ -49,7 +49,14 @@ class ResetDataUseCaseImpl: ResetDataUseCase {
 
             return .just(())
         }
-
     }
+    
+    func resetInfectionStatus() -> Observable<Void> {
+        .deferred { [weak self] in
+            DP3TTracing.resetInfectionStatus()
+            self?.expositionInfoRepository.clearData()
 
+            return .just(())
+        }
+    }
 }

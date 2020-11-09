@@ -14,16 +14,16 @@ import RxSwift
 import DP3TSDK
 
 class HomeViewModel {
-
+    
     private let disposeBag = DisposeBag()
-
+    
     var expositionUseCase: ExpositionUseCase?
     var expositionCheckUseCase: ExpositionCheckUseCase?
     var radarStatusUseCase: RadarStatusUseCase?
     var syncUseCase: SyncUseCase?
     var resetDataUseCase: ResetDataUseCase?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
-
+    
     var radarStatus = BehaviorSubject<RadarStatus>(value: .active)
     var checkState = BehaviorSubject<Bool>(value: false)
     var timeExposedDismissed = BehaviorSubject<Bool>(value: false)
@@ -32,21 +32,21 @@ class HomeViewModel {
     var expositionInfo = BehaviorSubject<ExpositionInfo>(value: ExpositionInfo(level: .healthy))
     var error = PublishSubject<Error>()
     var alertMessage = PublishSubject<String>()
-
+    
     func changeRadarStatus(_ active: Bool) {
         radarStatusUseCase?.changeTracingStatus(active: active).subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
                 self?.checkInitialExposition()
-
+                
             }, onError: {  [weak self] error in
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
-
+    
     func checkInitialExposition() {
-      
+        
         expositionUseCase?.updateExpositionInfo()
         
         expositionUseCase?.getExpositionInfo().subscribe(
@@ -54,9 +54,9 @@ class HomeViewModel {
                 self?.checkExpositionLevel(exposition)
             }, onError: { [weak self] error in
                 self?.error.onNext(error)
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
-
+    
     private func checkExpositionLevel(_ exposition: ExpositionInfo?) {
         guard let exposition = exposition else {
             return
@@ -68,7 +68,7 @@ class HomeViewModel {
             errorState.onNext(nil)
         }
     }
-
+    
     func restoreLastStateAndSync(cb: (() -> Void)? = nil) {
         radarStatusUseCase?.restoreLastStateAndSync().subscribe(
             onNext: { [weak self] status in
@@ -78,9 +78,9 @@ class HomeViewModel {
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
                 cb?()
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
-
+    
     func reset() {
         resetDataUseCase?.reset().subscribe(
             onNext: { [weak self] _ in
@@ -88,24 +88,40 @@ class HomeViewModel {
             }, onError: { [weak self] error in
                 debugPrint(error)
                 self?.alertMessage.onNext("ALERT_HOME_RESET_ERROR_CONTENT".localized)
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
-
+    
+    func resetToHealthy() {
+        guard let resetDataUseCase = resetDataUseCase else {
+            return
+        }
+        
+        Observable.zip(resetDataUseCase.resetExposureDays(),
+                       resetDataUseCase.resetInfectionStatus()).subscribe(
+                        onNext: { ( _, _) in
+                            //Nothin to do here
+                        }, onError: {(error) in
+                            debugPrint(error)
+                        }).disposed(by: self.disposeBag)
+        
+    }
+    
     func checkOnboarding() {
         if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
             checkState.onNext(false)
         } else {
-           checkState.onNext(true)
-           self.onBoardingCompletedUseCase?.setOnboarding(completed: true)
-           DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-               self?.checkState.onNext(false)
-           }
+            checkState.onNext(true)
+            self.onBoardingCompletedUseCase?.setOnboarding(completed: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+                self?.checkState.onNext(false)
+            }
         }
     }
-
+    
     func checkShowBackToHealthyDialog() {
         if expositionCheckUseCase?.checkBackToHealthyJustChanged() ?? false {
             showBackToHealthyDialog.onNext(true)
+            resetToHealthy()
         }
     }
     
@@ -113,5 +129,5 @@ class HomeViewModel {
         let expositionInf = ExpositionInfo(level: .exposed)
         checkExpositionLevel(expositionInf)
     }
-
+    
 }

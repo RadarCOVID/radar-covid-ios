@@ -13,7 +13,11 @@ import Foundation
 import UIKit
 
 protocol AlertController: class {
-    func showAlertOk(title: String, message: String, buttonTitle: String, _ callback: ((Any) -> Void)?)
+    func showAlertOk(title: String,
+                     message: String,
+                     buttonTitle: String,
+                     _ callback: ((Any) -> Void)?)
+    
     func showAlertCancelContinue(
         title: String,
         message: String,
