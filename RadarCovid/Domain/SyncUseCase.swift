@@ -41,15 +41,16 @@ class SyncUseCase {
     private func forceSync() -> Observable<Void> {
         .create { observer in
 
-            DP3TTracing.sync(runningInBackground: false) { result in
+            DP3TTracing.sync(callback: { result in
                 switch result {
                 case let .failure(error):
                     observer.onError(error)
+                    observer.onCompleted()
                 default:
                     observer.onNext(())
                     observer.onCompleted()
                 }
-            }
+            })
             return Disposables.create()
         }
     }

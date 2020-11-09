@@ -68,15 +68,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
     }
 
     func updateExpositionInfo() {
-
-        DP3TTracing.status { result in
-            switch result {
-            case let .success(state):
-                subject.onNext(tracingStatusToExpositionInfo(tStatus: state))
-            case let .failure(error):
-                subject.onError(error)
-            }
-        }
+        subject.onNext(tracingStatusToExpositionInfo(tStatus: DP3TTracing.status))
     }
 
     // Metodo para mapear un TracingState a un ExpositionInfo

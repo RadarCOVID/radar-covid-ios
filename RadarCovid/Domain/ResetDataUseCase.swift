@@ -30,7 +30,7 @@ class ResetDataUseCaseImpl: ResetDataUseCase {
     func reset() -> Observable<Void> {
         .deferred { [weak self] in
             do {
-                try DP3TTracing.reset()
+                DP3TTracing.reset()
                 try self?.setupUseCase!.initializeSDK()
                 self?.expositionInfoRepository.clearData()
             } catch {
@@ -44,12 +44,8 @@ class ResetDataUseCaseImpl: ResetDataUseCase {
 
     func resetExposureDays() -> Observable<Void> {
         .deferred { [weak self] in
-            do {
-                try DP3TTracing.resetExposureDays()
-                self?.expositionInfoRepository.clearData()
-            } catch {
-                return .error(error)
-            }
+            DP3TTracing.resetExposureDays()
+            self?.expositionInfoRepository.clearData()
 
             return .just(())
         }

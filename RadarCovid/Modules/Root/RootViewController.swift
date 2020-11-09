@@ -63,8 +63,7 @@ class RootViewController: UIViewController {
                 if  settings.isUpdated ?? false {
                     self?.navigateFirst()
                 } else {
-                    self?.showUpdateNotice()
-                    
+                    self?.showUpdateNoticeForSettings(settings: settings)                    
                 }
 
             }, onError: {  [weak self] error in
@@ -80,10 +79,10 @@ class RootViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    private func showUpdateNotice() {
+    private func showUpdateNoticeForSettings(settings: Settings) {
         if #available(*, iOS 13.6) {
             
-            self?.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
+            self.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
                               message: "ALERT_UPDATE_OS_VERSION_TEXT_CONTENT".localized,
                               buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
                               buttonVoiceover: "ACC_BUTTON_ACCEPT".localized)
@@ -93,7 +92,7 @@ class RootViewController: UIViewController {
         else {
             let configUrl = settings.parameters?.applicationVersion?.ios?.bundleUrl
                 ?? "itms-apps://itunes.apple.com"
-            self?.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
+            self.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
                               message: "ALERT_UPDATE_TEXT_CONTENT".localized,
                               buttonTitle: "ALERT_UPDATE_BUTTON".localized,
                               buttonVoiceover: "ACC_BUTTON_ALERT_UPDATE".localized) { (_) in

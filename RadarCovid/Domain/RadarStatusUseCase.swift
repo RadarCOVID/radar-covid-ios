@@ -15,55 +15,53 @@ import RxSwift
 import ExposureNotification
 
 class RadarStatusUseCase {
-
+    
     private let preferencesRepository: PreferencesRepository
     private let syncUseCase: SyncUseCase
-
+    
     init(preferencesRepository: PreferencesRepository,
          syncUseCase: SyncUseCase) {
         self.preferencesRepository = preferencesRepository
         self.syncUseCase = syncUseCase
     }
-
+    
     func isTracingActive() -> Bool {
         preferencesRepository.isTracingActive()
     }
-
+    
     func changeTracingStatus(active: Bool) -> Observable<RadarStatus> {
         .create { [weak self] observer in
             if active {
-                do {
-                    try DP3TTracing.startTracing { error in
-                        if let error =  error {
-                            self?.handle(error: error, observer: observer)
-                        } else {
-                            self?.preferencesRepository.setTracing(active: active)
-                            observer.onNext(.active)
-                            observer.onCompleted()
-                        }
-                    }
-
-                } catch {
-                    self?.handle(error: error, observer: observer)
-                }
-
-            } else {
-                DP3TTracing.stopTracing { error in
-                    if let error =  error {
-                        observer.onError("Error stopping tracing. : \(error)")
-                    } else {
+                DP3TTracing.startTracing { result in
+                    switch result {
+                    case .success():
                         self?.preferencesRepository.setTracing(active: active)
-                        observer.onNext(.inactive)
+                        observer.onNext(.active)
+                        observer.onCompleted()
+                    case .failure(let error):
+                        self?.handle(error: error, observer: observer)
                         observer.onCompleted()
                     }
                 }
-
+                
+            } else {
+                DP3TTracing.stopTracing { result in
+                    switch result {
+                    case .success():
+                        self?.preferencesRepository.setTracing(active: active)
+                        observer.onNext(.inactive)
+                        observer.onCompleted()
+                    case .failure(let error):
+                        observer.onError("Error stopping tracing. : \(error)")
+                        observer.onCompleted()
+                    }
+                }
+                
             }
             return Disposables.create()
         }
-
     }
-
+    
     private func handle(error: Error, observer: AnyObserver<RadarStatus>) {
         if case .userAlreadyMarkedAsInfected = (error as? DP3TTracingError) {
             observer.onNext(.disabled)
@@ -72,7 +70,7 @@ class RadarStatusUseCase {
             observer.onError(error)
         }
     }
-
+    
     func restoreLastStateAndSync() -> Observable<RadarStatus> {
         changeTracingStatus(active: preferencesRepository.isTracingActive())
             .flatMap {[weak self] status -> Observable<RadarStatus> in
@@ -83,9 +81,9 @@ class RadarStatusUseCase {
                 return .just(status)
             }
     }
-
+    
     func isTracingInit() -> Bool {
         preferencesRepository.isTracingInit()
     }
-
+    
 }

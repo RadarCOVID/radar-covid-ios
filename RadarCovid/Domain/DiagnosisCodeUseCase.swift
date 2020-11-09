@@ -47,7 +47,7 @@ class DiagnosisCodeUseCase {
     private func iWasExposed(onset: Date, token: String) -> Observable<Bool> {
         .create { [weak self] observer in
             DP3TTracing.iWasExposed(onset: onset,
-                                    authentication: .HTTPAuthorizationBearer(token: token),
+                                    authentication: .HTTPAuthorizationHeader(header: "Bearer \(token)", value: "Authorization"),
                                     isFakeRequest: self?.isfake ?? false) {  result in
                 switch result {
                 case let .failure(error):

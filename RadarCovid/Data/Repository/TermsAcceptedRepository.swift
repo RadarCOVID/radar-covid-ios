@@ -15,17 +15,49 @@ class TermsAcceptedRepository {
     
     private var userDefaults: UserDefaults
     private let termsAcceptedKey = "UserDefaultsTermsAccepted.accepted"
+    private let termsAcceptedVersion = "UserDefaultsTermsAccepted.version"
+
     
     init() {
         self.userDefaults = UserDefaults.standard
+        
+    }
+    
+    private var termsVersion: String {
+        get {
+            return userDefaults.string(forKey: termsAcceptedVersion)
+                ??
+                (
+                    self.termsAccepted
+                        ? "1.0.0"
+                        : "0.0.0"
+                )
+        }
+        set (newVal){
+            userDefaults.setValue(newVal, forKey: termsAcceptedVersion)
+        }
+    }
+    
+    private func versionIsEqualOrMajor() -> Bool {
+        let comparision = self.termsVersion.compare(
+            (UserDefaultsSettingsRepository().getSettings()?.parameters?.legalTermsVersion ?? "0.0.0")
+            , options: .numeric
+        )
+        return comparision == ComparisonResult.orderedDescending
+            || comparision == ComparisonResult.orderedSame
     }
     
     var termsAccepted: Bool {
         get {
-            return userDefaults.bool(forKey: termsAcceptedKey)
+            userDefaults.bool(forKey: termsAcceptedKey)
+                ? true
+                : self.versionIsEqualOrMajor()
         }
         set(newVal) {
             userDefaults.setValue(newVal, forKey: termsAcceptedKey)
+            if newVal {
+                self.termsVersion = UserDefaultsSettingsRepository().getSettings()?.parameters?.legalTermsVersion ?? "0.0.0"
+            }
         }
     }
     
