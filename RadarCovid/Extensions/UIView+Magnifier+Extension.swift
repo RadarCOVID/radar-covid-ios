@@ -13,7 +13,7 @@ import Foundation
 import UIKit
 
 extension UIView {
-
+    
     private func getLabelsInView(view: UIView) -> [UILabel] {
         var results = [UILabel]()
         for subview in view.subviews as [UIView] {
@@ -37,18 +37,20 @@ extension UIView {
         }
         return results
     }
-
+    
     private func setHeightForButton(button: UIButton) {
+        
         guard let estimateHeight = button.titleLabel?.textHeight(withWidth: button.frame.size.width) else {
             return
         }
+
         if estimateHeight > button.frame.size.height {
-            
+
             let heightCons = button.constraints.filter {
                 $0.firstAttribute == NSLayoutConstraint.Attribute.height
             }
+
             heightCons.forEach({self.removeConstraint($0)})
-            
             
             let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: estimateHeight + 20)
             NSLayoutConstraint.activate([heightConstraint])
@@ -62,15 +64,15 @@ extension UIView {
         if (sizes.contains(size)) {
             let index = sizes.firstIndex(of: size)
             let fontStyle = styles[index ?? 0]
-            let metrics = UIFontMetrics(forTextStyle: fontStyle)
-            return metrics.scaledFont(for: font)
+            
+            return UIFontMetrics(forTextStyle: fontStyle).scaledFont(for: font)
         }
+        
         return font
-
     }
     
     private func setLabelFontSize(label: UILabel) {
-        if label.tag != 55 {
+        if label.tag != 55 && ((label.text?.isEmpty) != nil) {
             label.tag = 55
             
             let fontSize = Double(label.font.pointSize)
@@ -80,16 +82,18 @@ extension UIView {
     }
     
     private func setButtonFontSize(button: UIButton) {
-        if button.tag != 55 {
+        if let label = button.titleLabel,
+           button.tag != 55 && ((label.text?.isEmpty) != nil) {
+
             button.tag = 55
-            guard let label = button.titleLabel else {
-                return
+            
+            if label.font != nil {
+                let fontSize = Double(label.font.pointSize)
+                label.font = self.setFontSizeThatFitSize(size: fontSize, font: label.font)
             }
-            let fontSize = Double(label.font.pointSize)
-            button.titleLabel?.font = self.setFontSizeThatFitSize(size: fontSize, font: label.font)
+
             self.setHeightForButton(button: button)
         }
-       
     }
     
     func setFontTextStyle(){
