@@ -74,6 +74,7 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         viewModel!.checkShowBackToHealthyDialog()
+        viewModel?.checkInitial()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,7 +97,7 @@ class HomeViewController: UIViewController {
             buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localized,
             buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localized
         ) { [weak self] (_) in
-            self?.viewModel!.reset()
+            self?.viewModel!.heplerQAReset()
         }
     }
 
@@ -252,9 +253,7 @@ class HomeViewController: UIViewController {
             envLabel.isHidden = true
         }
         
-        viewModel?.checkInitial()
         viewModel?.checkOnboarding()
-        
 
         errorHandler!.alertDelegate = self
     }

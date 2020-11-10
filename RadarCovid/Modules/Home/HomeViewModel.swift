@@ -86,16 +86,6 @@ class HomeViewModel {
             }).disposed(by: disposeBag)
     }
     
-    func reset() {
-        resetDataUseCase?.reset().subscribe(
-            onNext: { [weak self] _ in
-                self?.alertMessage.onNext("ALERT_HOME_RESET_SUCCESS_CONTENT".localized)
-            }, onError: { [weak self] error in
-                debugPrint(error)
-                self?.alertMessage.onNext("ALERT_HOME_RESET_ERROR_CONTENT".localized)
-            }).disposed(by: disposeBag)
-    }
-    
     func resetToHealthy() {
         guard let resetDataUseCase = resetDataUseCase else {
             return
@@ -135,4 +125,13 @@ class HomeViewModel {
         checkExpositionLevel(expositionInf)
     }
     
+    func heplerQAReset() {
+        resetDataUseCase?.reset().subscribe(
+            onNext: { [weak self] _ in
+                self?.alertMessage.onNext("ALERT_HOME_RESET_SUCCESS_CONTENT".localized)
+            }, onError: { [weak self] error in
+                debugPrint(error)
+                self?.alertMessage.onNext("ALERT_HOME_RESET_ERROR_CONTENT".localized)
+            }).disposed(by: disposeBag)
+    }
 }
