@@ -165,6 +165,9 @@ class HighExpositionViewController: BaseExposed {
         youCouldBeLabel.attributedText = "EXPOSITION_HIGH_DESCRIPTION"
             .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
         
+        youCouldBeLabel.accessibilityLabel = "EXPOSITION_HIGH_DESCRIPTION"
+            .localizedAttributed(withParams: [date.getAccesibilityDate() ?? ""]).string
+        
         caSelectorLabel.text = "LOCALE_SELECTION_REGION_DEFAULT".localized
         caSelectorButton.layer.cornerRadius = 8
         caSelectorButton.layer.borderWidth = 1
