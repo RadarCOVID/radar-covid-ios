@@ -237,6 +237,9 @@ extension MyHealthStep1ViewController: UITextFieldDelegate {
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
         setEnableButton(isEnable: newString.length >= maxLengthCode)
+        if (newString.length >= maxLengthCode){
+            UIAccessibility.post(notification: .screenChanged, argument: "DIAGNOSTIC_CODE_COMPLETED".localized)
+        }
         return newString.length <= maxLengthCode
     }
 }
