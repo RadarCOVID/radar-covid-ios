@@ -19,6 +19,8 @@ class MyDataViewController: UIViewController {
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var bullet2Label: UILabel!
     @IBOutlet weak var bullet3Label: UILabel!
+    @IBOutlet weak var viñeta1: UILabel!
+    @IBOutlet weak var viñeta2: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +65,8 @@ class MyDataViewController: UIViewController {
         privacyLabel.accessibilityHint = "ACC_HINT".localized
         
         if UIAccessibility.isVoiceOverRunning {
+            viñeta1.isHidden = true
+            viñeta2.isHidden = true
             descriptionLabel.text = descriptionLabel.text?.lowercased()
             bullet2Label.text = bullet2Label.text?.lowercased()
             bullet3Label.text = bullet3Label.text?.lowercased()
