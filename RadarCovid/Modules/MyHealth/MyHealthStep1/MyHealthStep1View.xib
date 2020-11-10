@@ -39,7 +39,7 @@
                     <rect key="frame" x="0.0" y="72" width="375" height="423"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqs-jf-GzU">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="567.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código diagnóstico" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-CU-SbS">
                                     <rect key="frame" x="16" y="40" width="343" height="21.5"/>
@@ -123,7 +123,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEC-TV-Fff" userLabel="dateView">
-                                    <rect key="frame" x="16" y="357" width="343" height="98"/>
+                                    <rect key="frame" x="16" y="407.5" width="343" height="98"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Día" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YB-Ye-XfY">
                                             <rect key="frame" x="37" y="0.0" width="25.5" height="19.5"/>
@@ -252,7 +252,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSt-nv-PMq">
-                                    <rect key="frame" x="16" y="471" width="343" height="76.5"/>
+                                    <rect key="frame" x="16" y="521.5" width="343" height="76.5"/>
                                     <string key="text">Esta información permite poder avisar a las personas que han estado en contacto contigo mientras podías transmitir el coronavirus.
 </string>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
@@ -260,6 +260,15 @@
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_STEP1_PARAGRAPH_3"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="El período máximo para indicar la fecha es de 15 días" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYA-jw-JsJ" userLabel="max_sympthoms_date">
+                                    <rect key="frame" x="16" y="357" width="343" height="38.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="SYMPTHOMS_MAX_DATE"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -272,10 +281,12 @@
                                 <constraint firstItem="gLR-vU-8eY" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="FC9-rh-eZ4"/>
                                 <constraint firstAttribute="trailing" secondItem="lEC-TV-Fff" secondAttribute="trailing" constant="16" id="J7H-7Y-UW8"/>
                                 <constraint firstAttribute="trailing" secondItem="ONY-6C-RTy" secondAttribute="trailing" constant="16" id="JNY-RD-Dk0"/>
+                                <constraint firstAttribute="trailing" secondItem="EYA-jw-JsJ" secondAttribute="trailing" constant="16" id="V89-4V-cki"/>
                                 <constraint firstItem="4Bc-CU-SbS" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="Vq7-wl-thW"/>
                                 <constraint firstItem="4Bc-CU-SbS" firstAttribute="top" secondItem="wqs-jf-GzU" secondAttribute="top" constant="40" id="Xlp-BM-aRp"/>
                                 <constraint firstAttribute="trailing" secondItem="4Bc-CU-SbS" secondAttribute="trailing" constant="16" id="Zfs-ey-aG0"/>
                                 <constraint firstItem="5iu-V8-YeH" firstAttribute="top" secondItem="gLR-vU-8eY" secondAttribute="bottom" constant="20" id="abo-0C-pMa"/>
+                                <constraint firstItem="EYA-jw-JsJ" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="eLF-up-Ab4"/>
                                 <constraint firstAttribute="trailing" secondItem="HSt-nv-PMq" secondAttribute="trailing" constant="16" id="ijH-jl-JhH"/>
                                 <constraint firstAttribute="trailing" secondItem="5iu-V8-YeH" secondAttribute="trailing" constant="16" id="jps-Lm-N8Y"/>
                                 <constraint firstAttribute="bottom" secondItem="HSt-nv-PMq" secondAttribute="bottom" constant="20" id="ohT-TE-bmM"/>
@@ -283,7 +294,8 @@
                                 <constraint firstItem="HSt-nv-PMq" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="rdb-QA-uia"/>
                                 <constraint firstAttribute="trailing" secondItem="gLR-vU-8eY" secondAttribute="trailing" constant="16" id="uZK-od-1RM"/>
                                 <constraint firstItem="ONY-6C-RTy" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="xEk-iB-iva"/>
-                                <constraint firstItem="lEC-TV-Fff" firstAttribute="top" secondItem="ONY-6C-RTy" secondAttribute="bottom" constant="16" id="yvb-D2-bKJ"/>
+                                <constraint firstItem="lEC-TV-Fff" firstAttribute="top" secondItem="EYA-jw-JsJ" secondAttribute="bottom" constant="12" id="yvb-D2-bKJ"/>
+                                <constraint firstItem="EYA-jw-JsJ" firstAttribute="top" secondItem="ONY-6C-RTy" secondAttribute="bottom" constant="16" id="zFq-W2-5rI"/>
                             </constraints>
                         </view>
                     </subviews>
