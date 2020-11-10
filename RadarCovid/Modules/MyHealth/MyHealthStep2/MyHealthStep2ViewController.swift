@@ -62,9 +62,7 @@ class MyHealthStep2ViewController: BaseViewController {
         
         shareSpainRadioView.setShadow()
         shareSpainRadioView.isUserInteractionEnabled = true
-        shareSpainRadioView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-        shareSpainLabel.textColor = UIColor.gray
-        checkShareSpainImage.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        checkShareSpainImage.backgroundColor = UIColor.white
         
         shareEuropeRadioView.setShadow()
         shareEuropeRadioView.isUserInteractionEnabled = true
