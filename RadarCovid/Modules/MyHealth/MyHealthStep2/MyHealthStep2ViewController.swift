@@ -20,6 +20,7 @@ class MyHealthStep2ViewController: BaseViewController {
     @IBOutlet weak var checkShareSpainImage: UIImageView!
     @IBOutlet weak var shareEuropeRadioView: UIView!
     @IBOutlet weak var checkShareEuropeImage: UIImageView!
+    @IBOutlet weak var shareSpainLabel: UILabel!
     
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -61,7 +62,9 @@ class MyHealthStep2ViewController: BaseViewController {
         
         shareSpainRadioView.setShadow()
         shareSpainRadioView.isUserInteractionEnabled = true
-        shareSpainRadioView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onShareSpain)))
+        shareSpainRadioView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        shareSpainLabel.textColor = UIColor.gray
+        checkShareSpainImage.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         
         shareEuropeRadioView.setShadow()
         shareEuropeRadioView.isUserInteractionEnabled = true
@@ -102,25 +105,10 @@ class MyHealthStep2ViewController: BaseViewController {
         }
     }
     
-    @objc private func onShareSpain() {
-        checkShareEuropeImage.isHidden = true
-        checkShareSpainImage.isHidden = false
-        
-        shareEuropeRadioView.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
-        checkShareSpainImage.accessibilityLabel = "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
-        
-        checkShareSpainImage.accessibilityTraits.insert(UIAccessibilityTraits.selected)
-        shareEuropeRadioView.accessibilityTraits.remove(UIAccessibilityTraits.selected)
-    }
     
     @objc private func onShareEurope() {
         checkShareEuropeImage.isHidden = false
-        checkShareSpainImage.isHidden = true
-        
         shareEuropeRadioView.accessibilityLabel = "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
-        checkShareSpainImage.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
-        
-        checkShareSpainImage.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
     }
     
