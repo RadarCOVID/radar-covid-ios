@@ -80,5 +80,8 @@ class PositiveExposedViewController: BaseExposed {
         
         realInfectedLabel.attributedText = "EXPOSITION_EXPOSED_DESCRIPTION"
             .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
+        
+        realInfectedLabel.accessibilityLabel = "EXPOSITION_EXPOSED_DESCRIPTION"
+            .localizedAttributed(withParams: [date.getAccesibilityDate() ?? ""]).string
     }
 }
