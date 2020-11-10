@@ -41,7 +41,6 @@ class ExpositionViewController: BaseExposed {
     private func setupAccessibility() {
         
         titleLabel.isAccessibilityElement = true
-
         titleLabel.accessibilityLabel = "EXPOSITION_LOW_TITLE_2".localized
 
         whatToDoTitleLabel.isAccessibilityElement = true
@@ -70,6 +69,9 @@ class ExpositionViewController: BaseExposed {
         if let lastCheck = lastCheck {
             withOutContactLabel.attributedText = "EXPOSITION_LOW_DESCRIPTION"
                 .localizedAttributed(withParams: [formatter.string(from: lastCheck)])
+            
+            withOutContactLabel.accessibilityLabel = "EXPOSITION_LOW_DESCRIPTION"
+                .localizedAttributed(withParams: [lastCheck.getAccesibilityDate() ?? ""]).string
         } else {
             withOutContactLabel.isHidden = true
         }
