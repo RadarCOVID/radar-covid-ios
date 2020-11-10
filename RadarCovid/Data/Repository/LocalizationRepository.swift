@@ -47,13 +47,21 @@ class UserDefaultsLocalizationRepository: LocalizationRepository {
         } else {
             if let languageCode = Locale.current.languageCode?.replacingOccurrences(of: "_", with: "-"),
                let languageId = self.getLocales()?.filter({ (itemLocale) -> Bool in itemLocale.id.contains(languageCode)}).first?.id {
-                
+                //And save
+                setLocale(languageId)
                 return languageId
             } else {
-                return self.getLocales()?
+                let languageId = self.getLocales()?
                     .filter({ (itemLocale) -> Bool in
                         itemLocale.id.contains("en")
                     }).first?.id
+                
+                //And save
+                if let lanId = languageId {
+                    setLocale(lanId)
+                }
+                
+                return languageId
             }
         }
     }
