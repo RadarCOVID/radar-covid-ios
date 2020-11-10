@@ -67,7 +67,6 @@ extension UIViewController: AlertController {
             callback?(alert)
         }
         action.isAccessibilityElement = true
-        action.accessibilityLabel = buttonVoiceover
         uiAlert.addAction(action)
         let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
         uiAlert.view.tintColor = UIColor.white
@@ -95,7 +94,6 @@ extension UIViewController: AlertController {
             okHandler?(action)
         }
         action.isAccessibilityElement = true
-        action.accessibilityLabel = buttonOkVoiceover
         uiAlert.addAction(action)
 
         let actionCancel = UIAlertAction(title: buttonCancelTitle, style: .default) { (action) in
@@ -103,7 +101,6 @@ extension UIViewController: AlertController {
             cancelHandler?(action)
         }
         actionCancel.isAccessibilityElement = true
-        actionCancel.accessibilityLabel = buttonCancelVoiceover
         uiAlert.addAction(actionCancel)
         let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
         uiAlert.view.tintColor = UIColor.white
