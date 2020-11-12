@@ -80,16 +80,8 @@ class RootViewController: UIViewController {
     }
     
     private func showUpdateNoticeForSettings(settings: Settings) {
-        if #available(*, iOS 13.6) {
+        if #available(iOS 13.7, *) {
             
-            self.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
-                              message: "ALERT_UPDATE_OS_VERSION_TEXT_CONTENT".localized,
-                              buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
-                              buttonVoiceover: "ACC_BUTTON_ACCEPT".localized)
-            
-            
-        }
-        else {
             let configUrl = settings.parameters?.applicationVersion?.ios?.bundleUrl
                 ?? "itms-apps://itunes.apple.com"
             self.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
@@ -101,7 +93,12 @@ class RootViewController: UIViewController {
                         exit(0)
                     }
                 }
-            }
+            }  
+        } else {
+            self.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
+                              message: "ALERT_UPDATE_OS_VERSION_TEXT_CONTENT".localized,
+                              buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
+                              buttonVoiceover: "ACC_BUTTON_ACCEPT".localized)
         }
     }
 
