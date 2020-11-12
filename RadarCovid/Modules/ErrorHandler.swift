@@ -82,8 +82,6 @@ class ErrorHandlerImpl: ErrorHandler {
             showError(enError, "ALERT_INSUFFICIENT_STORAGE_ERROR")
         } else if enError.code == ENError.Code.bluetoothOff {
             showError(enError, "ALERT_BLUETOOTH_ERROR")
-        } else if enError.code == ENError.Code.notAuthorized {
-            showErrorOpenSettings(enError, "ALERT_NOT_AUTHORIZED_ERROR")
         } else {
             showIfVervose(enError, "ENError: \(enError.code.rawValue)")
         }
