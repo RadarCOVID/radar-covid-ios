@@ -62,7 +62,7 @@ class MyHealthStep2ViewController: BaseViewController {
         
         shareSpainRadioView.setShadow()
         shareSpainRadioView.isUserInteractionEnabled = true
-        checkShareSpainImage.backgroundColor = UIColor.white
+        shareSpainRadioView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onShareSpain)))
         
         shareEuropeRadioView.setShadow()
         shareEuropeRadioView.isUserInteractionEnabled = true
@@ -103,11 +103,22 @@ class MyHealthStep2ViewController: BaseViewController {
         }
     }
     
+    @objc private func onShareSpain() {
+        checkShareEuropeImage.isHidden = true
+        checkShareSpainImage.isHidden = false
+        shareSpainRadioView.accessibilityLabel = "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
+        shareSpainRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
+        shareEuropeRadioView.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
+        shareEuropeRadioView.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+    }
     
     @objc private func onShareEurope() {
+        checkShareSpainImage.isHidden = true
         checkShareEuropeImage.isHidden = false
         shareEuropeRadioView.accessibilityLabel = "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
         shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
+        shareSpainRadioView.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
+        shareSpainRadioView.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
     
     @IBAction func onReportDiagnosis(_ sender: Any) {
