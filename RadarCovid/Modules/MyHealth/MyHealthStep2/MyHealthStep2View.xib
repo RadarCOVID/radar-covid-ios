@@ -19,7 +19,6 @@
                 <outlet property="customSliderView" destination="XYS-UW-1h5" id="xcX-B2-oki"/>
                 <outlet property="sendButton" destination="c8a-41-d9l" id="q37-qE-hL4"/>
                 <outlet property="shareEuropeRadioView" destination="78O-7J-bGF" id="j7F-JQ-QOn"/>
-                <outlet property="shareSpainLabel" destination="cq9-es-rp8" id="05X-wD-0TT"/>
                 <outlet property="shareSpainRadioView" destination="fbA-Br-dcs" id="X3J-J9-aDc"/>
                 <outlet property="titleLabel" destination="4Bc-CU-SbS" id="ehx-Xc-T8w"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
