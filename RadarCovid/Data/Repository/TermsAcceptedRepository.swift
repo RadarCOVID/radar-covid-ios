@@ -49,9 +49,7 @@ class TermsAcceptedRepository {
     
     var termsAccepted: Bool {
         get {
-            userDefaults.bool(forKey: termsAcceptedKey)
-                ? true
-                : self.versionIsEqualOrMajor()
+            self.versionIsEqualOrMajor()
         }
         set(newVal) {
             userDefaults.setValue(newVal, forKey: termsAcceptedKey)
