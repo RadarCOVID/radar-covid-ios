@@ -95,8 +95,9 @@ class RootViewController: UIViewController {
         } else {
             self.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
                               message: "ALERT_UPDATE_OS_VERSION_TEXT_CONTENT".localized,
-                              buttonTitle: "ALERT_ACCEPT_BUTTON".localized
-                              )
+                              buttonTitle: "ALERT_ACCEPT_BUTTON".localized) { 
+                self.navigateFirst()
+            }
         }
     }
 
