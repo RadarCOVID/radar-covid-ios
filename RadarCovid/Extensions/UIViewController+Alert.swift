@@ -11,114 +11,115 @@
 
 import Foundation
 import UIKit
+import RxCocoa
+import RxSwift
 
 protocol AlertController: class {
     func showAlertOk(title: String,
                      message: String,
                      buttonTitle: String,
-                     _ callback: ((Any) -> Void)?)
+                     _ callback: (() -> Void)?)
     
     func showAlertCancelContinue(
-        title: String,
-        message: String,
+        title: NSAttributedString,
+        message: NSAttributedString,
         buttonOkTitle: String,
         buttonCancelTitle: String,
         buttonOkVoiceover: String?,
         buttonCancelVoiceover: String?,
-        okHandler: ((UIAlertAction) -> Void)?,
-        cancelHandler: ((UIAlertAction) -> Void)?
+        okHandler: (() -> Void)?,
+        cancelHandler: (() -> Void)?
     )
     func showAlertCancelContinue(
-        title: String,
-        message: String,
+        title: NSAttributedString,
+        message: NSAttributedString,
         buttonOkTitle: String,
         buttonCancelTitle: String,
         buttonOkVoiceover: String?,
         buttonCancelVoiceover: String?,
-        okHandler: ((UIAlertAction) -> Void)?
+        okHandler: (() -> Void)?
     )
 }
 
 extension UIViewController: AlertController {
+    
+    func showAlertOk(title: String, message: String, buttonTitle: String, _ callback: (() -> Void)? = nil) {
+        self.view.window?.rootViewController?.view.showTransparentBackground()
 
-    func showAlertOk(title: String, message: String, buttonTitle: String, _ callback: ((Any) -> Void)? = nil) {
-
-        let uiAlert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        let action = UIAlertAction(title: buttonTitle, style: .default) { (alert) in
-            self.view.removeTransparentBackGround(tagTransparentView: 998, tagMenssagetView: 999)
-            callback?(alert)
-        }
-        uiAlert.addAction(action)
-        let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
-        uiAlert.view.tintColor = UIColor.white
-        buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
-
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, tagTransparentView: 998, tagMenssagetView: 999)
-        self.present(uiAlert, animated: true, completion: nil)
-    }
-
-    func showAlertOk(title: String, message: String, buttonTitle: String, buttonVoiceover: String? = nil, _ callback: ((Any) -> Void)? = nil) {
-
-        let uiAlert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        let action = UIAlertAction(title: buttonTitle, style: .default) { (alert) in
-            self.view.removeTransparentBackGround(tagTransparentView: 998, tagMenssagetView: 999)
-            callback?(alert)
-        }
-        action.isAccessibilityElement = true
-        uiAlert.addAction(action)
-        let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
-        uiAlert.view.tintColor = UIColor.white
-        buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
-
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, tagTransparentView: 998, tagMenssagetView: 999)
-        self.present(uiAlert, animated: true, completion: nil)
-    }
-
-    func showAlertCancelContinue(
-        title: String,
-        message: String,
-        buttonOkTitle: String,
-        buttonCancelTitle: String,
-        buttonOkVoiceover: String? = nil,
-        buttonCancelVoiceover: String? = nil,
-        okHandler: ((UIAlertAction) -> Void)? = nil,
-        cancelHandler: ((UIAlertAction) -> Void)? = nil
-    ) {
-
-        let uiAlert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        let action = UIAlertAction(title: buttonOkTitle, style: .default) { (action) in
-            self.view.removeTransparentBackGround(tagTransparentView: 998, tagMenssagetView: 999)
-            okHandler?(action)
-        }
-        action.isAccessibilityElement = true
-        uiAlert.addAction(action)
-
-        let actionCancel = UIAlertAction(title: buttonCancelTitle, style: .default) { (action) in
-            self.view.removeTransparentBackGround(tagTransparentView: 998, tagMenssagetView: 999)
-            cancelHandler?(action)
-        }
-        actionCancel.isAccessibilityElement = true
-        uiAlert.addAction(actionCancel)
-        let buttonView = uiAlert.view.subviews.first?.subviews.first?.subviews.first?.subviews[1]
-        uiAlert.view.tintColor = UIColor.white
-        buttonView?.backgroundColor  = #colorLiteral(red: 0.2, green: 0.1882352941, blue: 0.7254901961, alpha: 1)
+        let okButton = UIButton()
+        okButton.setTitle(buttonTitle, for: .normal)
+        okButton.setTitleColor(UIColor.white, for: .normal)
+        okButton.setBackgroundImage(UIImage.init(named: "buttonsPrimary"), for: .normal)
+        okButton.isUserInteractionEnabled = true
+        okButton.isAccessibilityElement = true
+        okButton.accessibilityHint = "ACC_HINT".localized
         
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, tagTransparentView: 998, tagMenssagetView: 999)
-        self.present(uiAlert, animated: true, completion: nil)
-
+        DispatchQueue.main.async { [weak self] in
+            let _ = CustomAlert.initWithParentView(
+                view: self?.view.window?.rootViewController?.view ?? UIView()
+                , buttons: [okButton]
+                , title: NSAttributedString(string: title)
+                , message: NSAttributedString(string: message)
+                , buttonClicked: {
+                    _ in
+                    self?.view.window?.rootViewController?.view.removeTransparentBackGround()
+                    callback?()
+                })
+        }
     }
 
     func showAlertCancelContinue(
-        title: String,
-        message: String,
+        title: NSAttributedString,
+        message: NSAttributedString,
         buttonOkTitle: String,
         buttonCancelTitle: String,
         buttonOkVoiceover: String? = nil,
         buttonCancelVoiceover: String? = nil,
-        okHandler: ((UIAlertAction) -> Void)? = nil
+        okHandler: (() -> Void)? = nil,
+        cancelHandler: (() -> Void)? = nil
+    ) {
+        self.view.window?.rootViewController?.view.showTransparentBackground()
+
+        let okButton = UIButton()
+        okButton.setTitle(buttonOkTitle, for: .normal)
+        okButton.setTitleColor(UIColor.white, for: .normal)
+        okButton.setBackgroundImage(UIImage.init(named: "buttonsPrimary"), for: .normal)
+        okButton.isUserInteractionEnabled = true
+        okButton.isAccessibilityElement = true
+        okButton.accessibilityHint = buttonOkVoiceover
+
+        let cancelButton = UIButton()
+        cancelButton.layer.masksToBounds = true
+        cancelButton.layer.cornerRadius = 5
+        cancelButton.layer.borderWidth = 1
+        cancelButton.layer.borderColor = UIColor.degradado.cgColor
+        cancelButton.setTitle(buttonCancelTitle, for: .normal)
+        cancelButton.setTitleColor(UIColor.degradado, for: .normal)
+        
+        DispatchQueue.main.async { [weak self] in
+            let _ = CustomAlert.initWithParentView(
+                view: self?.view.window?.rootViewController?.view ?? UIView()
+                , buttons: [okButton, cancelButton]
+                , title: title
+                , message: message
+                , buttonClicked: {
+                    button in
+                    self?.view.window?.rootViewController?.view.removeTransparentBackGround()
+                    button === okButton
+                        ? okHandler?()
+                        : cancelHandler?()
+                })
+        }
+    }
+
+    func showAlertCancelContinue(
+        title: NSAttributedString,
+        message: NSAttributedString,
+        buttonOkTitle: String,
+        buttonCancelTitle: String,
+        buttonOkVoiceover: String? = nil,
+        buttonCancelVoiceover: String? = nil,
+        okHandler: (() -> Void)? = nil
     ) {
         showAlertCancelContinue(
             title: title,
@@ -131,5 +132,4 @@ extension UIViewController: AlertController {
             cancelHandler: nil
         )
     }
-
 }

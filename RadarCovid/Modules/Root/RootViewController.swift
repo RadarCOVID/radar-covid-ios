@@ -48,8 +48,7 @@ class RootViewController: UIViewController {
             // Not use i18n for this alert!
             self?.showAlertOk(title: "Error",
                               message: "Se ha producido un error. Compruebe la conexión",
-                              buttonTitle: "Aceptar",
-                              buttonVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized) { (_) in
+                              buttonTitle: "Aceptar") {
                 exit(0)
             }
         }).disposed(by: self.disposeBag)
@@ -71,8 +70,7 @@ class RootViewController: UIViewController {
                 
                 self?.showAlertOk(title: "ALERT_GENERIC_ERROR_TITLE".localized,
                                   message: "ALERT_GENERIC_ERROR_CONTENT".localized,
-                                  buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
-                                  buttonVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized) { _ in
+                                  buttonTitle: "ALERT_ACCEPT_BUTTON".localized) {
                     self?.navigateFirst()
                 }
 
@@ -86,8 +84,8 @@ class RootViewController: UIViewController {
                 ?? "itms-apps://itunes.apple.com"
             self.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
                               message: "ALERT_UPDATE_TEXT_CONTENT".localized,
-                              buttonTitle: "ALERT_UPDATE_BUTTON".localized,
-                              buttonVoiceover: "ACC_BUTTON_ALERT_UPDATE".localized) { (_) in
+                              buttonTitle: "ALERT_UPDATE_BUTTON".localized
+                              ) { 
                 if let url = NSURL(string: configUrl) as URL? {
                     UIApplication.shared.open(url) { _ in
                         exit(0)
@@ -97,8 +95,8 @@ class RootViewController: UIViewController {
         } else {
             self.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
                               message: "ALERT_UPDATE_OS_VERSION_TEXT_CONTENT".localized,
-                              buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
-                              buttonVoiceover: "ACC_BUTTON_ACCEPT".localized)
+                              buttonTitle: "ALERT_ACCEPT_BUTTON".localized
+                              )
         }
     }
 

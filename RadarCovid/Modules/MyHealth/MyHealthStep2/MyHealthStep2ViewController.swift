@@ -146,15 +146,15 @@ class MyHealthStep2ViewController: BaseViewController {
     
     @IBAction func onCancel(_ sender: Any) {
         self.showAlertCancelContinue(
-            title: "ALERT_MY_HEALTH_SEND_TITLE".localizedAttributed.string,
-            message: "ALERT_MY_HEALTH_SEND_CONTENT".localizedAttributed.string,
+            title: "ALERT_MY_HEALTH_SEND_TITLE".localizedAttributed,
+            message: "ALERT_MY_HEALTH_SEND_CONTENT".localizedAttributed,
             buttonOkTitle: "ALERT_OK_BUTTON".localizedAttributed.string,
             buttonCancelTitle: "ALERT_CANCEL_BUTTON".localizedAttributed.string,
             buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localizedAttributed.string,
             buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localizedAttributed.string,
-            okHandler: { (_) in
+            okHandler: { () in
                 self.router?.popToRoot(from: self, animated: true)
-        }, cancelHandler: { (_) in
+        }, cancelHandler: { () in
         })
     }
     
@@ -185,8 +185,7 @@ class MyHealthStep2ViewController: BaseViewController {
             showAlertOk(
                 title: title,
                 message: errorMessage,
-                buttonTitle: "ALERT_OK_BUTTON".localized,
-                buttonVoiceover: "ACC_BUTTON_ALERT_OK".localized)
+                buttonTitle: "ALERT_OK_BUTTON".localized)
         }
         
     }

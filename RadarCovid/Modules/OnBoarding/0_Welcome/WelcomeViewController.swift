@@ -117,17 +117,17 @@ extension WelcomeViewController: SelectorProtocol {
         
         if selectorItem.id != self.viewModel?.getCurrenLenguage() {
 
-            self.showAlertCancelContinue(title: "LOCALE_CHANGE_LANGUAGE".localized,
-                                                          message: "LOCALE_CHANGE_WARNING".localized,
+            self.showAlertCancelContinue(title: "LOCALE_CHANGE_LANGUAGE".localizedAttributed,
+                                                          message: "LOCALE_CHANGE_WARNING".localizedAttributed,
                                                           buttonOkTitle: "ALERT_OK_BUTTON".localized,
                                                           buttonCancelTitle: "ALERT_CANCEL_BUTTON".localized,
                                                           buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localized,
                                                           buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localized,
-                                                          okHandler: { _ in
+                                                          okHandler: {
                                                             completionCloseView(true)
                                                             self.viewModel?.setCurrentLocale(key: selectorItem.id)
                                                             self.router?.route(to: Routes.changeLanguage, from: self)
-                                                          }, cancelHandler: { _ in
+                                                          }, cancelHandler: {
                                                             completionCloseView(false)
                                                           })
         } else {

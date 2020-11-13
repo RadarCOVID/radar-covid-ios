@@ -44,7 +44,8 @@ extension UIView {
             return
         }
 
-        if estimateHeight > button.frame.size.height {
+        if button.frame.size.height != 0 &&
+            estimateHeight > button.frame.size.height {
 
             let heightCons = button.constraints.filter {
                 $0.firstAttribute == NSLayoutConstraint.Attribute.height

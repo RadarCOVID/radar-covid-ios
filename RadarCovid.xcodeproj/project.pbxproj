@@ -132,6 +132,8 @@
 		766B026724D282C9006FBD29 /* BaseExposedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B026624D282C9006FBD29 /* BaseExposedViewController.swift */; };
 		766B31BC252510F600D4B461 /* FakeRequestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B31BB252510F600D4B461 /* FakeRequestRepository.swift */; };
 		768856892554683100992F8B /* UIView+Magnifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768856882554683100992F8B /* UIView+Magnifier+Extension.swift */; };
+		76AEA4B1255E2A3E00FB8204 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEA4AF255E2A3E00FB8204 /* CustomAlertView.swift */; };
+		76AEA4B2255E2A3E00FB8204 /* CustomAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76AEA4B0255E2A3E00FB8204 /* CustomAlert.xib */; };
 		76D9BD1C24A8992000BA6697 /* NVActivityIndicatorAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BCF124A8992000BA6697 /* NVActivityIndicatorAnimationDelegate.swift */; };
 		76D9BD1D24A8992000BA6697 /* NVActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BCF324A8992000BA6697 /* NVActivityIndicatorPresenter.swift */; };
 		76D9BD1E24A8992000BA6697 /* NVActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9BCF424A8992000BA6697 /* NVActivityIndicatorViewable.swift */; };
@@ -322,6 +324,8 @@
 		766B026624D282C9006FBD29 /* BaseExposedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseExposedViewController.swift; sourceTree = "<group>"; };
 		766B31BB252510F600D4B461 /* FakeRequestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRequestRepository.swift; sourceTree = "<group>"; };
 		768856882554683100992F8B /* UIView+Magnifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Magnifier+Extension.swift"; sourceTree = "<group>"; };
+		76AEA4AF255E2A3E00FB8204 /* CustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		76AEA4B0255E2A3E00FB8204 /* CustomAlert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAlert.xib; sourceTree = "<group>"; };
 		76D9BCF124A8992000BA6697 /* NVActivityIndicatorAnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationDelegate.swift; sourceTree = "<group>"; };
 		76D9BCF324A8992000BA6697 /* NVActivityIndicatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorPresenter.swift; sourceTree = "<group>"; };
 		76D9BCF424A8992000BA6697 /* NVActivityIndicatorViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorViewable.swift; sourceTree = "<group>"; };
@@ -561,6 +565,7 @@
 		6DA18CB92491053700BE8AAB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				76AEA4AE255E279A00FB8204 /* CustomAlert */,
 				76357ACE253FC264004C9AE5 /* CustomSwitch */,
 				A9C9AC0325383FEB00637067 /* CustomView */,
 				A97717F12535B59A0070AD51 /* BaseViewController */,
@@ -813,6 +818,15 @@
 				76357AD3253FC297004C9AE5 /* CustomSwitch.xib */,
 			);
 			path = CustomSwitch;
+			sourceTree = "<group>";
+		};
+		76AEA4AE255E279A00FB8204 /* CustomAlert */ = {
+			isa = PBXGroup;
+			children = (
+				76AEA4B0255E2A3E00FB8204 /* CustomAlert.xib */,
+				76AEA4AF255E2A3E00FB8204 /* CustomAlertView.swift */,
+			);
+			path = CustomAlert;
 			sourceTree = "<group>";
 		};
 		76D9BCF024A8992000BA6697 /* NVActivityIndicatorView */ = {
@@ -1113,6 +1127,7 @@
 				A9DC6C4625485A840026E540 /* SelectorTableViewCell.xib in Resources */,
 				6D5AFC902492827C00EFE838 /* muli_light.ttf in Resources */,
 				A999EB172553FC2A004E058D /* Localizable.strings in Resources */,
+				76AEA4B2255E2A3E00FB8204 /* CustomAlert.xib in Resources */,
 				76357AD4253FC297004C9AE5 /* CustomSwitch.xib in Resources */,
 				A9DC6C4A25485A840026E540 /* SelectorView.xib in Resources */,
 				763489FF24B75A6900B31C59 /* TransparentView.xib in Resources */,
@@ -1284,6 +1299,7 @@
 				6DE27C75249A6D4600BBCF40 /* Extensions.swift in Sources */,
 				A91D8E2B2539947500EB23D4 /* ActivatePushNotificationViewController.swift in Sources */,
 				A9C9AC0525383FEB00637067 /* XibInstantiatable.swift in Sources */,
+				76AEA4B1255E2A3E00FB8204 /* CustomAlertView.swift in Sources */,
 				6DD0420825120DD700799D58 /* CaData.swift in Sources */,
 				6D7AB27524AE375200F30E0B /* ApplicationVersionDto.swift in Sources */,
 				6DF6ECC4248F691E007EAA40 /* HomeViewController.swift in Sources */,

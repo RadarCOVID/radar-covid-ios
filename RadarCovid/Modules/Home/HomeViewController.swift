@@ -90,13 +90,13 @@ class HomeViewController: UIViewController {
     @IBAction func onReset(_ sender: Any) {
 
         showAlertCancelContinue(
-            title: "ALERT_HOME_RESET_TITLE".localized,
-            message: "ALERT_HOME_RESET_CONTENT".localized,
+            title: "ALERT_HOME_RESET_TITLE".localizedAttributed,
+            message: "ALERT_HOME_RESET_CONTENT".localizedAttributed,
             buttonOkTitle: "ALERT_OK_BUTTON".localized,
             buttonCancelTitle: "ALERT_CANCEL_BUTTON".localized,
             buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localized,
             buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localized
-        ) { [weak self] (_) in
+        ) { [weak self] () in
             self?.viewModel!.heplerQAReset()
         }
     }
@@ -116,8 +116,7 @@ class HomeViewController: UIViewController {
             showAlertOk(
                 title: "",
                 message: "ALERT_RADAR_REQUIRED_TO_REPORT".localized,
-                buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
-                buttonVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized
+                buttonTitle: "ALERT_ACCEPT_BUTTON".localized
             )
         }
     }
@@ -133,15 +132,15 @@ class HomeViewController: UIViewController {
             viewModel!.changeRadarStatus(true)
         } else {
             self.showAlertCancelContinue(
-                title: "ALERT_HOME_RADAR_TITLE".localized,
-                message: "ALERT_HOME_RADAR_CONTENT".localized,
+                title: "ALERT_HOME_RADAR_TITLE".localizedAttributed(),
+                message: "ALERT_HOME_RADAR_CONTENT".localizedAttributed(),
                 buttonOkTitle: "ALERT_HOME_RADAR_CANCEL_BUTTON".localized,
                 buttonCancelTitle: "ALERT_HOME_RADAR_OK_BUTTON".localized,
                 buttonOkVoiceover: "ACC_BUTTON_RADAR_CANCEL".localized,
                 buttonCancelVoiceover: "ACC_BUTTON_RADAR_OK".localized,
-                okHandler: { [weak self] _ in
+                okHandler: { [weak self] in
                     self?.radarSwitch.isOn = true
-                }, cancelHandler: { [weak self] _ in
+                }, cancelHandler: { [weak self] in
                     self?.viewModel?.changeRadarStatus(false)
             })
         }
@@ -406,8 +405,7 @@ class HomeViewController: UIViewController {
         if let message = message {
             showAlertOk(
                 title: "ALERT_GENERIC_ERROR_TITLE".localized,
-                message: message, buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
-                buttonVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized
+                message: message, buttonTitle: "ALERT_ACCEPT_BUTTON".localized
             )
         }
     }
@@ -416,8 +414,7 @@ class HomeViewController: UIViewController {
         if let message = message {
             showAlertOk(
                 title: "MESSAGE_POPUP".localized,
-                message: message, buttonTitle: "ALERT_ACCEPT_BUTTON".localized,
-                buttonVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized
+                message: message, buttonTitle: "ALERT_ACCEPT_BUTTON".localized
             )
         }
     }
@@ -443,8 +440,8 @@ class HomeViewController: UIViewController {
         self.showAlertOk(
             title: "ALERT_HOME_COVID_NOTIFICATION_TITLE".localized,
             message: "HOME_COVID_NOTIFICATION_POPUP_INACTIVE".localized,
-            buttonTitle: "ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON".localized,
-            buttonVoiceover: "ACC_HINT".localized) { (_) in
+            buttonTitle: "ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON".localized
+            ) { 
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         }
     }

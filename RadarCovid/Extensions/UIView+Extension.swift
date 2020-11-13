@@ -12,16 +12,16 @@
 import Foundation
 import UIKit
 extension UIView {
-    
-    func showTransparentBackground
-        (withColor color: UIColor,
-         alpha: CGFloat,
-         _ message: String? = nil,
-         _ attributedMessage: NSAttributedString? = nil,
-         _ textColor: UIColor? = nil,
-         _ completion: (() -> Void)? = nil,
-         tagTransparentView: Int = 1111,
-         tagMenssagetView: Int = 1122) {
+
+    func showTransparentBackground(
+        withColor color: UIColor = UIColor.blueyGrey90,
+        alpha: CGFloat = 1,
+        _ message: String? = nil,
+        _ attributedMessage: NSAttributedString? = nil,
+        _ textColor: UIColor? = nil,
+        _ completion: (() -> Void)? = nil,
+        tagTransparentView: Int = 1111,
+        tagMenssagetView: Int = 1122) {
         
         let transparentView = Bundle.main.loadNibNamed(
             "TransparentView",

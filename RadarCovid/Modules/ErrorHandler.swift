@@ -97,13 +97,13 @@ class ErrorHandlerImpl: ErrorHandler {
     private func showErrorOpenSettings(_ error: Error, _ description: String) {
         debugPrint(description + " \(error)")
         
-        alertDelegate?.showAlertCancelContinue(title: "ALERT_GENERIC_ERROR_TITLE".localized,
-                                               message: description,
+        alertDelegate?.showAlertCancelContinue(title: "ALERT_GENERIC_ERROR_TITLE".localizedAttributed,
+                                               message: NSAttributedString(string: description),
                                                buttonOkTitle: "ALERT_OK_BUTTON".localized,
                                                buttonCancelTitle: "ALERT_CANCEL_BUTTON".localized,
                                                buttonOkVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized,
                                                buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localized,
-                                               okHandler: { _ in
+                                               okHandler: {
                                                 
                                                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                                                     return

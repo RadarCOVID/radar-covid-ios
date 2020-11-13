@@ -16,8 +16,6 @@ import Logging
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
     var injection: Injection = Injection()
     
     private let logger = Logger(label: "AppDelegate")
