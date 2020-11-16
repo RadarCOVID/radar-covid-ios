@@ -27,11 +27,7 @@ class TermsAcceptedRepository {
         get {
             return userDefaults.string(forKey: termsAcceptedVersion)
                 ??
-                (
-                    self.termsAccepted
-                        ? "1.0.0"
-                        : "0.0.0"
-                )
+                (userDefaults.bool(forKey: termsAcceptedKey) ? "1.0.0" : "0.0.0")
         }
         set (newVal){
             userDefaults.setValue(newVal, forKey: termsAcceptedVersion)
