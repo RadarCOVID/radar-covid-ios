@@ -33,11 +33,6 @@ class MyHealthStep2ViewController: BaseViewController {
         return self.checkShareEuropeImage.isHidden == false
             && self.checkShareSpainImage.isHidden == true
     }
-
-    private var shareSpain: Bool {
-        return self.checkShareEuropeImage.isHidden == true
-            && self.checkShareSpainImage.isHidden == false
-    }
     
     private let disposeBag = DisposeBag()
     
