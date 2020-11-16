@@ -55,14 +55,15 @@ extension UIViewController: AlertController {
         okButton.accessibilityHint = "ACC_HINT".localized
         
         DispatchQueue.main.async { [weak self] in
+            let viewShow = self?.view.window?.rootViewController?.view ?? self?.view ?? UIView()
             let _ = CustomAlert.initWithParentView(
-                view: self?.view.window?.rootViewController?.view ?? UIView()
+                view:  viewShow
                 , buttons: [okButton]
                 , title: NSAttributedString(string: title)
                 , message: NSAttributedString(string: message)
                 , buttonClicked: {
                     _ in
-                    self?.view.window?.rootViewController?.view.removeTransparentBackGround()
+                    viewShow.removeTransparentBackGround()
                     callback?()
                 })
         }
@@ -97,14 +98,15 @@ extension UIViewController: AlertController {
         cancelButton.setTitleColor(UIColor.degradado, for: .normal)
         
         DispatchQueue.main.async { [weak self] in
+            let viewShow = self?.view.window?.rootViewController?.view ?? self?.view ?? UIView()
             let _ = CustomAlert.initWithParentView(
-                view: self?.view.window?.rootViewController?.view ?? UIView()
+                view: viewShow
                 , buttons: [okButton, cancelButton]
                 , title: title
                 , message: message
                 , buttonClicked: {
                     button in
-                    self?.view.window?.rootViewController?.view.removeTransparentBackGround()
+                    viewShow.removeTransparentBackGround()
                     button === okButton
                         ? okHandler?()
                         : cancelHandler?()
