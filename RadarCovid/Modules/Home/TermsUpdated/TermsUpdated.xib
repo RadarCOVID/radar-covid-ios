@@ -56,7 +56,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naz-Nz-GIV" customClass="CustomSwitch" customModule="Radar_COVID" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="428" width="40" height="40"/>
+                                            <rect key="frame" x="20" y="428.5" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="meb-zc-HXT"/>
                                                 <constraint firstAttribute="width" constant="40" id="oYu-Co-Wnx"/>
@@ -66,7 +66,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rcq-fX-Y98" customClass="CustomSwitch" customModule="Radar_COVID" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="518.5" width="40" height="40"/>
+                                            <rect key="frame" x="20" y="519" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="Dd0-SJ-KfN"/>
                                             </constraints>
@@ -105,7 +105,7 @@
                                         <constraint firstItem="r0Y-XV-x55" firstAttribute="centerY" secondItem="naz-Nz-GIV" secondAttribute="centerY" id="42j-vi-Pio"/>
                                         <constraint firstItem="t0z-rs-I37" firstAttribute="top" secondItem="awW-ay-1eZ" secondAttribute="top" constant="20" id="5TH-ob-wLY"/>
                                         <constraint firstItem="Rcq-fX-Y98" firstAttribute="centerY" secondItem="jfV-ih-TQd" secondAttribute="centerY" id="B6d-hG-3qH"/>
-                                        <constraint firstItem="naz-Nz-GIV" firstAttribute="top" secondItem="XnC-lA-oDw" secondAttribute="bottom" constant="50" id="F87-sx-KE7"/>
+                                        <constraint firstItem="r0Y-XV-x55" firstAttribute="top" secondItem="XnC-lA-oDw" secondAttribute="bottom" constant="45" id="CGl-Te-gLE"/>
                                         <constraint firstItem="naz-Nz-GIV" firstAttribute="leading" secondItem="XnC-lA-oDw" secondAttribute="leading" id="Fqj-yg-2K0"/>
                                         <constraint firstItem="jfV-ih-TQd" firstAttribute="leading" secondItem="r0Y-XV-x55" secondAttribute="leading" id="NmV-Do-gim"/>
                                         <constraint firstAttribute="trailing" secondItem="XnC-lA-oDw" secondAttribute="trailing" constant="20" id="WsM-mi-2He"/>

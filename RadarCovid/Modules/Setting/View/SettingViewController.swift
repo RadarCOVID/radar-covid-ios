@@ -17,37 +17,54 @@ class SettingViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var languageSelectorButton: UIButton!
+    @IBOutlet weak var languageSelectorContainerView: UIView!
+    @IBOutlet weak var languageSelectorLabel: UILabel!
     
     var router: AppRouter?
     var viewModel: SettingViewModel?
-
+    
     private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.setFontTextStyle()
+        
         setupView()
         setupAccessibility()
     }
     
-    private func setupAccessibility() {
-        languageSelectorButton.isAccessibilityElement = true
-        languageSelectorButton.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
-        languageSelectorButton.accessibilityHint = "ACC_HINT".localized
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if UIAccessibility.isVoiceOverRunning {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(notification: .layoutChanged, argument: self.titleLabel)
+            }
+        }
     }
     
-    @IBAction func onLanguageSelectionAction(_ sender: Any) {
+    private func setupAccessibility() {
+        languageSelectorContainerView.isAccessibilityElement = true
+        languageSelectorContainerView.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
+        languageSelectorContainerView.accessibilityHint = "ACC_HINT".localized
+    }
+    
+    @objc func onLanguageSelectionAction(_ sender: Any) {
         showLanguageSelection()
     }
     
-    private func setupView() {        
-        viewModel?.getCurrenLenguageLocalizable()
-            .bind(to: languageSelectorButton.rx.title())
-            .disposed(by: disposeBag)
-            
-        let leftImageSelectorButton:CGFloat = ((self.languageSelectorButton.frame.size.width / 2) + 30)
-        self.languageSelectorButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: leftImageSelectorButton , bottom: 0, right: 0)
+    private func setupView() {
+        viewModel?.getCurrenLenguageLocalizable().subscribe(onNext: { [weak self] (value) in
+            self?.languageSelectorLabel.text = value
+            self?.languageSelectorContainerView.accessibilityLabel = value
+        }).disposed(by: disposeBag)
+        
+        languageSelectorContainerView.layer.borderWidth = 1
+        languageSelectorContainerView.layer.borderColor = UIColor.deepLilac.cgColor
+        languageSelectorContainerView.layer.cornerRadius = 8
+        
+        languageSelectorContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                                  action: #selector(onLanguageSelectionAction(_ :))))
     }
     
     private func showLanguageSelection() {
@@ -58,26 +75,26 @@ class SettingViewController: UIViewController {
             SelectorView.initWithParentViewController(viewController: self,
                                                       title: "SETTINGS_LANGUAGE_TITLE".localized,
                                                       getArray:{ [weak self] () -> Observable<[SelectorItem]> in
-                
-                return Observable.create { [weak self] observer in
-                    viewModel.getLenguages().subscribe(onNext: {(value) in
-                        observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
-                        observer.onCompleted()
-                    }).disposed(by: self?.disposeBag ?? DisposeBag())
-                    return Disposables.create {
-                    }
-                }
-            }, getSelectedItem: { () -> Observable<SelectorItem> in
-                
-                return Observable.create { [weak self] observer in
-                    viewModel.getCurrenLenguageLocalizable().subscribe(onNext: {(value) in
-                        observer.onNext(SelectorHelperViewModel.generateTransformation(val: ItemLocale(id: viewModel.getCurrenLenguage(), description: value)))
-                        observer.onCompleted()
-                    }).disposed(by: self?.disposeBag ?? DisposeBag())
-                    return Disposables.create {
-                    }
-                }
-            }, delegateOutput: self)
+                                                        
+                                                        return Observable.create { [weak self] observer in
+                                                            viewModel.getLenguages().subscribe(onNext: {(value) in
+                                                                observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
+                                                                observer.onCompleted()
+                                                            }).disposed(by: self?.disposeBag ?? DisposeBag())
+                                                            return Disposables.create {
+                                                            }
+                                                        }
+                                                      }, getSelectedItem: { () -> Observable<SelectorItem> in
+                                                        
+                                                        return Observable.create { [weak self] observer in
+                                                            viewModel.getCurrenLenguageLocalizable().subscribe(onNext: {(value) in
+                                                                observer.onNext(SelectorHelperViewModel.generateTransformation(val: ItemLocale(id: viewModel.getCurrenLenguage(), description: value)))
+                                                                observer.onCompleted()
+                                                            }).disposed(by: self?.disposeBag ?? DisposeBag())
+                                                            return Disposables.create {
+                                                            }
+                                                        }
+                                                      }, delegateOutput: self)
         }
     }
     
@@ -95,7 +112,7 @@ extension SettingViewController: SelectorProtocol {
     func userSelectorSelected(selectorItem: SelectorItem, completionCloseView: @escaping (Bool) -> Void) {
         
         if selectorItem.id != self.viewModel?.getCurrenLenguage() {
-
+            
             self.showAlertCancelContinue(title: "LOCALE_CHANGE_LANGUAGE".localized,
                                                           message: "LOCALE_CHANGE_WARNING".localized,
                                                           buttonOkTitle: "ALERT_OK_BUTTON".localized,
@@ -118,3 +135,4 @@ extension SettingViewController: SelectorProtocol {
         isDisableAccesibility(isDisabble: false)
     }
 }
+

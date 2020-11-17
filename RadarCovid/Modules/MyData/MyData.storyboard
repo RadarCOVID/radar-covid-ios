@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -64,8 +64,8 @@
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES"/>
                                                         </accessibility>
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                        <color key="textColor" red="0.16470588235294117" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <color key="textColor" red="0.43921568630000002" green="0.31372549020000001" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_PRIVACY"/>
@@ -76,8 +76,8 @@
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES"/>
                                                         </accessibility>
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <color key="textColor" red="0.43921568630000002" green="0.3126067817" blue="0.61136299370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_TERMS"/>
@@ -194,6 +194,8 @@
                         <outlet property="descriptionLabel" destination="Uiy-SU-ykG" id="3Kz-7P-Cfg"/>
                         <outlet property="privacyLabel" destination="XwU-rQ-MAh" id="hAM-UG-3yc"/>
                         <outlet property="titleLabel" destination="9Bl-bV-W3d" id="2bl-Ka-Fep"/>
+                        <outlet property="viñeta1" destination="9cJ-Rr-DdP" id="3xS-qQ-OHX"/>
+                        <outlet property="viñeta2" destination="CO6-3S-7mQ" id="cgS-vE-hpd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yh7-yu-SIT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -204,7 +206,7 @@
     <resources>
         <image name="organicColor" width="375" height="155.33332824707031"/>
         <namedColor name="bgColor">
-            <color red="0.91399997472763062" green="0.91399997472763062" blue="0.91399997472763062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

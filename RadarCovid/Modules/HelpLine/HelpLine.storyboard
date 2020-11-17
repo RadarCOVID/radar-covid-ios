@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJ6-m7-TJp">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="575"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="608.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Para más información..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cst-er-eD4">
                                                 <rect key="frame" x="23" y="100" width="368" height="33.5"/>
@@ -50,13 +50,13 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1da-Fl-GEo" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="14" y="424" width="386" height="135"/>
+                                                <rect key="frame" x="14" y="424" width="386" height="168.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xA-oN-6Af">
-                                                        <rect key="frame" x="23" y="20" width="347" height="21"/>
+                                                        <rect key="frame" x="23" y="20" width="347" height="31.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAQs Radar COVID" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IR3-qq-aZZ">
-                                                                <rect key="frame" x="36" y="-0.5" width="311" height="21.5"/>
+                                                                <rect key="frame" x="36" y="5" width="311" height="21.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" link="YES"/>
                                                                 </accessibility>
@@ -68,7 +68,7 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SmallQuestions" translatesAutoresizingMaskIntoConstraints="NO" id="nS9-3b-zgN">
-                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                                <rect key="frame" x="0.0" y="6" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="YAM-MM-2Av"/>
                                                                     <constraint firstAttribute="height" constant="20" id="xdZ-he-LgV"/>
@@ -78,17 +78,17 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="IR3-qq-aZZ" secondAttribute="trailing" id="KJI-Na-a3a"/>
                                                             <constraint firstItem="IR3-qq-aZZ" firstAttribute="leading" secondItem="nS9-3b-zgN" secondAttribute="trailing" constant="16" id="Rsd-gk-fjI"/>
-                                                            <constraint firstAttribute="bottom" secondItem="IR3-qq-aZZ" secondAttribute="bottom" id="bNc-En-Gk6"/>
-                                                            <constraint firstItem="IR3-qq-aZZ" firstAttribute="centerY" secondItem="nS9-3b-zgN" secondAttribute="centerY" id="gHg-jH-0jL"/>
-                                                            <constraint firstItem="nS9-3b-zgN" firstAttribute="top" secondItem="2xA-oN-6Af" secondAttribute="top" id="iY3-8A-RXl"/>
+                                                            <constraint firstItem="IR3-qq-aZZ" firstAttribute="top" secondItem="2xA-oN-6Af" secondAttribute="top" constant="5" id="jH8-eY-ab7"/>
+                                                            <constraint firstAttribute="bottom" secondItem="IR3-qq-aZZ" secondAttribute="bottom" constant="5" id="jte-EP-yR8"/>
+                                                            <constraint firstItem="nS9-3b-zgN" firstAttribute="centerY" secondItem="2xA-oN-6Af" secondAttribute="centerY" id="ujO-oC-Zvi"/>
                                                             <constraint firstItem="nS9-3b-zgN" firstAttribute="leading" secondItem="2xA-oN-6Af" secondAttribute="leading" id="xOX-Ee-nFQ"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSS-US-QPY">
-                                                        <rect key="frame" x="23" y="56" width="347" height="20"/>
+                                                        <rect key="frame" x="23" y="66.5" width="347" height="31.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Web información COVID" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bc-4v-TsW">
-                                                                <rect key="frame" x="36" y="-1" width="311" height="21.5"/>
+                                                                <rect key="frame" x="36" y="5" width="311" height="21.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" link="YES"/>
                                                                 </accessibility>
@@ -100,7 +100,7 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="web" translatesAutoresizingMaskIntoConstraints="NO" id="92e-p2-KY4">
-                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                                <rect key="frame" x="0.0" y="6" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="6qI-qO-rB2"/>
                                                                     <constraint firstAttribute="height" constant="20" id="7aA-gc-oth"/>
@@ -109,18 +109,18 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="8bc-4v-TsW" firstAttribute="leading" secondItem="92e-p2-KY4" secondAttribute="trailing" constant="16" id="AdK-6Q-My9"/>
-                                                            <constraint firstItem="92e-p2-KY4" firstAttribute="top" secondItem="FSS-US-QPY" secondAttribute="top" id="GdT-iN-ccy"/>
+                                                            <constraint firstItem="8bc-4v-TsW" firstAttribute="top" secondItem="FSS-US-QPY" secondAttribute="top" constant="5" id="Fx7-1P-cyO"/>
                                                             <constraint firstAttribute="trailing" secondItem="8bc-4v-TsW" secondAttribute="trailing" id="esK-jv-qZw"/>
-                                                            <constraint firstAttribute="bottom" secondItem="92e-p2-KY4" secondAttribute="bottom" id="kD3-db-L9e"/>
+                                                            <constraint firstItem="92e-p2-KY4" firstAttribute="centerY" secondItem="FSS-US-QPY" secondAttribute="centerY" id="fig-fr-2Fx"/>
                                                             <constraint firstItem="92e-p2-KY4" firstAttribute="leading" secondItem="FSS-US-QPY" secondAttribute="leading" id="lVy-61-CDf"/>
-                                                            <constraint firstItem="8bc-4v-TsW" firstAttribute="centerY" secondItem="92e-p2-KY4" secondAttribute="centerY" id="xTZ-eI-ZmK"/>
+                                                            <constraint firstAttribute="bottom" secondItem="8bc-4v-TsW" secondAttribute="bottom" constant="5" id="qts-pu-TTl"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyg-ZL-yeX">
-                                                        <rect key="frame" x="23" y="91" width="347" height="20"/>
+                                                        <rect key="frame" x="23" y="113" width="347" height="31.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Otros enlaces" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tQ-Xe-eZr">
-                                                                <rect key="frame" x="36" y="-1" width="311" height="21.5"/>
+                                                                <rect key="frame" x="36" y="5" width="311" height="21.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" link="YES"/>
                                                                 </accessibility>
@@ -132,7 +132,7 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Link" translatesAutoresizingMaskIntoConstraints="NO" id="Ra2-DC-ZeW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                                <rect key="frame" x="0.0" y="6" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="34j-Ce-8Aa"/>
                                                                     <constraint firstAttribute="width" constant="20" id="wIV-wC-kMK"/>
@@ -141,11 +141,11 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="6tQ-Xe-eZr" secondAttribute="trailing" id="21K-Se-Q9I"/>
-                                                            <constraint firstItem="6tQ-Xe-eZr" firstAttribute="centerY" secondItem="Ra2-DC-ZeW" secondAttribute="centerY" id="7gP-W9-b1S"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Ra2-DC-ZeW" secondAttribute="bottom" id="D9n-Vl-0Yl"/>
+                                                            <constraint firstItem="6tQ-Xe-eZr" firstAttribute="top" secondItem="Vyg-ZL-yeX" secondAttribute="top" constant="5" id="8PO-Ln-cSU"/>
                                                             <constraint firstItem="6tQ-Xe-eZr" firstAttribute="leading" secondItem="Ra2-DC-ZeW" secondAttribute="trailing" constant="16" id="PZb-jn-TX5"/>
-                                                            <constraint firstItem="Ra2-DC-ZeW" firstAttribute="top" secondItem="Vyg-ZL-yeX" secondAttribute="top" id="RkA-e3-ARe"/>
                                                             <constraint firstItem="Ra2-DC-ZeW" firstAttribute="leading" secondItem="Vyg-ZL-yeX" secondAttribute="leading" id="Ysj-Iq-5dg"/>
+                                                            <constraint firstItem="Ra2-DC-ZeW" firstAttribute="centerY" secondItem="Vyg-ZL-yeX" secondAttribute="centerY" id="kWr-s5-GE2"/>
+                                                            <constraint firstAttribute="bottom" secondItem="6tQ-Xe-eZr" secondAttribute="bottom" constant="5" id="vWO-Fg-pzt"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -226,7 +226,7 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
         <image name="organicColor" width="375" height="155.5"/>
         <image name="web" width="256" height="256"/>
         <namedColor name="bgColor">
-            <color red="0.91399997472763062" green="0.91399997472763062" blue="0.91399997472763062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="deepLilac">
             <color red="0.54100000858306885" green="0.48600000143051147" blue="0.71799999475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

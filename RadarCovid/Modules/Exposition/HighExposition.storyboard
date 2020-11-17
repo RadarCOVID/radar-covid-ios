@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,10 +28,10 @@
                                 <rect key="frame" x="0.0" y="163" width="414" height="1453"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pj8-2B-jti">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1655.6666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1637.6666666666667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Qué debo hacer?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ksB-JD-OWW">
-                                                <rect key="frame" x="20" y="158" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="158.66666666666669" width="374" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="mbr-4L-Qvv"/>
                                                 </constraints>
@@ -43,7 +43,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sigue las siguientes recomendaciones y los consejos de tu centro de salud:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lM2-VT-RXX">
-                                                <rect key="frame" x="20" y="563.66666666666663" width="374" height="48"/>
+                                                <rect key="frame" x="20" y="564.33333333333337" width="374" height="48"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -51,75 +51,95 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_TITLE"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvoidContact" translatesAutoresizingMaskIntoConstraints="NO" id="Pfq-Xx-yb0">
-                                                <rect key="frame" x="20" y="786.66666666666663" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="RQy-RO-zL3"/>
-                                                    <constraint firstAttribute="width" constant="50" id="Wep-b4-95c"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evita el contacto con otras personas " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KYl-bp-nbE">
-                                                <rect key="frame" x="95" y="801" width="299" height="21.666666666666629"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_3"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SafeDistance" translatesAutoresizingMaskIntoConstraints="NO" id="OI9-B1-It2" userLabel="keepDistance">
-                                                <rect key="frame" x="20" y="636.66666666666663" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="8rn-ZP-B6t"/>
-                                                    <constraint firstAttribute="width" constant="50" id="R6J-fd-Ym6"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manten la distancia de seguridad de al menos 1.5 metros" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2N9-uM-Idk">
-                                                <rect key="frame" x="95" y="640.33333333333337" width="299" height="43"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_1"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mask_face" translatesAutoresizingMaskIntoConstraints="NO" id="B3A-a7-gSz">
-                                                <rect key="frame" x="20" y="866.66666666666674" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="AFF-0G-iJM"/>
-                                                    <constraint firstAttribute="height" constant="50" id="gkn-RM-fzx"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usa siempre mascarilla quirúrgica" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z7v-iu-qxV">
-                                                <rect key="frame" x="95" y="881" width="299" height="21.666666666666629"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_4"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WashHandsFrame" translatesAutoresizingMaskIntoConstraints="NO" id="E8L-mt-ohG">
-                                                <rect key="frame" x="20" y="946.66666666666674" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="GaL-aR-gr3"/>
-                                                    <constraint firstAttribute="width" constant="50" id="NUt-vj-4py"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lávate las manos frecuentemente" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Alx-RX-Ecu">
-                                                <rect key="frame" x="95" y="961" width="299" height="21.666666666666629"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_5"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="cAZ-Rx-RHY">
+                                                <rect key="frame" x="20" y="787.33333333333337" width="374" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvoidContact" translatesAutoresizingMaskIntoConstraints="NO" id="Pfq-Xx-yb0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="RQy-RO-zL3"/>
+                                                            <constraint firstAttribute="width" constant="50" id="Wep-b4-95c"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evita el contacto con otras personas " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KYl-bp-nbE">
+                                                        <rect key="frame" x="75" y="14.333333333333259" width="299" height="21.666666666666671"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_3"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Ozi-gH-QBt">
+                                                <rect key="frame" x="20" y="637.33333333333337" width="374" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SafeDistance" translatesAutoresizingMaskIntoConstraints="NO" id="OI9-B1-It2" userLabel="keepDistance">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="8rn-ZP-B6t"/>
+                                                            <constraint firstAttribute="width" constant="50" id="R6J-fd-Ym6"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mantén la distancia de seguridad de al menos 1,5 metros" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2N9-uM-Idk">
+                                                        <rect key="frame" x="75" y="3.6666666666666288" width="299" height="43"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_1"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="DDI-9d-fk8">
+                                                <rect key="frame" x="20" y="867.33333333333326" width="374" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mask_face" translatesAutoresizingMaskIntoConstraints="NO" id="B3A-a7-gSz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="AFF-0G-iJM"/>
+                                                            <constraint firstAttribute="height" constant="50" id="gkn-RM-fzx"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usa siempre mascarilla quirúrgica" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z7v-iu-qxV">
+                                                        <rect key="frame" x="75" y="14.333333333333487" width="299" height="21.666666666666671"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_4"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="NGX-wO-NTK">
+                                                <rect key="frame" x="20" y="947.33333333333326" width="374" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WashHandsFrame" translatesAutoresizingMaskIntoConstraints="NO" id="E8L-mt-ohG">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="GaL-aR-gr3"/>
+                                                            <constraint firstAttribute="width" constant="50" id="NUt-vj-4py"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lávate las manos frecuentemente" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Alx-RX-Ecu">
+                                                        <rect key="frame" x="75" y="14.333333333333487" width="299" height="21.666666666666671"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_5"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBR-5L-ywI" userLabel="ExpositionBGView" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="8" width="378" height="140"/>
+                                                <rect key="frame" x="16" y="8" width="378" height="140.66666666666666"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tu exposición es alta" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7G0-Fd-EDb">
-                                                        <rect key="frame" x="26" y="46" width="336" height="33.666666666666657"/>
+                                                        <rect key="frame" x="26" y="46.666666666666657" width="336" height="33.666666666666657"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -128,13 +148,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Podrías estar infectado desde hace" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qbx-0G-Sye">
-                                                        <rect key="frame" x="26" y="89.666666666666686" width="333" height="20.333333333333329"/>
+                                                        <rect key="frame" x="26" y="90.333333333333314" width="333" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="RIESGO ALTO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4DN-pv-kcP">
-                                                        <rect key="frame" x="26.000000000000007" y="20" width="116.66666666666669" height="21"/>
+                                                        <rect key="frame" x="26.000000000000007" y="20" width="116.66666666666669" height="21.666666666666671"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                         </accessibility>
@@ -159,7 +179,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Por favor, aíslate durante 14 días y llama al siguiente teléfono:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aoZ-sh-yH7">
-                                                <rect key="frame" x="20" y="213" width="374" height="65"/>
+                                                <rect key="frame" x="20" y="213.66666666666669" width="374" height="65"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="65" id="amu-zK-oiN"/>
                                                 </constraints>
@@ -170,13 +190,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_WHAT_TO_DO_DESCRIPTION"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWC-7c-dCx">
-                                                <rect key="frame" x="20" y="1579.3333333333333" width="374" height="61"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="61" id="vFW-NL-HhS"/>
-                                                </constraints>
-                                                <string key="text">Gracias por seguir cuidándote y cuidando a los demás.
-</string>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gracias por seguir cuidándote y cuidando a los demás." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWC-7c-dCx">
+                                                <rect key="frame" x="20" y="1579.3333333333333" width="374" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -201,10 +216,8 @@
                                                             <constraint firstAttribute="height" constant="1" id="QI6-BW-Ttl"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUS-Xl-byV">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Más información" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUS-Xl-byV">
                                                         <rect key="frame" x="8" y="15.666666666666742" width="156.33333333333334" height="24"/>
-                                                        <string key="text">Más información
-</string>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <color key="textColor" red="0.44085246319999999" green="0.3126067817" blue="0.61136299370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -234,7 +247,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEw-0H-yKe" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="18" y="378" width="378" height="165.66666666666663"/>
+                                                <rect key="frame" x="18" y="378.66666666666663" width="378" height="165.66666666666663"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmV-vq-vx6">
                                                         <rect key="frame" x="0.0" y="0.0" width="378" height="81.333333333333329"/>
@@ -259,7 +272,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="900 000 000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFk-2i-ncm">
-                                                                <rect key="frame" x="50" y="42.666666666666629" width="288" height="28.666666666666671"/>
+                                                                <rect key="frame" x="50" y="42.666666666666742" width="288" height="28.666666666666671"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -338,9 +351,9 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bN3-KM-Seu" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="298" width="374" height="60"/>
+                                                <rect key="frame" x="20" y="298.66666666666669" width="374" height="60"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="GVx-3c-EyF">
+                                                    <button opaque="NO" tag="55" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="GVx-3c-EyF">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -381,56 +394,71 @@
                                                     <constraint firstItem="Kqt-TM-DWj" firstAttribute="leading" secondItem="bN3-KM-Seu" secondAttribute="leading" constant="10" id="yhZ-F8-mye"/>
                                                 </constraints>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoughIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fGh-4f-UcC">
-                                                <rect key="frame" x="20" y="1099.6666666666667" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="B92-fG-xdO"/>
-                                                    <constraint firstAttribute="height" constant="50" id="nRO-Zz-zHf"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tos persistente" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="s71-Rb-kIG">
-                                                <rect key="frame" x="95" y="1114" width="299" height="21.666666666666742"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_BULLET_1"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeberIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zvx-Yh-ViQ">
-                                                <rect key="frame" x="20" y="1179.6666666666667" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="Gk6-nE-dfx"/>
-                                                    <constraint firstAttribute="height" constant="50" id="nHa-tB-25d"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fiebre Alta Continua" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uc1-xB-SzH">
-                                                <rect key="frame" x="95" y="1194" width="299" height="21.666666666666742"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_BULLET_2"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenseLossIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OT5-IY-BGO">
-                                                <rect key="frame" x="20" y="1259.6666666666667" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="cum-qS-eDv"/>
-                                                    <constraint firstAttribute="width" constant="50" id="h1a-Hl-qrA"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pérdida del gusto y del olfato" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nv7-0q-9Ah">
-                                                <rect key="frame" x="95" y="1274" width="299" height="21.666666666666742"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_BULLET_3"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="lhW-fs-EQT">
+                                                <rect key="frame" x="20" y="1100.3333333333333" width="374" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoughIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fGh-4f-UcC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="B92-fG-xdO"/>
+                                                            <constraint firstAttribute="height" constant="50" id="nRO-Zz-zHf"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tos persistente" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="s71-Rb-kIG">
+                                                        <rect key="frame" x="75" y="14.333333333333487" width="299" height="21.666666666666671"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_BULLET_1"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jPS-Qy-TRs">
+                                                <rect key="frame" x="20" y="1179.6666666666667" width="374" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeberIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zvx-Yh-ViQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="Gk6-nE-dfx"/>
+                                                            <constraint firstAttribute="height" constant="50" id="nHa-tB-25d"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fiebre Alta Continua" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uc1-xB-SzH">
+                                                        <rect key="frame" x="75" y="14.333333333333259" width="299" height="21.666666666666671"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_BULLET_2"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="SQ4-KQ-1no">
+                                                <rect key="frame" x="20" y="1259.6666666666667" width="374" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SenseLossIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OT5-IY-BGO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="cum-qS-eDv"/>
+                                                            <constraint firstAttribute="width" constant="50" id="h1a-Hl-qrA"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pérdida del gusto y del olfato" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nv7-0q-9Ah">
+                                                        <rect key="frame" x="75" y="14.333333333333259" width="299" height="21.666666666666671"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_BULLET_3"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presta atención a la aparición de cualquiera de los siguientes síntomas:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Pxh-kG-BXN">
-                                                <rect key="frame" x="20" y="1021.6666666666667" width="374" height="48"/>
+                                                <rect key="frame" x="20" y="1022.3333333333333" width="374" height="48"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -438,36 +466,55 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_BULLET_TITLE"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TasteOrSmell" translatesAutoresizingMaskIntoConstraints="NO" id="1o6-Wa-Wcf" userLabel="AirLossIcon">
-                                                <rect key="frame" x="20" y="1339.6666666666667" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="3Du-Kh-1fO"/>
-                                                    <constraint firstAttribute="width" constant="50" id="W1R-Ve-B9o"/>
-                                                </constraints>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avoidCrowds" translatesAutoresizingMaskIntoConstraints="NO" id="ze2-QG-Eo5" userLabel="AvoidPublicFrame">
-                                                <rect key="frame" x="20" y="711.66666666666663" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="HHu-Jj-yQ7"/>
-                                                    <constraint firstAttribute="height" constant="50" id="ktx-dD-XJq"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evita acudir a eventos o lugares con muchas personas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0BM-cl-NgN">
-                                                <rect key="frame" x="95" y="715.33333333333337" width="299" height="43"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_2"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="sKL-pi-lwJ">
+                                                <rect key="frame" x="20" y="1339.6666666666667" width="374" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TasteOrSmell" translatesAutoresizingMaskIntoConstraints="NO" id="1o6-Wa-Wcf" userLabel="AirLossIcon">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="3Du-Kh-1fO"/>
+                                                            <constraint firstAttribute="width" constant="50" id="W1R-Ve-B9o"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensación de falta de aire" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3EL-LN-Eu7" userLabel="Falta de aire">
+                                                        <rect key="frame" x="75" y="14.333333333333259" width="299" height="21.666666666666671"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_BULLET_4"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="9tE-1p-zEu">
+                                                <rect key="frame" x="20" y="712.33333333333337" width="374" height="50"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avoidCrowds" translatesAutoresizingMaskIntoConstraints="NO" id="ze2-QG-Eo5" userLabel="AvoidPublicFrame">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="HHu-Jj-yQ7"/>
+                                                            <constraint firstAttribute="height" constant="50" id="ktx-dD-XJq"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evita acudir a eventos o lugares con muchas personas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0BM-cl-NgN">
+                                                        <rect key="frame" x="75" y="3.6666666666666288" width="299" height="43"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_RECOMENDATIONS_BULLET_2"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Otros síntomas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MLt-Jh-jo8">
                                                 <rect key="frame" x="16" y="1419.6666666666667" width="378" height="21.666666666666742"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" link="YES"/>
                                                 </accessibility>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.43921568630000002" green="0.31372549020000001" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_OTHER_SYMPTOMS"/>
@@ -485,101 +532,70 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensación de falta de aire" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3EL-LN-Eu7" userLabel="Falta de aire">
-                                                <rect key="frame" x="95" y="1348" width="299" height="33.666666666666742"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSITION_HIGH_BULLET_4"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="bgColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="MLt-Jh-jo8" secondAttribute="trailing" constant="20" id="08Z-Jm-6HM"/>
-                                            <constraint firstAttribute="trailing" secondItem="2N9-uM-Idk" secondAttribute="trailing" constant="20" id="0o4-1W-jZG"/>
+                                            <constraint firstItem="SQ4-KQ-1no" firstAttribute="top" secondItem="jPS-Qy-TRs" secondAttribute="bottom" constant="30" id="0HJ-2x-PF9"/>
                                             <constraint firstItem="lM2-VT-RXX" firstAttribute="top" secondItem="GVx-3c-EyF" secondAttribute="bottom" priority="250" constant="20" id="1NV-EZ-peQ"/>
-                                            <constraint firstItem="Nv7-0q-9Ah" firstAttribute="centerY" secondItem="OT5-IY-BGO" secondAttribute="centerY" id="1iW-zl-lkh"/>
                                             <constraint firstItem="bN3-KM-Seu" firstAttribute="top" secondItem="aoZ-sh-yH7" secondAttribute="bottom" constant="20" id="1uw-qN-r99"/>
-                                            <constraint firstAttribute="trailing" secondItem="0BM-cl-NgN" secondAttribute="trailing" constant="20" id="1zB-i9-ziT"/>
+                                            <constraint firstAttribute="trailing" secondItem="sKL-pi-lwJ" secondAttribute="trailing" constant="20" symbolic="YES" id="1zx-I9-Bkc"/>
                                             <constraint firstItem="PWC-7c-dCx" firstAttribute="top" secondItem="XB5-Tr-IGD" secondAttribute="bottom" constant="11.333333333333258" id="3bT-vl-ht7"/>
-                                            <constraint firstItem="OT5-IY-BGO" firstAttribute="top" secondItem="zvx-Yh-ViQ" secondAttribute="bottom" constant="30" id="3kz-ft-vff"/>
-                                            <constraint firstItem="2N9-uM-Idk" firstAttribute="leading" secondItem="OI9-B1-It2" secondAttribute="trailing" constant="25" id="59k-ca-FJC"/>
-                                            <constraint firstItem="KYl-bp-nbE" firstAttribute="centerY" secondItem="Pfq-Xx-yb0" secondAttribute="centerY" id="5JE-iU-UlU"/>
-                                            <constraint firstItem="s71-Rb-kIG" firstAttribute="centerY" secondItem="fGh-4f-UcC" secondAttribute="centerY" id="5U7-MD-Mgv"/>
-                                            <constraint firstItem="zvx-Yh-ViQ" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="5hS-Qe-McY"/>
                                             <constraint firstAttribute="trailing" secondItem="lM2-VT-RXX" secondAttribute="trailing" constant="20" id="5s5-ho-28b"/>
-                                            <constraint firstItem="Alx-RX-Ecu" firstAttribute="centerY" secondItem="E8L-mt-ohG" secondAttribute="centerY" id="676-a3-DKF"/>
-                                            <constraint firstItem="Alx-RX-Ecu" firstAttribute="leading" secondItem="E8L-mt-ohG" secondAttribute="trailing" constant="25" id="694-sP-XbV"/>
-                                            <constraint firstItem="OI9-B1-It2" firstAttribute="top" secondItem="lM2-VT-RXX" secondAttribute="bottom" constant="25" id="6LU-q6-Zhl"/>
                                             <constraint firstAttribute="trailing" secondItem="TEw-0H-yKe" secondAttribute="trailing" constant="18" id="6Q7-nd-8MZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="z7v-iu-qxV" secondAttribute="trailing" constant="20" id="AaI-qq-2D0"/>
-                                            <constraint firstItem="3EL-LN-Eu7" firstAttribute="centerY" secondItem="1o6-Wa-Wcf" secondAttribute="centerY" id="B6E-2Q-HH4"/>
-                                            <constraint firstItem="2N9-uM-Idk" firstAttribute="leading" secondItem="OI9-B1-It2" secondAttribute="trailing" constant="25" id="BwN-ec-vhh"/>
+                                            <constraint firstItem="jPS-Qy-TRs" firstAttribute="top" secondItem="lhW-fs-EQT" secondAttribute="bottom" constant="29.329999999999998" id="6VV-ln-Rik"/>
+                                            <constraint firstItem="lhW-fs-EQT" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" symbolic="YES" id="9B9-pb-8va"/>
+                                            <constraint firstAttribute="trailing" secondItem="SQ4-KQ-1no" secondAttribute="trailing" constant="20" symbolic="YES" id="AIA-44-APP"/>
+                                            <constraint firstItem="Ozi-gH-QBt" firstAttribute="top" secondItem="lM2-VT-RXX" secondAttribute="bottom" constant="25" id="BmX-7D-u3A"/>
                                             <constraint firstItem="lM2-VT-RXX" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="CLv-tQ-cXY"/>
-                                            <constraint firstItem="Pxh-kG-BXN" firstAttribute="top" secondItem="E8L-mt-ohG" secondAttribute="bottom" constant="25" id="DXE-SA-OPg"/>
-                                            <constraint firstAttribute="trailing" secondItem="Nv7-0q-9Ah" secondAttribute="trailing" constant="20" id="Ezh-Mu-jmY"/>
-                                            <constraint firstAttribute="trailing" secondItem="Alx-RX-Ecu" secondAttribute="trailing" constant="20" id="IEc-tx-aDU"/>
-                                            <constraint firstItem="OI9-B1-It2" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="JIQ-e7-rLj"/>
-                                            <constraint firstItem="ze2-QG-Eo5" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="K6Q-vc-WJo"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ozi-gH-QBt" secondAttribute="trailing" constant="20" symbolic="YES" id="E8k-Pj-Z5e"/>
+                                            <constraint firstItem="sKL-pi-lwJ" firstAttribute="top" secondItem="SQ4-KQ-1no" secondAttribute="bottom" constant="30" id="Fc1-Gd-jME"/>
+                                            <constraint firstItem="lhW-fs-EQT" firstAttribute="top" secondItem="Pxh-kG-BXN" secondAttribute="bottom" constant="30" id="Gye-wr-q6d"/>
+                                            <constraint firstItem="DDI-9d-fk8" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" symbolic="YES" id="HZc-Fq-UYv"/>
+                                            <constraint firstAttribute="trailing" secondItem="9tE-1p-zEu" secondAttribute="trailing" constant="20" symbolic="YES" id="IRI-r1-QFk"/>
+                                            <constraint firstItem="sKL-pi-lwJ" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" symbolic="YES" id="ITo-FJ-iU6"/>
+                                            <constraint firstItem="NGX-wO-NTK" firstAttribute="top" secondItem="DDI-9d-fk8" secondAttribute="bottom" constant="30" id="J29-sa-fce"/>
+                                            <constraint firstItem="Ozi-gH-QBt" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" symbolic="YES" id="J49-Ey-Hh6"/>
+                                            <constraint firstItem="9tE-1p-zEu" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" symbolic="YES" id="Jzk-8a-l5W"/>
                                             <constraint firstAttribute="trailing" secondItem="aoZ-sh-yH7" secondAttribute="trailing" constant="20" id="KGk-ez-bkM"/>
-                                            <constraint firstAttribute="trailing" secondItem="3EL-LN-Eu7" secondAttribute="trailing" constant="20" id="Kub-HT-aKB"/>
-                                            <constraint firstAttribute="trailing" secondItem="KYl-bp-nbE" secondAttribute="trailing" constant="20" id="Lbi-iA-9Ov"/>
-                                            <constraint firstItem="2N9-uM-Idk" firstAttribute="centerY" secondItem="OI9-B1-It2" secondAttribute="centerY" id="MYc-U6-XeJ"/>
+                                            <constraint firstItem="cAZ-Rx-RHY" firstAttribute="top" secondItem="9tE-1p-zEu" secondAttribute="bottom" constant="25" id="N02-L0-Qdq"/>
                                             <constraint firstAttribute="bottom" secondItem="PWC-7c-dCx" secondAttribute="bottom" constant="15.333333333333258" id="N26-f7-gC9"/>
                                             <constraint firstItem="PWC-7c-dCx" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="N4K-6p-aXg"/>
-                                            <constraint firstItem="B3A-a7-gSz" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="NXA-Ev-SRD"/>
-                                            <constraint firstAttribute="trailing" secondItem="s71-Rb-kIG" secondAttribute="trailing" constant="20" id="NXk-Dr-Ciy"/>
-                                            <constraint firstItem="zvx-Yh-ViQ" firstAttribute="top" secondItem="fGh-4f-UcC" secondAttribute="bottom" constant="30" id="NlH-Pe-9mc"/>
                                             <constraint firstItem="XB5-Tr-IGD" firstAttribute="top" secondItem="yEg-UG-vM2" secondAttribute="bottom" constant="30" id="NwT-pD-ZXk"/>
                                             <constraint firstItem="MLt-Jh-jo8" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="16" id="O97-l3-pwm"/>
-                                            <constraint firstItem="KYl-bp-nbE" firstAttribute="leading" secondItem="Pfq-Xx-yb0" secondAttribute="trailing" constant="25" id="Oxo-pQ-7Vm"/>
+                                            <constraint firstAttribute="trailing" secondItem="DDI-9d-fk8" secondAttribute="trailing" constant="20" symbolic="YES" id="PKL-yH-J1T"/>
                                             <constraint firstItem="UBR-5L-ywI" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="16" id="PhY-6d-7c0"/>
                                             <constraint firstItem="TEw-0H-yKe" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="18" id="Q8w-6H-6F0"/>
-                                            <constraint firstItem="z7v-iu-qxV" firstAttribute="centerY" secondItem="B3A-a7-gSz" secondAttribute="centerY" id="RYT-y7-ru7"/>
                                             <constraint firstItem="bN3-KM-Seu" firstAttribute="leading" secondItem="aoZ-sh-yH7" secondAttribute="leading" id="T9w-09-CoL"/>
-                                            <constraint firstItem="0BM-cl-NgN" firstAttribute="leading" secondItem="ze2-QG-Eo5" secondAttribute="trailing" constant="25" id="Tvl-z6-Q3Q"/>
-                                            <constraint firstItem="ze2-QG-Eo5" firstAttribute="top" secondItem="OI9-B1-It2" secondAttribute="bottom" constant="25" id="Txp-rE-HQg"/>
                                             <constraint firstAttribute="trailing" secondItem="PWC-7c-dCx" secondAttribute="trailing" constant="20" id="UAJ-ke-ttW"/>
-                                            <constraint firstItem="E8L-mt-ohG" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="UBY-d0-OOb"/>
-                                            <constraint firstItem="0BM-cl-NgN" firstAttribute="leading" secondItem="ze2-QG-Eo5" secondAttribute="trailing" constant="25" id="VD2-Ve-pfX"/>
+                                            <constraint firstItem="Pxh-kG-BXN" firstAttribute="top" secondItem="NGX-wO-NTK" secondAttribute="bottom" constant="25" id="VaZ-jd-z9P"/>
+                                            <constraint firstItem="SQ4-KQ-1no" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" symbolic="YES" id="XSl-dG-DBO"/>
                                             <constraint firstItem="bN3-KM-Seu" firstAttribute="trailing" secondItem="aoZ-sh-yH7" secondAttribute="trailing" id="XuP-so-tzM"/>
-                                            <constraint firstItem="s71-Rb-kIG" firstAttribute="leading" secondItem="fGh-4f-UcC" secondAttribute="trailing" constant="25" id="Zj1-Af-K4e"/>
-                                            <constraint firstItem="0BM-cl-NgN" firstAttribute="centerY" secondItem="ze2-QG-Eo5" secondAttribute="centerY" id="Zl8-G3-KmK"/>
-                                            <constraint firstItem="Pfq-Xx-yb0" firstAttribute="top" secondItem="ze2-QG-Eo5" secondAttribute="bottom" constant="25" id="apV-R9-0lI"/>
-                                            <constraint firstItem="1o6-Wa-Wcf" firstAttribute="top" secondItem="OT5-IY-BGO" secondAttribute="bottom" constant="30" id="ayr-tA-Q0W"/>
+                                            <constraint firstItem="9tE-1p-zEu" firstAttribute="top" secondItem="Ozi-gH-QBt" secondAttribute="bottom" constant="25" id="ZdD-n3-4E1"/>
                                             <constraint firstAttribute="trailing" secondItem="UBR-5L-ywI" secondAttribute="trailing" constant="20" id="bj2-z4-nNj"/>
                                             <constraint firstItem="Pxh-kG-BXN" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="cqD-wF-O7M"/>
-                                            <constraint firstItem="3EL-LN-Eu7" firstAttribute="leading" secondItem="1o6-Wa-Wcf" secondAttribute="trailing" constant="25" id="dAX-n6-4Eh"/>
                                             <constraint firstItem="lM2-VT-RXX" firstAttribute="top" secondItem="TEw-0H-yKe" secondAttribute="bottom" priority="750" constant="20" id="dCO-c8-68j"/>
                                             <constraint firstItem="ksB-JD-OWW" firstAttribute="top" secondItem="UBR-5L-ywI" secondAttribute="bottom" constant="10" id="dIB-6m-DPa"/>
+                                            <constraint firstItem="cAZ-Rx-RHY" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" symbolic="YES" id="dlY-vP-mT1"/>
                                             <constraint firstItem="aoZ-sh-yH7" firstAttribute="top" secondItem="ksB-JD-OWW" secondAttribute="bottom" constant="5" id="eDL-uj-EiD"/>
-                                            <constraint firstItem="B3A-a7-gSz" firstAttribute="top" secondItem="Pfq-Xx-yb0" secondAttribute="bottom" constant="30" id="eMb-wg-Am8"/>
-                                            <constraint firstItem="uc1-xB-SzH" firstAttribute="leading" secondItem="zvx-Yh-ViQ" secondAttribute="trailing" constant="25" id="fkJ-bm-fbu"/>
+                                            <constraint firstItem="NGX-wO-NTK" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" symbolic="YES" id="ety-2T-2bA"/>
+                                            <constraint firstAttribute="trailing" secondItem="lhW-fs-EQT" secondAttribute="trailing" constant="20" symbolic="YES" id="f19-4M-cef"/>
                                             <constraint firstItem="yEg-UG-vM2" firstAttribute="top" secondItem="MLt-Jh-jo8" secondAttribute="bottom" constant="20" id="hRG-oT-Tcb"/>
-                                            <constraint firstItem="fGh-4f-UcC" firstAttribute="top" secondItem="Pxh-kG-BXN" secondAttribute="bottom" constant="30" id="iZu-Gq-FTJ"/>
+                                            <constraint firstItem="MLt-Jh-jo8" firstAttribute="top" secondItem="sKL-pi-lwJ" secondAttribute="bottom" constant="30" id="jWl-hg-bOh"/>
                                             <constraint firstItem="yEg-UG-vM2" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="16" id="jjH-gm-RcC"/>
                                             <constraint firstItem="ksB-JD-OWW" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="jyf-jI-Tc6"/>
                                             <constraint firstAttribute="trailing" secondItem="Pxh-kG-BXN" secondAttribute="trailing" constant="20" id="kPW-gY-dYS"/>
-                                            <constraint firstItem="Pfq-Xx-yb0" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="lXc-3g-nkN"/>
-                                            <constraint firstAttribute="trailing" secondItem="0BM-cl-NgN" secondAttribute="trailing" constant="20" id="mYT-AP-2nS"/>
-                                            <constraint firstItem="fGh-4f-UcC" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="of5-NC-W03"/>
+                                            <constraint firstAttribute="trailing" secondItem="NGX-wO-NTK" secondAttribute="trailing" constant="20" symbolic="YES" id="lyX-wz-kDS"/>
+                                            <constraint firstAttribute="trailing" secondItem="cAZ-Rx-RHY" secondAttribute="trailing" constant="20" symbolic="YES" id="mLw-ul-Q7J"/>
+                                            <constraint firstItem="DDI-9d-fk8" firstAttribute="top" secondItem="cAZ-Rx-RHY" secondAttribute="bottom" constant="30" id="obx-Hh-t9g"/>
                                             <constraint firstItem="TEw-0H-yKe" firstAttribute="top" secondItem="bN3-KM-Seu" secondAttribute="bottom" constant="20" id="pCn-g2-m2f"/>
-                                            <constraint firstAttribute="trailing" secondItem="uc1-xB-SzH" secondAttribute="trailing" constant="20" id="peg-Ey-kyU"/>
-                                            <constraint firstItem="Nv7-0q-9Ah" firstAttribute="leading" secondItem="OT5-IY-BGO" secondAttribute="trailing" constant="25" id="pma-I2-uw5"/>
                                             <constraint firstAttribute="trailing" secondItem="XB5-Tr-IGD" secondAttribute="trailing" constant="16" id="qdc-zT-fZ6"/>
-                                            <constraint firstItem="uc1-xB-SzH" firstAttribute="centerY" secondItem="zvx-Yh-ViQ" secondAttribute="centerY" id="r0k-4U-YPI"/>
-                                            <constraint firstItem="MLt-Jh-jo8" firstAttribute="top" secondItem="1o6-Wa-Wcf" secondAttribute="bottom" constant="30" id="r4U-4v-5dJ"/>
-                                            <constraint firstItem="z7v-iu-qxV" firstAttribute="leading" secondItem="B3A-a7-gSz" secondAttribute="trailing" constant="25" id="r73-xA-Pdg"/>
+                                            <constraint firstAttribute="trailing" secondItem="jPS-Qy-TRs" secondAttribute="trailing" constant="20" symbolic="YES" id="r6A-rx-hgM"/>
                                             <constraint firstItem="aoZ-sh-yH7" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="rTd-kY-W8a"/>
                                             <constraint firstItem="UBR-5L-ywI" firstAttribute="top" secondItem="Pj8-2B-jti" secondAttribute="top" constant="8" id="sBY-kY-65u"/>
-                                            <constraint firstItem="3EL-LN-Eu7" firstAttribute="top" secondItem="Nv7-0q-9Ah" secondAttribute="top" constant="74" id="tCQ-qQ-3SZ"/>
-                                            <constraint firstItem="E8L-mt-ohG" firstAttribute="top" secondItem="B3A-a7-gSz" secondAttribute="bottom" constant="30" id="vEd-oy-ghK"/>
                                             <constraint firstAttribute="trailing" secondItem="ksB-JD-OWW" secondAttribute="trailing" constant="20" id="w1Y-UD-IOf"/>
-                                            <constraint firstItem="1o6-Wa-Wcf" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="wrn-0I-tn4"/>
+                                            <constraint firstItem="jPS-Qy-TRs" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" symbolic="YES" id="xBJ-pm-1rK"/>
                                             <constraint firstAttribute="trailing" secondItem="yEg-UG-vM2" secondAttribute="trailing" constant="20" id="xYg-1K-Ktt"/>
-                                            <constraint firstItem="OT5-IY-BGO" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="20" id="yzS-ZP-XeK"/>
                                             <constraint firstItem="XB5-Tr-IGD" firstAttribute="leading" secondItem="Pj8-2B-jti" secondAttribute="leading" constant="16" id="zuC-NH-Ztk"/>
                                         </constraints>
                                     </view>

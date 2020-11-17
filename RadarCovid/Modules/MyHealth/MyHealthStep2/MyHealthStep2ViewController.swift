@@ -51,6 +51,7 @@ class MyHealthStep2ViewController: BaseViewController {
         cancelButton.layer.borderColor = UIColor.twilight.cgColor
         
         sendButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
+        sendButton.titleLabel?.lineBreakMode = .byWordWrapping
         cancelButton.setTitle("ALERT_CANCEL_BUTTON".localized, for: .normal)
         
         shareSpainRadioView.setShadow()
@@ -88,6 +89,7 @@ class MyHealthStep2ViewController: BaseViewController {
         cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
         cancelButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        
     }
 
     private func navigateIf(reported: Bool) {
