@@ -74,13 +74,13 @@ class MyHealthStep2ViewController: BaseViewController {
         titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
         
         shareSpainRadioView.isAccessibilityElement = true
-        shareSpainRadioView.accessibilityLabel =  "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
+        shareSpainRadioView.accessibilityLabel =  "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
         shareSpainRadioView.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        shareSpainRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
         
         shareEuropeRadioView.isAccessibilityElement = true
-        shareEuropeRadioView.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
+        shareEuropeRadioView.accessibilityLabel = "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
         shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
         
         sendButton.isAccessibilityElement = true
         sendButton.accessibilityHint = "ACC_HINT".localized
