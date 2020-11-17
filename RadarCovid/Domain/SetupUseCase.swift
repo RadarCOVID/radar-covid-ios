@@ -109,13 +109,14 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                     body: "Last sync: \(sync), positive sent \(sent)",
                     sound: .default)
             }
+            completionHandler(true)
         } onError: { [weak self] (error) in
             self?.logger.debug("Error sending fake positive \(error) ")
+            completionHandler(true)
         }.disposed(by: disposeBag)
         
         DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionUseCase.self)
         logger.debug("DP3TTracing.delegate \(String(describing: DP3TTracing.delegate))")
-        completionHandler(true)
     }
 
     func didScheduleBackgrounTask() {
