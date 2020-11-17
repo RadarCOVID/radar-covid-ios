@@ -95,7 +95,7 @@ class HomeViewController: UIViewController {
             return
         }
         
-        if true {
+        if radarSwitch.isOn {
             if expositionInfo.level == .infected {
                 router!.route(to: Routes.myHealthReported, from: self)
             } else {
