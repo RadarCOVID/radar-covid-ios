@@ -45,6 +45,7 @@ class PositiveExposedViewController: BaseExposed {
 
         moreInfoLabel.isAccessibilityElement = true
         moreInfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoLabel.accessibilityTraits.remove(UIAccessibilityTraits.button)
         moreInfoLabel.accessibilityLabel = "EXPOSITION_HIGH_MORE_INFO".localizedAttributed().string.replacingOccurrences(of: ">", with: "")
         moreInfoLabel.accessibilityHint = "ACC_HINT".localized
         
