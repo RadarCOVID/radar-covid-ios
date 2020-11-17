@@ -36,7 +36,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="780.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compartir diagnóstico" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-CU-SbS">
-                                    <rect key="frame" x="16" y="40" width="193" height="22"/>
+                                    <rect key="frame" x="16" y="40" width="382" height="22"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -160,6 +160,7 @@ interoperan entre sí, funcionando más allá de sus fronteras.</string>
                                 <constraint firstItem="78O-7J-bGF" firstAttribute="top" secondItem="fbA-Br-dcs" secondAttribute="bottom" constant="20" id="RmX-jJ-Msg"/>
                                 <constraint firstAttribute="trailing" secondItem="78O-7J-bGF" secondAttribute="trailing" constant="16" id="UeS-R5-jfz"/>
                                 <constraint firstItem="4Bc-CU-SbS" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="Vq7-wl-thW"/>
+                                <constraint firstAttribute="trailing" secondItem="4Bc-CU-SbS" secondAttribute="trailing" constant="16" id="Xaz-mO-Fxa"/>
                                 <constraint firstItem="4Bc-CU-SbS" firstAttribute="top" secondItem="wqs-jf-GzU" secondAttribute="top" constant="40" id="Xlp-BM-aRp"/>
                                 <constraint firstAttribute="trailing" secondItem="D5K-o9-kaY" secondAttribute="trailing" constant="16" id="YcQ-Bs-F5I"/>
                                 <constraint firstAttribute="trailing" secondItem="Q6b-9Y-Kvk" secondAttribute="trailing" constant="16" id="Z6g-OI-nKn"/>

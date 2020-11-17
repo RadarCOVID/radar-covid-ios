@@ -50,6 +50,7 @@ class MyHealthStep2ViewController: BaseViewController {
         cancelButton.layer.borderColor = UIColor.twilight.cgColor
         
         sendButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
+        sendButton.titleLabel?.lineBreakMode = .byWordWrapping
         cancelButton.setTitle("ALERT_CANCEL_BUTTON".localized, for: .normal)
         
         shareSpainRadioView.setShadow()
