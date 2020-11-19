@@ -155,6 +155,7 @@
 		A91D8E312539947500EB23D4 /* ProximityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E252539947500EB23D4 /* ProximityViewController.swift */; };
 		A91D8E322539947500EB23D4 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91D8E272539947500EB23D4 /* OnBoarding.storyboard */; };
 		A91D8E332539947500EB23D4 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D8E282539947500EB23D4 /* OnBoardingViewController.swift */; };
+		A920BC852563CCB100CCEBA9 /* UIView+Magnifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A920BC842563CCB100CCEBA9 /* UIView+Magnifier+Extension.swift */; };
 		A9508EB425247DE7008E6A8B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9508EAF25247DE7008E6A8B /* SettingViewController.swift */; };
 		A9508EB525247DE7008E6A8B /* SettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9508EB025247DE7008E6A8B /* SettingView.xib */; };
 		A9508EBA25248177008E6A8B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9508EB925248177008E6A8B /* SettingViewModel.swift */; };
@@ -348,6 +349,7 @@
 		A91D8E252539947500EB23D4 /* ProximityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProximityViewController.swift; sourceTree = "<group>"; };
 		A91D8E272539947500EB23D4 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
 		A91D8E282539947500EB23D4 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		A920BC842563CCB100CCEBA9 /* UIView+Magnifier+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Magnifier+Extension.swift"; sourceTree = "<group>"; };
 		A9508EAF25247DE7008E6A8B /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A9508EB025247DE7008E6A8B /* SettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingView.xib; sourceTree = "<group>"; };
 		A9508EB925248177008E6A8B /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };

@@ -108,7 +108,6 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         
         DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionUseCase.self)
         logger.debug("DP3TTracing.delegate \(String(describing: DP3TTracing.delegate))")
-        completionHandler(true)
     }
     
     func didScheduleBackgrounTask() {

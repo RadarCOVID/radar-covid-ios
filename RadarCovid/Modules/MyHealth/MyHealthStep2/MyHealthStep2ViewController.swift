@@ -88,6 +88,7 @@ class MyHealthStep2ViewController: BaseViewController {
         cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
         cancelButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        
     }
 
     private func navigateIf(reported: Bool) {
@@ -101,9 +102,9 @@ class MyHealthStep2ViewController: BaseViewController {
         checkShareSpainImage.isHidden = false
         
         shareEuropeRadioView.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
-        checkShareSpainImage.accessibilityLabel = "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
+        shareSpainRadioView.accessibilityLabel = "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
         
-        checkShareSpainImage.accessibilityTraits.insert(UIAccessibilityTraits.selected)
+        shareSpainRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
         shareEuropeRadioView.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
     
@@ -112,9 +113,9 @@ class MyHealthStep2ViewController: BaseViewController {
         checkShareSpainImage.isHidden = true
         
         shareEuropeRadioView.accessibilityLabel = "MY_HEALTH_STEP2_RADIO2".localizedAttributed.string
-        checkShareSpainImage.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
+        shareSpainRadioView.accessibilityLabel = "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
         
-        checkShareSpainImage.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        shareSpainRadioView.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         shareEuropeRadioView.accessibilityTraits.insert(UIAccessibilityTraits.selected)
     }
     

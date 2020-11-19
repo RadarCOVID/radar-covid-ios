@@ -57,7 +57,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.setFontTextStyle()
-        
         setupAccessibility()
         setupBindings()
         setupUserInteraction()
@@ -66,6 +65,16 @@ class HomeViewController: UIViewController {
             isDisableAccesibility(isDisabble: true)
             self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
                 TermsView.initWithParentViewController(viewController: self, delegate: self)
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if UIAccessibility.isVoiceOverRunning {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(notification: .layoutChanged, argument: self.titleLabel)
             }
         }
     }

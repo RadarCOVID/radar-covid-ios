@@ -135,3 +135,4 @@ extension SettingViewController: SelectorProtocol {
         isDisableAccesibility(isDisabble: false)
     }
 }
+
