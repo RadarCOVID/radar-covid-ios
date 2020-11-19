@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAR-Iy-hQc">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="788"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="744"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJg-TW-Zyr">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="768.5"/>
@@ -263,7 +263,7 @@ la Gomera. Recuerda que las alertas son simuladas.</string>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QAR-Iy-hQc" secondAttribute="trailing" id="f35-a4-UTy"/>
                 <constraint firstItem="QAR-Iy-hQc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="m4n-5d-HIl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0ks-pf-IGN" secondAttribute="bottom" constant="10" id="s6y-In-9Sd"/>
-                <constraint firstAttribute="top" secondItem="QAR-Iy-hQc" secondAttribute="top" id="usK-6X-z6K"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="QAR-Iy-hQc" secondAttribute="top" id="usK-6X-z6K"/>
                 <constraint firstItem="0ks-pf-IGN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="weM-ih-7J9"/>
             </constraints>
             <point key="canvasLocation" x="3009" y="164"/>
