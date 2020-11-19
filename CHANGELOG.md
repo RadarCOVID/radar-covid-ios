@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.2 (2020-11-19)
+### Features
+* Version preparation to allow DP3T previous version interoperatibility 
+* Send Postive code. Share with europe as default
+
+### Bug Fixes
+* accesibility issues
+* other bug fix
+
+## 1.1.1 (2020-10-30)
+### Bug Fixes
+* bug fix when show pop up from homeView
+
 ## 1.1.0 (2020-10-30)
 ### Features
 * added functionallity to send fake request at random exponential rate
