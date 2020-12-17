@@ -26,10 +26,23 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>es.gob.radarcovid</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>radarcovid</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>ENAPIVersion</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>ENDeveloperRegion</key>
 	<string>ES</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -76,14 +89,14 @@
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>processing</string>
+		<string>bluetooth-central</string>
 		<string>fetch</string>
+		<string>processing</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>telephony</string>
 		<string>armv7</string>
 		<string>bluetooth-le</string>
 	</array>

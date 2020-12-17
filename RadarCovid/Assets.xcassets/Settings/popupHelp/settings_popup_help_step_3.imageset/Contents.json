@@ -1,0 +1,26 @@
+{
+  "images" : [
+    {
+      "filename" : "Captura de pantalla 2020-12-09 a las 9.17 1.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Captura de pantalla 2020-12-09 a las 9.17 1@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Captura de pantalla 2020-12-09 a las 9.17 1@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
+  }
+}

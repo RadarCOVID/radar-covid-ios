@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,8 +27,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqs-jf-GzU">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="488.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MI DIAGNÓSTICO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-CU-SbS">
-                                    <rect key="frame" x="16" y="40" width="151" height="21.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MI DIAGNÓSTICO" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-CU-SbS">
+                                    <rect key="frame" x="16" y="40" width="382" height="21.5"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -68,6 +67,9 @@ COVID positivo</string>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="codeInputFrame" translatesAutoresizingMaskIntoConstraints="NO" id="gG3-P5-lto" userLabel="ImageView">
                                     <rect key="frame" x="117" y="164.5" width="180" height="180"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" image="YES" staticText="YES"/>
+                                    </accessibility>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="180" id="pau-sg-VPm"/>
                                         <constraint firstAttribute="width" constant="180" id="w7Q-Di-aWv"/>
@@ -77,6 +79,7 @@ COVID positivo</string>
                             <color key="backgroundColor" name="veryLightPink"/>
                             <constraints>
                                 <constraint firstItem="gG3-P5-lto" firstAttribute="centerX" secondItem="wqs-jf-GzU" secondAttribute="centerX" id="1Tc-dY-Iu2"/>
+                                <constraint firstAttribute="trailing" secondItem="4Bc-CU-SbS" secondAttribute="trailing" constant="16" id="BJz-Ci-p0E"/>
                                 <constraint firstItem="Htb-2f-Sg6" firstAttribute="top" secondItem="4Bc-CU-SbS" secondAttribute="bottom" constant="8" id="C3z-wY-c1z"/>
                                 <constraint firstItem="Q6b-9Y-Kvk" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="HTv-Lx-0bp"/>
                                 <constraint firstAttribute="bottom" secondItem="D5K-o9-kaY" secondAttribute="bottom" constant="10" id="JiI-lV-sYu"/>

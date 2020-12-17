@@ -11,11 +11,10 @@
 
 import UIKit
 
-class OnBoardingViewController: UIViewController {
+class OnBoardingViewController: BaseViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var paragraph1TitleLabel: UILabel!
     @IBOutlet weak var paragraph1DescriptionLabel: UILabel!
@@ -42,7 +41,7 @@ class OnBoardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setFontTextStyle()
+        
         setupView()
         setupAccessibility()
     }
@@ -92,14 +91,16 @@ class OnBoardingViewController: UIViewController {
             paragraph1DescriptionLabel.text = paragraph1DescriptionLabel.text?.lowercased()
             acceptSwitch.isHidden = false
             acceptTermsAndUseSwitch.isHidden = false
+            checkBoxImage.isHidden = true
+            checkBoxAcceptTermsAndUseImage.isHidden = true
         } else {
             acceptSwitch.isHidden = true
             acceptTermsAndUseSwitch.isHidden = true
+            checkBoxImage.isHidden = false
+            checkBoxAcceptTermsAndUseImage.isHidden = false
         }
         
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_TITLE".localized
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        titleLabel?.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_TITLE".localized
 
         subtitleLabel.isAccessibilityElement = true
         subtitleLabel.accessibilityLabel = "ACC_CONDITIONS_PRIVACY_SUBTITLE".localized
@@ -146,7 +147,7 @@ class OnBoardingViewController: UIViewController {
         
         acceptButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
 
-        acceptButton.isEnabled = privacyAccepted && termsAndUseAccepted
+        setEnableButton(isEnable: privacyAccepted && termsAndUseAccepted)
         
         scrollView.alwaysBounceVertical = false
         
@@ -155,41 +156,46 @@ class OnBoardingViewController: UIViewController {
         acceptView.isUserInteractionEnabled = true
         acceptTermsAndUseView.isUserInteractionEnabled = true
         
-        // Add Gesture
         acceptView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                         action: #selector(userDidTapAccept(tapGestureRecognizer:))))
-        
         acceptTermsAndUseView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                         action: #selector(userDidTapAcceptTermsAndUse(tapGestureRecognizer:))))
-
         acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                               action: #selector(userDidTapTerms(tapGestureRecognizer:))))
-
         privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                           action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
     }
     
     private func privacyToggle() {
         privacyAccepted = !privacyAccepted
-        
         if privacyAccepted {
             checkBoxImage.image = UIImage(named: "CheckboxSelected")
         } else {
             checkBoxImage.image = UIImage(named: "CheckboxUnselected")
         }
-        
-        acceptButton.isEnabled = privacyAccepted && termsAndUseAccepted
+        setEnableButton(isEnable: privacyAccepted && termsAndUseAccepted)
+    }
+    
+    private func setEnableButton(isEnable: Bool){
+        acceptButton.isEnabled = isEnable
+        if (isEnable) {
+            acceptButton.layer.borderWidth = 0
+            acceptButton.setBackgroundImage(UIImage.init(named: "buttonsPrimary"), for: .normal)
+        }else{
+            acceptButton.layer.borderWidth = 1
+            acceptButton.layer.borderColor = UIColor.gray.cgColor
+            acceptButton.setBackgroundImage(nil, for: .normal)
+            acceptButton.layer.cornerRadius = 5
+        }
     }
     
     private func termsAndUseToggle() {
         termsAndUseAccepted = !termsAndUseAccepted
-        
         if termsAndUseAccepted {
             checkBoxAcceptTermsAndUseImage.image = UIImage(named: "CheckboxSelected")
         } else {
             checkBoxAcceptTermsAndUseImage.image = UIImage(named: "CheckboxUnselected")
         }
-        
-        acceptButton.isEnabled = privacyAccepted && termsAndUseAccepted
+        setEnableButton(isEnable: privacyAccepted && termsAndUseAccepted)
     }
 }

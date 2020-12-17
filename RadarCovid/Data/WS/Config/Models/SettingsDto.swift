@@ -29,8 +29,10 @@ public struct SettingsDto: Codable {
     public var applicationVersion: ApplicationVersionDto?
     public var timeBetweenStates: TimeBetweenStatesDto?
     public var legalTermsVersion: String?
+    public var radarCovidDownloadUrl: String?
+    public var notificationReminder: Int64?
 
-    public init(responseDate: Int64?, exposureConfiguration: ExposureConfigurationDto?, minRiskScore: Int64?, minDurationForExposure: Int64?, riskScoreClassification: [RiskScoreClassificationDto]?, attenuationDurationThresholds: AttenuationDurationThresholdsDto?, attenuationFactor: AttenuationFactorDto?, applicationVersion: ApplicationVersionDto?, timeBetweenStates: TimeBetweenStatesDto?, legalTermsVersion: String?) {
+    public init(responseDate: Int64?, exposureConfiguration: ExposureConfigurationDto?, minRiskScore: Int64?, minDurationForExposure: Int64?, riskScoreClassification: [RiskScoreClassificationDto]?, attenuationDurationThresholds: AttenuationDurationThresholdsDto?, attenuationFactor: AttenuationFactorDto?, applicationVersion: ApplicationVersionDto?, timeBetweenStates: TimeBetweenStatesDto?, legalTermsVersion: String?, radarCovidDownloadUrl: String?, notificationReminder: Int64?) {
         self.responseDate = responseDate
         self.exposureConfiguration = exposureConfiguration
         self.minRiskScore = minRiskScore
@@ -41,6 +43,8 @@ public struct SettingsDto: Codable {
         self.applicationVersion = applicationVersion
         self.timeBetweenStates = timeBetweenStates
         self.legalTermsVersion = legalTermsVersion
+        self.radarCovidDownloadUrl = radarCovidDownloadUrl
+        self.notificationReminder = notificationReminder
 
     }
 

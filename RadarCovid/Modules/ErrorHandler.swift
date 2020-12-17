@@ -91,7 +91,7 @@ class ErrorHandlerImpl: ErrorHandler {
         debugPrint(description + " \(error)")
         alertDelegate?.showAlertOk(title: "ALERT_GENERIC_ERROR_TITLE".localized,
                                    message: description,
-                                   buttonTitle: "ALERT_OK_BUTTON".localized, nil)
+                                   buttonTitle: "ALERT_ACCEPT_BUTTON".localized, nil)
     }
     
     private func showErrorOpenSettings(_ error: Error, _ description: String) {
@@ -99,7 +99,7 @@ class ErrorHandlerImpl: ErrorHandler {
         
         alertDelegate?.showAlertCancelContinue(title: "ALERT_GENERIC_ERROR_TITLE".localizedAttributed,
                                                message: NSAttributedString(string: description),
-                                               buttonOkTitle: "ALERT_OK_BUTTON".localized,
+                                               buttonOkTitle: "ALERT_ACCEPT_BUTTON".localized,
                                                buttonCancelTitle: "ALERT_CANCEL_BUTTON".localized,
                                                buttonOkVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized,
                                                buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localized,
@@ -120,7 +120,6 @@ class ErrorHandlerImpl: ErrorHandler {
             showError(error, "DEBUG_ERROR: \(description)")
         }
     }
-    
 }
 
 class ErrorRecorderImpl: ErrorRecorder {

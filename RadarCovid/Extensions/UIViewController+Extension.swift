@@ -29,7 +29,7 @@ extension UIViewController {
         onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: (tapGestureRecognizer.view as? UILabel)?.text)
     }
 
-    @objc func onWebTap(tapGestureRecognizer: UITapGestureRecognizer, urlString: String? = nil) {
+    @objc func onWebTap(tapGestureRecognizer: UITapGestureRecognizer?, urlString: String? = nil) {
         guard var urlString = urlString else {
             return
         }

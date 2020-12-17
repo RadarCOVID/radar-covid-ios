@@ -11,18 +11,16 @@
 
 import UIKit
 
-class MyHealthReportedViewController: UIViewController {
+class MyHealthReportedViewController: BaseViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreinfoLabel: UILabel!
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var moreInfoView: UIView!
     
     var router: AppRouter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setFontTextStyle()
+        
         setupView()
         setupAccessibility()
     }
@@ -43,9 +41,7 @@ class MyHealthReportedViewController: UIViewController {
 
     private func setupAccessibility() {
         
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        titleLabel.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized
+        titleLabel?.accessibilityLabel = "ACC_DIAGNOSTIC_SENT_TITLE".localized
         
         moreInfoView.isAccessibilityElement = true
         moreInfoView.accessibilityTraits.insert(UIAccessibilityTraits.link)
@@ -58,14 +54,10 @@ class MyHealthReportedViewController: UIViewController {
         moreinfoLabel.accessibilityHint = "ACC_HINT".localized
         
         if UIAccessibility.isVoiceOverRunning {
-            titleLabel.isHidden = false
+            titleLabel?.isHidden = false
         } else {
-            titleLabel.isHidden = true
+            titleLabel?.isHidden = true
         }
-        
-        let strTitleFromBack: String = "ACC_HOME_TITLE".localized
-        backButton.accessibilityLabel = "\(strTitleFromBack)," + "ACC_BUTTON_BACK_TO".localized
-        backButton.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupView() {
@@ -76,5 +68,13 @@ class MyHealthReportedViewController: UIViewController {
         moreinfoLabel.isUserInteractionEnabled = true
         moreinfoLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                            action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+    }
+    
+    override func setAccesibilityBackButton() {
+        if let backButton = backButton {
+            backButton.isAccessibilityElement = true
+            backButton.accessibilityLabel =  "ACC_HOME_TITLE".localized + " " + "ACC_BUTTON_BACK_TO".localized
+            backButton.accessibilityHint = "ACC_HINT".localized
+        }
     }
 }

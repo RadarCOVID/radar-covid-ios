@@ -46,7 +46,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
         self.scheduleBackgroundTask()
     }
     
-    private func scheduleBackgroundTask() {
+    public func scheduleBackgroundTask() {
         
         let fakeRequestTask = BGAppRefreshTaskRequest(identifier: keyIdentifierFakeRequestFetch)
         fakeRequestTask.earliestBeginDate = self.fakeRequestRepository.getNextScheduledFakeRequestDate()

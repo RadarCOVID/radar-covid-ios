@@ -11,11 +11,11 @@
 
 import UIKit
 import RxSwift
+import ExposureNotification
 
-class ActivateCovidNotificationViewController: UIViewController {
-
+class ActivateCovidNotificationViewController: BaseViewController {
+    
     @IBOutlet weak var activateButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
     
     var router: AppRouter?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
@@ -26,32 +26,33 @@ class ActivateCovidNotificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setFontTextStyle()
+        
         setupView()
         setupAccessibility()
     }
-
+    
     @IBAction func onContinue(_ sender: Any) {
+        (UIApplication.shared.delegate as? AppDelegate)?.bluethoothUseCase?.initListener()
         
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
-                            "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.black)
+                                            "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER", UIColor.black)
         
-        radarStatusUseCase?.restoreLastStateAndSync().subscribe(
-                onError: { [weak self] error in
-                self?.errorHandler?.handle(error: error)
-                self?.activationFinished()
-            }, onCompleted: { [weak self] in
-                self?.activationFinished()
-        }).disposed(by: disposeBag)
+        radarStatusUseCase?.changeTracingStatus(active: true)
+            .subscribe(
+                onError: {_ in
+                    self.activationFinished()
+                },
+                onCompleted:{
+                    self.radarStatusUseCase?.restoreLastStateAndSync().subscribe().disposed(by: self.disposeBag)
+                    self.activationFinished()
+                }).disposed(by: disposeBag)
     }
     
     private func setupAccessibility() {
         activateButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         activateButton.accessibilityHint = "ACC_HINT".localized
         
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        titleLabel.accessibilityLabel = "ACC_ACTIVATE_COVID_NOTIFICATION_TITLE".localized
+        titleLabel?.accessibilityLabel = "ACC_ACTIVATE_COVID_NOTIFICATION_TITLE".localized
     }
     
     private func setupView() {

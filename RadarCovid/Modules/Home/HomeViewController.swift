@@ -13,10 +13,9 @@ import UIKit
 import RxSwift
 import DP3TSDK
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreInfoLabel: UILabel!
     @IBOutlet weak var topRadarTitle: NSLayoutConstraint!
     @IBOutlet weak var topActiveNotificationConstraint: NSLayoutConstraint!
@@ -39,7 +38,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var resetDataButton: UIButton!
     @IBOutlet weak var expositionDetailImage: UIImageView!
     var termsRepository: TermsAcceptedRepository!
-
+    @IBOutlet weak var btnShare: UIButton!
+    
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
     private let bgImageGreen = UIImage(named: "GradientBackgroundGreen")
@@ -56,34 +56,28 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setFontTextStyle()
+        
         setupAccessibility()
         setupBindings()
         setupUserInteraction()
         setupView()
-        if !termsRepository.termsAccepted {
-            isDisableAccesibility(isDisabble: true)
-            self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
-                TermsView.initWithParentViewController(viewController: self, delegate: self)
-            }
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        if UIAccessibility.isVoiceOverRunning {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                UIAccessibility.post(notification: .layoutChanged, argument: self.titleLabel)
-            }
+        if !termsRepository.termsAccepted {
+            router?.route(to: .termsUpdated, from: self, parameters: nil)
         }
+        
+        viewModel?.checkInitial()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel!.checkShowBackToHealthyDialog()
-        viewModel?.checkInitial()
+        viewModel?.checkShowBackToHealthyDialog()
+        viewModel?.checkRadarStatus()
+    }
+    
+    @IBAction func onShare(_ sender: Any) {
+        router?.route(to: .shareApp, from: self)
     }
     
     @IBAction func onReset(_ sender: Any) {
@@ -91,9 +85,9 @@ class HomeViewController: UIViewController {
         showAlertCancelContinue(
             title: "ALERT_HOME_RESET_TITLE".localizedAttributed,
             message: "ALERT_HOME_RESET_CONTENT".localizedAttributed,
-            buttonOkTitle: "ALERT_OK_BUTTON".localized,
+            buttonOkTitle: "ALERT_ACCEPT_BUTTON".localized,
             buttonCancelTitle: "ALERT_CANCEL_BUTTON".localized,
-            buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localized,
+            buttonOkVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized,
             buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localized
         ) { [weak self] () in
             self?.viewModel!.heplerQAReset()
@@ -129,7 +123,9 @@ class HomeViewController: UIViewController {
 
         if active {
             viewModel!.changeRadarStatus(true)
+            radarSwitch.accessibilityHint = "ACC_BUTTON_DEACTIVATE_RADAR".localized
         } else {
+            
             self.showAlertCancelContinue(
                 title: "ALERT_HOME_RADAR_TITLE".localizedAttributed(),
                 message: "ALERT_HOME_RADAR_CONTENT".localizedAttributed(),
@@ -140,6 +136,7 @@ class HomeViewController: UIViewController {
                 okHandler: { [weak self] in
                     self?.radarSwitch.isOn = true
                 }, cancelHandler: { [weak self] in
+                    self?.radarSwitch.accessibilityHint = "ACC_BUTTON_ACTIVATE_RADAR".localized
                     self?.viewModel?.changeRadarStatus(false)
             })
         }
@@ -159,11 +156,6 @@ class HomeViewController: UIViewController {
     private func setupAccessibility() {
         radarSwitch.isAccessibilityElement = true
 
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        titleLabel.accessibilityLabel = "ACC_HOME_TITLE".localized
-        titleLabel.isHidden = !UIAccessibility.isVoiceOverRunning
-        
         expositionTitleLabel.isAccessibilityElement = true
         expositionTitleLabel.accessibilityTraits.insert(UIAccessibilityTraits.button)
         expositionTitleLabel.accessibilityHint = "ACC_HINT".localized
@@ -181,6 +173,15 @@ class HomeViewController: UIViewController {
         notificationInactiveMessageLabel.isAccessibilityElement = true
         notificationInactiveMessageLabel.accessibilityHint = "ACC_HINT".localized
         notificationInactiveMessageLabel.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        
+        btnShare.isAccessibilityElement = true
+        btnShare.accessibilityLabel = "SHARE_LINK_DOWNLOAD".localized
+        btnShare.accessibilityHint = "ACC_HINT".localized
+        btnShare.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        
+        communicationButton.isAccessibilityElement = true
+        communicationButton.accessibilityHint = "ACC_HINT".localized
+        communicationButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
 
         activateNotificationButton.isAccessibilityElement = false
     }
@@ -271,10 +272,7 @@ class HomeViewController: UIViewController {
     }
     
     private func showTimeExposed() {
-        isDisableAccesibility(isDisabble: true)
-        self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
-            TimeExposedView.initWithParentViewController(viewController: self, delegate: self)
-        }
+        router?.route(to: .timeExposed, from: self, parameters: nil)
     }
 
     private func updateExpositionInfo(_ exposition: ExpositionInfo?) {
@@ -283,7 +281,7 @@ class HomeViewController: UIViewController {
         }
         switch exposition.level {
         case .exposed:
-            setExposed()
+            setExposed(since: exposition.since ?? Date())
         case .healthy:
             setHealthy()
         case .infected:
@@ -291,11 +289,22 @@ class HomeViewController: UIViewController {
         }
     }
 
-    private func setExposed() {
+    private func setExposed(since: Date) {
+       
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_HIGH".localized
-        expositionDescriptionLabel.attributedText = "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
-            withParams: ["CONTACT_PHONE".localized]
+        let remindingDays = self.viewModel?.checkRemindingExpositionDays(since: since)
+        let remindingDaysText =
+            remindingDays ?? 0 <= 1
+                ? "HOME_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remindingDays ?? 0)])
+                : "HOME_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(remindingDays ?? 0)])
+        let attributedText = NSMutableAttributedString.init(attributedString: "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
+                withParams: ["CONTACT_PHONE".localized]
+            )
         )
+        attributedText
+            .append(remindingDaysText)
+        expositionDescriptionLabel.attributedText = attributedText
+        expositionDescriptionLabel.setMagnifierFontSize()
         expositionView.image = bgImageOrange
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
@@ -303,9 +312,12 @@ class HomeViewController: UIViewController {
         radarSwitch.isHidden = false
     }
     
+   
+    
     private func setHealthy() {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_LOW".localized
         expositionDescriptionLabel.locKey  = "HOME_EXPOSITION_MESSAGE_LOW"
+
         expositionView.image = bgImageGreen
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
@@ -316,6 +328,7 @@ class HomeViewController: UIViewController {
     private func setInfected() {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_POSITIVE".localized
         expositionDescriptionLabel.locKey = "HOME_EXPOSITION_MESSAGE_INFECTED"
+
         expositionView.image = bgImageRed
         communicationButton.isHidden = true
         topComunicationConstraint.constant = -(communicationButton.frame.size.height + bottomComunicationConstraint.constant)
@@ -364,21 +377,22 @@ class HomeViewController: UIViewController {
             radarMessageLabel.text = "HOME_RADAR_CONTENT_ACTIVE".localized
             radarMessageLabel.textColor = UIColor.black
             radarSwitch.isOn = true
-            radarSwitch.accessibilityLabel = "ACC_BUTTON_DEACTIVATE_RADAR".localized
+            radarSwitch.accessibilityHint = "ACC_BUTTON_DEACTIVATE_RADAR".localized
             setImagesInactive(false)
         case .inactive:
             radarTitleLabel.text = "HOME_RADAR_TITLE_INACTIVE".localized
             radarMessageLabel.text = "HOME_RADAR_CONTENT_INACTIVE".localized
             radarMessageLabel.textColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
             radarSwitch.isOn = false
-            radarSwitch.accessibilityLabel = "ACC_BUTTON_ACTIVATE_RADAR".localized
+            radarSwitch.accessibilityHint = "ACC_BUTTON_ACTIVATE_RADAR".localized
             setImagesInactive(true)
         case .disabled:
             radarTitleLabel.text = "HOME_RADAR_TITLE_INACTIVE".localized
             radarMessageLabel.text = "HOME_RADAR_MESSAGE_DISABLED".localized
             radarMessageLabel.textColor = UIColor.black
             radarSwitch.isOn = false
-            radarSwitch.accessibilityLabel = "ACC_BUTTON_ACTIVATE_RADAR".localized
+
+            radarSwitch.accessibilityHint = ""
             radarSwitch.isHidden = true
             setImagesInactive(false)
         }
@@ -427,7 +441,7 @@ class HomeViewController: UIViewController {
     private func navigateToDetail(_ info: ExpositionInfo) {
         switch info.level {
         case .healthy:
-            router?.route(to: Routes.exposition, from: self, parameters: info.lastCheck)
+            router?.route(to: Routes.healthyExposition, from: self, parameters: info.lastCheck)
         case .exposed:
             router?.route(to: Routes.highExposition, from: self, parameters: info.since)
         case .infected:
@@ -445,33 +459,12 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func isDisableAccesibility(isDisabble: Bool) {
-        self.scrollView.isHidden = isDisabble
-        self.communicationButton.isHidden = isDisabble
-        
-        if let tab = self.parent as? TabBarController {
-            tab.isDissableAccesibility(isDisabble: isDisabble)
-        }
-    }
-    
     @objc private func heplerQAChangeHealthy() {
         self.viewModel?.heplerQAChangeHealthy()
     }
     
     @objc private func heplerQAShowAlert() {
         showTimeExposed()
-    }
-}
-
-extension HomeViewController: TermsViewProtocol {
-    func hiddenTermsdView() {
-        isDisableAccesibility(isDisabble: false)
-    }
-}
-
-extension HomeViewController: TimeExposedProtocol {
-    func hiddenTimeExposedView() {
-        isDisableAccesibility(isDisabble: false)
     }
 }
 

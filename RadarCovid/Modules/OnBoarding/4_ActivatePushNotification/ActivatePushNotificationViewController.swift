@@ -12,26 +12,24 @@
 import UIKit
 import RxSwift
 
-class ActivatePushNotificationViewController: UIViewController {
+class ActivatePushNotificationViewController: BaseViewController {
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var allowButton: UIButton!
     
     var router: AppRouter?
     private let disposeBag = DisposeBag()
     var notificationHandler: NotificationHandler?
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setFontTextStyle()
+        
         setupAccessibility()
     }
     
     @IBAction func onContinue(_ sender: Any) {
 
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
-                                 "ACTIVATE_PUSH_NOTIFICATION_POPUP_HOVER".localizedAttributed(), UIColor.black)
+                                 "ACTIVATE_PUSH_NOTIFICATION_POPUP_HOVER", UIColor.black)
         
         self.notificationHandler?.setupNotifications().subscribe(onNext: { [weak self] _ in
             DispatchQueue.main.async {
@@ -46,9 +44,7 @@ class ActivatePushNotificationViewController: UIViewController {
         allowButton.accessibilityHint = "ACC_HINT".localized
         allowButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
 
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        titleLabel.accessibilityLabel = "ACC_ACTIVATE_PUSH_NOTIFICATION_TITLE".localized
+        titleLabel?.accessibilityLabel = "ACC_ACTIVATE_PUSH_NOTIFICATION_TITLE".localized
     }
     
     private func navigateHome() {

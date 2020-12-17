@@ -17,6 +17,7 @@ import Logging
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var injection: Injection = Injection()
+    var bluethoothUseCase: BluethoothReminderUseCase?
     
     private let logger = Logger(label: "AppDelegate")
 
@@ -31,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let setupUseCase = injection.resolve(SetupUseCase.self)!
         let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!
         fakeRequestUseCase.initBackgroundTask()
-
+        bluethoothUseCase = injection.resolve(BluethoothReminderUseCase.self)!
         do {
             try setupUseCase.initializeSDK()
         } catch {
@@ -40,8 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
         return true
     }
-    
-    
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -61,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+
 
     static var shared: AppDelegate? {
        return UIApplication.shared.delegate as? AppDelegate

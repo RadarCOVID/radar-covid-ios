@@ -32,23 +32,61 @@ public enum Routes {
     case myHealthStep1
     case myHealthStep2
     case myHealthReported
-    case exposition
+    case healthyExposition
     case highExposition
     case positiveExposed
     case activateCovid
     case activatePush
     case changeLanguage
+    case shareApp
+    case timeExposed
+    case termsUpdated
+    case detailInteroperability
+    case infoApp
+    case helpSettings
 }
+
 
 class AppRouter: Router {
 
     var parentVC: UIViewController?
 
+    func routes(to routeIDs: [Routes], from context: UIViewController, parameters: [Any?]?) {
+        parentVC = context
+        
+        var index:Int = 1
+        var newParentViewController: UIViewController?
+
+        
+        for itemRouteId in routeIDs {
+            
+            let sendParameters = index >= routeIDs.count ? parameters : nil
+
+            if index == 1 {
+                let nvC = context.navigationController
+                route(to: itemRouteId, from: context, parameters: sendParameters)
+                newParentViewController = nvC?.viewControllers.first
+            } else {
+                route(to: itemRouteId, from: newParentViewController ?? context, parameters: sendParameters)
+            }
+            index = 1 + index
+        }
+    }
+    
     func route(to routeID: Routes, from context: UIViewController, parameters: Any?...) {
+        route(to: routeID, from: context, parameters: parameters.map { $0 } )
+    }
+    
+    func route(to routeID: Routes, from context: UIViewController, parameters: [Any?]?) {
         parentVC = context
         switch routeID {
         case .root:
-            routeToRoot(context)
+            if let param = parameters,
+               param.count >= 2 {
+                routeToRoot(context, urlSchemeRedirect: param[0] as? [Routes], paramsUrlScheme: param[1] as? [Any?])
+            } else {
+                routeToRoot(context, urlSchemeRedirect: nil, paramsUrlScheme: [])
+            }
         case .welcome:
             routeToWelcome(context)
         case .onBoarding:
@@ -64,19 +102,52 @@ class AppRouter: Router {
         case .myHealthStep0:
             routeToMyHealthStep0(context)
         case .myHealthStep1:
-            routeToMyHealthStep1(context)
+            if let param = parameters,
+               param.count >= 1 {
+                routeToMyHealthStep1(context, covidCode: param[0] as? String ?? "")
+            } else {
+                routeToMyHealthStep1(context)
+            }
         case .myHealthStep2:
-            routeToMyHealthStep2(context, codeString: parameters[0] as? String ?? "", dateNotificationPositive: parameters[1] as? Date)
+            if let param = parameters,
+               param.count >= 2 {
+                routeToMyHealthStep2(context, codeString: param[0] as? String ?? "", dateNotificationPositive: param[1] as? Date)
+            }
+            
         case .myHealthReported:
             routeToMyHealthReported(context)
-        case .exposition:
-            routeToExposition(context, lastCheck: parameters[0] as? Date)
+        case .healthyExposition:
+            if let param = parameters,
+               param.count >= 1 {
+                routeToHealthyExposition(context, lastCheck: param[0] as? Date)
+            }
+            
         case .highExposition:
-            routeToHighExposition(context, since: parameters[0] as? Date)
+            if let param = parameters,
+               param.count >= 1 {
+                routeToHighExposition(context, since: param[0] as? Date)
+            }
+            
         case .positiveExposed:
-            routeToPositiveExposed(context, since: parameters[0] as? Date)
+            if let param = parameters,
+               param.count >= 1 {
+                routeToPositiveExposed(context, since: param[0] as? Date)
+            }
+            
         case .changeLanguage:
             routeToRootAndResetView(context)
+        case .shareApp:
+            routeToShareApp(context)
+        case .timeExposed:
+            routeToTimeExposed(context)
+        case .termsUpdated:
+            routeToTermsUpdated(context)
+        case .detailInteroperability:
+            routeToDetailInteroperability(context)
+        case .infoApp:
+            routeToInfoApp(context)
+        case .helpSettings:
+            routeToHelpSettings(context)
         }
     }
 
@@ -85,14 +156,46 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(onBoardingVC!, animated: true)
     }
 
-    private func routeToRoot(_ context: UIViewController) {
+    private func routeToRoot(_ context: UIViewController, urlSchemeRedirect: [Routes]?, paramsUrlScheme: [Any?]?) {
         let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
+        rootVC?.urlSchemeRedirect = urlSchemeRedirect
+        rootVC?.paramsUrlScheme = paramsUrlScheme
         loadViewAsRoot(navController: context as? UINavigationController, view: rootVC!)
     }
     
     private func routeToRootAndResetView(_ context: UIViewController) {
         let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
         loadViewAsRoot(navController: context.navigationController, view: rootVC!)
+    }
+    
+    private func routeToShareApp(_ context: UIViewController) {
+        let shareAppVC = AppDelegate.shared?.injection.resolve(ShareAppViewController.self)!
+        loadViewAsModal(viewParentController: context, view: shareAppVC!)
+    }
+    
+    private func routeToTimeExposed(_ context: UIViewController) {
+        let timeExposedVC = AppDelegate.shared?.injection.resolve(TimeExposedViewController.self)!
+        loadViewAsModal(viewParentController: context, view: timeExposedVC!)
+    }
+    
+    private func routeToTermsUpdated(_ context: UIViewController) {
+        let termsUpdatedVC = AppDelegate.shared?.injection.resolve(TermsUpdatedViewController.self)!
+        loadViewAsModal(viewParentController: context, view: termsUpdatedVC!)
+    }
+    
+    private func routeToDetailInteroperability(_ context: UIViewController) {
+        let termsUpdatedVC = AppDelegate.shared?.injection.resolve(DetailInteroperabilityViewController.self)!
+        loadViewAsModal(viewParentController: context, view: termsUpdatedVC!)
+    }
+    
+    private func routeToInfoApp(_ context: UIViewController) {
+        let infoAppVC = AppDelegate.shared?.injection.resolve(InformationViewController.self)!
+        context.navigationController?.pushViewController(infoAppVC!, animated: true)
+    }
+    
+    private func routeToHelpSettings(_ context: UIViewController) {
+        let helpSettingsVC = AppDelegate.shared?.injection.resolve(HelpSettingsViewController.self)!
+        loadViewAsModal(viewParentController: context, view: helpSettingsVC!)
     }
 
     private func routeToHome(_ context: UIViewController) {
@@ -120,8 +223,9 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(myHealthStep0VC!, animated: true)
     }
     
-    private func routeToMyHealthStep1(_ context: UIViewController) {
+    private func routeToMyHealthStep1(_ context: UIViewController, covidCode: String = "") {
         let myHealthStep1VC = AppDelegate.shared?.injection.resolve(MyHealthStep1ViewController.self)!
+        myHealthStep1VC?.covidCode = covidCode
         context.navigationController?.pushViewController(myHealthStep1VC!, animated: true)
     }
     
@@ -137,8 +241,8 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(myHealthReportedVC!, animated: true)
     }
 
-    private func routeToExposition(_ context: UIViewController, lastCheck: Date?) {
-        let expositionVC = AppDelegate.shared?.injection.resolve(ExpositionViewController.self)!
+    private func routeToHealthyExposition(_ context: UIViewController, lastCheck: Date?) {
+        let expositionVC = AppDelegate.shared?.injection.resolve(HealthyExpositionViewController.self)!
         expositionVC?.lastCheck = lastCheck
         context.navigationController?.pushViewController(expositionVC!, animated: true)
     }
@@ -159,11 +263,21 @@ class AppRouter: Router {
         let welcomeVC = AppDelegate.shared!.injection.resolve(WelcomeViewController.self)!
         loadViewAsRoot(navController: context.navigationController, view: welcomeVC)
     }
-
+    
     private func loadViewAsRoot(navController: UINavigationController?, view: UIViewController, animated: Bool = false) {
         navController?.viewControllers.removeAll()
         navController?.popToRootViewController(animated: false)
         navController?.pushViewController(view, animated: animated)
+    }
+    
+    private func loadViewAsModal(viewParentController: UIViewController, view: UIViewController) {
+        view.modalPresentationStyle = .overFullScreen
+        view.modalTransitionStyle = .crossDissolve
+        viewParentController.present(view, animated: true, completion: nil)
+    }
+    
+    func dissmiss(view: UIViewController, animated: Bool) {
+        view.dismiss(animated: animated, completion: nil)
     }
 
     func popToRoot(from: UIViewController, animated: Bool) {

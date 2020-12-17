@@ -13,9 +13,8 @@ import UIKit
 import MessageUI
 import RxSwift
 
-class HelpLineViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class HelpLineViewController: BaseViewController, MFMailComposeViewControllerDelegate {
 
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var phoneView: BackgroundView!
     @IBOutlet weak var faqWebLabel: UILabel!
     @IBOutlet weak var infoWebLabel: UILabel!
@@ -28,7 +27,7 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setFontTextStyle()
+        
         setupAccessibility()
         setupView()
     }
@@ -64,9 +63,7 @@ class HelpLineViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     private func setupAccessibility() {
         
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        titleLabel.accessibilityLabel = "ACC_MORE_INFO".localized
+        titleLabel?.accessibilityLabel = "ACC_MORE_INFO".localized
 
         faqWebLabel.isAccessibilityElement = true
         faqWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)

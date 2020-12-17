@@ -12,10 +12,9 @@
 import UIKit
 import RxSwift
 
-class ProximityViewController: UIViewController {
+class ProximityViewController: BaseViewController {
 
     @IBOutlet weak var continueButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
 
     var router: AppRouter?
     var radarStatusUseCase: RadarStatusUseCase?
@@ -23,15 +22,12 @@ class ProximityViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
-        self.view.setFontTextStyle()
         super.viewDidLoad()
-        self.view.setFontTextStyle()
         
         setupAccessibility()
     }
     
     @IBAction func onContinue(_ sender: Any) {
-        
         if radarStatusUseCase!.isTracingInit() {
             router!.route(to: .activatePush, from: self)
         } else {
@@ -45,8 +41,6 @@ class ProximityViewController: UIViewController {
         continueButton.accessibilityHint = "ACC_HINT".localized
         continueButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        titleLabel.accessibilityLabel = "ACC_HOW_WORKS_TITLE".localized
+        titleLabel?.accessibilityLabel = "ACC_HOW_WORKS_TITLE".localized
     }
 }

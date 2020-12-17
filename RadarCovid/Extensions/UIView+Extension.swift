@@ -17,7 +17,7 @@ extension UIView {
         withColor color: UIColor = UIColor.blueyGrey90,
         alpha: CGFloat = 1,
         _ message: String? = nil,
-        _ attributedMessage: NSAttributedString? = nil,
+        _ attributedMessage: String? = nil,
         _ textColor: UIColor? = nil,
         _ completion: (() -> Void)? = nil,
         tagTransparentView: Int = 1111,
@@ -36,17 +36,28 @@ extension UIView {
         transparentView!.isAccessibilityElement = true
         
         if let messageView = transparentView?.messageView {
-            if let regularText = message {
-                messageView.text = regularText
-            } else {
-                messageView.attributedText = attributedMessage
-            }
             messageView.textColor = textColor ?? UIColor.black
-            messageView.font = UIFont(name: "Helvetica Neue", size: 26)
             messageView.numberOfLines = 0
-            messageView.minimumScaleFactor = 0.1
+//            messageView.minimumScaleFactor = 0.1
             messageView.tag = tagMenssagetView
             messageView.textAlignment = .center
+            if let regularText = message {
+                messageView.text = regularText
+            } else if let attbMessage = attributedMessage{
+                let newStr = attbMessage.localizedAttributed().mutableCopy() as! NSMutableAttributedString
+                newStr.beginEditing()
+                newStr.enumerateAttribute(.font, in: NSRange(location: 0, length: newStr.string.utf16.count)) { (value, range, stop) in
+                    if let oldFont = value as? UIFont {
+                        let newFont = oldFont.withSize(26)
+                        newStr.addAttribute(.font, value: newFont, range: range)
+                    }
+                }
+                newStr.endEditing()
+                messageView.attributedText = newStr
+              
+                
+            }
+           
         }
         
         DispatchQueue.main.async { [weak self] in

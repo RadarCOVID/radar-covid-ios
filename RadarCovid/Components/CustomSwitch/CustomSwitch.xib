@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,14 +25,14 @@
                     <rect key="frame" x="0.0" y="0.0" width="49" height="40"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckboxUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="nkg-yX-hqd">
-                            <rect key="frame" x="15.5" y="3" width="18" height="18"/>
+                            <rect key="frame" x="6.5" y="3" width="36" height="36"/>
                             <accessibility key="accessibilityConfiguration">
                                 <accessibilityTraits key="traits" none="YES"/>
                                 <bool key="isElement" value="NO"/>
                             </accessibility>
                             <constraints>
-                                <constraint firstAttribute="width" constant="18" id="C3v-iO-uEM"/>
-                                <constraint firstAttribute="height" constant="18" id="t8z-u5-HS3"/>
+                                <constraint firstAttribute="width" constant="36" id="C3v-iO-uEM"/>
+                                <constraint firstAttribute="height" constant="36" id="t8z-u5-HS3"/>
                             </constraints>
                         </imageView>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="35V-uJ-mhN">
@@ -70,7 +70,7 @@
         </view>
     </objects>
     <resources>
-        <image name="CheckboxUnselected" width="16" height="16"/>
+        <image name="CheckboxUnselected" width="36" height="36"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

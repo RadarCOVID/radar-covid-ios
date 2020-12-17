@@ -78,6 +78,10 @@ extension String {
         let actualSize = self.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], attributes: [.font : font], context: nil)
         return actualSize.height
     }
+    
+    var isNumber: Bool {
+        return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+    }
 }
 
 extension NSMutableAttributedString {

@@ -10,6 +10,7 @@
 //
 
 import Foundation
+import UIKit
 import RxSwift
 import DP3TSDK
 
@@ -23,8 +24,11 @@ class HomeViewModel {
     var syncUseCase: SyncUseCase?
     var resetDataUseCase: ResetDataUseCase?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
+    var reminderNotificationUseCase: ReminderNotificationUseCase?
+    var settingsRepository: SettingsRepository?
     
     var radarStatus = BehaviorSubject<RadarStatus>(value: .active)
+    var isErrorTracingDP3T = BehaviorSubject<Bool>(value: false)
     var checkState = BehaviorSubject<Bool>(value: false)
     var timeExposedDismissed = BehaviorSubject<Bool>(value: false)
     var showBackToHealthyDialog = PublishSubject<Bool>()
@@ -38,16 +42,23 @@ class HomeViewModel {
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
                 self?.checkInitialExposition()
-                
+                self?.isErrorTracingDP3T.onNext(false)
             }, onError: {  [weak self] error in
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
+                self?.checkInitialExposition()
+                self?.isErrorTracingDP3T.onNext(true)
             }).disposed(by: disposeBag)
     }
     
     func checkInitial() {
+        checkRadarStatus()
+        reminderNotificationUseCase?.cancel()
+        (UIApplication.shared.delegate as? AppDelegate)?.bluethoothUseCase?.initListener()
+    }
+    
+    func checkRadarStatus() {
         changeRadarStatus(radarStatusUseCase?.isTracingActive() ?? false)
-        checkInitialExposition()
     }
     
     private func checkInitialExposition() {
@@ -71,7 +82,28 @@ class HomeViewModel {
         } else {
             expositionInfo.onNext(exposition)
             errorState.onNext(nil)
+            
+            guard let isErrorTracing = try? isErrorTracingDP3T.value() else {
+                return
+            }
+            
+            if (exposition.level != .infected &&  !isErrorTracing && (radarStatusUseCase?.isTracingActive() ?? false)) {
+                self.radarStatus.onNext(.active)
+            } else if exposition.level == .infected {
+                self.radarStatus.onNext(.disabled)
+            }
+
         }
+    }
+    
+    func checkRemindingExpositionDays(since: Date) -> Int{
+        let minutesInAHour = 60
+        let hoursInADay = 24
+        let formatter = DateFormatter()
+        formatter.dateFormat = Date.appDateFormat
+        let daysSinceLastInfection = Date().days(sinceDate: since) ?? 1
+        let daysForHealty = Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0) / minutesInAHour / hoursInADay
+        return daysForHealty - daysSinceLastInfection
     }
     
     func restoreLastStateAndSync(cb: (() -> Void)? = nil) {

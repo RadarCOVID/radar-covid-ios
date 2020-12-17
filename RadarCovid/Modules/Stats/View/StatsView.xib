@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatsViewController" customModule="Radar_COVID" customModuleProvider="target">
+            <connections>
+                <outlet property="cneLinkLabel" destination="NXG-34-TZt" id="MpR-7f-feU"/>
+                <outlet property="countConnectedCountryLabel" destination="68V-Rw-VC0" id="pPx-1y-Jp0"/>
+                <outlet property="countDonwloadAppLabel" destination="xr5-yF-fvF" id="MuY-EZ-VlJ"/>
+                <outlet property="countPositiveLabel" destination="xSY-ZP-1dF" id="ZJK-rU-iE4"/>
+                <outlet property="desCountConnectedCountryLabel" destination="o7q-Sl-RCV" id="fwn-M2-88H"/>
+                <outlet property="desCountDonwloadAppLabel" destination="EaK-xh-l51" id="Yv9-hi-Mze"/>
+                <outlet property="desCountPositiveLabel" destination="q7a-DZ-XfD" id="rgs-0d-jYN"/>
+                <outlet property="knowConnectedCountryLabel" destination="qac-c6-3zd" id="H0z-xv-8IU"/>
+                <outlet property="statsLinkLabel" destination="fv1-eW-Ij4" id="FjI-sX-JFL"/>
+                <outlet property="titleLabel" destination="DKx-MS-HoY" id="rdm-KR-jrK"/>
+                <outlet property="updateDateLabel" destination="RTs-Kg-hlt" id="qxz-DS-xFa"/>
+                <outlet property="view" destination="KgR-8k-I7v" id="tB5-OU-mOK"/>
+                <outletCollection property="cards" destination="Fch-x2-DNX" collectionClass="NSMutableArray" id="Bcb-Bv-tgY"/>
+                <outletCollection property="cards" destination="JeL-mz-XO3" collectionClass="NSMutableArray" id="YWn-zI-fGd"/>
+                <outletCollection property="cards" destination="bAd-lB-VRO" collectionClass="NSMutableArray" id="Rhz-fg-Q6j"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="KgR-8k-I7v">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3TC-aG-68C">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bhs-J4-zz0">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="753"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estadísticas de Radar COVID" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DKx-MS-HoY">
+                                    <rect key="frame" x="20" y="60" width="374" height="26.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="STATS_TITLE"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datos actualizados 00/00/0000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTs-Kg-hlt">
+                                    <rect key="frame" x="20" y="126.5" width="374" height="21.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="STATS_UPDATE"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="T6v-mD-0H5">
+                                    <rect key="frame" x="20" y="158" width="374" height="453"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAd-lB-VRO" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="140.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statsDownload" translatesAutoresizingMaskIntoConstraints="NO" id="tX3-uw-P6S">
+                                                    <rect key="frame" x="178" y="13" width="18" height="18"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" image="YES" staticText="YES"/>
+                                                    </accessibility>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="evs-tV-5eS"/>
+                                                        <constraint firstAttribute="width" constant="18" id="s3C-Hu-jWJ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descargar de Radar COVID" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaK-xh-l51">
+                                                    <rect key="frame" x="20" y="36" width="334" height="48"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="STATS_DOWNLOAD_APP"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xr5-yF-fvF">
+                                                    <rect key="frame" x="20" y="94" width="334" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tX3-uw-P6S" firstAttribute="centerX" secondItem="bAd-lB-VRO" secondAttribute="centerX" id="0rw-ln-hLy"/>
+                                                <constraint firstAttribute="trailing" secondItem="EaK-xh-l51" secondAttribute="trailing" constant="20" symbolic="YES" id="5qZ-gp-ydz"/>
+                                                <constraint firstItem="EaK-xh-l51" firstAttribute="leading" secondItem="bAd-lB-VRO" secondAttribute="leading" constant="20" symbolic="YES" id="BWA-Sn-U4F"/>
+                                                <constraint firstItem="EaK-xh-l51" firstAttribute="top" secondItem="tX3-uw-P6S" secondAttribute="bottom" constant="5" id="Bsm-Pc-mTv"/>
+                                                <constraint firstItem="xr5-yF-fvF" firstAttribute="leading" secondItem="bAd-lB-VRO" secondAttribute="leading" constant="20" symbolic="YES" id="BuH-Dp-xVL"/>
+                                                <constraint firstItem="xr5-yF-fvF" firstAttribute="top" secondItem="EaK-xh-l51" secondAttribute="bottom" constant="10" id="ROa-d6-Ifo"/>
+                                                <constraint firstAttribute="bottom" secondItem="xr5-yF-fvF" secondAttribute="bottom" constant="20" id="S6f-ee-Qfk"/>
+                                                <constraint firstAttribute="trailing" secondItem="xr5-yF-fvF" secondAttribute="trailing" constant="20" symbolic="YES" id="ZbG-AQ-IVj"/>
+                                                <constraint firstItem="tX3-uw-P6S" firstAttribute="top" secondItem="bAd-lB-VRO" secondAttribute="top" constant="13" id="xVz-ll-A4k"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fch-x2-DNX" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="146.5" width="374" height="142.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statsPositive" translatesAutoresizingMaskIntoConstraints="NO" id="G3U-Qg-YtE">
+                                                    <rect key="frame" x="178" y="13" width="18" height="18"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" image="YES" staticText="YES"/>
+                                                    </accessibility>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="18" id="Itq-rk-EdJ"/>
+                                                        <constraint firstAttribute="height" constant="18" id="J2O-H1-Xkq"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7a-DZ-XfD">
+                                                    <rect key="frame" x="20" y="36" width="334" height="50"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Casos positivos declarados en Radar COVID">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <font key="NSFont" metaFont="system" size="20"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="STATS_CODES_PLACEHOLDER"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSY-ZP-1dF">
+                                                    <rect key="frame" x="50" y="96" width="274" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="G3U-Qg-YtE" firstAttribute="top" secondItem="Fch-x2-DNX" secondAttribute="top" constant="13" id="1yl-6L-dym"/>
+                                                <constraint firstItem="q7a-DZ-XfD" firstAttribute="top" secondItem="G3U-Qg-YtE" secondAttribute="bottom" constant="5" id="BGM-dc-tmw"/>
+                                                <constraint firstItem="xSY-ZP-1dF" firstAttribute="leading" secondItem="Fch-x2-DNX" secondAttribute="leading" constant="50" id="E7C-hA-hOk"/>
+                                                <constraint firstAttribute="trailing" secondItem="xSY-ZP-1dF" secondAttribute="trailing" constant="50" id="I7k-xI-M77"/>
+                                                <constraint firstAttribute="bottom" secondItem="xSY-ZP-1dF" secondAttribute="bottom" constant="20" id="Jo0-YI-n5f"/>
+                                                <constraint firstAttribute="trailing" secondItem="q7a-DZ-XfD" secondAttribute="trailing" constant="20" symbolic="YES" id="gM1-zh-Pqp"/>
+                                                <constraint firstItem="xSY-ZP-1dF" firstAttribute="top" secondItem="q7a-DZ-XfD" secondAttribute="bottom" constant="10" id="nq0-BI-GIg"/>
+                                                <constraint firstItem="G3U-Qg-YtE" firstAttribute="centerX" secondItem="Fch-x2-DNX" secondAttribute="centerX" id="oBb-8j-Ww6"/>
+                                                <constraint firstItem="q7a-DZ-XfD" firstAttribute="leading" secondItem="Fch-x2-DNX" secondAttribute="leading" constant="20" symbolic="YES" id="sLR-ox-IQd"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeL-mz-XO3" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="295" width="374" height="158"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statsInteroperability" translatesAutoresizingMaskIntoConstraints="NO" id="Err-bn-JmQ">
+                                                    <rect key="frame" x="178" y="13" width="18" height="18"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" image="YES" staticText="YES"/>
+                                                    </accessibility>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="jNs-hw-cHo"/>
+                                                        <constraint firstAttribute="width" constant="18" id="s8s-r2-VgH"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Países conectados con Radar COVID" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7q-Sl-RCV">
+                                                    <rect key="frame" x="20" y="36" width="334" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="STATS_CONNECTED_COUNTRY"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68V-Rw-VC0">
+                                                    <rect key="frame" x="20" y="70" width="334" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="conoce los países conectados" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qac-c6-3zd">
+                                                    <rect key="frame" x="20" y="116.5" width="334" height="21.5"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" button="YES" staticText="YES"/>
+                                                    </accessibility>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" name="degradado"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="STATS_KNOW_CONNECTED_COUNTRY"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Err-bn-JmQ" firstAttribute="top" secondItem="JeL-mz-XO3" secondAttribute="top" constant="13" id="02u-TM-vNk"/>
+                                                <constraint firstItem="o7q-Sl-RCV" firstAttribute="top" secondItem="Err-bn-JmQ" secondAttribute="bottom" constant="5" id="8UU-Ql-aVo"/>
+                                                <constraint firstItem="68V-Rw-VC0" firstAttribute="top" secondItem="o7q-Sl-RCV" secondAttribute="bottom" constant="10" id="GgB-bu-3Or"/>
+                                                <constraint firstAttribute="trailing" secondItem="o7q-Sl-RCV" secondAttribute="trailing" constant="20" id="L0D-o4-eE3"/>
+                                                <constraint firstItem="68V-Rw-VC0" firstAttribute="leading" secondItem="JeL-mz-XO3" secondAttribute="leading" constant="20" symbolic="YES" id="MmJ-Kq-se9"/>
+                                                <constraint firstItem="qac-c6-3zd" firstAttribute="leading" secondItem="JeL-mz-XO3" secondAttribute="leading" constant="20" id="RBp-LY-CtQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="68V-Rw-VC0" secondAttribute="trailing" constant="20" symbolic="YES" id="cpJ-rl-wlM"/>
+                                                <constraint firstAttribute="trailing" secondItem="qac-c6-3zd" secondAttribute="trailing" constant="20" id="hNx-1A-3Mk"/>
+                                                <constraint firstItem="qac-c6-3zd" firstAttribute="top" secondItem="68V-Rw-VC0" secondAttribute="bottom" constant="20" id="lvp-6C-hYh"/>
+                                                <constraint firstItem="o7q-Sl-RCV" firstAttribute="leading" secondItem="JeL-mz-XO3" secondAttribute="leading" constant="20" id="n4y-Do-dBK"/>
+                                                <constraint firstItem="Err-bn-JmQ" firstAttribute="centerX" secondItem="JeL-mz-XO3" secondAttribute="centerX" id="qst-V6-Nk9"/>
+                                                <constraint firstAttribute="bottom" secondItem="qac-c6-3zd" secondAttribute="bottom" constant="20" id="yve-Lk-0lh"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consulta más datos estadísticos en:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byg-cZ-k3J">
+                                    <rect key="frame" x="20" y="631" width="374" height="21.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="STATS_WEB_SITE_PLACEHOLDER"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XM8-VC-NlY">
+                                    <rect key="frame" x="20" y="660.5" width="374" height="21.5"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statsCursor" translatesAutoresizingMaskIntoConstraints="NO" id="nEj-h8-e6Z">
+                                            <rect key="frame" x="0.0" y="6" width="13" height="13"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" image="YES" staticText="YES"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="13" id="ZOA-d0-ees"/>
+                                                <constraint firstAttribute="height" constant="13" id="jvR-uB-HqM"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Web Radar Covid, estadísticas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fv1-eW-Ij4">
+                                            <rect key="frame" x="29" y="0.0" width="345" height="21.5"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" name="degradado"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="STATS_WEB_LINK"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="nEj-h8-e6Z" firstAttribute="leading" secondItem="XM8-VC-NlY" secondAttribute="leading" id="Ced-MG-bVe"/>
+                                        <constraint firstItem="fv1-eW-Ij4" firstAttribute="top" secondItem="XM8-VC-NlY" secondAttribute="top" id="EbZ-Zl-2l0"/>
+                                        <constraint firstAttribute="trailing" secondItem="fv1-eW-Ij4" secondAttribute="trailing" id="JAq-B5-ExD"/>
+                                        <constraint firstItem="nEj-h8-e6Z" firstAttribute="top" secondItem="fv1-eW-Ij4" secondAttribute="top" constant="6" id="WG0-ZN-G5J"/>
+                                        <constraint firstItem="fv1-eW-Ij4" firstAttribute="leading" secondItem="nEj-h8-e6Z" secondAttribute="trailing" constant="16" id="h8i-XX-fEq"/>
+                                        <constraint firstAttribute="bottom" secondItem="fv1-eW-Ij4" secondAttribute="bottom" id="ooW-Ef-Mft"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1d9-3T-Ntz">
+                                    <rect key="frame" x="20" y="690" width="374" height="43"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statsCursor" translatesAutoresizingMaskIntoConstraints="NO" id="Reb-Wk-r4P">
+                                            <rect key="frame" x="0.0" y="6" width="13" height="13"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" image="YES" staticText="YES"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="13" id="nIz-GM-Igc"/>
+                                                <constraint firstAttribute="width" constant="13" id="yEc-ch-9WH"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Web Ministerio Sanidad, situación COVID-19" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXG-34-TZt">
+                                            <rect key="frame" x="29" y="0.0" width="345" height="43"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" name="degradado"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="STATS_WEB_LINK_CNECOVID_ISCII"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="Reb-Wk-r4P" firstAttribute="top" secondItem="NXG-34-TZt" secondAttribute="top" constant="6" id="h3C-2S-h1W"/>
+                                        <constraint firstAttribute="bottom" secondItem="NXG-34-TZt" secondAttribute="bottom" id="ifC-V7-sCQ"/>
+                                        <constraint firstItem="NXG-34-TZt" firstAttribute="top" secondItem="1d9-3T-Ntz" secondAttribute="top" id="j69-tT-fEh"/>
+                                        <constraint firstItem="NXG-34-TZt" firstAttribute="leading" secondItem="Reb-Wk-r4P" secondAttribute="trailing" constant="16" id="jpJ-8F-gao"/>
+                                        <constraint firstAttribute="trailing" secondItem="NXG-34-TZt" secondAttribute="trailing" id="qsa-MG-Pvm"/>
+                                        <constraint firstItem="Reb-Wk-r4P" firstAttribute="leading" secondItem="1d9-3T-Ntz" secondAttribute="leading" id="ruu-tO-R3X"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" name="veryLightPink"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="RTs-Kg-hlt" secondAttribute="trailing" constant="20" id="0EM-ED-XdR"/>
+                                <constraint firstAttribute="trailing" secondItem="XM8-VC-NlY" secondAttribute="trailing" constant="20" id="AtL-Ty-UJ4"/>
+                                <constraint firstItem="Byg-cZ-k3J" firstAttribute="leading" secondItem="Bhs-J4-zz0" secondAttribute="leading" constant="20" id="CuO-2D-1bM"/>
+                                <constraint firstItem="DKx-MS-HoY" firstAttribute="leading" secondItem="Bhs-J4-zz0" secondAttribute="leading" constant="20" symbolic="YES" id="HjE-8e-VVe"/>
+                                <constraint firstAttribute="trailing" secondItem="Byg-cZ-k3J" secondAttribute="trailing" constant="20" id="IbB-0d-FEz"/>
+                                <constraint firstItem="1d9-3T-Ntz" firstAttribute="top" secondItem="XM8-VC-NlY" secondAttribute="bottom" constant="8" id="LvG-ej-JaO"/>
+                                <constraint firstItem="XM8-VC-NlY" firstAttribute="leading" secondItem="Bhs-J4-zz0" secondAttribute="leading" constant="20" id="MVW-UV-YaY"/>
+                                <constraint firstItem="XM8-VC-NlY" firstAttribute="top" secondItem="Byg-cZ-k3J" secondAttribute="bottom" constant="8" id="ULz-08-0cG"/>
+                                <constraint firstItem="Byg-cZ-k3J" firstAttribute="top" secondItem="T6v-mD-0H5" secondAttribute="bottom" constant="20" id="WgH-Ov-VYT"/>
+                                <constraint firstItem="RTs-Kg-hlt" firstAttribute="top" secondItem="DKx-MS-HoY" secondAttribute="bottom" constant="40" id="XpO-E0-Iqa"/>
+                                <constraint firstAttribute="trailing" secondItem="DKx-MS-HoY" secondAttribute="trailing" constant="20" symbolic="YES" id="aKB-Zq-6xf"/>
+                                <constraint firstItem="RTs-Kg-hlt" firstAttribute="leading" secondItem="Bhs-J4-zz0" secondAttribute="leading" constant="20" id="abi-1g-VLy"/>
+                                <constraint firstItem="T6v-mD-0H5" firstAttribute="top" secondItem="RTs-Kg-hlt" secondAttribute="bottom" constant="10" id="f52-EM-r28"/>
+                                <constraint firstAttribute="bottom" secondItem="1d9-3T-Ntz" secondAttribute="bottom" constant="20" id="gn8-sL-EG0"/>
+                                <constraint firstItem="DKx-MS-HoY" firstAttribute="top" secondItem="Bhs-J4-zz0" secondAttribute="top" constant="60" id="jfX-Pt-C1q"/>
+                                <constraint firstAttribute="trailing" secondItem="T6v-mD-0H5" secondAttribute="trailing" constant="20" symbolic="YES" id="sd6-gk-8RG"/>
+                                <constraint firstItem="T6v-mD-0H5" firstAttribute="leading" secondItem="Bhs-J4-zz0" secondAttribute="leading" constant="20" symbolic="YES" id="tPI-ko-qTe"/>
+                                <constraint firstAttribute="trailing" secondItem="1d9-3T-Ntz" secondAttribute="trailing" constant="20" id="xJ8-bT-aKM"/>
+                                <constraint firstItem="1d9-3T-Ntz" firstAttribute="leading" secondItem="Bhs-J4-zz0" secondAttribute="leading" constant="20" id="xY9-DE-7on"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="rx1-Bg-fuh"/>
+                    <constraints>
+                        <constraint firstItem="Bhs-J4-zz0" firstAttribute="width" secondItem="Gzf-a8-BvN" secondAttribute="width" id="29A-Aw-zPP"/>
+                        <constraint firstItem="Bhs-J4-zz0" firstAttribute="top" secondItem="0fS-bl-kgi" secondAttribute="top" id="Cs8-kc-amZ"/>
+                        <constraint firstItem="Bhs-J4-zz0" firstAttribute="leading" secondItem="0fS-bl-kgi" secondAttribute="leading" id="Qs3-gy-QBm"/>
+                        <constraint firstItem="Bhs-J4-zz0" firstAttribute="trailing" secondItem="0fS-bl-kgi" secondAttribute="trailing" id="gyn-dg-dwj"/>
+                        <constraint firstItem="Bhs-J4-zz0" firstAttribute="bottom" secondItem="0fS-bl-kgi" secondAttribute="bottom" id="niK-o9-mgq"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="0fS-bl-kgi"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="Gzf-a8-BvN"/>
+                </scrollView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="bAK-DY-3Xi">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="155.5"/>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="d6y-Oq-ac8"/>
+            <color key="backgroundColor" name="veryLightPink"/>
+            <constraints>
+                <constraint firstItem="d6y-Oq-ac8" firstAttribute="bottom" secondItem="3TC-aG-68C" secondAttribute="bottom" id="Kvu-ah-eN4"/>
+                <constraint firstItem="bAK-DY-3Xi" firstAttribute="leading" secondItem="KgR-8k-I7v" secondAttribute="leading" id="Ydz-j8-7a4"/>
+                <constraint firstItem="bAK-DY-3Xi" firstAttribute="top" secondItem="KgR-8k-I7v" secondAttribute="top" id="a1r-4F-LYX"/>
+                <constraint firstItem="3TC-aG-68C" firstAttribute="trailing" secondItem="d6y-Oq-ac8" secondAttribute="trailing" id="eoB-du-uMe"/>
+                <constraint firstItem="d6y-Oq-ac8" firstAttribute="trailing" secondItem="bAK-DY-3Xi" secondAttribute="trailing" id="tlM-K0-hud"/>
+                <constraint firstItem="3TC-aG-68C" firstAttribute="top" secondItem="d6y-Oq-ac8" secondAttribute="top" id="wOF-cY-gh1"/>
+                <constraint firstItem="3TC-aG-68C" firstAttribute="leading" secondItem="d6y-Oq-ac8" secondAttribute="leading" id="ziy-HW-gZv"/>
+            </constraints>
+            <point key="canvasLocation" x="18.840579710144929" y="75.669642857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="organicColor" width="375" height="155.5"/>
+        <image name="statsCursor" width="15" height="15"/>
+        <image name="statsDownload" width="20" height="20"/>
+        <image name="statsInteroperability" width="20" height="24"/>
+        <image name="statsPositive" width="22" height="22"/>
+        <namedColor name="degradado">
+            <color red="0.28600001335144043" green="0.23100000619888306" blue="0.65499997138977051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

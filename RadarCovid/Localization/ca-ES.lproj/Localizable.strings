@@ -1,10 +1,13 @@
-/* 
-  Localization.strings
-  RadarCovid
+//
 
-  Created by Alejandro on 05/11/2020.
-  Copyright © 2020 Gobierno de España. All rights reserved.
-*/
+// Copyright (c) 2020 Gobierno de España
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+// SPDX-License-Identifier: MPL-2.0
+//
 "ACC_ACTION_MORE_DETAILS" = "Accedir a més detalls";
 "ACC_ACTIVATE_COVID_NOTIFICATION_TITLE" = "Activau el registre i les notificacions d’exposició a la COVID-19";
 "ACC_ACTIVATE_PUSH_NOTIFICATION_TITLE" = "Rebeu avisos de Radar COVID";
@@ -25,7 +28,7 @@
 "ACC_BUTTON_RADAR_CANCEL" = "Prem dues vegades per mantenir actiu";
 "ACC_BUTTON_RADAR_OK" = "Prem dues vegades per desactivar";
 "ACC_BUTTON_SELECTOR_DONE" = "Fet";
-"ACC_BUTTON_SELECTOR_SELECT" = "Canvia idioma";
+"ACC_BUTTON_SELECTOR_SELECT" = "Canviar idioma";
 "ACC_BUTTON_SEND_DIAGNOSTIC" = "Envia el diagnòstic anònimament";
 "ACC_CHECKBOX_PRIVACY" = "Accepto la política de privacitat";
 "ACC_CHECKBOX_USAGE_CONDITIONS" = "He llegit les condicions d'ús";
@@ -44,12 +47,13 @@
 "ACC_HINT_DISABLE" = "Prem dues vegades per desactivar";
 "ACC_HOME_TITLE" = "Radar";
 "ACC_HOW_WORKS_TITLE" = "Com funciona";
+"ACC_IMAGE_DESCRIPTION" = "Gràfic";
 "ACC_LANGUAGE_SELECTOR_PICKER" = "Selector de canvi d’idioma obert, part inferior de la pantalla, tria un idioma i després prem el botó Fet per continuar";
 "ACC_LIST_ACTION" = "Canviar";
 "ACC_LOW_EXPOSED_TITLE" = "La teva exposició és baixa";
 "ACC_MORE_INFO" = "Més informació";
 "ACC_MYDATA_TITLE" = "Dades";
-"ACC_MY_DATA_BULLET_2" = "No recollim cap dada de geolocalització, incloses les dades del G P S";
+"ACC_MY_DATA_BULLET_2" = "No recollim cap dada de geolocalització, incloses les dades del GPS";
 "ACC_MY_DIAGNOSTIC_TITLE" = "El meu diagnòstic";
 "ACC_MY_HEALTH_BACKBUTTON" = "Torna a inici.";
 "ACC_MY_HEALTH_CODE_EDIT_TEXT" = "Codi de diagnòstic";
@@ -62,6 +66,8 @@
 "ACC_POSITIVE_EXPOSED_TITLE" = "COVID-19 positiu";
 "ACC_SELECTED" = "Seleccionat";
 "ACC_SETTINGS_TITLE" = "Configuració";
+"ACC_SHARE_BUTTON" = "Compartir Radar COVID";
+"ACC_STATS_TITLE" = "Estadístiques";
 "ACC_SYMPTOMS_WHAT_TO_DO" = "Com he d’actuar si tinc símptomes";
 "ACC_WELCOME_TITLE" = "Benvingut a Radar COVID";
 "ACC_WHAT_TO_DO_TITLE" = "Què he de fer?";
@@ -79,20 +85,23 @@
 "ACTIVATE_PUSH_NOTIFICATION_POPUP_HOVER" = "Seleccionau <b>“Permet-ho”</b> en la finestra que apareixerà a continuació";
 "ACTIVATE_PUSH_NOTIFICATION_POPUP_TITLE" = "“Radar COVID” vol enviar-vos notificacions";
 "ACTIVATE_PUSH_NOTIFICATION_TITLE" = "Rebeu avisos de Radar COVID";
+"ACTIVE" = "Actiu";
 "ALERT_ACCEPT_BUTTON" = "Acceptar";
 "ALERT_BLUETOOTH_ERROR" = "Cal activar el Bluetooth";
 "ALERT_CANCEL_BUTTON" = "Cancel·la-ho";
 "ALERT_CANCEL_SEND_BUTTON" = "Cancel·lar l’enviament";
 "ALERT_CONFIRM_BUTTON" = "Confirmar";
 "ALERT_EXIT_MESSAGE" = "Esteu segurs que voleu sortir de l’aplicació?";
+"ALERT_GENERIC_ERROR" = "S'ha produït un error. Torna-ho a intentar més tard";
 "ALERT_GENERIC_ERROR_CONTENT" = "S’ha produït un error. Comprovau la connexió";
 "ALERT_GENERIC_ERROR_TITLE" = "Error";
-"ALERT_HIGH_EXPOSURE_HEALED_BULLET_1" = "Si no presenteu símptomes ni heu estat diagnosticats de COVID-19 en els últims dies, podeu tornar a la vostra rutina, mantenint les <a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/COVID19_como_protegerse.jpg\"><u>precaucions habituals</u></a>.";
+"ALERT_HIGH_EXPOSURE_HEALED_BULLET_1" = "Si no presenteu símptomes ni heu estat diagnosticats de COVID-19 en els últims dies, podeu tornar a la vostra rutina, mantenint les <a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/COVID19_como_protegerse.jpg\"><b>precaucions habituals</b></a>.";
 "ALERT_HIGH_EXPOSURE_HEALED_BULLET_1_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/COVID19_como_protegerse.jpg";
-"ALERT_HIGH_EXPOSURE_HEALED_BULLET_2" = "Si durant els últims dies heu presentat <a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/COVID19_sintomas.jpg\"><u>símptomes</u></a> (tos, febre o dificultat respiratòria), poseu-vos en contacte amb els serveis sanitaris al més aviat possible.";
+"ALERT_HIGH_EXPOSURE_HEALED_BULLET_2" = "Si durant els últims dies heu presentat <a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/COVID19_sintomas.jpg\"><b>símptomes</b></a> (tos, febre o dificultat respiratòria), poseu-vos en contacte amb els serveis sanitaris al més aviat possible.";
 "ALERT_HIGH_EXPOSURE_HEALED_BULLET_2_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/COVID19_sintomas.jpg";
 "ALERT_HIGH_EXPOSURE_HEALED_BULLET_3" = "Si heu estat diagnosticats de COVID-19, perquè puguem avisar altres persones de la seva exposició, cal que comuniqueu el vostre positiu COVID-19 a l'app.";
-"ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/documentos/20200325_Decalogo_como_actuar_COVID19.pdf\"><u>Més informació de com actuar ></u></a>";
+"ALERT_HIGH_EXPOSURE_HEALED_HEADER" = "Canvi d’estat";
+"ALERT_HIGH_EXPOSURE_HEALED_MORE_INFO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/documentos/20200325_Decalogo_como_actuar_COVID19.pdf\"><b>Més informació de com actuar</b></a>";
 "ALERT_HIGH_EXPOSURE_HEALED_MORE_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/documentos/20200325_Decalogo_como_actuar_COVID19.pdf";
 "ALERT_HIGH_EXPOSURE_HEALED_TITLE" = "Han passat 14 dies des del vostre últim contacte detectat amb algú diagnosticat de COVID-19. Per aquest motiu el vostre estat a l'aplicació torna a ser \"Sense contactes de risc identificats\". ";
 "ALERT_HOME_COVID_NOTIFICATION_OK_BUTTON" = "Activa-ho";
@@ -119,12 +128,14 @@
 "ALERT_NEED_BROWSER_CONTENT" = "Heu de tenir instal·lat un navegador.";
 "ALERT_NETWORK_ERROR_MESSAGE" = "Per favor, comprovau la connexió.";
 "ALERT_NETWORK_ERROR_TITLE" = "Sense connexió.";
+"ALERT_NOT_AUTHORIZED_ERROR" = "Teniu les notificacions d’exposició desactivades. Voleu anar a la configuració de l’aplicació?";
 "ALERT_OK_BUTTON" = "OK";
 "ALERT_POSITIVE_REPORT_NETWORK_ERROR_MESSAGE" = "Per favor, comprovau la connexió i tornau a enviar el codi.";
 "ALERT_RADAR_REQUIRED_TO_REPORT" = "Cal tenir el Radar COVID actiu per poder enviar el diagnòstic";
 "ALERT_RETRY_BUTTON" = "Reintenta-ho";
 "ALERT_SHARING_REJECTED_ERROR" = "Es necessari compartir els identificadors aleatoris del dispositiu per enviar el diagnòstic";
 "ALERT_UPDATE_BUTTON" = "ACTUALITZAR";
+"ALERT_UPDATE_OS_VERSION_TEXT_CONTENT" = "Hi ha una nova versió de l’aplicació disponible. Tanmateix, per poder fer-la servir, heu d’actualitzar la vostra versió d’iOS.";
 "ALERT_UPDATE_TEXT_CONTENT" = "Per poder continuar emprant Radar COVID cal que actualitzeu l’aplicació.";
 "ALERT_UPDATE_TEXT_TITLE" = "Actualitzau Radar COVID";
 "ALERT_WRONG_ID" = "El codi de diagnòstic no és correcte";
@@ -132,8 +143,14 @@
 "CONTACT_PHONE" = "+34 000 000 000;";
 "CONTACT_WEB" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/telefonos.htm";
 "CONTACT_WEB_NAME" = "Telèfons d'informació";
+"DETAIL_INTEROPERABILITY_DESCRIPTION_1" = "Radar COVID forma part d’una xarxa en creixement continu de països de la Unió Europea que disposen d’aplicacions que operen entre si i que funcionen més enllà de les seves fronteres.";
+"DETAIL_INTEROPERABILITY_DESCRIPTION_2" = "Actualment Radar COVID es connecta amb les aplicacions dels països següents:";
+"DETAIL_INTEROPERABILITY_TITLE" = "Països connectats amb Radar COVID";
+"DIAGNOSTIC_CODE_COMPLETED" = "Completat";
+"EXPOSED_EXPOSITION_COUNT_ANYMORE" = "<br><br><b>Heu de fer quarantena domiciliària. Us queden %@ dies per finalitzar-la.</b>";
+"EXPOSED_EXPOSITION_COUNT_ONE_DAY" = "<br><br><b>Heu de fer quarantena domiciliària. Us queda %@ dia per finalitzar-la.</b>";
 "EXPOSITION_EXPOSED_DESCRIPTION" = "El vostre diagnòstic es va enviar fa<br><b>%@ dies</b> (actualitzat %@)<br><br>Si us plau, romaneu en aïllament seguint les recomanacions que us han donat els serveis sanitaris.";
-"EXPOSITION_EXPOSED_PARAGRAPH_1" = "<b>El vostre diagnòstic ens ajuda a protegir els altres.</b> <br> Sense revelar la vostra identitat en cap moment, hem comunicat el vostre diagnòstic als mòbils que han estat a prop vostre en els últims dies i els enviarem un avís per a la seva seguretat.";
+"EXPOSITION_EXPOSED_PARAGRAPH_1" = "<b>El vostre diagnòstic ens ajuda a protegir els altres. </b><br><br> Sense revelar la vostra identitat en cap moment, hem comunicat el vostre diagnòstic als mòbils que han estat a prop vostre en els últims dies i els enviarem un avís per a la seva seguretat.";
 "EXPOSITION_EXPOSED_RECOMENDATIONS_BULLET_1" = "Quedeu-vos a casa, preferentment a la vostra habitació i, si és possible, no compartiu el lavabo";
 "EXPOSITION_EXPOSED_RECOMENDATIONS_BULLET_2" = "Eviteu el contacte amb altres persones, fins i tot amb aquelles amb les quals conviviu";
 "EXPOSITION_EXPOSED_RECOMENDATIONS_BULLET_3" = "Useu sempre mascareta quirúrgica si heu de sortir de l'habitació";
@@ -151,9 +168,9 @@
 "EXPOSITION_HIGH_BULLET_4" = "Pèrdua del gust o de l'olfacte";
 "EXPOSITION_HIGH_BULLET_TITLE" = "<b>Davant l'aparició de qualsevol dels símptomes següents, contacteu amb els serveis sanitaris o amb el telèfon de referència de la vostra Comunitat Autònoma:</b>";
 "EXPOSITION_HIGH_DESCRIPTION" = "Fa <b>%@ dies</b> que vàreu tenir contacte per última vegada amb algú diagnosticat de COVID-19 (actualitzat %@)";
-"EXPOSITION_HIGH_MORE_INFO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg\"><u><b>Més informació ></b></u></a>";
+"EXPOSITION_HIGH_MORE_INFO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg\"><b>Més informació</b></a>";
 "EXPOSITION_HIGH_MORE_INFO_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg";
-"EXPOSITION_HIGH_OTHER_SYMPTOMS" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/COVID19_sintomas.jpg\"><u>Altres símptomes ></u></a>";
+"EXPOSITION_HIGH_OTHER_SYMPTOMS" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/COVID19_sintomas.jpg\"><b>Altres símptomes</b></a>";
 "EXPOSITION_HIGH_OTHER_SYMPTOMS_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/COVID19_sintomas.jpg";
 "EXPOSITION_HIGH_RECOMENDATIONS_BULLET_1" = "Mantingueu la distància de seguretat d’almenys 1,5 metres";
 "EXPOSITION_HIGH_RECOMENDATIONS_BULLET_2" = "Eviteu acudir a esdeveniments o a llocs amb moltes persones";
@@ -161,10 +178,12 @@
 "EXPOSITION_HIGH_RECOMENDATIONS_BULLET_4" = "Emprau sempre una màscara quirúrgica";
 "EXPOSITION_HIGH_RECOMENDATIONS_BULLET_5" = "Rentau-vos les mans sovint";
 "EXPOSITION_HIGH_RECOMENDATIONS_BULLET_TITLE" = "<b>Ja que heu tingut un contacte de risc, és important que també prengueu les precaucions següents:</b>";
-"EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/documentos/20200325_Decalogo_como_actuar_COVID19.pdf\"><u>Com he d’actuar si tinc símptomes ></u></a>";
+"EXPOSITION_HIGH_REGION_TITLE" = "Avís a la Comunitat Autònoma";
+"EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/documentos/20200325_Decalogo_como_actuar_COVID19.pdf\"><b>Com he d’actuar si tinc símptomes</b></a>";
 "EXPOSITION_HIGH_SYMPTOMS_WHAT_TO_DO_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/documentos/20200325_Decalogo_como_actuar_COVID19.pdf";
 "EXPOSITION_HIGH_TITLE_1" = "RISC ALT";
 "EXPOSITION_HIGH_TITLE_2" = "Contacte de risc";
+"EXPOSITION_HIGH_WARNING_TITLE" = "Precaucions de seguretat";
 "EXPOSITION_HIGH_WHAT_TO_DO_DESCRIPTION" = "Contacteu amb la Comunitat Autònoma on us trobeu perquè us donin les recomanacions més adequades per al vostre cas:";
 "EXPOSITION_HIGH_WHAT_TO_DO_TITLE" = "<b>Què he de fer?</b>";
 "EXPOSITION_LOW_BULLET_1" = "Manteniu la distància de seguretat d’1,5 metres";
@@ -176,7 +195,7 @@
 "EXPOSITION_LOW_BULLET_7" = "Respectau les normes particulars del vostre territori sobre la capacitat dels llocs a on acudiu i les activitats que estan permeses";
 "EXPOSITION_LOW_BULLET_8" = "Si notau algun símptoma (febre, tos, dificultat respiratòria), telefonau al vostre centre de salut";
 "EXPOSITION_LOW_DESCRIPTION" = "Actualitzat %@";
-"EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/documentos/20200325_Decalogo_como_actuar_COVID19.pdf\"><u>Com he d’actuar si tinc símptomes ></u></a>";
+"EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/documentos/20200325_Decalogo_como_actuar_COVID19.pdf\"><b>Com he d’actuar si tinc símptomes</b></a>";
 "EXPOSITION_LOW_SYMPTOMS_WHAT_TO_DO_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/documentos/20200325_Decalogo_como_actuar_COVID19.pdf";
 "EXPOSITION_LOW_TITLE_1" = "RISC BAIX";
 "EXPOSITION_LOW_TITLE_2" = "Sense contactes de risc identificats";
@@ -186,11 +205,11 @@
 "EXPOSURE_INFECTED_INFO_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/ciudadania.htm";
 "EXPOSURE_LOW_INFO_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/ciudadania.htm";
 "FREE_CALL" = "Trucada gratuïta";
-"HELPLINE_FAQS_WEB_TITLE" = "<a href=\"https://radarcovid.gob.es/preguntas-frecuentes\">FAQ Radar COVID</a>";
+"HELPLINE_FAQS_WEB_TITLE" = "<a href=\"https://radarcovid.gob.es/preguntas-frecuentes\"><b>FAQ Radar COVID</b></a>";
 "HELPLINE_FAQS_WEB_URL" = "https://radarcovid.gob.es/preguntas-frecuentes";
-"HELPLINE_INFO_WEB_TITLE" = "<a href=\"https://www.radarcovid.gob.es/\">Web informació COVID</a>";
+"HELPLINE_INFO_WEB_TITLE" = "<a href=\"https://www.radarcovid.gob.es/\"><b>Web informació COVID</b></a>";
 "HELPLINE_INFO_WEB_URL" = "https://www.radarcovid.gob.es/";
-"HELPLINE_OTHER_WEB_TITLE" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/home.htm\">Altres enllaços</a>";
+"HELPLINE_OTHER_WEB_TITLE" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/home.htm\"><b>Altres enllaços</b></a>";
 "HELPLINE_OTHER_WEB_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/home.htm";
 "HELP_LINE_PHONE_PARAGRAPH_1" = "Teniu cap pregunta sobre com funciona <b>Radar COVID</b>? Què heu de fer si rebeu una notificació?<br>Consultau aquí tots els dubtes:";
 "HELP_LINE_PHONE_TITLE" = "Atenció telefònica";
@@ -198,20 +217,84 @@
 "HOME_BLUETOOTH_INACTIVE_MESSAGE" = "Bluetooth desactivat.";
 "HOME_BUTTON_SEND_POSITIVE" = "Comunica el meu positiu per COVID";
 "HOME_COVID_NOTIFICATION_POPUP_INACTIVE" = "Perquè Radar COVID pugui avisar-vos, cal que activeu les notificacions d'exposició a la COVID-19.";
-"HOME_EXPOSITION_MESSAGE_HIGH" = "Heu estat en contacte amb algú que ha estat diagnosticat de COVID-19.";
+"HOME_EXPOSITION_COUNT_ANYMORE" = "<br><b>Us queden <b>%@ dies</b> per finalitzar-la.</b>";
+"HOME_EXPOSITION_COUNT_ONE_DAY" = "<br><b>Us queda <b>%@ dia</b> per finalitzar-la.</b>";
+"HOME_EXPOSITION_MESSAGE_HIGH" = "Heu estat en contacte amb algú que ha estat diagnosticat de COVID-19.<br><b> Heu de fer quarantena domiciliària.</b>";
 "HOME_EXPOSITION_MESSAGE_INFECTED" = "El vostre diagnòstic s’ha enviat. <br> Si us plau, romaneu en aïllament seguint les recomanacions que us han donat els serveis sanitaris.";
 "HOME_EXPOSITION_MESSAGE_LOW" = "Us informarem en el cas d’un possible contacte de risc.";
-"HOME_EXPOSITION_POSITIVE_MORE_INFO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg\"><b>Més informació ></b></a>";
+"HOME_EXPOSITION_POSITIVE_MORE_INFO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg\"><b>Més informació</b></a>";
 "HOME_EXPOSITION_POSITIVE_MORE_INFO_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg";
 "HOME_EXPOSITION_TITLE_HIGH" = "Contacte de risc";
 "HOME_EXPOSITION_TITLE_LOW" = "Sense contactes de risc identificats";
-"HOME_EXPOSITION_TITLE_POSITIVE" = "COVID-19 positiu";
+"HOME_EXPOSITION_TITLE_POSITIVE" = "COVID-19 Positiu";
 "HOME_NOTIFICATION_INACTIVE_MESSAGE" = "Notificacions d’exposició a la COVID-19 DESACTIVADES";
 "HOME_RADAR_CONTENT_ACTIVE" = "Les interaccions amb mòbils propers es registraran sempre anònimament.";
 "HOME_RADAR_CONTENT_INACTIVE" = "Si us plau, activeu aquesta opció per poder registrar possibles contactes de risc.";
 "HOME_RADAR_MESSAGE_DISABLED" = "Des d'aquest moment, Radar COVID deixarà de registrar contactes propers";
 "HOME_RADAR_TITLE_ACTIVE" = "Radar COVID actiu";
 "HOME_RADAR_TITLE_INACTIVE" = "Radar COVID inactiu";
+"HOME_TITLE" = "RadarCOVID";
+"INACTIVE" = "Inactiu";
+"INFO_ADVICE" = "Consells";
+"INFO_ADVICE_1" = "Manteniu el Bluetooth activat.";
+"INFO_ADVICE_2" = "Desactiveu el mode d’estalvi d’energia.";
+"INFO_ADVICE_3" = "Recordeu obrir l’aplicació freqüentment i revisar les notificacions.";
+"INFO_ADVICE_SUBTITLE" = "Recordeu utilitzar l’aplicació de la manera adequada:";
+"INFO_APP_VERSION" = "Versió de l'app Radar COVID";
+"INFO_BLUETOOTH_STATUS" = "Bluetooth";
+"INFO_DATE_FORMAT" = "$D $M de $Y a les $Hh";
+"INFO_DESCRIPTION_1" = "Comproveu la informació següent per saber si Radar COVID està funcionant correctament.";
+"INFO_DEVICE_MODEL" = "Model";
+"INFO_FAQ_LINK" = "<a href=\"https://radarcovid.gob.es/preguntas-frecuentes\"><b>Preguntes freqüents Radar COVID</b></a>";
+"INFO_HELP_BLUETOOTH_IMAGE" = "Bluetooth activat";
+"INFO_HELP_BLUETOOTH_TITLE" = "Bluetooth";
+"INFO_HELP_CHECK_ALWAYS_ACTIVE" = "Comproveu que sempre estigui activat";
+"INFO_HELP_CHECK_RADAR_ACTIVE" = "En accedir a l’aplicació de Radar COVID, comproveu que està activa";
+"INFO_HELP_EXPOSITION_NOTIFICATION" = "Notificacions d’exposició";
+"INFO_HELP_FOLLOW_NEXT_STEPS" = "Segueix els següents passos per comprovar que estiguin actives";
+"INFO_HELP_NOTIFICATIONS_IMAGE" = "Utilitza notificacions d'exposició activades";
+"INFO_HELP_NOTIFICATIONS_PARAGRAPH1" = "Seguiu els passos següents per comprovar que estan actives:";
+"INFO_HELP_NOTIFICATIONS_STEP_1" = "1. Accediu a la configuració fent clic al botó de més avall";
+"INFO_HELP_NOTIFICATIONS_STEP_2" = "2. Entreu a \"Google\"";
+"INFO_HELP_NOTIFICATIONS_STEP_3" = "3. Comproveu l’estat de \"Notificacions d’exposició\"";
+"INFO_HELP_NOTIFICATIONS_STEP_4" = "4. Si estan desactivades, entreu a \"Notificacions d’exposició\" per activar-les.";
+"INFO_HELP_NOTIFICATIONS_TITLE" = "Notificacions d’exposició";
+"INFO_HELP_PARAGRAPH1" = "Us expliquem quins elements heu de mantenir sempre connectats perquè Radar COVID funcioni correctament.";
+"INFO_HELP_PARAGRAPH2" = "(A tall d'exemple, et descrivim els passos per a la versió iOS 14.2, tingues en compte per a altres versions els passos poden canviar)";
+"INFO_HELP_RADAR_TITLE" = "Radar COVID \"actiu\"";
+"INFO_HELP_STEP_1" = "1. Accediu a Radar COVID i comproveu que estigui \"actiu\"";
+"INFO_HELP_STEP_2" = "2. Accedeix als ajustos del teu dispositiu";
+"INFO_HELP_STEP_3_1" = "3. Busca l'accés a \"Radar COVID\"";
+"INFO_HELP_STEP_3_2" = "4. Accedeix a \"Notificacions d'exposició\"";
+"INFO_HELP_STEP_4_1" = "5. Comprova que Radar COVID és la regió activa per a la notificacions d'exposició";
+"INFO_HELP_STEP_4_2" = "6. Activa l'opció \"Compartir informació d'exposició\"";
+"INFO_HELP_TITLE" = "Com es manté activa Radar COVID";
+"INFO_IMAGE_STEP_1" = "Bluetooth";
+"INFO_IMAGE_STEP_2" = "Radar COVID actiu";
+"INFO_IMAGE_STEP_3" = "Notificacions d'exposició";
+"INFO_IMAGE_STEP_4" = "Estat registre exposició";
+"INFO_IMAGE_STEP_5" = "regió disponible";
+"INFO_IMAGE_STEP_6" = "Compartir informació d'exposició";
+"INFO_KEEP_RADAR_ACTIVE" = "Apreneu com mantenir activa Radar COVID";
+"INFO_LAST_NO_SYNC_UPDATE" = "Primera sincronització pendent";
+"INFO_LAST_SYNC" = "Última sincronització";
+"INFO_LAST_SYNC_ANYMORE" = "fa %@ dies";
+"INFO_LAST_SYNC_ONE_DAY" = "fa 1 dia";
+"INFO_LAST_SYNC_UPDATE" = "Actualitzat";
+"INFO_LAST_UPDATE" = "Última actualització";
+"INFO_NOTIFICATION_STATUS" = "Estat notificacions d’exposició";
+"INFO_OTHER_DOUBTS" = "Resoleu altres dubtes:";
+"INFO_POPUP_PARAGRAPH2" = "(A tall d’exemple, us detallem els passos per a la versió Android 10 i per al dispositiu Samsung A70. Heu de tenir en consideració que per a altres versions i marques els passos poden canviar)";
+"INFO_RADAR_STATUS" = "Estat Radar COVID";
+"INFO_SHARE_MESSAGE" = "Descriu aquí els teus dubtes o problemes de funcionament amb Radar COVID.<br><br>Elimines el text d'aquest missatge, ajudarà a l'equip de suport tècnic a donar-te una resposta.";
+"INFO_SO_VERSION" = "Sistema operatiu";
+"INFO_SUBTITLE" = "Informació útil";
+"INFO_SUPPORT_MAIL" = "Descriu aquí els teus dubtes o problemes de funcionament amb Radar COVID.<br><br>Elimines el text d'aquest missatge, ajudarà a l'equip de suport tècnic a donar-te una resposta.<br><br>Qual Estat Radar COVID: %@; Estat notificacions exposició: %@; Bluetooth: %@; Darrera sincronització: %@; Versió de l'app Radar COVID: %@; Darrera actualització: %@; Sistema operatiu: %@; Model: %@";
+"INFO_TECHNICAL_HELP" = "Ajuda tècnica";
+"INFO_TECHNICAL_HELP_EMAIL" = "soporte.radarcovid@economia.gob.es";
+"INFO_TECHNICAL_HELP_PARAGRAPH1" = "Si no hi heu trobat la resposta, podeu contactar per correu electrònic:";
+"INFO_TECHNICAL_HELP_PARAGRAPH2" = "Si utilitzeu aquest mitjà, l’equip de suport tècnic podrà veure la vostra adreça de correu electrònic";
+"INFO_TITLE" = "INFORMACIÓ DE L’APLICACIÓ";
 "LOCALE_CHANGE_LANGUAGE" = "Idioma";
 "LOCALE_CHANGE_WARNING" = "Per aplicar els canvis cal reiniciar l’aplicació";
 "LOCALE_SELECTION_REGION_DEFAULT" = "Seleccionau la vostra Comunitat Autònoma";
@@ -224,8 +307,8 @@
 "MY_DATA_BULLET_2" = "<b>NO</b> recollim cap dada de geolocalització, incloses les dades del GPS";
 "MY_DATA_BULLET_3" = "Per tant: <br> <b>NO podem determinar la vostra identitat ni la de les persones amb les quals heu estat</b>";
 "MY_DATA_PARAGRAPH_1" = "Les dades es guarden al vostre telèfon i la connexió amb el servidor està encriptada";
-"MY_DATA_PRIVACY" = "Consultau la <a href=\"https://radarcovid.gob.es/ca/politica-de-privacitat\"><b><u>política de privacitat</u></b></a>";
-"MY_DATA_TERMS" = "Consultau les <a href=\"https://radarcovid.gob.es/ca/condicions-dus\"><b><u>condicions d’ús</u></b></a>";
+"MY_DATA_PRIVACY" = "Consultau la <a href=\"https://radarcovid.gob.es/ca/politica-de-privacitat\"><b>política de privacitat</b></a>";
+"MY_DATA_TERMS" = "Consultau les <a href=\"https://radarcovid.gob.es/ca/condicions-dus\"><b>condicions d’ús</b></a>";
 "MY_DATA_TITLE" = "La privacitat és el més important";
 "MY_DATA_TOP_PLACEHOLDER" = "LES MEVES DADES";
 "MY_HEALTH_DIAGNOSTIC_CODE_CONTENT" = "<b>Introdueix el codi de diagnòstic proporcionat</b>";
@@ -249,7 +332,7 @@
 "MY_HEALTH_REPORTED_BULLET_6" = "Si teniu dubtes o els vostres símptomes empitjoren, contacteu amb els serveis sanitaris";
 "MY_HEALTH_REPORTED_BULLET_TITLE" = "<b>Seguiu les recomanacions dels vostres serveis sanitaris</b>";
 "MY_HEALTH_REPORTED_INFO_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/ciudadania.htm";
-"MY_HEALTH_REPORTED_MORE_INFO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg\"><u><b>Més informació ></b></u></a>";
+"MY_HEALTH_REPORTED_MORE_INFO" = "<a href=\"https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg\"><b>Més informació</b></a>";
 "MY_HEALTH_REPORTED_MORE_INFO_URL" = "https://www.mscbs.gob.es/ca/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg";
 "MY_HEALTH_REPORTED_PARAGRAPH_1" = "Sense revelar la vostra identitat en cap moment, comprovarem quins mòbils han estat a prop vostre en els últims dies i els enviarem un avís per a la seva seguretat.<br><br>Si us plau, romaneu en aïllament seguint les recomanacions que us han donat els serveis sanitaris.";
 "MY_HEALTH_REPORTED_SUBTITLE" = "<b>El vostre diagnòstic ens ajudarà a protegir els altres.</b>";
@@ -266,13 +349,18 @@
 "MY_HEALTH_STEP2_PARAGRAPH_3" = "<b>Radar COVID forma part d’una xarxa de països de la Unió Europea que disposen d’aplicacions que operen entre si i que funcionen més enllà de les seves fronteres.</b>";
 "MY_HEALTH_STEP2_RADIO1" = "<b>Compartir amb persones usuàries de Radar COVID</b>";
 "MY_HEALTH_STEP2_RADIO2" = "<b>Compartir amb persones usuàries de Radar COVID i aplicacions europees</b>";
-"MY_HEALTH_TITLE" = "Enviau el vostre diagnòstic <br> COVID-19 positiu";
+"MY_HEALTH_TITLE" = "<b>Enviau el vostre diagnòstic <br> COVID-19 positiu</b>";
+"MY_HEALTH_TITLE_DATE_STEP1" = "Data d’inici dels símptomes";
 "MY_HEALTH_TITLE_PAGE" = "EL MEU DIAGNÒSTIC";
 "MY_HEALTH_TITLE_STEP1" = "CODI DIAGNÒSTIC";
 "MY_HEALTH_TITLE_STEP2" = "COMPARTIR DIAGNÒSTIC";
+"NOTIFICATIONS_INACTIVE_BLUETOOTH_BODY" = "Si us plau, activeu el Bluetooth. És imprescindible perquè Radar COVID funcioni correctament.";
+"NOTIFICATIONS_INACTIVE_BLUETOOTH_TITLE" = "Radar COVID no funciona correctament";
 "NOTIFICATION_MESSAGE_EXPOSURE_HIGH" = "La vostra exposició ara és alta";
 "NOTIFICATION_MESSAGE_EXPOSURE_LOW" = "La vostra exposició ara és baixa";
 "NOTIFICATION_MESSAGE_EXPOSURE_LOW_ACTIVATE_RADAR" = "La vostra exposició ara és baixa. Si us plau, torneu a activar el radar.";
+"NOTIFICATION_REMINDER_BODY" = "Accediu-hi regularment per comprovar si el vostre risc d’exposició ha canviat.";
+"NOTIFICATION_REMINDER_TITLE" = "Accedeix a Radar COVID";
 "NOTIFICATION_TITLE_EXPOSURE_HIGH" = "Risc d’exposició alt.";
 "NOTIFICATION_TITLE_EXPOSURE_LOW" = "Risc d'exposició baix.";
 "ONBOARDING_CONTINUE_BUTTON" = "Continua";
@@ -289,10 +377,10 @@
 "ONBOARDING_STEP_2_PARAGRAPH_2_TITLE" = "Discreció";
 "ONBOARDING_STEP_2_PARAGRAPH_3_DESCRIPTION" = "Triau en tot moment si voleu desactivar el servei o deixar d’emprar l’aplicació.";
 "ONBOARDING_STEP_2_PARAGRAPH_3_TITLE" = "Vós decidiu";
-"ONBOARDING_STEP_2_PRIVACY_POLICY" = "Estic d'acord amb la <a href=\"https://radarcovid.gob.es/ca/politica-de-privacitat\"><b><u>política de privacitat</u></b></a>";
+"ONBOARDING_STEP_2_PRIVACY_POLICY" = "Estic d'acord amb la <a href=\"https://radarcovid.gob.es/ca/politica-de-privacitat\"><b>política de privacitat</b></a>";
 "ONBOARDING_STEP_2_SUBTITLE" = "<b>Els nostres compromisos</b>";
 "ONBOARDING_STEP_2_TITLE" = "<b>La vostra privacitat és la nostra prioritat</b>";
-"ONBOARDING_STEP_2_USAGE_CONDITIONS" = "He llegit les <a href=\"https://radarcovid.gob.es/ca/condicions-dus\"><b><u>condicions d’ús</u></b></a>";
+"ONBOARDING_STEP_2_USAGE_CONDITIONS" = "He llegit les <a href=\"https://radarcovid.gob.es/ca/condicions-dus\"><b>condicions d’ús</b></a>";
 "ONBOARDING_STEP_3_BUTTON_ENABLE" = "Activar Bluetooth";
 "ONBOARDING_STEP_3_BUTTON_NOT_ENABLE" = "Continueu sense activar-lo";
 "ONBOARDING_STEP_3_PARAGRAPH_1_DESCRIPTION" = "Mantingueu actiu el vostre Bluetooth. Això és tot el que us demanem.";
@@ -306,9 +394,25 @@
 "REGION_INFO_PHONE_TITLE" = "Telèfon per a la COVID-19";
 "REGION_INFO_WEB_TITLE" = "Web amb informació sobre la COVID-19";
 "SELECTOR_DONE" = "Fet";
-"SETTINGS_LANGUAGE_TITLE" = "Selecciona un idioma";
+"SETTINGS_INFO_BUTTON" = "Informació de l'aplicació";
+"SETTINGS_LANGUAGE_TITLE" = "Seleccioneu un idioma";
 "SETTINGS_PARAGRAPH_1" = "Permet seleccionar l’idioma de consulta de Radar COVID";
 "SETTINGS_TITLE" = "Configuració";
+"SHARE_DESCRIPTION_1" = "Ajudeu-nos a frenar junts la pandèmia";
+"SHARE_DESCRIPTION_2" = "Convideu els vostres familiars i amics a descarregar-se l'aplicació.";
+"SHARE_DESCRIPTION_3" = "Com més persones utilitzin Radar COVID, abans podrem trencar la cadena de contagis.";
+"SHARE_LINK_DOWNLOAD" = "Compartir l’enllaç de descàrrega";
+"SHARE_TEXT" = "Ajudeu-nos a frenar junts la pandèmia.<br>Com més persones utilitzin Radar COVID, abans podrem trencar la cadena de contagis.<br><br>Descarregueu-vos Radar COVID:<br>Dispositius iOS:<br><a href=\"http://apple.co/3bZvdxK\">http://apple.co/3bZvdxK</a><br><br>Dispositius Android:<br><a href=\"http://bit.ly/32typyT\">http://bit.ly/32typyT</a><br><br>Més informació a:<br><a href=\"radarcovid.gob.es\">radarcovid.gob.es</a>";
+"SHARE_TITLE" = "Compartiu Radar COVID";
+"STATS_CODES_PLACEHOLDER" = "Casos positius declarats a Radar COVID";
+"STATS_CONNECTED_COUNTRY" = "Països connectats amb Radar COVID";
+"STATS_DOWNLOAD_APP" = "Descàrrega de Radar COVID";
+"STATS_KNOW_CONNECTED_COUNTRY" = "Coneix els països connectats";
+"STATS_TITLE" = "Estadístiques de Radar COVID";
+"STATS_UPDATE" = "Dades actualitzades <b>%@ </b>";
+"STATS_WEB_LINK" = "<a href=\"www.radarcovid.gob.es/estadisticas\"><b>Web Radar Covid, estadístiques</b></a>";
+"STATS_WEB_LINK_CNECOVID_ISCII" = "<a href=\"https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov/situacionActual.htm\"><b>Web Ministeri Sanitat, situació COVID-19</b></a>";
+"STATS_WEB_SITE_PLACEHOLDER" = "Consulteu més dades estadístiques a:";
 "SUPPORT_PHONE" = "Telèfon de suport";
 "TEST_KEY" = "<b>El vostre diagnòstic ens ajuda a protegir els altres.</b><br>Sense revelar la vostra identitat en cap moment, hem comunicat el vostre diagnòstic a mòbils que heu tingut a prop en els darrers dies i els enviarem una alerta per a la seva seguretat";
 "THANKS" = "Gràcies per continuar cuidant-vos i cuidant els altres.";

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +14,7 @@
                 <outlet property="backButton" destination="MiS-le-CP9" id="x0r-wp-sjK"/>
                 <outlet property="cancelButton" destination="wJB-3j-R8F" id="yki-NF-TIr"/>
                 <outlet property="codeTextField" destination="YlP-0F-Om7" id="pRr-4J-pTI"/>
+                <outlet property="contentView" destination="wqs-jf-GzU" id="g6d-6q-yPv"/>
                 <outlet property="continueButton" destination="c8a-41-d9l" id="8eQ-Ie-ktY"/>
                 <outlet property="customSliderView" destination="pS0-gS-nRI" id="xe7-88-MHz"/>
                 <outlet property="dateView" destination="lEC-TV-Fff" id="gHP-ka-UMG"/>
@@ -23,6 +24,7 @@
                 <outlet property="monthView" destination="ZSl-le-gy9" id="N4i-QH-X9D"/>
                 <outlet property="scrollView" destination="pzc-Oe-DiC" id="5wT-E7-gYP"/>
                 <outlet property="scrollViewBottonConstraint" destination="ohT-TE-bmM" id="aaW-ZS-lxZ"/>
+                <outlet property="sympthomsStartDate" destination="GYM-fi-nWH" id="ZGC-Zr-UFD"/>
                 <outlet property="sympthomsStartSubTitle" destination="5iu-V8-YeH" id="chC-oH-pv9"/>
                 <outlet property="titleLabel" destination="4Bc-CU-SbS" id="qdd-kz-WHi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -36,10 +38,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzc-Oe-DiC">
-                    <rect key="frame" x="0.0" y="72" width="375" height="423"/>
+                    <rect key="frame" x="0.0" y="72" width="375" height="427"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqs-jf-GzU">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="563.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código diagnóstico" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-CU-SbS">
                                     <rect key="frame" x="16" y="40" width="343" height="21.5"/>
@@ -105,7 +107,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indica la fecha de inicio de síntomas. Si no has tenido síntomas, introduce la prueba PCR positiva." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iu-V8-YeH">
-                                    <rect key="frame" x="16" y="229" width="343" height="57.5"/>
+                                    <rect key="frame" x="16" y="262.5" width="343" height="57.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -114,7 +116,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si no conoces ninguna de estas dos fechas, déjalo en blanco." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONY-6C-RTy">
-                                    <rect key="frame" x="16" y="302.5" width="343" height="38.5"/>
+                                    <rect key="frame" x="16" y="336" width="343" height="38.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -123,7 +125,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEC-TV-Fff" userLabel="dateView">
-                                    <rect key="frame" x="16" y="353" width="343" height="98"/>
+                                    <rect key="frame" x="16" y="386.5" width="343" height="98"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Día" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YB-Ye-XfY">
                                             <rect key="frame" x="37" y="0.0" width="25.5" height="19.5"/>
@@ -252,7 +254,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSt-nv-PMq">
-                                    <rect key="frame" x="16" y="467" width="343" height="76.5"/>
+                                    <rect key="frame" x="16" y="500.5" width="343" height="76.5"/>
                                     <string key="text">Esta información permite poder avisar a las personas que han estado en contacto contigo mientras podías transmitir el coronavirus.
 </string>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
@@ -262,20 +264,35 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_STEP1_PARAGRAPH_3"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha de inicio de síntomas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYM-fi-nWH">
+                                    <rect key="frame" x="16" y="225" width="343" height="21.5"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                    </accessibility>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_HEALTH_TITLE_DATE_STEP1"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" name="veryLightPink"/>
                             <constraints>
                                 <constraint firstItem="gLR-vU-8eY" firstAttribute="top" secondItem="4Bc-CU-SbS" secondAttribute="bottom" constant="20" id="1nk-hv-PLn"/>
                                 <constraint firstItem="5iu-V8-YeH" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="2wI-JM-qnU"/>
+                                <constraint firstItem="GYM-fi-nWH" firstAttribute="top" secondItem="gLR-vU-8eY" secondAttribute="bottom" constant="16" id="4Ee-8V-s8k"/>
+                                <constraint firstAttribute="trailing" secondItem="GYM-fi-nWH" secondAttribute="trailing" constant="16" id="5LD-Q8-GGC"/>
                                 <constraint firstItem="HSt-nv-PMq" firstAttribute="top" secondItem="lEC-TV-Fff" secondAttribute="bottom" constant="16" id="BRt-44-ZGX"/>
                                 <constraint firstItem="ONY-6C-RTy" firstAttribute="top" secondItem="5iu-V8-YeH" secondAttribute="bottom" constant="16" id="ET2-Vv-Sbc"/>
                                 <constraint firstItem="gLR-vU-8eY" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="FC9-rh-eZ4"/>
                                 <constraint firstAttribute="trailing" secondItem="lEC-TV-Fff" secondAttribute="trailing" constant="16" id="J7H-7Y-UW8"/>
                                 <constraint firstAttribute="trailing" secondItem="ONY-6C-RTy" secondAttribute="trailing" constant="16" id="JNY-RD-Dk0"/>
+                                <constraint firstItem="GYM-fi-nWH" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="VR0-uZ-mo9"/>
                                 <constraint firstItem="4Bc-CU-SbS" firstAttribute="leading" secondItem="wqs-jf-GzU" secondAttribute="leading" constant="16" id="Vq7-wl-thW"/>
                                 <constraint firstItem="4Bc-CU-SbS" firstAttribute="top" secondItem="wqs-jf-GzU" secondAttribute="top" constant="40" id="Xlp-BM-aRp"/>
                                 <constraint firstAttribute="trailing" secondItem="4Bc-CU-SbS" secondAttribute="trailing" constant="16" id="Zfs-ey-aG0"/>
-                                <constraint firstItem="5iu-V8-YeH" firstAttribute="top" secondItem="gLR-vU-8eY" secondAttribute="bottom" constant="20" id="abo-0C-pMa"/>
+                                <constraint firstItem="5iu-V8-YeH" firstAttribute="top" secondItem="GYM-fi-nWH" secondAttribute="bottom" constant="16" id="efS-8w-6NQ"/>
                                 <constraint firstAttribute="trailing" secondItem="HSt-nv-PMq" secondAttribute="trailing" constant="16" id="ijH-jl-JhH"/>
                                 <constraint firstAttribute="trailing" secondItem="5iu-V8-YeH" secondAttribute="trailing" constant="16" id="jps-Lm-N8Y"/>
                                 <constraint firstAttribute="bottom" secondItem="HSt-nv-PMq" secondAttribute="bottom" constant="20" id="ohT-TE-bmM"/>
@@ -320,16 +337,16 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8a-41-d9l" userLabel="Accept Button">
-                    <rect key="frame" x="16" y="511" width="343" height="60"/>
+                    <rect key="frame" x="16" y="515" width="343" height="56"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="keU-Mo-nEN"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                    <state key="normal" title="Continuar" backgroundImage="buttonsPrimary">
+                    <state key="normal" title="Continuar">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
-                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="disabled">
+                        <color key="titleColor" name="brownGrey"/>
                     </state>
                     <connections>
                         <action selector="onContinue:" destination="-1" eventType="touchUpInside" id="QRf-AO-4xy"/>
@@ -380,14 +397,16 @@
                 <constraint firstItem="c8a-41-d9l" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="uTu-9U-8Do"/>
                 <constraint firstItem="pzc-Oe-DiC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vir-8I-3jv"/>
             </constraints>
-            <point key="canvasLocation" x="18.840579710144929" y="75.669642857142847"/>
+            <point key="canvasLocation" x="18.399999999999999" y="75.112443778110944"/>
         </view>
     </objects>
     <resources>
         <image name="ButtonPrimaryDisabled" width="341" height="60"/>
-        <image name="buttonsPrimary" width="341" height="60"/>
         <image name="iconsBack" width="25.5" height="17"/>
         <image name="organicColor" width="375" height="155.5"/>
+        <namedColor name="brownGrey">
+            <color red="0.57599997520446777" green="0.57599997520446777" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="twilight">
             <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

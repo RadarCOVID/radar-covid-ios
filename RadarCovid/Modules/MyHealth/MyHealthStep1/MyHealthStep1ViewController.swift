@@ -10,10 +10,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class MyHealthStep1ViewController: BaseViewController {
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var sympthomsStartDate: UILabel!
     @IBOutlet weak var sympthomsStartSubTitle: UILabel!
     @IBOutlet weak var customSliderView: CustomSliderView!
     @IBOutlet weak var scrollViewBottonConstraint: NSLayoutConstraint!
@@ -32,19 +34,42 @@ class MyHealthStep1ViewController: BaseViewController {
     @IBOutlet weak var yearLabel: UILabel!
     
     var router: AppRouter?
+    var covidCode: String?
     
+    public var pickerFirstInitialized = true;
     private var pickerPresenter: PickerPresenter?
-    private let datePicker = UIDatePicker()
     private var date : Date?
     private let maxLengthCode = 12
     private let emptyText200B: String = "\u{200B}"
     private let emptyText232B: String = "\u{232B}"
+    private let disposeBag = DisposeBag()
+    
+    lazy var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        
+        datePicker.minimumDate = Date().addingTimeInterval(-TimeInterval(14*60*60*24))
+        datePicker.maximumDate = Date()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        
+        return datePicker
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
+        
         setupAccessibility()
+        checkIfNeedSetCovidCode()
+        setupDatePicker()
+    }
+    
+    private func setupDatePicker() {
+        pickerPresenter = PickerPresenter(picker: datePicker, isNeedCancelButton: true)
+        pickerPresenter?.delegate = self
+        
+        dateView.isUserInteractionEnabled = true
+        dateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDatePicker)))
     }
     
     private func setupView() {
@@ -54,39 +79,28 @@ class MyHealthStep1ViewController: BaseViewController {
         self.title = "MY_HEALTH_TITLE_STEP1".localized
         
         cancelButton.layer.borderWidth = 1
-        cancelButton.layer.borderColor = UIColor.twilight.cgColor
+        cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
         
         cancelButton.setTitle("ALERT_CANCEL_BUTTON".localized, for: .normal)
         continueButton.setTitle("ACC_BUTTON_CONTINUE".localized, for: .normal)
         
-        datePicker.minimumDate = Date().addingTimeInterval(-TimeInterval(14*60*60*24))
-        datePicker.maximumDate = Date()
-        datePicker.datePickerMode = .date
-    
-        datePicker.preferredDatePickerStyle = .wheels
-        pickerPresenter = PickerPresenter(picker: datePicker, isNeedCancelButton: true)
-        pickerPresenter?.delegate = self
-        
-        dateView.isUserInteractionEnabled = true
-        dateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDatePicker)))
-       
         codeTextField.delegate = self
         codeTextField.layer.borderColor = UIColor.twilight.cgColor
         codeTextField.accessibilityLabel = "MY_HEALTH_TITLE_STEP1".localized
-
+        
         dayView.layer.borderColor = UIColor.twilight.cgColor
         monthView.layer.borderColor = UIColor.twilight.cgColor
         yearView.layer.borderColor = UIColor.twilight.cgColor
         
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
-
+        
         NotificationCenter.default.addObserver(
             self, selector: #selector(keyboardWillShow),
             name: UIResponder.keyboardWillShowNotification,
             object: nil
         )
-
+        
         NotificationCenter.default.addObserver(
             self, selector: #selector(keyboardWillHide),
             name: UIResponder.keyboardWillHideNotification,
@@ -109,11 +123,7 @@ class MyHealthStep1ViewController: BaseViewController {
         codeTextField.accessibilityHint = "ACC_HINT".localized
         codeTextField.keyboardType = .numberPad
         
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        
-        sympthomsStartSubTitle.isAccessibilityElement = true
-        sympthomsStartSubTitle.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        sympthomsStartDate.text = sympthomsStartDate.text?.uppercased()
         
         continueButton.isAccessibilityElement = true
         continueButton.accessibilityHint = "ACC_BUTTON_ALERT_CONTINUE".localized
@@ -122,16 +132,22 @@ class MyHealthStep1ViewController: BaseViewController {
         cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
         
         dateView.isAccessibilityElement = true
+        
         dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
         dateView.accessibilityHint = "ACC_HINT".localized
+        
     }
     
     private func setEnableButton(isEnable: Bool) {
         continueButton.isEnabled = isEnable
         if isEnable {
-            continueButton.titleLabel?.font = UIFont.mainFont(size: .twentytwo, fontType: .bold)
+            continueButton.layer.borderWidth = 0
+            continueButton.setBackgroundImage(UIImage.init(named: "buttonsPrimary"), for: .normal)
         } else {
-            continueButton.titleLabel?.font = UIFont.mainFont(size: .twentytwo, fontType: .regular)
+            continueButton.layer.borderWidth = 1
+            continueButton.layer.cornerRadius = 10
+            continueButton.layer.borderColor = UIColor.gray.cgColor
+            continueButton.setBackgroundImage(nil, for: .normal)
         }
     }
     
@@ -146,10 +162,10 @@ class MyHealthStep1ViewController: BaseViewController {
     @objc func keyboardWillShow(notification: NSNotification?) {
         guard let keyboardSize = (
                 notification?.userInfo?[
-                UIResponder.keyboardFrameEndUserInfoKey
-            ] as? NSValue)?.cgRectValue else {
-           // if keyboard size is not available for some reason, dont do anything
-           return
+                    UIResponder.keyboardFrameEndUserInfoKey
+                ] as? NSValue)?.cgRectValue else {
+            // if keyboard size is not available for some reason, dont do anything
+            return
         }
         // move the root view up by the distance of keyboard height
         DispatchQueue.main.async {
@@ -158,7 +174,7 @@ class MyHealthStep1ViewController: BaseViewController {
             self.pickerPresenter?.hiddenPickerView()
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification?) {
         // move back the root view origin to zero
         DispatchQueue.main.async {
@@ -204,19 +220,35 @@ class MyHealthStep1ViewController: BaseViewController {
         self.showAlertCancelContinue(
             title: "ALERT_MY_HEALTH_SEND_TITLE".localizedAttributed,
             message: "ALERT_MY_HEALTH_SEND_CONTENT".localizedAttributed,
-            buttonOkTitle: "ALERT_OK_BUTTON".localizedAttributed.string,
-            buttonCancelTitle: "ALERT_CANCEL_BUTTON".localizedAttributed.string,
-            buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localizedAttributed.string,
-            buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localizedAttributed.string,
+            buttonOkTitle: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
+            buttonCancelTitle: "ACC_BUTTON_CLOSE".localizedAttributed.string,
+            buttonOkVoiceover: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
+            buttonCancelVoiceover: "ACC_BUTTON_CLOSE".localizedAttributed.string,
             okHandler: { () in
                 self.router?.popToRoot(from: self, animated: true)
-        }, cancelHandler: { () in
-        })
+            }, cancelHandler: { () in
+            })
     }
     
-    func isDisabblePricipalAccesibility(isDisabble: Bool) {
+    private func isDisabblePricipalAccesibility(isDisabble: Bool) {
         self.continueButton.isAccessibilityElement = !isDisabble
         self.cancelButton.isAccessibilityElement = !isDisabble
+    }
+    
+    private func checkIfNeedSetCovidCode() {
+        if let code = covidCode,
+           code.isNumber {
+            
+            if code.count <= maxLengthCode {
+                codeTextField.text = code
+            } else {
+                let index = code.index(code.startIndex, offsetBy: maxLengthCode)
+                let codeSubstring = code[..<index]
+                codeTextField.text = String(codeSubstring)
+            }
+            
+            setEnableButton(isEnable: codeTextField.text?.count == maxLengthCode)
+        }
     }
 }
 
@@ -287,9 +319,9 @@ extension MyHealthStep1ViewController: PickerDelegate {
             dayLabel.text = formatter.string(from: date)
             
             //Setup accessibility
-            let daySelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
-            let monthSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + (monthLabel.text ?? "")
-            let yearSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + " " + (yearLabel.text ?? "")
+            let daySelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + (dayLabel.text ?? "")
+            let monthSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + (monthLabel.text ?? "")
+            let yearSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + ", " + (yearLabel.text ?? "")
 
             dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + " " + monthSelected + " " + yearSelected)
         }

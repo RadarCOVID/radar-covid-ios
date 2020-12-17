@@ -58,7 +58,7 @@ extension UIView {
         }
     }
     
-    private func setFontSizeThatFitSize(size: Double, font: UIFont) -> UIFont{
+    private func setFontSizeThatFitSize(size: Double, font: UIFont) -> UIFont {
         let styles = [UIFont.TextStyle.caption2, UIFont.TextStyle.caption1, UIFont.TextStyle.subheadline, UIFont.TextStyle.callout, UIFont.TextStyle.body,  UIFont.TextStyle.headline, UIFont.TextStyle.title3, UIFont.TextStyle.title2, UIFont.TextStyle.title1, UIFont.TextStyle.largeTitle ]
         let sizes = [15.0, 16.0, 17.0, 18.0, 20.0, 22.0, 24.0, 26.0, 28.0, 32.0]
         
@@ -72,14 +72,47 @@ extension UIView {
         return font
     }
     
-    private func setLabelFontSize(label: UILabel) {
-        if label.tag != 55 && ((label.text?.isEmpty) != nil) {
-            label.tag = 55
+    private func setFontSizeThatFitSize(size: Double, font: UIFont, attriubeString: NSAttributedString) -> NSAttributedString {
+        let styles = [UIFont.TextStyle.caption2, UIFont.TextStyle.caption1, UIFont.TextStyle.subheadline, UIFont.TextStyle.callout, UIFont.TextStyle.body,  UIFont.TextStyle.headline, UIFont.TextStyle.title3, UIFont.TextStyle.title2, UIFont.TextStyle.title1, UIFont.TextStyle.largeTitle ]
+        let sizes = [15.0, 16.0, 17.0, 18.0, 20.0, 22.0, 24.0, 26.0, 28.0, 32.0]
+        let mutAttriubeString: NSMutableAttributedString = NSMutableAttributedString.init(attributedString: attriubeString)
+        
+        if (sizes.contains(size)) {
+            let index = sizes.firstIndex(of: size)
+            let fontStyle = styles[index ?? 0]
+            let font = UIFontMetrics(forTextStyle: fontStyle).scaledFont(for: font)
+            mutAttriubeString.addAttribute(.font, value: font, range: NSRange(location: 0, length: attriubeString.string.count))
             
-            let fontSize = Double(label.font.pointSize)
-            label.font = self.setFontSizeThatFitSize(size: fontSize, font: label.font)
-            label.adjustsFontForContentSizeCategory = true
+            let newStr = attriubeString.mutableCopy() as! NSMutableAttributedString
+            newStr.beginEditing()
+            newStr.enumerateAttribute(.font, in: NSRange(location: 0, length: newStr.string.utf16.count)) { (value, range, stop) in
+                if let oldFont = value as? UIFont {
+                    let newFont = oldFont.withSize(font.pointSize) 
+                    newStr.addAttribute(.font, value: newFont, range: range)
+                }
+            }
+            newStr.endEditing()
+
+            return newStr
         }
+        
+        return mutAttriubeString
+    }
+    
+    private func setLabelFontSize(label: UILabel) {
+        if label.tag != 55 {
+
+            label.tag = 55
+
+            let fontSize = Double(label.font.pointSize)
+            if let attributedText = label.attributedText {
+                label.attributedText = self.setFontSizeThatFitSize(size: fontSize, font: label.font, attriubeString: attributedText)
+            } else {
+                label.font = self.setFontSizeThatFitSize(size: fontSize, font: label.font)
+            }
+            
+            label.adjustsFontForContentSizeCategory = true
+        } 
     }
     
     private func setButtonFontSize(button: UIButton) {

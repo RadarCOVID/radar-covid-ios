@@ -25,7 +25,20 @@ class ExpositionUseCase: DP3TTracingDelegate {
     private let subject: BehaviorSubject<ExpositionInfo>
     private let expositionInfoRepository: ExpositionInfoRepository
     private let notificationHandler: NotificationHandler
+    private static let lastSyncKey = "ExpositionUseCase.lastSync"
     
+    public var lastSync: Date? {
+        get {
+            return UserDefaults.standard.value(forKey: ExpositionUseCase.lastSyncKey) as? Date
+        }
+        set(val) {
+            guard let date = val else {
+                return
+            }
+            UserDefaults.standard.setValue(date, forKey: ExpositionUseCase.lastSyncKey)
+        }
+    }
+
     init(notificationHandler: NotificationHandler,
          expositionInfoRepository: ExpositionInfoRepository) {
 
@@ -58,6 +71,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
         if expositionInfo.isOk() {
             expositionInfoRepository.save(expositionInfo: expositionInfo)
         }
+        self.lastSync = expositionInfo.lastCheck
 
         subject.onNext(expositionInfo)
         
@@ -68,33 +82,51 @@ class ExpositionUseCase: DP3TTracingDelegate {
     }
 
     func updateExpositionInfo() {
-        subject.onNext(tracingStatusToExpositionInfo(tStatus: DP3TTracing.status))
+        let expositionInfo = tracingStatusToExpositionInfo(tStatus: DP3TTracing.status)
+        self.lastSync = expositionInfo.lastCheck
+        subject.onNext(expositionInfo)
     }
 
     // Metodo para mapear un TracingState a un ExpositionInfo
     private func tracingStatusToExpositionInfo(tStatus: TracingState) -> ExpositionInfo {
-
+        
         switch tStatus.trackingState {
-        case .inactive(let error):
-            var errorEI = ExpositionInfo(level: expositionInfoRepository.getExpositionInfo()?.level ?? .healthy)
-            errorEI.error = dp3tTracingErrorToDomain(error)
-            return errorEI
-        default: break
+            case .inactive(let error):
+                var errorEI = ExpositionInfo(level: expositionInfoRepository.getExpositionInfo()?.level ?? .healthy)
+                errorEI.error = dp3tTracingErrorToDomain(error)
+                return errorEI
+            default: break
         }
-
+        
         switch tStatus.infectionStatus {
-        case .healthy:
-            var info = ExpositionInfo(level: ExpositionInfo.Level.healthy)
-            info.lastCheck = tStatus.lastSync
-            return info
-        case .infected:
-            return ExpositionInfo(level: ExpositionInfo.Level.infected)
-        case .exposed(days: let days):
-            var info = ExpositionInfo(level: ExpositionInfo.Level.exposed)
-            info.since = days.first?.exposedDate
-            info.lastCheck = tStatus.lastSync
-            return info
+            case .healthy:
+                var info = ExpositionInfo(level: ExpositionInfo.Level.healthy)
+                info.lastCheck = tStatus.lastSync
+                return info
+            case .infected:
+                let savedStatus = expositionInfoRepository.getExpositionInfo()?.level ?? ExpositionInfo.Level.healthy
+                var expositionInfo = ExpositionInfo(level: ExpositionInfo.Level.infected)
+                if savedStatus == ExpositionInfo.Level.infected {
+                    expositionInfo =  expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: ExpositionInfo.Level.infected)
+                }
+                if expositionInfo.since == nil {
+                    expositionInfo.since = Date()
+                }
+                expositionInfoRepository.save(expositionInfo: expositionInfo)
+                return expositionInfo
+                
+            case .exposed(days: let days):
+                var info = ExpositionInfo(level: ExpositionInfo.Level.exposed)
+                info.since = self.getMoreRecentDateFromExpositionArray(days: days)
+                info.lastCheck = tStatus.lastSync
+                return info
         }
+    }
+    
+    private func getMoreRecentDateFromExpositionArray(days: [ExposureDay]) -> Date? {
+        return days.sorted { (d1, d2) -> Bool in
+            return d1.exposedDate > d2.exposedDate
+        }.first?.exposedDate
     }
 
     private func showNotification(_ localEI: ExpositionInfo?, _ expositionInfo: ExpositionInfo) -> Bool {

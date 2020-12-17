@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailInteroperabilityViewController" customModule="Radar_COVID" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomCloseButton" destination="Z8f-oC-q7n" id="g20-6D-EFr"/>
+                <outlet property="closeButton" destination="9SY-NN-qG7" id="nFI-Yi-6DT"/>
+                <outlet property="description1Label" destination="6q6-tN-Aq5" id="Wj0-oo-pDR"/>
+                <outlet property="description2Label" destination="z2Y-bW-Vny" id="9r8-rI-FNW"/>
+                <outlet property="listCountryStackView" destination="l9S-10-iLZ" id="UCs-ka-mT3"/>
+                <outlet property="titleLabel" destination="1m0-c8-7Tx" id="usE-jY-hpL"/>
+                <outlet property="view" destination="iN0-l3-epB" id="y39-ad-luR"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="529-JA-8Ww">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" name="blueyGrey90"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C58-ev-rdO" userLabel="containerView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nYO-V1-dBi">
+                            <rect key="frame" x="20" y="52" width="374" height="746"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Países conectados con Radar COVID" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1m0-c8-7Tx" userLabel="Title">
+                                    <rect key="frame" x="20" y="20" width="294" height="53"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                    </accessibility>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="DETAIL_INTEROPERABILITY_TITLE"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SY-NN-qG7">
+                                    <rect key="frame" x="318" y="10" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="HhH-fI-S2a"/>
+                                        <constraint firstAttribute="height" constant="50" id="eB7-6A-BEP"/>
+                                    </constraints>
+                                    <state key="normal" image="iconClose">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onCloseAction:" destination="-1" eventType="touchUpInside" id="fsQ-Dd-2vc"/>
+                                    </connections>
+                                </button>
+                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eW-6o-2yx">
+                                    <rect key="frame" x="0.0" y="77" width="374" height="669"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awW-ay-1eZ" userLabel="ContentView">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="453.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DetailInteroperabilityFrame" translatesAutoresizingMaskIntoConstraints="NO" id="XNa-G3-Jqi">
+                                                    <rect key="frame" x="20" y="10" width="334" height="160"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" image="YES" staticText="YES"/>
+                                                    </accessibility>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="160" id="TC6-cS-hWe"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6q6-tN-Aq5">
+                                                    <rect key="frame" x="20" y="182" width="334" height="107.5"/>
+                                                    <string key="text">Radar COVID forma parte de una red en continuo crecimiento de países en la Unión Europea cuyas aplicaciones  interoperan entre sí, funcionando más allá de sus fronteras.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="DETAIL_INTEROPERABILITY_DESCRIPTION_1"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actualmente Radar COVID conecta con las aplicaciones de los siguientes países:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-bW-Vny">
+                                                    <rect key="frame" x="20" y="309.5" width="334" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="DETAIL_INTEROPERABILITY_DESCRIPTION_2"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="l9S-10-iLZ">
+                                                    <rect key="frame" x="20" y="372.5" width="334" height="61"/>
+                                                </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8f-oC-q7n" userLabel="backButton">
+                                                    <rect key="frame" x="0.0" y="512.5" width="374" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="J0y-Ka-bQE"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="onCloseAction:" destination="-1" eventType="touchUpInside" id="Ed7-fY-W6L"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="Z8f-oC-q7n" firstAttribute="leading" secondItem="awW-ay-1eZ" secondAttribute="leading" id="0bL-KF-aNK"/>
+                                                <constraint firstItem="6q6-tN-Aq5" firstAttribute="top" secondItem="XNa-G3-Jqi" secondAttribute="bottom" constant="12" id="4ep-3b-Kx0"/>
+                                                <constraint firstAttribute="trailing" secondItem="6q6-tN-Aq5" secondAttribute="trailing" constant="20" id="5y7-4m-zz3"/>
+                                                <constraint firstItem="Z8f-oC-q7n" firstAttribute="top" secondItem="l9S-10-iLZ" secondAttribute="bottom" constant="5" id="89d-Ud-mNA"/>
+                                                <constraint firstItem="XNa-G3-Jqi" firstAttribute="top" secondItem="awW-ay-1eZ" secondAttribute="top" constant="10" id="9nc-Ru-yRW"/>
+                                                <constraint firstItem="XNa-G3-Jqi" firstAttribute="leading" secondItem="awW-ay-1eZ" secondAttribute="leading" constant="20" id="BQz-Zj-xWS"/>
+                                                <constraint firstAttribute="trailing" secondItem="Z8f-oC-q7n" secondAttribute="trailing" id="EXL-Pj-Oer"/>
+                                                <constraint firstAttribute="trailing" secondItem="l9S-10-iLZ" secondAttribute="trailing" constant="20" id="FUY-90-y7e"/>
+                                                <constraint firstAttribute="bottom" secondItem="Z8f-oC-q7n" secondAttribute="bottom" constant="5" id="TDK-uU-NhR"/>
+                                                <constraint firstAttribute="trailing" secondItem="z2Y-bW-Vny" secondAttribute="trailing" constant="20" id="VJl-EN-SMd"/>
+                                                <constraint firstItem="l9S-10-iLZ" firstAttribute="top" secondItem="z2Y-bW-Vny" secondAttribute="bottom" constant="20" id="Vum-wC-3aS"/>
+                                                <constraint firstAttribute="trailing" secondItem="XNa-G3-Jqi" secondAttribute="trailing" constant="20" id="dGu-OE-VGW"/>
+                                                <constraint firstItem="6q6-tN-Aq5" firstAttribute="leading" secondItem="awW-ay-1eZ" secondAttribute="leading" constant="20" id="fxr-4W-csr"/>
+                                                <constraint firstItem="l9S-10-iLZ" firstAttribute="leading" secondItem="awW-ay-1eZ" secondAttribute="leading" constant="20" id="ro4-g0-x7s"/>
+                                                <constraint firstItem="z2Y-bW-Vny" firstAttribute="top" secondItem="6q6-tN-Aq5" secondAttribute="bottom" constant="20" id="yvh-SH-xon"/>
+                                                <constraint firstItem="z2Y-bW-Vny" firstAttribute="leading" secondItem="awW-ay-1eZ" secondAttribute="leading" constant="20" id="zYW-aT-1Gk"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="awW-ay-1eZ" firstAttribute="width" secondItem="v2G-XX-Qi2" secondAttribute="width" id="3Oi-sD-pKW"/>
+                                        <constraint firstItem="bUb-ef-1Jg" firstAttribute="trailing" secondItem="awW-ay-1eZ" secondAttribute="trailing" id="USY-Gq-zTI"/>
+                                        <constraint firstItem="bUb-ef-1Jg" firstAttribute="bottom" secondItem="awW-ay-1eZ" secondAttribute="bottom" id="VRO-5C-S9U"/>
+                                        <constraint firstItem="awW-ay-1eZ" firstAttribute="leading" secondItem="bUb-ef-1Jg" secondAttribute="leading" id="mGy-Tb-1QR"/>
+                                        <constraint firstItem="awW-ay-1eZ" firstAttribute="top" secondItem="bUb-ef-1Jg" secondAttribute="top" id="uyg-Ho-KtX"/>
+                                    </constraints>
+                                    <viewLayoutGuide key="contentLayoutGuide" id="bUb-ef-1Jg"/>
+                                    <viewLayoutGuide key="frameLayoutGuide" id="v2G-XX-Qi2"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </scrollView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="9SY-NN-qG7" firstAttribute="top" secondItem="nYO-V1-dBi" secondAttribute="top" constant="10" id="1iu-rZ-YuS"/>
+                                <constraint firstItem="7eW-6o-2yx" firstAttribute="top" secondItem="1m0-c8-7Tx" secondAttribute="bottom" constant="4" id="1nX-5g-Dfv"/>
+                                <constraint firstAttribute="trailing" secondItem="7eW-6o-2yx" secondAttribute="trailing" id="BKS-f9-0DB"/>
+                                <constraint firstItem="9SY-NN-qG7" firstAttribute="leading" secondItem="1m0-c8-7Tx" secondAttribute="trailing" constant="4" id="OWM-Zr-xLk"/>
+                                <constraint firstItem="7eW-6o-2yx" firstAttribute="leading" secondItem="nYO-V1-dBi" secondAttribute="leading" id="T45-vV-4MU"/>
+                                <constraint firstItem="1m0-c8-7Tx" firstAttribute="leading" secondItem="nYO-V1-dBi" secondAttribute="leading" constant="20" id="jOi-oi-nox"/>
+                                <constraint firstAttribute="bottom" secondItem="7eW-6o-2yx" secondAttribute="bottom" id="jPq-0y-iGr"/>
+                                <constraint firstItem="1m0-c8-7Tx" firstAttribute="top" secondItem="nYO-V1-dBi" secondAttribute="top" constant="20" id="oZh-3e-pnT"/>
+                                <constraint firstAttribute="trailing" secondItem="9SY-NN-qG7" secondAttribute="trailing" constant="6" id="waH-Lv-pbS"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="nYO-V1-dBi" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="20" id="4R7-T3-3gv"/>
+                        <constraint firstAttribute="trailing" secondItem="nYO-V1-dBi" secondAttribute="trailing" constant="20" id="PIa-HB-MLd"/>
+                        <constraint firstAttribute="bottom" secondItem="nYO-V1-dBi" secondAttribute="bottomMargin" constant="72" id="Tlo-y2-rJ3"/>
+                        <constraint firstItem="nYO-V1-dBi" firstAttribute="top" secondItem="C58-ev-rdO" secondAttribute="topMargin" id="qx0-h9-NZS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="529-JA-8Ww" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Gle-z4-uI6"/>
+                <constraint firstItem="C58-ev-rdO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="So1-wb-bG0"/>
+                <constraint firstItem="529-JA-8Ww" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="e2g-fK-Y45"/>
+                <constraint firstAttribute="bottom" secondItem="529-JA-8Ww" secondAttribute="bottom" id="edX-3k-UKl"/>
+                <constraint firstItem="C58-ev-rdO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hPP-QI-hMq"/>
+                <constraint firstItem="529-JA-8Ww" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="q2h-Ha-PnS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="C58-ev-rdO" secondAttribute="bottom" id="wSe-UD-j7f"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="C58-ev-rdO" secondAttribute="trailing" id="zDb-AP-29H"/>
+            </constraints>
+            <point key="canvasLocation" x="140.57971014492756" y="101.78571428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="DetailInteroperabilityFrame" width="329" height="160"/>
+        <image name="iconClose" width="19" height="19"/>
+        <namedColor name="blueyGrey90">
+            <color red="0.50599998235702515" green="0.54900002479553223" blue="0.75700002908706665" alpha="0.89999997615814209" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

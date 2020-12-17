@@ -13,13 +13,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: BaseViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var languageSelectorContainerView: UIView!
     @IBOutlet weak var languageSelectorLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var stepbullet1Label: UILabel!
     @IBOutlet weak var stepbullet2Label: UILabel!
     @IBOutlet weak var stepbullet3Label: UILabel!
@@ -31,7 +30,7 @@ class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setFontTextStyle()
+        
         setupView()
     }
     
@@ -44,36 +43,36 @@ class WelcomeViewController: UIViewController {
         
         isDisableAccesibility(isDisabble: true)
         self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
-            SelectorView.initWithParentViewController(viewController: self,
-                                                      title: "SETTINGS_LANGUAGE_TITLE".localized,
-                                                      getArray:{ [weak self] () -> Observable<[SelectorItem]> in
-                
-                return Observable.create { [weak self] observer in
-                    viewModel.getLenguages().subscribe(onNext: {(value) in
-                        observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
-                        observer.onCompleted()
-                    }).disposed(by: self?.disposeBag ?? DisposeBag())
-                    return Disposables.create {
-                    }
-                }
-            }, getSelectedItem: { () -> Observable<SelectorItem> in
-                
-                return Observable.create { [weak self] observer in
-                    viewModel.getCurrenLenguageLocalizable().subscribe(onNext: {(value) in
-                        observer.onNext(SelectorHelperViewModel.generateTransformation(val: ItemLocale(id: viewModel.getCurrenLenguage(), description: value)))
-                        observer.onCompleted()
-                    }).disposed(by: self?.disposeBag ?? DisposeBag())
-                    return Disposables.create {
-                    }
-                }
-            }, delegateOutput: self)
+            SelectorView
+                .initWithParentViewController(
+                    viewController: self,
+                    title: "SETTINGS_LANGUAGE_TITLE".localized,
+                    getArray:{ [weak self] () ->
+                        Observable<[SelectorItem]> in
+                            return Observable.create { [weak self] observer in
+                                viewModel.getLenguages().subscribe(onNext: {(value) in
+                                    observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
+                                        observer.onCompleted()
+                                    }).disposed(by: self?.disposeBag ?? DisposeBag())
+                                return Disposables.create {}
+                            }
+                    }, getSelectedItem: { () ->
+                        Observable<SelectorItem> in
+                            return Observable.create { [weak self] observer in
+                                viewModel.getCurrenLenguageLocalizable().subscribe(onNext: {(value) in
+                                    observer.onNext(SelectorHelperViewModel.generateTransformation(val: ItemLocale(id: viewModel.getCurrenLenguage(), description: value)))
+                                    observer.onCompleted()
+                                }).disposed(by: self?.disposeBag ?? DisposeBag())
+                                return Disposables.create {
+                                }
+                            }
+                          }, delegateOutput: self)
         }
     }
     
     private func setupAccessibility() {
         
         languageSelectorContainerView.isAccessibilityElement = true
-        languageSelectorContainerView.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized
         languageSelectorContainerView.accessibilityHint = "ACC_HINT".localized
 
         continueButton.setTitle("ONBOARDING_CONTINUE_BUTTON".localized, for: .normal)
@@ -82,9 +81,7 @@ class WelcomeViewController: UIViewController {
         continueButton.accessibilityHint = "ACC_HINT".localized
         continueButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
 
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityLabel = "ACC_WELCOME_TITLE".localized
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        titleLabel?.accessibilityLabel = "ACC_WELCOME_TITLE".localized
     }
     
     private func setupView() {
@@ -97,8 +94,9 @@ class WelcomeViewController: UIViewController {
                                                                                   action: #selector(selectLanguage(_ :))))
         
         viewModel?.getCurrenLenguageLocalizable().subscribe(onNext: { [weak self] (value) in
+            self?.languageSelectorContainerView.accessibilityLabel = "ACC_BUTTON_SELECTOR_SELECT".localized + " " + (value) + " " + "ACC_SELECTED".localized
             self?.languageSelectorLabel.text = value
-            self?.languageSelectorContainerView.accessibilityLabel = value
+            self?.languageSelectorLabel.setMagnifierFontSize()
         }).disposed(by: disposeBag)
         
         setupAccessibility()
@@ -118,9 +116,9 @@ extension WelcomeViewController: SelectorProtocol {
 
             self.showAlertCancelContinue(title: "LOCALE_CHANGE_LANGUAGE".localizedAttributed,
                                                           message: "LOCALE_CHANGE_WARNING".localizedAttributed,
-                                                          buttonOkTitle: "ALERT_OK_BUTTON".localized,
+                                                          buttonOkTitle: "ALERT_ACCEPT_BUTTON".localized,
                                                           buttonCancelTitle: "ALERT_CANCEL_BUTTON".localized,
-                                                          buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localized,
+                                                          buttonOkVoiceover: "ACC_BUTTON_ALERT_ACCEPT".localized,
                                                           buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localized,
                                                           okHandler: {
                                                             completionCloseView(true)

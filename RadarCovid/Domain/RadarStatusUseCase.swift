@@ -68,6 +68,7 @@ class RadarStatusUseCase {
             observer.onCompleted()
         } else {
             observer.onError(error)
+            observer.onCompleted()
         }
     }
     

@@ -14,7 +14,6 @@ import RxSwift
 
 class MyHealthStep2ViewController: BaseViewController {
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var customSliderView: CustomSliderView!
     @IBOutlet weak var shareSpainRadioView: UIView!
     @IBOutlet weak var checkShareSpainImage: UIImageView!
@@ -47,7 +46,7 @@ class MyHealthStep2ViewController: BaseViewController {
         self.title = "MY_HEALTH_TITLE_STEP2".localized
         
         cancelButton.layer.borderWidth = 1
-        cancelButton.layer.borderColor = UIColor.twilight.cgColor
+        cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
         
         sendButton.setTitle("MY_HEALTH_DIAGNOSTIC_CODE_SEND_BUTTON".localized, for: .normal)
         sendButton.titleLabel?.lineBreakMode = .byWordWrapping
@@ -68,10 +67,6 @@ class MyHealthStep2ViewController: BaseViewController {
     }
     
     private func setupAccessibility() {
-
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        
         shareSpainRadioView.isAccessibilityElement = true
         shareSpainRadioView.accessibilityLabel =  "ACC_NO_SELECTED".localized + ", " + "MY_HEALTH_STEP2_RADIO1".localizedAttributed.string
         shareSpainRadioView.accessibilityTraits.insert(UIAccessibilityTraits.button)
@@ -145,10 +140,10 @@ class MyHealthStep2ViewController: BaseViewController {
         self.showAlertCancelContinue(
             title: "ALERT_MY_HEALTH_SEND_TITLE".localizedAttributed,
             message: "ALERT_MY_HEALTH_SEND_CONTENT".localizedAttributed,
-            buttonOkTitle: "ALERT_OK_BUTTON".localizedAttributed.string,
-            buttonCancelTitle: "ALERT_CANCEL_BUTTON".localizedAttributed.string,
-            buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localizedAttributed.string,
-            buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localizedAttributed.string,
+            buttonOkTitle: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
+            buttonCancelTitle: "ACC_BUTTON_CLOSE".localizedAttributed.string,
+            buttonOkVoiceover: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
+            buttonCancelVoiceover: "ACC_BUTTON_CLOSE".localizedAttributed.string,
             okHandler: { () in
                 self.router?.popToRoot(from: self, animated: true)
         }, cancelHandler: { () in
@@ -182,7 +177,7 @@ class MyHealthStep2ViewController: BaseViewController {
             showAlertOk(
                 title: title,
                 message: errorMessage,
-                buttonTitle: "ALERT_OK_BUTTON".localized)
+                buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
         }
         
     }

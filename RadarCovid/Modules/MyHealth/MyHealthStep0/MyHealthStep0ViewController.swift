@@ -13,7 +13,6 @@ import UIKit
 
 class MyHealthStep0ViewController: BaseViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     
     var router: AppRouter?
@@ -34,19 +33,17 @@ class MyHealthStep0ViewController: BaseViewController {
         startButton.accessibilityHint = "MY_HEALTH_STEP0_ALERT_START".localized
         startButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
-        titleLabel.isAccessibilityElement = true
-        titleLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
-        titleLabel.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
+        titleLabel?.accessibilityLabel = "ACC_MY_DIAGNOSTIC_TITLE".localized
     }
     
     @IBAction func onBack(_ sender: Any) {
         self.showAlertCancelContinue(
             title: "ALERT_MY_HEALTH_SEND_TITLE".localizedAttributed,
             message: "ALERT_MY_HEALTH_SEND_CONTENT".localizedAttributed,
-            buttonOkTitle: "ALERT_OK_BUTTON".localizedAttributed.string,
-            buttonCancelTitle: "ALERT_CANCEL_BUTTON".localizedAttributed.string,
-            buttonOkVoiceover: "ACC_BUTTON_ALERT_OK".localizedAttributed.string,
-            buttonCancelVoiceover: "ACC_BUTTON_ALERT_CANCEL".localizedAttributed.string,
+            buttonOkTitle: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
+            buttonCancelTitle: "ACC_BUTTON_CLOSE".localizedAttributed.string,
+            buttonOkVoiceover: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
+            buttonCancelVoiceover: "ACC_BUTTON_CLOSE".localizedAttributed.string,
             okHandler: { () in
                 self.router?.pop(from: self, animated: true)
         }, cancelHandler: { () in
@@ -55,5 +52,14 @@ class MyHealthStep0ViewController: BaseViewController {
     
     @IBAction func onStart(_ sender: Any) {
         self.router?.route(to: Routes.myHealthStep1, from: self)
+    }
+}
+
+extension MyHealthStep0ViewController: AccTitleView {
+
+    var accTitle: String? {
+        get {
+            "MY_HEALTH_TITLE_PAGE".localized
+        }
     }
 }

@@ -15,11 +15,14 @@ import RxSwift
 class RootViewController: UIViewController {
 
     var router: AppRouter?
-    var configurationUseCasee: ConfigurationUseCase?
+    var configurationUseCase: ConfigurationUseCase?
     var ccaaUseCase: CCAAUseCase?
     var localesUseCase: LocalesUseCase?
     var localizationUseCase: LocalizationUseCase?
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
+    
+    var urlSchemeRedirect: [Routes]?
+    var paramsUrlScheme: [Any?]?
     
     private let disposeBag = DisposeBag()
     
@@ -34,14 +37,13 @@ class RootViewController: UIViewController {
         LocalizationHolder.source = localizationUseCase
         // change to wait for all request before load localization
         Observable.zip(localesUseCase!.loadLocales(),
-                       ccaaUseCase!.loadCCAA(),
-                       localizationUseCase!.loadlocalization()).subscribe(
+                       ccaaUseCase!.loadCCAA()).subscribe(
             // we dont use any of the avove so it is _,
             // otherwise it would be the name of a variable
             // that repesent the return of the observables in order
-            onNext: { [weak self] (_, _, _) in
+            onNext: { [weak self] (_, _) in
                 // all is ok so we can continue
-                self?.loadConfiguration()
+                self?.loadLocalization()
 
         }, onError: {[weak self] (_) in
             // we get an error so we stop working
@@ -54,8 +56,27 @@ class RootViewController: UIViewController {
         }).disposed(by: self.disposeBag)
     }
     
+    private func loadLocalization() {
+    
+        localizationUseCase!.loadlocalization().subscribe(
+            onNext: { [weak self] settings in
+                self?.loadConfiguration()
+
+            }, onError: {  [weak self] error in
+                // we get an error so we stop working
+                // Not use i18n for this alert!
+                self?.showAlertOk(title: "Error",
+                                  message: "Se ha producido un error. Compruebe la conexión",
+                                  buttonTitle: "Aceptar") {
+                    exit(0)
+                }
+
+        }).disposed(by: disposeBag)
+    }
+    
     private func loadConfiguration() {
-        configurationUseCasee!.loadConfig().subscribe(
+        
+        configurationUseCase!.loadConfig().subscribe(
             onNext: { [weak self] settings in
                 debugPrint("Configuration  finished")
 
@@ -103,7 +124,11 @@ class RootViewController: UIViewController {
 
     private  func navigateFirst() {
         if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
-            router?.route(to: Routes.home, from: self)
+            if let urlSchemeRedirect = urlSchemeRedirect {   
+                router?.routes(to: urlSchemeRedirect, from: self, parameters: paramsUrlScheme)
+            } else {
+                router?.route(to: Routes.home, from: self)
+            }
         } else {
             router!.route(to: Routes.welcome, from: self)
         }

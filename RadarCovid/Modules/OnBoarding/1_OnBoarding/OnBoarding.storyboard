@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,13 +21,16 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="742"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZX-eB-vJ1" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="612"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="628"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightTopShade" translatesAutoresizingMaskIntoConstraints="NO" id="26u-YC-f5R">
                                                 <rect key="frame" x="130.5" y="0.0" width="283.5" height="206.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BoyMobileQuestions" translatesAutoresizingMaskIntoConstraints="NO" id="oan-rX-oAc">
                                                 <rect key="frame" x="265" y="7" width="124" height="151"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" image="YES" staticText="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="151" id="e2W-Vb-7UD"/>
                                                     <constraint firstAttribute="width" constant="124" id="sk2-78-hYj"/>
@@ -138,10 +141,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwM-SS-Bb9" userLabel="CheckView">
-                                                <rect key="frame" x="16" y="489" width="382" height="73"/>
+                                                <rect key="frame" x="16" y="489" width="382" height="89"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acepto la política de privacidad " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvQ-IX-8Bm">
-                                                        <rect key="frame" x="57" y="2" width="325" height="19.5"/>
+                                                        <rect key="frame" x="57" y="10" width="325" height="19.5"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                         </accessibility>
@@ -153,7 +156,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="He leído las condiciones de uso" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-Ib-LaU">
-                                                        <rect key="frame" x="57" y="53.5" width="325" height="19.5"/>
+                                                        <rect key="frame" x="57" y="69.5" width="325" height="19.5"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                         </accessibility>
@@ -168,14 +171,14 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="49" height="40"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckboxUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="jHq-8U-BtL">
-                                                                <rect key="frame" x="15.5" y="3" width="18" height="18"/>
+                                                                <rect key="frame" x="6.5" y="3" width="36" height="36"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES"/>
                                                                     <bool key="isElement" value="NO"/>
                                                                 </accessibility>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="18" id="EDy-WA-ABH"/>
-                                                                    <constraint firstAttribute="width" constant="18" id="YsW-Xz-qXx"/>
+                                                                    <constraint firstAttribute="height" constant="36" id="EDy-WA-ABH"/>
+                                                                    <constraint firstAttribute="width" constant="36" id="YsW-Xz-qXx"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-E5-Lzg">
@@ -202,17 +205,17 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O4z-58-DkD">
-                                                        <rect key="frame" x="0.0" y="51.5" width="49" height="40"/>
+                                                        <rect key="frame" x="0.0" y="59.5" width="49" height="40"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckboxUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="hyi-7L-guJ">
-                                                                <rect key="frame" x="15.5" y="3" width="18" height="18"/>
+                                                                <rect key="frame" x="6.5" y="3" width="36" height="36"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES"/>
                                                                     <bool key="isElement" value="NO"/>
                                                                 </accessibility>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="18" id="19X-BP-Y5A"/>
-                                                                    <constraint firstAttribute="height" constant="18" id="OFK-Ty-DsE"/>
+                                                                    <constraint firstAttribute="width" constant="36" id="19X-BP-Y5A"/>
+                                                                    <constraint firstAttribute="height" constant="36" id="OFK-Ty-DsE"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3xW-BD-0hS">
@@ -243,13 +246,13 @@
                                                     <constraint firstItem="XRM-kg-RAx" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="top" id="05p-tR-08B"/>
                                                     <constraint firstItem="XRM-kg-RAx" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" id="2nu-Tk-PUe"/>
                                                     <constraint firstAttribute="trailing" secondItem="aNP-Ib-LaU" secondAttribute="trailing" id="DMQ-bj-FgG"/>
-                                                    <constraint firstItem="aNP-Ib-LaU" firstAttribute="top" secondItem="3xW-BD-0hS" secondAttribute="top" constant="2" id="GRe-EA-2Gq"/>
+                                                    <constraint firstItem="aNP-Ib-LaU" firstAttribute="top" secondItem="3xW-BD-0hS" secondAttribute="top" constant="10" id="GRe-EA-2Gq"/>
                                                     <constraint firstItem="O4z-58-DkD" firstAttribute="top" secondItem="qvQ-IX-8Bm" secondAttribute="bottom" constant="30" id="Vdu-H8-9j5"/>
                                                     <constraint firstAttribute="trailing" secondItem="qvQ-IX-8Bm" secondAttribute="trailing" id="Xbv-dN-lQA"/>
                                                     <constraint firstItem="qvQ-IX-8Bm" firstAttribute="leading" secondItem="XRM-kg-RAx" secondAttribute="trailing" constant="8" id="bRA-NU-iNJ"/>
                                                     <constraint firstItem="aNP-Ib-LaU" firstAttribute="leading" secondItem="qvQ-IX-8Bm" secondAttribute="leading" id="bi8-K2-jtn"/>
                                                     <constraint firstAttribute="bottom" secondItem="aNP-Ib-LaU" secondAttribute="bottom" id="ffu-DQ-5s6"/>
-                                                    <constraint firstItem="qvQ-IX-8Bm" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="top" constant="2" id="nXk-iU-qfp"/>
+                                                    <constraint firstItem="qvQ-IX-8Bm" firstAttribute="top" secondItem="SwM-SS-Bb9" secondAttribute="top" constant="10" id="nXk-iU-qfp"/>
                                                     <constraint firstItem="O4z-58-DkD" firstAttribute="leading" secondItem="SwM-SS-Bb9" secondAttribute="leading" id="pOC-8G-cdQ"/>
                                                 </constraints>
                                             </view>
@@ -279,17 +282,19 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="kTL-66-zlq"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Q5y-H2-Snj"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDV-35-L2Q" userLabel="Accept Button">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDV-35-L2Q" userLabel="Accept Button">
                                 <rect key="frame" x="16" y="796" width="382" height="56"/>
+                                <color key="backgroundColor" name="white"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="UXS-Se-pyq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
-                                <state key="normal" title="Continuar" backgroundImage="buttonsPrimary">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <color key="tintColor" name="bgColor"/>
+                                <state key="normal" title="Continuar">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="disabled">
+                                    <color key="titleColor" name="brownGrey"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -340,11 +345,15 @@
     </scenes>
     <resources>
         <image name="BoyMobileQuestions" width="124" height="151"/>
-        <image name="ButtonPrimaryDisabled" width="341" height="60"/>
-        <image name="CheckboxUnselected" width="16" height="16"/>
+        <image name="CheckboxUnselected" width="36" height="36"/>
         <image name="RightTopShade" width="283.5" height="206.5"/>
-        <image name="buttonsPrimary" width="341" height="60"/>
         <namedColor name="bgColor">
+            <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brownGrey">
+            <color red="0.57599997520446777" green="0.57599997520446777" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
             <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -33,7 +33,7 @@
                     <rect key="frame" x="0.0" y="116" width="414" height="574"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqs-jf-GzU">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="780"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="780.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compartir diagnóstico" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-CU-SbS">
                                     <rect key="frame" x="16" y="40" width="382" height="22"/>
@@ -45,7 +45,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comparte tu diagnóstico anónimo con otras aplicaciones europeas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="D5K-o9-kaY">
-                                    <rect key="frame" x="16" y="81.5" width="382" height="38.5"/>
+                                    <rect key="frame" x="16" y="82" width="382" height="38.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Es necesario para avisar a las personas con las que hayas podido tener contacto mientras podías transmitir el coronavirus." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q6b-9Y-Kvk">
-                                    <rect key="frame" x="16" y="136" width="382" height="57.5"/>
+                                    <rect key="frame" x="16" y="136.5" width="382" height="57.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Jwd-7J-mex">
-                                    <rect key="frame" x="16" y="678.5" width="382" height="81.5"/>
+                                    <rect key="frame" x="16" y="679" width="382" height="81.5"/>
                                     <string key="text">Radar COVID forma parte de una red de países en la Unión Europea cuyas aplicaciones  
 interoperan entre sí, funcionando más allá de sus fronteras.</string>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -74,7 +74,7 @@ interoperan entre sí, funcionando más allá de sus fronteras.</string>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-Br-dcs">
-                                    <rect key="frame" x="16" y="213.5" width="382" height="90.5"/>
+                                    <rect key="frame" x="16" y="214" width="382" height="90.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compartir con personas usuarias Radar COVID" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cq9-es-rp8">
                                             <rect key="frame" x="19" y="26" width="311" height="38.5"/>
@@ -109,7 +109,7 @@ interoperan entre sí, funcionando más allá de sus fronteras.</string>
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78O-7J-bGF">
-                                    <rect key="frame" x="16" y="324" width="382" height="82.5"/>
+                                    <rect key="frame" x="16" y="324.5" width="382" height="82.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compartir con personas usuarias Radar COVID y aplicaciones europeas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YL7-Hx-rZ8">
                                             <rect key="frame" x="16" y="26" width="312" height="38.5"/>
@@ -144,7 +144,10 @@ interoperan entre sí, funcionando más allá de sus fronteras.</string>
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myHealthStep2Frame" translatesAutoresizingMaskIntoConstraints="NO" id="sqQ-QU-hBG">
-                                    <rect key="frame" x="0.0" y="449.5" width="414" height="203"/>
+                                    <rect key="frame" x="0.0" y="450" width="414" height="203"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" image="YES" staticText="YES"/>
+                                    </accessibility>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" name="veryLightPink"/>

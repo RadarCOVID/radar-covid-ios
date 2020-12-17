@@ -102,6 +102,70 @@ open class MasterDataAPI {
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
+    
+    /**
+     Get countries
+
+     - parameter locale: (query)  (optional, default to es-ES)
+     - parameter platform: (query)  (optional)
+     - parameter version: (query)  (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open func getCountries(locale: String? = nil, platform: String? = nil, version: String? = nil, completion: @escaping ((_ data: [KeyValueDto]?,_ error: Error?) -> Void)) {
+        getCountriesWithRequestBuilder(locale: locale, platform: platform, version: version).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+    
+    open func getCountries(locale: String? = nil, platform: String? = nil, version: String? = nil) -> Observable<[KeyValueDto]> {
+        return Observable.create { [weak self] observer -> Disposable in
+            self?.getCountries(completion: { (data, err) in
+                if let error = err {
+                    observer.onError(error)
+                }else if let dataValue = data {
+                    observer.onNext(dataValue)
+                    observer.onCompleted()
+                }
+            })
+            return Disposables.create()
+
+        }
+    }
+
+
+    /**
+     Get countries
+     - GET /masterData/countries
+
+     - examples: [{contentType=application/json, example=[ {
+  "description" : "description",
+  "id" : "id"
+}, {
+  "description" : "description",
+  "id" : "id"
+} ]}]
+     - parameter locale: (query)  (optional, default to es-ES)
+     - parameter platform: (query)  (optional)
+     - parameter version: (query)  (optional)
+
+     - returns: RequestBuilder<[KeyValueDto]>
+     */
+    open func getCountriesWithRequestBuilder(locale: String? = nil, platform: String? = nil, version: String? = nil) -> RequestBuilder<[KeyValueDto]> {
+        let path = "/masterData/countries"
+        let URLString = clientApi.basePath + path
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+                        "locale": locale,
+                        "platform": platform,
+                        "version": version
+        ])
+
+
+        let requestBuilder: RequestBuilder<[KeyValueDto]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
 
     /**
      Get availables locales

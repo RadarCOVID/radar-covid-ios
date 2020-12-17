@@ -1,0 +1,116 @@
+{
+  "images" : [
+    {
+      "filename" : "image 22-1.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 22@2x-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 22@3x-1.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "Captura de pantalla 2020-11-26 a las 13.29 1.png",
+      "idiom" : "universal",
+      "locale" : "ca-ES",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Captura de pantalla 2020-11-26 a las 13.29 1@2x.png",
+      "idiom" : "universal",
+      "locale" : "ca-ES",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Captura de pantalla 2020-11-26 a las 13.29 1@3x.png",
+      "idiom" : "universal",
+      "locale" : "ca-ES",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "image 22-2.png",
+      "idiom" : "universal",
+      "locale" : "en",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 22@2x-2.png",
+      "idiom" : "universal",
+      "locale" : "en",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 22@3x-2.png",
+      "idiom" : "universal",
+      "locale" : "en",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "settings_popup_help_step_0.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "settings_popup_help_step_0@2x.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "settings_popup_help_step_0@3x.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "image 22.png",
+      "idiom" : "universal",
+      "locale" : "ro-RO",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 22@2x.png",
+      "idiom" : "universal",
+      "locale" : "ro-RO",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 22@3x.png",
+      "idiom" : "universal",
+      "locale" : "ro-RO",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "image 30.png",
+      "idiom" : "universal",
+      "locale" : "fr",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 30@2x.png",
+      "idiom" : "universal",
+      "locale" : "fr",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 30@3x.png",
+      "idiom" : "universal",
+      "locale" : "fr",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
+  }
+}

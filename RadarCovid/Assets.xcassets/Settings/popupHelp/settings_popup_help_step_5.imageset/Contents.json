@@ -1,0 +1,116 @@
+{
+  "images" : [
+    {
+      "filename" : "image 29-2.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 29@2x-2.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 29@3x-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "image 29-4.png",
+      "idiom" : "universal",
+      "locale" : "ca-ES",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 29@2x-4.png",
+      "idiom" : "universal",
+      "locale" : "ca-ES",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 29@3x-4.png",
+      "idiom" : "universal",
+      "locale" : "ca-ES",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "image 29-3.png",
+      "idiom" : "universal",
+      "locale" : "en",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 29@2x-3.png",
+      "idiom" : "universal",
+      "locale" : "en",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 29@3x-3.png",
+      "idiom" : "universal",
+      "locale" : "en",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "image 29.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 29@2x.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 29@3x.png",
+      "idiom" : "universal",
+      "locale" : "es",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "image 29-1.png",
+      "idiom" : "universal",
+      "locale" : "ro-RO",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 29@2x-1.png",
+      "idiom" : "universal",
+      "locale" : "ro-RO",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 29@3x-1.png",
+      "idiom" : "universal",
+      "locale" : "ro-RO",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "image 29-5.png",
+      "idiom" : "universal",
+      "locale" : "fr",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "image 29@2x-5.png",
+      "idiom" : "universal",
+      "locale" : "fr",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "image 29@3x-5.png",
+      "idiom" : "universal",
+      "locale" : "fr",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
+  }
+}

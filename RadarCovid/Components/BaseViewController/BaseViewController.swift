@@ -14,23 +14,41 @@ import UIKit
 class BaseViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton?
+    @IBOutlet weak var titleLabel: UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.setFontTextStyle()
+        
         setAccesibilityBackButton()
+        setAccesibilityDefault()
     }
     
-    private func setAccesibilityBackButton() {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        //Set Accesibility logic
-        backButton?.isAccessibilityElement = true
-        let previous = navigationController?.previousViewController
-        if let strTitle = (previous as? AccTitleView)?.accTitle ?? previous?.title {
-            backButton?.accessibilityLabel =  "\(strTitle)," + "ACC_BUTTON_BACK_TO".localized 
-        } else {
-            backButton?.accessibilityLabel = "ACC_BUTTON_BACK".localized
+        if UIAccessibility.isVoiceOverRunning {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(notification: .layoutChanged, argument: self.titleLabel)
+            }
         }
-        backButton?.accessibilityHint = "ACC_HINT".localized
+    }
+    
+    func setAccesibilityBackButton() {
+        if let backButton = backButton {
+            backButton.isAccessibilityElement = true
+            let previous = navigationController?.previousViewController
+            if let strTitle = (previous as? AccTitleView)?.accTitle ?? previous?.title {
+                backButton.accessibilityLabel =  "\(strTitle) " + "ACC_BUTTON_BACK_TO".localized
+            } else {
+                backButton.accessibilityLabel = "ACC_BUTTON_BACK".localized
+            }
+            backButton.accessibilityHint = "ACC_HINT".localized
+        }
+    }
+    
+    private func setAccesibilityDefault() {
+        titleLabel?.isAccessibilityElement = true
+        titleLabel?.accessibilityTraits.insert(UIAccessibilityTraits.header)
     }
 }

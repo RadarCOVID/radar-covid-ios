@@ -13,6 +13,7 @@ import Foundation
 extension Date {
 
     static let appDateFormat: String = "dd.MM.YYYY"
+    static let appDateFormatWithBar: String = "dd/MM/YYYY"
     
     func years(sinceDate: Date) -> Int? {
         return Calendar.current.dateComponents([.year], from: sinceDate, to: self).year
@@ -45,23 +46,41 @@ extension Date {
     func getMonths() -> Int? {
         return Calendar.current.component(.month, from: self)
     }
-
+    
     func getDays() -> Int? {
         return Calendar.current.component(.day, from: self)
     }
     
-    func getAccesibilityDate() -> String? {
-        guard let day = self.getDays() else {
-            return nil
-        }
-        guard let month = self.getMonths() else {
-            return nil
-        }
-        guard let year = self.getYears() else {
-            return nil
-        }
+    func getAppDateFormat() -> String {
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate(Date.appDateFormat)
+        return df.string(from: self)
+    }
+    
+    func getMonthName() -> String {
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("MMMM")
+        return df.string(from: self)
+    }
+
+    func getHourFormatter() -> String {
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("HH:mm")
+        return df.string(from: self)
+    }
+    
+    func betweenDate(otherDate: Date) -> Int? {
+        let calendar = Calendar.current
+
+        let date1 = calendar.startOfDay(for: self)
+        let date2 = calendar.startOfDay(for: otherDate)
+
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
         
-        return "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + "\(day) " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + "\(month) " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + " \(year)"
+        return components.day
+    }
+    func getAccesibilityDate() -> String? {
+        return DateFormatter.localizedString(from: self, dateStyle: .full, timeStyle: .none)
     }
 
 }

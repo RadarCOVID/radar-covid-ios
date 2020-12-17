@@ -54,7 +54,7 @@ class CustomAlert: UIView {
         alert.parentView = view
         alert.initValues()
         
-        let totalPadding = CGFloat( 40 + 60 )
+        let totalPadding = CGFloat( 40 + 80 )
         let titleLabelWidth = alert.titleLabel.textHeight(withWidth: alert.titleLabel.frame.size.width) + 10
         let contentLabelWidth = alert.contentLabel.textHeight(withWidth: alert.contentLabel.frame.size.width) + 10
         let height = buttonsHeight + titleLabelWidth + contentLabelWidth + totalPadding
@@ -66,10 +66,12 @@ class CustomAlert: UIView {
                               height: finalHeight )
         alert.frame = newFrame
         alert.center = view.center
-        
+        alert.accessibilityViewIsModal = true
         view.addSubview(alert)
         view.bringSubviewToFront(alert)
         
+        
+        UIAccessibility.post(notification: .screenChanged, argument: nil)
         UIAccessibility.post(notification: .layoutChanged, argument: alert.titleLabel)
         
         return alert

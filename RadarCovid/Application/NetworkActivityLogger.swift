@@ -145,12 +145,7 @@ public class NetworkActivityLogger {
             return
         }
 
-        var elapsedTime: TimeInterval = 0.0
-
-        if let startDate = startDates[task] {
-            elapsedTime = Date().timeIntervalSince(startDate)
-            startDates[task] = Date()
-        }
+        let elapsedTime: TimeInterval = 0.0
 
         if let error = task.error {
             switch level {

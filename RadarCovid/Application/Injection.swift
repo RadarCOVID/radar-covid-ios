@@ -61,6 +61,12 @@ class Injection {
             )
         }.inObjectScope(.container)
         
+        container.register(StatisticsAPI.self) { r in
+            StatisticsAPI(
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+            )
+        }.inObjectScope(.container)
+        
         container.register(VerificationControllerAPI.self) { r in
             VerificationControllerAPI(
                 clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue)!
@@ -89,6 +95,14 @@ class Injection {
         
         container.register(LocalizationRepository.self) { _ in
             UserDefaultsLocalizationRepository()
+        }.inObjectScope(.container)
+        
+        container.register(CountriesRepository.self) { _ in
+            UserDefaultsCountriesRepository()
+        }.inObjectScope(.container)
+        
+        container.register(StatisticsRepository.self) { _ in
+            UserDefaultsStatisticsRepository()
         }.inObjectScope(.container)
         
         container.register(VersionHandler.self) { _ in
@@ -157,9 +171,25 @@ class Injection {
                         localizationRepository: r.resolve(LocalizationRepository.self)!)
         }.inObjectScope(.container)
         
+        container.register(ShareUseCase.self) { r in
+            ShareUseCaseImpl(settingsRepository: r.resolve(SettingsRepository.self)!)
+        }.inObjectScope(.container)
+        
         container.register(LocalesUseCase.self) { r in
             LocalesUseCase(localizationRepository: r.resolve(LocalizationRepository.self)!,
                            masterDataApi: r.resolve(MasterDataAPI.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(CountriesUseCase.self) { r in
+            CountriesUseCase(countriesRepository: r.resolve(CountriesRepository.self)!
+                             , masterDataApi: r.resolve(MasterDataAPI.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(StatisticsUseCase.self) { r in
+            StatisticsUseCase(
+                statisticsRepository: r.resolve(StatisticsRepository.self)!
+                , statisticsApi: r.resolve(StatisticsAPI.self)!
+            )
         }.inObjectScope(.container)
         
         container.register(ExpositionCheckUseCase.self) { r in
@@ -174,6 +204,7 @@ class Injection {
                 homeViewController: r.resolve(HomeViewController.self)!,
                 myDataViewController: r.resolve(MyDataViewController.self)!,
                 helpLineViewController: r.resolve(HelpLineViewController.self)!,
+                statsViewController: r.resolve(StatsViewController.self)!,
                 settingViewController: r.resolve(SettingViewController.self)!,
                 preferencesRepository: r.resolve(PreferencesRepository.self)!,
                 localizationUseCase: r.resolve(LocalizationUseCase.self)!
@@ -192,11 +223,11 @@ class Injection {
             return proxVC
         }
         
-        container.register(ExpositionViewController.self) { r  in
+        container.register(HealthyExpositionViewController.self) { r  in
             let vc = self.createViewController(
-                storyboard: "Exposition",
-                viewId: "ExpositionViewController"
-            ) as? ExpositionViewController ?? ExpositionViewController()
+                storyboard: "HealthyExposition",
+                viewId: "HealthyExpositionViewController"
+            ) as? HealthyExpositionViewController ?? HealthyExpositionViewController()
             vc.router = r.resolve(AppRouter.self)!
             return vc
         }
@@ -207,6 +238,7 @@ class Injection {
                 viewId: "HighExpositionViewController")
                 as? HighExpositionViewController ?? HighExpositionViewController()
             highExposition.ccaUseCase = r.resolve(CCAAUseCase.self)!
+            highExposition.settingsRepository = r.resolve(SettingsRepository.self)!
             highExposition.router = r.resolve(AppRouter.self)!
             return highExposition
         }
@@ -239,7 +271,9 @@ class Injection {
             homeVM.resetDataUseCase = route.resolve(ResetDataUseCase.self)!
             homeVM.expositionCheckUseCase = route.resolve(ExpositionCheckUseCase.self)!
             homeVM.syncUseCase = route.resolve(SyncUseCase.self)!
+            homeVM.settingsRepository = route.resolve(SettingsRepository.self)!
             homeVM.onBoardingCompletedUseCase = route.resolve(OnboardingCompletedUseCase.self)!
+            homeVM.reminderNotificationUseCase = route.resolve(ReminderNotificationUseCase.self)!
             return homeVM
         }
         
@@ -258,6 +292,20 @@ class Injection {
             return helpVC!
         }
         
+        container.register(StatsViewController.self) {  route in
+            let statsVC = StatsViewController()
+            statsVC.router = route.resolve(AppRouter.self)!
+            statsVC.viewModel = route.resolve(StatsViewModel.self)!
+            return statsVC
+        }
+        
+        container.register(StatsViewModel.self) { route in
+            let statsVM = StatsViewModel()
+            statsVM.countriesUseCase = route.resolve(CountriesUseCase.self)!
+            statsVM.statsUseCase = route.resolve(StatisticsUseCase.self)!
+            return statsVM
+        }
+        
         container.register(SettingViewController.self) {  route in
             let settingVC = SettingViewController()
             settingVC.router = route.resolve(AppRouter.self)!
@@ -268,6 +316,19 @@ class Injection {
         container.register(SettingViewModel.self) { route in
             let settingVM = SettingViewModel(localesUseCase: route.resolve(LocalesUseCase.self)!)
             return settingVM
+        }
+        
+        container.register(InformationViewController.self) {  route in
+            let informationVC = InformationViewController()
+            informationVC.router = route.resolve(AppRouter.self)!
+            informationVC.viewModel = route.resolve(InformationViewModel.self)!
+            return informationVC
+        }
+        
+        container.register(InformationViewModel.self) { route in
+            let informationVM = InformationViewModel(radarStatusUseCase: route.resolve(RadarStatusUseCase.self)!,
+                                                     expositionUseCase: route.resolve(ExpositionUseCase.self)!)
+            return informationVM
         }
 
         container.register(MyHealthStep0ViewController.self) {  route in
@@ -318,6 +379,55 @@ class Injection {
             return welcomeVM
         }
         
+        container.register(ShareAppViewController.self) {  r in
+            let shareAppVC = ShareAppViewController()
+            shareAppVC.viewModel = r.resolve(ShareAppViewModel.self)!
+            shareAppVC.router = r.resolve(AppRouter.self)!
+            return shareAppVC
+        }
+        
+        container.register(ShareAppViewModel.self) { route in
+            let shareAppVM = ShareAppViewModel(shareUseCase: route.resolve(ShareUseCase.self)!)
+            return shareAppVM
+        }
+        
+        container.register(TimeExposedViewController.self) {  r in
+            let timeExposedVC = TimeExposedViewController()
+            timeExposedVC.viewModel = r.resolve(TimeExposedViewModel.self)!
+            timeExposedVC.router = r.resolve(AppRouter.self)!
+            return timeExposedVC
+        }
+        
+        container.register(TimeExposedViewModel.self) { route in
+            let timeExposedVM = TimeExposedViewModel()
+            return timeExposedVM
+        }
+        
+        container.register(TermsUpdatedViewController.self) {  r in
+            let termsUpdatedVC = TermsUpdatedViewController()
+            termsUpdatedVC.viewModel = r.resolve(TermsUpdatedViewModel.self)!
+            termsUpdatedVC.router = r.resolve(AppRouter.self)!
+            return termsUpdatedVC
+        }
+        
+        container.register(TermsUpdatedViewModel.self) { route in
+            let termsUpdatedVM = TermsUpdatedViewModel()
+            return termsUpdatedVM
+        }
+        
+        container.register(DetailInteroperabilityViewController.self) {  r in
+            let detailInteroperabilityVC = DetailInteroperabilityViewController()
+            detailInteroperabilityVC.viewModel = r.resolve(DetailInteroperabilityViewModel.self)!
+            detailInteroperabilityVC.router = r.resolve(AppRouter.self)!
+            return detailInteroperabilityVC
+        }
+        
+        container.register(DetailInteroperabilityViewModel.self) { route in
+            let detailInteroperabilityVM = DetailInteroperabilityViewModel()
+            detailInteroperabilityVM.countriesUseCase = route.resolve(CountriesUseCase.self)!
+            return detailInteroperabilityVM
+        }
+        
         container.register(ActivateCovidNotificationViewController.self) {  r in
             let activateCovidVC = ActivateCovidNotificationViewController()
             activateCovidVC.router = r.resolve(AppRouter.self)!
@@ -325,6 +435,12 @@ class Injection {
             activateCovidVC.radarStatusUseCase = r.resolve(RadarStatusUseCase.self)!
             activateCovidVC.errorHandler = r.resolve(ErrorHandler.self)!
             return activateCovidVC
+        }
+        
+        container.register(HelpSettingsViewController.self) {  r in
+            let helpSettingsVC = HelpSettingsViewController()
+            helpSettingsVC.router = r.resolve(AppRouter.self)!
+            return helpSettingsVC
         }
         
         container.register(ActivatePushNotificationViewController.self) {  r in
@@ -338,7 +454,7 @@ class Injection {
             let rootVC = RootViewController()
             rootVC.ccaaUseCase = r.resolve(CCAAUseCase.self)!
             rootVC.localesUseCase = r.resolve(LocalesUseCase.self)!
-            rootVC.configurationUseCasee = r.resolve(ConfigurationUseCase.self)!
+            rootVC.configurationUseCase = r.resolve(ConfigurationUseCase.self)!
             rootVC.localizationUseCase = r.resolve(LocalizationUseCase.self)!
             rootVC.onBoardingCompletedUseCase = r.resolve(OnboardingCompletedUseCase.self)!
             rootVC.router = r.resolve(AppRouter.self)!
@@ -353,6 +469,16 @@ class Injection {
             let errorHandler = ErrorHandlerImpl(verbose: Config.errorVerbose)
             errorHandler.errorRecorder = r.resolve(ErrorRecorder.self)!
             return errorHandler
+        }
+        
+        container.register(ReminderNotificationUseCase.self) { r in
+            let reminderNotificationUseCase = ReminderNotificationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!)
+            return reminderNotificationUseCase
+        }
+        
+        container.register(BluethoothReminderUseCase.self) { r in
+            let bluethoothReminderUseCase = BluethoothReminderUseCase()
+            return bluethoothReminderUseCase
         }
         
     }
