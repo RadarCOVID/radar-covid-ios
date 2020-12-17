@@ -37,7 +37,9 @@ class StatsViewModel {
                     first.date > second.date
                 }).first
             return statsItem
-        }.bind(to: recentStats).disposed(by: disposeBag)
+        }.subscribe { [weak self] (statisItem) in
+            self?.recentStats.onNext(statisItem)
+        }.disposed(by: disposeBag)
     }
     private func getMoreRecentStats() -> Observable<StatsItemModel?> {
         return recentStats
