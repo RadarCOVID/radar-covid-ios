@@ -73,11 +73,10 @@ class PositiveExposedViewController: BaseExposed {
         formatter.dateFormat = Date.appDateFormat
         
         let actualizado = formatter.string(from: date)
-
-        let daysSinceLastInfection = Date().days(sinceDate: since ?? Date()) ?? 1
+        var sinceDay = since ?? Date()
+        sinceDay = sinceDay.getStartOfDay()
         
-//        realInfectedLabel.attributedText = "EXPOSITION_EXPOSED_DESCRIPTION"
-//            .localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
+        let daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
         
         realInfectedLabel.attributedText = "EXPOSITION_EXPOSED_DESCRIPTION".localizedAttributed(withParams: [String(daysSinceLastInfection), actualizado])
         

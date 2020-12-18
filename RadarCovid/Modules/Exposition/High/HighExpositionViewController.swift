@@ -197,12 +197,15 @@ class HighExpositionViewController: BaseExposed {
         youCouldBeLabel.accessibilityLabel = accesibilityText.string
     }
     
-    func checkRemindingExpositionDays(since: Date) -> Int{
+    func checkRemindingExpositionDays(since: Date) -> Int {
         let minutesInAHour = 60
         let hoursInADay = 24
         let formatter = DateFormatter()
         formatter.dateFormat = Date.appDateFormat
-        let daysSinceLastInfection = Date().days(sinceDate: since) ?? 1
+        var sinceDay = since
+        sinceDay = sinceDay.getStartOfDay()
+        
+        let daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
         let daysForHealty = Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0) / minutesInAHour / hoursInADay
         return daysForHealty - daysSinceLastInfection
     }
