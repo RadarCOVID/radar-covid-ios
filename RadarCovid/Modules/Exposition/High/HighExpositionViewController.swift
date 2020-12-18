@@ -161,12 +161,15 @@ class HighExpositionViewController: BaseExposed {
         let date = self.since ?? Date()
         let formatter = DateFormatter()
         formatter.dateFormat = Date.appDateFormat
-        var daysSinceLastInfection = Date().days(sinceDate: since ?? Date()) ?? 1
+        var sinceDay = since ?? Date()
+        sinceDay = sinceDay.getStartOfDay()
+        
+        var daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
         if daysSinceLastInfection == 0 {
             daysSinceLastInfection = 1
         }
         
-        let remindingDays = self.checkRemindingExpositionDays(since: since ?? Date())
+        let remindingDays = self.checkRemindingExpositionDays(since: sinceDay)
         let remindingDaysText =
             remindingDays <= 1
                 ? "EXPOSED_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remindingDays)])

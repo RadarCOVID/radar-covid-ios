@@ -51,6 +51,10 @@ extension Date {
         return Calendar.current.component(.day, from: self)
     }
     
+    func getStartOfDay() -> Date {
+        return Calendar.current.startOfDay(for: self)
+    }
+    
     func getAppDateFormat() -> String {
         let df = DateFormatter()
         df.setLocalizedDateFormatFromTemplate(Date.appDateFormat)
@@ -79,6 +83,7 @@ extension Date {
         
         return components.day
     }
+    
     func getAccesibilityDate() -> String? {
         return DateFormatter.localizedString(from: self, dateStyle: .full, timeStyle: .none)
     }
