@@ -51,9 +51,9 @@ class StatsViewController: BaseViewController {
             self?.changeUpdateDateLabel(date: value)
         }).disposed(by: disposeBag)
         
-        viewModel?.getNumberInteroperabilityCountry()
-            .bind(to: countConnectedCountryLabel.rx.text)
-            .disposed(by: disposeBag)
+        viewModel?.interoperabilityCountryCount.subscribe(onNext: { [weak self] (value) in
+            self?.countConnectedCountryLabel.text = "\(value)"
+        }).disposed(by: disposeBag)
         
         viewModel?.getTotalAcummulatedContagious()
             .bind(to: countPositiveLabel.rx.text)

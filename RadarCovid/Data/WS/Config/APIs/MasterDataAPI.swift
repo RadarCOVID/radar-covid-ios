@@ -119,7 +119,7 @@ open class MasterDataAPI {
     
     open func getCountries(locale: String? = nil, platform: String? = nil, version: String? = nil) -> Observable<[KeyValueDto]> {
         return Observable.create { [weak self] observer -> Disposable in
-            self?.getCountries(completion: { (data, err) in
+            self?.getCountries(locale: locale, platform: platform, version: version, completion: { (data, err) in
                 if let error = err {
                     observer.onError(error)
                 }else if let dataValue = data {

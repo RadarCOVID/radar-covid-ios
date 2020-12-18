@@ -25,8 +25,8 @@ class CountriesUseCase {
         self.masterDataApi = masterDataApi
     }
 
-    private func loadCountries() -> Observable<[ItemCountry]> {
-        return masterDataApi.getCountries().map { [weak self] masterCountries in
+    func loadCountries() -> Observable<[ItemCountry]> {
+        return masterDataApi.getCountries(platform: Config.platform, version: Config.version).map { [weak self] masterCountries in
             var countries: [ItemCountry] = []
             masterCountries.forEach { (country) in
                 countries.append(ItemCountry.mappertToKeyValueDto(keyValueDto: country))

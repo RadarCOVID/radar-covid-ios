@@ -26,9 +26,11 @@ class DetailInteroperabilityViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel?.loadFirst()
         
         setupView()
         setupAccessibility()
+        setupBinding()
     }
         
     private func setupAccessibility() {
@@ -42,7 +44,12 @@ class DetailInteroperabilityViewController: BaseViewController {
     }
     
     private func setupView() {
-        viewModel?.getCountries().subscribe(onNext: { [weak self] (countries) in
+        self.description1Label.setLineSpacing()
+        self.description2Label.setLineSpacing()
+    }
+    
+    private func setupBinding() {
+        viewModel?.interoperabilityCountry.subscribe(onNext: { [weak self] (countries) in
             
             countries.forEach { (country) in
                 let countryLabel = UILabel()
@@ -56,9 +63,6 @@ class DetailInteroperabilityViewController: BaseViewController {
             }
         
         }).disposed(by: self.disposeBag)
-        
-        self.description1Label.setLineSpacing()
-        self.description2Label.setLineSpacing()
     }
     
     @IBAction func onCloseAction(_ sender: Any) {

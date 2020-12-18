@@ -15,8 +15,14 @@ import RxSwift
 class DetailInteroperabilityViewModel {
     
     var countriesUseCase: CountriesUseCase!
+    var interoperabilityCountry: BehaviorSubject<[ItemCountry]> = BehaviorSubject(value: [])
+
+    private var disposeBag = DisposeBag()
     
-    func getCountries() -> Observable<[ItemCountry]> {
-        return countriesUseCase.getCountries()
+    func loadFirst() {
+
+        countriesUseCase.loadCountries().subscribe { [weak self] (listCountry) in
+            self?.interoperabilityCountry.onNext(listCountry)
+        }.disposed(by: disposeBag)
     }
 }

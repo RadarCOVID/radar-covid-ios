@@ -17,10 +17,12 @@ class StatsViewModel {
     var countriesUseCase: CountriesUseCase!
     var statsUseCase: StatisticsUseCase!
     var recentStats: BehaviorSubject<StatsItemModel?> = BehaviorSubject(value: nil)
+    var interoperabilityCountryCount: BehaviorSubject<Int> = BehaviorSubject(value: 0)
 
     private var disposeBag = DisposeBag()
     
     func loadFirst() {
+        
         statsUseCase.getStats().map { (statsItemModel) -> StatsItemModel? in
             let statsItem: StatsItemModel? = statsItemModel
                 .sorted(by: { (first, second) -> Bool in
@@ -40,7 +42,20 @@ class StatsViewModel {
         }.subscribe { [weak self] (statisItem) in
             self?.recentStats.onNext(statisItem)
         }.disposed(by: disposeBag)
+        
+        countriesUseCase.getCountries().map { (countrys) -> Int in
+            return countrys.count
+        }.subscribe { [weak self] (countCotry) in
+            self?.interoperabilityCountryCount.onNext(countCotry)
+        }.disposed(by: disposeBag)
+        
+        countriesUseCase.loadCountries().map { (countrys) -> Int in
+            return countrys.count
+        }.subscribe { [weak self] (countCotry) in
+            self?.interoperabilityCountryCount.onNext(countCotry)
+        }.disposed(by: disposeBag)
     }
+    
     private func getMoreRecentStats() -> Observable<StatsItemModel?> {
         return recentStats
     }
@@ -50,8 +65,6 @@ class StatsViewModel {
             return stats?.date ?? Date()
         }
     }
-    
-  
     
     func getTotalAcummulatedDownloads() -> Observable<String> {
         return self.getMoreRecentStats().map { (stats) -> String in
