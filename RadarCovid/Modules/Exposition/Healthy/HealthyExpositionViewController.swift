@@ -70,13 +70,16 @@ class HealthyExpositionViewController: BaseExposed {
     }
     
     private func setHealthtText() {
-        let date = self.lastCheck ?? Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = Date.appDateFormat
-        expositionLowDescription.attributedText = "EXPOSITION_LOW_DESCRIPTION"
-            .localizedAttributed(withParams: [formatter.string(from: date)])
-        expositionLowDescription.setMagnifierFontSize()
-        expositionLowDescription.accessibilityLabel = "EXPOSITION_LOW_DESCRIPTION"
-            .localizedAttributed(withParams: [date.getAccesibilityDate() ?? ""]).string
+        if let date = self.lastCheck {
+            let formatter = DateFormatter()
+            formatter.dateFormat = Date.appDateFormat
+            expositionLowDescription.attributedText = "EXPOSITION_LOW_DESCRIPTION"
+                .localizedAttributed(withParams: [formatter.string(from: date)])
+            expositionLowDescription.setMagnifierFontSize()
+            expositionLowDescription.accessibilityLabel = "EXPOSITION_LOW_DESCRIPTION"
+                .localizedAttributed(withParams: [date.getAccesibilityDate() ?? ""]).string
+        } else {
+            expositionLowDescription.text = ""
+        }
     }
 }
