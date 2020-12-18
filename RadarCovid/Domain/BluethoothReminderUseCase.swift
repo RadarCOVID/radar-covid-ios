@@ -52,7 +52,7 @@ extension BluethoothReminderUseCase: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         state = central.state
         
-        if central.state == .poweredOff {
+        if central.state != .poweredOn  {
             self.scheduleNotification()
         }
     }
