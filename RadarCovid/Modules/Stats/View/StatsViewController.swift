@@ -34,6 +34,8 @@ class StatsViewController: BaseViewController {
     private var disposeBag = DisposeBag()
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         viewModel?.loadFirst()
     }
     
