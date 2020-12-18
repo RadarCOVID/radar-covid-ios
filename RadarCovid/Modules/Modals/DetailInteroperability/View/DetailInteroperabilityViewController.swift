@@ -26,8 +26,7 @@ class DetailInteroperabilityViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.loadFirst()
-        
+        self.viewModel?.loadCountries()
         setupView()
         setupAccessibility()
         setupBinding()
@@ -49,8 +48,10 @@ class DetailInteroperabilityViewController: BaseViewController {
     }
     
     private func setupBinding() {
-        viewModel?.interoperabilityCountry.subscribe(onNext: { [weak self] (countries) in
-            
+        viewModel?.getCountries().subscribe(onNext: { [weak self] (countries) in
+            self?.listCountryStackView.arrangedSubviews.forEach {
+                self?.listCountryStackView.removeArrangedSubview($0)
+            }
             countries.forEach { (country) in
                 let countryLabel = UILabel()
                 countryLabel.text = country.description

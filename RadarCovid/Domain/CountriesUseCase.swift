@@ -16,17 +16,22 @@ class CountriesUseCase {
 
     private let countriesRepository: CountriesRepository
     private let masterDataApi: MasterDataAPI
-
+    private let localizationRepository: LocalizationRepository
     private var countries: [ItemCountry]?
 
-    init(countriesRepository: CountriesRepository,
-         masterDataApi: MasterDataAPI) {
+    init(
+        countriesRepository: CountriesRepository
+        , masterDataApi: MasterDataAPI
+        , localizationRepository: LocalizationRepository
+    ) {
         self.countriesRepository = countriesRepository
         self.masterDataApi = masterDataApi
+        self.localizationRepository = localizationRepository
+        
     }
 
     func loadCountries() -> Observable<[ItemCountry]> {
-        return masterDataApi.getCountries(platform: Config.platform, version: Config.version).map { [weak self] masterCountries in
+        return masterDataApi.getCountries(locale: localizationRepository.getLocale(), platform: Config.platform, version: Config.version).map { [weak self] masterCountries in
             var countries: [ItemCountry] = []
             masterCountries.forEach { (country) in
                 countries.append(ItemCountry.mappertToKeyValueDto(keyValueDto: country))

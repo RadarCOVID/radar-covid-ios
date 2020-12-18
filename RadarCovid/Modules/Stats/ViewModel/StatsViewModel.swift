@@ -22,7 +22,7 @@ class StatsViewModel {
     private var disposeBag = DisposeBag()
     
     func loadFirst() {
-        
+        countriesUseCase.loadCountries().subscribe().disposed(by: disposeBag)
         statsUseCase.getStats().map { (statsItemModel) -> StatsItemModel? in
             let statsItem: StatsItemModel? = statsItemModel
                 .sorted(by: { (first, second) -> Bool in

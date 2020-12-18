@@ -181,8 +181,11 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(CountriesUseCase.self) { r in
-            CountriesUseCase(countriesRepository: r.resolve(CountriesRepository.self)!
-                             , masterDataApi: r.resolve(MasterDataAPI.self)!)
+            CountriesUseCase(
+                countriesRepository: r.resolve(CountriesRepository.self)!
+                , masterDataApi: r.resolve(MasterDataAPI.self)!
+                , localizationRepository: r.resolve(LocalizationRepository.self)!
+            )
         }.inObjectScope(.container)
         
         container.register(StatisticsUseCase.self) { r in
