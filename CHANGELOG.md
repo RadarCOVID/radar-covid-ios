@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.2.0 (2020-12-19)
+### Features
+* DP-3T version upgrade to 2.0.0.
+* Radar COVID statistics view.
+* Aplication status information view.
+* Opening reminder notification.
+* Bluetooth notification when disable.
+* Confinement counter.
+* Share link for easy download.
+* Added French language.
+* Get positive code from SMS.
+* Accessibility improvements:
+	* Increased text size and contrast.
+	* Changed links style.
+	* Tagged elements on screen.
+	* Incorporated headings.
+
+### Bug Fixes
+* accesibility issues
+* other bug fix
+
 ## 1.1.2 (2020-11-19)
 ### Features
 * Version preparation to allow DP3T previous version interoperatibility 
