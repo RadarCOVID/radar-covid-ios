@@ -37,7 +37,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQ5-Is-UbS">
-                            <rect key="frame" x="20" y="52" width="374" height="818"/>
+                            <rect key="frame" x="20" y="52" width="374" height="798"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fkd-DL-Pef">
                                     <rect key="frame" x="318" y="10" width="50" height="50"/>
@@ -53,7 +53,7 @@
                                     </connections>
                                 </button>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7S-FQ-nTd">
-                                    <rect key="frame" x="0.0" y="60" width="374" height="688"/>
+                                    <rect key="frame" x="0.0" y="60" width="374" height="668"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYH-hP-rNb" userLabel="ContentView">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="1154"/>
@@ -386,7 +386,7 @@
                                     <viewLayoutGuide key="frameLayoutGuide" id="KXu-8U-fCh"/>
                                 </scrollView>
                                 <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPx-4J-uPU">
-                                    <rect key="frame" x="20" y="748" width="334" height="60"/>
+                                    <rect key="frame" x="20" y="728" width="334" height="60"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="rBz-xW-oLt"/>
@@ -432,7 +432,7 @@
                     <constraints>
                         <constraint firstItem="cQ5-Is-UbS" firstAttribute="leading" secondItem="cdQ-4h-1Mo" secondAttribute="leading" constant="20" id="0BA-d2-MWM"/>
                         <constraint firstItem="cQ5-Is-UbS" firstAttribute="top" secondItem="cdQ-4h-1Mo" secondAttribute="topMargin" id="dIo-yO-ErF"/>
-                        <constraint firstAttribute="bottom" secondItem="cQ5-Is-UbS" secondAttribute="bottomMargin" id="gtp-F9-4af"/>
+                        <constraint firstAttribute="bottom" secondItem="cQ5-Is-UbS" secondAttribute="bottomMargin" constant="20" id="gtp-F9-4af"/>
                         <constraint firstAttribute="trailing" secondItem="cQ5-Is-UbS" secondAttribute="trailing" constant="20" id="ncr-Cx-T68"/>
                     </constraints>
                 </view>
