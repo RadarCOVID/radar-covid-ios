@@ -443,7 +443,7 @@ class HomeViewController: BaseViewController {
         case .healthy:
             router?.route(to: Routes.healthyExposition, from: self, parameters: info.lastCheck)
         case .exposed:
-            router?.route(to: Routes.highExposition, from: self, parameters: info.since)
+            router?.route(to: Routes.highExposition, from: self, parameters: info.lastCheck)
         case .infected:
             router?.route(to: Routes.positiveExposed, from: self, parameters: info.since)
         }
