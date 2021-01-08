@@ -50,7 +50,9 @@ class MyHealthStep1ViewController: BaseViewController {
         datePicker.minimumDate = Date().addingTimeInterval(-TimeInterval(14*60*60*24))
         datePicker.maximumDate = Date()
         datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .wheels
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
         
         return datePicker
     }()

@@ -97,10 +97,7 @@ class TabBarController: UITabBarController {
         tabBar.barStyle = .default
         tabBar.layer.cornerRadius = 15
 
-        let apareance = UITabBarAppearance()
-        apareance.backgroundImage = UIImage.init(named: "tabBarBG")
         tabBar.clipsToBounds = true
-        tabBar.standardAppearance = apareance
         tabBar.unselectedItemTintColor = UIColor.black;
         tabBar.tintColor = UIColor.twilight
        

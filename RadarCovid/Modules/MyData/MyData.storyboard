@@ -138,7 +138,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" name="bgColor"/>
+                                        <color key="backgroundColor" name="veryLightPink"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="7aC-xr-L9s" secondAttribute="bottom" constant="10" id="0pU-v2-ISR"/>
                                             <constraint firstAttribute="trailing" secondItem="Uiy-SU-ykG" secondAttribute="trailing" constant="16" id="23H-xI-4As"/>
@@ -169,6 +169,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" name="veryLightPink"/>
                                 <constraints>
                                     <constraint firstItem="VwZ-tl-fSP" firstAttribute="width" secondItem="rrK-VU-KPe" secondAttribute="width" id="2sc-aS-pEy"/>
                                     <constraint firstItem="VwZ-tl-fSP" firstAttribute="trailing" secondItem="2za-d3-QPw" secondAttribute="trailing" id="F0Y-xK-Ycf"/>
@@ -184,7 +185,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LcH-Cx-Sa2"/>
-                        <color key="backgroundColor" name="bgColor"/>
+                        <color key="backgroundColor" name="veryLightPink"/>
                         <constraints>
                             <constraint firstItem="xUj-bT-z4d" firstAttribute="leading" secondItem="LcH-Cx-Sa2" secondAttribute="leading" id="7ty-AB-sc9"/>
                             <constraint firstItem="Rvd-uR-G5b" firstAttribute="top" secondItem="LcH-Cx-Sa2" secondAttribute="top" constant="-44" id="CsJ-zq-WRr"/>
@@ -211,8 +212,8 @@
     </scenes>
     <resources>
         <image name="organicColor" width="375" height="155.33332824707031"/>
-        <namedColor name="bgColor">
-            <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

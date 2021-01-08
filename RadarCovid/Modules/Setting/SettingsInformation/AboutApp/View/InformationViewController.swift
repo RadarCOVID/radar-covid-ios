@@ -82,7 +82,9 @@ class InformationViewController: BaseViewController {
         faqLink.accessibilityTraits.insert(UIAccessibilityTraits.link)
         faqLink.accessibilityHint = "ACC_HINT".localized
         
-        emailLink.accessibilityTextualContext = .sourceCode
+        if #available(iOS 13.0, *) {
+            emailLink.accessibilityTextualContext = .sourceCode
+        }
         let emailLinkString = emailLink.attributedText?.mutableCopy() as? NSMutableAttributedString
         emailLinkString?.beginEditing()
         emailLinkString?.addAttribute(.accessibilitySpeechPunctuation, value: true, range: NSRange(location: 0, length: emailLinkString?.length ?? 0))

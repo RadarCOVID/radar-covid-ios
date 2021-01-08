@@ -10,7 +10,6 @@
 //
 
 import UIKit
-import LinkPresentation
 
 class ShareAppViewController: BaseViewController {
     
@@ -23,8 +22,6 @@ class ShareAppViewController: BaseViewController {
     
     var router: AppRouter?
     var viewModel: ShareAppViewModel?
-    
-    var metadata: LPLinkMetadata?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,47 +64,29 @@ class ShareAppViewController: BaseViewController {
         
         let urlShare = URL(string: viewModel?.getUrl() ?? "")!
         let titleShare = viewModel?.getTitle() ?? ""
+        let bodyShare = viewModel?.getBody() ?? ""
         
         self.shareButton.isUserInteractionEnabled = false
-        LPMetadataProvider().startFetchingMetadata(for: urlShare) { linkMetadata, _ in
-            linkMetadata?.iconProvider = linkMetadata?.imageProvider
-            self.metadata = linkMetadata
-            self.metadata?.title = titleShare
-            self.metadata?.url = URL(string: "")
-            self.metadata?.originalURL = URL(string: "")
-            
-            DispatchQueue.main.async {
-                self.shareButton.isUserInteractionEnabled = true
-                UIApplication.share([self]) { activityViewController in
-                    
-                    activityViewController.completionWithItemsHandler = { (activityType, completed:Bool, returnedItems:[Any]?, error: Error?) in
-                        if completed {
-                            self.router?.dissmiss(view: self, animated: true)
-                        }
-                    }
-                }
-            }
+       
+        if #available(iOS 13.0, *) {
+            let shareAppController = ShareAppController()
+            shareAppController.delegateOutput = self
+            shareAppController.shareApp(urlShare: urlShare, titleShare: titleShare, bodyShare: bodyShare)
+        } else {
+            let shareAppController = ShareAppOldController()
+            shareAppController.delegateOutput = self
+            shareAppController.shareApp(urlShare: urlShare, titleShare: titleShare, bodyShare: bodyShare)
         }
     }
 }
 
-extension ShareAppViewController: UIActivityItemSource {
-    
-    // The placeholder the share sheet will use while metadata loads
-    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return viewModel?.getTitle() ?? ""
+extension ShareAppViewController: ShareAppControllerOutput {
+    func finishFetchingMetadata() {
+        self.shareButton.isUserInteractionEnabled = true
     }
     
-    // The metadata we want the system to represent as a rich link
-    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-        return self.metadata
+    func finishShared() {
+        self.router?.dissmiss(view: self, animated: true)
     }
-    
-    // The item we want the user to act on.
-    // In this case, it's the URL to the Wikipedia page
-    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        let descriptionShare:String = viewModel?.getBody() ?? ""
-        
-        return descriptionShare.localizedAttributed.string
-    }
+
 }

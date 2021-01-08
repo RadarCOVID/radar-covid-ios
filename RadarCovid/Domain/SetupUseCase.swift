@@ -26,17 +26,19 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     private let preferencesRepository: PreferencesRepository
     private let notificationHandler: NotificationHandler
     private let expositionCheckUseCase: ExpositionCheckUseCase
-    
+    private let fakeRequestUseCase: FakeRequestUseCase
     
     init(preferencesRepository: PreferencesRepository,
          notificationHandler: NotificationHandler,
-         expositionCheckUseCase: ExpositionCheckUseCase) {
+         expositionCheckUseCase: ExpositionCheckUseCase,
+         fakeRequestUseCase: FakeRequestUseCase) {
         
         self.preferencesRepository = preferencesRepository
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
         
         self.notificationHandler = notificationHandler
         self.expositionCheckUseCase = expositionCheckUseCase
+        self.fakeRequestUseCase = fakeRequestUseCase
     }
     
     func initializeSDK() throws {
@@ -53,7 +55,6 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                                            reportBaseUrl: url,
                                            jwtPublicKey: Config.dp3tValidationKey,
                                            mode: Config.dp3tMode), backgroundHandler: self)
-        
     }
     
     func log(_ string: String, type: OSLogType) {
@@ -104,6 +105,8 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                 body: "Last sync: \(sync)",
                 sound: .default)
         }
+        
+        fakeRequestUseCase.sendFalsePositiveFromBackgroundDP3T()
         
         
         DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionUseCase.self)

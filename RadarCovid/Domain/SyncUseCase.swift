@@ -51,6 +51,7 @@ class SyncUseCase {
                     observer.onCompleted()
                 }
             })
+            
             return Disposables.create()
         }
     }

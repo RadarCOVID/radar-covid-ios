@@ -26,8 +26,54 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
         
         self.fakeRequestRepository = fakeRequestRepository
         super.init(settingsRepository: settingsRepository, verificationApi: verificationApi)
-        self.sendFalsePositive().subscribe().disposed(by: disposeBag)
+        if #available(iOS 13.0, *) {
+            self.sendFalsePositive().subscribe().disposed(by: disposeBag)
+        } else {
+            self.sendOldFalsePositive().subscribe().disposed(by: disposeBag)
+        }
     }
+
+    func sendFalsePositiveFromBackgroundDP3T() {
+        if #available(iOS 13.0, *) {
+            //Nothing to do here
+        } else {
+            self.sendOldFalsePositive().subscribe().disposed(by: disposeBag)
+        }
+    }
+        
+    /**
+     Old version S.O.
+     */
+    private func sendOldFalsePositive() -> Observable<Bool> {
+        return Observable.create { [weak self] (observer) -> Disposable in
+            if self?.needToSendFalsePositive() ?? false {
+                let randomBoolean = Bool.random()
+                self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
+                    onNext: { _ in
+                        print("fake request sended with date", Date())
+                        self?.fakeRequestRepository.updateScheduledFakeRequestDate()
+                        return observer.onNext(true)
+                        
+                    }
+                    ,onError: { (err) in
+                        return observer.onError(err)
+                    }).disposed(by: self?.disposeBag ?? DisposeBag())
+            } else {
+                observer.onNext(false)
+            }
+            return Disposables.create()
+        }
+    }
+    
+    private func needToSendFalsePositive() -> Bool{
+        let interval = self.fakeRequestRepository.getNextScheduledFakeRequestDate().timeIntervalSince(Date())
+        return interval <= 2 * 24 * 60 * 60
+    }
+    
+}
+
+@available(iOS 13.0, *)
+extension FakeRequestUseCase {
     
     func initBackgroundTask() {
         
@@ -40,7 +86,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
                     self?.scheduleBackgroundTask()
                     task.setTaskCompleted(success: success)
                 }).disposed(by: self?.disposeBag ?? DisposeBag())
-
+            
         }
         
         self.scheduleBackgroundTask()
@@ -81,11 +127,6 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
             }
             return Disposables.create()
         }
-    }
-    
-    private func needToSendFalsePositive() -> Bool{
-        let interval = self.fakeRequestRepository.getNextScheduledFakeRequestDate().timeIntervalSince(Date())
-        return interval <= 2 * 24 * 60 * 60
     }
     
 }

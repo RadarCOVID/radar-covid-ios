@@ -38,6 +38,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var resetDataButton: UIButton!
     @IBOutlet weak var expositionDetailImage: UIImageView!
     var termsRepository: TermsAcceptedRepository!
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var btnShare: UIButton!
     
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
@@ -220,6 +221,8 @@ class HomeViewController: BaseViewController {
     }
     
     private func setupView() {
+        headerView.layer.cornerRadius = 20
+        
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
         communicationButton.titleLabel?.textAlignment = .center
         communicationButton.titleLabel?.lineBreakMode = .byWordWrapping
