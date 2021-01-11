@@ -16,11 +16,16 @@ import Logging
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    static var shared: AppDelegate? {
+       return UIApplication.shared.delegate as? AppDelegate
+    }
     var injection: Injection = Injection()
+    var window: UIWindow?
+    
     var bluethoothUseCase: BluethoothReminderUseCase?
     
     private let logger = Logger(label: "AppDelegate")
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if Config.debug {
@@ -41,6 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             logger.error("Error initializing DP3T \(error)")
         }
         UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        //Loading initial screen, only execut iOS 12.5
+        if #available(iOS 13.0, *) {
+        } else {
+            loadInitialScreen(url: nil)
+        }
+        
         return true
     }
     
@@ -50,27 +62,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return documentsDirectory
     }
 
-    // MARK: UISceneSession Lifecycle
-    @available(iOS 13.0, *)
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    @available(iOS 13.0, *)
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-
-    static var shared: AppDelegate? {
-       return UIApplication.shared.delegate as? AppDelegate
-    }
-
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    }
+    
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if #available(iOS 13.0, *) {
+        } else {
+            loadInitialScreen(url: url)
+        }
+        
+        return true
+    }
+    
+    private func loadInitialScreen(url: URL?) {
+
+        let navigationController = UINavigationController()
+        navigationController.setNavigationBarHidden(true, animated: false)
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+
+        let router = AppDelegate.shared?.injection.resolve(AppRouter.self)!
+        
+        if let url = url {
+            DeepLinkUseCase.getScreenFor(url: url, window: window, router: router)
+        } else {
+            router?.route(to: Routes.root, from: navigationController)
+        }
     }
     
     private func setupLog() {
@@ -95,5 +117,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             debugPrint("Error initializing log \(error)")
         }
+    }
+}
+
+@available(iOS 13.0, *)
+extension AppDelegate {
+    // MARK: UISceneSession Lifecycle
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        // Called when a new scene session is being created.
+        // Use this method to select a configuration to create the new scene with.
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+
+    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        // Called when the user discards a scene session.
+        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
+        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 }

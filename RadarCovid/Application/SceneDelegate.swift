@@ -16,7 +16,6 @@ import BackgroundTasks
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var injection: Injection = Injection()
-    private let disposeBag = DisposeBag()
     private let router = AppDelegate.shared?.injection.resolve(AppRouter.self)!
     
     var window: UIWindow?
@@ -24,9 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func cancelAllPandingBGTask() {
         if #available(iOS 13.0, *) {
             BGTaskScheduler.shared.cancelAllTaskRequests()
-        } else {
-            //TODO !!
-            // Fallback on earlier versions
         }
     }
     
