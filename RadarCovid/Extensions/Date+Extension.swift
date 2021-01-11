@@ -12,8 +12,8 @@
 import Foundation
 extension Date {
 
-    static let appDateFormat: String = "dd.MM.YYYY"
-    static let appDateFormatWithBar: String = "dd/MM/YYYY"
+    static let appDateFormat: String = "dd.MM.yyyy"
+    static let appDateFormatWithBar: String = "dd/MM/yyyy"
     
     func years(sinceDate: Date) -> Int? {
         return Calendar.current.dateComponents([.year], from: sinceDate, to: self).year
