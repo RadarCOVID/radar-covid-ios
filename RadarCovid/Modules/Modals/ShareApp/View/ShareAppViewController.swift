@@ -22,6 +22,7 @@ class ShareAppViewController: BaseViewController {
     
     var router: AppRouter?
     var viewModel: ShareAppViewModel?
+    var shareAppController: Any?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,13 +70,18 @@ class ShareAppViewController: BaseViewController {
         self.shareButton.isUserInteractionEnabled = false
        
         if #available(iOS 13.0, *) {
-            let shareAppController = ShareAppController()
-            shareAppController.delegateOutput = self
-            shareAppController.shareApp(urlShare: urlShare, titleShare: titleShare, bodyShare: bodyShare)
+            shareAppController = ShareAppController()
+            if let shareApp = shareAppController as? ShareAppController {
+                shareApp.delegateOutput = self
+                shareApp.shareApp(urlShare: urlShare, titleShare: titleShare, bodyShare: bodyShare)
+            }
+
         } else {
-            let shareAppController = ShareAppOldController()
-            shareAppController.delegateOutput = self
-            shareAppController.shareApp(urlShare: urlShare, titleShare: titleShare, bodyShare: bodyShare)
+            shareAppController = ShareAppOldController()
+            if let shareApp = shareAppController as? ShareAppOldController {
+                shareApp.delegateOutput = self
+                shareApp.shareApp(urlShare: urlShare, titleShare: titleShare, bodyShare: bodyShare)
+            }
         }
     }
 }
