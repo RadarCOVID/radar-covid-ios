@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimeExposedViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="acceptButton" destination="szH-xb-3qg" id="GPC-yn-XVY"/>
+                <outlet property="bottomCloseButton" destination="d0k-sb-NPo" id="A8h-aR-Kze"/>
                 <outlet property="bullet1Label" destination="jxP-6U-juM" id="rRf-zP-h4Q"/>
                 <outlet property="bullet2Label" destination="vKE-JT-D14" id="KlC-hW-tgi"/>
                 <outlet property="bullet3Label" destination="EwG-6Q-NeI" id="HGX-sj-Ukj"/>
@@ -38,7 +39,7 @@
                             <rect key="frame" x="20" y="52" width="374" height="746"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cambio de estado" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqb-8v-AuS" userLabel="Title">
-                                    <rect key="frame" x="20" y="50" width="334" height="26.5"/>
+                                    <rect key="frame" x="20" y="20" width="294" height="26.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                     </accessibility>
@@ -49,8 +50,21 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="ALERT_HIGH_EXPOSURE_HEALED_HEADER"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0k-sb-NPo">
+                                    <rect key="frame" x="318" y="10" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="4Nn-ZP-y48"/>
+                                        <constraint firstAttribute="height" constant="50" id="v6c-2N-sa0"/>
+                                    </constraints>
+                                    <state key="normal" image="iconClose">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onCloseAction:" destination="-1" eventType="touchUpInside" id="kgk-vA-yWm"/>
+                                    </connections>
+                                </button>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7eW-6o-2yx">
-                                    <rect key="frame" x="0.0" y="96.5" width="374" height="513.5"/>
+                                    <rect key="frame" x="0.0" y="66.5" width="374" height="543.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awW-ay-1eZ" userLabel="ContentView">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="228.5"/>
@@ -235,17 +249,19 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="dcj-kH-AA0" secondAttribute="trailing" constant="20" id="1oT-rk-zf7"/>
+                                <constraint firstItem="d0k-sb-NPo" firstAttribute="top" secondItem="nYO-V1-dBi" secondAttribute="top" constant="10" id="5bT-Vl-iIN"/>
                                 <constraint firstAttribute="trailing" secondItem="7eW-6o-2yx" secondAttribute="trailing" id="BKS-f9-0DB"/>
                                 <constraint firstItem="hqb-8v-AuS" firstAttribute="leading" secondItem="nYO-V1-dBi" secondAttribute="leading" constant="20" id="FHC-qT-u9l"/>
                                 <constraint firstItem="dcj-kH-AA0" firstAttribute="leading" secondItem="nYO-V1-dBi" secondAttribute="leading" constant="20" id="NlO-BK-VCF"/>
                                 <constraint firstItem="7eW-6o-2yx" firstAttribute="leading" secondItem="nYO-V1-dBi" secondAttribute="leading" id="T45-vV-4MU"/>
                                 <constraint firstItem="szH-xb-3qg" firstAttribute="leading" secondItem="nYO-V1-dBi" secondAttribute="leading" constant="20" id="dlZ-qU-ei6"/>
-                                <constraint firstAttribute="trailing" secondItem="hqb-8v-AuS" secondAttribute="trailing" constant="20" id="eOw-QB-gqz"/>
-                                <constraint firstItem="hqb-8v-AuS" firstAttribute="top" secondItem="nYO-V1-dBi" secondAttribute="top" constant="50" id="hER-Ex-53R"/>
+                                <constraint firstItem="hqb-8v-AuS" firstAttribute="top" secondItem="nYO-V1-dBi" secondAttribute="top" constant="20" id="hER-Ex-53R"/>
+                                <constraint firstItem="d0k-sb-NPo" firstAttribute="leading" secondItem="hqb-8v-AuS" secondAttribute="trailing" constant="4" id="j0B-We-Cat"/>
                                 <constraint firstItem="7eW-6o-2yx" firstAttribute="top" secondItem="hqb-8v-AuS" secondAttribute="bottom" constant="20" id="jmq-5q-RAg"/>
                                 <constraint firstAttribute="bottom" secondItem="dcj-kH-AA0" secondAttribute="bottom" constant="10" id="kTL-PZ-Xyo"/>
                                 <constraint firstAttribute="trailing" secondItem="szH-xb-3qg" secondAttribute="trailing" constant="20" id="lgs-U0-VfV"/>
                                 <constraint firstItem="dcj-kH-AA0" firstAttribute="top" secondItem="szH-xb-3qg" secondAttribute="bottom" constant="10" id="sS4-Tl-gtn"/>
+                                <constraint firstAttribute="trailing" secondItem="d0k-sb-NPo" secondAttribute="trailing" constant="6" id="srZ-z1-dVt"/>
                                 <constraint firstItem="szH-xb-3qg" firstAttribute="top" secondItem="7eW-6o-2yx" secondAttribute="bottom" id="v2T-Vb-ZDJ"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
@@ -282,6 +298,7 @@
     <resources>
         <image name="ButtonPrimaryDisabled" width="341" height="60"/>
         <image name="buttonsPrimary" width="341" height="60"/>
+        <image name="iconClose" width="19" height="19"/>
         <namedColor name="blueyGrey90">
             <color red="0.50599998235702515" green="0.54900002479553223" blue="0.75700002908706665" alpha="0.89999997615814209" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

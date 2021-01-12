@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +19,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seleccione" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNS-yD-V3i">
-                            <rect key="frame" x="20" y="37" width="339" height="26.5"/>
+                            <rect key="frame" x="20" y="37" width="338" height="26.5"/>
                             <accessibility key="accessibilityConfiguration">
                                 <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                             </accessibility>
@@ -27,17 +27,16 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYi-de-lcn">
-                            <rect key="frame" x="359" y="10" width="50" height="36"/>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYi-de-lcn">
+                            <rect key="frame" x="358" y="37" width="50" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="ws8-un-Wwv"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <state key="normal" title="x">
+                            <state key="normal" image="iconClose">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="onCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mSU-Fy-UVI"/>
+                                <action selector="onCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="qEg-Hl-071"/>
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XFt-8u-EHi">
@@ -99,12 +98,12 @@
                         <constraint firstItem="8TS-L3-r8l" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="16" id="EYr-f0-emx"/>
                         <constraint firstAttribute="bottom" secondItem="8TS-L3-r8l" secondAttribute="bottom" constant="20" id="F4S-yW-f5b"/>
                         <constraint firstItem="XYi-de-lcn" firstAttribute="leading" secondItem="bNS-yD-V3i" secondAttribute="trailing" id="FCP-o2-6dP"/>
-                        <constraint firstItem="XYi-de-lcn" firstAttribute="top" secondItem="C58-ev-rdO" secondAttribute="top" constant="10" id="SSJ-s8-YfT"/>
+                        <constraint firstItem="XYi-de-lcn" firstAttribute="top" secondItem="bNS-yD-V3i" secondAttribute="top" id="TLU-in-KSv"/>
                         <constraint firstItem="szH-xb-3qg" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" constant="16" id="Upl-6J-Rxs"/>
                         <constraint firstItem="bNS-yD-V3i" firstAttribute="top" secondItem="C58-ev-rdO" secondAttribute="top" constant="37" id="Xcz-QL-E33"/>
                         <constraint firstAttribute="trailing" secondItem="szH-xb-3qg" secondAttribute="trailing" constant="16" id="dQx-Mv-EaC"/>
                         <constraint firstItem="8TS-L3-r8l" firstAttribute="top" secondItem="szH-xb-3qg" secondAttribute="bottom" constant="20" id="mgq-lf-WcT"/>
-                        <constraint firstAttribute="trailing" secondItem="XYi-de-lcn" secondAttribute="trailing" constant="5" id="sLe-8n-Hp3"/>
+                        <constraint firstAttribute="trailing" secondItem="XYi-de-lcn" secondAttribute="trailing" constant="6" id="sLe-8n-Hp3"/>
                         <constraint firstItem="XFt-8u-EHi" firstAttribute="leading" secondItem="C58-ev-rdO" secondAttribute="leading" id="tM2-ko-aVV"/>
                         <constraint firstAttribute="trailing" secondItem="8TS-L3-r8l" secondAttribute="trailing" constant="16" id="xdC-mb-0XN"/>
                     </constraints>
@@ -121,6 +120,7 @@
             <connections>
                 <outlet property="acceptButton" destination="szH-xb-3qg" id="ZO8-nK-VXy"/>
                 <outlet property="cancelButton" destination="8TS-L3-r8l" id="WJM-JL-O2S"/>
+                <outlet property="closeButton" destination="XYi-de-lcn" id="3j2-no-Uf6"/>
                 <outlet property="containerView" destination="C58-ev-rdO" id="yEN-BA-CHt"/>
                 <outlet property="selectorTableView" destination="XFt-8u-EHi" id="hyo-VE-CP7"/>
                 <outlet property="titleLabel" destination="bNS-yD-V3i" id="FYl-c4-3et"/>
@@ -131,6 +131,7 @@
     <resources>
         <image name="ButtonPrimaryDisabled" width="341" height="60"/>
         <image name="buttonsPrimary" width="341" height="60"/>
+        <image name="iconClose" width="19" height="19"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
