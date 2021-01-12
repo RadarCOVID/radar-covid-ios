@@ -203,6 +203,11 @@ class Injection {
                 resetDataUseCase: r.resolve(ResetDataUseCase.self)!)
         }.inObjectScope(.container)
         
+        container.register(DeepLinkUseCase.self) { r in
+            DeepLinkUseCase(
+                expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
+        }.inObjectScope(.container)
+        
         container.register(TabBarController.self) { r in
             TabBarController(
                 homeViewController: r.resolve(HomeViewController.self)!,

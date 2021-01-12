@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-Dd-bXU">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xm5-CV-zov">
-                                <rect key="frame" x="0.0" y="44" width="414" height="69"/>
+                                <rect key="frame" x="0.0" y="24" width="414" height="69"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9AI-9f-c6B">
                                         <rect key="frame" x="186.5" y="9" width="41" height="51"/>
@@ -85,7 +85,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEu-F8-ZM1">
-                                <rect key="frame" x="0.0" y="113" width="414" height="663"/>
+                                <rect key="frame" x="0.0" y="93" width="414" height="683"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUO-V4-jee" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="661"/>
@@ -298,7 +298,7 @@ Cuídate y cuida a los demás.</string>
                             <constraint firstItem="uUO-V4-jee" firstAttribute="width" secondItem="bH7-lt-L7E" secondAttribute="width" id="BUG-wc-oBe"/>
                             <constraint firstItem="AKG-lv-3X4" firstAttribute="centerX" secondItem="bH7-lt-L7E" secondAttribute="centerX" id="MVc-Dr-zgZ"/>
                             <constraint firstItem="JEu-F8-ZM1" firstAttribute="top" secondItem="xm5-CV-zov" secondAttribute="bottom" id="Mko-wj-GYa"/>
-                            <constraint firstItem="xm5-CV-zov" firstAttribute="top" secondItem="bH7-lt-L7E" secondAttribute="top" constant="44" id="ORs-Zu-6Rs"/>
+                            <constraint firstItem="xm5-CV-zov" firstAttribute="top" secondItem="AA3-07-0Pc" secondAttribute="top" constant="-20" id="ORs-Zu-6Rs"/>
                             <constraint firstItem="AA3-07-0Pc" firstAttribute="trailing" secondItem="AKG-lv-3X4" secondAttribute="trailing" constant="112.5" id="SI4-y6-eEz"/>
                             <constraint firstItem="xm5-CV-zov" firstAttribute="trailing" secondItem="bH7-lt-L7E" secondAttribute="trailing" id="W6n-hc-qdC"/>
                             <constraint firstItem="mgD-SH-6Y2" firstAttribute="top" secondItem="JEu-F8-ZM1" secondAttribute="bottom" constant="10" id="WKe-p7-llK"/>

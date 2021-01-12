@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var injection: Injection = Injection()
     private let router = AppDelegate.shared?.injection.resolve(AppRouter.self)!
+    private let deepLinkUseCase = AppDelegate.shared?.injection.resolve(DeepLinkUseCase.self)!
     
     var window: UIWindow?
     
@@ -42,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
 
         if let url = connectionOptions.urlContexts.first?.url {
-            DeepLinkUseCase.getScreenFor(url: url, window: window, router: router)
+            deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
         } else {
             router?.route(to: Routes.root, from: navigationController)
         }
@@ -91,7 +92,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
-            DeepLinkUseCase.getScreenFor(url: url, window: window, router: router)
+            deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
         }
     }
     

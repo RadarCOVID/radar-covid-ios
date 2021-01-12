@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var bluethoothUseCase: BluethoothReminderUseCase?
-    
+    private let deepLinkUseCase = AppDelegate.shared?.injection.resolve(DeepLinkUseCase.self)!
     private let logger = Logger(label: "AppDelegate")
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let router = AppDelegate.shared?.injection.resolve(AppRouter.self)!
         
         if let url = url {
-            DeepLinkUseCase.getScreenFor(url: url, window: window, router: router)
+            deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
         } else {
             router?.route(to: Routes.root, from: navigationController)
         }
