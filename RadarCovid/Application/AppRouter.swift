@@ -44,6 +44,7 @@ public enum Routes {
     case detailInteroperability
     case infoApp
     case helpSettings
+    case unsupportedOS
 }
 
 
@@ -148,6 +149,8 @@ class AppRouter: Router {
             routeToInfoApp(context)
         case .helpSettings:
             routeToHelpSettings(context)
+        case .unsupportedOS:
+            routeToUnsupportedOS(context)
         }
     }
 
@@ -197,7 +200,12 @@ class AppRouter: Router {
         let helpSettingsVC = AppDelegate.shared?.injection.resolve(HelpSettingsViewController.self)!
         loadViewAsModal(viewParentController: context, view: helpSettingsVC!)
     }
-
+    
+    private func routeToUnsupportedOS(_ context: UIViewController) {
+        let unsupportedOSVC = AppDelegate.shared?.injection.resolve(UnsupportedOSViewController.self)!
+        loadViewAsRoot(navController: context as? UINavigationController, view: unsupportedOSVC!)
+    }
+    
     private func routeToHome(_ context: UIViewController) {
         let tabBarController = AppDelegate.shared?.injection.resolve(TabBarController.self)!
         loadViewAsRoot(navController: context.navigationController, view: tabBarController!)

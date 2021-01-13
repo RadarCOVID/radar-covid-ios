@@ -470,6 +470,11 @@ class Injection {
             return rootVC
         }
         
+        container.register(UnsupportedOSViewController.self) { r in
+            let unsupportedOSVC = UnsupportedOSViewController()
+            return unsupportedOSVC
+        }
+        
         container.register(ErrorRecorder.self) { _ in
             ErrorRecorderImpl()
         }

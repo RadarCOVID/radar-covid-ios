@@ -15,12 +15,6 @@ import BackgroundTasks
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    var injection: Injection = Injection()
-    private let router = AppDelegate.shared?.injection.resolve(AppRouter.self)!
-    private let deepLinkUseCase = AppDelegate.shared?.injection.resolve(DeepLinkUseCase.self)!
-    
-    var window: UIWindow?
-    
     func cancelAllPandingBGTask() {
         if #available(iOS 13.0, *) {
             BGTaskScheduler.shared.cancelAllTaskRequests()
@@ -34,19 +28,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let navigationController = UINavigationController()
-        navigationController.setNavigationBarHidden(true, animated: false)
-        
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-
-        if let url = connectionOptions.urlContexts.first?.url {
-            deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
-        } else {
-            router?.route(to: Routes.root, from: navigationController)
-        }
+        let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window.windowScene = windowScene
+        AppDelegate.shared?.loadInitialScreen(initWindow: window, url: connectionOptions.urlContexts.first?.url)
     }
     
     @available(iOS 13.0, *)
@@ -81,18 +65,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
         cancelAllPandingBGTask()
-        let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!
-        fakeRequestUseCase.scheduleBackgroundTask()
+        let fakeRequestUseCase = AppDelegate.shared?.injection.resolve(FakeRequestUseCase.self)!
+        fakeRequestUseCase?.scheduleBackgroundTask()
         
-        let reminderNotificationUseCase = injection.resolve(ReminderNotificationUseCase.self)!
-        reminderNotificationUseCase.start()
+        let reminderNotificationUseCase = AppDelegate.shared?.injection.resolve(ReminderNotificationUseCase.self)!
+        reminderNotificationUseCase?.start()
     }
     
     // MARK: - Deep links
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
-            deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
+            AppDelegate.shared?.loadInitialScreen(initWindow: nil, url: url)
         }
     }
     

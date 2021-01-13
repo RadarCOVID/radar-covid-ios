@@ -32,12 +32,6 @@ class RootViewController: UIViewController {
         loadLocalesAndCCAA()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print("aaaaaviewWillAppear viewWillAppear viewWillAppear")
-    }
-    
     private func loadLocalesAndCCAA() {
         
         LocalizationHolder.source = localizationUseCase

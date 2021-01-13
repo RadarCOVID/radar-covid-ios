@@ -11,29 +11,34 @@
 
 import UIKit
 import Logging
+import DP3TSDK
 
 @UIApplicationMain
-
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     static var shared: AppDelegate? {
-       return UIApplication.shared.delegate as? AppDelegate
+        return UIApplication.shared.delegate as? AppDelegate
     }
     var injection: Injection = Injection()
     var window: UIWindow?
     
     var bluethoothUseCase: BluethoothReminderUseCase?
-    private let deepLinkUseCase = AppDelegate.shared?.injection.resolve(DeepLinkUseCase.self)!
     private let logger = Logger(label: "AppDelegate")
+    private lazy var deepLinkUseCase: DeepLinkUseCase? = {
+        return AppDelegate.shared?.injection.resolve(DeepLinkUseCase.self)!
+    }()
+    private lazy var router: AppRouter? = {
+        return AppDelegate.shared?.injection.resolve(AppRouter.self)!
+    }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if Config.debug {
             setupLog()
         }
-
+        
         logger.info("Current Environment: \(Config.environment)")
-
+        
         let setupUseCase = injection.resolve(SetupUseCase.self)!
         let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!
         if #available(iOS 13.0, *) {
@@ -50,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Loading initial screen, only execut iOS 12.5
         if #available(iOS 13.0, *) {
         } else {
-            loadInitialScreen(url: nil)
+            loadInitialScreen(initWindow: UIWindow(frame: UIScreen.main.bounds),  url: nil)
         }
         
         return true
@@ -61,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
-
+    
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     }
     
@@ -71,27 +76,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if #available(iOS 13.0, *) {
         } else {
-            loadInitialScreen(url: url)
+            loadViewToUrl(url: url)
         }
         
         return true
     }
     
-    private func loadInitialScreen(url: URL?) {
-
+    func loadInitialScreen(initWindow: UIWindow?, url: URL?) {
+        
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(true, animated: false)
-
-        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        if let initialiceWindow = initWindow {
+            window = initialiceWindow
+        }
+        
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-
-        let router = AppDelegate.shared?.injection.resolve(AppRouter.self)!
-        
-        if let url = url {
+        if DP3TTracing.isOSCompatible {
+            if let url = url {
+                loadViewToUrl(url: url)
+            } else {
+                router?.route(to: Routes.root, from: navigationController)
+            }
+        } else {
+            router?.route(to: Routes.unsupportedOS, from: navigationController)
+        }
+    }
+    
+    func loadViewToUrl(url: URL) {
+        if DP3TTracing.isOSCompatible {
             deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
         } else {
-            router?.route(to: Routes.root, from: navigationController)
+            router?.route(to: Routes.unsupportedOS, from: UINavigationController())
         }
     }
     
@@ -129,7 +146,7 @@ extension AppDelegate {
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
