@@ -39,17 +39,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         logger.info("Current Environment: \(Config.environment)")
         
-        let setupUseCase = injection.resolve(SetupUseCase.self)!
-        let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!
-        if #available(iOS 13.0, *) {
-            fakeRequestUseCase.initBackgroundTask()
+        if DP3TTracing.isOSCompatible {
+            let setupUseCase = injection.resolve(SetupUseCase.self)!
+            let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!
+            if #available(iOS 13.0, *) {
+                fakeRequestUseCase.initBackgroundTask()
+            }
+            bluethoothUseCase = injection.resolve(BluethoothReminderUseCase.self)!
+            do {
+                try setupUseCase.initializeSDK()
+            } catch {
+                logger.error("Error initializing DP3T \(error)")
+            }
         }
-        bluethoothUseCase = injection.resolve(BluethoothReminderUseCase.self)!
-        do {
-            try setupUseCase.initializeSDK()
-        } catch {
-            logger.error("Error initializing DP3T \(error)")
-        }
+        
         UIApplication.shared.applicationIconBadgeNumber = 0
         
         //Loading initial screen, only execut iOS 12.5
