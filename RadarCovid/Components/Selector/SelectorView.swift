@@ -107,15 +107,18 @@ class SelectorView: UIView {
         
         acceptButton.isAccessibilityElement = true
         acceptButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        acceptButton.accessibilityHint = "ACC_BUTTON_ALERT_ACCEPT".localized
+        acceptButton.accessibilityLabel = "ACC_BUTTON_ALERT_ACCEPT".localized
+        acceptButton.accessibilityHint = "ACC_HINT".localized
         
         cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+        cancelButton.accessibilityLabel = "ACC_BUTTON_ALERT_CANCEL".localized
+        cancelButton.accessibilityHint = "ACC_HINT".localized
         
         closeButton.isAccessibilityElement = true
-        closeButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        closeButton.accessibilityHint = "ACC_BUTTON_CLOSE".localized
+        closeButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
+        closeButton.accessibilityHint = "ACC_HINT".localized
+//        closeButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
     
     private func initValues() {
