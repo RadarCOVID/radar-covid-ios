@@ -64,12 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
-    
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     }
     
@@ -77,11 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        if #available(iOS 13.0, *) {
-        } else {
-            loadViewToUrl(url: url)
-        }
-        
+        loadInitialScreen(initWindow: nil, url: url)
         return true
     }
     
@@ -96,22 +86,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        if DP3TTracing.isOSCompatible {
-            if let url = url {
-                loadViewToUrl(url: url)
-            } else {
-                router?.route(to: Routes.root, from: navigationController)
-            }
-        } else {
-            router?.route(to: Routes.unsupportedOS, from: navigationController)
-        }
-    }
-    
-    func loadViewToUrl(url: URL) {
-        if DP3TTracing.isOSCompatible {
+        if let url = url {
             deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
         } else {
-            router?.route(to: Routes.unsupportedOS, from: UINavigationController())
+            router?.route(to: Routes.root, from: navigationController)
         }
     }
     
@@ -137,6 +115,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             debugPrint("Error initializing log \(error)")
         }
+    }
+    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
 }
 

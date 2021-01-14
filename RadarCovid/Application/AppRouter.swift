@@ -203,7 +203,7 @@ class AppRouter: Router {
     
     private func routeToUnsupportedOS(_ context: UIViewController) {
         let unsupportedOSVC = AppDelegate.shared?.injection.resolve(UnsupportedOSViewController.self)!
-        loadViewAsRoot(navController: context as? UINavigationController, view: unsupportedOSVC!)
+        loadViewAsRoot(navController: context.navigationController, view: unsupportedOSVC!)
     }
     
     private func routeToHome(_ context: UIViewController) {
