@@ -23,6 +23,7 @@ class RootViewController: UIViewController {
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
     
     var urlSchemeRedirect: [Routes]?
+    var selectTabType: UIViewController.Type?
     var paramsUrlScheme: [Any?]?
     
     private let disposeBag = DisposeBag()
@@ -123,7 +124,7 @@ class RootViewController: UIViewController {
                 if let urlSchemeRedirect = urlSchemeRedirect {
                     router?.routes(to: urlSchemeRedirect, from: self, parameters: paramsUrlScheme)
                 } else {
-                    router?.route(to: Routes.home, from: self)
+                    router?.route(to: Routes.home, from: self, parameters: selectTabType)
                 }
             } else {
                 router!.route(to: Routes.welcome, from: self)

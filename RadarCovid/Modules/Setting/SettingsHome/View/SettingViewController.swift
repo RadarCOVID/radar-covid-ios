@@ -120,7 +120,7 @@ extension SettingViewController: SelectorProtocol {
                                          okHandler: {
                                             completionCloseView(true)
                                             self.viewModel?.setCurrentLocale(key: selectorItem.id)
-                                            self.router?.route(to: Routes.changeLanguage, from: self)
+                                            self.router?.route(to: Routes.changeLanguage, from: self, parameters: SettingViewController.self)
                                          }, cancelHandler: {
                                             completionCloseView(false)
                                          })

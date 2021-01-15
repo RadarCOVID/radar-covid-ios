@@ -22,6 +22,8 @@ class TabBarController: UITabBarController {
     var statsViewController: StatsViewController
     var localizationUseCase: LocalizationUseCase
     var preferencesRepository: PreferencesRepository?
+    
+    var selectTabType: UIViewController.Type?
 
     init(homeViewController: HomeViewController,
          myDataViewController: MyDataViewController,
@@ -49,7 +51,6 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
     }
     
@@ -61,6 +62,8 @@ class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         setupAccessibility()
         setViewControllers([homeViewController, myDataViewController, helpLineViewController, statsViewController, settingViewController], animated: false)
+        
+        select(tabType: selectTabType)
     }
     
     private func setupAccessibility() {
@@ -123,6 +126,17 @@ class TabBarController: UITabBarController {
             title: "",
             image: UIImage(named: "MenuSettingNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuSettingSelected"))
+        
+    }
+    
+    private func select(tabType: UIViewController.Type?) {
+        if let t = tabType, let vcs = viewControllers {
+            for (index, vc) in vcs.enumerated() {
+                if type(of: vc) === t {
+                    self.selectedIndex = index
+                }
+            }
+        }
     }
 }
 

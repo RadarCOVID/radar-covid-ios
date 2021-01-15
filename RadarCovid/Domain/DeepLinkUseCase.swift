@@ -53,7 +53,7 @@ class DeepLinkUseCase {
     func paramsUrlSchemeToSectionParameters(route: Routes, params: [URLQueryItem]) -> [Any?] {
         switch route {
         case .myHealthStep1:
-            let code = params.filter({ $0.name == "code" }).first?.value
+            let code = params.filter{ $0.name == "code" }.first?.value
             return [code]
             
         default:

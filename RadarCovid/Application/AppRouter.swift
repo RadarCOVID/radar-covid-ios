@@ -93,7 +93,7 @@ class AppRouter: Router {
         case .onBoarding:
             routeToOnboarding(context)
         case .home:
-            routeToHome(context)
+            routeToHome(context, parameters)
         case .proximity:
             routeToProximity(context)
         case .activateCovid:
@@ -136,7 +136,7 @@ class AppRouter: Router {
             }
             
         case .changeLanguage:
-            routeToRootAndResetView(context)
+            routeToRootAndResetView(context, parameters)
         case .shareApp:
             routeToShareApp(context)
         case .timeExposed:
@@ -166,8 +166,11 @@ class AppRouter: Router {
         loadViewAsRoot(navController: context as? UINavigationController, view: rootVC!)
     }
     
-    private func routeToRootAndResetView(_ context: UIViewController) {
+    private func routeToRootAndResetView(_ context: UIViewController, _ parameters: [Any?]?) {
         let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
+        if let param = parameters, param.count > 0 {
+            rootVC?.selectTabType = param[0] as? UIViewController.Type
+        }
         loadViewAsRoot(navController: context.navigationController, view: rootVC!)
     }
     
@@ -206,8 +209,12 @@ class AppRouter: Router {
         loadViewAsRoot(navController: context.navigationController, view: unsupportedOSVC!)
     }
     
-    private func routeToHome(_ context: UIViewController) {
+    private func routeToHome(_ context: UIViewController, _ parameters: [Any?]?) {
         let tabBarController = AppDelegate.shared?.injection.resolve(TabBarController.self)!
+        if let param = parameters, param.count > 0 {
+            tabBarController!.selectTabType = param[0] as? UIViewController.Type
+        }
+
         loadViewAsRoot(navController: context.navigationController, view: tabBarController!)
     }
 
