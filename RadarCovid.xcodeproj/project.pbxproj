@@ -15,6 +15,7 @@
 		6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDD824F6719000FBADB4 /* PickerPresenter.swift */; };
 		6D01BDE124FD619900FBADB4 /* RadarStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDE024FD619900FBADB4 /* RadarStatus.swift */; };
 		6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */; };
+		6D2962E925B5ABE90030A99F /* DeviceTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */; };
 		6D2CA48224B3571900981DA4 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48124B3571900981DA4 /* DomainError.swift */; };
 		6D2CA48824B60EFD00981DA4 /* LocalizableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48724B60EFD00981DA4 /* LocalizableLabel.swift */; };
 		6D2CA48A24B60F5F00981DA4 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48924B60F5F00981DA4 /* Localizable.swift */; };
@@ -244,6 +245,7 @@
 		6D01BDD824F6719000FBADB4 /* PickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerPresenter.swift; sourceTree = "<group>"; };
 		6D01BDE024FD619900FBADB4 /* RadarStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarStatus.swift; sourceTree = "<group>"; };
 		6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalesUseCase.swift; sourceTree = "<group>"; };
+		6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenHandler.swift; sourceTree = "<group>"; };
 		6D2CA48124B3571900981DA4 /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
 		6D2CA48724B60EFD00981DA4 /* LocalizableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableLabel.swift; sourceTree = "<group>"; };
 		6D2CA48924B60F5F00981DA4 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
@@ -854,6 +856,7 @@
 			children = (
 				6D7AB27624AF1CBD00F30E0B /* VersionHandler.swift */,
 				6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */,
+				6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */,
 			);
 			path = Handler;
 			sourceTree = "<group>";
@@ -1523,6 +1526,7 @@
 				A9CE0573256E7A440080A7E3 /* UILabel+Extension.swift in Sources */,
 				6D78B44124A9F13A00FBC23F /* SetupUseCase.swift in Sources */,
 				6D2CA48824B60EFD00981DA4 /* LocalizableLabel.swift in Sources */,
+				6D2962E925B5ABE90030A99F /* DeviceTokenHandler.swift in Sources */,
 				6D83344724B72C3B00223071 /* LocalizationHolder.swift in Sources */,
 				6DE27C74249A6D4600BBCF40 /* JSONEncodableEncoding.swift in Sources */,
 				6D2CA48C24B612E000981DA4 /* XibLocalizable.swift in Sources */,

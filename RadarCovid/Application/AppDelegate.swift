@@ -39,6 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         logger.info("Current Environment: \(Config.environment)")
         
+        let tokenHandler = DCDeviceTokenHandler()
+        
+        tokenHandler.generateToken().subscribe(onNext: { [weak self] token in
+            self?.logger.info("token \(token)")
+        }, onError: {[weak self] _ in
+            self?.logger.error("token error")
+        })
+        
         if DP3TTracing.isOSCompatible {
             let setupUseCase = injection.resolve(SetupUseCase.self)!
             let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!
