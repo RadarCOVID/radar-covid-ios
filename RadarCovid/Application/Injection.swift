@@ -113,6 +113,10 @@ class Injection {
             NotificationHandler()
         }.inObjectScope(.container)
         
+        container.register(DeviceTokenHandler.self) { r in
+            DCDeviceTokenHandler()
+        }.inObjectScope(.container)
+        
         container.register(OnboardingCompletedUseCase.self) { r in
             OnboardingCompletedUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!)
         }.inObjectScope(.container)
@@ -183,16 +187,16 @@ class Injection {
         
         container.register(CountriesUseCase.self) { r in
             CountriesUseCase(
-                countriesRepository: r.resolve(CountriesRepository.self)!
-                , masterDataApi: r.resolve(MasterDataAPI.self)!
-                , localizationRepository: r.resolve(LocalizationRepository.self)!
+                countriesRepository: r.resolve(CountriesRepository.self)!,
+                masterDataApi: r.resolve(MasterDataAPI.self)!,
+                localizationRepository: r.resolve(LocalizationRepository.self)!
             )
         }.inObjectScope(.container)
         
         container.register(StatisticsUseCase.self) { r in
             StatisticsUseCase(
-                statisticsRepository: r.resolve(StatisticsRepository.self)!
-                , statisticsApi: r.resolve(StatisticsAPI.self)!
+                statisticsRepository: r.resolve(StatisticsRepository.self)!,
+                statisticsApi: r.resolve(StatisticsAPI.self)!
             )
         }.inObjectScope(.container)
         
@@ -206,6 +210,11 @@ class Injection {
         container.register(DeepLinkUseCase.self) { r in
             DeepLinkUseCase(
                 expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(ExposureAnaliticsUseCase.self) { r in
+            ExposureAnaliticsUseCase(expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+                                     deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!)
         }.inObjectScope(.container)
         
         container.register(TabBarController.self) { r in
@@ -222,8 +231,7 @@ class Injection {
         
         container.register(AppRouter.self) { _ in
             AppRouter()
-        }.initCompleted {r, appRouter in
-        }
+        }.initCompleted {r, appRouter in}
         
         container.register(ProximityViewController.self) {  r in
             let proxVC = ProximityViewController()

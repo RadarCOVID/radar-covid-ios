@@ -50,7 +50,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
         )
 
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss.SSS z"
-
+        
         DP3TTracing.delegate = self
     }
     
