@@ -18,7 +18,7 @@ import RxSwift
  - Este servicio devolverá el mismo "analiticsToken" durante un mes (cacheado en redis). Pedirlo si no lo tienes y si lo tienes comprobar la antiguedad y pedirlo de nuevo
  - Finalmente llamar al servicio con el dato de exposición
  */
-class ExposureAnaliticsUseCase {
+class ExposureAnalyticsUseCase {
     
     private let expositionInfoRepository: ExpositionInfoRepository
     
@@ -29,7 +29,7 @@ class ExposureAnaliticsUseCase {
         self.deviceTokenHandler = deviceTokenHandler
     }
     
-    func sendExposureAnalitics(data: Any) -> Observable<Void> {
+    func sendExposureAnaltyics(data: Any) -> Observable<Void> {
         
         var exposed = "0"
         var date : Date? = nil
@@ -47,6 +47,8 @@ class ExposureAnaliticsUseCase {
         return .just(())
         
     }
+    
+
     
 }
 

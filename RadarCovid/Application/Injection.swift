@@ -212,8 +212,8 @@ class Injection {
                 expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
         }.inObjectScope(.container)
         
-        container.register(ExposureAnaliticsUseCase.self) { r in
-            ExposureAnaliticsUseCase(expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+        container.register(ExposureAnalyticsUseCase.self) { r in
+            ExposureAnalyticsUseCase(expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
                                      deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!)
         }.inObjectScope(.container)
         
