@@ -15,6 +15,7 @@
 		6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDD824F6719000FBADB4 /* PickerPresenter.swift */; };
 		6D01BDE124FD619900FBADB4 /* RadarStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDE024FD619900FBADB4 /* RadarStatus.swift */; };
 		6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */; };
+		6D29637C25B98C380030A99F /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 6D29637B25B98C380030A99F /* RxBlocking */; };
 		6D2CA48224B3571900981DA4 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48124B3571900981DA4 /* DomainError.swift */; };
 		6D2CA48824B60EFD00981DA4 /* LocalizableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48724B60EFD00981DA4 /* LocalizableLabel.swift */; };
 		6D2CA48A24B60F5F00981DA4 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48924B60F5F00981DA4 /* Localizable.swift */; };
@@ -31,7 +32,7 @@
 		6D63108E2501197B000CDCB4 /* AccTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63108D2501197B000CDCB4 /* AccTitleView.swift */; };
 		6D64132D24ED897300B33427 /* ExpositionCheckUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D64132C24ED897300B33427 /* ExpositionCheckUseCaseTest.swift */; };
 		6D662D19250B80B700AEEFE7 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D662D18250B80B700AEEFE7 /* HomeViewModelTest.swift */; };
-		6D662D1C250B964B00AEEFE7 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 6D662D1B250B964B00AEEFE7 /* RxTest */; };
+		6D662D1C250B964B00AEEFE7 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 6D662D1B250B964B00AEEFE7 /* RxTest */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6D78B44124A9F13A00FBC23F /* SetupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */; };
 		6D7AB26D24ADCC9A00F30E0B /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */; };
 		6D7AB26F24ADED7400F30E0B /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
@@ -207,11 +208,8 @@
 		A9EB48012535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EB47F52535ADBB00F3A122 /* MyHealthReported.storyboard */; };
 		A9EB48022535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EB47F52535ADBB00F3A122 /* MyHealthReported.storyboard */; };
 		A9EB48032535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47F62535ADBB00F3A122 /* MyHealthReportedViewController.swift */; };
-		A9EB48042535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47F62535ADBB00F3A122 /* MyHealthReportedViewController.swift */; };
 		A9EB480B2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47FC2535ADBB00F3A122 /* MyHealthStep2ViewController.swift */; };
-		A9EB480C2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47FC2535ADBB00F3A122 /* MyHealthStep2ViewController.swift */; };
 		A9EB481D2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB481B2535AF2500F3A122 /* MyHealthStep0ViewController.swift */; };
-		A9EB481E2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB481B2535AF2500F3A122 /* MyHealthStep0ViewController.swift */; };
 		A9EB481F2535AF2500F3A122 /* MyHealthStep0View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9EB481C2535AF2500F3A122 /* MyHealthStep0View.xib */; };
 		A9EB48202535AF2500F3A122 /* MyHealthStep0View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9EB481C2535AF2500F3A122 /* MyHealthStep0View.xib */; };
 		A9EDAF0C25767CC60041AE1E /* HighExposition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EDAF0225767CC50041AE1E /* HighExposition.storyboard */; };
@@ -224,12 +222,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6D64132324ED88AB00B33427 /* PBXContainerItemProxy */ = {
+		6D29638525B98D3A0030A99F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3944327E248939F000FF0217 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 39443285248939F000FF0217;
-			remoteInfo = CovidPilot;
+			remoteInfo = RadarCovid;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -471,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D662D1C250B964B00AEEFE7 /* RxTest in Frameworks */,
+				6D29637C25B98C380030A99F /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1380,11 +1379,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				6D64132424ED88AB00B33427 /* PBXTargetDependency */,
+				6D29638625B98D3A0030A99F /* PBXTargetDependency */,
 			);
 			name = RadarCovidTests;
 			packageProductDependencies = (
 				6D662D1B250B964B00AEEFE7 /* RxTest */,
+				6D29637B25B98C380030A99F /* RxBlocking */,
 			);
 			productName = RadarCovidTests;
 			productReference = 6D64131E24ED88AB00B33427 /* RadarCovidTests.xctest */;
@@ -1672,10 +1672,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D01BDCF24EFEFCB00FBADB4 /* MyMocks.swift in Sources */,
-				A9EB481E2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */,
-				A9EB480C2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */,
 				6D9F3A9025029C5C005EE842 /* ErrorHandlerTest.swift in Sources */,
-				A9EB48042535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */,
 				6D64132D24ED897300B33427 /* ExpositionCheckUseCaseTest.swift in Sources */,
 				6D662D19250B80B700AEEFE7 /* HomeViewModelTest.swift in Sources */,
 			);
@@ -1684,10 +1681,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6D64132424ED88AB00B33427 /* PBXTargetDependency */ = {
+		6D29638625B98D3A0030A99F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 39443285248939F000FF0217 /* RadarCovid */;
-			targetProxy = 6D64132324ED88AB00B33427 /* PBXContainerItemProxy */;
+			targetProxy = 6D29638525B98D3A0030A99F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1917,6 +1914,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1992,6 +1990,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2067,6 +2066,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = 1;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2136,6 +2136,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = 1;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2413,6 +2414,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6D29637B25B98C380030A99F /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
 		6D5AFCE7249369FE00EFE838 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */;

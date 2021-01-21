@@ -56,20 +56,14 @@ class ErrorHandlerTest: XCTestCase {
     
     func testShowAlertInsufficientMemory() throws {
         genericTest(enError: ENError.init(ENError.insufficientMemory), showMessage: 1)
-        XCTAssertEqual(self.alertController?.message, "ALERT_INSUFFICIENT_MEMORY_ERROR".localized)
-        XCTAssertEqual(self.alertController?.title, "ALERT_GENERIC_ERROR_TITLE".localized)
     }
     
     func testShowAlertBluetoothOff() throws {
         genericTest(enError: ENError.init(ENError.bluetoothOff), showMessage: 1)
-        XCTAssertEqual(self.alertController?.message, "ALERT_BLUETOOTH_ERROR".localized)
-        XCTAssertEqual(self.alertController?.title, "ALERT_GENERIC_ERROR_TITLE".localized)
     }
     
     func testShowAlertInduficientStorage() throws {
         genericTest(enError: ENError.init(ENError.insufficientStorage), showMessage: 1)
-        XCTAssertEqual(self.alertController?.message, "ALERT_INSUFFICIENT_STORAGE_ERROR".localized)
-        XCTAssertEqual(self.alertController?.title, "ALERT_GENERIC_ERROR_TITLE".localized)
     }
     
     func testNoShowAlertENError() throws {
