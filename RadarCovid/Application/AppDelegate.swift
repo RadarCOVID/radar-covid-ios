@@ -54,13 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         UIApplication.shared.applicationIconBadgeNumber = 0
-        
-        //Loading initial screen, only execut iOS 12.5
+            //Loading initial screen, only execut iOS 12.5
         if #available(iOS 13.0, *) {
         } else {
             loadInitialScreen(initWindow: UIWindow(frame: UIScreen.main.bounds),  url: nil)
         }
-        
         return true
     }
     
@@ -70,7 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        
         loadInitialScreen(initWindow: nil, url: url)
         return true
     }
@@ -91,6 +88,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             router?.route(to: Routes.root, from: navigationController)
         }
+    }
+    
+    func loadUnsupportedOS(initWindow: UIWindow?, url: URL?) {
+        let rootViewController = UnsupportedOSViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        if let initialiceWindow = initWindow {
+            window = initialiceWindow
+        }
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+        router?.route(to: Routes.unsupportedOS, from: navigationController)
     }
     
     private func setupLog() {
