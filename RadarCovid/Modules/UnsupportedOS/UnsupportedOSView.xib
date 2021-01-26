@@ -36,7 +36,7 @@
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightTopShade" translatesAutoresizingMaskIntoConstraints="NO" id="Dcl-FX-bMb">
                                     <rect key="frame" x="91.5" y="0.0" width="283.5" height="206.5"/>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BoyMobileQuestions" translatesAutoresizingMaskIntoConstraints="NO" id="zEw-vE-rUI">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="updateOS" translatesAutoresizingMaskIntoConstraints="NO" id="zEw-vE-rUI">
                                     <rect key="frame" x="226" y="7" width="124" height="151"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" image="YES" staticText="YES"/>
@@ -252,10 +252,10 @@
         </view>
     </objects>
     <resources>
-        <image name="BoyMobileQuestions" width="124" height="151"/>
         <image name="ButtonPrimaryDisabled" width="341" height="60"/>
         <image name="RightTopShade" width="283.5" height="206.5"/>
         <image name="buttonsPrimary" width="341" height="60"/>
+        <image name="updateOS" width="169" height="154"/>
         <namedColor name="twilight">
             <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
