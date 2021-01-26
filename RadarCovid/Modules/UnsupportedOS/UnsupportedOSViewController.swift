@@ -12,7 +12,7 @@
 import Foundation
 import UIKit
 
-class UnsupportedOSViewController: UIViewController {
+class UnsupportedOSViewController: BaseViewController {
     
     @IBOutlet weak var openSettingsButton: UIButton!
     @IBOutlet weak var closeAppButton: UIButton!
@@ -32,17 +32,15 @@ class UnsupportedOSViewController: UIViewController {
     }
     
     private func setupAccessibility(){
-        step1.accessibilityLabel = "1, " + "UPDATE_REQUIRED_STEP_1".localized
-        step2.accessibilityLabel = "2, " + "UPDATE_REQUIRED_STEP_2".localized
-        step3.accessibilityLabel = "3, " + "UPDATE_REQUIRED_STEP_3".localized
-        step4.accessibilityLabel = "4, " + "UPDATE_REQUIRED_STEP_4".localized
+        step1.accessibilityLabel = "1, " + step1.text!
+        step2.accessibilityLabel = "2, " + step2.text!
+        step3.accessibilityLabel = "3, " + step3.text!
+        step4.accessibilityLabel = "4, " + step4.text!
     }
     
     private func setupView() {
-        openSettingsButton.setTitle("UPDATE_REQUIRED_GO_TO_SETTINGS".localized, for: .normal)
         closeAppButton.layer.borderWidth = 1
         closeAppButton.layer.borderColor = UIColor.deepLilac.cgColor
-        closeAppButton.setTitle("UPDATE_REQUIRED_CLOSE_APP".localized, for: .normal)
     }
     
     @IBAction func openSettingsClicked(_ sender: Any) {
