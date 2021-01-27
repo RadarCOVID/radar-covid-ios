@@ -117,6 +117,14 @@ class Injection {
             UserDefaultsStatisticsRepository()
         }.inObjectScope(.container)
         
+        container.register(AnalyticsRepository.self) { _ in
+            UserDefaultsAnalyticsRepository()
+        }.inObjectScope(.container)
+        
+        container.register(ExposureKpiRepository.self) { _ in
+            UserDefaultsExposureKpiRepository()
+        }.inObjectScope(.container)
+        
         container.register(VersionHandler.self) { _ in
             VersionHandler()
         }.inObjectScope(.container)
@@ -224,9 +232,15 @@ class Injection {
                 expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
         }.inObjectScope(.container)
         
-        container.register(ExposureAnalyticsUseCase.self) { r in
-            ExposureAnalyticsUseCase(expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
-                                     deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!)
+        container.register(AnalyticsUseCase.self) { r in
+            AnalyticsUseCase(deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!,
+                             analyticsRepository: r.resolve(AnalyticsRepository.self)!,
+                             kpiApi: r.resolve(AppleKpiControllerAPI.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(ExposureKpiUseCase.self) { r in
+            ExposureKpiUseCase(expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+                               exposureKpiRepository: r.resolve(ExposureKpiRepository.self)!)
         }.inObjectScope(.container)
         
         container.register(TabBarController.self) { r in

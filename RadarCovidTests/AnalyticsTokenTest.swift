@@ -16,19 +16,29 @@ import XCTest
 class AnalyticsTokenTest: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
     }
 
     func testGenerateNew() throws {
         let token = AnalyticsToken.generateNew()
         
-        XCTAssertEqual(token.token.count , AnalyticsToken.tokenLength)
+        XCTAssertEqual(token.value.count , AnalyticsToken.tokenLength)
         
-        
+        XCTAssertGreaterThan(token.expirationDate, Date().addingTimeInterval(30*24*60*60))
+    }
+    
+    func testExpired() throws {
+        let token = AnalyticsToken(value: "", expirationDate: Date().addingTimeInterval(-1000), validated: false)
+        XCTAssertTrue(token.isExpired())
+    }
+    
+    func testNewNotExpired() throws {
+        let token = AnalyticsToken.generateNew()
+        XCTAssertFalse(token.isExpired())
     }
 
 }

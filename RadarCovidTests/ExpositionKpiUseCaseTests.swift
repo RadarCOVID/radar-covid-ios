@@ -11,26 +11,103 @@
 
 import XCTest
 
-class ExpositionKpiUseCaseTests: XCTestCase {
+@testable import Radar_COVID
 
+class ExpositionKpiUseCaseTests: XCTestCase {
+    
+    var sut : ExposureKpiUseCase?
+    
+    var expositionInfoRepository : ExpositionInfoRepositoryMock?
+    var exposureKpiRepository: ExposureKpiRepositoryMock?
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        expositionInfoRepository = ExpositionInfoRepositoryMock()
+        
+        exposureKpiRepository = ExposureKpiRepositoryMock()
+        
+        sut = ExposureKpiUseCase(expositionInfoRepository: expositionInfoRepository!,
+                                 exposureKpiRepository: exposureKpiRepository!)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        exposureKpiRepository!.resetMock()
+        expositionInfoRepository!.resetMock()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGivenHelthyReturnDummyKpiAndResetRecord() throws {
+        
+        expositionInfoRepository?.expositionInfo = ExpositionInfo(level: .healthy)
+        
+        let kpi = sut!.getExposureKpi()
+        
+        XCTAssertEqual(expositionInfoRepository!.expositionInfoCalls, 1)
+        XCTAssertEqual(kpi.value, 0)
+        XCTAssertNil(kpi.timestamp)
+        
+        XCTAssertEqual(exposureKpiRepository!.saveCalls, 1)
+        XCTAssertNil(exposureKpiRepository!.date)
+        
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testGivenNotPreviousStateReturnDummyKpiAndResetRecord() throws {
+        
+        let kpi = sut!.getExposureKpi()
+        
+        XCTAssertEqual(expositionInfoRepository!.expositionInfoCalls, 1)
+        XCTAssertEqual(kpi.value, 0)
+        XCTAssertNil(kpi.timestamp)
+
+        
     }
+    
+    func testGivenExposedAndNotPreviousDateReturnExposedKpiAndRegisterCurrentDate() throws {
+        
+        let date = Date()
+        expositionInfoRepository?.expositionInfo = ExpositionInfo(level: .exposed)
+        expositionInfoRepository?.expositionInfo?.since = date
+        
+        let kpi = sut!.getExposureKpi()
+        
+        XCTAssertEqual(expositionInfoRepository!.expositionInfoCalls, 1)
+        XCTAssertEqual(kpi.value, 1)
+        XCTAssertEqual(kpi.timestamp, date)
+        
+        XCTAssertEqual(exposureKpiRepository?.saveCalls, 1)
+        XCTAssertEqual(exposureKpiRepository?.date, date)
+
+    }
+    
+    func testGivenExposedAndPreviousDateEqualReturnDummy() throws {
+        let date = Date()
+        expositionInfoRepository?.expositionInfo = ExpositionInfo(level: .exposed)
+        expositionInfoRepository?.expositionInfo?.since = date
+        
+        exposureKpiRepository?.date = date
+        
+        let kpi = sut!.getExposureKpi()
+        
+        XCTAssertEqual(expositionInfoRepository!.expositionInfoCalls, 1)
+        XCTAssertEqual(kpi.value, 0)
+        XCTAssertEqual(kpi.timestamp, date)
+    }
+    
+    func testGivenExposedAndPreviousDateDifferentReturnExposedKpiAndRegisterCurrentDate() throws {
+        let date = Date()
+        expositionInfoRepository?.expositionInfo = ExpositionInfo(level: .exposed)
+        expositionInfoRepository?.expositionInfo?.since = date
+        
+        exposureKpiRepository?.date = date.addingTimeInterval(-1000)
+        
+        let kpi = sut!.getExposureKpi()
+        
+        XCTAssertEqual(expositionInfoRepository!.expositionInfoCalls, 1)
+        XCTAssertEqual(kpi.value, 1)
+        XCTAssertEqual(kpi.timestamp, date)
+        
+        XCTAssertEqual(exposureKpiRepository?.saveCalls, 1)
+        XCTAssertEqual(exposureKpiRepository?.date, date)
+    }
+
 
 }

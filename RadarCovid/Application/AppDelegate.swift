@@ -39,12 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         logger.info("Current Environment: \(Config.environment)")
         
-        let tokenHandler = DCDeviceTokenHandler()
-        
-        tokenHandler.generateToken().subscribe(onNext: { [weak self] token in
-            self?.logger.info("token \(token)")
-        }, onError: {[weak self] _ in
-            self?.logger.error("token error")
+        let analyticsUseCase = injection.resolve(AnalyticsUseCase.self)!
+        analyticsUseCase.sendAnaltyics().subscribe(onError: { [weak self] error in
+            self?.logger.error("Error \(error)")
+        }, onCompleted: { [weak self] in
+            self?.logger.debug("Analytics sent")
         })
         
         if DP3TTracing.isOSCompatible {

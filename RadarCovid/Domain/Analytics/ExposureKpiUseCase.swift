@@ -10,3 +10,40 @@
 //
 
 import Foundation
+
+class ExposureKpiUseCase {
+    
+    private let expositionInfoRepository: ExpositionInfoRepository
+    private let exposureKpiRepository: ExposureKpiRepository
+    
+    init(expositionInfoRepository: ExpositionInfoRepository,
+         exposureKpiRepository: ExposureKpiRepository) {
+        self.expositionInfoRepository = expositionInfoRepository
+        self.exposureKpiRepository = exposureKpiRepository
+    }
+    
+    func getExposureKpi() -> KpiDto {
+    
+        var exposed = 0
+        var date : Date? = nil
+        
+        if let expositionInfo = expositionInfoRepository.getExpositionInfo() {
+            switch expositionInfo.level {
+            case .exposed:
+                if exposureKpiRepository.getLastExposition() != expositionInfo.since {
+                    exposed = 1
+                    exposureKpiRepository.save(lastExposition: expositionInfo.since)
+                }
+                date = expositionInfo.since
+                
+            case .healthy:
+                exposureKpiRepository.save(lastExposition: nil)
+            case .infected:
+                exposureKpiRepository.save(lastExposition: nil)
+            }
+
+        }
+        return KpiDto(kpi: "MATCH_CONFIRMED", timestamp: date, value: exposed)
+    }
+    
+}

@@ -10,3 +10,59 @@
 //
 
 import Foundation
+
+
+protocol AnalyticsRepository {
+    
+    func getToken() -> AnalyticsToken?
+    func save(token: AnalyticsToken)
+    
+    func getLastRun() -> Date?
+    func save(lastRun: Date)
+    
+}
+
+class UserDefaultsAnalyticsRepository: AnalyticsRepository {
+        
+    private static let kToken = "UserDefaultsSettingsRepository.token"
+    private static let kLastRun = "UserDefaultsSettingsRepository.lastRun"
+    
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
+
+    private let userDefaults: UserDefaults
+
+    init() {
+        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
+    }
+    
+    func getToken() -> AnalyticsToken? {
+        let uncoded = userDefaults.data(forKey: UserDefaultsAnalyticsRepository.kToken) ?? Data()
+        if uncoded.isEmpty {
+            return nil
+        }
+        return try? decoder.decode(AnalyticsToken.self, from: uncoded)
+    }
+    
+    func save(token: AnalyticsToken) {
+        guard let encoded = try? encoder.encode(token) else { return }
+        userDefaults.set(encoded, forKey: UserDefaultsAnalyticsRepository.kToken)
+    }
+    
+    func getLastRun() -> Date? {
+        let uncoded = userDefaults.data(forKey: UserDefaultsAnalyticsRepository.kLastRun) ?? Data()
+        if uncoded.isEmpty {
+            return nil
+        }
+        return try? decoder.decode(Date.self, from: uncoded)
+    }
+    
+    func save(lastRun: Date) {
+        guard let encoded = try? encoder.encode(lastRun) else { return }
+        userDefaults.set(encoded, forKey: UserDefaultsAnalyticsRepository.kToken)
+    }
+    
+    
+}
+
+

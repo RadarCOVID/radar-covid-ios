@@ -22,46 +22,43 @@ class AnalyticsUseCase {
     
     private let secondsADay = TimeInterval(24*60*60)
     
-    private let expositionInfoRepository: ExpositionInfoRepository
     private let deviceTokenHandler: DeviceTokenHandler
     private let analyticsRepository: AnalyticsRepository
     
-    private let analyticsAPI = AnalyticsAPI()
+    private let kpiApi: AppleKpiControllerAPI
     
-    init(expositionInfoRepository: ExpositionInfoRepository, deviceTokenHandler: DeviceTokenHandler, analyticsRepository: AnalyticsRepository) {
-        self.expositionInfoRepository = expositionInfoRepository
+    init(deviceTokenHandler: DeviceTokenHandler,
+         analyticsRepository: AnalyticsRepository,
+         kpiApi: AppleKpiControllerAPI
+    ) {
         self.deviceTokenHandler = deviceTokenHandler
         self.analyticsRepository = analyticsRepository
+        self.kpiApi = kpiApi
+        
     }
     
-    func sendExposureAnaltyics() -> Observable<Void> {
-        .deferred {
-            if checkIfSend() {
-                
+    func sendAnaltyics() -> Observable<Void> {
+        .deferred { [weak self] in
+            
+            guard let self = self else {
+                return .just(Void())
+            }
+            
+            if self.checkIfSend() {
+                return self.finallySend()
             }
             return .just(Void())
         }
         
-        
-        var exposed = "0"
-        var date : Date? = nil
-        if let expositionInfo = expositionInfoRepository.getExpositionInfo() {
-            if case .exposed = expositionInfo.level {
-                exposed = "1"
-                date = expositionInfo.since
-            }
-        }
-        
-        let kpi: Kpi = Kpi(kpi: "MATCH_CONFIRMED", timestamp: date, value: exposed)
-        let data = AnalyticsData(kpis: [kpi])
-        
-        return getValidatedToken().flatMap { [weak self] token -> Observable<Void> in
-            self?.analyticsAPI.sendKpis(data: data).map { _ in Void() } ?? .empty()
-        }
-        
     }
     
-    private func finallySend(data: Any) {
+    private func finallySend() -> Observable<Void> {
+        
+        let data = [] as [KpiDto]
+        
+        return getValidatedToken().flatMap { [weak self] token -> Observable<Void> in
+            self?.kpiApi.saveKpi(body: data, token: token.value).map { _ in Void() } ?? .empty()
+        }
         
     }
     
@@ -86,38 +83,26 @@ class AnalyticsUseCase {
     
     private func getValidatedToken() -> Observable<AnalyticsToken> {
         .deferred { [weak self] in
-            guard let token = self?.getAnalyticsToken() else {
+            
+            guard let self = self else {
                 return .empty()
             }
+            
+            var token = self.getAnalyticsToken()
+            
             if (token.validated) {
                 return .just(token)
             }
-            return self?.deviceTokenHandler.generateToken().flatMap {  deviceToken -> Observable<Bool> in
-                self?.analyticsAPI.validateToken(analytics: token.value, device: deviceToken) ?? .empty()
-            }.map { valid in
-                token
-            } ?? .empty()
+            return self.deviceTokenHandler.generateToken().flatMap {  deviceToken -> Observable<Void> in
+                self.kpiApi.verifyToken(body: AppleKpiTokenDto(kpiToken: token.value,
+                                                               deviceToken: deviceToken.base64EncodedString()))
+            }.map { [weak self] _ in
+                token.validated = true
+                self?.analyticsRepository.save(token: token)
+                return token
+            }
         }
     }
     
 }
 
-class AnalyticsAPI {
-    func validateToken(analytics: String, device: Data) -> Observable<Bool> {
-         .just(true)
-    }
-    
-    func sendKpis(data: AnalyticsData) -> Observable<AnalyticsData> {
-        .just(data)
-    }
-}
-
-struct Kpi {
-    var kpi: String?
-    var timestamp: Date?
-    var value: String?
-}
-
-struct AnalyticsData {
-    var kpis: [Kpi]
-}

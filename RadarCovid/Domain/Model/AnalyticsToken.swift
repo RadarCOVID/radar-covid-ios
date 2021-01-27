@@ -11,27 +11,29 @@
 
 import Foundation
 
-struct AnalyticsToken {
+struct AnalyticsToken: Codable {
     
     public static let tokenLength: Int = 128
     private static let secondsInDay: Int = 24*60*60
-    private static let numDays = 31
+    private static let numDays = 15
+    private static let maxShift =  numDays * secondsInDay
     
-    var token: String
+    var value: String
     var expirationDate: Date
+    var validated: Bool
     
     func isExpired() -> Bool {
         expirationDate < Date()
     }
     
     static func generateNew() -> AnalyticsToken {
-        return AnalyticsToken(token: String.random(length: tokenLength),
-                              expirationDate: newExpirationDate())
+        return AnalyticsToken(value: String.random(length: tokenLength),
+                              expirationDate: newExpirationDate(),
+                              validated: false)
     }
     
     private static func newExpirationDate() -> Date {
         let nexmonth = Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date()
-        let maxShift = numDays * secondsInDay
         let shift = Int.random(in: 0...maxShift)
         return nexmonth.addingTimeInterval(TimeInterval(shift))
     }

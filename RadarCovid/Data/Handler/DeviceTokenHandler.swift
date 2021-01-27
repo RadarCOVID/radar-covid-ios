@@ -25,14 +25,20 @@ enum DeviceTokenError: Error {
 
 class DCDeviceTokenHandler : DeviceTokenHandler {
     
+    private var cachedToken: Data?
+    
     func generateToken() -> Observable<Data> {
-        .create { observer in
-
-            if DCDevice.current.isSupported {
+        .create { [weak self] observer in
+            
+            if let token = self?.cachedToken  {
+                observer.onNext(token)
+                observer.onCompleted()
+            } else if DCDevice.current.isSupported {
                 DCDevice.current.generateToken { token, error in
                     if let error = error {
                         observer.onError(DeviceTokenError.underlyingError(error: error))
                     } else if let token = token {
+                        self?.cachedToken = token
                         observer.onNext(token)
                         observer.onCompleted()
                     } else {

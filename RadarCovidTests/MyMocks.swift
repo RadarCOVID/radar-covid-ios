@@ -132,3 +132,58 @@ class ErrorRecorderMock: ErrorRecorder {
     }
     
 }
+
+class ExpositionInfoRepositoryMock: ExpositionInfoRepository {
+    
+    var expositionInfo: ExpositionInfo?
+    var expositionInfoCalls: Int = 0
+    
+    func getExpositionInfo() -> ExpositionInfo? {
+        expositionInfoCalls += 1
+        return expositionInfo
+    }
+    
+    func save(expositionInfo: ExpositionInfo) {
+        
+    }
+    
+    func isChangedToHealthy() -> Bool? {
+        false
+    }
+    
+    func setChangedToHealthy(changed: Bool) {
+        
+    }
+    
+    func clearData() {
+        
+    }
+    
+    func resetMock() {
+        expositionInfo = nil
+        expositionInfoCalls = 0
+    }
+    
+}
+
+class ExposureKpiRepositoryMock: ExposureKpiRepository {
+    
+    var date: Date?
+    var saveCalls = 0
+    
+    func getLastExposition() -> Date? {
+        date
+    }
+    
+    func save(lastExposition: Date?) {
+        date = lastExposition
+        saveCalls += 1
+    }
+    
+    func resetMock() {
+        date = nil
+        saveCalls = 0
+    }
+    
+    
+}
