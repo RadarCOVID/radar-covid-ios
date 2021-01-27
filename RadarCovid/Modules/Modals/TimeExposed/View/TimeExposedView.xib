@@ -19,7 +19,7 @@
                 <outlet property="bullet3Label" destination="EwG-6Q-NeI" id="HGX-sj-Ukj"/>
                 <outlet property="cancelButton" destination="dcj-kH-AA0" id="9RH-zw-wDp"/>
                 <outlet property="moreInfoLabel" destination="W4T-g8-zgD" id="j4A-WJ-WDs"/>
-                <outlet property="titleLabel" destination="t0z-rs-I37" id="AfH-cR-fvg"/>
+                <outlet property="titleLabel" destination="hqb-8v-AuS" id="BWw-6r-tPe"/>
                 <outlet property="view" destination="iN0-l3-epB" id="y39-ad-luR"/>
             </connections>
         </placeholder>

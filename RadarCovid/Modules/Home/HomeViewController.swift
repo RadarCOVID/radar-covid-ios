@@ -96,23 +96,24 @@ class HomeViewController: BaseViewController {
     }
 
     @IBAction func onCommunicate(_ sender: Any) {
-        guard let expositionInfo = try? viewModel!.expositionInfo.value() else {
-            return
-        }
-        
-        if radarSwitch.isOn {
-            if expositionInfo.level == .infected {
-                router!.route(to: Routes.myHealthReported, from: self)
-            } else {
-                router!.route(to: Routes.myHealthStep0, from: self)
-            }
-        } else {
-            showAlertOk(
-                title: "",
-                message: "ALERT_RADAR_REQUIRED_TO_REPORT".localized,
-                buttonTitle: "ALERT_ACCEPT_BUTTON".localized
-            )
-        }
+//        guard let expositionInfo = try? viewModel!.expositionInfo.value() else {
+//            return
+//        }
+//
+//        if radarSwitch.isOn {
+//            if expositionInfo.level == .infected {
+//                router!.route(to: Routes.myHealthReported, from: self)
+//            } else {
+//                router!.route(to: Routes.myHealthStep0, from: self)
+//            }
+//        } else {
+//            showAlertOk(
+//                title: "",
+//                message: "ALERT_RADAR_REQUIRED_TO_REPORT".localized,
+//                buttonTitle: "ALERT_ACCEPT_BUTTON".localized
+//            )
+//        }
+        self.showTimeExposed()
     }
     
     @IBAction func onOpenSettingsTap(_ sender: Any) {
