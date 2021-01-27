@@ -12,54 +12,73 @@
 import Foundation
 import RxSwift
 
-/*
- - Para llamar al servicio final se requiere obtener previamente un "analiticsToken"
- - Para obtener este token se obtiene el device token y se llama un servicio
- - Este servicio devolverá el mismo "analiticsToken" durante un mes (cacheado en redis). Pedirlo si no lo tienes y si lo tienes comprobar la antiguedad y pedirlo de nuevo
- - Finalmente llamar al servicio con el dato de exposición
- */
 class AnalyticsUseCase {
     
     private let secondsADay = TimeInterval(24*60*60)
     
     private let deviceTokenHandler: DeviceTokenHandler
     private let analyticsRepository: AnalyticsRepository
+    private let exposureKpiUseCase: ExposureKpiUseCase
     
     private let kpiApi: AppleKpiControllerAPI
     
     init(deviceTokenHandler: DeviceTokenHandler,
          analyticsRepository: AnalyticsRepository,
-         kpiApi: AppleKpiControllerAPI
+         kpiApi: AppleKpiControllerAPI,
+         exposureKpiUseCase: ExposureKpiUseCase
     ) {
         self.deviceTokenHandler = deviceTokenHandler
         self.analyticsRepository = analyticsRepository
         self.kpiApi = kpiApi
-        
+        self.exposureKpiUseCase = exposureKpiUseCase
     }
     
-    func sendAnaltyics() -> Observable<Void> {
+    func sendAnaltyics() -> Observable<Bool> {
         .deferred { [weak self] in
             
             guard let self = self else {
-                return .just(Void())
+                return .empty()
             }
             
             if self.checkIfSend() {
-                return self.finallySend()
+                return self.finallySend().map { true }
             }
-            return .just(Void())
+            return .just(false)
         }
         
     }
     
     private func finallySend() -> Observable<Void> {
-        
-        let data = [] as [KpiDto]
-        
+        let maxRetry = 5
         return getValidatedToken().flatMap { [weak self] token -> Observable<Void> in
-            self?.kpiApi.saveKpi(body: data, token: token.value).map { _ in Void() } ?? .empty()
+            guard let self = self else {
+                return .empty()
+            }
+            return self.kpiApi.saveKpi(body: self.getKpis(), token: token.value)
+                .retryWhen { errors in
+                    errors.enumerated().flatMap { (index, error) -> Observable<Int64> in
+                        if index <= maxRetry {
+                            return Observable<Int64>.timer(.milliseconds(self.getDelay(for: index)), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+                        }
+                        return Observable.error(error)
+                    }
+                }.map { _ in
+                    self.analyticsRepository.save(lastRun: Date())
+                }
         }
-        
+    }
+
+    private func getDelay(for n: Int) -> Int {
+        let maxDelay = 300000
+        let delay = Int(pow(2.0, Double(n))) * 1000
+        let jitter = Int.random(in: 0..<1000)
+        return min(delay + jitter, maxDelay)
+    }
+    
+    private func getKpis() -> [KpiDto] {
+        var data = [] as [KpiDto]
+        data.append(exposureKpiUseCase.getExposureKpi())
+        return data
     }
     
     private func checkIfSend() -> Bool {
@@ -96,9 +115,9 @@ class AnalyticsUseCase {
             return self.deviceTokenHandler.generateToken().flatMap {  deviceToken -> Observable<Void> in
                 self.kpiApi.verifyToken(body: AppleKpiTokenDto(kpiToken: token.value,
                                                                deviceToken: deviceToken.base64EncodedString()))
-            }.map { [weak self] _ in
+            }.map { _ in
                 token.validated = true
-                self?.analyticsRepository.save(token: token)
+                self.analyticsRepository.save(token: token)
                 return token
             }
         }

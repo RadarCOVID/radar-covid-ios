@@ -235,7 +235,8 @@ class Injection {
         container.register(AnalyticsUseCase.self) { r in
             AnalyticsUseCase(deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!,
                              analyticsRepository: r.resolve(AnalyticsRepository.self)!,
-                             kpiApi: r.resolve(AppleKpiControllerAPI.self)!)
+                             kpiApi: r.resolve(AppleKpiControllerAPI.self)!,
+                             exposureKpiUseCase:  r.resolve(ExposureKpiUseCase.self)!
         }.inObjectScope(.container)
         
         container.register(ExposureKpiUseCase.self) { r in

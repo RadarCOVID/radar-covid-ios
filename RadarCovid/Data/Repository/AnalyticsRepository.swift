@@ -59,7 +59,7 @@ class UserDefaultsAnalyticsRepository: AnalyticsRepository {
     
     func save(lastRun: Date) {
         guard let encoded = try? encoder.encode(lastRun) else { return }
-        userDefaults.set(encoded, forKey: UserDefaultsAnalyticsRepository.kToken)
+        userDefaults.set(encoded, forKey: UserDefaultsAnalyticsRepository.kLastRun)
     }
     
     
