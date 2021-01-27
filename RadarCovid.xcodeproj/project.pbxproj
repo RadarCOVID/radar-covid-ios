@@ -30,6 +30,8 @@
 		6D5AFCEC24936E7A00EFE838 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCEB24936E7A00EFE838 /* Config.swift */; };
 		6D63108C2501194F000CDCB4 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63108B2501194F000CDCB4 /* UINavigationController+Extension.swift */; };
 		6D63108E2501197B000CDCB4 /* AccTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63108D2501197B000CDCB4 /* AccTitleView.swift */; };
+		6D64132D24ED897300B33427 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		6D662D19250B80B700AEEFE7 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		6D78B44124A9F13A00FBC23F /* SetupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */; };
 		6D7AB26D24ADCC9A00F30E0B /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */; };
 		6D7AB26F24ADED7400F30E0B /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
@@ -46,8 +48,16 @@
 		6D84440A2543398800F92BCA /* SwiftLogFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8444092543398800F92BCA /* SwiftLogFile.swift */; };
 		6D97C45F25BAEE5500102200 /* AnalyticsToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C45E25BAEE5500102200 /* AnalyticsToken.swift */; };
 		6D97C46325BAF05700102200 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46225BAF05700102200 /* Data+Extension.swift */; };
-		6D97C46725BAF49000102200 /* ExposureAnalyticsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46625BAF49000102200 /* ExposureAnalyticsUseCase.swift */; };
+		6D97C46725BAF49000102200 /* AnalyticsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */; };
 		6D97C46B25BAF51A00102200 /* AnalyticsTokenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46A25BAF51A00102200 /* AnalyticsTokenTest.swift */; };
+		6D97C47D25BAFE4200102200 /* AnalyticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */; };
+		6D97C48425BF313400102200 /* ExposureKpiUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C48325BF313400102200 /* ExposureKpiUseCase.swift */; };
+		6D97C48825BF45D100102200 /* ExposureKpiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C48725BF45D100102200 /* ExposureKpiRepository.swift */; };
+		6D97C49425BF499E00102200 /* ExpositionKpiUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C49325BF499E00102200 /* ExpositionKpiUseCaseTests.swift */; };
+		6D97C49B25C01BDE00102200 /* AppleKpiControllerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C49A25C01BDE00102200 /* AppleKpiControllerAPI.swift */; };
+		6D97C4A125C01CB600102200 /* ErrorDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C49E25C01CB600102200 /* ErrorDto.swift */; };
+		6D97C4A225C01CB600102200 /* KpiDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C49F25C01CB600102200 /* KpiDto.swift */; };
+		6D97C4A325C01CB600102200 /* AppleKpiTokenDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C4A025C01CB600102200 /* AppleKpiTokenDto.swift */; };
 		6D9F3A8E25029B0E005EE842 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9F3A8D25029B0E005EE842 /* UIViewController+Alert.swift */; };
 		6D9F3A9025029C5C005EE842 /* ErrorHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9F3A8F25029C5C005EE842 /* ErrorHandlerTest.swift */; };
 		6D9F3A9225029E9E005EE842 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9F3A9125029E9D005EE842 /* ErrorHandler.swift */; };
@@ -209,11 +219,8 @@
 		A9EB48012535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EB47F52535ADBB00F3A122 /* MyHealthReported.storyboard */; };
 		A9EB48022535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EB47F52535ADBB00F3A122 /* MyHealthReported.storyboard */; };
 		A9EB48032535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47F62535ADBB00F3A122 /* MyHealthReportedViewController.swift */; };
-		A9EB48042535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47F62535ADBB00F3A122 /* MyHealthReportedViewController.swift */; };
 		A9EB480B2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47FC2535ADBB00F3A122 /* MyHealthStep2ViewController.swift */; };
-		A9EB480C2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB47FC2535ADBB00F3A122 /* MyHealthStep2ViewController.swift */; };
 		A9EB481D2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB481B2535AF2500F3A122 /* MyHealthStep0ViewController.swift */; };
-		A9EB481E2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB481B2535AF2500F3A122 /* MyHealthStep0ViewController.swift */; };
 		A9EB481F2535AF2500F3A122 /* MyHealthStep0View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9EB481C2535AF2500F3A122 /* MyHealthStep0View.xib */; };
 		A9EB48202535AF2500F3A122 /* MyHealthStep0View.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9EB481C2535AF2500F3A122 /* MyHealthStep0View.xib */; };
 		A9EDAF0C25767CC60041AE1E /* HighExposition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EDAF0225767CC50041AE1E /* HighExposition.storyboard */; };
@@ -226,12 +233,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6D64132324ED88AB00B33427 /* PBXContainerItemProxy */ = {
+		6D29638525B98D3A0030A99F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3944327E248939F000FF0217 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 39443285248939F000FF0217;
-			remoteInfo = CovidPilot;
+			remoteInfo = RadarCovid;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -279,8 +286,16 @@
 		6D8444092543398800F92BCA /* SwiftLogFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftLogFile.swift; sourceTree = "<group>"; };
 		6D97C45E25BAEE5500102200 /* AnalyticsToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsToken.swift; sourceTree = "<group>"; };
 		6D97C46225BAF05700102200 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
-		6D97C46625BAF49000102200 /* ExposureAnalyticsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExposureAnalyticsUseCase.swift; sourceTree = "<group>"; };
+		6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUseCase.swift; sourceTree = "<group>"; };
 		6D97C46A25BAF51A00102200 /* AnalyticsTokenTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTokenTest.swift; sourceTree = "<group>"; };
+		6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRepository.swift; sourceTree = "<group>"; };
+		6D97C48325BF313400102200 /* ExposureKpiUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureKpiUseCase.swift; sourceTree = "<group>"; };
+		6D97C48725BF45D100102200 /* ExposureKpiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureKpiRepository.swift; sourceTree = "<group>"; };
+		6D97C49325BF499E00102200 /* ExpositionKpiUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionKpiUseCaseTests.swift; sourceTree = "<group>"; };
+		6D97C49A25C01BDE00102200 /* AppleKpiControllerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleKpiControllerAPI.swift; sourceTree = "<group>"; };
+		6D97C49E25C01CB600102200 /* ErrorDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorDto.swift; sourceTree = "<group>"; };
+		6D97C49F25C01CB600102200 /* KpiDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KpiDto.swift; sourceTree = "<group>"; };
+		6D97C4A025C01CB600102200 /* AppleKpiTokenDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleKpiTokenDto.swift; sourceTree = "<group>"; };
 		6D9F3A8D25029B0E005EE842 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		6D9F3A8F25029C5C005EE842 /* ErrorHandlerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlerTest.swift; sourceTree = "<group>"; };
 		6D9F3A9125029E9D005EE842 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
@@ -591,6 +606,7 @@
 		6D5AFC9F2493621300EFE838 /* WS */ = {
 			isa = PBXGroup;
 			children = (
+				6D97C49725C01B5000102200 /* Kpi */,
 				6DD042092512763D00799D58 /* CertificateUtil.swift */,
 				6DF8211C24D028A0000ED0D2 /* Verification */,
 				6DE27C6E249A6D4500BBCF40 /* AlamofireImplementations.swift */,
@@ -624,6 +640,7 @@
 				6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */,
 				6D9F3A8F25029C5C005EE842 /* ErrorHandlerTest.swift */,
 				6D97C46A25BAF51A00102200 /* AnalyticsTokenTest.swift */,
+				6D97C49325BF499E00102200 /* ExpositionKpiUseCaseTests.swift */,
 			);
 			path = RadarCovidTests;
 			sourceTree = "<group>";
@@ -642,6 +659,42 @@
 				6D83344E24B8350300223071 /* RootViewController.xib */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		6D97C48225BF303200102200 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */,
+				6D97C48325BF313400102200 /* ExposureKpiUseCase.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		6D97C49725C01B5000102200 /* Kpi */ = {
+			isa = PBXGroup;
+			children = (
+				6D97C49925C01B9A00102200 /* Models */,
+				6D97C49825C01B9000102200 /* APIs */,
+			);
+			path = Kpi;
+			sourceTree = "<group>";
+		};
+		6D97C49825C01B9000102200 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				6D97C49A25C01BDE00102200 /* AppleKpiControllerAPI.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		6D97C49925C01B9A00102200 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6D97C4A025C01CB600102200 /* AppleKpiTokenDto.swift */,
+				6D97C49E25C01CB600102200 /* ErrorDto.swift */,
+				6D97C49F25C01CB600102200 /* KpiDto.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		6DA18CB92491053700BE8AAB /* Components */ = {
@@ -759,8 +812,8 @@
 		6DF6ECAE248E88B9007EAA40 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				6D97C48225BF303200102200 /* Analytics */,
 				6DF6ECD9248FD625007EAA40 /* Model */,
-				6D97C46625BAF49000102200 /* ExposureAnalyticsUseCase.swift */,
 				6DF6ECAF248E88E6007EAA40 /* OnBoardingCompletedUseCase.swift */,
 				6DF6ECDA248FD641007EAA40 /* ExpositionUseCase.swift */,
 				6DA18CC32491733900BE8AAB /* RadarStatusUseCase.swift */,
@@ -807,6 +860,7 @@
 		6DF6ECC6248F6F36007EAA40 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				6D97C48725BF45D100102200 /* ExposureKpiRepository.swift */,
 				6DF6ECC7248F70DF007EAA40 /* PreferencesRepository.swift */,
 				6DB541962498A31700166D37 /* SettingsRepository.swift */,
 				6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */,
@@ -815,6 +869,7 @@
 				76357ABE253FA78D004C9AE5 /* TermsAcceptedRepository.swift */,
 				76D28429256E0ED200A2B105 /* CountriesRepository.swift */,
 				76D342ED257690BF009E14C5 /* StatisticsRepository.swift */,
+				6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1387,7 +1442,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				6D64132424ED88AB00B33427 /* PBXTargetDependency */,
+				6D29638625B98D3A0030A99F /* PBXTargetDependency */,
 			);
 			name = RadarCovidTests;
 			packageProductDependencies = (
@@ -1515,6 +1570,7 @@
 			files = (
 				A9DF1FEF25713270004BA5D1 /* SettingViewController.swift in Sources */,
 				A9C9AC1425385BA100637067 /* CustomSliderView.swift in Sources */,
+				6D97C4A225C01CB600102200 /* KpiDto.swift in Sources */,
 				6DE27C79249A6D4600BBCF40 /* APIHelper.swift in Sources */,
 				A9D38D83256D47D200C2F671 /* DetailInteroperabilityViewController.swift in Sources */,
 				A9D38D5E256D1D3100C2F671 /* ShareAppViewModel.swift in Sources */,
@@ -1580,7 +1636,7 @@
 				A9D38D81256D47D200C2F671 /* DetailInteroperabilityViewModel.swift in Sources */,
 				6D2CA48224B3571900981DA4 /* DomainError.swift in Sources */,
 				6DB5419224989C2500166D37 /* ExposureConfigurationDto.swift in Sources */,
-				6D97C46725BAF49000102200 /* ExposureAnalyticsUseCase.swift in Sources */,
+				6D97C46725BAF49000102200 /* AnalyticsUseCase.swift in Sources */,
 				6DF6ECB0248E88E6007EAA40 /* OnBoardingCompletedUseCase.swift in Sources */,
 				6DE27CB324A379F800BBCF40 /* NetworkActivityLogger.swift in Sources */,
 				76D342DB25768C4F009E14C5 /* StatsItem.swift in Sources */,
@@ -1623,12 +1679,14 @@
 				A9D38D58256D1D3100C2F671 /* TermsUpdatedViewModel.swift in Sources */,
 				763489FD24B7530500B31C59 /* UIFont+Extension.swift in Sources */,
 				768856892554683100992F8B /* UIView+Magnifier+Extension.swift in Sources */,
+				6D97C48425BF313400102200 /* ExposureKpiUseCase.swift in Sources */,
 				A9EB48032535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */,
 				76D9BD2024A8992000BA6697 /* NVActivityIndicatorView.swift in Sources */,
 				76D9BD1D24A8992000BA6697 /* NVActivityIndicatorPresenter.swift in Sources */,
 				6DE27C73249A6D4600BBCF40 /* APIs.swift in Sources */,
 				76D28426256E0E8A00A2B105 /* CountriesUseCase.swift in Sources */,
 				76D9BD3924A8992000BA6697 /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,
+				6D97C48825BF45D100102200 /* ExposureKpiRepository.swift in Sources */,
 				6D9F3A9225029E9E005EE842 /* ErrorHandler.swift in Sources */,
 				6DF6ECC8248F70DF007EAA40 /* PreferencesRepository.swift in Sources */,
 				6D83344F24B8350300223071 /* RootViewController.swift in Sources */,
@@ -1651,13 +1709,16 @@
 				A9EDAF0D25767CC60041AE1E /* HighExpositionViewController.swift in Sources */,
 				6DB541972498A31700166D37 /* SettingsRepository.swift in Sources */,
 				6DE27C7A249A6D4600BBCF40 /* CodableHelper.swift in Sources */,
+				6D97C4A125C01CB600102200 /* ErrorDto.swift in Sources */,
 				6DE27C77249A6D4600BBCF40 /* JSONValue.swift in Sources */,
+				6D97C4A325C01CB600102200 /* AppleKpiTokenDto.swift in Sources */,
 				6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */,
 				76D9BD1F24A8992000BA6697 /* NVActivityIndicatorShape.swift in Sources */,
 				A91D8E312539947500EB23D4 /* ProximityViewController.swift in Sources */,
 				76D342E025768D1B009E14C5 /* StatisticsUseCase.swift in Sources */,
 				A97433F325700751003A28B9 /* AppInformation.swift in Sources */,
 				76D342EE257690BF009E14C5 /* StatisticsRepository.swift in Sources */,
+				6D97C49B25C01BDE00102200 /* AppleKpiControllerAPI.swift in Sources */,
 				39C3FEC32497746900D1A13E /* DiagnosisCodeUseCase.swift in Sources */,
 				6DF8211324CEDA17000ED0D2 /* KeyValueDto.swift in Sources */,
 				6DF8211724CEDB49000ED0D2 /* TextsAPI.swift in Sources */,
@@ -1667,6 +1728,7 @@
 				6DE27C75249A6D4600BBCF40 /* Extensions.swift in Sources */,
 				A91D8E2B2539947500EB23D4 /* ActivatePushNotificationViewController.swift in Sources */,
 				A9C9AC0525383FEB00637067 /* XibInstantiatable.swift in Sources */,
+				6D97C47D25BAFE4200102200 /* AnalyticsRepository.swift in Sources */,
 				76AEA4B1255E2A3E00FB8204 /* CustomAlertView.swift in Sources */,
 				6DD0420825120DD700799D58 /* CaData.swift in Sources */,
 				6D7AB27524AE375200F30E0B /* ApplicationVersionDto.swift in Sources */,
@@ -1681,22 +1743,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D97C49425BF499E00102200 /* ExpositionKpiUseCaseTests.swift in Sources */,
 				6D01BDCF24EFEFCB00FBADB4 /* MyMocks.swift in Sources */,
-				A9EB481E2535AF2500F3A122 /* MyHealthStep0ViewController.swift in Sources */,
-				A9EB480C2535ADBB00F3A122 /* MyHealthStep2ViewController.swift in Sources */,
 				6D9F3A9025029C5C005EE842 /* ErrorHandlerTest.swift in Sources */,
 				6D97C46B25BAF51A00102200 /* AnalyticsTokenTest.swift in Sources */,
-				A9EB48042535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */,
+				6D64132D24ED897300B33427 /* (null) in Sources */,
+				6D662D19250B80B700AEEFE7 /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6D64132424ED88AB00B33427 /* PBXTargetDependency */ = {
+		6D29638625B98D3A0030A99F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 39443285248939F000FF0217 /* RadarCovid */;
-			targetProxy = 6D64132324ED88AB00B33427 /* PBXContainerItemProxy */;
+			targetProxy = 6D29638525B98D3A0030A99F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1926,6 +1988,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1943,7 +2006,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = RadarCovidTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2001,6 +2064,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2018,7 +2082,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = RadarCovidTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2076,6 +2140,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = 1;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2087,7 +2152,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = RadarCovidTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2145,6 +2210,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = 1;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2156,7 +2222,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = RadarCovidTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

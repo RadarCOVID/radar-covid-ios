@@ -38,6 +38,10 @@ class WelcomeViewController: BaseViewController {
         router?.route(to: .onBoarding, from: self)
     }
     
+
+
+
+    
     @objc func selectLanguage(_ sender: Any) {
         guard let viewModel = self.viewModel else { return }
         
@@ -47,26 +51,15 @@ class WelcomeViewController: BaseViewController {
                 .initWithParentViewController(
                     viewController: self,
                     title: "SETTINGS_LANGUAGE_TITLE".localized,
-                    getArray:{ [weak self] () ->
-                        Observable<[SelectorItem]> in
-                            return Observable.create { [weak self] observer in
-                                viewModel.getLenguages().subscribe(onNext: {(value) in
-                                    observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
-                                        observer.onCompleted()
-                                    }).disposed(by: self?.disposeBag ?? DisposeBag())
-                                return Disposables.create {}
+                    getArray: { () -> Observable<[SelectorItem]> in
+                        viewModel.getLenguages().map { locales in SelectorHelperViewModel.generateTransformation(val: locales) }
+                    }, getSelectedItem: { () -> Observable<SelectorItem> in
+                            viewModel.getCurrenLenguageLocalizable().map { value in
+                                SelectorHelperViewModel.generateTransformation(
+                                    val: ItemLocale(id: viewModel.getCurrenLenguage(),
+                                                    description: value))
                             }
-                    }, getSelectedItem: { () ->
-                        Observable<SelectorItem> in
-                            return Observable.create { [weak self] observer in
-                                viewModel.getCurrenLenguageLocalizable().subscribe(onNext: {(value) in
-                                    observer.onNext(SelectorHelperViewModel.generateTransformation(val: ItemLocale(id: viewModel.getCurrenLenguage(), description: value)))
-                                    observer.onCompleted()
-                                }).disposed(by: self?.disposeBag ?? DisposeBag())
-                                return Disposables.create {
-                                }
-                            }
-                          }, delegateOutput: self)
+                }, delegateOutput: self)
         }
     }
     

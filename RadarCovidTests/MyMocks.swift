@@ -65,6 +65,10 @@ class MockSettingsRepository: SettingsRepository {
 }
 
 class MockResetDataUseCase : ResetDataUseCase {
+    func resetInfectionStatus() -> Observable<Void> {
+        .empty()
+    }
+    
     
     var exposureDaysCalls: Int = 0
     
@@ -86,25 +90,25 @@ class MockResetDataUseCase : ResetDataUseCase {
 
 class AlertControllerMock: AlertController {
     
+    func showAlertOk(title: String, message: String, buttonTitle: String, _ callback: (() -> Void)?) {
+        showAlertOkCalls += 1
+        self.title = title
+        self.message = message
+    }
+    
+    func showAlertCancelContinue(title: NSAttributedString, message: NSAttributedString, buttonOkTitle: String, buttonCancelTitle: String, buttonOkVoiceover: String?, buttonCancelVoiceover: String?, okHandler: (() -> Void)?, cancelHandler: (() -> Void)?) {
+    }
+    
+    func showAlertCancelContinue(title: NSAttributedString, message: NSAttributedString, buttonOkTitle: String, buttonCancelTitle: String, buttonOkVoiceover: String?, buttonCancelVoiceover: String?, okHandler: (() -> Void)?) {
+
+    }
+    
+    
     var showAlertOkCalls: Int = 0
     
     var title: String?
     var message: String?
     
-    func showAlertCancelContinue(title: String, message: String, buttonOkTitle: String, buttonCancelTitle: String, okHandler: ((UIAlertAction) -> Void)?, cancelHandler: ((UIAlertAction) -> Void)?) {
-
-    }
-    
-    func showAlertCancelContinue(title: String, message: String, buttonOkTitle: String, buttonCancelTitle: String, okHandler: ((UIAlertAction) -> Void)?) {
-        
-    }
-    
-    
-    func showAlertOk(title: String, message: String, buttonTitle: String, _ callback: ((Any) -> Void)?) {
-        showAlertOkCalls += 1
-        self.title = title
-        self.message = message
-    }
     
     func resetMock() {
         showAlertOkCalls = 0

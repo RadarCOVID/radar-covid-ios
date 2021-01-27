@@ -55,24 +55,10 @@ class HighExpositionViewController: BaseExposed {
         self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
             SelectorView.initWithParentViewController(viewController: self,
                                                       title: "LOCALE_SELECTION_REGION_DEFAULT".localized,
-                                                      getArray:{ [weak self] () -> Observable<[SelectorItem]> in
-                
-                return Observable.create { [weak self] observer in
-                    self?.ccaUseCase.getCCAA().subscribe(onNext: {(value) in
-                        observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
-                        observer.onCompleted()
-                    }).disposed(by: self?.disposeBag ?? DisposeBag())
-                    return Disposables.create {
-                    }
-                }
-            }, getSelectedItem: { () -> Observable<SelectorItem> in
-                
-                return Observable.create { [weak self] observer in
-                    observer.onNext(SelectorHelperViewModel.generateTransformation(val: self?.ccaUseCase.getCurrent() ?? CaData.emptyCaData()))
-                    observer.onCompleted()
-                    return Disposables.create {
-                    }
-                }
+                getArray: { [weak self] () ->  Observable<[SelectorItem]> in
+                    self?.ccaUseCase.getCCAA().map { locales in SelectorHelperViewModel.generateTransformation(val: locales) } ?? .empty()
+            }, getSelectedItem: { [weak self] () -> Observable<SelectorItem> in
+                .just(SelectorHelperViewModel.generateTransformation(val: self?.ccaUseCase.getCurrent() ?? CaData.emptyCaData()))
             }, delegateOutput: self)
         }
     }
