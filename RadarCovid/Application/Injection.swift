@@ -39,6 +39,12 @@ class Injection {
             return swaggerApi
         }.inObjectScope(.container)
         
+        container.register(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue) { _ in
+            let swaggerApi = SwaggerClientAPI()
+            swaggerApi.basePath = Config.endpoints.kpi
+            return swaggerApi
+        }.inObjectScope(.container)
+        
         container.register(TokenAPI.self) { r in
             TokenAPI(clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!)
         }.inObjectScope(.container)
@@ -70,6 +76,12 @@ class Injection {
         container.register(VerificationControllerAPI.self) { r in
             VerificationControllerAPI(
                 clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue)!
+            )
+        }.inObjectScope(.container)
+        
+        container.register(AppleKpiControllerAPI.self) { r in
+            AppleKpiControllerAPI(
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue)!
             )
         }.inObjectScope(.container)
         
