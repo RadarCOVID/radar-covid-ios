@@ -14,23 +14,26 @@ import RxSwift
 
 class AnalyticsUseCase {
     
-    private let secondsADay = TimeInterval(24*60*60)
+    private let minutesADay: Int64 = 24*60
     
     private let deviceTokenHandler: DeviceTokenHandler
     private let analyticsRepository: AnalyticsRepository
     private let exposureKpiUseCase: ExposureKpiUseCase
+    private let settingsRepository: SettingsRepository
     
     private let kpiApi: AppleKpiControllerAPI
     
     init(deviceTokenHandler: DeviceTokenHandler,
          analyticsRepository: AnalyticsRepository,
          kpiApi: AppleKpiControllerAPI,
-         exposureKpiUseCase: ExposureKpiUseCase
+         exposureKpiUseCase: ExposureKpiUseCase,
+         settingsRepository: SettingsRepository
     ) {
         self.deviceTokenHandler = deviceTokenHandler
         self.analyticsRepository = analyticsRepository
         self.kpiApi = kpiApi
         self.exposureKpiUseCase = exposureKpiUseCase
+        self.settingsRepository = settingsRepository
     }
     
     func sendAnaltyics() -> Observable<Bool> {
@@ -82,8 +85,10 @@ class AnalyticsUseCase {
     }
     
     private func checkIfSend() -> Bool {
+        let timeBetweenKpi = TimeInterval((settingsRepository
+                                            .getSettings()?.parameters?.timeBetweenKpi ?? minutesADay) * 60)
         if let lastDate = analyticsRepository.getLastRun() {
-            let limit = lastDate.addingTimeInterval(secondsADay)
+            let limit = lastDate.addingTimeInterval(timeBetweenKpi)
             return Date() > limit
         }
         return true

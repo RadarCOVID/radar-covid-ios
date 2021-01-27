@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var bluethoothUseCase: BluethoothReminderUseCase?
+    
     private let logger = Logger(label: "AppDelegate")
+    
     private lazy var deepLinkUseCase: DeepLinkUseCase? = {
         return AppDelegate.shared?.injection.resolve(DeepLinkUseCase.self)!
     }()
@@ -38,13 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         logger.info("Current Environment: \(Config.environment)")
-        
-        let analyticsUseCase = injection.resolve(AnalyticsUseCase.self)!
-        analyticsUseCase.sendAnaltyics().subscribe(onError: { [weak self] error in
-            self?.logger.error("Error \(error)")
-        }, onCompleted: { [weak self] in
-            self?.logger.debug("Analytics sent")
-        })
         
         if DP3TTracing.isOSCompatible {
             let setupUseCase = injection.resolve(SetupUseCase.self)!
@@ -93,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
         if let url = url {
             deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
         } else {
