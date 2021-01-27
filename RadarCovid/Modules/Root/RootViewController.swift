@@ -82,10 +82,15 @@ class RootViewController: UIViewController {
             onNext: { [weak self] settings in
                 debugPrint("Configuration  finished")
 
-                if  settings.isUpdated ?? false {
+                let version = Float(UIDevice.current.systemVersion) ?? 0
+                if (version >= 13 && version < 13.6) {
+                    self?.navigateToUnsupportedOS()
+                }else{
+                if settings.isUpdated ?? false {
                     self?.navigateFirst()
                 } else {
                     self?.showUpdateNoticeForSettings(settings: settings)                    
+                }
                 }
 
             }, onError: {  [weak self] error in
@@ -132,7 +137,10 @@ class RootViewController: UIViewController {
         } else {
             router!.route(to: Routes.unsupportedOS, from: self)
         }
-
+    }
+    
+    private func navigateToUnsupportedOS() {
+        router!.route(to: Routes.unsupportedOS, from: self)
     }
 
 }
