@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UnsupportedOSViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="closeAppButton" destination="Uqt-yg-tYY" id="3Gr-tQ-ARc"/>
-                <outlet property="openSettingsButton" destination="QOa-l5-mve" id="61W-5s-HUX"/>
                 <outlet property="step1" destination="bBK-or-pKD" id="zMV-TU-ITl"/>
                 <outlet property="step2" destination="6iw-DM-lZ4" id="Jru-MB-nGS"/>
                 <outlet property="step3" destination="kzR-zi-3R3" id="wf4-h1-0X9"/>
@@ -30,7 +29,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hec-BT-TuX" userLabel="ContentView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="711.66666666666663"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="635.66666666666663"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightTopShade" translatesAutoresizingMaskIntoConstraints="NO" id="Dcl-FX-bMb">
                                     <rect key="frame" x="130.66666666666666" y="0.0" width="283.33333333333337" height="206.66666666666666"/>
@@ -161,31 +160,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hT-ib-hpF" userLabel="buttonsView">
-                                    <rect key="frame" x="16" y="527.66666666666663" width="382" height="164"/>
+                                    <rect key="frame" x="16" y="527.66666666666663" width="382" height="92"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOa-l5-mve" userLabel="openSettings">
-                                            <rect key="frame" x="8" y="16" width="366" height="60"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="xAJ-Is-MDt"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                            <state key="normal" title="Abrir ajustes" backgroundImage="buttonsPrimary">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="openSettingsClicked:" destination="-1" eventType="touchUpInside" id="jYe-j1-RME"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqt-yg-tYY" userLabel="closeApp">
-                                            <rect key="frame" x="8" y="92" width="366" height="56"/>
+                                            <rect key="frame" x="8" y="20" width="366" height="56"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="xQD-3Q-BI3"/>
@@ -208,12 +186,9 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="QOa-l5-mve" firstAttribute="top" secondItem="2hT-ib-hpF" secondAttribute="top" constant="16" id="8dG-YN-yiV"/>
-                                        <constraint firstItem="QOa-l5-mve" firstAttribute="leading" secondItem="2hT-ib-hpF" secondAttribute="leading" constant="8" id="Bqd-2c-Sfp"/>
                                         <constraint firstAttribute="trailing" secondItem="Uqt-yg-tYY" secondAttribute="trailing" constant="8" id="Tbi-TT-oUL"/>
-                                        <constraint firstAttribute="trailing" secondItem="QOa-l5-mve" secondAttribute="trailing" constant="8" id="a8f-J1-0le"/>
                                         <constraint firstItem="Uqt-yg-tYY" firstAttribute="leading" secondItem="2hT-ib-hpF" secondAttribute="leading" constant="8" id="d6T-rl-WCP"/>
-                                        <constraint firstItem="Uqt-yg-tYY" firstAttribute="top" secondItem="QOa-l5-mve" secondAttribute="bottom" constant="16" id="tPN-s0-ydl"/>
+                                        <constraint firstItem="Uqt-yg-tYY" firstAttribute="top" secondItem="2hT-ib-hpF" secondAttribute="top" constant="20" id="tPN-s0-ydl"/>
                                         <constraint firstAttribute="bottom" secondItem="Uqt-yg-tYY" secondAttribute="bottom" constant="16" id="zjE-17-OYN"/>
                                     </constraints>
                                 </view>
@@ -225,7 +200,7 @@
                                 <constraint firstItem="2hT-ib-hpF" firstAttribute="leading" secondItem="hec-BT-TuX" secondAttribute="leading" constant="16" id="YEt-SL-WeC"/>
                                 <constraint firstAttribute="trailing" secondItem="2hT-ib-hpF" secondAttribute="trailing" constant="16" id="cLY-rq-S9K"/>
                                 <constraint firstAttribute="trailing" secondItem="zEw-vE-rUI" secondAttribute="trailing" constant="25" id="eFe-g1-onj"/>
-                                <constraint firstAttribute="bottom" secondItem="2hT-ib-hpF" secondAttribute="bottom" constant="20" id="fSp-5i-VKK"/>
+                                <constraint firstAttribute="bottom" secondItem="2hT-ib-hpF" secondAttribute="bottom" constant="16" id="fSp-5i-VKK"/>
                                 <constraint firstItem="P4q-7D-lJL" firstAttribute="bottom" secondItem="2hT-ib-hpF" secondAttribute="top" id="nWh-qN-qv7"/>
                                 <constraint firstItem="P4q-7D-lJL" firstAttribute="leading" secondItem="hec-BT-TuX" secondAttribute="leading" constant="16" id="vNF-Rd-Cfl"/>
                                 <constraint firstItem="P4q-7D-lJL" firstAttribute="top" secondItem="zEw-vE-rUI" secondAttribute="bottom" constant="2" id="whq-hf-gYV"/>
@@ -259,7 +234,6 @@
     <resources>
         <image name="ButtonPrimaryDisabled" width="341" height="60"/>
         <image name="RightTopShade" width="283.33334350585938" height="206.33332824707031"/>
-        <image name="buttonsPrimary" width="341" height="60"/>
         <image name="updateOS" width="169" height="154"/>
         <namedColor name="twilight">
             <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
