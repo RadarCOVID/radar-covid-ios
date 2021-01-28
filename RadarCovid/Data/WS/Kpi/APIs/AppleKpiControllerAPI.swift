@@ -62,6 +62,9 @@ open class AppleKpiControllerAPI {
      - POST /apple
      - 
 
+     - API Key:
+       - type: apiKey x-sedia-authorization 
+       - name: apiKeyAuth
      - parameter body: (body)  
 
      - returns: RequestBuilder<Void> 
@@ -83,27 +86,24 @@ open class AppleKpiControllerAPI {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open func verifyToken(body: AppleKpiTokenDto, completion: @escaping ((_ data: VerifyResponse?,_ error: Error?) -> Void)) {
+    open func verifyToken(body: AppleKpiTokenRequestDto, completion: @escaping ((_ data: VerifyResponse?,_ error: Error?) -> Void)) {
         verifyTokenWithRequestBuilder(body: body).execute { (response, error) -> Void in
-            if error == nil {
-                if let code = response?.statusCode, let response = VerifyResponse(rawValue: code)  {
-                    completion(.authorizationInProgress, nil)
-//                    completion(response, nil)
-                } else {
-                    completion(VerifyResponse.authorized, nil)
+            var res: VerifyResponse = .authorizationInProgress
+            if let code = response?.statusCode {
+                if code == 201 {
+                    res = .authorized(token: response?.body?.token ?? "")
                 }
-            } else {
-                completion(nil, error)
             }
+            completion(res, error)
         }
     }
 
     /**
      Authorize the provided KPI token with the device authenticity SDK offered by the device operating system.
      - parameter body: (body)  
-     - returns: Observable<Void>
+     - returns: Observable<AppleKpiTokenResponseDto>
      */
-    open func verifyToken(body: AppleKpiTokenDto) -> Observable<VerifyResponse> {
+    open func verifyToken(body: AppleKpiTokenRequestDto) -> Observable<VerifyResponse> {
         return Observable.create { [weak self] observer -> Disposable in
             self?.verifyToken(body: body) { data, error in
                 if let error = error {
@@ -122,18 +122,21 @@ open class AppleKpiControllerAPI {
      - POST /apple/token
      - 
 
+     - examples: [{contentType=application/json, example={
+  "token" : "token"
+}}]
      - parameter body: (body)  
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<AppleKpiTokenResponseDto> 
      */
-    open func verifyTokenWithRequestBuilder(body: AppleKpiTokenDto) -> RequestBuilder<VerifyResponse> {
+    open func verifyTokenWithRequestBuilder(body: AppleKpiTokenRequestDto) -> RequestBuilder<AppleKpiTokenResponseDto> {
         let path = "/apple/token"
         let URLString = clientApi.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
         let url = URLComponents(string: URLString)
 
 
-        let requestBuilder: RequestBuilder<VerifyResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<AppleKpiTokenResponseDto>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }

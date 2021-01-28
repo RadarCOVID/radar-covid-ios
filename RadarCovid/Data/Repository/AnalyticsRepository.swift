@@ -14,9 +14,6 @@ import Foundation
 
 protocol AnalyticsRepository {
     
-    func getToken() -> AnalyticsToken?
-    func save(token: AnalyticsToken)
-    
     func getLastRun() -> Date?
     func save(lastRun: Date)
     
@@ -24,7 +21,6 @@ protocol AnalyticsRepository {
 
 class UserDefaultsAnalyticsRepository: AnalyticsRepository {
         
-    private static let kToken = "UserDefaultsSettingsRepository.token"
     private static let kLastRun = "UserDefaultsSettingsRepository.lastRun"
     
     private let encoder = JSONEncoder()
@@ -34,19 +30,6 @@ class UserDefaultsAnalyticsRepository: AnalyticsRepository {
 
     init() {
         userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
-    
-    func getToken() -> AnalyticsToken? {
-        let uncoded = userDefaults.data(forKey: UserDefaultsAnalyticsRepository.kToken) ?? Data()
-        if uncoded.isEmpty {
-            return nil
-        }
-        return try? decoder.decode(AnalyticsToken.self, from: uncoded)
-    }
-    
-    func save(token: AnalyticsToken) {
-        guard let encoded = try? encoder.encode(token) else { return }
-        userDefaults.set(encoded, forKey: UserDefaultsAnalyticsRepository.kToken)
     }
     
     func getLastRun() -> Date? {

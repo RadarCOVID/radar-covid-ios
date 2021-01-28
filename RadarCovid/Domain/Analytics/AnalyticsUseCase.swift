@@ -55,7 +55,7 @@ class AnalyticsUseCase {
     
     private func finallySend() -> Observable<Void> {
         
-        return getValidatedToken().flatMap { [weak self] token -> Observable<Void> in
+        return getAnalyticsToken().flatMap { [weak self] token -> Observable<Void> in
             guard let self = self else {
                 return .empty()
             }
@@ -84,48 +84,30 @@ class AnalyticsUseCase {
         return true
     }
     
-    private func getAnalyticsToken() -> AnalyticsToken {
-
-        if let token = analyticsRepository.getToken(), !token.isExpired() {
-            return token
-        }
-        let token = AnalyticsToken.generateNew()
-        analyticsRepository.save(token: token)
-        return token
-        
-    }
-    
-    private func getValidatedToken() -> Observable<AnalyticsToken> {
+    private func getAnalyticsToken() -> Observable<String> {
         .deferred { [weak self] in
             
             guard let self = self else {
                 return .empty()
             }
-            
-            var token = self.getAnalyticsToken()
-            
-            if token.validated {
-                return .just(token)
-            }
-            return self.deviceTokenHandler.generateToken().flatMap { deviceToken -> Observable<Void> in
-                self.verifyToken(AppleKpiTokenDto(kpiToken: token.value,
-                                                  deviceToken: deviceToken.base64EncodedString(options:[Data.Base64EncodingOptions.init(rawValue: 0)])))
-            }.map { _ in
-                token.validated = true
-                self.analyticsRepository.save(token: token)
-                return token
+
+            return self.deviceTokenHandler.generateToken().flatMap { deviceToken -> Observable<String> in
+                self.verifyToken(AppleKpiTokenRequestDto(
+                                    deviceToken: deviceToken.base64EncodedString(options:[Data.Base64EncodingOptions.init(rawValue: 0)])))
             }
             
         }
     }
     
-    private func verifyToken(_ tokenDto: AppleKpiTokenDto) -> Observable<Void> {
+    private func verifyToken(_ tokenDto: AppleKpiTokenRequestDto) -> Observable<String> {
         self.kpiApi.verifyToken(body: tokenDto)
-            .flatMap { response -> Observable<Void> in
-                if case .authorizationInProgress = response {
+            .flatMap { response -> Observable<String> in
+                switch response {
+                case .authorizationInProgress:
                     return .error("In progress")
+                case .authorized( let token ):
+                    return .just(token)
                 }
-                return .just(Void())
             }.retryWhen { errors in
                 self.doRetry(errors, times: 1, after: .seconds(30))
             }

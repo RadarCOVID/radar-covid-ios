@@ -11,7 +11,7 @@
 
 import Foundation
 
-public enum VerifyResponse: Int {
-    case authorized = 201
-    case authorizationInProgress = 202
+public enum VerifyResponse {
+    case authorized(token: String)
+    case authorizationInProgress
 }
