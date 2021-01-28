@@ -30,7 +30,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window.windowScene = windowScene
+        
         AppDelegate.shared?.loadInitialScreen(initWindow: window, url: connectionOptions.urlContexts.first?.url)
+        
     }
     
     @available(iOS 13.0, *)
