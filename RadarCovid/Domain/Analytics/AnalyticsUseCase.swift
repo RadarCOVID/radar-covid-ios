@@ -23,6 +23,8 @@ class AnalyticsUseCase {
     
     private let kpiApi: AppleKpiControllerAPI
     
+    private let ebo = ExponentialBackoff()
+    
     init(deviceTokenHandler: DeviceTokenHandler,
          analyticsRepository: AnalyticsRepository,
          kpiApi: AppleKpiControllerAPI,
@@ -52,30 +54,18 @@ class AnalyticsUseCase {
     }
     
     private func finallySend() -> Observable<Void> {
-        let maxRetry = 5
+        
         return getValidatedToken().flatMap { [weak self] token -> Observable<Void> in
             guard let self = self else {
                 return .empty()
             }
             return self.kpiApi.saveKpi(body: self.getKpis(), token: token.value)
                 .retryWhen { errors in
-                    errors.enumerated().flatMap { (index, error) -> Observable<Int64> in
-                        if index <= maxRetry {
-                            return Observable<Int64>.timer(.milliseconds(self.getDelay(for: index)), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
-                        }
-                        return Observable.error(error)
-                    }
+                    self.doRetry(errors, times: 6, exponentialBackoff: self.ebo)
                 }.map { _ in
                     self.analyticsRepository.save(lastRun: Date())
                 }
         }
-    }
-
-    private func getDelay(for n: Int) -> Int {
-        let maxDelay = 300000
-        let delay = Int(pow(2.0, Double(n))) * 1000
-        let jitter = Int.random(in: 0..<1000)
-        return min(delay + jitter, maxDelay)
     }
     
     private func getKpis() -> [KpiDto] {
@@ -114,19 +104,69 @@ class AnalyticsUseCase {
             
             var token = self.getAnalyticsToken()
             
-            if (token.validated) {
+            if token.validated {
                 return .just(token)
             }
-            return self.deviceTokenHandler.generateToken().flatMap {  deviceToken -> Observable<Void> in
-                self.kpiApi.verifyToken(body: AppleKpiTokenDto(kpiToken: token.value,
-                                                               deviceToken: deviceToken.base64EncodedString()))
+            return self.deviceTokenHandler.generateToken().flatMap { deviceToken -> Observable<Void> in
+                self.verifyToken(AppleKpiTokenDto(kpiToken: token.value,
+                                             deviceToken: deviceToken.base64EncodedString()))
             }.map { _ in
                 token.validated = true
                 self.analyticsRepository.save(token: token)
                 return token
             }
+            
         }
     }
     
+    private func verifyToken(_ tokenDto: AppleKpiTokenDto) -> Observable<Void> {
+        self.kpiApi.verifyToken(body: tokenDto)
+            .flatMap { response -> Observable<Void> in
+                if case .authorizationInProgress = response {
+                    return .error("In progress")
+                }
+                return .just(Void())
+            }.retryWhen { errors in
+                self.doRetry(errors, times: 1, after: .seconds(30))
+            }
+    }
+    
+    private func doRetry(_ errors: Observable<Error>, times: Int, after: DispatchTimeInterval) -> Observable<Int64> {
+        errors.enumerated().flatMap { (index, error) -> Observable<Int64> in
+            if index < times {
+                return .timer(after, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+            }
+            return .error(error)
+        }
+    }
+    
+    private func doRetry(_ errors: Observable<Error>, times: Int, exponentialBackoff: ExponentialBackoff) -> Observable<Int64> {
+        errors.enumerated().flatMap { (index, error) -> Observable<Int64> in
+            if index < times {
+                return .timer(.milliseconds(exponentialBackoff.getDelay(for: index)), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+            }
+            return .error(error)
+        }
+    }
+    
+
 }
 
+class ExponentialBackoff {
+    
+    private let maxDelay: Int
+    private let minDelay: Int
+    private let base: Double
+    
+    init(base: Double = 2.0, minDelay: Int = 1000, maxDelay: Int = 300000) {
+        self.maxDelay = maxDelay
+        self.minDelay = minDelay
+        self.base = Double(base)
+    }
+    
+    func getDelay(for n: Int) -> Int {
+        let delay = Int(pow(base, Double(n))) * minDelay
+        let jitter = Int.random(in: 0..<minDelay)
+        return min(delay + jitter, maxDelay)
+    }
+}

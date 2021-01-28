@@ -83,10 +83,15 @@ open class AppleKpiControllerAPI {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open func verifyToken(body: AppleKpiTokenDto, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open func verifyToken(body: AppleKpiTokenDto, completion: @escaping ((_ data: VerifyResponse?,_ error: Error?) -> Void)) {
         verifyTokenWithRequestBuilder(body: body).execute { (response, error) -> Void in
             if error == nil {
-                completion((), error)
+                if let code = response?.statusCode, let response = VerifyResponse(rawValue: code)  {
+                    completion(.authorizationInProgress, nil)
+//                    completion(response, nil)
+                } else {
+                    completion(VerifyResponse.authorized, nil)
+                }
             } else {
                 completion(nil, error)
             }
@@ -98,7 +103,7 @@ open class AppleKpiControllerAPI {
      - parameter body: (body)  
      - returns: Observable<Void>
      */
-    open func verifyToken(body: AppleKpiTokenDto) -> Observable<Void> {
+    open func verifyToken(body: AppleKpiTokenDto) -> Observable<VerifyResponse> {
         return Observable.create { [weak self] observer -> Disposable in
             self?.verifyToken(body: body) { data, error in
                 if let error = error {
@@ -121,14 +126,14 @@ open class AppleKpiControllerAPI {
 
      - returns: RequestBuilder<Void> 
      */
-    open func verifyTokenWithRequestBuilder(body: AppleKpiTokenDto) -> RequestBuilder<Void> {
+    open func verifyTokenWithRequestBuilder(body: AppleKpiTokenDto) -> RequestBuilder<VerifyResponse> {
         let path = "/apple/token"
         let URLString = clientApi.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
         let url = URLComponents(string: URLString)
 
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<VerifyResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
