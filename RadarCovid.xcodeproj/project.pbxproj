@@ -15,7 +15,6 @@
 		6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDD824F6719000FBADB4 /* PickerPresenter.swift */; };
 		6D01BDE124FD619900FBADB4 /* RadarStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDE024FD619900FBADB4 /* RadarStatus.swift */; };
 		6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */; };
-		6D29637C25B98C380030A99F /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 6D29637B25B98C380030A99F /* RxBlocking */; };
 		6D2CA48224B3571900981DA4 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48124B3571900981DA4 /* DomainError.swift */; };
 		6D2CA48824B60EFD00981DA4 /* LocalizableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48724B60EFD00981DA4 /* LocalizableLabel.swift */; };
 		6D2CA48A24B60F5F00981DA4 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48924B60F5F00981DA4 /* Localizable.swift */; };
@@ -465,7 +464,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D662D1C250B964B00AEEFE7 /* RxTest in Frameworks */,
-				6D29637C25B98C380030A99F /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1378,7 +1376,6 @@
 			name = RadarCovidTests;
 			packageProductDependencies = (
 				6D662D1B250B964B00AEEFE7 /* RxTest */,
-				6D29637B25B98C380030A99F /* RxBlocking */,
 			);
 			productName = RadarCovidTests;
 			productReference = 6D64131E24ED88AB00B33427 /* RadarCovidTests.xctest */;
@@ -2406,11 +2403,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6D29637B25B98C380030A99F /* RxBlocking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxBlocking;
-		};
 		6D5AFCE7249369FE00EFE838 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */;
