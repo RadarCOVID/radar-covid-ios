@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cui-45-0yl">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJ6-m7-TJp">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="608.5"/>
@@ -183,6 +183,7 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="Tc1-KV-7Ym"/>
                                 <color key="backgroundColor" name="veryLightPink"/>
                                 <constraints>
                                     <constraint firstItem="hag-IQ-odJ" firstAttribute="leading" secondItem="UJ6-m7-TJp" secondAttribute="leading" id="2NJ-BG-JWc"/>
@@ -202,9 +203,9 @@ Si necesitas ayuda funcional o reportar cualquier tipo de incidencia puedes cont
                         <color key="backgroundColor" name="veryLightPink"/>
                         <constraints>
                             <constraint firstItem="CFd-OD-gzT" firstAttribute="leading" secondItem="ucK-r6-0qo" secondAttribute="leading" id="0Ig-nw-FUn"/>
-                            <constraint firstItem="Cui-45-0yl" firstAttribute="top" secondItem="NXc-EZ-zay" secondAttribute="top" id="EBR-Dy-5Ms"/>
+                            <constraint firstItem="Cui-45-0yl" firstAttribute="top" secondItem="ucK-r6-0qo" secondAttribute="top" id="EBR-Dy-5Ms"/>
                             <constraint firstItem="ucK-r6-0qo" firstAttribute="trailing" secondItem="Cui-45-0yl" secondAttribute="trailing" id="IDe-4f-08L"/>
-                            <constraint firstAttribute="bottom" secondItem="Cui-45-0yl" secondAttribute="bottom" id="aqG-kg-XMk"/>
+                            <constraint firstItem="ucK-r6-0qo" firstAttribute="bottom" secondItem="Cui-45-0yl" secondAttribute="bottom" id="aqG-kg-XMk"/>
                             <constraint firstItem="CFd-OD-gzT" firstAttribute="trailing" secondItem="ucK-r6-0qo" secondAttribute="trailing" id="hsi-yR-og8"/>
                             <constraint firstItem="CFd-OD-gzT" firstAttribute="top" secondItem="NXc-EZ-zay" secondAttribute="top" id="srz-Is-L5O"/>
                             <constraint firstItem="Cui-45-0yl" firstAttribute="leading" secondItem="ucK-r6-0qo" secondAttribute="leading" id="xA5-pc-1w6"/>
