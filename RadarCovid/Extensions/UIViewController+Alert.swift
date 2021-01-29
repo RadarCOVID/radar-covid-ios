@@ -89,7 +89,7 @@ extension UIViewController: AlertController {
         okButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold)
         okButton.isUserInteractionEnabled = true
         okButton.isAccessibilityElement = true
-        okButton.accessibilityHint = buttonOkVoiceover
+        okButton.accessibilityHint = "ACC_HINT".localized
 
         let cancelButton = UIButton()
         cancelButton.layer.masksToBounds = true
@@ -99,7 +99,7 @@ extension UIViewController: AlertController {
         cancelButton.setTitle(buttonCancelTitle, for: .normal)
         cancelButton.setTitleColor(UIColor.degradado, for: .normal)
         cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold)
-        cancelButton.accessibilityHint = buttonCancelVoiceover
+        cancelButton.accessibilityHint = "ACC_HINT".localized
         
         DispatchQueue.main.async { [weak self] in
             let viewShow = self?.view.window?.rootViewController?.view ?? self?.view ?? UIView()

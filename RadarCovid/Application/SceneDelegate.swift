@@ -30,13 +30,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window.windowScene = windowScene
-        let version = Float(UIDevice.current.systemVersion) ?? 0
-        if (version >= 13.0 && version < 13.6) {
-            AppDelegate.shared?.loadUnsupportedOS(initWindow: window, url: connectionOptions.urlContexts.first?.url)
-        } else {
-            //Loading initial screen, only execut iOS 12.5
-            AppDelegate.shared?.loadInitialScreen(initWindow: window, url: connectionOptions.urlContexts.first?.url)
-        }
+        
+        AppDelegate.shared?.loadInitialScreen(initWindow: window, url: connectionOptions.urlContexts.first?.url)
         
     }
     

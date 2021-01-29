@@ -325,7 +325,7 @@ extension MyHealthStep1ViewController: PickerDelegate {
             let monthSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + (monthLabel.text ?? "")
             let yearSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + ", " + (yearLabel.text ?? "")
 
-            dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + " " + monthSelected + " " + yearSelected)
+            dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + ", " + monthSelected + ", " + yearSelected)
         }
         
         //Restore focus from dateView

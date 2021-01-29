@@ -14,7 +14,6 @@ import UIKit
 
 class UnsupportedOSViewController: BaseViewController {
     
-    @IBOutlet weak var openSettingsButton: UIButton!
     @IBOutlet weak var closeAppButton: UIButton!
     @IBOutlet weak var step1: UILabel!
     @IBOutlet weak var step2: UILabel!
@@ -41,14 +40,6 @@ class UnsupportedOSViewController: BaseViewController {
     private func setupView() {
         closeAppButton.layer.borderWidth = 1
         closeAppButton.layer.borderColor = UIColor.deepLilac.cgColor
-    }
-    
-    @IBAction func openSettingsClicked(_ sender: Any) {
-        if let url = URL(string: UIApplication.openSettingsURLString) {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }
     }
     
     @IBAction func closeAppClicked(_ sender: Any) {

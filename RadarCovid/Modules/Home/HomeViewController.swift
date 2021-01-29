@@ -99,7 +99,7 @@ class HomeViewController: BaseViewController {
         guard let expositionInfo = try? viewModel!.expositionInfo.value() else {
             return
         }
-        
+
         if radarSwitch.isOn {
             if expositionInfo.level == .infected {
                 router!.route(to: Routes.myHealthReported, from: self)
