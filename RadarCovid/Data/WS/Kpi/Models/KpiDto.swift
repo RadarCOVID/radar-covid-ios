@@ -17,12 +17,16 @@ public struct KpiDto: Codable {
 
     public var kpi: String?
     /** KPI date */
-    public var timestamp: Date?
+    public var timestamp: String?
     public var value: Int?
 
     public init(kpi: String?, timestamp: Date?, value: Int?) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
         self.kpi = kpi
-        self.timestamp = timestamp
+        if let timestamp = timestamp {
+            self.timestamp = dateFormatter.string(from: timestamp)
+        }
         self.value = value
     }
 
