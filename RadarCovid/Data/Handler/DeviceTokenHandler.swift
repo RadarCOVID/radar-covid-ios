@@ -14,7 +14,8 @@ import RxSwift
 import DeviceCheck
 
 protocol DeviceTokenHandler {
-    func generateToken() -> Observable<Data>
+    func generateToken() -> Observable<DeviceToken>
+    func clearCachedToken()
 }
 
 enum DeviceTokenError: Error {
@@ -25,21 +26,32 @@ enum DeviceTokenError: Error {
 
 class DCDeviceTokenHandler : DeviceTokenHandler {
     
-    private var cachedToken: Data?
+    private static let kDeviceToken = "DCDeviceTokenHandler.kDeviceToken"
     
-    func generateToken() -> Observable<Data> {
+    private let userDefaults: UserDefaults
+    
+    init() {
+        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
+    }
+    
+    func generateToken() -> Observable<DeviceToken> {
         .create { [weak self] observer in
             
-            if let token = self?.cachedToken  {
-                observer.onNext(token)
+            guard let self = self else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            if let token = self.getCachedToken()  {
+                observer.onNext(DeviceToken(token: token, isCached: true))
                 observer.onCompleted()
             } else if DCDevice.current.isSupported {
                 DCDevice.current.generateToken { token, error in
                     if let error = error {
                         observer.onError(DeviceTokenError.underlyingError(error: error))
                     } else if let token = token {
-                        self?.cachedToken = token
-                        observer.onNext(token)
+                        self.saveCached(token: token)
+                        observer.onNext(DeviceToken(token: token, isCached: false))
                         observer.onCompleted()
                     } else {
                         observer.onError(DeviceTokenError.unknownError)
@@ -52,5 +64,16 @@ class DCDeviceTokenHandler : DeviceTokenHandler {
         }
     }
     
+    private func getCachedToken() -> Data? {
+        userDefaults.data(forKey: DCDeviceTokenHandler.kDeviceToken)
+    }
     
+    private func saveCached(token: Data) {
+        userDefaults.set(token, forKey: DCDeviceTokenHandler.kDeviceToken)
+    }
+    
+    func clearCachedToken() {
+        userDefaults.removeObject(forKey: DCDeviceTokenHandler.kDeviceToken)
+    }
+
 }

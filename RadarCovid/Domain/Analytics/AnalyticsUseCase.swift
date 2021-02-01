@@ -15,6 +15,7 @@ import RxSwift
 class AnalyticsUseCase {
     
     private let minutesADay: Int64 = 24*60
+    private let maxExpiredRetries = 2
     
     private let deviceTokenHandler: DeviceTokenHandler
     private let analyticsRepository: AnalyticsRepository
@@ -84,7 +85,7 @@ class AnalyticsUseCase {
         return true
     }
     
-    private func getAnalyticsToken() -> Observable<String> {
+    private func getAnalyticsToken(_ retries: Int = 0) -> Observable<String> {
         .deferred { [weak self] in
             
             guard let self = self else {
@@ -92,15 +93,16 @@ class AnalyticsUseCase {
             }
 
             return self.deviceTokenHandler.generateToken().flatMap { deviceToken -> Observable<String> in
-                self.verifyToken(AppleKpiTokenRequestDto(
-                                    deviceToken: deviceToken.base64EncodedString()))
+                self.verifyToken(deviceToken, retries)
             }
             
         }
     }
     
-    private func verifyToken(_ tokenDto: AppleKpiTokenRequestDto) -> Observable<String> {
-        self.kpiApi.verifyToken(body: tokenDto)
+    private func verifyToken(_  deviceToken: DeviceToken, _ retries: Int = 0) -> Observable<String> {
+        let tokenDto = AppleKpiTokenRequestDto(deviceToken: deviceToken.token.base64EncodedString())
+        var retries = retries
+        return self.kpiApi.verifyToken(body: tokenDto)
             .flatMap { response -> Observable<String> in
                 switch response {
                 case .authorizationInProgress:
@@ -108,9 +110,23 @@ class AnalyticsUseCase {
                 case .authorized( let token ):
                     return .just(token)
                 }
+            }.catchError { error in
+                if self.isExpired(error) && retries < self.maxExpiredRetries {
+                    retries += 1
+                    self.deviceTokenHandler.clearCachedToken()
+                    return self.getAnalyticsToken(retries)
+                }
+                return .error(error)
             }.retryWhen { errors in
                 self.doRetry(errors, times: 1, after: .seconds(30))
             }
+    }
+    
+    private func isExpired(_ error: Error) -> Bool {
+        guard let errorResponse = error as? ErrorResponse else {
+            return false
+        }
+        return errorResponse.getStatusCode() == 401
     }
     
     private func doRetry(_ errors: Observable<Error>, times: Int, after: DispatchTimeInterval) -> Observable<Int64> {
@@ -130,8 +146,6 @@ class AnalyticsUseCase {
             return .error(error)
         }
     }
-    
-
 }
 
 class ExponentialBackoff {
