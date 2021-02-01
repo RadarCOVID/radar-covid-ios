@@ -93,7 +93,7 @@ class AnalyticsUseCase {
 
             return self.deviceTokenHandler.generateToken().flatMap { deviceToken -> Observable<String> in
                 self.verifyToken(AppleKpiTokenRequestDto(
-                                    deviceToken: deviceToken.base64EncodedString(options:[Data.Base64EncodingOptions.init(rawValue: 0)])))
+                                    deviceToken: deviceToken.base64EncodedString()))
             }
             
         }
