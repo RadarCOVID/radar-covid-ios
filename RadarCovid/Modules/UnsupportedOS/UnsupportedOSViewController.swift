@@ -43,6 +43,7 @@ class UnsupportedOSViewController: BaseViewController {
     }
     
     private func setupView() {
+        closeAppButton.setTitle("UPDATE_REQUIRED_CLOSE_APP".localized, for: .normal)
         closeAppButton.layer.borderWidth = 1
         closeAppButton.layer.borderColor = UIColor.deepLilac.cgColor
     }
