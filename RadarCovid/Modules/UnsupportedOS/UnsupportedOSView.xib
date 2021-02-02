@@ -13,10 +13,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UnsupportedOSViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="closeAppButton" destination="Uqt-yg-tYY" id="3Gr-tQ-ARc"/>
+                <outlet property="description1" destination="iFI-4x-ewe" id="L6h-uX-5u8"/>
                 <outlet property="step1" destination="bBK-or-pKD" id="zMV-TU-ITl"/>
                 <outlet property="step2" destination="6iw-DM-lZ4" id="Jru-MB-nGS"/>
                 <outlet property="step3" destination="kzR-zi-3R3" id="wf4-h1-0X9"/>
                 <outlet property="step4" destination="VHP-Po-IsK" id="8q0-kD-3qe"/>
+                <outlet property="steps" destination="kUT-ue-vqh" id="wy3-vB-d3Y"/>
                 <outlet property="view" destination="iN0-l3-epB" id="1Mr-dD-ieE"/>
             </connections>
         </placeholder>
