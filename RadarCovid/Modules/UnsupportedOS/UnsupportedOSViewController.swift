@@ -35,6 +35,7 @@ class UnsupportedOSViewController: BaseViewController {
         step2.accessibilityLabel = "2, " + step2.text!
         step3.accessibilityLabel = "3, " + step3.text!
         step4.accessibilityLabel = "4, " + step4.text!
+        closeAppButton.accessibilityHint = "ACC_HINT".localized
     }
     
     private func setupView() {
