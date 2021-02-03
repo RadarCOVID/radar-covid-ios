@@ -27,11 +27,13 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     private let notificationHandler: NotificationHandler
     private let expositionCheckUseCase: ExpositionCheckUseCase
     private let fakeRequestUseCase: FakeRequestUseCase
+    private let analyticsUseCase: AnalyticsUseCase
     
     init(preferencesRepository: PreferencesRepository,
          notificationHandler: NotificationHandler,
          expositionCheckUseCase: ExpositionCheckUseCase,
-         fakeRequestUseCase: FakeRequestUseCase) {
+         fakeRequestUseCase: FakeRequestUseCase,
+         analyticsUseCase: AnalyticsUseCase ) {
         
         self.preferencesRepository = preferencesRepository
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
@@ -39,6 +41,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         self.notificationHandler = notificationHandler
         self.expositionCheckUseCase = expositionCheckUseCase
         self.fakeRequestUseCase = fakeRequestUseCase
+        self.analyticsUseCase = analyticsUseCase
     }
     
     func initializeSDK() throws {
@@ -98,8 +101,12 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     func performBackgroundTasks(completionHandler: @escaping (Bool) -> Void) {
         
         logger.debug("performBackgroundTasks")
+        
+        DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionUseCase.self)
+        logger.debug("DP3TTracing.delegate \(String(describing: DP3TTracing.delegate))")
+        
         if Config.debug {
-            let sync = self.preferencesRepository.getLastSync()?.description ?? "no Sync"
+            let sync = preferencesRepository.getLastSync()?.description ?? "no Sync"
             self.notificationHandler.scheduleNotification(
                 title: "BackgroundTask",
                 body: "Last sync: \(sync)",
@@ -108,9 +115,14 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         
         fakeRequestUseCase.sendFalsePositiveFromBackgroundDP3T()
         
-        
-        DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionUseCase.self)
-        logger.debug("DP3TTracing.delegate \(String(describing: DP3TTracing.delegate))")
+        analyticsUseCase.sendAnaltyics()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { [weak self] sent in
+                self?.logger.debug("Analytics sent:\(sent)")
+            }, onError: { [weak self] error in
+                self?.logger.debug("Error sending analytics: \(error)")
+            }).disposed(by: disposeBag)
+
     }
     
     func didScheduleBackgrounTask() {

@@ -183,7 +183,8 @@ class Injection {
             SetupUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!,
                          notificationHandler: r.resolve(NotificationHandler.self)!,
                          expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!,
-                         fakeRequestUseCase: r.resolve(FakeRequestUseCase.self)!)
+                         fakeRequestUseCase: r.resolve(FakeRequestUseCase.self)!,
+                         analyticsUseCase: r.resolve(AnalyticsUseCase.self)!)
         }.inObjectScope(.container)
         
         container.register(LocalizationUseCase.self) { r in

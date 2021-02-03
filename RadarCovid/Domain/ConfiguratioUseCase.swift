@@ -45,14 +45,6 @@ class ConfigurationUseCase {
                    let minVersion = settings.parameters?.applicationVersion?.ios?.compilation {
                     settings.isUpdated = currentVersion >= minVersion
                 }
-            
-            let analyticsUseCase = AppDelegate.shared?.injection.resolve(AnalyticsUseCase.self)!
-            analyticsUseCase?.sendAnaltyics().subscribe(onError: { [weak self] error in
-                    debugPrint(error)
-                }, onCompleted: { [weak self] in
-                    debugPrint("Analytics Sent")
-                })
-            
                 return settings
         }
 
