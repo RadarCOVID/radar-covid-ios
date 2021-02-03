@@ -19,6 +19,8 @@ class UnsupportedOSViewController: BaseViewController {
     @IBOutlet weak var step2: UILabel!
     @IBOutlet weak var step3: UILabel!
     @IBOutlet weak var step4: UILabel!
+    @IBOutlet weak var steps: UILabel!
+    @IBOutlet weak var description1: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +37,13 @@ class UnsupportedOSViewController: BaseViewController {
         step2.accessibilityLabel = "2, " + step2.text!
         step3.accessibilityLabel = "3, " + step3.text!
         step4.accessibilityLabel = "4, " + step4.text!
+        closeAppButton.accessibilityHint = "ACC_HINT".localized
+        steps.accessibilityLabel = "UPDATE_REQUIRED_STEPS".localizedAttributed().string.replacingOccurrences(of: "iOS", with: "ios")
+        description1.accessibilityLabel = "UPDATE_REQUIRED_DESCRIPTION".localizedAttributed().string.replacingOccurrences(of: "iOS", with: "ios")
     }
     
     private func setupView() {
+        closeAppButton.setTitle("UPDATE_REQUIRED_CLOSE_APP".localized, for: .normal)
         closeAppButton.layer.borderWidth = 1
         closeAppButton.layer.borderColor = UIColor.deepLilac.cgColor
     }
