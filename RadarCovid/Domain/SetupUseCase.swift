@@ -21,7 +21,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     
     private let disposeBag = DisposeBag()
     
-    private let logger = Logger(label: "DP3TSDK")
+    private let logger = Logger(label: "SetupUseCase")
     
     private let preferencesRepository: PreferencesRepository
     private let notificationHandler: NotificationHandler
@@ -74,7 +74,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         expositionCheckUseCase.checkBackToHealthy().subscribe(onError: { [weak self] error in
             self?.logger.error("Error up checking exposed to healthy state \(error)")
         }, onCompleted: { [weak self] in
-            self?.logger.error("Expostion Check completed")
+            self?.logger.debug("Expostion Check completed")
         }).disposed(by: disposeBag)
     }
     
@@ -121,8 +121,10 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                 self?.logger.debug("Analytics sent:\(sent)")
             }, onError: { [weak self] error in
                 self?.logger.debug("Error sending analytics: \(error)")
+                self?.logger.debug("Error: \(error.localizedDescription)")
             }).disposed(by: disposeBag)
 
+        completionHandler(true)
     }
     
     func didScheduleBackgrounTask() {

@@ -11,8 +11,11 @@
 
 import Foundation
 import RxSwift
+import Logging
 
 class AnalyticsUseCase {
+    
+    private let logger = Logger(label: "AnalyticsUseCase")
     
     private let minutesADay: Int64 = 24*60
     private let maxExpiredRetries = 2
@@ -47,8 +50,10 @@ class AnalyticsUseCase {
             }
             
             if self.checkIfSend() {
+                self.logger.debug("Sending analytics")
                 return self.finallySend().map { true }
             }
+            self.logger.debug("Skipping analytics sent")
             return .just(false)
         }
         
@@ -56,13 +61,13 @@ class AnalyticsUseCase {
     
     private func finallySend() -> Observable<Void> {
         
-        return getAnalyticsToken().flatMap { [weak self] token -> Observable<Void> in
+        getAnalyticsToken().flatMap { [weak self] token -> Observable<Void> in
             guard let self = self else {
                 return .empty()
             }
             return self.kpiApi.saveKpi(body: self.getKpis(), token: token.value)
-                .retryWhen { errors in
-                    self.doRetry(errors, times: 6, exponentialBackoff: self.ebo)
+                .retryWhen { errors -> Observable<Int64> in
+                    return self.doRetry(errors, times: 6, exponentialBackoff: self.ebo)
                 }.map { _ in
                     self.analyticsRepository.save(lastRun: Date())
                 }
@@ -76,8 +81,15 @@ class AnalyticsUseCase {
     }
     
     private func checkIfSend() -> Bool {
-        let timeBetweenKpi = TimeInterval((settingsRepository
-                                            .getSettings()?.parameters?.timeBetweenKpi ?? minutesADay) * 60)
+//        let timeBetweenKpi = TimeInterval((settingsRepository
+//                                            .getSettings()?.parameters?.timeBetweenKpi ?? minutesADay) * 60)
+
+        let timeBetweenKpi = TimeInterval(3 * 60 * 60)
+        
+        if timeBetweenKpi <= 0 {
+            return false
+        }
+        
         if let lastDate = analyticsRepository.getLastRun() {
             let limit = lastDate.addingTimeInterval(timeBetweenKpi)
             return Date() > limit
@@ -87,7 +99,7 @@ class AnalyticsUseCase {
     
     private func getAnalyticsToken(_ retries: Int = 0) -> Observable<String> {
         .deferred { [weak self] in
-            
+            self?.logger.debug("Getting token")
             guard let self = self else {
                 return .empty()
             }
@@ -102,6 +114,7 @@ class AnalyticsUseCase {
     private func verifyToken(_  deviceToken: DeviceToken, _ retries: Int = 0) -> Observable<String> {
         let tokenDto = AppleKpiTokenRequestDto(deviceToken: deviceToken.token.base64EncodedString())
         var retries = retries
+        logger.debug("Verifing token")
         return self.kpiApi.verifyToken(body: tokenDto)
             .flatMap { response -> Observable<String> in
                 switch response {
@@ -110,8 +123,13 @@ class AnalyticsUseCase {
                 case .authorized( let token ):
                     return .just(token)
                 }
-            }.catchError { error in
+            }.catchError { [weak self] error in
+                guard let self = self else {
+                    return .error(error)
+                }
+                self.logger.debug("Error verifing: \(error)")
                 if self.isExpired(error) && retries < self.maxExpiredRetries {
+                    self.logger.debug("Token expired")
                     retries += 1
                     self.deviceTokenHandler.clearCachedToken()
                     return self.getAnalyticsToken(retries)
@@ -130,19 +148,25 @@ class AnalyticsUseCase {
     }
     
     private func doRetry(_ errors: Observable<Error>, times: Int, after: DispatchTimeInterval) -> Observable<Int64> {
-        errors.enumerated().flatMap { (index, error) -> Observable<Int64> in
+        errors.enumerated().flatMap { [weak self] (index, error) -> Observable<Int64> in
+            self?.logger.error("Error \(error)")
             if index < times {
+                self?.logger.debug("Retry \(index)")
                 return .timer(after, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
             }
+            self?.logger.debug("Retries finished with error")
             return .error(error)
         }
     }
     
     private func doRetry(_ errors: Observable<Error>, times: Int, exponentialBackoff: ExponentialBackoff) -> Observable<Int64> {
-        errors.enumerated().flatMap { (index, error) -> Observable<Int64> in
+        errors.enumerated().flatMap { [weak self] (index, error) -> Observable<Int64> in
+            self?.logger.error("Error \(error)")
             if index < times {
+                self?.logger.debug("Retry \(index)")
                 return .timer(.milliseconds(exponentialBackoff.getDelay(for: index)), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
             }
+            self?.logger.debug("Retries finished with error")
             return .error(error)
         }
     }

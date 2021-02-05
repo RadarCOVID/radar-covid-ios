@@ -20,7 +20,11 @@ class ExpositionKpiUseCaseTests: XCTestCase {
     var expositionInfoRepository : ExpositionInfoRepositoryMock?
     var exposureKpiRepository: ExposureKpiRepositoryMock?
     
+    let dateFormatter = DateFormatter()
+    
     override func setUpWithError() throws {
+        
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
         
         expositionInfoRepository = ExpositionInfoRepositoryMock()
         
@@ -71,7 +75,7 @@ class ExpositionKpiUseCaseTests: XCTestCase {
         
         XCTAssertEqual(expositionInfoRepository!.expositionInfoCalls, 1)
         XCTAssertEqual(kpi.value, 1)
-        XCTAssertEqual(kpi.timestamp, date)
+        XCTAssertEqual(kpi.timestamp, dateFormatter.string(from:date))
         
         XCTAssertEqual(exposureKpiRepository?.saveCalls, 1)
         XCTAssertEqual(exposureKpiRepository?.date, date)
@@ -89,7 +93,7 @@ class ExpositionKpiUseCaseTests: XCTestCase {
         
         XCTAssertEqual(expositionInfoRepository!.expositionInfoCalls, 1)
         XCTAssertEqual(kpi.value, 0)
-        XCTAssertEqual(kpi.timestamp, date)
+        XCTAssertEqual(kpi.timestamp, dateFormatter.string(from:date))
     }
     
     func testGivenExposedAndPreviousDateDifferentReturnExposedKpiAndRegisterCurrentDate() throws {
@@ -103,7 +107,7 @@ class ExpositionKpiUseCaseTests: XCTestCase {
         
         XCTAssertEqual(expositionInfoRepository!.expositionInfoCalls, 1)
         XCTAssertEqual(kpi.value, 1)
-        XCTAssertEqual(kpi.timestamp, date)
+        XCTAssertEqual(kpi.timestamp, dateFormatter.string(from:date))
         
         XCTAssertEqual(exposureKpiRepository?.saveCalls, 1)
         XCTAssertEqual(exposureKpiRepository?.date, date)

@@ -12,6 +12,7 @@
 import Foundation
 import RxSwift
 import DeviceCheck
+import Logging
 
 protocol DeviceTokenHandler {
     func generateToken() -> Observable<DeviceToken>
@@ -25,6 +26,8 @@ enum DeviceTokenError: Error {
 }
 
 class DCDeviceTokenHandler : DeviceTokenHandler {
+    
+    private let logger = Logger(label: "DCDeviceTokenHandler")
     
     private static let kDeviceToken = "DCDeviceTokenHandler.kDeviceToken"
     
@@ -43,6 +46,7 @@ class DCDeviceTokenHandler : DeviceTokenHandler {
             }
             
             if let token = self.getCachedToken()  {
+                self.logger.debug("generateToken() -> return cached token")
                 observer.onNext(DeviceToken(token: token, isCached: true))
                 observer.onCompleted()
             } else if DCDevice.current.isSupported {
@@ -50,6 +54,7 @@ class DCDeviceTokenHandler : DeviceTokenHandler {
                     if let error = error {
                         observer.onError(DeviceTokenError.underlyingError(error: error))
                     } else if let token = token {
+                        self.logger.debug("generateToken() -> return new token")
                         self.saveCached(token: token)
                         observer.onNext(DeviceToken(token: token, isCached: false))
                         observer.onCompleted()

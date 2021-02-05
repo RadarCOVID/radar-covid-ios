@@ -10,8 +10,11 @@
 //
 
 import Foundation
+import Logging
 
 class ExposureKpiUseCase {
+    
+    private let logger = Logger(label: "ExposureKpiUseCase")
     
     private let expositionInfoRepository: ExpositionInfoRepository
     private let exposureKpiRepository: ExposureKpiRepository
@@ -30,7 +33,9 @@ class ExposureKpiUseCase {
         if let expositionInfo = expositionInfoRepository.getExpositionInfo() {
             switch expositionInfo.level {
             case .exposed:
+                logger.debug("Exposed!")
                 if exposureKpiRepository.getLastExposition() != expositionInfo.since {
+                    logger.debug("With new date => 1")
                     exposed = 1
                     exposureKpiRepository.save(lastExposition: expositionInfo.since)
                 }
