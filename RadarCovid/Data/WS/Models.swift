@@ -17,6 +17,13 @@ protocol JSONEncodable {
 
 public enum ErrorResponse: Error {
     case error(Int, Data?, Error)
+    
+    func getStatusCode() -> Int {
+        switch self {
+        case .error(let statusCode, _, _):
+            return statusCode
+        }
+    }
 }
 
 open class Response<T> {

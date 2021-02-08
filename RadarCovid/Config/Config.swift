@@ -15,6 +15,7 @@ import DP3TSDK
 enum Endpoits {
     case pre
     case pro
+    
     var config: String {
         switch self {
         case .pre: return "https://radarcovidpre.covid19.gob.es/configuration"
@@ -33,6 +34,13 @@ enum Endpoits {
         case .pro: return "https://radarcovid.covid19.gob.es/verification"
         }
     }
+    var kpi: String {
+        switch self {
+        case .pre: return "https://radarcovidpre.covid19.gob.es/kpi"
+        case .pro: return "https://radarcovid.covid19.gob.es/kpi"
+        }
+    }
+    
 }
 
 struct Config {

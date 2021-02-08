@@ -82,6 +82,14 @@ extension String {
     var isNumber: Bool {
         return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
+    
+    /// Returns a string of random hexadecimal digits with the given `size`
+    static func random(length: Int) -> Self {
+      let requiredBytesOfRandomness = length / 2 + 1
+      let randomData = Data.randomData(with: requiredBytesOfRandomness)
+      return String(randomData.hexString.prefix(length))
+    }
+    
 }
 
 extension NSMutableAttributedString {

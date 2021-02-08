@@ -31,8 +31,9 @@ public struct SettingsDto: Codable {
     public var legalTermsVersion: String?
     public var radarCovidDownloadUrl: String?
     public var notificationReminder: Int64?
+    public var timeBetweenKpi: Int64?
 
-    public init(responseDate: Int64?, exposureConfiguration: ExposureConfigurationDto?, minRiskScore: Int64?, minDurationForExposure: Int64?, riskScoreClassification: [RiskScoreClassificationDto]?, attenuationDurationThresholds: AttenuationDurationThresholdsDto?, attenuationFactor: AttenuationFactorDto?, applicationVersion: ApplicationVersionDto?, timeBetweenStates: TimeBetweenStatesDto?, legalTermsVersion: String?, radarCovidDownloadUrl: String?, notificationReminder: Int64?) {
+    public init(responseDate: Int64?, exposureConfiguration: ExposureConfigurationDto?, minRiskScore: Int64?, minDurationForExposure: Int64?, riskScoreClassification: [RiskScoreClassificationDto]?, attenuationDurationThresholds: AttenuationDurationThresholdsDto?, attenuationFactor: AttenuationFactorDto?, applicationVersion: ApplicationVersionDto?, timeBetweenStates: TimeBetweenStatesDto?, legalTermsVersion: String?, radarCovidDownloadUrl: String?, notificationReminder: Int64?, timeBetweenKpi: Int64?) {
         self.responseDate = responseDate
         self.exposureConfiguration = exposureConfiguration
         self.minRiskScore = minRiskScore
@@ -45,6 +46,7 @@ public struct SettingsDto: Codable {
         self.legalTermsVersion = legalTermsVersion
         self.radarCovidDownloadUrl = radarCovidDownloadUrl
         self.notificationReminder = notificationReminder
+        self.timeBetweenKpi = timeBetweenKpi
 
     }
 

@@ -15,10 +15,12 @@
 		6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDD824F6719000FBADB4 /* PickerPresenter.swift */; };
 		6D01BDE124FD619900FBADB4 /* RadarStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDE024FD619900FBADB4 /* RadarStatus.swift */; };
 		6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */; };
+		6D2962E925B5ABE90030A99F /* DeviceTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */; };
 		6D2CA48224B3571900981DA4 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48124B3571900981DA4 /* DomainError.swift */; };
 		6D2CA48824B60EFD00981DA4 /* LocalizableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48724B60EFD00981DA4 /* LocalizableLabel.swift */; };
 		6D2CA48A24B60F5F00981DA4 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48924B60F5F00981DA4 /* Localizable.swift */; };
 		6D2CA48C24B612E000981DA4 /* XibLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CA48B24B612E000981DA4 /* XibLocalizable.swift */; };
+		6D40C58E25C81EEF00523A50 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40C58D25C81EEF00523A50 /* DeviceToken.swift */; };
 		6D5AFC8D2492827C00EFE838 /* muli_extrabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC892492827B00EFE838 /* muli_extrabold.ttf */; };
 		6D5AFC8E2492827C00EFE838 /* muli_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8A2492827C00EFE838 /* muli_semibold.ttf */; };
 		6D5AFC8F2492827C00EFE838 /* muli_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8B2492827C00EFE838 /* muli_bold.ttf */; };
@@ -44,6 +46,18 @@
 		6D83344F24B8350300223071 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83344D24B8350300223071 /* RootViewController.swift */; };
 		6D83345024B8350300223071 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D83344E24B8350300223071 /* RootViewController.xib */; };
 		6D84440A2543398800F92BCA /* SwiftLogFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8444092543398800F92BCA /* SwiftLogFile.swift */; };
+		6D97C46325BAF05700102200 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46225BAF05700102200 /* Data+Extension.swift */; };
+		6D97C46725BAF49000102200 /* AnalyticsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */; };
+		6D97C47D25BAFE4200102200 /* AnalyticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */; };
+		6D97C48425BF313400102200 /* ExposureKpiUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C48325BF313400102200 /* ExposureKpiUseCase.swift */; };
+		6D97C48825BF45D100102200 /* ExposureKpiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C48725BF45D100102200 /* ExposureKpiRepository.swift */; };
+		6D97C49425BF499E00102200 /* ExpositionKpiUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C49325BF499E00102200 /* ExpositionKpiUseCaseTests.swift */; };
+		6D97C49B25C01BDE00102200 /* AppleKpiControllerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C49A25C01BDE00102200 /* AppleKpiControllerAPI.swift */; };
+		6D97C4A225C01CB600102200 /* KpiDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C49F25C01CB600102200 /* KpiDto.swift */; };
+		6D97C4A325C01CB600102200 /* AppleKpiTokenDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C4A025C01CB600102200 /* AppleKpiTokenDto.swift */; };
+		6D97C4B925C1BD1E00102200 /* VerifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C4B825C1BD1E00102200 /* VerifyResponse.swift */; };
+		6D97C4C425C2F17000102200 /* AppleKpiTokenRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C4C225C2F17000102200 /* AppleKpiTokenRequestDto.swift */; };
+		6D97C4C525C2F17000102200 /* AppleKpiTokenResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C4C325C2F17000102200 /* AppleKpiTokenResponseDto.swift */; };
 		6D9F3A8E25029B0E005EE842 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9F3A8D25029B0E005EE842 /* UIViewController+Alert.swift */; };
 		6D9F3A9025029C5C005EE842 /* ErrorHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9F3A8F25029C5C005EE842 /* ErrorHandlerTest.swift */; };
 		6D9F3A9225029E9E005EE842 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9F3A9125029E9D005EE842 /* ErrorHandler.swift */; };
@@ -239,10 +253,12 @@
 		6D01BDD824F6719000FBADB4 /* PickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerPresenter.swift; sourceTree = "<group>"; };
 		6D01BDE024FD619900FBADB4 /* RadarStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarStatus.swift; sourceTree = "<group>"; };
 		6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalesUseCase.swift; sourceTree = "<group>"; };
+		6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenHandler.swift; sourceTree = "<group>"; };
 		6D2CA48124B3571900981DA4 /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
 		6D2CA48724B60EFD00981DA4 /* LocalizableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableLabel.swift; sourceTree = "<group>"; };
 		6D2CA48924B60F5F00981DA4 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		6D2CA48B24B612E000981DA4 /* XibLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibLocalizable.swift; sourceTree = "<group>"; };
+		6D40C58D25C81EEF00523A50 /* DeviceToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		6D5AFC892492827B00EFE838 /* muli_extrabold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = muli_extrabold.ttf; sourceTree = "<group>"; };
 		6D5AFC8A2492827C00EFE838 /* muli_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = muli_semibold.ttf; sourceTree = "<group>"; };
 		6D5AFC8B2492827C00EFE838 /* muli_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = muli_bold.ttf; sourceTree = "<group>"; };
@@ -269,6 +285,18 @@
 		6D83344D24B8350300223071 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6D83344E24B8350300223071 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		6D8444092543398800F92BCA /* SwiftLogFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftLogFile.swift; sourceTree = "<group>"; };
+		6D97C46225BAF05700102200 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUseCase.swift; sourceTree = "<group>"; };
+		6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRepository.swift; sourceTree = "<group>"; };
+		6D97C48325BF313400102200 /* ExposureKpiUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureKpiUseCase.swift; sourceTree = "<group>"; };
+		6D97C48725BF45D100102200 /* ExposureKpiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureKpiRepository.swift; sourceTree = "<group>"; };
+		6D97C49325BF499E00102200 /* ExpositionKpiUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionKpiUseCaseTests.swift; sourceTree = "<group>"; };
+		6D97C49A25C01BDE00102200 /* AppleKpiControllerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleKpiControllerAPI.swift; sourceTree = "<group>"; };
+		6D97C49F25C01CB600102200 /* KpiDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KpiDto.swift; sourceTree = "<group>"; };
+		6D97C4A025C01CB600102200 /* AppleKpiTokenDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleKpiTokenDto.swift; sourceTree = "<group>"; };
+		6D97C4B825C1BD1E00102200 /* VerifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyResponse.swift; sourceTree = "<group>"; };
+		6D97C4C225C2F17000102200 /* AppleKpiTokenRequestDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleKpiTokenRequestDto.swift; sourceTree = "<group>"; };
+		6D97C4C325C2F17000102200 /* AppleKpiTokenResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleKpiTokenResponseDto.swift; sourceTree = "<group>"; };
 		6D9F3A8D25029B0E005EE842 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		6D9F3A8F25029C5C005EE842 /* ErrorHandlerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlerTest.swift; sourceTree = "<group>"; };
 		6D9F3A9125029E9D005EE842 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
@@ -463,7 +491,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D662D1C250B964B00AEEFE7 /* RxTest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,11 +604,21 @@
 			path = MyHealth;
 			sourceTree = "<group>";
 		};
+		6D40C58C25C81EDF00523A50 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6D40C58D25C81EEF00523A50 /* DeviceToken.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6D5AFC9F2493621300EFE838 /* WS */ = {
 			isa = PBXGroup;
 			children = (
-				6DD042092512763D00799D58 /* CertificateUtil.swift */,
+				6D97C49725C01B5000102200 /* Kpi */,
 				6DF8211C24D028A0000ED0D2 /* Verification */,
+				6DB5418324989BE900166D37 /* Config */,
+				6DD042092512763D00799D58 /* CertificateUtil.swift */,
 				6DE27C6E249A6D4500BBCF40 /* AlamofireImplementations.swift */,
 				6DE27C6F249A6D4500BBCF40 /* APIHelper.swift */,
 				6DE27C69249A6D4500BBCF40 /* APIs.swift */,
@@ -592,7 +629,6 @@
 				6DE27C67249A6D4500BBCF40 /* JSONEncodingHelper.swift */,
 				6DE27C6D249A6D4500BBCF40 /* JSONValue.swift */,
 				6DE27C68249A6D4500BBCF40 /* Models.swift */,
-				6DB5418324989BE900166D37 /* Config */,
 			);
 			path = WS;
 			sourceTree = "<group>";
@@ -612,6 +648,7 @@
 				6D64132B24ED897200B33427 /* RadarCovidTests-Bridging-Header.h */,
 				6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */,
 				6D9F3A8F25029C5C005EE842 /* ErrorHandlerTest.swift */,
+				6D97C49325BF499E00102200 /* ExpositionKpiUseCaseTests.swift */,
 			);
 			path = RadarCovidTests;
 			sourceTree = "<group>";
@@ -630,6 +667,44 @@
 				6D83344E24B8350300223071 /* RootViewController.xib */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		6D97C48225BF303200102200 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */,
+				6D97C48325BF313400102200 /* ExposureKpiUseCase.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		6D97C49725C01B5000102200 /* Kpi */ = {
+			isa = PBXGroup;
+			children = (
+				6D97C49925C01B9A00102200 /* Models */,
+				6D97C49825C01B9000102200 /* APIs */,
+			);
+			path = Kpi;
+			sourceTree = "<group>";
+		};
+		6D97C49825C01B9000102200 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				6D97C49A25C01BDE00102200 /* AppleKpiControllerAPI.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		6D97C49925C01B9A00102200 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6D97C4C225C2F17000102200 /* AppleKpiTokenRequestDto.swift */,
+				6D97C4C325C2F17000102200 /* AppleKpiTokenResponseDto.swift */,
+				6D97C4A025C01CB600102200 /* AppleKpiTokenDto.swift */,
+				6D97C49F25C01CB600102200 /* KpiDto.swift */,
+				6D97C4B825C1BD1E00102200 /* VerifyResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		6DA18CB92491053700BE8AAB /* Components */ = {
@@ -727,6 +802,7 @@
 				6D63108B2501194F000CDCB4 /* UINavigationController+Extension.swift */,
 				768856882554683100992F8B /* UIView+Magnifier+Extension.swift */,
 				A91A63392564134200CA9C1B /* UIApplication+Extension.swift */,
+				6D97C46225BAF05700102200 /* Data+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -746,6 +822,7 @@
 		6DF6ECAE248E88B9007EAA40 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				6D97C48225BF303200102200 /* Analytics */,
 				6DF6ECD9248FD625007EAA40 /* Model */,
 				6DF6ECAF248E88E6007EAA40 /* OnBoardingCompletedUseCase.swift */,
 				6DF6ECDA248FD641007EAA40 /* ExpositionUseCase.swift */,
@@ -793,6 +870,7 @@
 		6DF6ECC6248F6F36007EAA40 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				6D97C48725BF45D100102200 /* ExposureKpiRepository.swift */,
 				6DF6ECC7248F70DF007EAA40 /* PreferencesRepository.swift */,
 				6DB541962498A31700166D37 /* SettingsRepository.swift */,
 				6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */,
@@ -801,6 +879,7 @@
 				76357ABE253FA78D004C9AE5 /* TermsAcceptedRepository.swift */,
 				76D28429256E0ED200A2B105 /* CountriesRepository.swift */,
 				76D342ED257690BF009E14C5 /* StatisticsRepository.swift */,
+				6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -843,8 +922,10 @@
 		6DF6ECE32490C1DF007EAA40 /* Handler */ = {
 			isa = PBXGroup;
 			children = (
+				6D40C58C25C81EDF00523A50 /* Model */,
 				6D7AB27624AF1CBD00F30E0B /* VersionHandler.swift */,
 				6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */,
+				6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */,
 			);
 			path = Handler;
 			sourceTree = "<group>";
@@ -1375,7 +1456,6 @@
 			);
 			name = RadarCovidTests;
 			packageProductDependencies = (
-				6D662D1B250B964B00AEEFE7 /* RxTest */,
 			);
 			productName = RadarCovidTests;
 			productReference = 6D64131E24ED88AB00B33427 /* RadarCovidTests.xctest */;
@@ -1500,6 +1580,7 @@
 			files = (
 				A9DF1FEF25713270004BA5D1 /* SettingViewController.swift in Sources */,
 				A9C9AC1425385BA100637067 /* CustomSliderView.swift in Sources */,
+				6D97C4A225C01CB600102200 /* KpiDto.swift in Sources */,
 				6DE27C79249A6D4600BBCF40 /* APIHelper.swift in Sources */,
 				A9D38D83256D47D200C2F671 /* DetailInteroperabilityViewController.swift in Sources */,
 				A9D38D5E256D1D3100C2F671 /* ShareAppViewModel.swift in Sources */,
@@ -1514,10 +1595,13 @@
 				A9CE0573256E7A440080A7E3 /* UILabel+Extension.swift in Sources */,
 				6D78B44124A9F13A00FBC23F /* SetupUseCase.swift in Sources */,
 				6D2CA48824B60EFD00981DA4 /* LocalizableLabel.swift in Sources */,
+				6D2962E925B5ABE90030A99F /* DeviceTokenHandler.swift in Sources */,
 				6D83344724B72C3B00223071 /* LocalizationHolder.swift in Sources */,
+				6D97C4B925C1BD1E00102200 /* VerifyResponse.swift in Sources */,
 				6DE27C74249A6D4600BBCF40 /* JSONEncodableEncoding.swift in Sources */,
 				6D2CA48C24B612E000981DA4 /* XibLocalizable.swift in Sources */,
 				76D2842A256E0ED200A2B105 /* CountriesRepository.swift in Sources */,
+				6D97C4C425C2F17000102200 /* AppleKpiTokenRequestDto.swift in Sources */,
 				A91D8E2D2539947500EB23D4 /* WelcomeViewController.swift in Sources */,
 				76357AD0253FC27F004C9AE5 /* CustomSwitch.swift in Sources */,
 				A9DF1FF325713270004BA5D1 /* SelectorView.swift in Sources */,
@@ -1557,12 +1641,14 @@
 				6DB541952498A29D00166D37 /* ConfiguratioUseCase.swift in Sources */,
 				6DF6ECAA248E7621007EAA40 /* AppRouter.swift in Sources */,
 				A9DFDEB8255C16AC00CE8E06 /* DeepLinkUseCase.swift in Sources */,
+				6D40C58E25C81EEF00523A50 /* DeviceToken.swift in Sources */,
 				6DF8212124D028E5000ED0D2 /* VerificationControllerAPI.swift in Sources */,
 				A9D38D71256D25E100C2F671 /* StatsViewController.swift in Sources */,
 				A96A8A3F25AF1870000FD21A /* UnsupportedOSViewController.swift in Sources */,
 				A9D38D81256D47D200C2F671 /* DetailInteroperabilityViewModel.swift in Sources */,
 				6D2CA48224B3571900981DA4 /* DomainError.swift in Sources */,
 				6DB5419224989C2500166D37 /* ExposureConfigurationDto.swift in Sources */,
+				6D97C46725BAF49000102200 /* AnalyticsUseCase.swift in Sources */,
 				6DF6ECB0248E88E6007EAA40 /* OnBoardingCompletedUseCase.swift in Sources */,
 				6DE27CB324A379F800BBCF40 /* NetworkActivityLogger.swift in Sources */,
 				76D342DB25768C4F009E14C5 /* StatsItem.swift in Sources */,
@@ -1580,6 +1666,7 @@
 				76D342E425768D75009E14C5 /* StatsItemModel.swift in Sources */,
 				6DF8211924CEDED1000ED0D2 /* LocalizationRepository.swift in Sources */,
 				6DB5419024989C2500166D37 /* RiskScoreClassificationDto.swift in Sources */,
+				6D97C4C525C2F17000102200 /* AppleKpiTokenResponseDto.swift in Sources */,
 				6DE27C97249FB1F600BBCF40 /* UIViewController+Extension.swift in Sources */,
 				6DE27D3F24A76D7E00BBCF40 /* AttenuationDurationThresholdsDto.swift in Sources */,
 				6DF8212624D07D2E000ED0D2 /* TokenResponse.swift in Sources */,
@@ -1605,12 +1692,14 @@
 				A9D38D58256D1D3100C2F671 /* TermsUpdatedViewModel.swift in Sources */,
 				763489FD24B7530500B31C59 /* UIFont+Extension.swift in Sources */,
 				768856892554683100992F8B /* UIView+Magnifier+Extension.swift in Sources */,
+				6D97C48425BF313400102200 /* ExposureKpiUseCase.swift in Sources */,
 				A9EB48032535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */,
 				76D9BD2024A8992000BA6697 /* NVActivityIndicatorView.swift in Sources */,
 				76D9BD1D24A8992000BA6697 /* NVActivityIndicatorPresenter.swift in Sources */,
 				6DE27C73249A6D4600BBCF40 /* APIs.swift in Sources */,
 				76D28426256E0E8A00A2B105 /* CountriesUseCase.swift in Sources */,
 				76D9BD3924A8992000BA6697 /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,
+				6D97C48825BF45D100102200 /* ExposureKpiRepository.swift in Sources */,
 				6D9F3A9225029E9E005EE842 /* ErrorHandler.swift in Sources */,
 				6DF6ECC8248F70DF007EAA40 /* PreferencesRepository.swift in Sources */,
 				6D83344F24B8350300223071 /* RootViewController.swift in Sources */,
@@ -1623,6 +1712,7 @@
 				6D7AB26D24ADCC9A00F30E0B /* NotificationHandler.swift in Sources */,
 				A9DF1FF225713270004BA5D1 /* SelectorTableViewCell.swift in Sources */,
 				6DD0420A2512763D00799D58 /* CertificateUtil.swift in Sources */,
+				6D97C46325BAF05700102200 /* Data+Extension.swift in Sources */,
 				A9DF1FF725713270004BA5D1 /* InformationViewController.swift in Sources */,
 				6D01BDE124FD619900FBADB4 /* RadarStatus.swift in Sources */,
 				A97717F32535B5AB0070AD51 /* BaseViewController.swift in Sources */,
@@ -1633,12 +1723,14 @@
 				6DB541972498A31700166D37 /* SettingsRepository.swift in Sources */,
 				6DE27C7A249A6D4600BBCF40 /* CodableHelper.swift in Sources */,
 				6DE27C77249A6D4600BBCF40 /* JSONValue.swift in Sources */,
+				6D97C4A325C01CB600102200 /* AppleKpiTokenDto.swift in Sources */,
 				6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */,
 				76D9BD1F24A8992000BA6697 /* NVActivityIndicatorShape.swift in Sources */,
 				A91D8E312539947500EB23D4 /* ProximityViewController.swift in Sources */,
 				76D342E025768D1B009E14C5 /* StatisticsUseCase.swift in Sources */,
 				A97433F325700751003A28B9 /* AppInformation.swift in Sources */,
 				76D342EE257690BF009E14C5 /* StatisticsRepository.swift in Sources */,
+				6D97C49B25C01BDE00102200 /* AppleKpiControllerAPI.swift in Sources */,
 				39C3FEC32497746900D1A13E /* DiagnosisCodeUseCase.swift in Sources */,
 				6DF8211324CEDA17000ED0D2 /* KeyValueDto.swift in Sources */,
 				6DF8211724CEDB49000ED0D2 /* TextsAPI.swift in Sources */,
@@ -1648,6 +1740,7 @@
 				6DE27C75249A6D4600BBCF40 /* Extensions.swift in Sources */,
 				A91D8E2B2539947500EB23D4 /* ActivatePushNotificationViewController.swift in Sources */,
 				A9C9AC0525383FEB00637067 /* XibInstantiatable.swift in Sources */,
+				6D97C47D25BAFE4200102200 /* AnalyticsRepository.swift in Sources */,
 				76AEA4B1255E2A3E00FB8204 /* CustomAlertView.swift in Sources */,
 				6DD0420825120DD700799D58 /* CaData.swift in Sources */,
 				6D7AB27524AE375200F30E0B /* ApplicationVersionDto.swift in Sources */,
@@ -1662,6 +1755,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D97C49425BF499E00102200 /* ExpositionKpiUseCaseTests.swift in Sources */,
 				6D01BDCF24EFEFCB00FBADB4 /* MyMocks.swift in Sources */,
 				6D9F3A9025029C5C005EE842 /* ErrorHandlerTest.swift in Sources */,
 			);
@@ -2198,7 +2292,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEAE_PRE=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE_PRE=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2407,11 +2501,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		6D662D1B250B964B00AEEFE7 /* RxTest */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxTest;
 		};
 		6DF6ECA7248E7453007EAA40 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
