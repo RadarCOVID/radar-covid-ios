@@ -41,6 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         logger.info("Current Environment: \(Config.environment)")
         
+        if #available(iOS 13.0, *) {
+            let bgTask = BackgroundTaskScheduler(task: DummyTask())
+            bgTask.schedule()
+        }
+        
+        
         if DP3TTracing.isOSCompatible {
             let setupUseCase = injection.resolve(SetupUseCase.self)!
             let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!

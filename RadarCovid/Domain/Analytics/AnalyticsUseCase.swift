@@ -13,7 +13,15 @@ import Foundation
 import RxSwift
 import Logging
 
-class AnalyticsUseCase {
+class AnalyticsUseCase : BackgroundTask {
+    
+    var timeBetween: TimeInterval {
+        get {
+            timeBetweenKpi()
+        }
+    }
+    
+    var taskKey: String = "es.gob.radarcovid.analytics"
     
     private let logger = Logger(label: "AnalyticsUseCase")
     
@@ -42,6 +50,10 @@ class AnalyticsUseCase {
         self.settingsRepository = settingsRepository
     }
     
+    func run() -> Observable<Any?> {
+        sendAnaltyics().map { $0 }
+    }
+    
     func sendAnaltyics() -> Observable<Bool> {
         .deferred { [weak self] in
             
@@ -56,7 +68,6 @@ class AnalyticsUseCase {
             self.logger.debug("Skipping analytics sent")
             return .just(false)
         }
-        
     }
     
     private func finallySend() -> Observable<Void> {
@@ -81,20 +92,21 @@ class AnalyticsUseCase {
     }
     
     private func checkIfSend() -> Bool {
-//        let timeBetweenKpi = TimeInterval((settingsRepository
-//                                            .getSettings()?.parameters?.timeBetweenKpi ?? minutesADay) * 60)
-
-        let timeBetweenKpi = TimeInterval(3 * 60 * 60)
+        let interval = timeBetweenKpi()
         
-        if timeBetweenKpi <= 0 {
+        if interval <= 0 {
             return false
         }
         
         if let lastDate = analyticsRepository.getLastRun() {
-            let limit = lastDate.addingTimeInterval(timeBetweenKpi)
+            let limit = lastDate.addingTimeInterval(interval)
             return Date() > limit
         }
         return true
+    }
+    
+    private func timeBetweenKpi() -> TimeInterval {
+         TimeInterval((settingsRepository.getSettings()?.parameters?.timeBetweenKpi ?? minutesADay) * 60)
     }
     
     private func getAnalyticsToken(_ retries: Int = 0) -> Observable<String> {
