@@ -28,7 +28,8 @@ open class VerificationControllerAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     open func verifyCode(body: Code, share: Bool, completion: @escaping ((_ data: TokenResponse?, _ error: Error?) -> Void)) {
-        verifyCodeWithRequestBuilder(body: body).execute { (response, error) -> Void in
+        let headers = ["X-EFGS-Sharing": share ? "1" : "0"]
+        verifyCodeWithRequestBuilder(body: body, headers: headers).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
