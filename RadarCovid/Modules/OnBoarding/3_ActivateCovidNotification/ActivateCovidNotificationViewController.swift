@@ -34,16 +34,16 @@ class ActivateCovidNotificationViewController: BaseViewController {
     @IBAction func onContinue(_ sender: Any) {
         (UIApplication.shared.delegate as? AppDelegate)?.bluethoothUseCase?.initListener()
         
-        self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
+        view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
                                             "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER", UIColor.black)
         
         radarStatusUseCase?.changeTracingStatus(active: true)
             .subscribe(
-                onError: {_ in
+                onError: { error in
                     self.activationFinished()
+                    debugPrint("Error: \(error)")
                 },
                 onCompleted:{
-                    self.radarStatusUseCase?.restoreLastStateAndSync().subscribe().disposed(by: self.disposeBag)
                     self.activationFinished()
                 }).disposed(by: disposeBag)
     }
@@ -61,7 +61,7 @@ class ActivateCovidNotificationViewController: BaseViewController {
     }
     
     private func activationFinished() {
-        self.view.hideLoading()
+        view.hideLoading()
         router?.route(to: .activatePush, from: self)
     }
 }

@@ -73,8 +73,8 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel?.checkShowBackToHealthyDialog()
-        viewModel?.checkRadarStatus()
+        viewModel!.checkShowBackToHealthyDialog()
+        viewModel!.restoreLastStateAndSync()
     }
     
     @IBAction func onShare(_ sender: Any) {
