@@ -115,21 +115,6 @@ class HomeViewModel {
             }).disposed(by: disposeBag)
     }
     
-    func resetToHealthy() {
-        guard let resetDataUseCase = resetDataUseCase else {
-            return
-        }
-        
-        Observable.zip(resetDataUseCase.resetExposureDays(),
-                       resetDataUseCase.resetInfectionStatus()).subscribe(
-                        onNext: { ( _, _) in
-                            //Nothin to do here
-                        }, onError: {(error) in
-                            debugPrint(error)
-                        }).disposed(by: self.disposeBag)
-        
-    }
-    
     func checkOnboarding() {
         if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
             checkState.onNext(false)
@@ -145,7 +130,6 @@ class HomeViewModel {
     func checkShowBackToHealthyDialog() {
         if expositionCheckUseCase?.checkBackToHealthyJustChanged() ?? false {
             showBackToHealthyDialog.onNext(true)
-            resetToHealthy()
         }
     }
     

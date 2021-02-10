@@ -13,8 +13,11 @@ import DP3TSDK
 import Foundation
 import RxSwift
 import ExposureNotification
+import Logging
 
 class RadarStatusUseCase {
+    
+    private let logger = Logger(label: "RadarStatusUseCase")
     
     private let preferencesRepository: PreferencesRepository
     private let syncUseCase: SyncUseCase
@@ -73,7 +76,9 @@ class RadarStatusUseCase {
     }
     
     func restoreLastStateAndSync() -> Observable<RadarStatus> {
-        changeTracingStatus(active: preferencesRepository.isTracingActive())
+        let isTracingActive = preferencesRepository.isTracingActive()
+        logger.debug("restoreLastStateAndSync(): isTracingActive \(isTracingActive)")
+        return changeTracingStatus(active: isTracingActive)
             .flatMap {[weak self] status -> Observable<RadarStatus> in
                 self?.preferencesRepository.setTracing(initialized: true)
                 if case .active = status {

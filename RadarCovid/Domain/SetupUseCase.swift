@@ -71,8 +71,10 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         }
         preferencesRepository.setLastSync(date: Date())
         
-        expositionCheckUseCase.checkBackToHealthy().subscribe(onError: { [weak self] error in
-            self?.logger.error("Error up checking exposed to healthy state \(error)")
+        expositionCheckUseCase.checkBackToHealthy()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onError: { [weak self] error in
+            self?.logger.error("Error checking exposed to healthy state \(error)")
         }, onCompleted: { [weak self] in
             self?.logger.debug("Expostion Check completed")
         }).disposed(by: disposeBag)
@@ -115,16 +117,16 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         
         fakeRequestUseCase.sendFalsePositiveFromBackgroundDP3T()
         
-        analyticsUseCase.sendAnaltyics()
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe(onNext: { [weak self] sent in
-                self?.logger.debug("Analytics sent:\(sent)")
-            }, onError: { [weak self] error in
-                self?.logger.debug("Error sending analytics: \(error)")
-                self?.logger.debug("Error: \(error.localizedDescription)")
-            }).disposed(by: disposeBag)
+//        analyticsUseCase.sendAnaltyics()
+//            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+//            .subscribe(onNext: { [weak self] sent in
+//                self?.logger.debug("Analytics sent:\(sent)")
+//            }, onError: { [weak self] error in
+//                self?.logger.debug("Error sending analytics: \(error)")
+//                self?.logger.debug("Error: \(error.localizedDescription)")
+//            }).disposed(by: disposeBag)
 
-        completionHandler(true)
+//        completionHandler(true)
     }
     
     func didScheduleBackgrounTask() {
