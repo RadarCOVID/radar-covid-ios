@@ -35,17 +35,22 @@ class BackgroundTaskScheduler {
     init(task: BackgroundTask) {
         self.task = task
         
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: task.taskKey, using: nil) { [weak self] _ in
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: task.taskKey, using: nil) { [weak self] bgTask in
             guard let self  = self else {
                 return
+            }
+            bgTask.expirationHandler = { [weak self] in
+                self?.logger.error("\(task.taskKey) Expired")
             }
             task.run().subscribe(onNext: { data in
                 self.logger.debug("\(task.taskKey) task result \(String(describing: data))")
             }, onError: { error in
                 self.logger.error("Error running \(task.taskKey) task: \(error.localizedDescription)")
+                bgTask.setTaskCompleted(success: true)
                 self.schedule()
             }, onCompleted: {
                 self.logger.debug("\(task.taskKey) task")
+                bgTask.setTaskCompleted(success: true)
                 self.schedule()
             }).disposed(by: self.disposeBag)
         }
@@ -56,6 +61,7 @@ class BackgroundTaskScheduler {
         let taskRequest = BGAppRefreshTaskRequest(identifier: task.taskKey)
         taskRequest.earliestBeginDate = Date(timeIntervalSinceNow: task.timeBetween)
         
+                
         logger.debug("Scheduling Task: \(task.taskKey), earliestBeginDate: \(String(describing: taskRequest.earliestBeginDate))")
         
         do {

@@ -33,12 +33,13 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
         }
     }
 
-    func sendFalsePositiveFromBackgroundDP3T() {
+    func sendFalsePositiveFromBackgroundDP3T() -> Observable<Bool> {
         if #available(iOS 13.0, *) {
-            //Nothing to do here
-        } else {
-            self.sendOldFalsePositive().subscribe().disposed(by: disposeBag)
+            return .empty()
         }
+        
+        return self.sendOldFalsePositive()
+        
     }
         
     /**

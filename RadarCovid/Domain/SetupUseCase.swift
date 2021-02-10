@@ -25,23 +25,20 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     
     private let preferencesRepository: PreferencesRepository
     private let notificationHandler: NotificationHandler
-    private let expositionCheckUseCase: ExpositionCheckUseCase
-    private let fakeRequestUseCase: FakeRequestUseCase
-    private let analyticsUseCase: AnalyticsUseCase
+    private let backgroundTaskUseCase: BackgroundTasksUseCase
+    private let expositionUseCase: ExpositionUseCase
     
     init(preferencesRepository: PreferencesRepository,
          notificationHandler: NotificationHandler,
-         expositionCheckUseCase: ExpositionCheckUseCase,
-         fakeRequestUseCase: FakeRequestUseCase,
-         analyticsUseCase: AnalyticsUseCase ) {
+         backgroundTaskUseCase: BackgroundTasksUseCase,
+         expositionUseCase: ExpositionUseCase) {
         
         self.preferencesRepository = preferencesRepository
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
-        
         self.notificationHandler = notificationHandler
-        self.expositionCheckUseCase = expositionCheckUseCase
-        self.fakeRequestUseCase = fakeRequestUseCase
-        self.analyticsUseCase = analyticsUseCase
+        self.backgroundTaskUseCase = backgroundTaskUseCase
+        self.expositionUseCase = expositionUseCase
+        
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
     }
     
     func initializeSDK() throws {
@@ -58,6 +55,8 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                                            reportBaseUrl: url,
                                            jwtPublicKey: Config.dp3tValidationKey,
                                            mode: Config.dp3tMode), backgroundHandler: self)
+        
+        DP3TTracing.delegate = expositionUseCase
     }
     
     func log(_ string: String, type: OSLogType) {
@@ -70,14 +69,6 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
             logger.error("DP3T Sync error \(error)")
         }
         preferencesRepository.setLastSync(date: Date())
-        
-        expositionCheckUseCase.checkBackToHealthy()
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe(onError: { [weak self] error in
-            self?.logger.error("Error checking exposed to healthy state \(error)")
-        }, onCompleted: { [weak self] in
-            self?.logger.debug("Expostion Check completed")
-        }).disposed(by: disposeBag)
     }
     
     func fakeRequestCompleted(result: Result<Int, DP3TNetworkingError>) {
@@ -104,7 +95,6 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         
         logger.debug("performBackgroundTasks")
         
-        DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionUseCase.self)
         logger.debug("DP3TTracing.delegate \(String(describing: DP3TTracing.delegate))")
         
         if Config.debug {
@@ -115,18 +105,14 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                 sound: .default)
         }
         
-        fakeRequestUseCase.sendFalsePositiveFromBackgroundDP3T()
-        
-//        analyticsUseCase.sendAnaltyics()
-//            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-//            .subscribe(onNext: { [weak self] sent in
-//                self?.logger.debug("Analytics sent:\(sent)")
-//            }, onError: { [weak self] error in
-//                self?.logger.debug("Error sending analytics: \(error)")
-//                self?.logger.debug("Error: \(error.localizedDescription)")
-//            }).disposed(by: disposeBag)
-
-//        completionHandler(true)
+        backgroundTaskUseCase.runTasks()
+        .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe ( onError: { [weak self] error in
+            self?.logger.error("Error performing background task \(error.localizedDescription) ")
+        }, onCompleted: { [weak self] in
+            self?.logger.debug("Background task completed ")
+            completionHandler(true)
+        }).disposed(by: disposeBag)
     }
     
     func didScheduleBackgrounTask() {
