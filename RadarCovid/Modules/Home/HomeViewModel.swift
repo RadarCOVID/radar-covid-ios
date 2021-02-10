@@ -52,8 +52,13 @@ class HomeViewModel {
     }
     
     func checkInitial() {
+        checkRadarStatus()
         reminderNotificationUseCase?.cancel()
         (UIApplication.shared.delegate as? AppDelegate)?.bluethoothUseCase?.initListener()
+    }
+    
+    func checkRadarStatus() {
+        changeRadarStatus(radarStatusUseCase?.isTracingActive() ?? false)
     }
     
     private func checkInitialExposition() {
@@ -105,13 +110,15 @@ class HomeViewModel {
         return daysForHealty - daysSinceLastInfection
     }
     
-    func restoreLastStateAndSync() {
+    func restoreLastStateAndSync(cb: (() -> Void)? = nil) {
         radarStatusUseCase?.restoreLastStateAndSync().subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
+                cb?()
             }, onError: { [weak self] error in
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
+                cb?()
             }).disposed(by: disposeBag)
     }
     
