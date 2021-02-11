@@ -47,7 +47,7 @@ class ExpositionCheckUseCase {
             self.logger.debug("checkBackToHealthy() Level: \(String(describing: expositionInfo?.level))")
 
             if case .exposed = expositionInfo?.level {
-                if self.isExpositinOutdated(expositionInfo) {
+                if self.isExpositionOutdated(expositionInfo) {
                     self.logger.debug("Exposition outdated")
                     self.expositionInfoRepository.setChangedToHealthy(changed: true)
                     return self.resetDataUseCase.resetExposureDays().flatMap { () -> Observable<Void> in self.resetDataUseCase.resetInfectionStatus()
@@ -58,7 +58,7 @@ class ExpositionCheckUseCase {
         }
     }
 
-    private func isExpositinOutdated(_ info: ExpositionInfo?) -> Bool {
+    private func isExpositionOutdated(_ info: ExpositionInfo?) -> Bool {
 
         if let since = info?.since, let highRiskToLowRisk = settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk {
             
