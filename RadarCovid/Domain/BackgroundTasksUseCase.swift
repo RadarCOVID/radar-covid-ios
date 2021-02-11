@@ -32,10 +32,13 @@ class BackgroundTasksUseCase {
     
     func runTasks() -> Observable<Void> {
         
-        .zip(callBackToHealthy() , callSendAnalytics(), callFakeRequest()) { [weak self] analyticsSent, backToHealthy, fakeSent in
+        .zip(callBackToHealthy(),
+             callSendAnalytics(),
+             callFakeRequest())
+        { [weak self] analyticsSent, backToHealthy, fakeSent in
             self?.logger.debug("Analytics sent:\(analyticsSent)")
             self?.logger.debug("Expostion Check, back to healthy \(backToHealthy)")
-            self?.logger.debug("Fale Sent: \(fakeSent)")
+            self?.logger.debug("Fake Sent: \(fakeSent)")
             return Void()
         }
     }

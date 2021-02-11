@@ -135,9 +135,7 @@ class HomeViewModel {
     }
     
     func checkShowBackToHealthyDialog() {
-        if expositionCheckUseCase?.checkBackToHealthyJustChanged() ?? false {
-            showBackToHealthyDialog.onNext(true)
-        }
+        showBackToHealthyDialog.onNext(expositionCheckUseCase!.checkBackToHealthyJustChanged())
     }
     
     func heplerQAChangeHealthy() {

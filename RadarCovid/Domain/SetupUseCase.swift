@@ -110,18 +110,18 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
             .subscribe ( onError: { [weak self] error in
             self?.logger.error("Error performing background task \(error.localizedDescription) ")
         }, onCompleted: { [weak self] in
-            self?.logger.debug("Background task completed ")
+            self?.logger.debug("Background tasks completed ")
             completionHandler(true)
         }).disposed(by: disposeBag)
     }
     
     func didScheduleBackgrounTask() {
-        debugPrint("didScheduleBackgrounTask")
+        logger.debug("didScheduleBackgrounTask")
     }
     
     private func mapInitializeError(_ error: Error) -> DomainError {
         if let dpt3Error = error as? DP3TTracingError {
-            debugPrint("Error \(dpt3Error)")
+            logger.error("Error \(dpt3Error)")
         }
         
         return DomainError.unexpected

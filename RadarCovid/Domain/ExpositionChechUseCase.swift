@@ -60,10 +60,9 @@ class ExpositionCheckUseCase {
 
     private func isExpositinOutdated(_ info: ExpositionInfo?) -> Bool {
 
-        if let since = info?.since {
-//           let highRiskToLowRisk = settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk {
+        if let since = info?.since, let highRiskToLowRisk = settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk {
             
-            let highRiskToLowRisk = 30
+//            let highRiskToLowRisk = 30
 
             let current = Date()
             let limit = since.addingTimeInterval(Double(highRiskToLowRisk * 60))
