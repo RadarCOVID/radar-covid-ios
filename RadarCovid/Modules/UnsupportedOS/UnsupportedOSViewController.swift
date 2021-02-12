@@ -14,6 +14,7 @@ import UIKit
 
 class UnsupportedOSViewController: BaseViewController {
     
+    @IBOutlet weak var header: UILabel!
     @IBOutlet weak var closeAppButton: UIButton!
     @IBOutlet weak var step1: UILabel!
     @IBOutlet weak var step2: UILabel!
@@ -33,6 +34,9 @@ class UnsupportedOSViewController: BaseViewController {
     }
     
     private func setupAccessibility(){
+        
+        header.accessibilityTraits.insert(UIAccessibilityTraits.header)
+        
         step1.accessibilityLabel = "1, " + step1.text!
         step2.accessibilityLabel = "2, " + step2.text!
         step3.accessibilityLabel = "3, " + step3.text!

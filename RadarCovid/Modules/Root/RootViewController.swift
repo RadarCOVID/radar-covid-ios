@@ -83,14 +83,13 @@ class RootViewController: UIViewController {
                 debugPrint("Configuration  finished")
 
                 let version = Float(UIDevice.current.systemVersion) ?? 0
+
                 if (version >= 13 && version < 13.6) {
                     self?.navigateToUnsupportedOS()
-                }else{
-                if settings.isUpdated ?? false {
+                } else if settings.isUpdated ?? false {
                     self?.navigateFirst()
                 } else {
-                    self?.showUpdateNoticeForSettings(settings: settings)                    
-                }
+                    self?.showUpdateNoticeForSettings(settings: settings)
                 }
 
             }, onError: {  [weak self] error in
