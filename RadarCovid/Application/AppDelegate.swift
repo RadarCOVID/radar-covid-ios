@@ -93,17 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func loadUnsupportedOS(initWindow: UIWindow?, url: URL?) {
-        let rootViewController = UnsupportedOSViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        if let initialiceWindow = initWindow {
-            window = initialiceWindow
-        }
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
-        router?.route(to: Routes.unsupportedOS, from: navigationController)
-    }
-    
     private func setupLog() {
         NetworkActivityLogger.shared.startLogging()
         
