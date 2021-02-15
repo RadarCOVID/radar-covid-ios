@@ -50,8 +50,7 @@ class ExpositionCheckUseCase {
                 if self.isExpositionOutdated(expositionInfo) {
                     self.logger.debug("Exposition outdated")
                     self.expositionInfoRepository.setChangedToHealthy(changed: true)
-                    return self.resetDataUseCase.resetExposureDays().flatMap { () -> Observable<Void> in self.resetDataUseCase.resetInfectionStatus()
-                    }.map { true }
+                    return self.resetDataUseCase.reset().map { true }
                 }
             }
             return .just(false)
