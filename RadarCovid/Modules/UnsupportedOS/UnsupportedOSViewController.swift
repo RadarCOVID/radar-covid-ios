@@ -25,12 +25,12 @@ class UnsupportedOSViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        setupAccessibility()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupView()
+        setupAccessibility()
     }
     
     private func setupAccessibility(){
