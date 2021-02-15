@@ -138,6 +138,11 @@ class TabBarController: UITabBarController {
             }
         }
     }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        selectTabType = nil
+    }
+    
 }
 
 extension TabBarController: AccTitleView {
