@@ -96,9 +96,8 @@ class HomeViewModel {
         }
     }
     
-    func checkRemindingExpositionDays(since: Date) -> Int{
-        var sinceDay = since
-        sinceDay = sinceDay.getStartOfDay()
+    func checkRemainingExpositionDays(since: Date) -> Int{
+        let sinceDay = since.getStartOfDay()
         
         let minutesInAHour = 60
         let hoursInADay = 24
@@ -107,7 +106,10 @@ class HomeViewModel {
         
         let daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
         let daysForHealty = Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0) / minutesInAHour / hoursInADay
-        return daysForHealty - daysSinceLastInfection
+        
+        let result = daysForHealty - daysSinceLastInfection
+        
+        return result >= 0 ? result : 0
     }
     
     func restoreLastStateAndSync(cb: (() -> Void)? = nil) {

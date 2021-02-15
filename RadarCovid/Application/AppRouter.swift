@@ -126,7 +126,7 @@ class AppRouter: Router {
         case .highExposition:
             if let param = parameters,
                param.count >= 1 {
-                routeToHighExposition(context, since: param[0] as? Date)
+                routeToHighExposition(context, since: param[0] as? Date, lastCheck: param[1] as? Date)
             }
             
         case .positiveExposed:
@@ -262,9 +262,10 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(expositionVC!, animated: true)
     }
 
-    private func routeToHighExposition(_ context: UIViewController, since: Date?) {
+    private func routeToHighExposition(_ context: UIViewController, since: Date?, lastCheck: Date?) {
         let highExpositionVC = AppDelegate.shared?.injection.resolve(HighExpositionViewController.self)!
         highExpositionVC?.since = since
+        highExpositionVC?.lastCheck = lastCheck
         context.navigationController?.pushViewController(highExpositionVC!, animated: true)
     }
 

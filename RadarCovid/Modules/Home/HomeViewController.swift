@@ -295,11 +295,11 @@ class HomeViewController: BaseViewController {
     private func setExposed(since: Date) {
        
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_HIGH".localized
-        let remindingDays = self.viewModel?.checkRemindingExpositionDays(since: since)
+        let reminingDays = self.viewModel?.checkRemainingExpositionDays(since: since)
         let remindingDaysText =
-            remindingDays ?? 0 <= 1
-                ? "HOME_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remindingDays ?? 0)])
-                : "HOME_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(remindingDays ?? 0)])
+            reminingDays ?? 0 <= 1
+                ? "HOME_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(reminingDays ?? 0)])
+                : "HOME_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(reminingDays ?? 0)])
         let attributedText = NSMutableAttributedString.init(attributedString: "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
                 withParams: ["CONTACT_PHONE".localized]
             )
@@ -446,7 +446,7 @@ class HomeViewController: BaseViewController {
         case .healthy:
             router?.route(to: Routes.healthyExposition, from: self, parameters: info.lastCheck)
         case .exposed:
-            router?.route(to: Routes.highExposition, from: self, parameters: info.lastCheck)
+            router?.route(to: Routes.highExposition, from: self, parameters: info.since, info.lastCheck)
         case .infected:
             router?.route(to: Routes.positiveExposed, from: self, parameters: info.since)
         }
