@@ -14,18 +14,24 @@ import UIKit
 
 class DeepLinkUseCase {
     
-    static func getScreenFor(url: URL, window: UIWindow?, router: Router?) {
+    private let expositionInfoRepository: ExpositionInfoRepository
+    
+    init (expositionInfoRepository: ExpositionInfoRepository) {
+        self.expositionInfoRepository = expositionInfoRepository
+    }
+    
+    func getScreenFor(url: URL, window: UIWindow?, router: Router?) {
         let component = url.absoluteString.components(separatedBy: "?")
         
         if component.count > 1 {
-            let urlSchemeRedirect = DeepLinkUseCase.urlSchemeToSection(urlScheme: component.first ?? "")
+            let urlSchemeRedirect = urlSchemeToSection(urlScheme: component.first ?? "")
             var params: [Any?] = []
             
             if let lastRouteId = urlSchemeRedirect.last,
                let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
                let queryItems = urlComponents.queryItems {
 
-                params = DeepLinkUseCase.paramsUrlSchemeToSectionParameters(route: lastRouteId, params: queryItems)
+                params = paramsUrlSchemeToSectionParameters(route: lastRouteId, params: queryItems)
             }
             router?.route(to: .root, from: (window?.rootViewController)!, parameters: urlSchemeRedirect, params)
         } else {
@@ -33,17 +39,21 @@ class DeepLinkUseCase {
         }
     }
     
-    static func urlSchemeToSection(urlScheme: String) -> [Routes] {
-        if urlScheme == "radarcovid://report" {
+    func urlSchemeToSection(urlScheme: String) -> [Routes] {
+        
+        if urlScheme == "radarcovid://report" &&
+            expositionInfoRepository.getExpositionInfo()?.level != .infected {
+            
             return [.home,.myHealthStep0,.myHealthStep1]
         }
-        return [.root]
+        
+        return [.home]
     }
     
-    static func paramsUrlSchemeToSectionParameters(route: Routes, params: [URLQueryItem]) -> [Any?] {
+    func paramsUrlSchemeToSectionParameters(route: Routes, params: [URLQueryItem]) -> [Any?] {
         switch route {
         case .myHealthStep1:
-            let code = params.filter({ $0.name == "code" }).first?.value
+            let code = params.filter{ $0.name == "code" }.first?.value
             return [code]
             
         default:

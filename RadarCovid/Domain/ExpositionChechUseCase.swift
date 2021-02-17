@@ -11,8 +11,11 @@
 
 import Foundation
 import RxSwift
+import Logging
 
 class ExpositionCheckUseCase {
+    
+    private let logger = Logger(label: "ExpositionCheckUseCase")
 
     private let disposeBag = DisposeBag()
     private let expositionInfoRepository: ExpositionInfoRepository
@@ -30,27 +33,35 @@ class ExpositionCheckUseCase {
     func checkBackToHealthyJustChanged() -> Bool {
         let changed = expositionInfoRepository.isChangedToHealthy() ?? false
         expositionInfoRepository.setChangedToHealthy(changed: false)
+        logger.debug("checkBackToHealthyJustChanged(): \(changed)")
         return changed
     }
 
     func checkBackToHealthy() -> Observable<Bool> {
         .deferred { [weak self] in
-            let expositionInfo = self?.expositionInfoRepository.getExpositionInfo()
+            guard let self = self else {
+                return .empty()
+            }
+            let expositionInfo = self.expositionInfoRepository.getExpositionInfo()
+            
+            self.logger.debug("checkBackToHealthy() Level: \(String(describing: expositionInfo?.level))")
 
             if case .exposed = expositionInfo?.level {
-                if self?.isExpositinOutdated(expositionInfo) ?? false {
-                    self?.expositionInfoRepository.setChangedToHealthy(changed: true)
-                    return .just(true)
+                if self.isExpositionOutdated(expositionInfo) {
+                    self.logger.debug("Exposition outdated")
+                    self.expositionInfoRepository.setChangedToHealthy(changed: true)
+                    return self.resetDataUseCase.reset().map { true }
                 }
             }
             return .just(false)
         }
     }
 
-    private func isExpositinOutdated(_ info: ExpositionInfo?) -> Bool {
+    private func isExpositionOutdated(_ info: ExpositionInfo?) -> Bool {
 
-        if let since = info?.since,
-           let highRiskToLowRisk = settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk {
+        if let since = info?.since, let highRiskToLowRisk = settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk {
+            
+//            let highRiskToLowRisk = 30
 
             let current = Date()
             let limit = since.addingTimeInterval(Double(highRiskToLowRisk * 60))

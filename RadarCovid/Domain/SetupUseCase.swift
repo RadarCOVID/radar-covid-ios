@@ -21,22 +21,24 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     
     private let disposeBag = DisposeBag()
     
-    private let logger = Logger(label: "DP3TSDK")
+    private let logger = Logger(label: "SetupUseCase")
     
     private let preferencesRepository: PreferencesRepository
     private let notificationHandler: NotificationHandler
-    private let expositionCheckUseCase: ExpositionCheckUseCase
-    
+    private let backgroundTaskUseCase: BackgroundTasksUseCase
+    private let expositionUseCase: ExpositionUseCase
     
     init(preferencesRepository: PreferencesRepository,
          notificationHandler: NotificationHandler,
-         expositionCheckUseCase: ExpositionCheckUseCase) {
+         backgroundTaskUseCase: BackgroundTasksUseCase,
+         expositionUseCase: ExpositionUseCase) {
         
         self.preferencesRepository = preferencesRepository
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
-        
         self.notificationHandler = notificationHandler
-        self.expositionCheckUseCase = expositionCheckUseCase
+        self.backgroundTaskUseCase = backgroundTaskUseCase
+        self.expositionUseCase = expositionUseCase
+        
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
     }
     
     func initializeSDK() throws {
@@ -54,6 +56,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                                            jwtPublicKey: Config.dp3tValidationKey,
                                            mode: Config.dp3tMode), backgroundHandler: self)
         
+        DP3TTracing.delegate = expositionUseCase
     }
     
     func log(_ string: String, type: OSLogType) {
@@ -66,12 +69,6 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
             logger.error("DP3T Sync error \(error)")
         }
         preferencesRepository.setLastSync(date: Date())
-        
-        expositionCheckUseCase.checkBackToHealthy().subscribe(onError: { [weak self] error in
-            self?.logger.error("Error up checking exposed to healthy state \(error)")
-        }, onCompleted: { [weak self] in
-            self?.logger.error("Expostion Check completed")
-        }).disposed(by: disposeBag)
     }
     
     func fakeRequestCompleted(result: Result<Int, DP3TNetworkingError>) {
@@ -97,26 +94,34 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
     func performBackgroundTasks(completionHandler: @escaping (Bool) -> Void) {
         
         logger.debug("performBackgroundTasks")
+        
+        logger.debug("DP3TTracing.delegate \(String(describing: DP3TTracing.delegate))")
+        
         if Config.debug {
-            let sync = self.preferencesRepository.getLastSync()?.description ?? "no Sync"
+            let sync = preferencesRepository.getLastSync()?.description ?? "no Sync"
             self.notificationHandler.scheduleNotification(
                 title: "BackgroundTask",
                 body: "Last sync: \(sync)",
                 sound: .default)
         }
         
-        
-        DP3TTracing.delegate = AppDelegate.shared?.injection.resolve(ExpositionUseCase.self)
-        logger.debug("DP3TTracing.delegate \(String(describing: DP3TTracing.delegate))")
+        backgroundTaskUseCase.runTasks()
+        .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe ( onError: { [weak self] error in
+            self?.logger.error("Error performing background task \(error.localizedDescription) ")
+        }, onCompleted: { [weak self] in
+            self?.logger.debug("Background tasks completed ")
+            completionHandler(true)
+        }).disposed(by: disposeBag)
     }
     
     func didScheduleBackgrounTask() {
-        debugPrint("didScheduleBackgrounTask")
+        logger.debug("didScheduleBackgrounTask")
     }
     
     private func mapInitializeError(_ error: Error) -> DomainError {
         if let dpt3Error = error as? DP3TTracingError {
-            debugPrint("Error \(dpt3Error)")
+            logger.error("Error \(dpt3Error)")
         }
         
         return DomainError.unexpected

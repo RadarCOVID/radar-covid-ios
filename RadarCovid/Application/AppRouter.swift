@@ -44,6 +44,7 @@ public enum Routes {
     case detailInteroperability
     case infoApp
     case helpSettings
+    case unsupportedOS
 }
 
 
@@ -92,7 +93,7 @@ class AppRouter: Router {
         case .onBoarding:
             routeToOnboarding(context)
         case .home:
-            routeToHome(context)
+            routeToHome(context, parameters)
         case .proximity:
             routeToProximity(context)
         case .activateCovid:
@@ -125,7 +126,7 @@ class AppRouter: Router {
         case .highExposition:
             if let param = parameters,
                param.count >= 1 {
-                routeToHighExposition(context, since: param[0] as? Date)
+                routeToHighExposition(context, since: param[0] as? Date, lastCheck: param[1] as? Date)
             }
             
         case .positiveExposed:
@@ -135,7 +136,7 @@ class AppRouter: Router {
             }
             
         case .changeLanguage:
-            routeToRootAndResetView(context)
+            routeToRootAndResetView(context, parameters)
         case .shareApp:
             routeToShareApp(context)
         case .timeExposed:
@@ -148,6 +149,8 @@ class AppRouter: Router {
             routeToInfoApp(context)
         case .helpSettings:
             routeToHelpSettings(context)
+        case .unsupportedOS:
+            routeToUnsupportedOS(context)
         }
     }
 
@@ -163,8 +166,11 @@ class AppRouter: Router {
         loadViewAsRoot(navController: context as? UINavigationController, view: rootVC!)
     }
     
-    private func routeToRootAndResetView(_ context: UIViewController) {
+    private func routeToRootAndResetView(_ context: UIViewController, _ parameters: [Any?]?) {
         let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
+        if let param = parameters, param.count > 0 {
+            rootVC?.selectTabType = param[0] as? UIViewController.Type
+        }
         loadViewAsRoot(navController: context.navigationController, view: rootVC!)
     }
     
@@ -197,9 +203,18 @@ class AppRouter: Router {
         let helpSettingsVC = AppDelegate.shared?.injection.resolve(HelpSettingsViewController.self)!
         loadViewAsModal(viewParentController: context, view: helpSettingsVC!)
     }
-
-    private func routeToHome(_ context: UIViewController) {
+    
+    private func routeToUnsupportedOS(_ context: UIViewController) {
+        let unsupportedOSVC = AppDelegate.shared?.injection.resolve(UnsupportedOSViewController.self)!
+        loadViewAsRoot(navController: context.navigationController, view: unsupportedOSVC!)
+    }
+    
+    private func routeToHome(_ context: UIViewController, _ parameters: [Any?]?) {
         let tabBarController = AppDelegate.shared?.injection.resolve(TabBarController.self)!
+        if let param = parameters, param.count > 0 {
+            tabBarController!.selectTabType = param[0] as? UIViewController.Type
+        }
+
         loadViewAsRoot(navController: context.navigationController, view: tabBarController!)
     }
 
@@ -247,9 +262,10 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(expositionVC!, animated: true)
     }
 
-    private func routeToHighExposition(_ context: UIViewController, since: Date?) {
+    private func routeToHighExposition(_ context: UIViewController, since: Date?, lastCheck: Date?) {
         let highExpositionVC = AppDelegate.shared?.injection.resolve(HighExpositionViewController.self)!
         highExpositionVC?.since = since
+        highExpositionVC?.lastCheck = lastCheck
         context.navigationController?.pushViewController(highExpositionVC!, animated: true)
     }
 

@@ -56,7 +56,6 @@ class UserDefaultsExpositionInfoRepository: ExpositionInfoRepository {
 
     func clearData() {
         userDefaults.removeObject(forKey: UserDefaultsExpositionInfoRepository.kData)
-        userDefaults.removeObject(forKey: UserDefaultsExpositionInfoRepository.kChanged)
     }
 
 }

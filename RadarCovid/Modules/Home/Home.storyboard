@@ -18,15 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-Dd-bXU">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xm5-CV-zov">
-                                <rect key="frame" x="0.0" y="44" width="414" height="69"/>
+                                <rect key="frame" x="0.0" y="34" width="414" height="69"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_topBackground" translatesAutoresizingMaskIntoConstraints="NO" id="n8Y-vV-d4H">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="69"/>
-                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9AI-9f-c6B">
                                         <rect key="frame" x="186.5" y="9" width="41" height="51"/>
                                         <subviews>
@@ -62,6 +59,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYt-xr-EdD">
                                         <rect key="frame" x="358" y="14.5" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="VgA-Hb-4Ka"/>
                                             <constraint firstAttribute="width" constant="40" id="Y6h-hT-7Q5"/>
@@ -72,17 +70,14 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="n8Y-vV-d4H" secondAttribute="bottom" id="0QA-y2-xHQ"/>
                                     <constraint firstItem="9AI-9f-c6B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xm5-CV-zov" secondAttribute="leading" constant="16" id="9Ym-Ou-DXn"/>
-                                    <constraint firstItem="n8Y-vV-d4H" firstAttribute="leading" secondItem="xm5-CV-zov" secondAttribute="leading" id="HSk-Ph-A5M"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="69" id="BlL-w3-gwE"/>
                                     <constraint firstItem="9AI-9f-c6B" firstAttribute="top" secondItem="xm5-CV-zov" secondAttribute="top" constant="9" id="LUJ-Zu-v7g"/>
                                     <constraint firstAttribute="bottom" secondItem="9AI-9f-c6B" secondAttribute="bottom" constant="9" id="YgI-JH-u3W"/>
-                                    <constraint firstItem="n8Y-vV-d4H" firstAttribute="top" secondItem="xm5-CV-zov" secondAttribute="top" id="d5M-pe-aiy"/>
                                     <constraint firstItem="9AI-9f-c6B" firstAttribute="top" secondItem="xm5-CV-zov" secondAttribute="top" constant="9" id="gK2-pM-dqq"/>
                                     <constraint firstItem="yYt-xr-EdD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9AI-9f-c6B" secondAttribute="trailing" constant="2" id="oR9-Sa-O0i"/>
-                                    <constraint firstAttribute="trailing" secondItem="n8Y-vV-d4H" secondAttribute="trailing" id="pnE-sD-zRO"/>
                                     <constraint firstAttribute="trailing" secondItem="yYt-xr-EdD" secondAttribute="trailing" constant="16" id="s70-fw-fPn"/>
                                     <constraint firstAttribute="bottom" secondItem="9AI-9f-c6B" secondAttribute="bottom" constant="9" id="tId-aX-101"/>
                                     <constraint firstItem="9AI-9f-c6B" firstAttribute="centerX" secondItem="xm5-CV-zov" secondAttribute="centerX" id="tTj-dU-s17"/>
@@ -90,7 +85,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEu-F8-ZM1">
-                                <rect key="frame" x="0.0" y="113" width="414" height="663"/>
+                                <rect key="frame" x="0.0" y="103" width="414" height="673"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUO-V4-jee" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="661"/>
@@ -226,6 +221,7 @@ Cuídate y cuida a los demás.</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
+                                        <color key="backgroundColor" name="veryLightPink"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="fuQ-dg-Nwm" secondAttribute="trailing" constant="16" id="9nF-Y7-5lJ"/>
                                             <constraint firstItem="s47-VN-7tM" firstAttribute="centerX" secondItem="Ker-eU-Kvi" secondAttribute="centerX" id="HWK-xR-S1W"/>
@@ -244,6 +240,7 @@ Cuídate y cuida a los demás.</string>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" name="veryLightPink"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="uUO-V4-jee" secondAttribute="bottom" id="Oiu-fr-xJS"/>
                                     <constraint firstItem="uUO-V4-jee" firstAttribute="leading" secondItem="JEu-F8-ZM1" secondAttribute="leading" id="SB2-0r-ivi"/>
@@ -289,7 +286,7 @@ Cuídate y cuida a los demás.</string>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AA3-07-0Pc"/>
-                        <color key="backgroundColor" name="bgColor"/>
+                        <color key="backgroundColor" name="veryLightPink"/>
                         <constraints>
                             <constraint firstItem="AKG-lv-3X4" firstAttribute="leading" secondItem="AA3-07-0Pc" secondAttribute="leading" constant="112.5" id="1Np-oA-l8S"/>
                             <constraint firstItem="ga4-Dd-bXU" firstAttribute="leading" secondItem="bH7-lt-L7E" secondAttribute="leading" id="2RK-9B-bpy"/>
@@ -301,14 +298,14 @@ Cuídate y cuida a los demás.</string>
                             <constraint firstItem="uUO-V4-jee" firstAttribute="width" secondItem="bH7-lt-L7E" secondAttribute="width" id="BUG-wc-oBe"/>
                             <constraint firstItem="AKG-lv-3X4" firstAttribute="centerX" secondItem="bH7-lt-L7E" secondAttribute="centerX" id="MVc-Dr-zgZ"/>
                             <constraint firstItem="JEu-F8-ZM1" firstAttribute="top" secondItem="xm5-CV-zov" secondAttribute="bottom" id="Mko-wj-GYa"/>
-                            <constraint firstItem="xm5-CV-zov" firstAttribute="top" secondItem="bH7-lt-L7E" secondAttribute="top" constant="44" id="ORs-Zu-6Rs"/>
+                            <constraint firstItem="xm5-CV-zov" firstAttribute="top" secondItem="AA3-07-0Pc" secondAttribute="top" constant="-10" id="ORs-Zu-6Rs"/>
                             <constraint firstItem="AA3-07-0Pc" firstAttribute="trailing" secondItem="AKG-lv-3X4" secondAttribute="trailing" constant="112.5" id="SI4-y6-eEz"/>
-                            <constraint firstItem="xm5-CV-zov" firstAttribute="trailing" secondItem="AA3-07-0Pc" secondAttribute="trailing" id="W6n-hc-qdC"/>
+                            <constraint firstItem="xm5-CV-zov" firstAttribute="trailing" secondItem="bH7-lt-L7E" secondAttribute="trailing" id="W6n-hc-qdC"/>
                             <constraint firstItem="mgD-SH-6Y2" firstAttribute="top" secondItem="JEu-F8-ZM1" secondAttribute="bottom" constant="10" id="WKe-p7-llK"/>
                             <constraint firstItem="mgD-SH-6Y2" firstAttribute="leading" secondItem="AA3-07-0Pc" secondAttribute="leading" constant="16" id="WlP-ae-zYz"/>
                             <constraint firstAttribute="trailing" secondItem="ga4-Dd-bXU" secondAttribute="trailing" id="bYp-al-ceV"/>
                             <constraint firstItem="iWR-aJ-g5N" firstAttribute="top" secondItem="AKG-lv-3X4" secondAttribute="bottom" id="bwu-jd-7qJ"/>
-                            <constraint firstItem="xm5-CV-zov" firstAttribute="top" secondItem="ga4-Dd-bXU" secondAttribute="bottom" id="hth-fz-Hbu"/>
+                            <constraint firstItem="xm5-CV-zov" firstAttribute="top" secondItem="ga4-Dd-bXU" secondAttribute="bottom" constant="-8" id="hth-fz-Hbu"/>
                             <constraint firstItem="AA3-07-0Pc" firstAttribute="bottom" secondItem="mgD-SH-6Y2" secondAttribute="bottom" constant="16" id="ium-ZE-m5v"/>
                             <constraint firstItem="AA3-07-0Pc" firstAttribute="trailing" secondItem="mgD-SH-6Y2" secondAttribute="trailing" constant="16" id="ocB-xZ-CJp"/>
                             <constraint firstItem="JEu-F8-ZM1" firstAttribute="width" secondItem="bH7-lt-L7E" secondAttribute="width" id="uEY-m3-SWF"/>
@@ -328,6 +325,7 @@ Cuídate y cuida a los demás.</string>
                         <outlet property="expositionDetailImage" destination="kNQ-4q-3vF" id="cRE-qb-sfG"/>
                         <outlet property="expositionTitleLabel" destination="Tiy-hB-953" id="d8f-zM-4Z9"/>
                         <outlet property="expositionView" destination="6hz-zu-Mhb" id="8iB-cX-vMh"/>
+                        <outlet property="headerView" destination="xm5-CV-zov" id="HIj-3k-SyI"/>
                         <outlet property="moreInfoLabel" destination="8L1-q5-EhC" id="uff-Lh-L2g"/>
                         <outlet property="notificationInactiveMessageLabel" destination="Le3-5O-yti" id="sK3-rZ-fVD"/>
                         <outlet property="radarMessageLabel" destination="5DO-YK-Xnt" id="5yU-mZ-Ive"/>
@@ -353,17 +351,16 @@ Cuídate y cuida a los demás.</string>
         <image name="btn_share" width="20" height="22"/>
         <image name="buttonsPrimary" width="341" height="60"/>
         <image name="circle" width="351" height="330.5"/>
-        <image name="ic_topBackground" width="375" height="69"/>
         <image name="ic_topHome" width="31" height="30"/>
         <image name="imageHome" width="238" height="177"/>
-        <namedColor name="bgColor">
-            <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="darkPeach">
             <color red="0.87800002098083496" green="0.42399999499320984" blue="0.34099999070167542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="twilight">
             <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

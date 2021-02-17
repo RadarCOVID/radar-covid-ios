@@ -11,62 +11,86 @@
 
 import UIKit
 import Logging
+import DP3TSDK
 
 @UIApplicationMain
-
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    static var shared: AppDelegate? {
+        return UIApplication.shared.delegate as? AppDelegate
+    }
     var injection: Injection = Injection()
+    var window: UIWindow?
+    
     var bluethoothUseCase: BluethoothReminderUseCase?
     
     private let logger = Logger(label: "AppDelegate")
-
+    
+    private lazy var deepLinkUseCase: DeepLinkUseCase? = {
+        return AppDelegate.shared?.injection.resolve(DeepLinkUseCase.self)!
+    }()
+    private lazy var router: AppRouter? = {
+        return AppDelegate.shared?.injection.resolve(AppRouter.self)!
+    }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if Config.debug {
             setupLog()
         }
-
+        
         logger.info("Current Environment: \(Config.environment)")
-
-        let setupUseCase = injection.resolve(SetupUseCase.self)!
-        let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!
-        fakeRequestUseCase.initBackgroundTask()
-        bluethoothUseCase = injection.resolve(BluethoothReminderUseCase.self)!
-        do {
-            try setupUseCase.initializeSDK()
-        } catch {
-            logger.error("Error initializing DP3T \(error)")
+        
+        if DP3TTracing.isOSCompatible {
+            let setupUseCase = injection.resolve(SetupUseCase.self)!
+            let fakeRequestUseCase = injection.resolve(FakeRequestUseCase.self)!
+            if #available(iOS 13.0, *) {
+                fakeRequestUseCase.initBackgroundTask()
+            }
+            bluethoothUseCase = injection.resolve(BluethoothReminderUseCase.self)!
+            do {
+                try setupUseCase.initializeSDK()
+            } catch {
+                logger.error("Error initializing DP3T \(error)")
+            }
         }
+        
         UIApplication.shared.applicationIconBadgeNumber = 0
+            //Loading initial screen, only execut iOS 12.5
+        if #available(iOS 13.0, *) {
+        } else {
+            loadInitialScreen(initWindow: UIWindow(frame: UIScreen.main.bounds),  url: nil)
+        }
         return true
     }
     
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
-
-    // MARK: UISceneSession Lifecycle
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-
-    static var shared: AppDelegate? {
-       return UIApplication.shared.delegate as? AppDelegate
-    }
-
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    }
+    
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        loadInitialScreen(initWindow: nil, url: url)
+        return true
+    }
+    
+    func loadInitialScreen(initWindow: UIWindow?, url: URL?) {
+        
+        let navigationController = UINavigationController()
+        navigationController.setNavigationBarHidden(true, animated: false)
+        
+        if let initialiceWindow = initWindow {
+            window = initialiceWindow
+        }
+        
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        
+        if let url = url {
+            deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
+        } else {
+            router?.route(to: Routes.root, from: navigationController)
+        }
     }
     
     private func setupLog() {
@@ -91,5 +115,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             debugPrint("Error initializing log \(error)")
         }
+    }
+    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+}
+
+@available(iOS 13.0, *)
+extension AppDelegate {
+    // MARK: UISceneSession Lifecycle
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        // Called when a new scene session is being created.
+        // Use this method to select a configuration to create the new scene with.
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+    
+    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        // Called when the user discards a scene session.
+        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
+        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 }

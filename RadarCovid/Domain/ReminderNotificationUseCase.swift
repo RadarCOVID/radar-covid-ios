@@ -49,7 +49,7 @@ class ReminderNotificationUseCase {
                              timerInterval: ((notificationReminder) * 60))
     }
     
-    func scheduleNotification(notificationTitle: String, notificationBody: String, timerInterval: Int64) {
+    private func scheduleNotification(notificationTitle: String, notificationBody: String, timerInterval: Int64) {
         
         let content = UNMutableNotificationContent()
         let userActions = "User Actions"

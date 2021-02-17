@@ -96,9 +96,8 @@ class HomeViewModel {
         }
     }
     
-    func checkRemindingExpositionDays(since: Date) -> Int{
-        var sinceDay = since
-        sinceDay = sinceDay.getStartOfDay()
+    func checkRemainingExpositionDays(since: Date) -> Int{
+        let sinceDay = since.getStartOfDay()
         
         let minutesInAHour = 60
         let hoursInADay = 24
@@ -107,7 +106,10 @@ class HomeViewModel {
         
         let daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
         let daysForHealty = Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0) / minutesInAHour / hoursInADay
-        return daysForHealty - daysSinceLastInfection
+        
+        let result = daysForHealty - daysSinceLastInfection
+        
+        return result >= 0 ? result : 0
     }
     
     func restoreLastStateAndSync(cb: (() -> Void)? = nil) {
@@ -120,21 +122,6 @@ class HomeViewModel {
                 self?.radarStatus.onNext(.inactive)
                 cb?()
             }).disposed(by: disposeBag)
-    }
-    
-    func resetToHealthy() {
-        guard let resetDataUseCase = resetDataUseCase else {
-            return
-        }
-        
-        Observable.zip(resetDataUseCase.resetExposureDays(),
-                       resetDataUseCase.resetInfectionStatus()).subscribe(
-                        onNext: { ( _, _) in
-                            //Nothin to do here
-                        }, onError: {(error) in
-                            debugPrint(error)
-                        }).disposed(by: self.disposeBag)
-        
     }
     
     func checkOnboarding() {
@@ -150,10 +137,7 @@ class HomeViewModel {
     }
     
     func checkShowBackToHealthyDialog() {
-        if expositionCheckUseCase?.checkBackToHealthyJustChanged() ?? false {
-            showBackToHealthyDialog.onNext(true)
-            resetToHealthy()
-        }
+        showBackToHealthyDialog.onNext(expositionCheckUseCase!.checkBackToHealthyJustChanged())
     }
     
     func heplerQAChangeHealthy() {

@@ -50,7 +50,9 @@ class MyHealthStep1ViewController: BaseViewController {
         datePicker.minimumDate = Date().addingTimeInterval(-TimeInterval(14*60*60*24))
         datePicker.maximumDate = Date()
         datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .wheels
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
         
         return datePicker
     }()
@@ -133,7 +135,7 @@ class MyHealthStep1ViewController: BaseViewController {
         
         dateView.isAccessibilityElement = true
         
-        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
+        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
         dateView.accessibilityHint = "ACC_HINT".localized
         
     }
@@ -323,7 +325,7 @@ extension MyHealthStep1ViewController: PickerDelegate {
             let monthSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + (monthLabel.text ?? "")
             let yearSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + ", " + (yearLabel.text ?? "")
 
-            dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + " " + monthSelected + " " + yearSelected)
+            dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + ", " + monthSelected + ", " + yearSelected)
         }
         
         //Restore focus from dateView

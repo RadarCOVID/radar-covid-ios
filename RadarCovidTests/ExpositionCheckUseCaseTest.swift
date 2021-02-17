@@ -59,7 +59,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
         let settings = Settings()
         let timeBetweenStates = TimeBetweenStatesDto(highRiskToLowRisk: 10, infectedToHealthy: nil)
-        settings.parameters = SettingsDto(responseDate: nil, exposureConfiguration: nil, minRiskScore: nil, minDurationForExposure: nil, riskScoreClassification: nil, attenuationDurationThresholds: nil, attenuationFactor: nil, applicationVersion: nil, timeBetweenStates: timeBetweenStates)
+        settings.parameters = SettingsDto(responseDate: nil, exposureConfiguration: nil, minRiskScore: nil, minDurationForExposure: nil, riskScoreClassification: nil, attenuationDurationThresholds: nil, attenuationFactor: nil, applicationVersion: nil, timeBetweenStates: timeBetweenStates, legalTermsVersion: nil, radarCovidDownloadUrl: nil, notificationReminder: nil)
         
         settingsRepository?.settings = settings
         
@@ -80,7 +80,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
         let settings = Settings()
         let timeBetweenStates = TimeBetweenStatesDto(highRiskToLowRisk: 10, infectedToHealthy: nil)
-        settings.parameters = SettingsDto(responseDate: nil, exposureConfiguration: nil, minRiskScore: nil, minDurationForExposure: nil, riskScoreClassification: nil, attenuationDurationThresholds: nil, attenuationFactor: nil, applicationVersion: nil, timeBetweenStates: timeBetweenStates)
+        settings.parameters = SettingsDto(responseDate: nil, exposureConfiguration: nil, minRiskScore: nil, minDurationForExposure: nil, riskScoreClassification: nil, attenuationDurationThresholds: nil, attenuationFactor: nil, applicationVersion: nil, timeBetweenStates: timeBetweenStates, legalTermsVersion: nil, radarCovidDownloadUrl: nil, notificationReminder: nil)
         
         settingsRepository?.settings = settings
         

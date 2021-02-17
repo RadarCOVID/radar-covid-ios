@@ -38,6 +38,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var resetDataButton: UIButton!
     @IBOutlet weak var expositionDetailImage: UIImageView!
     var termsRepository: TermsAcceptedRepository!
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var btnShare: UIButton!
     
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
@@ -98,7 +99,7 @@ class HomeViewController: BaseViewController {
         guard let expositionInfo = try? viewModel!.expositionInfo.value() else {
             return
         }
-        
+
         if radarSwitch.isOn {
             if expositionInfo.level == .infected {
                 router!.route(to: Routes.myHealthReported, from: self)
@@ -220,6 +221,8 @@ class HomeViewController: BaseViewController {
     }
     
     private func setupView() {
+        headerView.layer.cornerRadius = 20
+        
         communicationButton.setTitle("HOME_BUTTON_SEND_POSITIVE".localized, for: .normal)
         communicationButton.titleLabel?.textAlignment = .center
         communicationButton.titleLabel?.lineBreakMode = .byWordWrapping
@@ -292,11 +295,11 @@ class HomeViewController: BaseViewController {
     private func setExposed(since: Date) {
        
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_HIGH".localized
-        let remindingDays = self.viewModel?.checkRemindingExpositionDays(since: since)
+        let reminingDays = self.viewModel?.checkRemainingExpositionDays(since: since)
         let remindingDaysText =
-            remindingDays ?? 0 <= 1
-                ? "HOME_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remindingDays ?? 0)])
-                : "HOME_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(remindingDays ?? 0)])
+            reminingDays ?? 0 <= 1
+                ? "HOME_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(reminingDays ?? 0)])
+                : "HOME_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(reminingDays ?? 0)])
         let attributedText = NSMutableAttributedString.init(attributedString: "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
                 withParams: ["CONTACT_PHONE".localized]
             )
@@ -443,7 +446,7 @@ class HomeViewController: BaseViewController {
         case .healthy:
             router?.route(to: Routes.healthyExposition, from: self, parameters: info.lastCheck)
         case .exposed:
-            router?.route(to: Routes.highExposition, from: self, parameters: info.since)
+            router?.route(to: Routes.highExposition, from: self, parameters: info.since, info.lastCheck)
         case .infected:
             router?.route(to: Routes.positiveExposed, from: self, parameters: info.since)
         }

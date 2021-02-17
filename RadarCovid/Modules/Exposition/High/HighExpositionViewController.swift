@@ -30,9 +30,10 @@ class HighExpositionViewController: BaseExposed {
     @IBOutlet weak var caSelectorButton: UIButton!
     @IBOutlet weak var otherSympthomsLabel: UILabel!
     @IBOutlet weak var howActLabel: UILabel!
-    var settingsRepository: SettingsRepository!
     
+    var settingsRepository: SettingsRepository!
     var ccaUseCase: CCAAUseCase!
+    
     var since: Date?
     
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
@@ -55,24 +56,10 @@ class HighExpositionViewController: BaseExposed {
         self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
             SelectorView.initWithParentViewController(viewController: self,
                                                       title: "LOCALE_SELECTION_REGION_DEFAULT".localized,
-                                                      getArray:{ [weak self] () -> Observable<[SelectorItem]> in
-                
-                return Observable.create { [weak self] observer in
-                    self?.ccaUseCase.getCCAA().subscribe(onNext: {(value) in
-                        observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
-                        observer.onCompleted()
-                    }).disposed(by: self?.disposeBag ?? DisposeBag())
-                    return Disposables.create {
-                    }
-                }
-            }, getSelectedItem: { () -> Observable<SelectorItem> in
-                
-                return Observable.create { [weak self] observer in
-                    observer.onNext(SelectorHelperViewModel.generateTransformation(val: self?.ccaUseCase.getCurrent() ?? CaData.emptyCaData()))
-                    observer.onCompleted()
-                    return Disposables.create {
-                    }
-                }
+                getArray: { [weak self] () ->  Observable<[SelectorItem]> in
+                    self?.ccaUseCase.getCCAA().map { locales in SelectorHelperViewModel.generateTransformation(val: locales) } ?? .empty()
+            }, getSelectedItem: { [weak self] () -> Observable<SelectorItem> in
+                .just(SelectorHelperViewModel.generateTransformation(val: self?.ccaUseCase.getCurrent() ?? CaData.emptyCaData()))
             }, delegateOutput: self)
         }
     }
@@ -158,6 +145,7 @@ class HighExpositionViewController: BaseExposed {
     
     private func setLogicTextInfect() {
         //Text Infect
+        
         let date = self.since ?? Date()
         let formatter = DateFormatter()
         formatter.dateFormat = Date.appDateFormat
@@ -169,20 +157,25 @@ class HighExpositionViewController: BaseExposed {
             daysSinceLastInfection = 1
         }
         
-        let remindingDays = self.checkRemindingExpositionDays(since: sinceDay)
-        let remindingDaysText =
-            remindingDays <= 1
-                ? "EXPOSED_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remindingDays)])
-                : "EXPOSED_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(remindingDays)])
+        let remainingDays = self.checkRemainingExpositionDays(since: sinceDay)
+        let remainingDaysText =
+            remainingDays <= 1
+                ? "EXPOSED_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remainingDays)])
+                : "EXPOSED_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(remainingDays)])
+        
+        var last = "-"
+        if let lastCheck = self.lastCheck {
+            last = formatter.string(from: lastCheck)
+        }
         
         let attributedText = NSMutableAttributedString.init(
             attributedString: "EXPOSITION_HIGH_DESCRIPTION"
                 .localizedAttributed(
-                    withParams: [String(daysSinceLastInfection), formatter.string(from: date) ]
+                    withParams: [String(daysSinceLastInfection), last ]
                 )
         )
         attributedText
-            .append(remindingDaysText)
+            .append(remainingDaysText)
         youCouldBeLabel.attributedText = attributedText
         youCouldBeLabel.setMagnifierFontSize()
 
@@ -193,21 +186,24 @@ class HighExpositionViewController: BaseExposed {
                     withParams: [ String(daysSinceLastInfection), date.getAccesibilityDate() ?? ""]
                 )
         )
-        accesibilityText.append(remindingDaysText)
+        accesibilityText.append(remainingDaysText)
         youCouldBeLabel.accessibilityLabel = accesibilityText.string
     }
     
-    func checkRemindingExpositionDays(since: Date) -> Int {
+    func checkRemainingExpositionDays(since: Date) -> Int {
+        let sinceDay = since.getStartOfDay()
+        
         let minutesInAHour = 60
         let hoursInADay = 24
         let formatter = DateFormatter()
         formatter.dateFormat = Date.appDateFormat
-        var sinceDay = since
-        sinceDay = sinceDay.getStartOfDay()
         
         let daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
         let daysForHealty = Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0) / minutesInAHour / hoursInADay
-        return daysForHealty - daysSinceLastInfection
+        
+        let result = daysForHealty - daysSinceLastInfection
+        
+        return result >= 0 ? result : 0
     }
     
     private func setCaSelector() {

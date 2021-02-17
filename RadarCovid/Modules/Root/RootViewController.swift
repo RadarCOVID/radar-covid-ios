@@ -11,6 +11,7 @@
 
 import UIKit
 import RxSwift
+import DP3TSDK
 
 class RootViewController: UIViewController {
 
@@ -22,6 +23,7 @@ class RootViewController: UIViewController {
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
     
     var urlSchemeRedirect: [Routes]?
+    var selectTabType: UIViewController.Type?
     var paramsUrlScheme: [Any?]?
     
     private let disposeBag = DisposeBag()
@@ -80,10 +82,14 @@ class RootViewController: UIViewController {
             onNext: { [weak self] settings in
                 debugPrint("Configuration  finished")
 
-                if  settings.isUpdated ?? false {
+                let version = Float(UIDevice.current.systemVersion) ?? 0
+
+                if (version >= 13 && version < 13.6) {
+                    self?.navigateToUnsupportedOS()
+                } else if settings.isUpdated ?? false {
                     self?.navigateFirst()
                 } else {
-                    self?.showUpdateNoticeForSettings(settings: settings)                    
+                    self?.showUpdateNoticeForSettings(settings: settings)
                 }
 
             }, onError: {  [weak self] error in
@@ -113,25 +119,27 @@ class RootViewController: UIViewController {
                     }
                 }
             }  
-        } else {
-            self.showAlertOk(title: "ALERT_UPDATE_TEXT_TITLE".localized,
-                              message: "ALERT_UPDATE_OS_VERSION_TEXT_CONTENT".localized,
-                              buttonTitle: "ALERT_ACCEPT_BUTTON".localized) { 
-                self.navigateFirst()
-            }
         }
     }
 
     private  func navigateFirst() {
-        if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
-            if let urlSchemeRedirect = urlSchemeRedirect {   
-                router?.routes(to: urlSchemeRedirect, from: self, parameters: paramsUrlScheme)
+        if DP3TTracing.isOSCompatible {
+            if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
+                if let urlSchemeRedirect = urlSchemeRedirect {
+                    router?.routes(to: urlSchemeRedirect, from: self, parameters: paramsUrlScheme)
+                } else {
+                    router?.route(to: Routes.home, from: self, parameters: selectTabType)
+                }
             } else {
-                router?.route(to: Routes.home, from: self)
+                router!.route(to: Routes.welcome, from: self)
             }
         } else {
-            router!.route(to: Routes.welcome, from: self)
+            router!.route(to: Routes.unsupportedOS, from: self)
         }
+    }
+    
+    private func navigateToUnsupportedOS() {
+        router!.route(to: Routes.unsupportedOS, from: self)
     }
 
 }

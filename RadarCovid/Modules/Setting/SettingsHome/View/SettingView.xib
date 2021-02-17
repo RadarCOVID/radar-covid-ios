@@ -102,6 +102,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
+                            <color key="backgroundColor" name="veryLightPink"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="uQY-gb-oEB" secondAttribute="trailing" constant="24" id="3y0-0J-gOg"/>
                                 <constraint firstItem="pjU-hI-3cH" firstAttribute="leading" secondItem="LBW-XA-zzH" secondAttribute="leading" constant="24" id="7aW-13-Fev"/>
@@ -113,6 +114,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" name="veryLightPink"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="LBW-XA-zzH" secondAttribute="trailing" id="27g-GF-y6U"/>
                         <constraint firstItem="LBW-XA-zzH" firstAttribute="leading" secondItem="hlz-jn-ck7" secondAttribute="leading" id="6gR-4U-d2r"/>
@@ -147,7 +149,7 @@
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" name="bgColor"/>
+            <color key="backgroundColor" name="veryLightPink"/>
             <accessibility key="accessibilityConfiguration">
                 <accessibilityTraits key="traits" header="YES"/>
             </accessibility>
@@ -174,8 +176,8 @@
         <image name="settings_about" width="22.5" height="22"/>
         <image name="settings_home" width="304" height="195"/>
         <image name="settings_language" width="34" height="25"/>
-        <namedColor name="bgColor">
-            <color red="0.98000001907348633" green="0.97600001096725464" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

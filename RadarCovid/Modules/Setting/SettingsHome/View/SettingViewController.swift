@@ -64,35 +64,27 @@ class SettingViewController: BaseViewController {
         infoContainerView.image = UIImage(named: "WhiteCard")
     }
     
+    
+    
     private func showLanguageSelection() {
         guard let viewModel = self.viewModel else { return }
         
         isDisableAccesibility(isDisabble: true)
         self.navigationController?.topViewController?.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha:  1) {
             SelectorView
-                .initWithParentViewController(
+                .initWithParentViewController (
                     viewController: self,
                     title: "SETTINGS_LANGUAGE_TITLE".localized,
-                    getArray:{ [weak self] () ->
-                        Observable<[SelectorItem]> in
-                            return Observable.create { [weak self] observer in
-                                viewModel.getLenguages().subscribe(onNext: {(value) in
-                                    observer.onNext(SelectorHelperViewModel.generateTransformation(val: value))
-                                        observer.onCompleted()
-                                    }).disposed(by: self?.disposeBag ?? DisposeBag())
-                                return Disposables.create {}
-                            }
-                    }, getSelectedItem: { () ->
-                        Observable<SelectorItem> in
-                            return Observable.create { [weak self] observer in
-                                viewModel.getCurrenLenguageLocalizable().subscribe(onNext: {(value) in
-                                    observer.onNext(SelectorHelperViewModel.generateTransformation(val: ItemLocale(id: viewModel.getCurrenLenguage(), description: value)))
-                                    observer.onCompleted()
-                                }).disposed(by: self?.disposeBag ?? DisposeBag())
-                                return Disposables.create {
+                    getArray: { () -> Observable<[SelectorItem]> in
+                        viewModel.getLenguages().map { locales in SelectorHelperViewModel.generateTransformation(val: locales) }
+                    },
+                    getSelectedItem: { () -> Observable<SelectorItem> in
+                                viewModel.getCurrenLenguageLocalizable().map { value in
+                                    SelectorHelperViewModel.generateTransformation(
+                                        val: ItemLocale(id: viewModel.getCurrenLenguage(),
+                                                        description: value))
                                 }
-                            }
-                          }, delegateOutput: self)
+                    }, delegateOutput: self)
         }
     }
     
@@ -120,7 +112,7 @@ extension SettingViewController: SelectorProtocol {
                                          okHandler: {
                                             completionCloseView(true)
                                             self.viewModel?.setCurrentLocale(key: selectorItem.id)
-                                            self.router?.route(to: Routes.changeLanguage, from: self)
+                                            self.router?.route(to: Routes.changeLanguage, from: self, parameters: SettingViewController.self)
                                          }, cancelHandler: {
                                             completionCloseView(false)
                                          })

@@ -31,5 +31,4 @@ class ShareAppViewModel {
     func getBody() -> String {
         return shareUseCase.getBody()
     }
-    
 }

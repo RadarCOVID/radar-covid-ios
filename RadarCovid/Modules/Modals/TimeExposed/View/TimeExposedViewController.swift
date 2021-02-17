@@ -19,6 +19,7 @@ class TimeExposedViewController: BaseViewController {
     @IBOutlet weak var moreInfoLabel: UILabel!
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var bottomCloseButton: UIButton!
     
     var router: AppRouter?
     var viewModel: TimeExposedViewModel?
@@ -65,6 +66,10 @@ class TimeExposedViewController: BaseViewController {
         cancelButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
         cancelButton.accessibilityHint = "ACC_HINT".localized
         cancelButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        
+        bottomCloseButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
+        bottomCloseButton.accessibilityHint = "ACC_HINT".localized
+        bottomCloseButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
         
         bullet1Label.isAccessibilityElement = true
         bullet1Label.accessibilityTraits.insert(UIAccessibilityTraits.link)

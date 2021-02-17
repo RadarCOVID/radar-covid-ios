@@ -24,6 +24,7 @@ class SelectorView: UIView {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var selectorTableView: UITableView!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
     
     var parentViewController: UIViewController?
@@ -106,11 +107,18 @@ class SelectorView: UIView {
         
         acceptButton.isAccessibilityElement = true
         acceptButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        acceptButton.accessibilityHint = "ACC_BUTTON_ALERT_ACCEPT".localized
+        acceptButton.accessibilityLabel = "ACC_BUTTON_ACCEPT".localized
+        acceptButton.accessibilityHint = "ACC_HINT".localized
         
         cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+        cancelButton.accessibilityLabel = "ALERT_CANCEL_BUTTON".localized
+        cancelButton.accessibilityHint = "ACC_HINT".localized
+        
+        closeButton.isAccessibilityElement = true
+        closeButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
+        closeButton.accessibilityHint = "ACC_HINT".localized
+//        closeButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
     
     private func initValues() {

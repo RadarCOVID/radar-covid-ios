@@ -39,6 +39,12 @@ class Injection {
             return swaggerApi
         }.inObjectScope(.container)
         
+        container.register(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue) { _ in
+            let swaggerApi = SwaggerClientAPI()
+            swaggerApi.basePath = Config.endpoints.kpi
+            return swaggerApi
+        }.inObjectScope(.container)
+        
         container.register(TokenAPI.self) { r in
             TokenAPI(clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!)
         }.inObjectScope(.container)
@@ -70,6 +76,12 @@ class Injection {
         container.register(VerificationControllerAPI.self) { r in
             VerificationControllerAPI(
                 clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue)!
+            )
+        }.inObjectScope(.container)
+        
+        container.register(AppleKpiControllerAPI.self) { r in
+            AppleKpiControllerAPI(
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue)!
             )
         }.inObjectScope(.container)
         
@@ -105,12 +117,24 @@ class Injection {
             UserDefaultsStatisticsRepository()
         }.inObjectScope(.container)
         
+        container.register(AnalyticsRepository.self) { _ in
+            UserDefaultsAnalyticsRepository()
+        }.inObjectScope(.container)
+        
+        container.register(ExposureKpiRepository.self) { _ in
+            UserDefaultsExposureKpiRepository()
+        }.inObjectScope(.container)
+        
         container.register(VersionHandler.self) { _ in
             VersionHandler()
         }.inObjectScope(.container)
         
         container.register(NotificationHandler.self) { _ in
             NotificationHandler()
+        }.inObjectScope(.container)
+        
+        container.register(DeviceTokenHandler.self) { r in
+            DCDeviceTokenHandler()
         }.inObjectScope(.container)
         
         container.register(OnboardingCompletedUseCase.self) { r in
@@ -158,7 +182,14 @@ class Injection {
         container.register(SetupUseCase.self) { r in
             SetupUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!,
                          notificationHandler: r.resolve(NotificationHandler.self)!,
-                         expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!)
+                         backgroundTaskUseCase: r.resolve(BackgroundTasksUseCase.self)!,
+                         expositionUseCase: r.resolve(ExpositionUseCase.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(BackgroundTasksUseCase.self) { r in
+            BackgroundTasksUseCase(analyticsUseCase: r.resolve(AnalyticsUseCase.self)!,
+                                   fakeRequestUseCase: r.resolve(FakeRequestUseCase.self)!,
+                                   expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!)
         }.inObjectScope(.container)
         
         container.register(LocalizationUseCase.self) { r in
@@ -182,16 +213,16 @@ class Injection {
         
         container.register(CountriesUseCase.self) { r in
             CountriesUseCase(
-                countriesRepository: r.resolve(CountriesRepository.self)!
-                , masterDataApi: r.resolve(MasterDataAPI.self)!
-                , localizationRepository: r.resolve(LocalizationRepository.self)!
+                countriesRepository: r.resolve(CountriesRepository.self)!,
+                masterDataApi: r.resolve(MasterDataAPI.self)!,
+                localizationRepository: r.resolve(LocalizationRepository.self)!
             )
         }.inObjectScope(.container)
         
         container.register(StatisticsUseCase.self) { r in
             StatisticsUseCase(
-                statisticsRepository: r.resolve(StatisticsRepository.self)!
-                , statisticsApi: r.resolve(StatisticsAPI.self)!
+                statisticsRepository: r.resolve(StatisticsRepository.self)!,
+                statisticsApi: r.resolve(StatisticsAPI.self)!
             )
         }.inObjectScope(.container)
         
@@ -200,6 +231,24 @@ class Injection {
                 expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
                 settingsRepository: r.resolve(SettingsRepository.self)!,
                 resetDataUseCase: r.resolve(ResetDataUseCase.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(DeepLinkUseCase.self) { r in
+            DeepLinkUseCase(
+                expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(AnalyticsUseCase.self) { r in
+            AnalyticsUseCase(deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!,
+                             analyticsRepository: r.resolve(AnalyticsRepository.self)!,
+                             kpiApi: r.resolve(AppleKpiControllerAPI.self)!,
+                             exposureKpiUseCase:  r.resolve(ExposureKpiUseCase.self)!,
+                             settingsRepository: r.resolve(SettingsRepository.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(ExposureKpiUseCase.self) { r in
+            ExposureKpiUseCase(expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+                               exposureKpiRepository: r.resolve(ExposureKpiRepository.self)!)
         }.inObjectScope(.container)
         
         container.register(TabBarController.self) { r in
@@ -216,8 +265,7 @@ class Injection {
         
         container.register(AppRouter.self) { _ in
             AppRouter()
-        }.initCompleted {r, appRouter in
-        }
+        }.initCompleted {r, appRouter in}
         
         container.register(ProximityViewController.self) {  r in
             let proxVC = ProximityViewController()
@@ -462,6 +510,11 @@ class Injection {
             rootVC.onBoardingCompletedUseCase = r.resolve(OnboardingCompletedUseCase.self)!
             rootVC.router = r.resolve(AppRouter.self)!
             return rootVC
+        }
+        
+        container.register(UnsupportedOSViewController.self) { r in
+            let unsupportedOSVC = UnsupportedOSViewController()
+            return unsupportedOSVC
         }
         
         container.register(ErrorRecorder.self) { _ in

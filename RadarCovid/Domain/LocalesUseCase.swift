@@ -26,7 +26,10 @@ class LocalesUseCase {
     }
 
     public func loadLocales() -> Observable<[ItemLocale]> {
-        let currentLocale = localizationRepository.getLocale()
+        var currentLocale = localizationRepository.getLocale()
+        if currentLocale == nil {
+            currentLocale = getLocaleFromDevice(currentLocale: NSLocale.current.languageCode)
+        }
         return masterDataApi.getLocales(locale: currentLocale, platform: Config.platform, version: Config.version).map { [weak self] masterLocales in
             var locales: [ItemLocale] = []
             
@@ -37,6 +40,20 @@ class LocalesUseCase {
             self?.locales = locales
             self?.localizationRepository.setLocales(locales)
             return locales
+        }
+    }
+    
+    public func getLocaleFromDevice(currentLocale: String?) -> String? {
+        switch currentLocale {
+        case "es": return "es-ES"
+        case "ca": return "ca-ES"
+        case "eu": return "eu-ES"
+        case "gl": return "gl-ES"
+        case "ro": return "ro-RO"
+        case "va": return "va-ES"
+        case "fr": return "fr-FR"
+        case "en": return "en-US"
+        default: return nil
         }
     }
 

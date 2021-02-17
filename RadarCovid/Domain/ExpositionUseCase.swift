@@ -50,8 +50,6 @@ class ExpositionUseCase: DP3TTracingDelegate {
         )
 
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss.SSS z"
-
-        DP3TTracing.delegate = self
     }
     
     func DP3TTracingStateChanged(_ state: TracingState) {
@@ -107,7 +105,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
                 let savedStatus = expositionInfoRepository.getExpositionInfo()?.level ?? ExpositionInfo.Level.healthy
                 var expositionInfo = ExpositionInfo(level: ExpositionInfo.Level.infected)
                 if savedStatus == ExpositionInfo.Level.infected {
-                    expositionInfo =  expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: ExpositionInfo.Level.infected)
+                    expositionInfo = expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: ExpositionInfo.Level.infected)
                 }
                 if expositionInfo.since == nil {
                     expositionInfo.since = Date()
@@ -117,7 +115,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
                 
             case .exposed(days: let days):
                 var info = ExpositionInfo(level: ExpositionInfo.Level.exposed)
-                info.since = self.getMoreRecentDateFromExpositionArray(days: days)
+                info.since = getMoreRecentDateFromExpositionArray(days: days)
                 info.lastCheck = tStatus.lastSync
                 return info
         }
