@@ -20,6 +20,8 @@ class TabBarController: UITabBarController {
     var helpLineViewController: HelpLineViewController
     var settingViewController: SettingViewController
     var statsViewController: StatsViewController
+    var venueRecordViewController: VenueRecordStartViewController
+    
     var localizationUseCase: LocalizationUseCase
     var preferencesRepository: PreferencesRepository?
     
@@ -31,7 +33,8 @@ class TabBarController: UITabBarController {
          statsViewController: StatsViewController,
          settingViewController: SettingViewController,
          preferencesRepository: PreferencesRepository,
-         localizationUseCase: LocalizationUseCase) {
+         localizationUseCase: LocalizationUseCase,
+         venueRecordViewController: VenueRecordStartViewController) {
         
         self.homeViewController = homeViewController
         self.myDataViewController = myDataViewController
@@ -41,6 +44,7 @@ class TabBarController: UITabBarController {
         
         self.localizationUseCase = localizationUseCase
         self.preferencesRepository = preferencesRepository
+        self.venueRecordViewController = venueRecordViewController
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -61,7 +65,7 @@ class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAccessibility()
-        setViewControllers([homeViewController, myDataViewController, helpLineViewController, statsViewController, settingViewController], animated: false)
+        setViewControllers([homeViewController, helpLineViewController, statsViewController, settingViewController, venueRecordViewController], animated: false)
         
         select(tabType: selectTabType)
     }
@@ -123,6 +127,11 @@ class TabBarController: UITabBarController {
             selectedImage: UIImage(named: "MenuStatsSelected"))
         
         settingViewController.tabBarItem = UITabBarItem(
+            title: "",
+            image: UIImage(named: "MenuSettingNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
+            selectedImage: UIImage(named: "MenuSettingSelected"))
+        
+        venueRecordViewController.tabBarItem = UITabBarItem(
             title: "",
             image: UIImage(named: "MenuSettingNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuSettingSelected"))

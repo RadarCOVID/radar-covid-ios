@@ -251,6 +251,17 @@ class Injection {
                                exposureKpiRepository: r.resolve(ExposureKpiRepository.self)!)
         }.inObjectScope(.container)
         
+        
+        container.register(ReminderNotificationUseCase.self) { r in
+            let reminderNotificationUseCase = ReminderNotificationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!)
+            return reminderNotificationUseCase
+        }.inObjectScope(.container)
+        
+        container.register(BluethoothReminderUseCase.self) { r in
+            let bluethoothReminderUseCase = BluethoothReminderUseCase()
+            return bluethoothReminderUseCase
+        }.inObjectScope(.container)
+        
         container.register(TabBarController.self) { r in
             TabBarController(
                 homeViewController: r.resolve(HomeViewController.self)!,
@@ -259,7 +270,8 @@ class Injection {
                 statsViewController: r.resolve(StatsViewController.self)!,
                 settingViewController: r.resolve(SettingViewController.self)!,
                 preferencesRepository: r.resolve(PreferencesRepository.self)!,
-                localizationUseCase: r.resolve(LocalizationUseCase.self)!
+                localizationUseCase: r.resolve(LocalizationUseCase.self)!,
+                venueRecordViewController: r.resolve(VenueRecordStartViewController.self)!
             )
         }
         
@@ -517,6 +529,25 @@ class Injection {
             return unsupportedOSVC
         }
         
+        container.register(VenueRecordStartViewController.self) { r in
+            let vc = VenueRecordStartViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            return vc
+        }
+        
+        container.register(QrScannerViewController.self) { r in
+            let vc = QrScannerViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            return vc
+        }
+        
+        container.register(QrResultViewController.self) { r in
+            let vc = QrResultViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            return vc
+        }
+        
+        
         container.register(ErrorRecorder.self) { _ in
             ErrorRecorderImpl()
         }
@@ -525,16 +556,6 @@ class Injection {
             let errorHandler = ErrorHandlerImpl(verbose: Config.errorVerbose)
             errorHandler.errorRecorder = r.resolve(ErrorRecorder.self)!
             return errorHandler
-        }
-        
-        container.register(ReminderNotificationUseCase.self) { r in
-            let reminderNotificationUseCase = ReminderNotificationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!)
-            return reminderNotificationUseCase
-        }
-        
-        container.register(BluethoothReminderUseCase.self) { r in
-            let bluethoothReminderUseCase = BluethoothReminderUseCase()
-            return bluethoothReminderUseCase
         }
         
     }

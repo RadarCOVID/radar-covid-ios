@@ -45,6 +45,8 @@ public enum Routes {
     case infoApp
     case helpSettings
     case unsupportedOS
+    case qrScanner
+    case qrResult
 }
 
 
@@ -151,7 +153,13 @@ class AppRouter: Router {
             routeToHelpSettings(context)
         case .unsupportedOS:
             routeToUnsupportedOS(context)
+        case .qrScanner:
+            routeToQrScanner(context)
+        case .qrResult:
+            routeToQrResult(context, qrCode: parameters?[0] as? String)
         }
+        
+            
     }
 
     private func routeToOnboarding(_ context: UIViewController) {
@@ -278,6 +286,17 @@ class AppRouter: Router {
     private func routeToWelcome(_ context: UIViewController) {
         let welcomeVC = AppDelegate.shared!.injection.resolve(WelcomeViewController.self)!
         loadViewAsRoot(navController: context.navigationController, view: welcomeVC)
+    }
+    
+    private func routeToQrScanner(_ context: UIViewController) {
+        let qrScannerVC = AppDelegate.shared!.injection.resolve(QrScannerViewController.self)!
+        loadViewAsRoot(navController: context.navigationController, view: qrScannerVC)
+    }
+    
+    private func routeToQrResult(_ context: UIViewController, qrCode: String?) {
+        let qrResultVC = AppDelegate.shared!.injection.resolve(QrResultViewController.self)!
+        qrResultVC.qrCode = qrCode
+        loadViewAsRoot(navController: context.navigationController, view: qrResultVC)
     }
     
     private func loadViewAsRoot(navController: UINavigationController?, view: UIViewController, animated: Bool = false) {
