@@ -13,15 +13,7 @@ import Foundation
 import RxSwift
 import Logging
 
-class AnalyticsUseCase : BackgroundTask {
-    
-    var timeBetween: TimeInterval {
-        get {
-            timeBetweenKpi()
-        }
-    }
-    
-    var taskKey: String = "es.gob.radarcovid.analytics"
+class AnalyticsUseCase {
     
     private let logger = Logger(label: "AnalyticsUseCase")
     
@@ -48,10 +40,6 @@ class AnalyticsUseCase : BackgroundTask {
         self.kpiApi = kpiApi
         self.exposureKpiUseCase = exposureKpiUseCase
         self.settingsRepository = settingsRepository
-    }
-    
-    func run() -> Observable<Any?> {
-        sendAnaltyics().map { $0 }
     }
     
     func sendAnaltyics() -> Observable<Bool> {
