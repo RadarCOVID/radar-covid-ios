@@ -18,15 +18,8 @@ protocol CountriesRepository {
     
 }
 
-class UserDefaultsCountriesRepository: CountriesRepository {
+class UserDefaultsCountriesRepository: UserDefaultsRepository, CountriesRepository {
     private static let kCountries = "UserDefaultsLocalizationRepository.kcountries"
-    
-    private let userDefaults: UserDefaults
-    
-    init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
-    
     
     func getCountries() -> [ItemCountry]? {
         if let dataCountries = userDefaults.object(forKey: UserDefaultsCountriesRepository.kCountries) as? Data {

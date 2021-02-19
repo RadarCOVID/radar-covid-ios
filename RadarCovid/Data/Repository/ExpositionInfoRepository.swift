@@ -19,19 +19,10 @@ protocol ExpositionInfoRepository {
     func clearData()
 }
 
-class UserDefaultsExpositionInfoRepository: ExpositionInfoRepository {
+class UserDefaultsExpositionInfoRepository: UserDefaultsRepository, ExpositionInfoRepository {
 
     private static let kData = "UserDefaultsExpositionInfoRepository.expositionInfo"
     private static let kChanged = "UserDefaultsExpositionInfoRepository.changedToHealthy"
-
-    private let encoder = JSONEncoder()
-    private let decoder = JSONDecoder()
-
-    private let userDefaults: UserDefaults
-
-    init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
 
     func getExpositionInfo() -> ExpositionInfo? {
         if let uncoded = userDefaults.data(forKey: UserDefaultsExpositionInfoRepository.kData), !uncoded.isEmpty {

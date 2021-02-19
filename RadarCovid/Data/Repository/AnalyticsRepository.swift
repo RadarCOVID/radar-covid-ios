@@ -19,18 +19,9 @@ protocol AnalyticsRepository {
     
 }
 
-class UserDefaultsAnalyticsRepository: AnalyticsRepository {
+class UserDefaultsAnalyticsRepository: UserDefaultsRepository, AnalyticsRepository {
         
     private static let kLastRun = "UserDefaultsSettingsRepository.lastRun"
-    
-    private let encoder = JSONEncoder()
-    private let decoder = JSONDecoder()
-
-    private let userDefaults: UserDefaults
-
-    init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
     
     func getLastRun() -> Date? {
         let uncoded = userDefaults.data(forKey: UserDefaultsAnalyticsRepository.kLastRun) ?? Data()

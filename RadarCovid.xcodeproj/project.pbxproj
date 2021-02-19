@@ -19,6 +19,9 @@
 		6D076FB825DEC639001A8C44 /* QrScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D076FB725DEC639001A8C44 /* QrScannerViewController.swift */; };
 		6D076FC525DED3A9001A8C44 /* QrResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D076FC325DED3A9001A8C44 /* QrResultViewController.swift */; };
 		6D076FC625DED3A9001A8C44 /* QrResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D076FC425DED3A9001A8C44 /* QrResultViewController.xib */; };
+		6D076FCA25DFC913001A8C44 /* VenueRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D076FC925DFC913001A8C44 /* VenueRecordRepository.swift */; };
+		6D076FD025DFC9B1001A8C44 /* VenueRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D076FCF25DFC9B1001A8C44 /* VenueRecord.swift */; };
+		6D076FD425DFCC66001A8C44 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */; };
 		6D1385C825D4407B000E5461 /* BackgroundTasksUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1385C725D4407B000E5461 /* BackgroundTasksUseCase.swift */; };
 		6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */; };
 		6D2962E925B5ABE90030A99F /* DeviceTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */; };
@@ -263,6 +266,9 @@
 		6D076FB725DEC639001A8C44 /* QrScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScannerViewController.swift; sourceTree = "<group>"; };
 		6D076FC325DED3A9001A8C44 /* QrResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrResultViewController.swift; sourceTree = "<group>"; };
 		6D076FC425DED3A9001A8C44 /* QrResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrResultViewController.xib; sourceTree = "<group>"; };
+		6D076FC925DFC913001A8C44 /* VenueRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRecordRepository.swift; sourceTree = "<group>"; };
+		6D076FCF25DFC9B1001A8C44 /* VenueRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRecord.swift; sourceTree = "<group>"; };
+		6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		6D1385C725D4407B000E5461 /* BackgroundTasksUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTasksUseCase.swift; sourceTree = "<group>"; };
 		6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalesUseCase.swift; sourceTree = "<group>"; };
 		6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenHandler.swift; sourceTree = "<group>"; };
@@ -908,6 +914,8 @@
 				76D28429256E0ED200A2B105 /* CountriesRepository.swift */,
 				76D342ED257690BF009E14C5 /* StatisticsRepository.swift */,
 				6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */,
+				6D076FC925DFC913001A8C44 /* VenueRecordRepository.swift */,
+				6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -943,6 +951,7 @@
 				76D2841F256E0E1E00A2B105 /* Countries.swift */,
 				76D342E325768D75009E14C5 /* StatsItemModel.swift */,
 				76D342E725768F2B009E14C5 /* TotalsModel.swift */,
+				6D076FCF25DFC9B1001A8C44 /* VenueRecord.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1661,6 +1670,7 @@
 				6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */,
 				A9C9AC1225385BA100637067 /* CustomSlider.swift in Sources */,
 				76D9BD1E24A8992000BA6697 /* NVActivityIndicatorViewable.swift in Sources */,
+				6D076FCA25DFC913001A8C44 /* VenueRecordRepository.swift in Sources */,
 				6DF6ECD1248FA044007EAA40 /* MyDataViewController.swift in Sources */,
 				76D342DC25768C4F009E14C5 /* Totals.swift in Sources */,
 				A9DF1FEE25713270004BA5D1 /* SettingViewModel.swift in Sources */,
@@ -1729,6 +1739,7 @@
 				6D97C48425BF313400102200 /* ExposureKpiUseCase.swift in Sources */,
 				A9EB48032535ADBB00F3A122 /* MyHealthReportedViewController.swift in Sources */,
 				76D9BD2024A8992000BA6697 /* NVActivityIndicatorView.swift in Sources */,
+				6D076FD025DFC9B1001A8C44 /* VenueRecord.swift in Sources */,
 				76D9BD1D24A8992000BA6697 /* NVActivityIndicatorPresenter.swift in Sources */,
 				6DE27C73249A6D4600BBCF40 /* APIs.swift in Sources */,
 				76D28426256E0E8A00A2B105 /* CountriesUseCase.swift in Sources */,
@@ -1756,6 +1767,7 @@
 				A9EDAF0D25767CC60041AE1E /* HighExpositionViewController.swift in Sources */,
 				6DB541972498A31700166D37 /* SettingsRepository.swift in Sources */,
 				6DE27C7A249A6D4600BBCF40 /* CodableHelper.swift in Sources */,
+				6D076FD425DFCC66001A8C44 /* UserDefaultsRepository.swift in Sources */,
 				6DE27C77249A6D4600BBCF40 /* JSONValue.swift in Sources */,
 				6D97C4A325C01CB600102200 /* AppleKpiTokenDto.swift in Sources */,
 				6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */,

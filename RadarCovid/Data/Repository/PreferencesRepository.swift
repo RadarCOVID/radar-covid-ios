@@ -26,18 +26,12 @@ protocol PreferencesRepository {
     func setTracing(initialized: Bool)
 }
 
-class UserDefaultsPreferencesRepository: PreferencesRepository {
+class UserDefaultsPreferencesRepository: UserDefaultsRepository, PreferencesRepository {
 
     private static let kOnboarding = "UserDefaultsPreferencesRepository.onboarding"
     private static let kTracing = "UserDefaultsPreferencesRepository.tracing"
     private static let kTracingInit = "UserDefaultsPreferencesRepository.tracingInit"
     private static let kSyncDate = "UserDefaultsPreferencesRepository.syncDate"
-
-    private let userDefaults: UserDefaults
-
-    init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
 
     func isOnBoardingCompleted() -> Bool {
         userDefaults.object(forKey: UserDefaultsPreferencesRepository.kOnboarding) as? Bool ?? false
