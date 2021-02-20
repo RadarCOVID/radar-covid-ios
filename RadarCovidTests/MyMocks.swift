@@ -187,3 +187,39 @@ class ExposureKpiRepositoryMock: ExposureKpiRepository {
     
     
 }
+
+
+class DeviceTokenHandlerMock: DeviceTokenHandler {
+    
+    func generateToken() -> Observable<DeviceToken> {
+        return .empty()
+    }
+    
+    func clearCachedToken() {
+        
+    }
+    
+}
+
+class AnalyticsRepositoryMock: AnalyticsRepository {
+    func getLastRun() -> Date? {
+        nil
+    }
+    
+    func save(lastRun: Date) {
+        
+    }
+    
+}
+
+class AppleKpiControllerAPIMock: AppleKpiControllerAPI {
+    
+}
+
+class ExposureKpiUseCaseMock: ExposureKpiUseCase {
+    func getExposureKpi() -> KpiDto {
+        KpiDto(kpi: nil, timestamp: nil, value: nil)
+    }
+    
+    
+}

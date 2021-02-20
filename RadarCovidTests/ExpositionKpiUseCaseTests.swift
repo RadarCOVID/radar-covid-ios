@@ -30,7 +30,7 @@ class ExpositionKpiUseCaseTests: XCTestCase {
         
         exposureKpiRepository = ExposureKpiRepositoryMock()
         
-        sut = ExposureKpiUseCase(expositionInfoRepository: expositionInfoRepository!,
+        sut = ExposureKpiUseCaseImpl(expositionInfoRepository: expositionInfoRepository!,
                                  exposureKpiRepository: exposureKpiRepository!)
     }
 

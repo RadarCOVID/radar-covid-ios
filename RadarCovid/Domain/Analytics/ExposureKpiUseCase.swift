@@ -12,7 +12,11 @@
 import Foundation
 import Logging
 
-class ExposureKpiUseCase {
+protocol ExposureKpiUseCase {
+    func getExposureKpi() -> KpiDto
+}
+
+class ExposureKpiUseCaseImpl : ExposureKpiUseCase {
     
     private let logger = Logger(label: "ExposureKpiUseCase")
     

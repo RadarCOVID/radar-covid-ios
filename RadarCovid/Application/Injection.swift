@@ -247,7 +247,7 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(ExposureKpiUseCase.self) { r in
-            ExposureKpiUseCase(expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+            ExposureKpiUseCaseImpl(expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
                                exposureKpiRepository: r.resolve(ExposureKpiRepository.self)!)
         }.inObjectScope(.container)
         
