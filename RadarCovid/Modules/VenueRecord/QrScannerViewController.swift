@@ -9,104 +9,66 @@
 // SPDX-License-Identifier: MPL-2.0
 //
 
-import AVFoundation
 import UIKit
 
-class QrScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class QrScannerViewController: UIViewController, QrScannerViewDelegate {
     
-    private var captureSession: AVCaptureSession!
-    private var previewLayer: AVCaptureVideoPreviewLayer!
+    @IBOutlet weak var qrScannerView: QrScannerView!
+    
+    @IBOutlet weak var targetImage: UIImageView!
     
     var router: AppRouter!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = UIColor.black
-        captureSession = AVCaptureSession()
-
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
-        let videoInput: AVCaptureDeviceInput
-
-        do {
-            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-        } catch {
-            return
-        }
-
-        if (captureSession.canAddInput(videoInput)) {
-            captureSession.addInput(videoInput)
-        } else {
-            failed()
-            return
-        }
-
-        let metadataOutput = AVCaptureMetadataOutput()
-
-        if (captureSession.canAddOutput(metadataOutput)) {
-            captureSession.addOutput(metadataOutput)
-
-            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.qr]
-        } else {
-            failed()
-            return
-        }
-
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
-        previewLayer.videoGravity = .resizeAspectFill
-        view.layer.addSublayer(previewLayer)
-
-        captureSession.startRunning()
+        qrScannerView.delegate = self
+        
+        addQrTransparentWindowToBackground()
     }
-
-    func failed() {
-        let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
-        captureSession = nil
-    }
-
+    
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
 
-        if (captureSession?.isRunning == false) {
-            captureSession.startRunning()
-        }
+        qrScannerView.startScanning()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        
+        qrScannerView.stopScanning()
+        
         super.viewWillDisappear(animated)
-
-        if (captureSession?.isRunning == true) {
-            captureSession.stopRunning()
-        }
-    }
-
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        captureSession.stopRunning()
-
-        if let metadataObject = metadataObjects.first {
-            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-            guard let stringValue = readableObject.stringValue else { return }
-            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            found(code: stringValue)
-        }
-
-        dismiss(animated: true)
-    }
-
-    func found(code: String) {
-        router.route(to: .qrResult, from: self, parameters: code)
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
     }
     
+    private func addQrTransparentWindowToBackground() {
+        
+        let fillLayer = CAShapeLayer()
+        
+        let pathBigRect = UIBezierPath(rect: view.bounds)
+        let inset = CGFloat(15)
+        let pathSmallRect = UIBezierPath(rect: targetImage.frame.inset(by: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)))
+
+        pathBigRect.append(pathSmallRect)
+        pathBigRect.usesEvenOddFillRule = true
+        
+        fillLayer.path = pathBigRect.cgPath
+        
+        fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
+        fillLayer.fillColor = UIColor.blueyGrey62.cgColor
+        
+        view.layer.addSublayer(fillLayer)
+    }
+    
+    func qrScanningDidFail() {
+        debugPrint("Scan Failed")
+    }
+    
+    func qrScanningSucceededWithCode(_ result: String?) {
+        router.route(to: .qrResult, from: self, parameters: result)
+    }
+    
+    func qrScanningDidStop() {
+        debugPrint("Scan stopped")
+    }
+
 }
