@@ -147,8 +147,7 @@ class AnalyticsUseCase {
                 }
                 return .error(error)
             }.retryWhen { errors in
-//                self.doRetry(errors, times: 1, after: .seconds(self.inProgressWaitTime), filter: self.isExpired)
-                self.doRetry(errors, times: 1, after: .seconds(self.inProgressWaitTime))
+                self.doRetry(errors, times: 1, after: .seconds(self.inProgressWaitTime), filter: self.isExpired)
             }
     }
     
