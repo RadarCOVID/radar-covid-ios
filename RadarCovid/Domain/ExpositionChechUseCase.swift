@@ -13,7 +13,14 @@ import Foundation
 import RxSwift
 import Logging
 
-class ExpositionCheckUseCase {
+protocol ExpositionCheckUseCase {
+    
+    func checkBackToHealthyJustChanged() -> Bool
+    func checkBackToHealthy() -> Observable<Bool>
+    
+}
+
+class ExpositionCheckUseCaseImpl: ExpositionCheckUseCase {
     
     private let logger = Logger(label: "ExpositionCheckUseCase")
 
@@ -60,8 +67,6 @@ class ExpositionCheckUseCase {
     private func isExpositionOutdated(_ info: ExpositionInfo?) -> Bool {
 
         if let since = info?.since, let highRiskToLowRisk = settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk {
-            
-//            let highRiskToLowRisk = 30
 
             let current = Date()
             let limit = since.addingTimeInterval(Double(highRiskToLowRisk * 60))

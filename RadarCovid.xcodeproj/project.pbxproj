@@ -14,6 +14,7 @@
 		6D01BDCF24EFEFCB00FBADB4 /* MyMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */; };
 		6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDD824F6719000FBADB4 /* PickerPresenter.swift */; };
 		6D01BDE124FD619900FBADB4 /* RadarStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01BDE024FD619900FBADB4 /* RadarStatus.swift */; };
+		6D077AB925E046C3001A8C44 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D077AB825E046C3001A8C44 /* HomeViewModelTest.swift */; };
 		6D1385C825D4407B000E5461 /* BackgroundTasksUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1385C725D4407B000E5461 /* BackgroundTasksUseCase.swift */; };
 		6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */; };
 		6D2962E925B5ABE90030A99F /* DeviceTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */; };
@@ -69,7 +70,6 @@
 		6D87A06525E112E10077ABDE /* InfiniteSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05C25E112E10077ABDE /* InfiniteSequence.swift */; };
 		6D87A06625E112E10077ABDE /* Platform.Linux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05D25E112E10077ABDE /* Platform.Linux.swift */; };
 		6D87A06725E112E10077ABDE /* RecursiveLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05E25E112E10077ABDE /* RecursiveLock.swift */; };
-		6D87A07D25E1137A0077ABDE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D87A07225E1137A0077ABDE /* README.md */; };
 		6D87A07E25E1137A0077ABDE /* BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A07325E1137A0077ABDE /* BlockingObservable.swift */; };
 		6D87A07F25E1137A0077ABDE /* ObservableConvertibleType+Blocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A07425E1137A0077ABDE /* ObservableConvertibleType+Blocking.swift */; };
 		6D87A08025E1137A0077ABDE /* RunLoopLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A07525E1137A0077ABDE /* RunLoopLock.swift */; };
@@ -283,6 +283,7 @@
 		6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMocks.swift; sourceTree = "<group>"; };
 		6D01BDD824F6719000FBADB4 /* PickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerPresenter.swift; sourceTree = "<group>"; };
 		6D01BDE024FD619900FBADB4 /* RadarStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarStatus.swift; sourceTree = "<group>"; };
+		6D077AB825E046C3001A8C44 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		6D1385C725D4407B000E5461 /* BackgroundTasksUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTasksUseCase.swift; sourceTree = "<group>"; };
 		6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalesUseCase.swift; sourceTree = "<group>"; };
 		6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenHandler.swift; sourceTree = "<group>"; };
@@ -342,7 +343,6 @@
 		6D87A05C25E112E10077ABDE /* InfiniteSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteSequence.swift; sourceTree = "<group>"; };
 		6D87A05D25E112E10077ABDE /* Platform.Linux.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.Linux.swift; sourceTree = "<group>"; };
 		6D87A05E25E112E10077ABDE /* RecursiveLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveLock.swift; sourceTree = "<group>"; };
-		6D87A07225E1137A0077ABDE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6D87A07325E1137A0077ABDE /* BlockingObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockingObservable.swift; sourceTree = "<group>"; };
 		6D87A07425E1137A0077ABDE /* ObservableConvertibleType+Blocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Blocking.swift"; sourceTree = "<group>"; };
 		6D87A07525E1137A0077ABDE /* RunLoopLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunLoopLock.swift; sourceTree = "<group>"; };
@@ -712,6 +712,9 @@
 				6D87A06C25E1137A0077ABDE /* RxBlocking */,
 				6D87A05425E112E10077ABDE /* Platform */,
 				6D87A02625E111C40077ABDE /* RxTest */,
+				6D87A08F25E114BD0077ABDE /* AnalyticsUseCaseTests.swift */,
+				6D87A08E25E114BD0077ABDE /* ExpositionCheckUseCaseTest.swift */,
+				6D077AB825E046C3001A8C44 /* HomeViewModelTest.swift */,
 				6D64132224ED88AB00B33427 /* Info.plist */,
 				6D64132B24ED897200B33427 /* RadarCovidTests-Bridging-Header.h */,
 				6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */,
@@ -795,7 +798,6 @@
 		6D87A06C25E1137A0077ABDE /* RxBlocking */ = {
 			isa = PBXGroup;
 			children = (
-				6D87A07225E1137A0077ABDE /* README.md */,
 				6D87A07325E1137A0077ABDE /* BlockingObservable.swift */,
 				6D87A07425E1137A0077ABDE /* ObservableConvertibleType+Blocking.swift */,
 				6D87A07525E1137A0077ABDE /* RunLoopLock.swift */,

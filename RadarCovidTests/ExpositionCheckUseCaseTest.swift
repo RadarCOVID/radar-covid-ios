@@ -14,9 +14,6 @@ import RxSwift
 
 @testable import Radar_COVID
 
-// XCODE bug breaks tests
-// https://bugs.swift.org/browse/SR-12303
-
 class ExpositionCheckUseCaseTest: XCTestCase {
     
     private let disposeBag = DisposeBag()
@@ -31,7 +28,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         expositionInfoRepository = MockExpositionInfoRepository()
         settingsRepository = MockSettingsRepository()
         resetdataUseCase = MockResetDataUseCase()
-        sut = ExpositionCheckUseCase(expositionInfoRepository: expositionInfoRepository!, settingsRepository: settingsRepository!, resetDataUseCase: resetdataUseCase!)
+        sut = ExpositionCheckUseCaseImpl(expositionInfoRepository: expositionInfoRepository!, settingsRepository: settingsRepository!, resetDataUseCase: resetdataUseCase!)
     }
 
     override func tearDownWithError() throws {

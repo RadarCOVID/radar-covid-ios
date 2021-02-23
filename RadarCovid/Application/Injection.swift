@@ -227,7 +227,7 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(ExpositionCheckUseCase.self) { r in
-            ExpositionCheckUseCase(
+            ExpositionCheckUseCaseImpl(
                 expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
                 settingsRepository: r.resolve(SettingsRepository.self)!,
                 resetDataUseCase: r.resolve(ResetDataUseCase.self)!)
