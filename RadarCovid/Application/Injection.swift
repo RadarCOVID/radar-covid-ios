@@ -125,6 +125,10 @@ class Injection {
             UserDefaultsExposureKpiRepository()
         }.inObjectScope(.container)
         
+        container.register(VenueRecordRepository.self) { _ in
+            UserDefaultsVenueRecordRepository()
+        }.inObjectScope(.container)
+        
         container.register(VersionHandler.self) { _ in
             VersionHandler()
         }.inObjectScope(.container)
@@ -257,9 +261,11 @@ class Injection {
             return reminderNotificationUseCase
         }.inObjectScope(.container)
         
-        container.register(BluethoothReminderUseCase.self) { r in
-            let bluethoothReminderUseCase = BluethoothReminderUseCase()
-            return bluethoothReminderUseCase
+        container.register(BluethoothReminderUseCase.self) { r in BluethoothReminderUseCase()
+        }.inObjectScope(.container)
+        
+        container.register(VenueRecordUseCase.self) { r in
+            VenueRecordUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!)
         }.inObjectScope(.container)
         
         container.register(TabBarController.self) { r in
@@ -520,6 +526,7 @@ class Injection {
             rootVC.configurationUseCase = r.resolve(ConfigurationUseCase.self)!
             rootVC.localizationUseCase = r.resolve(LocalizationUseCase.self)!
             rootVC.onBoardingCompletedUseCase = r.resolve(OnboardingCompletedUseCase.self)!
+            rootVC.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)!
             rootVC.router = r.resolve(AppRouter.self)!
             return rootVC
         }
@@ -532,6 +539,7 @@ class Injection {
         container.register(VenueRecordStartViewController.self) { r in
             let vc = VenueRecordStartViewController()
             vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)!
             return vc
         }
         
@@ -543,6 +551,27 @@ class Injection {
         
         container.register(QrResultViewController.self) { r in
             let vc = QrResultViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)
+            return vc
+        }
+        
+        container.register(CheckedInViewController.self) { r in
+            let vc = CheckedInViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)!
+            return vc
+        }
+        
+        container.register(CheckOutViewController.self) { r in
+            let vc = CheckOutViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)
+            return vc
+        }
+        
+        container.register(CheckOutConfirmationViewController.self) { r in
+            let vc = CheckOutConfirmationViewController()
             vc.router = r.resolve(AppRouter.self)!
             return vc
         }

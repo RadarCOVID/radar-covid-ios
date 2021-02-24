@@ -25,6 +25,16 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7o-Sm-zAT">
+                    <rect key="frame" x="20" y="64" width="374" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="dgX-GE-jsi"/>
+                    </constraints>
+                    <state key="normal" image="iconsBack"/>
+                    <connections>
+                        <action selector="onBack:" destination="-1" eventType="primaryActionTriggered" id="hmv-8M-Nat"/>
+                    </connections>
+                </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="target" translatesAutoresizingMaskIntoConstraints="NO" id="irw-vc-VZY" userLabel="target">
                     <rect key="frame" x="52" y="293" width="310" height="310"/>
                     <constraints>
@@ -41,12 +51,16 @@
                 <constraint firstItem="irw-vc-VZY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="67h-Eg-yNT"/>
                 <constraint firstItem="mZe-bo-snd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8Ru-4u-9gz"/>
                 <constraint firstItem="mZe-bo-snd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aTB-eD-YHr"/>
+                <constraint firstItem="T7o-Sm-zAT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="bPj-AC-EGT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T7o-Sm-zAT" secondAttribute="trailing" constant="20" id="dAf-c1-Chz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mZe-bo-snd" secondAttribute="bottom" id="gTS-fo-9GL"/>
+                <constraint firstItem="T7o-Sm-zAT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="kMv-lP-ven"/>
             </constraints>
             <point key="canvasLocation" x="141" y="78"/>
         </view>
     </objects>
     <resources>
+        <image name="iconsBack" width="25.5" height="17"/>
         <image name="target" width="314" height="312"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

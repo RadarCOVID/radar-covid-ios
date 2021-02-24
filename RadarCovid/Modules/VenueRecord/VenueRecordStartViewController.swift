@@ -11,20 +11,24 @@
 
 import UIKit
 
-class VenueRecordStartViewController: UIViewController {
+class VenueRecordStartViewController: BaseViewController {
     
     var router: AppRouter!
+    var venueRecordUseCase : VenueRecordUseCase!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if venueRecordUseCase.isCheckedIn() {
+            router.route(to: .checkedIn, from: self, parameters: true)
+        }
     }
     
     @IBAction func onScanTap(_ sender: Any) {
         router.route(to: .qrScanner, from: self)
     }
-
-
-
 }

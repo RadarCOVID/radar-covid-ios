@@ -4,13 +4,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QrResultViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="N5t-4f-gBL" id="khR-OS-i57"/>
+                <outlet property="titleLabel" destination="gbm-av-G33" id="GVa-3v-iGs"/>
                 <outlet property="venueNameLabel" destination="dT6-G9-x5y" id="Ngb-zc-YVS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,6 +22,16 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5t-4f-gBL">
+                    <rect key="frame" x="20" y="64" width="374" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="7WG-tw-ZA3"/>
+                    </constraints>
+                    <state key="normal" image="iconsBack"/>
+                    <connections>
+                        <action selector="onBack:" destination="-1" eventType="primaryActionTriggered" id="wbh-Br-ShQ"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dT6-G9-x5y">
                     <rect key="frame" x="16" y="212" width="382" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -32,21 +44,62 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUA-qa-6ri" userLabel="Cancel Button">
+                    <rect key="frame" x="16" y="789" width="382" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="ea9-6O-iqZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="Cancelar">
+                        <color key="titleColor" name="twilight"/>
+                    </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onCancel:" destination="-1" eventType="primaryActionTriggered" id="42e-9d-fCx"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xan-dR-q47">
+                    <rect key="frame" x="91" y="598" width="126" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Confirmar Entrada"/>
+                    <connections>
+                        <action selector="onConfirmTap:" destination="-1" eventType="primaryActionTriggered" id="Di0-OE-eXE"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="veryLightPink"/>
             <constraints>
+                <constraint firstItem="N5t-4f-gBL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="0ET-I5-BX7"/>
+                <constraint firstItem="N5t-4f-gBL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="0SE-wM-oy3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="N5t-4f-gBL" secondAttribute="trailing" constant="20" id="Htm-Xr-s9W"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TUA-qa-6ri" secondAttribute="bottom" constant="17" id="L7A-oM-0GO"/>
                 <constraint firstItem="gbm-av-G33" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="131" id="Qw9-JK-f6S"/>
                 <constraint firstItem="dT6-G9-x5y" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RUO-fY-lCT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TUA-qa-6ri" secondAttribute="trailing" constant="16" id="akV-pi-aMz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dT6-G9-x5y" secondAttribute="trailing" constant="16" id="bEb-OG-Iml"/>
                 <constraint firstItem="dT6-G9-x5y" firstAttribute="top" secondItem="gbm-av-G33" secondAttribute="bottom" constant="16" id="hjQ-Pf-Ioa"/>
+                <constraint firstItem="TUA-qa-6ri" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="lTh-cB-uAB"/>
             </constraints>
             <point key="canvasLocation" x="106" y="92"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="ButtonPrimaryDisabled" width="341" height="60"/>
+        <image name="iconsBack" width="25.5" height="17"/>
+        <namedColor name="twilight">
+            <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

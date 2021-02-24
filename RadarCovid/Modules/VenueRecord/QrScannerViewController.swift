@@ -32,12 +32,16 @@ class QrScannerViewController: UIViewController, QrScannerViewDelegate {
 
         qrScannerView.startScanning()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         
         qrScannerView.stopScanning()
         
         super.viewWillDisappear(animated)
+    }
+    
+    @IBAction func onBack(_ sender: Any) {
+        router.pop(from: self, animated: true)
     }
     
     private func addQrTransparentWindowToBackground() {

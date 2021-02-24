@@ -11,9 +11,9 @@
 
 import UIKit
 
-class QrResultViewController: UIViewController {
+class QrResultViewController: VenueViewController {
     
-    var router: AppRouter!
+    var venueRecordUseCase: VenueRecordUseCase!
     
     @IBOutlet weak var venueNameLabel: UILabel!
     
@@ -28,5 +28,16 @@ class QrResultViewController: UIViewController {
         
         venueNameLabel.text = qrCode
     }
-
+    
+    @IBAction func onConfirmTap(_ sender: Any) {
+        if let qrCode = qrCode {
+            venueRecordUseCase.checkIn(venue: VenueRecord(id: qrCode, checkIn: Date(), checkOut: nil))
+            router.route(to: .checkedIn, from: self)
+        }
+    }
+    
+    @IBAction func onBack(_ sender: Any) {
+        router.pop(from: self, animated: true)
+    }
+    
 }

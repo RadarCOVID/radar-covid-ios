@@ -47,6 +47,9 @@ public enum Routes {
     case unsupportedOS
     case qrScanner
     case qrResult
+    case checkedIn
+    case checkOut
+    case checkOutConfirmation
 }
 
 
@@ -86,7 +89,7 @@ class AppRouter: Router {
         case .root:
             if let param = parameters,
                param.count >= 2 {
-                routeToRoot(context, urlSchemeRedirect: param[0] as? [Routes], paramsUrlScheme: param[1] as? [Any?])
+                routeToRoot(context, urlSchemeRedirect: param.first as? [Routes], paramsUrlScheme: param[1] as? [Any?])
             } else {
                 routeToRoot(context, urlSchemeRedirect: nil, paramsUrlScheme: [])
             }
@@ -107,14 +110,14 @@ class AppRouter: Router {
         case .myHealthStep1:
             if let param = parameters,
                param.count >= 1 {
-                routeToMyHealthStep1(context, covidCode: param[0] as? String ?? "")
+                routeToMyHealthStep1(context, covidCode: param.first as? String ?? "")
             } else {
                 routeToMyHealthStep1(context)
             }
         case .myHealthStep2:
             if let param = parameters,
                param.count >= 2 {
-                routeToMyHealthStep2(context, codeString: param[0] as? String ?? "", dateNotificationPositive: param[1] as? Date)
+                routeToMyHealthStep2(context, codeString: param.first as? String ?? "", dateNotificationPositive: param[1] as? Date)
             }
             
         case .myHealthReported:
@@ -122,19 +125,19 @@ class AppRouter: Router {
         case .healthyExposition:
             if let param = parameters,
                param.count >= 1 {
-                routeToHealthyExposition(context, lastCheck: param[0] as? Date)
+                routeToHealthyExposition(context, lastCheck: param.first as? Date)
             }
             
         case .highExposition:
             if let param = parameters,
                param.count >= 1 {
-                routeToHighExposition(context, since: param[0] as? Date, lastCheck: param[1] as? Date)
+                routeToHighExposition(context, since: param.first as? Date, lastCheck: param[1] as? Date)
             }
             
         case .positiveExposed:
             if let param = parameters,
                param.count >= 1 {
-                routeToPositiveExposed(context, since: param[0] as? Date)
+                routeToPositiveExposed(context, since: param.first as? Date)
             }
             
         case .changeLanguage:
@@ -156,7 +159,13 @@ class AppRouter: Router {
         case .qrScanner:
             routeToQrScanner(context)
         case .qrResult:
-            routeToQrResult(context, qrCode: parameters?[0] as? String)
+            routeToQrResult(context, qrCode: parameters?.first as? String)
+        case .checkedIn:
+            routeToCheckedIn(context, fromHome: parameters?.first as? Bool)
+        case .checkOut:
+            routeToCheckOut(context)
+        case .checkOutConfirmation:
+            routeToCheckoutConfirmation(context)
         }
         
             
@@ -177,7 +186,7 @@ class AppRouter: Router {
     private func routeToRootAndResetView(_ context: UIViewController, _ parameters: [Any?]?) {
         let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
         if let param = parameters, param.count > 0 {
-            rootVC?.selectTabType = param[0] as? UIViewController.Type
+            rootVC?.selectTabType = param.first as? UIViewController.Type
         }
         loadViewAsRoot(navController: context.navigationController, view: rootVC!)
     }
@@ -220,7 +229,7 @@ class AppRouter: Router {
     private func routeToHome(_ context: UIViewController, _ parameters: [Any?]?) {
         let tabBarController = AppDelegate.shared?.injection.resolve(TabBarController.self)!
         if let param = parameters, param.count > 0 {
-            tabBarController!.selectTabType = param[0] as? UIViewController.Type
+            tabBarController!.selectTabType = param.first as? UIViewController.Type
         }
 
         loadViewAsRoot(navController: context.navigationController, view: tabBarController!)
@@ -290,13 +299,32 @@ class AppRouter: Router {
     
     private func routeToQrScanner(_ context: UIViewController) {
         let qrScannerVC = AppDelegate.shared!.injection.resolve(QrScannerViewController.self)!
-        loadViewAsRoot(navController: context.navigationController, view: qrScannerVC)
+        context.navigationController?.pushViewController(qrScannerVC, animated: true)
     }
     
     private func routeToQrResult(_ context: UIViewController, qrCode: String?) {
         let qrResultVC = AppDelegate.shared!.injection.resolve(QrResultViewController.self)!
         qrResultVC.qrCode = qrCode
-        loadViewAsRoot(navController: context.navigationController, view: qrResultVC)
+        context.navigationController?.pushViewController(qrResultVC, animated: true)
+    }
+    
+    private func routeToCheckedIn(_ context: UIViewController, fromHome: Bool?) {
+        let checkedInVC = AppDelegate.shared!.injection.resolve(CheckedInViewController.self)!
+        if fromHome ?? false {
+            loadViewAsRoot(navController: context.navigationController, view: checkedInVC )
+        } else {
+            context.navigationController?.pushViewController(checkedInVC, animated: true)
+        }
+    }
+    
+    private func routeToCheckOut(_ context: UIViewController) {
+        let vc = AppDelegate.shared!.injection.resolve(CheckOutViewController.self)!
+        context.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func routeToCheckoutConfirmation(_ context: UIViewController) {
+        let vc = AppDelegate.shared!.injection.resolve(CheckOutConfirmationViewController.self)!
+        context.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func loadViewAsRoot(navController: UINavigationController?, view: UIViewController, animated: Bool = false) {

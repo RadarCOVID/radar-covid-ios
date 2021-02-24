@@ -14,10 +14,12 @@ import Foundation
 
 protocol VenueRecordRepository {
     func getCurrentVenue() -> VenueRecord?
+    func save(current: VenueRecord)
     func removeCurrent()
 }
 
 class UserDefaultsVenueRecordRepository : UserDefaultsRepository, VenueRecordRepository {
+    
     
     private static let kCurrentVenue = "UserDefaultsVenueRecordRepository.currentVenue"
     
@@ -26,6 +28,11 @@ class UserDefaultsVenueRecordRepository : UserDefaultsRepository, VenueRecordRep
             return try? decoder.decode(VenueRecord.self, from: uncoded)
         }
         return nil
+    }
+    
+    func save(current: VenueRecord) {
+        guard let encoded = try? encoder.encode(current) else { return }
+        userDefaults.set(encoded, forKey: UserDefaultsVenueRecordRepository.kCurrentVenue)
     }
     
     func removeCurrent() {
