@@ -75,6 +75,7 @@ class AnalyticsUseCase {
             guard let self = self else {
                 return .empty()
             }
+            self.logger.debug("Saving KPI")
             return self.kpiApi.saveKpi(body: self.getKpis(), token: token.value)
                 .retryWhen { errors -> Observable<Int64> in
                     return self.doRetry(errors, times: self.maxSaveRetries, exponentialBackoff: self.ebo)
