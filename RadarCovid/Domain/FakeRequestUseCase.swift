@@ -51,7 +51,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
                 let randomBoolean = Bool.random()
                 self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
                     onNext: { _ in
-                        print("fake request sended with date", Date())
+                        debugPrint("fake request sent with date", Date())
                         self?.fakeRequestRepository.updateScheduledFakeRequestDate()
                         return observer.onNext(true)
                         
@@ -101,7 +101,7 @@ extension FakeRequestUseCase {
         do {
             try BGTaskScheduler.shared.submit(fakeRequestTask)
         } catch {
-            print("Unable to submit task: \(error.localizedDescription)")
+            debugPrint("Unable to submit task: \(error.localizedDescription)")
         }
     }
     
@@ -115,7 +115,7 @@ extension FakeRequestUseCase {
                 let randomBoolean = Bool.random()
                 self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
                     onNext: { _ in
-                        print("fake request sended with date", Date())
+                        debugPrint("fake request sent with date", Date())
                         self?.fakeRequestRepository.updateScheduledFakeRequestDate()
                         return observer.onNext(true)
                         

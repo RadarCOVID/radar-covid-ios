@@ -21,6 +21,7 @@
 		6D076FCA25DFC913001A8C44 /* VenueRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D076FC925DFC913001A8C44 /* VenueRecordRepository.swift */; };
 		6D076FD025DFC9B1001A8C44 /* VenueRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D076FCF25DFC9B1001A8C44 /* VenueRecord.swift */; };
 		6D076FD425DFCC66001A8C44 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */; };
+		6D077AB925E046C3001A8C44 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D077AB825E046C3001A8C44 /* HomeViewModelTest.swift */; };
 		6D1385C825D4407B000E5461 /* BackgroundTasksUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1385C725D4407B000E5461 /* BackgroundTasksUseCase.swift */; };
 		6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */; };
 		6D2962E925B5ABE90030A99F /* DeviceTokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */; };
@@ -68,6 +69,36 @@
 		6D91550025E7A965007965F4 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9154FF25E7A965007965F4 /* Venue.swift */; };
 		6D91550425E7B078007965F4 /* VenueNotifierError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91550325E7B078007965F4 /* VenueNotifierError.swift */; };
 		6D91550825E7BCF4007965F4 /* ExposedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91550725E7BCF4007965F4 /* ExposedEvent.swift */; };
+		6D87A03A25E111C40077ABDE /* HotObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A02725E111C40077ABDE /* HotObservable.swift */; };
+		6D87A03B25E111C40077ABDE /* TestableObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A02825E111C40077ABDE /* TestableObservable.swift */; };
+		6D87A03C25E111C40077ABDE /* Recorded+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A02925E111C40077ABDE /* Recorded+Event.swift */; };
+		6D87A03D25E111C40077ABDE /* Any+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A02A25E111C40077ABDE /* Any+Equatable.swift */; };
+		6D87A03F25E111C40077ABDE /* Event+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A02E25E111C40077ABDE /* Event+Equatable.swift */; };
+		6D87A04025E111C40077ABDE /* TestableObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A02F25E111C40077ABDE /* TestableObserver.swift */; };
+		6D87A04125E111C40077ABDE /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A03025E111C40077ABDE /* Subscription.swift */; };
+		6D87A04225E111C40077ABDE /* Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A03125E111C40077ABDE /* Deprecated.swift */; };
+		6D87A04325E111C40077ABDE /* Recorded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A03225E111C40077ABDE /* Recorded.swift */; };
+		6D87A04425E111C40077ABDE /* XCTest+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A03325E111C40077ABDE /* XCTest+Rx.swift */; };
+		6D87A04525E111C40077ABDE /* ColdObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A03425E111C40077ABDE /* ColdObservable.swift */; };
+		6D87A04725E111C40077ABDE /* RxTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A03625E111C40077ABDE /* RxTest.swift */; };
+		6D87A04825E111C40077ABDE /* TestSchedulerVirtualTimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A03825E111C40077ABDE /* TestSchedulerVirtualTimeConverter.swift */; };
+		6D87A04925E111C40077ABDE /* TestScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A03925E111C40077ABDE /* TestScheduler.swift */; };
+		6D87A05F25E112E10077ABDE /* Platform.Darwin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05525E112E10077ABDE /* Platform.Darwin.swift */; };
+		6D87A06025E112E10077ABDE /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05625E112E10077ABDE /* DispatchQueue+Extensions.swift */; };
+		6D87A06125E112E10077ABDE /* AtomicInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05725E112E10077ABDE /* AtomicInt.swift */; };
+		6D87A06225E112E10077ABDE /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05925E112E10077ABDE /* Bag.swift */; };
+		6D87A06325E112E10077ABDE /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05A25E112E10077ABDE /* PriorityQueue.swift */; };
+		6D87A06425E112E10077ABDE /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05B25E112E10077ABDE /* Queue.swift */; };
+		6D87A06525E112E10077ABDE /* InfiniteSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05C25E112E10077ABDE /* InfiniteSequence.swift */; };
+		6D87A06625E112E10077ABDE /* Platform.Linux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05D25E112E10077ABDE /* Platform.Linux.swift */; };
+		6D87A06725E112E10077ABDE /* RecursiveLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A05E25E112E10077ABDE /* RecursiveLock.swift */; };
+		6D87A07E25E1137A0077ABDE /* BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A07325E1137A0077ABDE /* BlockingObservable.swift */; };
+		6D87A07F25E1137A0077ABDE /* ObservableConvertibleType+Blocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A07425E1137A0077ABDE /* ObservableConvertibleType+Blocking.swift */; };
+		6D87A08025E1137A0077ABDE /* RunLoopLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A07525E1137A0077ABDE /* RunLoopLock.swift */; };
+		6D87A08125E1137A0077ABDE /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A07625E1137A0077ABDE /* Resources.swift */; };
+		6D87A08325E1137A0077ABDE /* BlockingObservable+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A07825E1137A0077ABDE /* BlockingObservable+Operators.swift */; };
+		6D87A09025E114BD0077ABDE /* ExpositionCheckUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A08E25E114BD0077ABDE /* ExpositionCheckUseCaseTest.swift */; };
+		6D87A09125E114BD0077ABDE /* AnalyticsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A08F25E114BD0077ABDE /* AnalyticsUseCaseTests.swift */; };
 		6D97C46325BAF05700102200 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46225BAF05700102200 /* Data+Extension.swift */; };
 		6D97C46725BAF49000102200 /* AnalyticsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */; };
 		6D97C47D25BAFE4200102200 /* AnalyticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */; };
@@ -98,7 +129,6 @@
 		6DB541992498A55700166D37 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB541982498A55700166D37 /* Settings.swift */; };
 		6DBDBD5424EC00BD00EF2654 /* TimeBetweenStatesDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDBD5324EC00BC00EF2654 /* TimeBetweenStatesDto.swift */; };
 		6DBDBD5624EC012D00EF2654 /* ExpositionChechUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDBD5524EC012D00EF2654 /* ExpositionChechUseCase.swift */; };
-		6DC5BDD325D2C7750035B419 /* BackgroundTaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC5BDD225D2C7750035B419 /* BackgroundTaskScheduler.swift */; };
 		6DD0420825120DD700799D58 /* CaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD0420725120DD700799D58 /* CaData.swift */; };
 		6DD0420A2512763D00799D58 /* CertificateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042092512763D00799D58 /* CertificateUtil.swift */; };
 		6DE27C642499118200BBCF40 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27C632499118200BBCF40 /* String+Extension.swift */; };
@@ -282,6 +312,7 @@
 		6D076FC925DFC913001A8C44 /* VenueRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRecordRepository.swift; sourceTree = "<group>"; };
 		6D076FCF25DFC9B1001A8C44 /* VenueRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRecord.swift; sourceTree = "<group>"; };
 		6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
+		6D077AB825E046C3001A8C44 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		6D1385C725D4407B000E5461 /* BackgroundTasksUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTasksUseCase.swift; sourceTree = "<group>"; };
 		6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalesUseCase.swift; sourceTree = "<group>"; };
 		6D2962E825B5ABE90030A99F /* DeviceTokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenHandler.swift; sourceTree = "<group>"; };
@@ -331,6 +362,38 @@
 		6D9154FF25E7A965007965F4 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		6D91550325E7B078007965F4 /* VenueNotifierError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueNotifierError.swift; sourceTree = "<group>"; };
 		6D91550725E7BCF4007965F4 /* ExposedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposedEvent.swift; sourceTree = "<group>"; };
+		6D87A02025E111640077ABDE /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = ../../../../Downloads/Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		6D87A02225E111720077ABDE /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ../../../../Downloads/Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		6D87A02725E111C40077ABDE /* HotObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotObservable.swift; sourceTree = "<group>"; };
+		6D87A02825E111C40077ABDE /* TestableObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableObservable.swift; sourceTree = "<group>"; };
+		6D87A02925E111C40077ABDE /* Recorded+Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recorded+Event.swift"; sourceTree = "<group>"; };
+		6D87A02A25E111C40077ABDE /* Any+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Any+Equatable.swift"; sourceTree = "<group>"; };
+		6D87A02E25E111C40077ABDE /* Event+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+Equatable.swift"; sourceTree = "<group>"; };
+		6D87A02F25E111C40077ABDE /* TestableObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableObserver.swift; sourceTree = "<group>"; };
+		6D87A03025E111C40077ABDE /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
+		6D87A03125E111C40077ABDE /* Deprecated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deprecated.swift; sourceTree = "<group>"; };
+		6D87A03225E111C40077ABDE /* Recorded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recorded.swift; sourceTree = "<group>"; };
+		6D87A03325E111C40077ABDE /* XCTest+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Rx.swift"; sourceTree = "<group>"; };
+		6D87A03425E111C40077ABDE /* ColdObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColdObservable.swift; sourceTree = "<group>"; };
+		6D87A03625E111C40077ABDE /* RxTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTest.swift; sourceTree = "<group>"; };
+		6D87A03825E111C40077ABDE /* TestSchedulerVirtualTimeConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSchedulerVirtualTimeConverter.swift; sourceTree = "<group>"; };
+		6D87A03925E111C40077ABDE /* TestScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScheduler.swift; sourceTree = "<group>"; };
+		6D87A05525E112E10077ABDE /* Platform.Darwin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.Darwin.swift; sourceTree = "<group>"; };
+		6D87A05625E112E10077ABDE /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
+		6D87A05725E112E10077ABDE /* AtomicInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicInt.swift; sourceTree = "<group>"; };
+		6D87A05925E112E10077ABDE /* Bag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
+		6D87A05A25E112E10077ABDE /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		6D87A05B25E112E10077ABDE /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		6D87A05C25E112E10077ABDE /* InfiniteSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteSequence.swift; sourceTree = "<group>"; };
+		6D87A05D25E112E10077ABDE /* Platform.Linux.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.Linux.swift; sourceTree = "<group>"; };
+		6D87A05E25E112E10077ABDE /* RecursiveLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveLock.swift; sourceTree = "<group>"; };
+		6D87A07325E1137A0077ABDE /* BlockingObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockingObservable.swift; sourceTree = "<group>"; };
+		6D87A07425E1137A0077ABDE /* ObservableConvertibleType+Blocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Blocking.swift"; sourceTree = "<group>"; };
+		6D87A07525E1137A0077ABDE /* RunLoopLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunLoopLock.swift; sourceTree = "<group>"; };
+		6D87A07625E1137A0077ABDE /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		6D87A07825E1137A0077ABDE /* BlockingObservable+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BlockingObservable+Operators.swift"; sourceTree = "<group>"; };
+		6D87A08E25E114BD0077ABDE /* ExpositionCheckUseCaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpositionCheckUseCaseTest.swift; sourceTree = "<group>"; };
+		6D87A08F25E114BD0077ABDE /* AnalyticsUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUseCaseTests.swift; sourceTree = "<group>"; };
 		6D97C46225BAF05700102200 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUseCase.swift; sourceTree = "<group>"; };
 		6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRepository.swift; sourceTree = "<group>"; };
@@ -362,7 +425,6 @@
 		6DB5419A2498ABE900166D37 /* release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = release.entitlements; sourceTree = "<group>"; };
 		6DBDBD5324EC00BC00EF2654 /* TimeBetweenStatesDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBetweenStatesDto.swift; sourceTree = "<group>"; };
 		6DBDBD5524EC012D00EF2654 /* ExpositionChechUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionChechUseCase.swift; sourceTree = "<group>"; };
-		6DC5BDD225D2C7750035B419 /* BackgroundTaskScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskScheduler.swift; sourceTree = "<group>"; };
 		6DD0420725120DD700799D58 /* CaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaData.swift; sourceTree = "<group>"; };
 		6DD042092512763D00799D58 /* CertificateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateUtil.swift; sourceTree = "<group>"; };
 		6DE27C632499118200BBCF40 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -590,7 +652,6 @@
 				6DF6ECAB248E79C1007EAA40 /* Injection.swift */,
 				6DE27CB224A379F800BBCF40 /* NetworkActivityLogger.swift */,
 				6D8444092543398800F92BCA /* SwiftLogFile.swift */,
-				6DC5BDD225D2C7750035B419 /* BackgroundTaskScheduler.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -713,6 +774,12 @@
 		6D64131F24ED88AB00B33427 /* RadarCovidTests */ = {
 			isa = PBXGroup;
 			children = (
+				6D87A06C25E1137A0077ABDE /* RxBlocking */,
+				6D87A05425E112E10077ABDE /* Platform */,
+				6D87A02625E111C40077ABDE /* RxTest */,
+				6D87A08F25E114BD0077ABDE /* AnalyticsUseCaseTests.swift */,
+				6D87A08E25E114BD0077ABDE /* ExpositionCheckUseCaseTest.swift */,
+				6D077AB825E046C3001A8C44 /* HomeViewModelTest.swift */,
 				6D64132224ED88AB00B33427 /* Info.plist */,
 				6D64132B24ED897200B33427 /* RadarCovidTests-Bridging-Header.h */,
 				6D01BDCE24EFEFCB00FBADB4 /* MyMocks.swift */,
@@ -725,6 +792,8 @@
 		6D662D1A250B964B00AEEFE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D87A02225E111720077ABDE /* RxBlocking.framework */,
+				6D87A02025E111640077ABDE /* RxTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -755,6 +824,71 @@
 				6D91550725E7BCF4007965F4 /* ExposedEvent.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6D87A02625E111C40077ABDE /* RxTest */ = {
+			isa = PBXGroup;
+			children = (
+				6D87A02725E111C40077ABDE /* HotObservable.swift */,
+				6D87A02825E111C40077ABDE /* TestableObservable.swift */,
+				6D87A02925E111C40077ABDE /* Recorded+Event.swift */,
+				6D87A02A25E111C40077ABDE /* Any+Equatable.swift */,
+				6D87A02E25E111C40077ABDE /* Event+Equatable.swift */,
+				6D87A02F25E111C40077ABDE /* TestableObserver.swift */,
+				6D87A03025E111C40077ABDE /* Subscription.swift */,
+				6D87A03125E111C40077ABDE /* Deprecated.swift */,
+				6D87A03225E111C40077ABDE /* Recorded.swift */,
+				6D87A03325E111C40077ABDE /* XCTest+Rx.swift */,
+				6D87A03425E111C40077ABDE /* ColdObservable.swift */,
+				6D87A03625E111C40077ABDE /* RxTest.swift */,
+				6D87A03725E111C40077ABDE /* Schedulers */,
+			);
+			path = RxTest;
+			sourceTree = "<group>";
+		};
+		6D87A03725E111C40077ABDE /* Schedulers */ = {
+			isa = PBXGroup;
+			children = (
+				6D87A03825E111C40077ABDE /* TestSchedulerVirtualTimeConverter.swift */,
+				6D87A03925E111C40077ABDE /* TestScheduler.swift */,
+			);
+			path = Schedulers;
+			sourceTree = "<group>";
+		};
+		6D87A05425E112E10077ABDE /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				6D87A05525E112E10077ABDE /* Platform.Darwin.swift */,
+				6D87A05625E112E10077ABDE /* DispatchQueue+Extensions.swift */,
+				6D87A05725E112E10077ABDE /* AtomicInt.swift */,
+				6D87A05825E112E10077ABDE /* DataStructures */,
+				6D87A05D25E112E10077ABDE /* Platform.Linux.swift */,
+				6D87A05E25E112E10077ABDE /* RecursiveLock.swift */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		6D87A05825E112E10077ABDE /* DataStructures */ = {
+			isa = PBXGroup;
+			children = (
+				6D87A05925E112E10077ABDE /* Bag.swift */,
+				6D87A05A25E112E10077ABDE /* PriorityQueue.swift */,
+				6D87A05B25E112E10077ABDE /* Queue.swift */,
+				6D87A05C25E112E10077ABDE /* InfiniteSequence.swift */,
+			);
+			path = DataStructures;
+			sourceTree = "<group>";
+		};
+		6D87A06C25E1137A0077ABDE /* RxBlocking */ = {
+			isa = PBXGroup;
+			children = (
+				6D87A07325E1137A0077ABDE /* BlockingObservable.swift */,
+				6D87A07425E1137A0077ABDE /* ObservableConvertibleType+Blocking.swift */,
+				6D87A07525E1137A0077ABDE /* RunLoopLock.swift */,
+				6D87A07625E1137A0077ABDE /* Resources.swift */,
+				6D87A07825E1137A0077ABDE /* BlockingObservable+Operators.swift */,
+			);
+			path = RxBlocking;
 			sourceTree = "<group>";
 		};
 		6D97C48225BF303200102200 /* Analytics */ = {
@@ -1781,7 +1915,6 @@
 				6DE27D3F24A76D7E00BBCF40 /* AttenuationDurationThresholdsDto.swift in Sources */,
 				6DF8212624D07D2E000ED0D2 /* TokenResponse.swift in Sources */,
 				6D63108C2501194F000CDCB4 /* UINavigationController+Extension.swift in Sources */,
-				6DC5BDD325D2C7750035B419 /* BackgroundTaskScheduler.swift in Sources */,
 				6DBDBD5424EC00BD00EF2654 /* TimeBetweenStatesDto.swift in Sources */,
 				767540D5256561E0005C46B7 /* BluethoothReminderUseCase.swift in Sources */,
 				6DF8211624CEDB49000ED0D2 /* MasterDataAPI.swift in Sources */,
@@ -1874,9 +2007,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D87A03B25E111C40077ABDE /* TestableObservable.swift in Sources */,
+				6D87A07E25E1137A0077ABDE /* BlockingObservable.swift in Sources */,
+				6D87A06325E112E10077ABDE /* PriorityQueue.swift in Sources */,
+				6D87A05F25E112E10077ABDE /* Platform.Darwin.swift in Sources */,
+				6D87A06225E112E10077ABDE /* Bag.swift in Sources */,
+				6D87A04825E111C40077ABDE /* TestSchedulerVirtualTimeConverter.swift in Sources */,
+				6D87A06725E112E10077ABDE /* RecursiveLock.swift in Sources */,
+				6D87A04025E111C40077ABDE /* TestableObserver.swift in Sources */,
+				6D87A03F25E111C40077ABDE /* Event+Equatable.swift in Sources */,
 				6D97C49425BF499E00102200 /* ExpositionKpiUseCaseTests.swift in Sources */,
+				6D87A09125E114BD0077ABDE /* AnalyticsUseCaseTests.swift in Sources */,
+				6D87A09025E114BD0077ABDE /* ExpositionCheckUseCaseTest.swift in Sources */,
+				6D87A06625E112E10077ABDE /* Platform.Linux.swift in Sources */,
+				6D87A07F25E1137A0077ABDE /* ObservableConvertibleType+Blocking.swift in Sources */,
+				6D87A08325E1137A0077ABDE /* BlockingObservable+Operators.swift in Sources */,
+				6D87A04225E111C40077ABDE /* Deprecated.swift in Sources */,
+				6D87A04325E111C40077ABDE /* Recorded.swift in Sources */,
+				6D87A06525E112E10077ABDE /* InfiniteSequence.swift in Sources */,
+				6D87A04725E111C40077ABDE /* RxTest.swift in Sources */,
+				6D87A06125E112E10077ABDE /* AtomicInt.swift in Sources */,
+				6D87A04525E111C40077ABDE /* ColdObservable.swift in Sources */,
+				6D87A04925E111C40077ABDE /* TestScheduler.swift in Sources */,
 				6D01BDCF24EFEFCB00FBADB4 /* MyMocks.swift in Sources */,
+				6D87A03A25E111C40077ABDE /* HotObservable.swift in Sources */,
+				6D87A08125E1137A0077ABDE /* Resources.swift in Sources */,
+				6D87A06025E112E10077ABDE /* DispatchQueue+Extensions.swift in Sources */,
+				6D87A04425E111C40077ABDE /* XCTest+Rx.swift in Sources */,
+				6D87A04125E111C40077ABDE /* Subscription.swift in Sources */,
+				6D87A06425E112E10077ABDE /* Queue.swift in Sources */,
 				6D9F3A9025029C5C005EE842 /* ErrorHandlerTest.swift in Sources */,
+				6D87A03D25E111C40077ABDE /* Any+Equatable.swift in Sources */,
+				6D077AB925E046C3001A8C44 /* HomeViewModelTest.swift in Sources */,
+				6D87A08025E1137A0077ABDE /* RunLoopLock.swift in Sources */,
+				6D87A03C25E111C40077ABDE /* Recorded+Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2035,7 +2199,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/debug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 244;
+				CURRENT_PROJECT_VERSION = 245;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
@@ -2061,7 +2225,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 244;
+				CURRENT_PROJECT_VERSION = 245;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
@@ -2436,7 +2600,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 244;
+				CURRENT_PROJECT_VERSION = 245;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
@@ -2523,7 +2687,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/debug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 244;
+				CURRENT_PROJECT_VERSION = 245;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;

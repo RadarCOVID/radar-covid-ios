@@ -10,9 +10,6 @@
 //
 
 import XCTest
-
-import RxBlocking
-import RxTest
 import RxSwift
 
 @testable import Radar_COVID
@@ -20,37 +17,30 @@ import RxSwift
 class HomeViewModelTest: XCTestCase {
     
     private var scheduler: TestScheduler!
-    private var disposeBag: DisposeBag = DisposeBag()
+    private var disposeBag: DisposeBag!
     
-    private var sut: HomeViewModel?
+    private var expositionCheckUseCase: MockExpositionCheckUseCase!
     
-    private var expositionInfoRepository: MockExpositionInfoRepository?
-    private var settingsReporitory: SettingsRepository?
-    
-    private var resetDataUseCase: MockResetDataUseCase?
+    private var sut: HomeViewModel!
 
     override func setUpWithError() throws {
+        disposeBag = DisposeBag()
         scheduler = TestScheduler(initialClock: 0)
         sut = HomeViewModel()
-        expositionInfoRepository = MockExpositionInfoRepository()
-        settingsReporitory = UserDefaultsSettingsRepository()
-        resetDataUseCase = MockResetDataUseCase()
-        sut?.expositionCheckUseCase = ExpositionCheckUseCase(
-            expositionInfoRepository: expositionInfoRepository!,
-            settingsRepository: settingsReporitory!,
-            resetDataUseCase: resetDataUseCase!)
+        expositionCheckUseCase = MockExpositionCheckUseCase()
+        sut.expositionCheckUseCase = expositionCheckUseCase
     }
 
     override func tearDownWithError() throws {
-        resetDataUseCase?.resetMock()
-        expositionInfoRepository?.resetMock()
+        disposeBag = nil
+        expositionCheckUseCase.resetMock()
     }
 
     func testCheckShowBackToHealthyDialogWhenNotChanged() throws {
         
         let observer = scheduler.createObserver(Bool.self)
-
-        expositionInfoRepository?.setChangedToHealthy(changed: false)
+        
+        expositionCheckUseCase.justChanged = false
         
         sut?.showBackToHealthyDialog
             .subscribeOn(scheduler)
@@ -61,7 +51,8 @@ class HomeViewModelTest: XCTestCase {
         
         sut?.checkShowBackToHealthyDialog()
         
-        XCTAssertEqual( observer.events.count, 0)
+        XCTAssertEqual( observer.events.count, 1)
+        XCTAssertEqual( observer.events[0].value.element, false)
 
     }
     
@@ -69,7 +60,7 @@ class HomeViewModelTest: XCTestCase {
         
         let observer = scheduler.createObserver(Bool.self)
 
-        expositionInfoRepository?.setChangedToHealthy(changed: true)
+        expositionCheckUseCase.justChanged = true
         
         sut?.showBackToHealthyDialog
             .subscribeOn(scheduler)
@@ -82,7 +73,6 @@ class HomeViewModelTest: XCTestCase {
         
         XCTAssertEqual( observer.events.count, 1)
         XCTAssertEqual( observer.events[0].value.element, true)
-        XCTAssertEqual(expositionInfoRepository?.changedToHealthy, false)
 
     }
 

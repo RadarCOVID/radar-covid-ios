@@ -11,7 +11,7 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
+
 
 protocol SelectorProtocol {
     func userSelectorSelected(selectorItem: SelectorItem, completionCloseView: @escaping (Bool) -> Void)

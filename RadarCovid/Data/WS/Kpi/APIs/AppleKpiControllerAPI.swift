@@ -75,10 +75,13 @@ open class AppleKpiControllerAPI {
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
         let url = URLComponents(string: URLString)
         let headers = ["x-sedia-authorization": token]
+        
+
 
         let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headers)
+//        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headers, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
+                return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headers)
     }
     /**
      Authorize the provided KPI token with the device authenticity SDK offered by the device operating system.
@@ -135,9 +138,9 @@ open class AppleKpiControllerAPI {
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
         let url = URLComponents(string: URLString)
 
-
         let requestBuilder: RequestBuilder<AppleKpiTokenResponseDto>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
+//        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 }

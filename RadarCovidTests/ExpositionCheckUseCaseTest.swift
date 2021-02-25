@@ -14,9 +14,6 @@ import RxSwift
 
 @testable import Radar_COVID
 
-// XCODE bug breaks tests
-// https://bugs.swift.org/browse/SR-12303
-
 class ExpositionCheckUseCaseTest: XCTestCase {
     
     private let disposeBag = DisposeBag()
@@ -31,7 +28,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         expositionInfoRepository = MockExpositionInfoRepository()
         settingsRepository = MockSettingsRepository()
         resetdataUseCase = MockResetDataUseCase()
-        sut = ExpositionCheckUseCase(expositionInfoRepository: expositionInfoRepository!, settingsRepository: settingsRepository!, resetDataUseCase: resetdataUseCase!)
+        sut = ExpositionCheckUseCaseImpl(expositionInfoRepository: expositionInfoRepository!, settingsRepository: settingsRepository!, resetDataUseCase: resetdataUseCase!)
     }
 
     override func tearDownWithError() throws {
@@ -59,7 +56,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
         let settings = Settings()
         let timeBetweenStates = TimeBetweenStatesDto(highRiskToLowRisk: 10, infectedToHealthy: nil)
-        settings.parameters = SettingsDto(responseDate: nil, exposureConfiguration: nil, minRiskScore: nil, minDurationForExposure: nil, riskScoreClassification: nil, attenuationDurationThresholds: nil, attenuationFactor: nil, applicationVersion: nil, timeBetweenStates: timeBetweenStates, legalTermsVersion: nil, radarCovidDownloadUrl: nil, notificationReminder: nil)
+        settings.parameters = SettingsDto(responseDate: nil, exposureConfiguration: nil, minRiskScore: nil, minDurationForExposure: nil, riskScoreClassification: nil, attenuationDurationThresholds: nil, attenuationFactor: nil, applicationVersion: nil, timeBetweenStates: timeBetweenStates, legalTermsVersion: nil, radarCovidDownloadUrl: nil, notificationReminder: nil, timeBetweenKpi: nil)
         
         settingsRepository?.settings = settings
         
@@ -80,7 +77,7 @@ class ExpositionCheckUseCaseTest: XCTestCase {
         
         let settings = Settings()
         let timeBetweenStates = TimeBetweenStatesDto(highRiskToLowRisk: 10, infectedToHealthy: nil)
-        settings.parameters = SettingsDto(responseDate: nil, exposureConfiguration: nil, minRiskScore: nil, minDurationForExposure: nil, riskScoreClassification: nil, attenuationDurationThresholds: nil, attenuationFactor: nil, applicationVersion: nil, timeBetweenStates: timeBetweenStates, legalTermsVersion: nil, radarCovidDownloadUrl: nil, notificationReminder: nil)
+        settings.parameters = SettingsDto(responseDate: nil, exposureConfiguration: nil, minRiskScore: nil, minDurationForExposure: nil, riskScoreClassification: nil, attenuationDurationThresholds: nil, attenuationFactor: nil, applicationVersion: nil, timeBetweenStates: timeBetweenStates, legalTermsVersion: nil, radarCovidDownloadUrl: nil, notificationReminder: nil, timeBetweenKpi: nil)
         
         settingsRepository?.settings = settings
         
