@@ -10,8 +10,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class CheckOutViewController: VenueViewController {
+    
+    private let disposeBag = DisposeBag()
     
     var venueRecordUseCase: VenueRecordUseCase!
 
@@ -20,8 +23,18 @@ class CheckOutViewController: VenueViewController {
     }
     
     @IBAction func endRegisterTap(_ sender: Any) {
-        venueRecordUseCase.checkOut(date: Date())
-        router.route(to: .checkOutConfirmation, from: self)
+        
+        venueRecordUseCase.checkOut(date: Date()).subscribe(
+            onNext: { [weak self] exposition in
+                guard let self = self else { return }
+                self.router.route(to: .checkOutConfirmation, from: self)
+            }, onError: { [weak self] error in
+                self?.showAlertOk(
+                    title: "",
+                    message: "ERROR REGISTER",
+                    buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+                
+            }).disposed(by: disposeBag)
     }
     
     @IBAction func onClose(_ sender: Any) {

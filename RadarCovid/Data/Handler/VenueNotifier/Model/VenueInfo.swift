@@ -11,6 +11,6 @@
 
 import Foundation
 
-struct Venue {
+struct VenueInfo {
     var name: String
 }

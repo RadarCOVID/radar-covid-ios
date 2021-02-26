@@ -12,5 +12,5 @@
 import Foundation
 
 enum VenueNotifierError: Error {
-    case invalidQR(error: Error)
+    case invalidQR
 }

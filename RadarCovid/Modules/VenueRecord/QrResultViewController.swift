@@ -31,7 +31,7 @@ class QrResultViewController: VenueViewController {
     
     @IBAction func onConfirmTap(_ sender: Any) {
         if let qrCode = qrCode {
-            venueRecordUseCase.checkIn(venue: VenueRecord(id: qrCode, checkIn: Date(), checkOut: nil))
+            venueRecordUseCase.checkIn(venue: VenueRecord(qr: qrCode, checkIn: Date(), checkOut: nil))
             router.route(to: .checkedIn, from: self)
         }
     }

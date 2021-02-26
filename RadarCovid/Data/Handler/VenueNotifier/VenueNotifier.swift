@@ -16,8 +16,8 @@ protocol VenueNotifier {
         
     init (baseUrl: String)
     
-    func getInfo(qrCode: String) -> Observable<Venue>
-    func checkOut(venue: Venue, arrival: Date, departure: Date) -> Observable<Venue>
+    func getInfo(qrCode: String) -> Observable<VenueInfo>
+    func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<VenueInfo>
     
 }
 
@@ -27,11 +27,11 @@ class VenueNotifierImpl: VenueNotifier  {
         
     }
     
-    func getInfo(qrCode: String) -> Observable<Venue> {
+    func getInfo(qrCode: String) -> Observable<VenueInfo> {
         .empty()
     }
     
-    func checkOut(venue: Venue, arrival: Date, departure: Date) -> Observable<Venue> {
+    func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<VenueInfo> {
         .empty()
     }
     

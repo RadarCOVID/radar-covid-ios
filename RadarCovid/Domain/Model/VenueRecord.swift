@@ -12,7 +12,7 @@
 import Foundation
 
 struct VenueRecord: Codable {
-    var id: String
+    var qr: String
     var checkIn: Date
     var checkOut: Date?
 }

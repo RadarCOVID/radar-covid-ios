@@ -10,14 +10,19 @@
 //
 
 import UIKit
+import RxSwift
 
-class QrScannerViewController: UIViewController, QrScannerViewDelegate {
+class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
+    
+    private let disposeBag = DisposeBag()
     
     @IBOutlet weak var qrScannerView: QrScannerView!
     
     @IBOutlet weak var targetImage: UIImageView!
     
     var router: AppRouter!
+    
+    var venueRecordUseCase: VenueRecordUseCase!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +73,20 @@ class QrScannerViewController: UIViewController, QrScannerViewDelegate {
     }
     
     func qrScanningSucceededWithCode(_ result: String?) {
-        router.route(to: .qrResult, from: self, parameters: result)
+        venueRecordUseCase.getVenueInfo(qrCode: result ?? "").subscribe(
+            onNext: { [weak self] exposition in
+                guard let self = self else { return }
+                self.router.route(to: .qrResult, from: self, parameters: result)
+            }, onError: { [weak self] error in
+                
+//                TODO: duda pantalla de error??
+                self?.showAlertOk(
+                    title: "",
+                    message: "ERROR SCANNER",
+                    buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+                
+            }).disposed(by: disposeBag)
+        
     }
     
     func qrScanningDidStop() {

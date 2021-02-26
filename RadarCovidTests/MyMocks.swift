@@ -12,6 +12,7 @@
 import Foundation
 import RxSwift
 import UIKit
+import XCTest
 
 @testable import Radar_COVID
 
@@ -305,4 +306,197 @@ class ExposureKpiUseCaseMock: ExposureKpiUseCase {
     }
 }
 
+class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
+    
+    init() {
+        super.init("VenueRecordRepositoryMock")
+    }
+    
+    func getCurrentVenue() -> VenueRecord? {
+        call("getCurrentVenue") as? VenueRecord
+    }
+    
+    func save(current: VenueRecord) {
+        
+    }
+    
+    func removeCurrent() {
+        call("removeCurrent")
+    }
+    
+    func registerGetCurrentVenue(response: VenueRecord?) {
+        registerMock("getCurrentVenue", responses: [response])
+    }
+    
+    func verifyRemoveCurrent(called: VerifyCount = .atLeastOnce) {
+        verify("removeCurrent", called : called)
+    }
+    
+    func verifyGetCurrentVenue() {
+        verify("getCurrentVenue")
+    }
+    
+}
 
+
+
+class VenueNotifierMock : Mocker, VenueNotifier {
+    
+    required init(baseUrl: String) {
+        super.init("VenueNotifierMock")
+    }
+    
+    func getInfo(qrCode: String) -> Observable<VenueInfo> {
+        Observable.just(Void()).flatMap { () -> Observable<VenueInfo> in
+            self.call("getInfo", params: ["qrCode": qrCode]) as! Observable<VenueInfo>
+        }
+    }
+    
+    func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<VenueInfo> {
+        Observable.just(Void()).flatMap { () -> Observable<VenueInfo> in
+            self.call("checkOut", params: ["venue":venue, "arrival": arrival, "departure": departure]) as! Observable<VenueInfo>
+        }
+    }
+    
+    func registerCheckOut(response: Observable<VenueInfo>) {
+        registerMock("checkOut", responses: [response])
+    }
+    
+    func registerGetInfo(response: Observable<VenueInfo>) {
+        registerMock("getInfo", responses: [response])
+    }
+    
+    func verifyCheckout(called: VerifyCount = .atLeastOnce) {
+        verify("checkOut", called: called)
+    }
+    
+    func verifyGetInfo(called: VerifyCount = .atLeastOnce) {
+        verify("getInfo", called: called)
+    }
+    
+}
+
+class Mocker {
+    
+    private var mockedFuncs: [String: MockedFuncCall] = [:]
+    
+    private var name: String
+    
+    init(_ name: String) {
+        self.name = name
+    }
+    
+    func registerMock(_ fn: String, responses: [Any?]? = nil) {
+        mockedFuncs[fn] = MockedFuncCall(name: fn, responses: responses)
+    }
+    
+    func verify(_ fn: String, called: VerifyCount = .atLeastOnce) {
+        if let mockedFunc = mockedFuncs[fn] {
+            mockedFunc.verify(called: called)
+        } else if case .never = called {
+            
+        } else {
+            XCTFail("Method \(fn) not called")
+        }
+    }
+    
+    func paramCaptured(_ fn: String, position: Int = 0) -> [String:Any?]? {
+        if let mock = mockedFuncs[fn] {
+            return mock.getCapturedParams(position: position)
+        }
+        return nil
+    }
+
+    func call(_ fn: String, params: [String:Any?]? = nil) -> Any? {
+        if let mockedFunc = mockedFuncs[fn] {
+            
+            return mockedFunc.call(params: params)
+        }
+        registerMock(fn)
+        return call(fn)
+    }
+    
+    func verifyNoMoreInteractions() {
+        mockedFuncs.values.forEach { $0.verifyNoMoreInteractions(className: name) }
+    }
+}
+
+enum VerifyCount {
+    case atLeastOnce
+    case moreThan(Int)
+    case lessThan(Int)
+    case exact(Int)
+    case never
+}
+
+class MockedFuncCall {
+    
+    private var name: String
+    private var count: Int = 0
+    private var responses: [Any?]?
+    private var paramList: [[String:Any?]?] = []
+    private var verifiedCount = 0
+    
+    init(name: String, responses: [Any?]?) {
+        self.name = name
+        self.responses = responses
+    }
+    
+    private func getCurrentResponse() -> Any? {
+        if let responses = responses, count > responses.count {
+            return responses[responses.count - 1]
+        }
+        return responses?[count] ?? nil
+    }
+    
+    func call(params: [String:Any?]?) -> Any? {
+        let response = getCurrentResponse()
+        paramList.append(params)
+        count += 1
+        return response
+    }
+    
+    func getCapturedParams(position: Int) -> [String:Any?]? {
+        if position > paramList.count {
+            return nil
+        }
+        return paramList[position]
+    }
+    
+    func verify(called: VerifyCount = .atLeastOnce) {
+        switch called {
+        case .atLeastOnce:
+            verifiedCount += 1
+            if count < 1 {
+                XCTFail("Func \(name) not called at least once: \( count)")
+            }
+        case .moreThan(let times):
+            verifiedCount += times
+            if count <= times {
+                XCTFail("Func \(name) not called more than \(times) times: \( count) ")
+            }
+        case .lessThan(let times):
+            verifiedCount += times
+            if count >= times {
+                XCTFail("Func \(name) not called less than \(times) times: \( count)")
+            }
+        case .exact(let times):
+            verifiedCount += times
+            if count != times {
+                XCTFail("Func \(name) not called \(times) times: \( count)")
+            }
+        case .never:
+            if count > 0 {
+                XCTFail("Func \(name) is called and it souldn't: \( count)")
+            }
+        }
+    }
+    
+    func verifyNoMoreInteractions(className: String?) {
+        let className = className ?? ""
+        if count > verifiedCount {
+            XCTFail("Func \(className).\(name) received more interactions: \(count) than verified \(verifiedCount)")
+        }
+    }
+    
+}

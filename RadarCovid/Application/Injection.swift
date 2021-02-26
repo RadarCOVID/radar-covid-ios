@@ -16,9 +16,9 @@ import UIKit
 class Injection {
     
     enum Endpoint: String {
-        case CONFIG
-        case KPI
-        case VERIFICATION
+        case config
+        case kpi
+        case verification
     }
     
     private let container: Container
@@ -27,61 +27,61 @@ class Injection {
         
         container = Container()
         
-        container.register(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue) { _ in
+        container.register(SwaggerClientAPI.self, name: Endpoint.config.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.config
             return swaggerApi
         }.inObjectScope(.container)
         
-        container.register(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue) { _ in
+        container.register(SwaggerClientAPI.self, name: Endpoint.verification.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.verification
             return swaggerApi
         }.inObjectScope(.container)
         
-        container.register(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue) { _ in
+        container.register(SwaggerClientAPI.self, name: Endpoint.kpi.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.kpi
             return swaggerApi
         }.inObjectScope(.container)
         
         container.register(TokenAPI.self) { r in
-            TokenAPI(clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!)
+            TokenAPI(clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!)
         }.inObjectScope(.container)
         
         container.register(SettingsAPI.self) { r in
             SettingsAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(TextsAPI.self) { r in
             TextsAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(MasterDataAPI.self) { r in
             MasterDataAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(StatisticsAPI.self) { r in
             StatisticsAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(VerificationControllerAPI.self) { r in
             VerificationControllerAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.verification.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(AppleKpiControllerAPI.self) { r in
             AppleKpiControllerAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.kpi.rawValue)!
             )
         }.inObjectScope(.container)
         
@@ -139,6 +139,10 @@ class Injection {
         
         container.register(DeviceTokenHandler.self) { r in
             DCDeviceTokenHandler()
+        }.inObjectScope(.container)
+        
+        container.register(VenueNotifier.self) { r in
+            VenueNotifierImpl(baseUrl: Config.endpoints.qrBase)
         }.inObjectScope(.container)
         
         container.register(OnboardingCompletedUseCase.self) { r in
@@ -265,7 +269,8 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(VenueRecordUseCase.self) { r in
-            VenueRecordUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!)
+            VenueRecordUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
+                                   venueNotifier: r.resolve(VenueNotifier.self)!)
         }.inObjectScope(.container)
         
         container.register(TabBarController.self) { r in
@@ -546,6 +551,7 @@ class Injection {
         container.register(QrScannerViewController.self) { r in
             let vc = QrScannerViewController()
             vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)!
             return vc
         }
         
