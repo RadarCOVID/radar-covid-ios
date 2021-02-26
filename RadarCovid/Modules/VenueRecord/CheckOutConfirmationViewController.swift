@@ -17,12 +17,10 @@ class CheckOutConfirmationViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func onBack(_ sender: Any) {
-        router.route(to: .home, from: self)
+        router.popToRoot(from: self, animated: true)
     }
     
     

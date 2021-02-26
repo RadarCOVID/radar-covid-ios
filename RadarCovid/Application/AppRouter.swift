@@ -344,7 +344,13 @@ class AppRouter: Router {
     }
 
     func popToRoot(from: UIViewController, animated: Bool) {
-        from.navigationController?.popToRootViewController(animated: animated)
+        
+        if let root = from.navigationController?.viewControllers.first, root.isKind(of: TabBarController.self) {
+            from.navigationController?.popToRootViewController(animated: animated)
+        } else {
+            route(to: .home, from: from)
+        }
+        
         parentVC = nil
     }
 

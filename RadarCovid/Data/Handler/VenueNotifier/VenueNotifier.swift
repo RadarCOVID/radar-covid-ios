@@ -28,11 +28,11 @@ class VenueNotifierImpl: VenueNotifier  {
     }
     
     func getInfo(qrCode: String) -> Observable<VenueInfo> {
-        .empty()
+        .just(VenueInfo(name: "name"))
     }
     
     func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<VenueInfo> {
-        .empty()
+        .just(VenueInfo(name: "name"))
     }
     
 }

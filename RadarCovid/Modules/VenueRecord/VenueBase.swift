@@ -38,7 +38,7 @@ class VenueViewController: BaseViewController, VenueCanceller {
     }
     
     func finallyCanceled() {
-        self.router.popToRoot(from: self, animated: true)
+        router.popToRoot(from: self, animated: true)
     }
     
     

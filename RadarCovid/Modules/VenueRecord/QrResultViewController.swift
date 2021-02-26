@@ -11,7 +11,9 @@
 
 import UIKit
 
-class QrResultViewController: VenueViewController {
+class QrResultViewController: BaseViewController {
+    
+    var router: Router!
     
     var venueRecordUseCase: VenueRecordUseCase!
     
@@ -36,8 +38,12 @@ class QrResultViewController: VenueViewController {
         }
     }
     
+    @IBAction func onCancel(_ sender: Any) {
+        router.popToRoot(from: self, animated: true)
+    }
+    
     @IBAction func onBack(_ sender: Any) {
-        router.pop(from: self, animated: true)
+        router.popToRoot(from: self, animated: true)
     }
     
 }
