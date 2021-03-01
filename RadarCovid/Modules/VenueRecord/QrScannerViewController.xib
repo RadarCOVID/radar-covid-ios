@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QrScannerViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundView" destination="VLI-V3-vVS" id="trU-5I-Et8"/>
                 <outlet property="qrScannerView" destination="mZe-bo-snd" id="dq7-lT-TFN"/>
                 <outlet property="targetImage" destination="irw-vc-VZY" id="r6i-H9-pUF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,6 +25,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZe-bo-snd" customClass="QrScannerView" customModule="Radar_COVID" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLI-V3-vVS" userLabel="BackgroundView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7o-Sm-zAT">
                     <rect key="frame" x="20" y="64" width="374" height="40"/>
@@ -44,17 +49,21 @@
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mZe-bo-snd" secondAttribute="trailing" id="1WO-Ek-o2Z"/>
                 <constraint firstItem="irw-vc-VZY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="1dU-8o-w7K"/>
-                <constraint firstItem="irw-vc-VZY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="67h-Eg-yNT"/>
+                <constraint firstItem="irw-vc-VZY" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="67h-Eg-yNT"/>
                 <constraint firstItem="mZe-bo-snd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8Ru-4u-9gz"/>
+                <constraint firstAttribute="bottom" secondItem="VLI-V3-vVS" secondAttribute="bottom" id="Izk-Fu-S3M"/>
                 <constraint firstItem="mZe-bo-snd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aTB-eD-YHr"/>
                 <constraint firstItem="T7o-Sm-zAT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="bPj-AC-EGT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T7o-Sm-zAT" secondAttribute="trailing" constant="20" id="dAf-c1-Chz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mZe-bo-snd" secondAttribute="bottom" id="gTS-fo-9GL"/>
                 <constraint firstItem="T7o-Sm-zAT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="kMv-lP-ven"/>
+                <constraint firstItem="VLI-V3-vVS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="mmp-Ss-hCA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VLI-V3-vVS" secondAttribute="trailing" id="nBx-eV-UVl"/>
+                <constraint firstItem="VLI-V3-vVS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yAS-B6-jq5"/>
             </constraints>
             <point key="canvasLocation" x="141" y="78"/>
         </view>

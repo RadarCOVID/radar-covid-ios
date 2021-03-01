@@ -16,6 +16,8 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     
     private let disposeBag = DisposeBag()
     
+    @IBOutlet weak var backgroundView: UIView!
+    
     @IBOutlet weak var qrScannerView: QrScannerView!
     
     @IBOutlet weak var targetImage: UIImageView!
@@ -28,13 +30,19 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
         super.viewDidLoad()
         qrScannerView.delegate = self
         
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
         addQrTransparentWindowToBackground()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-
+        
+        
         qrScannerView.startScanning()
     }
     
@@ -53,9 +61,10 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
         
         let fillLayer = CAShapeLayer()
         
-        let pathBigRect = UIBezierPath(rect: view.bounds)
+    
+        let pathBigRect = UIBezierPath(rect: backgroundView.layer.bounds)
         let inset = CGFloat(15)
-        let pathSmallRect = UIBezierPath(rect: targetImage.frame.inset(by: UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)))
+        let pathSmallRect = UIBezierPath(rect: targetImage.frame.inset(by: UIEdgeInsets(top: inset, left: inset, bottom: inset , right: inset)))
 
         pathBigRect.append(pathSmallRect)
         pathBigRect.usesEvenOddFillRule = true
@@ -65,7 +74,7 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
         fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
         fillLayer.fillColor = UIColor.blueyGrey62.cgColor
         
-        view.layer.addSublayer(fillLayer)
+        backgroundView.layer.addSublayer(fillLayer)
     }
     
     func qrScanningDidFail() {
