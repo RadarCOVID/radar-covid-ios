@@ -14,6 +14,8 @@ import UIKit
 class CheckedInViewController: VenueViewController {
     
     var venueRecordUseCase: VenueRecordUseCase!
+    
+    @IBOutlet weak var backgroundView: BackgroundView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,13 @@ class CheckedInViewController: VenueViewController {
     
     @IBAction func onCheckOutTap(_ sender: Any) {
         router.route(to: .checkOut, from: self)
+    }
+    
+    private func setupView() {
+        cancelButton.layer.borderWidth = 1
+        cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
+        
+        backgroundView.image = UIImage(named: "WhiteCard")
     }
     
 }

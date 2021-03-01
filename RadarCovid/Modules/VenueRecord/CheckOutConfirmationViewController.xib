@@ -19,6 +19,9 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="IgJ-MZ-gQ9">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="155.5"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Se ha registrado la visita con éxito" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnA-rL-oph">
                     <rect key="frame" x="20" y="144" width="374" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -40,8 +43,11 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="8Y9-od-ot7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="1AZ-Pz-hBj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IgJ-MZ-gQ9" secondAttribute="trailing" id="3QC-lR-fjx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8Y9-od-ot7" secondAttribute="trailing" constant="20" id="9K0-l5-fQz"/>
+                <constraint firstItem="IgJ-MZ-gQ9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="BUk-p4-wNd"/>
                 <constraint firstItem="8Y9-od-ot7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="OkX-So-snD"/>
+                <constraint firstItem="IgJ-MZ-gQ9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="S53-fa-G0Q"/>
                 <constraint firstItem="KnA-rL-oph" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="YFc-Q9-BcT"/>
                 <constraint firstItem="KnA-rL-oph" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Zlh-15-kvT"/>
                 <constraint firstAttribute="trailing" secondItem="KnA-rL-oph" secondAttribute="trailing" constant="20" id="ghM-2R-KoY"/>
@@ -51,6 +57,7 @@
     </objects>
     <resources>
         <image name="iconsBack" width="25.5" height="17"/>
+        <image name="organicColor" width="375" height="155.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

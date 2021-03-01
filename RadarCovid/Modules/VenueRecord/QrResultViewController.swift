@@ -20,18 +20,19 @@ class QrResultViewController: BaseViewController {
     
     var venueRecordUseCase: VenueRecordUseCase!
     
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var venueNameLabel: UILabel!
+    @IBOutlet weak var venueView: BackgroundView!
     
     var qrCode: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        venueNameLabel.text = qrCode
     }
     
     @IBAction func onConfirmTap(_ sender: Any) {
@@ -57,6 +58,13 @@ class QrResultViewController: BaseViewController {
     
     @IBAction func onBack(_ sender: Any) {
         router.popToRoot(from: self, animated: true)
+    }
+    
+    private func setupView() {
+        cancelButton.layer.borderWidth = 1
+        cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
+        
+        venueView.image = UIImage(named: "WhiteCard")
     }
     
 }

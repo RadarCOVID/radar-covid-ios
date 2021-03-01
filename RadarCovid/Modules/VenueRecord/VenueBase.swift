@@ -20,6 +20,8 @@ class VenueViewController: BaseViewController, VenueCanceller {
     
     var router: Router!
     
+    @IBOutlet weak var cancelButton: UIButton!
+    
     @IBAction func onCancel(_ sender: Any) {
         self.showAlertCancelContinue(
             title: "ALERT_MY_HEALTH_SEND_TITLE".localizedAttributed,

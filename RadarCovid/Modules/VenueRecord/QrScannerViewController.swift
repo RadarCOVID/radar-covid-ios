@@ -29,8 +29,7 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         qrScannerView.delegate = self
-        
-        
+        setupView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -39,18 +38,17 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
-        
-        
         qrScannerView.startScanning()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
         qrScannerView.stopScanning()
-        
         super.viewWillDisappear(animated)
+    }
+    
+    private func setupView() {
+        self.title = "QR_SCANNER_PAGE_TITLE".localized
     }
     
     @IBAction func onBack(_ sender: Any) {
@@ -87,13 +85,9 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
                 guard let self = self else { return }
                 self.router.route(to: .qrResult, from: self, parameters: result)
             }, onError: { [weak self] error in
-                
-//                TODO: duda pantalla de error??
-                self?.showAlertOk(
-                    title: "",
-                    message: "ERROR SCANNER",
-                    buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
-                
+                debugPrint(error)
+                guard let self = self else { return }
+                self.router.route(to: .qrError, from: self)
             }).disposed(by: disposeBag)
         
     }
@@ -103,3 +97,13 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     }
 
 }
+
+extension QrScannerViewController: AccTitleView {
+
+    var accTitle: String? {
+        get {
+            "QR_SCANNER_PAGE_TITLE".localized
+        }
+    }
+}
+

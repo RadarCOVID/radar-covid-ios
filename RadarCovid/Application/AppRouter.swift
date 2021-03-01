@@ -50,6 +50,7 @@ public enum Routes {
     case checkedIn
     case checkOut
     case checkOutConfirmation
+    case qrError
 }
 
 
@@ -166,6 +167,8 @@ class AppRouter: Router {
             routeToCheckOut(context)
         case .checkOutConfirmation:
             routeToCheckoutConfirmation(context)
+        case .qrError:
+            routeToQrError(context)
         }
         
             
@@ -320,6 +323,11 @@ class AppRouter: Router {
     
     private func routeToCheckoutConfirmation(_ context: UIViewController) {
         let vc = AppDelegate.shared!.injection.resolve(CheckOutConfirmationViewController.self)!
+        context.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func routeToQrError(_ context: UIViewController) {
+        let vc = AppDelegate.shared!.injection.resolve(QrErrorViewController.self)!
         context.navigationController?.pushViewController(vc, animated: true)
     }
     

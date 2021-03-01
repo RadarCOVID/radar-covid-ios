@@ -19,8 +19,11 @@ class VenueRecordStartViewController: BaseViewController {
     var router: AppRouter!
     var venueRecordUseCase : VenueRecordUseCase!
     
+    @IBOutlet weak var listButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,5 +39,10 @@ class VenueRecordStartViewController: BaseViewController {
     
     @IBAction func onScanTap(_ sender: Any) {
         router.route(to: .qrScanner, from: self)
+    }
+    
+    private func setupView() {
+        listButton.layer.borderWidth = 1
+        listButton.layer.borderColor = UIColor.deepLilac.cgColor
     }
 }

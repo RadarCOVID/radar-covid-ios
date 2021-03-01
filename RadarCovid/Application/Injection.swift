@@ -562,6 +562,12 @@ class Injection {
             return vc
         }
         
+        container.register(QrErrorViewController.self) { r in
+            let vc = QrErrorViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            return vc
+        }
+    
         container.register(CheckedInViewController.self) { r in
             let vc = CheckedInViewController()
             vc.router = r.resolve(AppRouter.self)!

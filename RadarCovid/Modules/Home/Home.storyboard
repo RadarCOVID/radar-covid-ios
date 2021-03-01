@@ -84,7 +84,7 @@
                                     <constraint firstItem="yYt-xr-EdD" firstAttribute="centerY" secondItem="xm5-CV-zov" secondAttribute="centerY" id="vSx-oW-Mwd"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEu-F8-ZM1">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEu-F8-ZM1">
                                 <rect key="frame" x="0.0" y="103" width="414" height="673"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUO-V4-jee" userLabel="ContentView">
