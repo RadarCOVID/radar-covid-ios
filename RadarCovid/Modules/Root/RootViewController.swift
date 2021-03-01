@@ -131,18 +131,23 @@ class RootViewController: UIViewController {
         if (!DP3TTracing.isOSCompatible) {
             navigateToUnsupportedOS()
         } else if onBoardingCompletedUseCase.isOnBoardingCompleted() {
-            if venueRecordUseCase.isCheckedIn() {
-                let fromHome = true
-                router.route(to: .checkedIn, from: self, parameters: fromHome)
-            } else if let urlSchemeRedirect = urlSchemeRedirect {
-                router.routes(to: urlSchemeRedirect, from: self, parameters: paramsUrlScheme)
-            } else {
-                router.route(to: Routes.home, from: self, parameters: selectTabType)
-            }
+            venueRecordUseCase.isCheckedIn().subscribe( onNext: { [weak self] checkedIn in
+                self?.navigateIfCheckedIn(checkedIn)
+            }).disposed(by: disposeBag)
         } else {
             router.route(to: .welcome, from: self)
         }
 
+    }
+    
+    private func navigateIfCheckedIn(_ checkedIn: Bool) {
+        if checkedIn {
+            router.route(to: .checkedIn, from: self)
+        } else if let urlSchemeRedirect = urlSchemeRedirect {
+            router.routes(to: urlSchemeRedirect, from: self, parameters: paramsUrlScheme)
+        } else {
+            router.route(to: Routes.home, from: self, parameters: selectTabType)
+        }
     }
     
     private func navigateToUnsupportedOS() {

@@ -100,6 +100,7 @@
 		6D91550825E7BCF4007965F4 /* ExposedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91550725E7BCF4007965F4 /* ExposedEvent.swift */; };
 		6D91550E25E7E4BE007965F4 /* VenueRecordUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91550D25E7E4BE007965F4 /* VenueRecordUseCaseTest.swift */; };
 		6D91551825E7F35D007965F4 /* VenueInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91551725E7F35D007965F4 /* VenueInfo.swift */; };
+		6D91552125ED02FE007965F4 /* KeyStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */; };
 		6D97C46325BAF05700102200 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46225BAF05700102200 /* Data+Extension.swift */; };
 		6D97C46725BAF49000102200 /* AnalyticsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */; };
 		6D97C47D25BAFE4200102200 /* AnalyticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */; };
@@ -396,6 +397,7 @@
 		6D91550725E7BCF4007965F4 /* ExposedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposedEvent.swift; sourceTree = "<group>"; };
 		6D91550D25E7E4BE007965F4 /* VenueRecordUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRecordUseCaseTest.swift; sourceTree = "<group>"; };
 		6D91551725E7F35D007965F4 /* VenueInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueInfo.swift; sourceTree = "<group>"; };
+		6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreRepository.swift; sourceTree = "<group>"; };
 		6D97C46225BAF05700102200 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUseCase.swift; sourceTree = "<group>"; };
 		6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRepository.swift; sourceTree = "<group>"; };
@@ -1110,6 +1112,7 @@
 				6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */,
 				6D076FC925DFC913001A8C44 /* VenueRecordRepository.swift */,
 				6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */,
+				6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1925,6 +1928,7 @@
 				6DE27C72249A6D4600BBCF40 /* Models.swift in Sources */,
 				A9EDAF0E25767CC60041AE1E /* BaseExposedViewController.swift in Sources */,
 				6DB5418E24989C2500166D37 /* SettingsAPI.swift in Sources */,
+				6D91552125ED02FE007965F4 /* KeyStoreRepository.swift in Sources */,
 				A9D38D68256D1DB300C2F671 /* ShareUseCase.swift in Sources */,
 				6DE27C71249A6D4500BBCF40 /* JSONEncodingHelper.swift in Sources */,
 				6DA18CC42491733900BE8AAB /* RadarStatusUseCase.swift in Sources */,

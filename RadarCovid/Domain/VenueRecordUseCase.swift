@@ -14,10 +14,10 @@ import RxSwift
 
 protocol VenueRecordUseCase {
     func getVenueInfo(qrCode: String) -> Observable<VenueInfo>
-    func isCheckedIn() -> Bool
-    func checkIn(venue: VenueRecord)
+    func isCheckedIn() -> Observable<Bool>
+    func checkIn(venue: VenueRecord) -> Observable<VenueRecord>
     func checkOut(date: Date) -> Observable<Void>
-    func cancelCheckIn()
+    func cancelCheckIn() -> Observable<Void>
 }
 
 class VenueRecordUseCaseImpl : VenueRecordUseCase{
@@ -34,29 +34,33 @@ class VenueRecordUseCaseImpl : VenueRecordUseCase{
         venueNotifier.getInfo(qrCode: qrCode)
     }
     
-    func isCheckedIn() -> Bool {
-        venueRecordRepository.getCurrentVenue() != nil
+    func isCheckedIn() -> Observable<Bool> {
+        venueRecordRepository.getCurrentVenue().map { $0 != nil }
     }
     
-    func checkIn(venue: VenueRecord) {
+    func checkIn(venue: VenueRecord) -> Observable<VenueRecord> {
         venueRecordRepository.save(current: venue)
     }
     
     func checkOut(date: Date) -> Observable<Void> {
-        if let current = venueRecordRepository.getCurrentVenue() {
-            return venueNotifier.getInfo(qrCode: current.qr).flatMap { [weak self] venueInfo -> Observable<Void> in
-                guard let self = self else { return .empty() }
-                return self.venueNotifier.checkOut(venue: venueInfo, arrival: current.checkIn, departure: date)
-                    .map { venueInfo in
-                        self.venueRecordRepository.removeCurrent()
-                        return Void()
-                    }
+        venueRecordRepository.getCurrentVenue().flatMap { [weak self] current -> Observable<Void> in
+            guard let self = self else { return .empty() }
+            if var current = current {
+                return self.venueNotifier.getInfo(qrCode: current.qr).flatMap { venueInfo -> Observable<Void> in
+                    self.venueNotifier.checkOut(venue: venueInfo, arrival: current.checkIn, departure: date)
+                        .flatMap { venueInfo -> Observable<Void> in
+                            current.name = venueInfo.name
+                            return self.venueRecordRepository.removeCurrent().flatMap { () -> Observable<Void> in
+                                self.venueRecordRepository.save(visit: current).map { _ in Void () }
+                            }
+                        }
+                }
             }
+            return .error(VenueRecordError.noCheckedIn)
         }
-        return .error(VenueRecordError.noCheckedIn)
     }
     
-    func cancelCheckIn() {
+    func cancelCheckIn() -> Observable<Void> {
         venueRecordRepository.removeCurrent()
     }
 }

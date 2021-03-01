@@ -31,7 +31,7 @@ class SelectorView: UIView {
     var delegateOutput: SelectorProtocol?
     
     var getArray:() -> (Observable<[SelectorItem]>) = {
-        return Observable.create { observer in
+        return Observable.create { observer  in
             
             observer.onNext([])
             observer.onCompleted()

@@ -29,6 +29,7 @@ class CheckOutViewController: VenueViewController {
                 guard let self = self else { return }
                 self.router.route(to: .checkOutConfirmation, from: self)
             }, onError: { [weak self] error in
+                debugPrint(error)
                 self?.showAlertOk(
                     title: "",
                     message: "ERROR REGISTER",

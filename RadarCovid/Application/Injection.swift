@@ -126,7 +126,7 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(VenueRecordRepository.self) { _ in
-            UserDefaultsVenueRecordRepository()
+            KeyStoreVenueRecordRepository()
         }.inObjectScope(.container)
         
         container.register(VersionHandler.self) { _ in

@@ -10,8 +10,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class VenueRecordStartViewController: BaseViewController {
+    
+    var disposeBag: DisposeBag = DisposeBag()
     
     var router: AppRouter!
     var venueRecordUseCase : VenueRecordUseCase!
@@ -22,10 +25,13 @@ class VenueRecordStartViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if venueRecordUseCase.isCheckedIn() {
-            router.route(to: .checkedIn, from: self, parameters: true)
-        }
+            
+        venueRecordUseCase.isCheckedIn().subscribe( onNext: { [weak self] checkedIn in
+            guard let self = self else { return }
+            if checkedIn {
+                self.router.route(to: .checkedIn, from: self, parameters: true)
+            }
+        }).disposed(by: disposeBag)
     }
     
     @IBAction func onScanTap(_ sender: Any) {

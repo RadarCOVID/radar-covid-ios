@@ -10,8 +10,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class QrResultViewController: BaseViewController {
+    
+    let disposeBag = DisposeBag()
     
     var router: Router!
     
@@ -33,8 +36,18 @@ class QrResultViewController: BaseViewController {
     
     @IBAction func onConfirmTap(_ sender: Any) {
         if let qrCode = qrCode {
-            venueRecordUseCase.checkIn(venue: VenueRecord(qr: qrCode, checkIn: Date(), checkOut: nil))
-            router.route(to: .checkedIn, from: self)
+            venueRecordUseCase.checkIn(venue: VenueRecord(qr: qrCode, checkIn: Date(), checkOut: nil)).subscribe(
+                onNext: { [weak self] _ in
+                    guard let self = self else { return }
+                    self.router.route(to: .checkedIn, from: self)
+                },onError: { [weak self] error in
+                    debugPrint(error)
+                    self?.showAlertOk(
+                        title: "",
+                        message: "ERROR REGISTER",
+                        buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+                    
+            }).disposed(by: disposeBag)
         }
     }
     

@@ -10,33 +10,51 @@
 //
 
 import Foundation
-
+import RxSwift
 
 protocol VenueRecordRepository {
-    func getCurrentVenue() -> VenueRecord?
-    func save(current: VenueRecord)
-    func removeCurrent()
+    func getCurrentVenue() -> Observable<VenueRecord?>
+    func save(current: VenueRecord) -> Observable<VenueRecord>
+    func getVisited()-> Observable<[VenueRecord]?>
+    func save(visit: VenueRecord) -> Observable<VenueRecord>
+    func removeVisited() -> Observable<Void>
+    func removeCurrent() -> Observable<Void>
 }
 
-class UserDefaultsVenueRecordRepository : UserDefaultsRepository, VenueRecordRepository {
+class KeyStoreVenueRecordRepository : KeyStoreRepository, VenueRecordRepository {
+
+    private static let kCurrentVenueKey = KeychainKey(key: "UserDefaultsVenueRecordRepository.currentVenue", type: VenueRecord.self)
+    
+    private static let kVisitedList = KeychainKey(key: "UserDefaultsVenueRecordRepository.currentVenue", type: [VenueRecord].self)
     
     
-    private static let kCurrentVenue = "UserDefaultsVenueRecordRepository.currentVenue"
+    func getCurrentVenue() -> Observable<VenueRecord?> {
+        get(key: KeyStoreVenueRecordRepository.kCurrentVenueKey)
+    }
     
-    func getCurrentVenue() -> VenueRecord? {
-        if let uncoded = userDefaults.data(forKey: UserDefaultsVenueRecordRepository.kCurrentVenue), !uncoded.isEmpty {
-            return try? decoder.decode(VenueRecord.self, from: uncoded)
+    func save(current: VenueRecord) -> Observable<VenueRecord> {
+        save(key: KeyStoreVenueRecordRepository.kCurrentVenueKey, value: current)
+    }
+    
+    func removeCurrent() -> Observable<Void> {
+        delete(key: KeyStoreVenueRecordRepository.kCurrentVenueKey)
+    }
+    
+    func getVisited() -> Observable<[VenueRecord]?> {
+        get(key: KeyStoreVenueRecordRepository.kVisitedList)
+    }
+    
+    func save(visit: VenueRecord) -> Observable<VenueRecord> {
+        getVisited().flatMap { [weak self] visited -> Observable<VenueRecord>in
+            var visited = visited ?? []
+            visited.append(visit)
+            return self?.save(key: KeyStoreVenueRecordRepository.kVisitedList, value: visited)
+                .map { _ in visit } ?? .empty()
         }
-        return nil
     }
     
-    func save(current: VenueRecord) {
-        guard let encoded = try? encoder.encode(current) else { return }
-        userDefaults.set(encoded, forKey: UserDefaultsVenueRecordRepository.kCurrentVenue)
-    }
-    
-    func removeCurrent() {
-        userDefaults.removeObject(forKey: UserDefaultsVenueRecordRepository.kCurrentVenue)
+    func removeVisited() -> Observable<Void> {
+        delete(key: KeyStoreVenueRecordRepository.kVisitedList)
     }
     
     

@@ -13,6 +13,8 @@ import Foundation
 
 struct VenueRecord: Codable {
     var qr: String
+    var hidden: Bool = false
+    var name: String?
     var checkIn: Date
     var checkOut: Date?
 }

@@ -54,8 +54,7 @@ class WelcomeViewModel {
                     }).disposed(by: self?.disposeBag ?? DisposeBag())
             observer.onCompleted()
             
-            return Disposables.create {
-            }
+            return Disposables.create {}
         }
     }
 }

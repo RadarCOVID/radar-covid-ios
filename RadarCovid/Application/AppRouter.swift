@@ -161,7 +161,7 @@ class AppRouter: Router {
         case .qrResult:
             routeToQrResult(context, qrCode: parameters?.first as? String)
         case .checkedIn:
-            routeToCheckedIn(context, fromHome: parameters?.first as? Bool)
+            routeToCheckedIn(context)
         case .checkOut:
             routeToCheckOut(context)
         case .checkOutConfirmation:
@@ -308,13 +308,9 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(qrResultVC, animated: true)
     }
     
-    private func routeToCheckedIn(_ context: UIViewController, fromHome: Bool?) {
+    private func routeToCheckedIn(_ context: UIViewController) {
         let checkedInVC = AppDelegate.shared!.injection.resolve(CheckedInViewController.self)!
-        if fromHome ?? false {
-            loadViewAsRoot(navController: context.navigationController, view: checkedInVC )
-        } else {
-            context.navigationController?.pushViewController(checkedInVC, animated: true)
-        }
+        context.navigationController?.pushViewController(checkedInVC, animated: true)
     }
     
     private func routeToCheckOut(_ context: UIViewController) {

@@ -312,29 +312,64 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
         super.init("VenueRecordRepositoryMock")
     }
     
-    func getCurrentVenue() -> VenueRecord? {
-        call("getCurrentVenue") as? VenueRecord
+    func getCurrentVenue() -> Observable<VenueRecord?> {
+        Observable.just(Void()).flatMap { () -> Observable<VenueRecord?> in
+            .just(self.call("getCurrentVenue") as? VenueRecord)
+        }
     }
     
-    func save(current: VenueRecord) {
-        
+    func save(current: VenueRecord) -> Observable<VenueRecord> {
+        Observable.just(Void()).flatMap { () -> Observable<VenueRecord> in
+            .just(self.call("saveCurrent", params: ["current": current]) as! VenueRecord)
+        }
     }
     
-    func removeCurrent() {
-        call("removeCurrent")
+    func getVisited() -> Observable<[VenueRecord]?> {
+        Observable.just(Void()).flatMap { () -> Observable<[VenueRecord]?> in
+            .just(self.call("getVisited") as? [VenueRecord])
+        }
+    }
+    
+    func save(visit: VenueRecord) -> Observable<VenueRecord> {
+        Observable.just(Void()).flatMap { () -> Observable<VenueRecord> in
+            .just(self.call("saveVisit", params: ["visit": visit]) as! VenueRecord)
+        }
+    }
+    
+    func removeVisited() -> Observable<Void> {
+        Observable.just(Void()).flatMap { () -> Observable<Void> in
+            self.call("removeVisited")
+            return .just(Void())
+        }
+    }
+    
+    func removeCurrent() -> Observable<Void> {
+        Observable.just(Void()).flatMap { () -> Observable<Void> in
+            self.call("removeCurrent")
+            return .just(Void())
+        }
     }
     
     func registerGetCurrentVenue(response: VenueRecord?) {
         registerMock("getCurrentVenue", responses: [response])
     }
     
+    func registerSaveVisit(response: VenueRecord) {
+        registerMock("saveVisit",responses: [response])
+    }
+    
     func verifyRemoveCurrent(called: VerifyCount = .atLeastOnce) {
         verify("removeCurrent", called : called)
+    }
+    
+    func verifySaveVisit() {
+        verify("saveVisit")
     }
     
     func verifyGetCurrentVenue() {
         verify("getCurrentVenue")
     }
+    
     
 }
 
@@ -413,7 +448,7 @@ class Mocker {
             return mockedFunc.call(params: params)
         }
         registerMock(fn)
-        return call(fn)
+        return call(fn, params: params)
     }
     
     func verifyNoMoreInteractions() {

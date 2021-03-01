@@ -33,26 +33,31 @@ class VenueRecordUseCaseTest: XCTestCase {
 
     func testCheckOutWithCurrentVenueAndWellFormedQR() throws {
         
-        let current = Date()
-        let intial = Date().addingTimeInterval(-1000)
-        let venueRecord = VenueRecord(qr: "", checkIn: intial, checkOut: nil)
+        let currentDate = Date()
+        let intialDate = Date().addingTimeInterval(-1000)
+        let venueRecord = VenueRecord(qr: "qr", checkIn: intialDate, checkOut: nil)
         let venueInfo = VenueInfo(name: "Name")
         
         venueNotifier.registerGetInfo(response: .just(venueInfo))
         venueNotifier.registerCheckOut(response: .just(venueInfo))
         venueRecorRepository.registerGetCurrentVenue(response: venueRecord)
+        venueRecorRepository.registerSaveVisit(response: venueRecord)
         
-        try! sut.checkOut(date: current).toBlocking().first()
+        try! sut.checkOut(date: currentDate).toBlocking().first()
         
         venueNotifier.verifyCheckout()
         venueNotifier.verifyGetInfo()
+        venueRecorRepository.verifySaveVisit()
         
         var params = venueNotifier.paramCaptured("checkOut")!
-        XCTAssertEqual(params["arrival"] as! Date, intial)
-        XCTAssertEqual(params["departure"] as! Date, current)
+        XCTAssertEqual(params["arrival"] as! Date, intialDate)
+        XCTAssertEqual(params["departure"] as! Date, currentDate)
         
         params = venueNotifier.paramCaptured("getInfo")!
-        XCTAssertEqual(params["qrCode"] as! String, "")
+        XCTAssertEqual(params["qrCode"] as! String, "qr")
+        
+        let savedVisit = venueRecorRepository.paramCaptured("saveVisit")!["visit"] as! VenueRecord
+        XCTAssertEqual(savedVisit.name, "Name")
         
         venueRecorRepository.verifyGetCurrentVenue()
         venueRecorRepository.verifyRemoveCurrent()
@@ -132,6 +137,22 @@ class VenueRecordUseCaseTest: XCTestCase {
         
         venueRecorRepository.verifyNoMoreInteractions()
         venueNotifier.verifyNoMoreInteractions()
+    }
+    
+    func testCheckOutWithNoCheckIn() {
+        let current = Date()
+        
+        do {
+            try sut.checkOut(date: current).toBlocking().first()
+        } catch is VenueRecordError {
+        
+        } catch {
+            XCTFail("Incorrect error \(error)")
+        }
+       
+        venueNotifier.verifyCheckout(called: .never)
+        venueNotifier.verifyGetInfo(called: .never)
+        
     }
 
 }
