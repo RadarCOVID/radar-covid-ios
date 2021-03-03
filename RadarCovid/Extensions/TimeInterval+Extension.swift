@@ -11,10 +11,17 @@
 
 import Foundation
 
-struct VenueRecord: Codable {
-    var qr: String
-    var hidden: Bool = false
-    var name: String?
-    var checkIn: Date?
-    var checkOut: Date?
+extension TimeInterval {
+
+    func toFormattedString() -> String {
+
+        let time = NSInteger(self)
+
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+
+        return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+
+    }
 }

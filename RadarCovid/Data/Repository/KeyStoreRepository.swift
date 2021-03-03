@@ -73,10 +73,10 @@ class KeyStoreRepository {
                     let attributes = [kSecValueData: encoded]
                     status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
                     if status == errSecSuccess {
-                        observer.onError(KeyStoreError.secError(status))
-                    } else {
                         observer.onNext(value)
                         observer.onCompleted()
+                    } else {
+                        observer.onError(KeyStoreError.secError(status))
                     }
                     
                 case errSecItemNotFound:

@@ -13,8 +13,9 @@ import Foundation
 import RxSwift
 
 protocol VenueRecordUseCase {
-    func getVenueInfo(qrCode: String) -> Observable<VenueInfo>
+    func getVenueInfo(qrCode: String) -> Observable<VenueRecord>
     func isCheckedIn() -> Observable<Bool>
+    func getCurrentVenue() -> Observable<VenueRecord?>
     func checkIn(venue: VenueRecord) -> Observable<VenueRecord>
     func checkOut(date: Date) -> Observable<Void>
     func cancelCheckIn() -> Observable<Void>
@@ -30,12 +31,16 @@ class VenueRecordUseCaseImpl : VenueRecordUseCase{
         self.venueNotifier = venueNotifier
     }
     
-    func getVenueInfo(qrCode: String) -> Observable<VenueInfo> {
-        venueNotifier.getInfo(qrCode: qrCode)
+    func getVenueInfo(qrCode: String) -> Observable<VenueRecord> {
+        venueNotifier.getInfo(qrCode: qrCode).map { VenueRecord(qr: qrCode, name: $0.name) }
     }
     
     func isCheckedIn() -> Observable<Bool> {
         venueRecordRepository.getCurrentVenue().map { $0 != nil }
+    }
+    
+    func getCurrentVenue() -> Observable<VenueRecord?> {
+        venueRecordRepository.getCurrentVenue()
     }
     
     func checkIn(venue: VenueRecord) -> Observable<VenueRecord> {
@@ -47,7 +52,7 @@ class VenueRecordUseCaseImpl : VenueRecordUseCase{
             guard let self = self else { return .empty() }
             if var current = current {
                 return self.venueNotifier.getInfo(qrCode: current.qr).flatMap { venueInfo -> Observable<Void> in
-                    self.venueNotifier.checkOut(venue: venueInfo, arrival: current.checkIn, departure: date)
+                    self.venueNotifier.checkOut(venue: venueInfo, arrival: current.checkIn!, departure: date)
                         .flatMap { venueInfo -> Observable<Void> in
                             current.name = venueInfo.name
                             return self.venueRecordRepository.removeCurrent().flatMap { () -> Observable<Void> in

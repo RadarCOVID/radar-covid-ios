@@ -18,19 +18,31 @@ class CheckOutViewController: VenueViewController {
     
     @IBOutlet weak var venueView: BackgroundView!
     @IBOutlet weak var dateView: UIView!
-    
     @IBOutlet weak var timeSC: UISegmentedControl!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var hourLabel: UILabel!
+    @IBOutlet weak var finishButton: UIButton!
     
     var venueRecordUseCase: VenueRecordUseCase!
+    
+    private var currentVenue: VenueRecord?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadCurrentVenue()
+    }
+    
     @IBAction func endRegisterTap(_ sender: Any) {
         
-        venueRecordUseCase.checkOut(date: Date()).subscribe(
+        let checkOutDate = getCheckoutFrom(index: timeSC.selectedSegmentIndex)
+        
+        venueRecordUseCase.checkOut(date: checkOutDate).subscribe(
             onNext: { [weak self] exposition in
                 guard let self = self else { return }
                 self.router.route(to: .checkOutConfirmation, from: self)
@@ -49,8 +61,59 @@ class CheckOutViewController: VenueViewController {
     }
     
     override func finallyCanceled() {
-        venueRecordUseCase.cancelCheckIn()
-        super.finallyCanceled()
+        venueRecordUseCase.cancelCheckIn().subscribe(onNext: {
+            super.finallyCanceled()
+        }, onError: { [weak self] error in
+            debugPrint(error)
+            self?.showAlertOk(
+                title: "",
+                message: "ERROR REGISTER",
+                buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+        }).disposed(by: disposeBag)
+    }
+    
+    @IBAction func timeSCChanged(_ sender: Any) {
+        finishButton.isEnabled = true
+    }
+    
+    private func loadCurrentVenue() {
+        venueRecordUseCase.getCurrentVenue().subscribe(onNext: { [weak self] venue in
+            if let venue = venue {
+                self?.load(current: venue)
+            }
+        }, onError: { [weak self] error in
+            debugPrint(error)
+            self?.showAlertOk(
+                title: "",
+                message: "ERROR REGISTER",
+                buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func load(current: VenueRecord) {
+        
+        self.currentVenue = current
+        
+        nameLabel.text = current.name
+        
+        if let checkInDate = current.checkIn {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.setLocalizedDateFormatFromTemplate("dMMM")
+            var day = ""
+            if Calendar.current.isDateInToday(checkInDate) || Calendar.current.isDateInToday(checkInDate) {
+                let rdf = DateFormatter()
+                rdf.dateStyle = .short
+                rdf.doesRelativeDateFormatting = true
+                day = rdf.string(from: checkInDate).capitalized + ", "
+            }
+            dateLabel.text = day + dateFormatter.string(from: checkInDate).capitalized
+            
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "HH:mm"
+            hourLabel.text = timeFormatter.string(from: checkInDate) + " h"
+        }
+
     }
     
     private func setupView() {
@@ -86,11 +149,8 @@ class CheckOutViewController: VenueViewController {
             timeSC.tintColor = .degradado
         }
         
-
-//        timeSC.setDividerImage(imageWithColor(color: .degradado), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-
-//        timeSC.setBackgroundImage(imageWithColor(color: .white), for: .normal, barMetrics: .default)
-//        timeSC.setBackgroundImage(imageWithColor(color: .degradado), for: .selected, barMetrics: .default)
+        timeSC.selectedSegmentIndex = UISegmentedControl.noSegment
+        
     }
     
     private func imageWithColor(color: UIColor) -> UIImage {
@@ -133,6 +193,29 @@ class CheckOutViewController: VenueViewController {
              return nameImage
           }
           return nil
+    }
+    
+    private func getCheckoutFrom(index: Int) -> Date {
+        guard let checkInDate = currentVenue?.checkIn else {
+            return Date()
+        }
+        if index == 0 {
+            return Date()
+        }
+        
+        if index == 1 {
+            return checkInDate.addingTimeInterval(30 * 60)
+        }
+        
+        if index > 1 && index <= 3{
+            return checkInDate.addingTimeInterval( Double((index - 1)) * 60.0 * 60.0 )
+        }
+        
+        if index > 3 {
+            return checkInDate.addingTimeInterval( Double((index)) * 60.0 * 60.0 )
+        }
+        
+        return Date()
     }
     
 }

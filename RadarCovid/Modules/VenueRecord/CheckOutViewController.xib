@@ -12,7 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckOutViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="cancelButton" destination="gm5-29-6Qx" id="h7E-im-026"/>
+                <outlet property="dateLabel" destination="Ub5-4U-f0q" id="ajF-aP-WiK"/>
                 <outlet property="dateView" destination="fqe-dv-hiF" id="DHZ-pw-NUC"/>
+                <outlet property="finishButton" destination="S9u-6n-7q3" id="E3P-HZ-IxA"/>
+                <outlet property="hourLabel" destination="Qkj-Vb-9I0" id="4DM-4m-mNg"/>
+                <outlet property="nameLabel" destination="LWQ-U8-VxA" id="zJC-tC-kXV"/>
                 <outlet property="timeSC" destination="CZY-uE-DoK" id="iYG-la-tEV"/>
                 <outlet property="venueView" destination="vir-15-84f" id="ENY-r8-Vp9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -47,7 +51,7 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre del establecimiento dos líneas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWQ-U8-VxA">
                                             <rect key="frame" x="56" y="16" width="271" height="43"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -121,6 +125,9 @@ AHORA</string>
                                         <segment title="+5h"/>
                                     </segments>
                                     <color key="tintColor" red="0.4810534716" green="0.35028833149999999" blue="0.66210502390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="timeSCChanged:" destination="-1" eventType="valueChanged" id="aDb-sV-kfN"/>
+                                    </connections>
                                 </segmentedControl>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -191,7 +198,7 @@ AHORA</string>
                         <action selector="onBack:" destination="-1" eventType="touchUpInside" id="arB-Fp-Bgp"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9u-6n-7q3" userLabel="Accept Button">
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9u-6n-7q3" userLabel="Accept Button">
                     <rect key="frame" x="16" y="519" width="343" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="K5F-Vb-tWi"/>
@@ -208,6 +215,9 @@ AHORA</string>
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="endRegisterTap:" destination="-1" eventType="touchUpInside" id="ZY4-4K-LP7"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

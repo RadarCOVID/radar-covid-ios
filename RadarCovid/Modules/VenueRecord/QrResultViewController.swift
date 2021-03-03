@@ -25,6 +25,7 @@ class QrResultViewController: BaseViewController {
     @IBOutlet weak var venueView: BackgroundView!
     
     var qrCode: String?
+    private var venueRecord: VenueRecord?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +34,18 @@ class QrResultViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadVenueInfo()
     }
     
     @IBAction func onConfirmTap(_ sender: Any) {
-        if let qrCode = qrCode {
-            venueRecordUseCase.checkIn(venue: VenueRecord(qr: qrCode, checkIn: Date(), checkOut: nil)).subscribe(
+        if var venueRecord = venueRecord {
+            venueRecord.checkIn = Date()
+            venueRecordUseCase.checkIn(venue: venueRecord).subscribe(
                 onNext: { [weak self] _ in
                     guard let self = self else { return }
                     self.router.route(to: .checkedIn, from: self)
                 },onError: { [weak self] error in
-                    debugPrint(error)
+                    debugPrint(error.localizedDescription)
                     self?.showAlertOk(
                         title: "",
                         message: "ERROR REGISTER",
@@ -63,8 +66,19 @@ class QrResultViewController: BaseViewController {
     private func setupView() {
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
-        
         venueView.image = UIImage(named: "WhiteCard")
+    }
+    
+    private func loadVenueInfo() {
+        venueRecordUseCase.getVenueInfo(qrCode: qrCode ?? "").subscribe(
+            onNext: { [weak self] venueRecord in
+                self?.venueRecord = venueRecord
+                self?.venueNameLabel.text = venueRecord.name
+            },onError: { [weak self] error in
+                debugPrint(error)
+                guard let self = self else { return }
+                self.router.route(to: .qrError, from: self)
+        }).disposed(by: disposeBag)
     }
     
 }

@@ -10,15 +10,27 @@
 //
 
 import UIKit
+import RxSwift
 
 class CheckedInViewController: VenueViewController {
     
+    private let disposeBag = DisposeBag()
+    
     var venueRecordUseCase: VenueRecordUseCase!
+    
+    @IBOutlet weak var venueNameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var backgroundView: BackgroundView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadCurrentVenue()
     }
     
     @IBAction func onBack(_ sender: Any) {
@@ -26,8 +38,15 @@ class CheckedInViewController: VenueViewController {
     }
     
     override func finallyCanceled() {
-        venueRecordUseCase.cancelCheckIn()
-        super.finallyCanceled()
+        venueRecordUseCase.cancelCheckIn().subscribe(onNext: {
+            super.finallyCanceled()
+        }, onError: { [weak self] error in
+            debugPrint(error)
+            self?.showAlertOk(
+                title: "",
+                message: "ERROR REGISTER",
+                buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+        }).disposed(by: disposeBag)
     }
     
     @IBAction func onCheckOutTap(_ sender: Any) {
@@ -39,6 +58,27 @@ class CheckedInViewController: VenueViewController {
         cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
         
         backgroundView.image = UIImage(named: "WhiteCard")
+    }
+    
+    private func loadCurrentVenue() {
+        venueRecordUseCase.getCurrentVenue().subscribe(onNext: { [weak self] venue in
+            if let venue = venue {
+                self?.load(current: venue)
+            }
+        }, onError: { [weak self] error in
+            debugPrint(error)
+            self?.showAlertOk(
+                title: "",
+                message: "ERROR REGISTER",
+                buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func load(current: VenueRecord) {
+        venueNameLabel.text = current.name
+        if let checkInDate = current.checkIn {
+            timeLabel.text = Date().timeIntervalSince(checkInDate).toFormattedString()
+        }
     }
     
 }
