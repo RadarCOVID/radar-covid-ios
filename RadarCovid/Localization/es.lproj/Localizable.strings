@@ -417,3 +417,7 @@
 "TEST_KEY" = "<b>Tu diagnóstico nos ayuda a proteger a los demás.</b><br>Sin revelar tu identidad en ningún momento, hemos comunicado tu diagnóstico a los móviles que han estado cerca de tí en los últimos días y les enviaremos una alerta para su seguridad.";
 "THANKS" = "<b>Gracias por seguir cuidándote y cuidando a los demás.</b>";
 "USE_CONDITIONS_URL" = "https://radarcovid.gob.es/condiciones-de-uso";
+"VENUE_HOME_TITLE"="Registro de lugares mediante QR";
+"VENUE_HOME_PARAGRAPH_1"="Registra los lugares que visitas capturando sus códigos QR.\n\nRecibe notificaciones en caso de coincidir con personas posteriormente diagnosticadas de COVID-19.\n\nTu privacidad está protegida en todo momento.";
+"VENUE_HOME_BUTTON_START"="Capturar código QR";
+"ACC_VENUE_HOME_PLACES"="Ver listado de sitios";

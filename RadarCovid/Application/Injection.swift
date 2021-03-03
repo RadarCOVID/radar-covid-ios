@@ -282,7 +282,8 @@ class Injection {
                 settingViewController: r.resolve(SettingViewController.self)!,
                 preferencesRepository: r.resolve(PreferencesRepository.self)!,
                 localizationUseCase: r.resolve(LocalizationUseCase.self)!,
-                venueRecordViewController: r.resolve(VenueRecordStartViewController.self)!
+                venueRecordViewController: r.resolve(VenueRecordStartViewController.self)!,
+                venueRecodrUseCase: r.resolve(VenueRecordUseCase.self)!
             )
         }
         

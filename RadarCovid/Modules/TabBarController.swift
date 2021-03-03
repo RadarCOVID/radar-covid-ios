@@ -15,15 +15,19 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    var homeViewController: HomeViewController
-    var myDataViewController: MyDataViewController
-    var helpLineViewController: HelpLineViewController
-    var settingViewController: SettingViewController
-    var statsViewController: StatsViewController
-    var venueRecordViewController: VenueRecordStartViewController
+    private let disposeBag = DisposeBag()
     
-    var localizationUseCase: LocalizationUseCase
-    var preferencesRepository: PreferencesRepository?
+    private let homeViewController: HomeViewController!
+    private let myDataViewController: MyDataViewController!
+    private let helpLineViewController: HelpLineViewController!
+    private let settingViewController: SettingViewController!
+    private let statsViewController: StatsViewController!
+    private let venueRecordViewController: VenueRecordStartViewController!
+    
+    private let localizationUseCase: LocalizationUseCase!
+    private let venueRecodrUseCase: VenueRecordUseCase!
+    
+    private let preferencesRepository: PreferencesRepository!
     
     var selectTabType: UIViewController.Type?
 
@@ -34,7 +38,8 @@ class TabBarController: UITabBarController {
          settingViewController: SettingViewController,
          preferencesRepository: PreferencesRepository,
          localizationUseCase: LocalizationUseCase,
-         venueRecordViewController: VenueRecordStartViewController) {
+         venueRecordViewController: VenueRecordStartViewController,
+         venueRecodrUseCase: VenueRecordUseCase) {
         
         self.homeViewController = homeViewController
         self.myDataViewController = myDataViewController
@@ -45,6 +50,7 @@ class TabBarController: UITabBarController {
         self.localizationUseCase = localizationUseCase
         self.preferencesRepository = preferencesRepository
         self.venueRecordViewController = venueRecordViewController
+        self.venueRecodrUseCase = venueRecodrUseCase
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -65,9 +71,11 @@ class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAccessibility()
-        setViewControllers([homeViewController, helpLineViewController, statsViewController, settingViewController, venueRecordViewController], animated: false)
+        setViewControllers([homeViewController,venueRecordViewController, helpLineViewController, statsViewController, settingViewController ], animated: false)
         
         select(tabType: selectTabType)
+        
+        loadBadges()
     }
     
     private func setupAccessibility() {
@@ -95,6 +103,14 @@ class TabBarController: UITabBarController {
         settingViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         settingViewController.tabBarItem.accessibilityLabel = "ACC_SETTINGS_TITLE".localized
         settingViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+        
+        
+        venueRecordViewController.tabBarItem.isAccessibilityElement = true
+        venueRecordViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        venueRecordViewController.tabBarItem.accessibilityLabel = "VENUE_HOME_TITLE".localized
+        venueRecordViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+        
+        
     }
     
     private func setupView() {
@@ -112,6 +128,12 @@ class TabBarController: UITabBarController {
             title: "",
             image: UIImage(named: "MenuHomeNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuHomeSelected"))
+        
+        venueRecordViewController.tabBarItem = UITabBarItem(
+            title: "",
+            image: UIImage(named: "QrNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
+            selectedImage: UIImage(named: "QrNormal"))
+        
         myDataViewController.tabBarItem = UITabBarItem(
             title: "",
             image: UIImage(named: "MenuInfoNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
@@ -131,10 +153,6 @@ class TabBarController: UITabBarController {
             image: UIImage(named: "MenuSettingNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuSettingSelected"))
         
-        venueRecordViewController.tabBarItem = UITabBarItem(
-            title: "",
-            image: UIImage(named: "MenuSettingNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
-            selectedImage: UIImage(named: "MenuSettingSelected"))
         
     }
     
@@ -146,6 +164,12 @@ class TabBarController: UITabBarController {
                 }
             }
         }
+    }
+    
+    private func loadBadges() {
+        venueRecodrUseCase.isCheckedIn().subscribe { [weak self] checked in
+            self?.venueRecordViewController.tabBarItem.badgeValue = checked ? "" : nil
+        }.disposed(by: disposeBag)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
