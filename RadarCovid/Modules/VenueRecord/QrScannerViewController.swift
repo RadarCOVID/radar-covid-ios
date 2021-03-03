@@ -48,7 +48,7 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     }
     
     private func setupView() {
-        self.title = "QR_SCANNER_PAGE_TITLE".localized
+        self.title = "VENUE_QR_SCAN_TITLE".localized
     }
     
     @IBAction func onBack(_ sender: Any) {
@@ -76,7 +76,7 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     }
     
     func qrScanningDidFail() {
-        debugPrint("Scan Failed")
+        router.route(to: .qrError, from: self)
     }
     
     func qrScanningSucceededWithCode(_ result: String?) {
@@ -102,7 +102,7 @@ extension QrScannerViewController: AccTitleView {
 
     var accTitle: String? {
         get {
-            "QR_SCANNER_PAGE_TITLE".localized
+            "VENUE_QR_SCAN_TITLE".localized
         }
     }
 }

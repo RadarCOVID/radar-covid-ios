@@ -38,6 +38,9 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_CHECKOUT_TITLE"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vir-15-84f" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
                                     <rect key="frame" x="16" y="194.5" width="343" height="75"/>
@@ -70,6 +73,9 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_CHECKOUT_DATETIME"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqe-dv-hiF" userLabel="dateView">
                                     <rect key="frame" x="16" y="351.5" width="343" height="66.5"/>
@@ -106,6 +112,9 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_CHECKOUT_TIME_ELAPSED"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CZY-uE-DoK">
                                     <rect key="frame" x="16" y="493" width="343" height="61"/>

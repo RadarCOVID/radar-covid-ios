@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="backButton" destination="N5t-4f-gBL" id="khR-OS-i57"/>
                 <outlet property="cancelButton" destination="TUA-qa-6ri" id="lUb-zC-o9M"/>
+                <outlet property="confirmButton" destination="qJj-mx-6VP" id="9Fk-Rf-0kI"/>
                 <outlet property="titleLabel" destination="gbm-av-G33" id="GVa-3v-iGs"/>
                 <outlet property="venueNameLabel" destination="Bf0-h9-eh7" id="lGD-od-d9g"/>
                 <outlet property="venueView" destination="AJ2-za-LwZ" id="UIn-Ox-en4"/>
@@ -68,6 +69,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_CAPTURED_CODE_TITLE"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUA-qa-6ri" userLabel="Cancel Button">
                     <rect key="frame" x="16" y="595" width="343" height="56"/>

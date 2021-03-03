@@ -23,6 +23,7 @@ class QrResultViewController: BaseViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var venueNameLabel: UILabel!
     @IBOutlet weak var venueView: BackgroundView!
+    @IBOutlet weak var confirmButton: UIButton!
     
     var qrCode: String?
     private var venueRecord: VenueRecord?
@@ -30,6 +31,7 @@ class QrResultViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupAccesibility()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +69,9 @@ class QrResultViewController: BaseViewController {
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
         venueView.image = UIImage(named: "WhiteCard")
+        
+        confirmButton.setTitle("VENUE_RECORD_CHECKIN_ACTION".localized, for: .normal)
+        cancelButton.setTitle("ACC_BUTTON_CLOSE".localized, for: .normal)
     }
     
     private func loadVenueInfo() {
@@ -81,4 +86,22 @@ class QrResultViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
     
+    private func setupAccesibility() {
+        confirmButton.accessibilityHint = "VENUE_RECORD_CHECKIN_ACTION".localized
+        confirmButton.accessibilityHint = "ACC_HINT".localized
+        confirmButton.isAccessibilityElement = true
+        
+        cancelButton.isAccessibilityElement = true
+        cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+    }
+    
+}
+
+extension QrResultViewController: AccTitleView {
+
+    var accTitle: String? {
+        get {
+            "VENUE_RECORD_CAPTURED_CODE_TITLE".localized
+        }
+    }
 }

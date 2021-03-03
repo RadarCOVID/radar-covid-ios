@@ -24,12 +24,12 @@ class VenueViewController: BaseViewController, VenueCanceller {
     
     @IBAction func onCancel(_ sender: Any) {
         self.showAlertCancelContinue(
-            title: "ALERT_MY_HEALTH_SEND_TITLE".localizedAttributed,
-            message: "ALERT_MY_HEALTH_SEND_CONTENT".localizedAttributed,
+            title: "VENUE_RECORD_CANCEL_TITLE".localizedAttributed,
+            message: "VENUE_RECORD_CANCEL_TEXT".localizedAttributed,
             buttonOkTitle: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
-            buttonCancelTitle: "ACC_BUTTON_CLOSE".localizedAttributed.string,
+            buttonCancelTitle: "VENUE_RECORD_CANCEL_CONTINUE".localizedAttributed.string,
             buttonOkVoiceover: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
-            buttonCancelVoiceover: "ACC_BUTTON_CLOSE".localizedAttributed.string,
+            buttonCancelVoiceover: "VENUE_RECORD_CANCEL_CONTINUE".localizedAttributed.string,
             okHandler: { [weak self]() in
                 guard let self = self else {
                     return

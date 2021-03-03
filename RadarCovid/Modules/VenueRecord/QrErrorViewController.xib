@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="backButton" destination="Tad-va-13h" id="uMa-Ap-T9a"/>
                 <outlet property="cancelButton" destination="tDy-wy-Pkj" id="iZf-uh-tb1"/>
+                <outlet property="okButton" destination="US3-V9-7Ek" id="VaP-h0-9Pr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -46,6 +47,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_ERROR_CODE_TITLE"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDy-wy-Pkj" userLabel="Cancel Button">
                     <rect key="frame" x="16" y="585" width="343" height="56"/>
@@ -95,6 +99,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_ERROR_CODE_PARAGRAPH_1"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

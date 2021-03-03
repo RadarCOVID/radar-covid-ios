@@ -20,12 +20,14 @@ class CheckedInViewController: VenueViewController {
     
     @IBOutlet weak var venueNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var confirmButton: UIButton!
     
     @IBOutlet weak var backgroundView: BackgroundView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupAccesibility()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,10 +56,26 @@ class CheckedInViewController: VenueViewController {
     }
     
     private func setupView() {
+        
+        self.title = "VENUE_RECORD_CHECKIN_TITLE".localized
+        
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
         
         backgroundView.image = UIImage(named: "WhiteCard")
+        
+        confirmButton.setTitle("VENUE_RECORD_CHECKOUT_ACTION".localized, for: .normal)
+        cancelButton.setTitle("ALERT_CANCEL_BUTTON".localized, for: .normal)
+        
+    }
+    
+    private func setupAccesibility() {
+        confirmButton.accessibilityHint = "VENUE_RECORD_CHECKOUT_ACTION".localized
+        confirmButton.accessibilityHint = "ACC_HINT".localized
+        confirmButton.isAccessibilityElement = true
+        
+        cancelButton.isAccessibilityElement = true
+        cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
     }
     
     private func loadCurrentVenue() {
@@ -81,4 +99,13 @@ class CheckedInViewController: VenueViewController {
         }
     }
     
+}
+
+extension CheckedInViewController: AccTitleView {
+
+    var accTitle: String? {
+        get {
+            "VENUE_RECORD_CHECKIN_TITLE".localized
+        }
+    }
 }

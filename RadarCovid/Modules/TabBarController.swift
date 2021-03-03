@@ -107,7 +107,7 @@ class TabBarController: UITabBarController {
         
         venueRecordViewController.tabBarItem.isAccessibilityElement = true
         venueRecordViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        venueRecordViewController.tabBarItem.accessibilityLabel = "VENUE_HOME_TITLE".localized
+        venueRecordViewController.tabBarItem.accessibilityLabel = "ACC_VENUE_TITLE".localized
         venueRecordViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
         
         

@@ -13,8 +13,6 @@ import UIKit
 
 class CheckOutConfirmationViewController: BaseViewController {
     
-
-    
     var router: AppRouter!
 
     override func viewDidLoad() {

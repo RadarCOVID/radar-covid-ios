@@ -16,6 +16,7 @@ class QrErrorViewController: BaseViewController {
     var router: AppRouter!
     
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var okButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,16 +37,22 @@ class QrErrorViewController: BaseViewController {
     }
     
     private func setupView() {
-        self.title = "QR_ERROR_PAGE_TITLE".localized
+        self.title = "VENUE_RECORD_ERROR_CODE_TITLE".localized
+        
         cancelButton.setTitle("ACC_BUTTON_CLOSE".localized, for: .normal)
+        
+        okButton.setTitle("VENUE_HOME_BUTTON_START".localized, for: .normal)
     }
     
     private func setupAccesibility() {
         cancelButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
         cancelButton.accessibilityHint = "ACC_HINT".localized
         cancelButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+        
+        okButton.accessibilityLabel = "VENUE_HOME_BUTTON_START".localized
+        okButton.accessibilityHint = "ACC_HINT".localized
+        okButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
     }
-
 }
 
 extension QrErrorViewController: AccTitleView {

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VenueRecordStartViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="listButton" destination="FVg-JD-CGY" id="PI2-ch-qV9"/>
+                <outlet property="scanButton" destination="aQi-YJ-1fb" id="imf-e6-DyC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,6 +35,9 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_HOME_TITLE"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="venueRecordHome" translatesAutoresizingMaskIntoConstraints="NO" id="GDw-E7-IfY">
                                     <rect key="frame" x="46" y="259.5" width="243" height="172"/>
@@ -52,6 +56,9 @@ Tu privacidad está protegida en todo momento </string>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_HOME_PARAGRAPH_1"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

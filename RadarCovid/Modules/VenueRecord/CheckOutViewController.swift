@@ -31,6 +31,7 @@ class CheckOutViewController: VenueViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupAccesibility()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,10 +123,27 @@ class CheckOutViewController: VenueViewController {
         
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.deepLilac.cgColor
+        cancelButton.setTitle("ALERT_CANCEL_BUTTON".localized, for: .normal)
+        
+        finishButton.setTitle("VENUE_RECORD_CHECKOUT_END".localized, for: .normal)
         
         dateView.layer.borderWidth = 1
         dateView.layer.borderColor = UIColor.gray.cgColor
         
+        setupSegmentedControl()
+        
+        if #available(iOS 13.0, *) {
+            fixBackgroundSegmentControl(timeSC)
+          timeSC.selectedSegmentTintColor = .degradado
+        } else {
+            timeSC.tintColor = .degradado
+        }
+        
+        timeSC.selectedSegmentIndex = UISegmentedControl.noSegment
+        
+    }
+    
+    private func setupSegmentedControl() {
         timeSC.layer.borderWidth = 1
         timeSC.layer.borderColor = UIColor.deepLilac.cgColor
         
@@ -139,18 +157,16 @@ class CheckOutViewController: VenueViewController {
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .bold)]
         timeSC.setTitleTextAttributes(segAttributes, for: .normal)
         
-        timeSC.setImage(imageWith(name:"SALGO\nAHORA"), forSegmentAt: 0)
-
+        timeSC.setImage(imageWith(name:"VENUE_RECORD_CHECKOUT_LEAVE_NOW".localizedAttributed.string), forSegmentAt: 0)
+    }
+    
+    private func setupAccesibility() {
+        finishButton.accessibilityHint = "VENUE_RECORD_CHECKOUT_END".localized
+        finishButton.accessibilityHint = "ACC_HINT".localized
+        finishButton.isAccessibilityElement = true
         
-        if #available(iOS 13.0, *) {
-            fixBackgroundSegmentControl(timeSC)
-          timeSC.selectedSegmentTintColor = .degradado
-        } else {
-            timeSC.tintColor = .degradado
-        }
-        
-        timeSC.selectedSegmentIndex = UISegmentedControl.noSegment
-        
+        cancelButton.isAccessibilityElement = true
+        cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
     }
     
     private func imageWithColor(color: UIColor) -> UIImage {

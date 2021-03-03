@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="backgroundView" destination="ufr-O1-f2W" id="hRW-Gc-KVb"/>
                 <outlet property="cancelButton" destination="Ayh-Rv-xN5" id="Uvf-nd-dcW"/>
+                <outlet property="confirmButton" destination="REb-mp-kup" id="1nc-YL-ac3"/>
                 <outlet property="timeLabel" destination="gwt-tL-ts7" id="1eA-0U-BaI"/>
                 <outlet property="venueNameLabel" destination="Fpq-cP-cVE" id="3ne-Qd-Z1l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -41,6 +42,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_CHECKIN_TITLE"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ayh-Rv-xN5" userLabel="Cancel Button">
                     <rect key="frame" x="16" y="790" width="382" height="56"/>
@@ -102,6 +106,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_CHECKIN_TIME"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwt-tL-ts7">
                     <rect key="frame" x="121.5" y="419" width="171" height="46"/>
