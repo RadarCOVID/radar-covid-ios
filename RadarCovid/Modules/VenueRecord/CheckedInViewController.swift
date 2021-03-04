@@ -44,10 +44,7 @@ class CheckedInViewController: VenueViewController {
             super.finallyCanceled()
         }, onError: { [weak self] error in
             debugPrint(error)
-            self?.showAlertOk(
-                title: "",
-                message: "ERROR REGISTER",
-                buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+            self?.showGenericError()
         }).disposed(by: disposeBag)
     }
     
@@ -85,10 +82,7 @@ class CheckedInViewController: VenueViewController {
             }
         }, onError: { [weak self] error in
             debugPrint(error)
-            self?.showAlertOk(
-                title: "",
-                message: "ERROR REGISTER",
-                buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+            self?.showGenericError()
         }).disposed(by: disposeBag)
     }
     

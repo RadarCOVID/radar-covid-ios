@@ -43,5 +43,11 @@ class VenueViewController: BaseViewController, VenueCanceller {
         router.popToRoot(from: self, animated: true)
     }
     
+    func showGenericError() {
+        showAlertOk(title: "ALERT_GENERIC_ERROR_TITLE".localized,
+                          message: "ALERT_GENERIC_ERROR_CONTENT".localized,
+                          buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
+    }
+    
     
 }

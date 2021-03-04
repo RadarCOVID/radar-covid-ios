@@ -12,15 +12,12 @@
 import UIKit
 import RxSwift
 
-class QrResultViewController: BaseViewController {
+class QrResultViewController: VenueViewController {
     
-    let disposeBag = DisposeBag()
-    
-    var router: Router!
+    private let disposeBag = DisposeBag()
     
     var venueRecordUseCase: VenueRecordUseCase!
     
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var venueNameLabel: UILabel!
     @IBOutlet weak var venueView: BackgroundView!
     @IBOutlet weak var confirmButton: UIButton!
@@ -48,16 +45,12 @@ class QrResultViewController: BaseViewController {
                     self.router.route(to: .checkedIn, from: self)
                 },onError: { [weak self] error in
                     debugPrint(error.localizedDescription)
-                    self?.showAlertOk(
-                        title: "",
-                        message: "ERROR REGISTER",
-                        buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
-                    
+                    self?.showGenericError()
             }).disposed(by: disposeBag)
         }
     }
     
-    @IBAction func onCancel(_ sender: Any) {
+    @IBAction override func onCancel(_ sender: Any) {
         router.popToRoot(from: self, animated: true)
     }
     
