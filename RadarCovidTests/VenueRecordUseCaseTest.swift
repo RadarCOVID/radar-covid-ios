@@ -35,11 +35,11 @@ class VenueRecordUseCaseTest: XCTestCase {
         
         let currentDate = Date()
         let intialDate = Date().addingTimeInterval(-1000)
-        let venueRecord = VenueRecord(qr: "qr", checkIn: intialDate, checkOut: nil)
+        let venueRecord = VenueRecord(qr: "qr", checkInDate: intialDate, checkOutDate: nil)
         let venueInfo = VenueInfo(name: "Name")
         
         venueNotifier.registerGetInfo(response: .just(venueInfo))
-        venueNotifier.registerCheckOut(response: .just(venueInfo))
+        venueNotifier.registerCheckOut(response: .just("checkOutId"))
         venueRecorRepository.registerGetCurrentVenue(response: venueRecord)
         venueRecorRepository.registerSaveVisit(response: venueRecord)
         
@@ -58,6 +58,9 @@ class VenueRecordUseCaseTest: XCTestCase {
         
         let savedVisit = venueRecorRepository.paramCaptured("saveVisit")!["visit"] as! VenueRecord
         XCTAssertEqual(savedVisit.name, "Name")
+        XCTAssertEqual(savedVisit.checkOutId, "checkOutId")
+        XCTAssertEqual(savedVisit.checkInDate, intialDate)
+        XCTAssertEqual(savedVisit.checkOutDate, currentDate)
         
         venueRecorRepository.verifyGetCurrentVenue()
         venueRecorRepository.verifyRemoveCurrent()
@@ -91,7 +94,7 @@ class VenueRecordUseCaseTest: XCTestCase {
         
         let current = Date()
         let intial = Date().addingTimeInterval(-1000)
-        let venueRecord = VenueRecord(qr: "", checkIn: intial, checkOut: nil)
+        let venueRecord = VenueRecord(qr: "", checkInDate: intial, checkOutDate: nil)
 
         venueRecorRepository.registerGetCurrentVenue(response: venueRecord)
         venueNotifier.registerGetInfo(response: .error(VenueNotifierError.invalidQR))
@@ -116,7 +119,7 @@ class VenueRecordUseCaseTest: XCTestCase {
         
         let current = Date()
         let intial = Date().addingTimeInterval(-1000)
-        let venueRecord = VenueRecord(qr: "", checkIn: intial, checkOut: nil)
+        let venueRecord = VenueRecord(qr: "", checkInDate: intial, checkOutDate: nil)
         let venueInfo = VenueInfo(name: "Name")
         
         venueRecorRepository.registerGetCurrentVenue(response: venueRecord)

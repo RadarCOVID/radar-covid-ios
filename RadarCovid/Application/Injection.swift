@@ -85,6 +85,10 @@ class Injection {
             )
         }.inObjectScope(.container)
         
+        container.register(ProblematicEventsApi.self) { r in
+            ProblematicEventsApi()
+        }.inObjectScope(.container)
+        
         container.register(PreferencesRepository.self) { _ in
             UserDefaultsPreferencesRepository()
         }.inObjectScope(.container)
@@ -134,7 +138,7 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(NotificationHandler.self) { _ in
-            NotificationHandler()
+            NotificationHandlerImpl()
         }.inObjectScope(.container)
         
         container.register(DeviceTokenHandler.self) { r in
@@ -265,12 +269,20 @@ class Injection {
             return reminderNotificationUseCase
         }.inObjectScope(.container)
         
-        container.register(BluethoothReminderUseCase.self) { r in BluethoothReminderUseCase()
+        container.register(BluethoothReminderUseCase.self) { r in
+            BluethoothReminderUseCase(notificationHandler: r.resolve(NotificationHandler.self)!)
         }.inObjectScope(.container)
         
         container.register(VenueRecordUseCase.self) { r in
             VenueRecordUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
                                    venueNotifier: r.resolve(VenueNotifier.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(ProblematicEventsUseCase.self) { r in
+            ProblematicEventsUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
+                                         venueNotifier: r.resolve(VenueNotifier.self)!,
+                                         problematicEventsApi: r.resolve(ProblematicEventsApi.self)!,
+                                         notificationHandler: r.resolve(NotificationHandler.self)!)
         }.inObjectScope(.container)
         
         container.register(TabBarController.self) { r in

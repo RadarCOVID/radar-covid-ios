@@ -52,9 +52,11 @@ class VenueRecordUseCaseImpl : VenueRecordUseCase{
             guard let self = self else { return .empty() }
             if var current = current {
                 return self.venueNotifier.getInfo(qrCode: current.qr).flatMap { venueInfo -> Observable<Void> in
-                    self.venueNotifier.checkOut(venue: venueInfo, arrival: current.checkIn!, departure: date)
-                        .flatMap { venueInfo -> Observable<Void> in
+                    self.venueNotifier.checkOut(venue: venueInfo, arrival: current.checkInDate!, departure: date)
+                        .flatMap { checkOutId -> Observable<Void> in
                             current.name = venueInfo.name
+                            current.checkOutId = checkOutId
+                            current.checkOutDate = date
                             return self.venueRecordRepository.removeCurrent().flatMap { () -> Observable<Void> in
                                 self.venueRecordRepository.save(visit: current).map { _ in Void () }
                             }

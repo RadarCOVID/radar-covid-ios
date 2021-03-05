@@ -13,7 +13,14 @@ import Foundation
 import UserNotifications
 import RxSwift
 
-class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
+protocol NotificationHandler {
+    func setupNotifications() -> Observable<Bool>
+    func scheduleNotification(title: String, body: String, sound: UNNotificationSound)
+    func scheduleNotification(expositionInfo: ExpositionInfo)
+    func scheduleExposedEventNotification()
+}
+
+class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, NotificationHandler {
 
     private let formatter: DateFormatter = DateFormatter()
 
@@ -73,6 +80,12 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         if let title = title, let body = body, let sound = sound {
             scheduleNotification(title: title, body: body, sound: sound)
         }
+    }
+    
+    func scheduleExposedEventNotification() {
+        scheduleNotification(title: "NOTIFICATION_EXPOSED_EVENT_TITLE".localized,
+                             body: "NOTIFICATION_EXPOSED_EVENT_MESSAGE".localized,
+                             sound: .defaultCritical)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,

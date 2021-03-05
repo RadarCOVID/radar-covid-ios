@@ -17,7 +17,8 @@ protocol VenueNotifier {
     init (baseUrl: String)
     
     func getInfo(qrCode: String) -> Observable<VenueInfo>
-    func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<VenueInfo>
+    func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<String>
+    func checkForMatches(problematicEvents: [ProblematicEvent]) -> [ExposedEvent]
     
 }
 
@@ -31,8 +32,12 @@ class VenueNotifierImpl: VenueNotifier  {
         .just(VenueInfo(name: "name"))
     }
     
-    func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<VenueInfo> {
-        .just(VenueInfo(name: "name"))
+    func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<String> {
+        .just("checkInId")
+    }
+    
+    func checkForMatches(problematicEvents: [ProblematicEvent]) -> [ExposedEvent] {
+        []
     }
     
 }

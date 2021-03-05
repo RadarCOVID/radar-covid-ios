@@ -88,7 +88,7 @@ class CheckedInViewController: VenueViewController {
     
     private func load(current: VenueRecord) {
         venueNameLabel.text = current.name
-        if let checkInDate = current.checkIn {
+        if let checkInDate = current.checkInDate {
             timeLabel.text = Date().timeIntervalSince(checkInDate).toFormattedString()
         }
     }

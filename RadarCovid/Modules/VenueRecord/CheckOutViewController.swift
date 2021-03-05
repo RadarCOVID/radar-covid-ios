@@ -87,7 +87,7 @@ class CheckOutViewController: VenueViewController {
         
         nameLabel.text = current.name
         
-        if let checkInDate = current.checkIn {
+        if let checkInDate = current.checkInDate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.setLocalizedDateFormatFromTemplate("dMMM")
@@ -202,7 +202,7 @@ class CheckOutViewController: VenueViewController {
     }
     
     private func getCheckoutFrom(index: Int) -> Date {
-        guard let checkInDate = currentVenue?.checkIn else {
+        guard let checkInDate = currentVenue?.checkInDate else {
             return Date()
         }
         if index == 0 {

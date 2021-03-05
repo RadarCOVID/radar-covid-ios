@@ -38,7 +38,7 @@ class QrResultViewController: VenueViewController {
     
     @IBAction func onConfirmTap(_ sender: Any) {
         if var venueRecord = venueRecord {
-            venueRecord.checkIn = Date()
+            venueRecord.checkInDate = Date()
             venueRecordUseCase.checkIn(venue: venueRecord).subscribe(
                 onNext: { [weak self] _ in
                     guard let self = self else { return }

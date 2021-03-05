@@ -10,7 +10,10 @@
 //
 
 import Foundation
+import RxSwift
 
-struct ExposedEvent {
-    public let checkOutId: String
+class ProblematicEventsApi {
+    func getProblematicEvents() -> Observable<[ProblematicEvent]> {
+        .just([])
+    }
 }

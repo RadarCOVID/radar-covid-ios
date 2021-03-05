@@ -17,6 +17,7 @@ protocol VenueRecordRepository {
     func save(current: VenueRecord) -> Observable<VenueRecord>
     func getVisited()-> Observable<[VenueRecord]?>
     func save(visit: VenueRecord) -> Observable<VenueRecord>
+    func update(visited: [VenueRecord]) -> Observable<[VenueRecord]>
     func removeVisited() -> Observable<Void>
     func removeCurrent() -> Observable<Void>
 }
@@ -55,6 +56,12 @@ class KeyStoreVenueRecordRepository : KeyStoreRepository, VenueRecordRepository 
     
     func removeVisited() -> Observable<Void> {
         delete(key: KeyStoreVenueRecordRepository.kVisitedList)
+    }
+    
+    func update(visited: [VenueRecord]) -> Observable<[VenueRecord]> {
+        removeVisited().flatMap { [weak self] () -> Observable<[VenueRecord]> in
+            self?.save(key: KeyStoreVenueRecordRepository.kVisitedList, value: visited) ?? .empty()
+        }
     }
     
     

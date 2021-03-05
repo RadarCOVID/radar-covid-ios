@@ -307,7 +307,7 @@ class ExposureKpiUseCaseMock: ExposureKpiUseCase {
 }
 
 class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
-    
+
     init() {
         super.init("VenueRecordRepositoryMock")
     }
@@ -336,6 +336,13 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
         }
     }
     
+    func update(visited: [VenueRecord]) -> Observable<[VenueRecord]> {
+        Observable.just(Void()).flatMap { () -> Observable<[VenueRecord]> in
+            self.registerMock("updateVisited", responses: [Observable.just(visited)])
+            return self.call("updateVisited", params: ["visited": visited]) as! Observable<[VenueRecord]>
+        }
+    }
+    
     func removeVisited() -> Observable<Void> {
         Observable.just(Void()).flatMap { () -> Observable<Void> in
             self.call("removeVisited")
@@ -358,8 +365,16 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
         registerMock("saveVisit",responses: [response])
     }
     
+    func registerGetVisited(response: [VenueRecord]) {
+        registerMock("getVisited", responses: [response])
+    }
+    
     func verifyRemoveCurrent(called: VerifyCount = .atLeastOnce) {
         verify("removeCurrent", called : called)
+    }
+    
+    func verifyGetVisited() {
+        verify("getVisited")
     }
     
     func verifySaveVisit() {
@@ -370,13 +385,15 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
         verify("getCurrentVenue")
     }
     
+    func verifyUpdateVisited() {
+        verify("updateVisited")
+    }
+    
     
 }
 
-
-
 class VenueNotifierMock : Mocker, VenueNotifier {
-    
+
     required init(baseUrl: String) {
         super.init("VenueNotifierMock")
     }
@@ -387,26 +404,36 @@ class VenueNotifierMock : Mocker, VenueNotifier {
         }
     }
     
-    func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<VenueInfo> {
-        Observable.just(Void()).flatMap { () -> Observable<VenueInfo> in
-            self.call("checkOut", params: ["venue":venue, "arrival": arrival, "departure": departure]) as! Observable<VenueInfo>
+    func checkOut(venue: VenueInfo, arrival: Date, departure: Date) -> Observable<String> {
+        Observable.just(Void()).flatMap { () -> Observable<String> in
+            self.call("checkOut", params: ["venue":venue, "arrival": arrival, "departure": departure]) as! Observable<String>
         }
     }
     
-    func registerCheckOut(response: Observable<VenueInfo>) {
+    func checkForMatches(problematicEvents: [ProblematicEvent]) -> [ExposedEvent] {
+        self.call("checkForMatches", params: ["problematicEvents": problematicEvents]) as! [ExposedEvent]
+    }
+    
+    func registerCheckOut(response: Observable<String>) {
         registerMock("checkOut", responses: [response])
     }
     
     func registerGetInfo(response: Observable<VenueInfo>) {
         registerMock("getInfo", responses: [response])
     }
-    
+    func registerCheckForMatches(response: [ExposedEvent]) {
+        registerMock("checkForMatches", responses: [response])
+    }
     func verifyCheckout(called: VerifyCount = .atLeastOnce) {
         verify("checkOut", called: called)
     }
     
     func verifyGetInfo(called: VerifyCount = .atLeastOnce) {
         verify("getInfo", called: called)
+    }
+    
+    func verifyCheckForMatches() {
+        verify("checkForMatches")
     }
     
 }
@@ -444,7 +471,6 @@ class Mocker {
 
     func call(_ fn: String, params: [String:Any?]? = nil) -> Any? {
         if let mockedFunc = mockedFuncs[fn] {
-            
             return mockedFunc.call(params: params)
         }
         registerMock(fn)

@@ -11,6 +11,6 @@
 
 import Foundation
 
-struct ExposedEvent {
-    public let checkOutId: String
+struct ProblematicEvent : Equatable {
+    public var identity: Data
 }
