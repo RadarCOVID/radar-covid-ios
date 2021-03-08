@@ -145,6 +145,10 @@ class Injection {
             DCDeviceTokenHandler()
         }.inObjectScope(.container)
         
+        container.register(AppStateHandler.self) { r in
+            AppStateHandlertImpl()
+        }.inObjectScope(.container)
+        
         container.register(VenueNotifier.self) { r in
             VenueNotifierImpl(baseUrl: Config.endpoints.qrBase)
         }.inObjectScope(.container)
@@ -287,7 +291,8 @@ class Injection {
         
         container.register(CheckInInProgressUseCase.self) { r in
             CheckInInProgressUseCaseImpl(notificationHandler: r.resolve(NotificationHandler.self)!,
-                                         venueRecordRepository: r.resolve(VenueRecordRepository.self)!)
+                                         venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
+                                         appStateHandler: r.resolve(AppStateHandler.self)!)
         }.inObjectScope(.container)
         
         container.register(TabBarController.self) { r in

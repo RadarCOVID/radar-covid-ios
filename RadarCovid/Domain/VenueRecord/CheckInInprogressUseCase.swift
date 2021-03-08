@@ -26,11 +26,14 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     
     private let notificationHandler: NotificationHandler
     private let venueRecordRepository: VenueRecordRepository
+    private let appStateHandler: AppStateHandler
     
     init(notificationHandler: NotificationHandler,
-         venueRecordRepository: VenueRecordRepository) {
+         venueRecordRepository: VenueRecordRepository,
+         appStateHandler: AppStateHandler) {
         self.notificationHandler = notificationHandler
         self.venueRecordRepository = venueRecordRepository
+        self.appStateHandler = appStateHandler
     }
     
     func checkStauts() -> Observable<Void> {
@@ -48,7 +51,8 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     
     private func checkIfAutoCheckOut(_ currentVenue: VenueRecord) -> Observable<Void> {
         var editVenue = currentVenue
-        if isOutdated(venueRecord: currentVenue, interval: maxCheckInHours) {
+        
+        if appStateHandler.state != .active && isOutdated(venueRecord: currentVenue, interval: maxCheckInHours) {
             return self.venueRecordRepository.removeCurrent().flatMap {  _ -> Observable<Void> in
                 editVenue.checkOutDate = Date()
                 return self.venueRecordRepository.save(visit: editVenue).map { _ in Void() }

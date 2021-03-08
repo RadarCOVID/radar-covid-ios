@@ -20,12 +20,15 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     
     private var venueRecordRepository: VenueRecordRepositoryMock!
     private var notificationHandler: NotificationHandlerMock!
+    private var appStateHandler: AppStateHandlerMock!
 
     override func setUpWithError() throws {
         venueRecordRepository = VenueRecordRepositoryMock()
         notificationHandler = NotificationHandlerMock()
+        appStateHandler = AppStateHandlerMock()
         sut = CheckInInProgressUseCaseImpl(notificationHandler: notificationHandler,
-                                           venueRecordRepository: venueRecordRepository)
+                                           venueRecordRepository: venueRecordRepository,
+                                           appStateHandler: appStateHandler)
     }
 
     override func tearDownWithError() throws {
@@ -51,6 +54,8 @@ class CheckInInProgressUseCaseTests: XCTestCase {
                                 checkInDate: Calendar.current.date(byAdding: .minute, value: -10, to: Date()),
                                 checkOutDate: nil))
         
+        appStateHandler.registerGetState(response: .background)
+        
         try! sut.checkStauts().toBlocking().first()
         
         venueRecordRepository.verifyGetCurrentVenue()
@@ -60,7 +65,35 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         
     }
     
-    func testCheckinInprogressOutdated() throws {
+    func testCheckinInprogressOutdatedThenAuthomaticCheckout() throws {
+        sut.maxCheckInHours = 1
+        
+        let venueRecord = VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
+                                      checkInDate: Calendar.current.date(byAdding: .minute, value: -61, to: Date()),
+                                      checkOutDate: nil)
+        venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
+        venueRecordRepository.registerSaveVisit(response: venueRecord)
+        appStateHandler.registerGetState(response: .background)
+        
+        try! sut.checkStauts().toBlocking().first()
+        
+        venueRecordRepository.verifyGetCurrentVenue()
+        venueRecordRepository.verifyRemoveCurrent()
+        venueRecordRepository.verifySaveVisit()
+        venueRecordRepository.verifyGetLastReminder()
+        
+        let savedVisit = venueRecordRepository.paramCaptured("saveVisit")!["visit"] as! VenueRecord
+        
+        XCTAssertNotNil(savedVisit.checkOutDate)
+        if #available(iOS 13.0, *) {
+            XCTAssertTrue(savedVisit.checkOutDate!.distance(to: Date()) < 1.0)
+        }
+        
+        verifyNoMoreInteractionsAll()
+        
+    }
+    
+    func testCheckInInprogressOutdatedAndAppInForegroundThenSkipCheckout() throws {
         sut.maxCheckInHours = 1
         
         let venueRecord = VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
@@ -69,18 +102,14 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
         venueRecordRepository.registerSaveVisit(response: venueRecord)
         
+        appStateHandler.registerGetState(response: .active)
+        
         try! sut.checkStauts().toBlocking().first()
         
         venueRecordRepository.verifyGetCurrentVenue()
-        venueRecordRepository.verifyRemoveCurrent()
-        venueRecordRepository.verifySaveVisit()
+        venueRecordRepository.verifyGetLastReminder()
         
-        let savedVisit = venueRecordRepository.paramCaptured("saveVisit")!["visit"] as! VenueRecord
-        
-        XCTAssertNotNil(savedVisit.checkOutDate)
-        if #available(iOS 13.0, *) {
-            XCTAssertTrue(savedVisit.checkOutDate!.distance(to: Date()) < 1.0)
-        }
+        verifyNoMoreInteractionsAll()
         
     }
     
@@ -90,6 +119,8 @@ class CheckInInProgressUseCaseTests: XCTestCase {
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
                                 checkInDate: Calendar.current.date(byAdding: .minute, value: -60, to: Date()),
                                 checkOutDate: nil))
+        
+        appStateHandler.registerGetState(response: .background)
         
         try! sut.checkStauts().toBlocking().first()
         
@@ -108,6 +139,8 @@ class CheckInInProgressUseCaseTests: XCTestCase {
                                 checkInDate: Calendar.current.date(byAdding: .minute, value: -59, to: Date()),
                                 checkOutDate: nil))
         
+        appStateHandler.registerGetState(response: .background)
+        
         try! sut.checkStauts().toBlocking().first()
         
         venueRecordRepository.verifyGetCurrentVenue()
@@ -123,6 +156,8 @@ class CheckInInProgressUseCaseTests: XCTestCase {
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
                                 checkInDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date()),
                                 checkOutDate: nil))
+        
+        appStateHandler.registerGetState(response: .background)
         
         venueRecordRepository.registerGetLastReminder(date: Calendar.current.date(byAdding: .minute, value: -60, to: Date())!)
         
@@ -142,6 +177,8 @@ class CheckInInProgressUseCaseTests: XCTestCase {
                                 checkInDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date()),
                                 checkOutDate: nil))
         
+        appStateHandler.registerGetState(response: .background)
+        
         venueRecordRepository.registerGetLastReminder(date: Calendar.current.date(byAdding: .minute, value: -59, to: Date())!)
         
         try! sut.checkStauts().toBlocking().first()
@@ -160,6 +197,27 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         notificationHandler.verifyNoMoreInteractions()
     }
 
+}
 
-
+class AppStateHandlerMock : Mocker, AppStateHandler {
+    
+    init() {
+        super.init("AppStateHandlerMock")
+    }
+    
+    var state: UIApplication.State {
+        get {
+            call("getState") as! UIApplication.State
+        }
+    }
+    
+    func registerGetState(response: UIApplication.State) {
+        registerMock("getState", responses: [response])
+    }
+    
+    func verifyGetState() {
+        verify("getState")
+    }
+    
+    
 }
