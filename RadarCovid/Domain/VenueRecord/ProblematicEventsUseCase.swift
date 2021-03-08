@@ -14,6 +14,7 @@ import RxSwift
 
 protocol ProblematicEventsUseCase {
     func sync() -> Observable<Void>
+    var maxDaysToKeep: Int { get set }
 }
 
 class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
@@ -56,9 +57,10 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
                         if !self.isOutdated(visited) {
                             newVisited.append(visited)
                         }
+                        
                     }
                     
-                    self.notifyIfExposed(newVisited)
+                    newVisited = self.notifyIfExposed(newVisited)
                     
                     return self.venueRecordRepository.update(visited: newVisited).map { _ in Void() }
                 }
@@ -68,10 +70,19 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
         }
     }
     
-    private func notifyIfExposed(_ venues: [VenueRecord]) {
-        if venues.contains(where: { $0.exposed } ) {
+    private func notifyIfExposed(_ venues: [VenueRecord]) -> [VenueRecord] {
+        var notify = false
+        var modifiedVenues: [VenueRecord] = []
+        venues.forEach { v in
+            var venue = v
+            notify = notify || (v.exposed && !v.notified)
+            venue.notified = true
+            modifiedVenues.append(venue)
+        }
+        if notify {
             notificationHandler.scheduleExposedEventNotification()
         }
+        return modifiedVenues
     }
     
     private func isOutdated(_ venueRecord: VenueRecord) -> Bool {

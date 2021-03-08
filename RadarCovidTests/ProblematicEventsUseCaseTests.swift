@@ -78,6 +78,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         var exposedEvents: [ExposedEvent] = []
         exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposed"))
+        exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposedNotified"))
         exposedEvents.append(ExposedEvent(checkOutId: "IdOutdatedExposed"))
         venueNotifier.registerCheckForMatches(response: exposedEvents)
         
@@ -85,20 +86,20 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         var venueRecords: [VenueRecord] = []
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdOutdated", hidden: false, exposed: false, name: "name",
                                 checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 4 - 6, to: Date()),
-                                checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 4, to: Date()))
-        )
+                                checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 4, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdOutdatedExposed", hidden: false, exposed: false, name: "name",
                                         checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 3 - 6, to: Date()),
-                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 3, to: Date()))
-        )
+                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 3, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFresh", hidden: false, exposed: false, name: "name",
                                         checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 - 6, to: Date()),
-                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 + 1, to: Date()))
-        )
+                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 + 1, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposed", hidden: false, exposed: false, name: "name",
                                         checkInDate: Calendar.current.date(byAdding: .hour, value: -18, to: Date()),
-                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -24, to: Date()))
-        )
+                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -24, to: Date())))
+        venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified", hidden: false, exposed: false, notified: false, name: "name",
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -18, to: Date()),
+                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -24, to: Date())))
+                            
         venueRecordRepository.registerGetVisited(response: venueRecords)
         
         try! sut.sync().toBlocking().first()
@@ -130,6 +131,81 @@ class ProblematicEventsUseCaseTests: XCTestCase {
             vr.checkOutId == "IdFresh"
         }
         XCTAssertFalse(notExposed!.exposed)
+        
+        let notNotified = venuesParams.filter { $0.notified == false }
+        XCTAssertTrue(notNotified.count == 0)
+        
+        verifyNoMoreInteractionsAll()
+        
+    }
+    
+    func testSyncWithAllEventsPreviouslyNotifiedDontSendNotification() throws {
+        
+        var problematicEvents: [ProblematicEvent] = []
+        problematicEvents.append(ProblematicEvent(identity: "data".data(using: .utf8)!))
+        problematicEvents.append(ProblematicEvent(identity: "data2".data(using: .utf8)!))
+        problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
+        
+        var exposedEvents: [ExposedEvent] = []
+        exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposedNotified1"))
+        exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposedNotified2"))
+        venueNotifier.registerCheckForMatches(response: exposedEvents)
+        
+        var venueRecords: [VenueRecord] = []
+        venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified1", hidden: false, exposed: false, notified: true, name: "name",
+                                checkInDate: Calendar.current.date(byAdding: .hour, value: -6, to: Date()),
+                                checkOutDate: Calendar.current.date(byAdding: .hour, value: -5, to: Date())))
+        venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified2", hidden: false, exposed: false, notified: true, name: "name",
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -3, to: Date()),
+                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -2, to: Date())))
+        
+        venueRecordRepository.registerGetVisited(response: venueRecords)
+        
+        try! sut.sync().toBlocking().first()
+        
+        problematicEvensApi.verifyGetProblematicsEvents()
+        venueNotifier.verifyCheckForMatches()
+        
+        venueRecordRepository.verifyGetVisited()
+        venueRecordRepository.verifyUpdateVisited()
+        
+        notificationHandler.verifyScheduleExposedEventNotification(called: .never)
+        
+        verifyNoMoreInteractionsAll()
+        
+    }
+    
+    func testSyncWithAtLeastOneEventPreviouslyNotifiedSendNotification() throws {
+        
+        var problematicEvents: [ProblematicEvent] = []
+        problematicEvents.append(ProblematicEvent(identity: "data".data(using: .utf8)!))
+        problematicEvents.append(ProblematicEvent(identity: "data2".data(using: .utf8)!))
+        problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
+        
+        var exposedEvents: [ExposedEvent] = []
+        exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposedNotified1"))
+        exposedEvents.append(ExposedEvent(checkOutId: "IdFresh"))
+        venueNotifier.registerCheckForMatches(response: exposedEvents)
+        
+        var venueRecords: [VenueRecord] = []
+        venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified1", hidden: false, exposed: false, notified: true, name: "name",
+                                checkInDate: Calendar.current.date(byAdding: .hour, value: -6, to: Date()),
+                                checkOutDate: Calendar.current.date(byAdding: .hour, value: -5, to: Date())))
+        venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFresh", hidden: false, exposed: false, notified: false, name: "name",
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -3, to: Date()),
+                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -2, to: Date())))
+        
+        venueRecordRepository.registerGetVisited(response: venueRecords)
+        
+        try! sut.sync().toBlocking().first()
+        
+        problematicEvensApi.verifyGetProblematicsEvents()
+        venueNotifier.verifyCheckForMatches()
+        
+        venueRecordRepository.verifyGetVisited()
+        venueRecordRepository.verifyUpdateVisited()
+        
+        notificationHandler.verifyScheduleExposedEventNotification(called: .exact(1))
         
         verifyNoMoreInteractionsAll()
         
@@ -223,7 +299,7 @@ class ProblematicEventsApiMock : ProblematicEventsApi {
 }
 
 class NotificationHandlerMock: Mocker, NotificationHandler {
-    
+
     init() {
         super.init("NotificationHandlerMock")
     }
@@ -244,8 +320,16 @@ class NotificationHandlerMock: Mocker, NotificationHandler {
         call("scheduleExposedEventNotification")
     }
     
+    func scheduleCheckInReminderNotification() {
+        call("scheduleCheckInReminderNotification")
+    }
+    
     func verifyScheduleExposedEventNotification(called: VerifyCount = .atLeastOnce) {
         verify("scheduleExposedEventNotification", called: called)
+    }
+    
+    func verifyScheduleCheckInReminderNotification(called: VerifyCount = .atLeastOnce) {
+        verify("scheduleCheckInReminderNotification", called: called)
     }
     
 }

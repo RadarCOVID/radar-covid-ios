@@ -16,6 +16,7 @@ struct VenueRecord: Codable {
     var checkOutId: String?
     var hidden: Bool = false
     var exposed: Bool = false
+    var notified: Bool = false
     var name: String?
     var checkInDate: Date?
     var checkOutDate: Date?
