@@ -20,6 +20,8 @@ protocol VenueRecordRepository {
     func update(visited: [VenueRecord]) -> Observable<[VenueRecord]>
     func removeVisited() -> Observable<Void>
     func removeCurrent() -> Observable<Void>
+    func getLastReminder() -> Observable<Date?>
+    func save(lastReminder: Date) -> Observable<Date>
 }
 
 class KeyStoreVenueRecordRepository : KeyStoreRepository, VenueRecordRepository {
@@ -28,6 +30,7 @@ class KeyStoreVenueRecordRepository : KeyStoreRepository, VenueRecordRepository 
     
     private static let kVisitedList = KeychainKey(key: "UserDefaultsVenueRecordRepository.currentVenue", type: [VenueRecord].self)
     
+    private static let kLastReminder = KeychainKey(key: "UserDefaultsVenueRecordRepository.lastReminder", type: Date.self)
     
     func getCurrentVenue() -> Observable<VenueRecord?> {
         get(key: KeyStoreVenueRecordRepository.kCurrentVenueKey)
@@ -64,5 +67,12 @@ class KeyStoreVenueRecordRepository : KeyStoreRepository, VenueRecordRepository 
         }
     }
     
+    func getLastReminder() -> Observable<Date?> {
+        get(key: KeyStoreVenueRecordRepository.kLastReminder)
+    }
     
+    func save(lastReminder: Date) -> Observable<Date> {
+        save(key: KeyStoreVenueRecordRepository.kLastReminder, value: lastReminder)
+    }
+
 }

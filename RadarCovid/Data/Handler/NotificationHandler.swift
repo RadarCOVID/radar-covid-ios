@@ -18,6 +18,7 @@ protocol NotificationHandler {
     func scheduleNotification(title: String, body: String, sound: UNNotificationSound)
     func scheduleNotification(expositionInfo: ExpositionInfo)
     func scheduleExposedEventNotification()
+    func scheduleCheckInReminderNotification()
 }
 
 class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, NotificationHandler {
@@ -87,6 +88,13 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
                              body: "NOTIFICATION_EXPOSED_EVENT_MESSAGE".localized,
                              sound: .defaultCritical)
     }
+    
+    func scheduleCheckInReminderNotification() {
+        scheduleNotification(title: "NOTIFICATION_EXPOSED_EVENT_TITLE".localized,
+                             body: "NOTIFICATION_EXPOSED_EVENT_MESSAGE".localized,
+                             sound: .defaultCritical)
+    }
+    
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

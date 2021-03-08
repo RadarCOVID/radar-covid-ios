@@ -13,17 +13,17 @@ import XCTest
 
 @testable import Radar_COVID
 
-class VenueRecordUseCaseTest: XCTestCase {
+class VenueRecordUseCaseTests: XCTestCase {
     
     private var sut : VenueRecordUseCase!
     
-    private var venueRecorRepository: VenueRecordRepositoryMock!
+    private var venueRecordRepository: VenueRecordRepositoryMock!
     private var venueNotifier: VenueNotifierMock!
 
     override func setUpWithError() throws {
-        venueRecorRepository = VenueRecordRepositoryMock()
+        venueRecordRepository = VenueRecordRepositoryMock()
         venueNotifier = VenueNotifierMock(baseUrl: "")
-        sut = VenueRecordUseCaseImpl(venueRecordRepository: venueRecorRepository,
+        sut = VenueRecordUseCaseImpl(venueRecordRepository: venueRecordRepository,
                                      venueNotifier: venueNotifier)
     }
 
@@ -40,14 +40,14 @@ class VenueRecordUseCaseTest: XCTestCase {
         
         venueNotifier.registerGetInfo(response: .just(venueInfo))
         venueNotifier.registerCheckOut(response: .just("checkOutId"))
-        venueRecorRepository.registerGetCurrentVenue(response: venueRecord)
-        venueRecorRepository.registerSaveVisit(response: venueRecord)
+        venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
+        venueRecordRepository.registerSaveVisit(response: venueRecord)
         
         try! sut.checkOut(date: currentDate).toBlocking().first()
         
         venueNotifier.verifyCheckout()
         venueNotifier.verifyGetInfo()
-        venueRecorRepository.verifySaveVisit()
+        venueRecordRepository.verifySaveVisit()
         
         var params = venueNotifier.paramCaptured("checkOut")!
         XCTAssertEqual(params["arrival"] as! Date, intialDate)
@@ -56,16 +56,16 @@ class VenueRecordUseCaseTest: XCTestCase {
         params = venueNotifier.paramCaptured("getInfo")!
         XCTAssertEqual(params["qrCode"] as! String, "qr")
         
-        let savedVisit = venueRecorRepository.paramCaptured("saveVisit")!["visit"] as! VenueRecord
+        let savedVisit = venueRecordRepository.paramCaptured("saveVisit")!["visit"] as! VenueRecord
         XCTAssertEqual(savedVisit.name, "Name")
         XCTAssertEqual(savedVisit.checkOutId, "checkOutId")
         XCTAssertEqual(savedVisit.checkInDate, intialDate)
         XCTAssertEqual(savedVisit.checkOutDate, currentDate)
         
-        venueRecorRepository.verifyGetCurrentVenue()
-        venueRecorRepository.verifyRemoveCurrent()
+        venueRecordRepository.verifyGetCurrentVenue()
+        venueRecordRepository.verifyRemoveCurrent()
         
-        venueRecorRepository.verifyNoMoreInteractions()
+        venueRecordRepository.verifyNoMoreInteractions()
         venueNotifier.verifyNoMoreInteractions()
         
     }
@@ -73,7 +73,7 @@ class VenueRecordUseCaseTest: XCTestCase {
     func testCheckoutWithNoCheckIn() {
         let current = Date()
         
-        venueRecorRepository.registerGetCurrentVenue(response: nil)
+        venueRecordRepository.registerGetCurrentVenue(response: nil)
         
         do {
             try sut.checkOut(date: current).toBlocking().first()
@@ -83,10 +83,10 @@ class VenueRecordUseCaseTest: XCTestCase {
         }
         venueNotifier.verifyGetInfo(called: .never)
         venueNotifier.verifyCheckout(called: .never)
-        venueRecorRepository.verifyRemoveCurrent(called: .never)
-        venueRecorRepository.verifyGetCurrentVenue()
+        venueRecordRepository.verifyRemoveCurrent(called: .never)
+        venueRecordRepository.verifyGetCurrentVenue()
         
-        venueRecorRepository.verifyNoMoreInteractions()
+        venueRecordRepository.verifyNoMoreInteractions()
         venueNotifier.verifyNoMoreInteractions()
     }
     
@@ -96,7 +96,7 @@ class VenueRecordUseCaseTest: XCTestCase {
         let intial = Date().addingTimeInterval(-1000)
         let venueRecord = VenueRecord(qr: "", checkInDate: intial, checkOutDate: nil)
 
-        venueRecorRepository.registerGetCurrentVenue(response: venueRecord)
+        venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
         venueNotifier.registerGetInfo(response: .error(VenueNotifierError.invalidQR))
         
         do {
@@ -107,11 +107,11 @@ class VenueRecordUseCaseTest: XCTestCase {
         }
         
         venueNotifier.verifyCheckout(called: .never)
-        venueRecorRepository.verifyRemoveCurrent(called: .never)
-        venueRecorRepository.verifyGetCurrentVenue()
+        venueRecordRepository.verifyRemoveCurrent(called: .never)
+        venueRecordRepository.verifyGetCurrentVenue()
         venueNotifier.verifyGetInfo()
         
-        venueRecorRepository.verifyNoMoreInteractions()
+        venueRecordRepository.verifyNoMoreInteractions()
         venueNotifier.verifyNoMoreInteractions()
     }
     
@@ -122,7 +122,7 @@ class VenueRecordUseCaseTest: XCTestCase {
         let venueRecord = VenueRecord(qr: "", checkInDate: intial, checkOutDate: nil)
         let venueInfo = VenueInfo(name: "Name")
         
-        venueRecorRepository.registerGetCurrentVenue(response: venueRecord)
+        venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
         venueNotifier.registerGetInfo(response: .just(venueInfo))
         venueNotifier.registerCheckOut(response: .error(VenueNotifierError.invalidQR))
         
@@ -134,11 +134,11 @@ class VenueRecordUseCaseTest: XCTestCase {
         }
         
         venueNotifier.verifyCheckout()
-        venueRecorRepository.verifyGetCurrentVenue()
-        venueRecorRepository.verifyRemoveCurrent(called: .never)
+        venueRecordRepository.verifyGetCurrentVenue()
+        venueRecordRepository.verifyRemoveCurrent(called: .never)
         venueNotifier.verifyGetInfo()
         
-        venueRecorRepository.verifyNoMoreInteractions()
+        venueRecordRepository.verifyNoMoreInteractions()
         venueNotifier.verifyNoMoreInteractions()
     }
     

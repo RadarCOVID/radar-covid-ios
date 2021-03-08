@@ -15,7 +15,7 @@ import DP3TSDK
 
 @testable import Radar_COVID
 
-class ErrorHandlerTest: XCTestCase {
+class ErrorHandlerTests: XCTestCase {
     
     private var sut: ErrorHandlerImpl?
     

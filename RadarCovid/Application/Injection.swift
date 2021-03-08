@@ -285,6 +285,11 @@ class Injection {
                                          notificationHandler: r.resolve(NotificationHandler.self)!)
         }.inObjectScope(.container)
         
+        container.register(CheckInInProgressUseCase.self) { r in
+            CheckInInProgressUseCaseImpl(notificationHandler: r.resolve(NotificationHandler.self)!,
+                                         venueRecordRepository: r.resolve(VenueRecordRepository.self)!)
+        }.inObjectScope(.container)
+        
         container.register(TabBarController.self) { r in
             TabBarController(
                 homeViewController: r.resolve(HomeViewController.self)!,

@@ -14,7 +14,7 @@ import RxSwift
 
 @testable import Radar_COVID
 
-class ProblematicEventsUseCaseTest: XCTestCase {
+class ProblematicEventsUseCaseTests: XCTestCase {
     
     private var sut: ProblematicEventsUseCaseImpl!
     

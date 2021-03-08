@@ -14,7 +14,7 @@ import RxSwift
 
 @testable import Radar_COVID
 
-class ExpositionCheckUseCaseTest: XCTestCase {
+class ExpositionCheckUseCaseTests: XCTestCase {
     
     private let disposeBag = DisposeBag()
     

@@ -357,6 +357,18 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
         }
     }
     
+    func getLastReminder() -> Observable<Date?> {
+        Observable.just(Void()).flatMap { () -> Observable<Date?> in
+            .just(self.call("getLastReminder") as! Date?)
+        }
+    }
+    
+    func save(lastReminder: Date) -> Observable<Date> {
+        Observable.just(Void()).flatMap { () -> Observable<Date> in
+            .just(self.call("saveLastReminder") as! Date)
+        }
+    }
+    
     func registerGetCurrentVenue(response: VenueRecord?) {
         registerMock("getCurrentVenue", responses: [response])
     }
@@ -367,6 +379,10 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
     
     func registerGetVisited(response: [VenueRecord]) {
         registerMock("getVisited", responses: [response])
+    }
+    
+    func registerGetLastReminder(date: Date) {
+        registerMock("getLastReminder", responses: [date])
     }
     
     func verifyRemoveCurrent(called: VerifyCount = .atLeastOnce) {
@@ -387,6 +403,10 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
     
     func verifyUpdateVisited() {
         verify("updateVisited")
+    }
+    
+    func verifyGetLastReminder() {
+        verify("getLastReminder")
     }
     
     

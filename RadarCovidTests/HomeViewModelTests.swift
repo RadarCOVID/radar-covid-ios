@@ -14,7 +14,7 @@ import RxSwift
 
 @testable import Radar_COVID
 
-class HomeViewModelTest: XCTestCase {
+class HomeViewModelTests: XCTestCase {
     
     private var scheduler: TestScheduler!
     private var disposeBag: DisposeBag!
