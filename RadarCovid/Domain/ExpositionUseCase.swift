@@ -98,14 +98,14 @@ class ExpositionUseCase: DP3TTracingDelegate {
         
         switch tStatus.infectionStatus {
             case .healthy:
-                var info = ExpositionInfo(level: ExpositionInfo.Level.healthy)
+                var info = ExpositionInfo(level: Level.healthy)
                 info.lastCheck = tStatus.lastSync
                 return info
             case .infected:
-                let savedStatus = expositionInfoRepository.getExpositionInfo()?.level ?? ExpositionInfo.Level.healthy
-                var expositionInfo = ExpositionInfo(level: ExpositionInfo.Level.infected)
-                if savedStatus == ExpositionInfo.Level.infected {
-                    expositionInfo = expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: ExpositionInfo.Level.infected)
+                let savedStatus = expositionInfoRepository.getExpositionInfo()?.level ?? Level.healthy
+                var expositionInfo = ExpositionInfo(level: Level.infected)
+                if savedStatus == Level.infected {
+                    expositionInfo = expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: Level.infected)
                 }
                 if expositionInfo.since == nil {
                     expositionInfo.since = Date()
@@ -114,7 +114,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
                 return expositionInfo
                 
             case .exposed(days: let days):
-                var info = ExpositionInfo(level: ExpositionInfo.Level.exposed)
+                var info = ExpositionInfo(level: Level.exposed)
                 info.since = getMoreRecentDateFromExpositionArray(days: days)
                 info.lastCheck = tStatus.lastSync
                 return info

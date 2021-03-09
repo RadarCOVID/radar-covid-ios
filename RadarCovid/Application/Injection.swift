@@ -295,6 +295,11 @@ class Injection {
                                          appStateHandler: r.resolve(AppStateHandler.self)!)
         }.inObjectScope(.container)
         
+        container.register(VenueExpositionUseCase.self) { r in
+            VenueExpositionUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!)
+        }.inObjectScope(.container)
+        
+        
         container.register(TabBarController.self) { r in
             TabBarController(
                 homeViewController: r.resolve(HomeViewController.self)!,
