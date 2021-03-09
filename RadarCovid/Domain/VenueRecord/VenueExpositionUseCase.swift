@@ -18,6 +18,9 @@ protocol VenueExpositionUseCase {
 
 class VenueExpositionUseCaseImpl: VenueExpositionUseCase {
     
+    private let disposeBag = DisposeBag()
+    
+    private let subject = BehaviorSubject(value: VenueExpositionInfo(level: .healthy))
     
     private let venueRecordRepository: VenueRecordRepository
     
@@ -27,7 +30,8 @@ class VenueExpositionUseCaseImpl: VenueExpositionUseCase {
     
     private(set) var expositionInfo: Observable<VenueExpositionInfo> {
         get {
-            expositionInfoFromVenueRecord()
+            expositionInfoFromVenueRecord().bind(to: subject).disposed(by: disposeBag)
+            return subject.asObservable()
         }
         set {
             

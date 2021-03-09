@@ -37,7 +37,7 @@ class ExpositionCheckUseCaseTests: XCTestCase {
 
     func checkExposedToHealthyWithHealtyState() throws {
         resetMocks()
-        expositionInfoRepository!.expositionInfo = ExpositionInfo(level: .healthy)
+        expositionInfoRepository!.expositionInfo = ContactExpositionInfo(level: .healthy)
         
         sut?.checkBackToHealthy().subscribe(onNext: { result in
             XCTAssertFalse(result)
@@ -50,7 +50,7 @@ class ExpositionCheckUseCaseTests: XCTestCase {
     
     func checkExposedToHealthyWithHealtyStateWithExposedAndNotOutdated() {
         resetMocks()
-        var exposition = ExpositionInfo(level: .exposed)
+        var exposition = ContactExpositionInfo(level: .exposed)
         exposition.since = Date()
         expositionInfoRepository!.expositionInfo = exposition
         
@@ -71,7 +71,7 @@ class ExpositionCheckUseCaseTests: XCTestCase {
     
     func checkExposedToHealthyWithHealtyStateWithExposedAndOutdated() {
         resetMocks()
-        var exposition = ExpositionInfo(level: .exposed)
+        var exposition = ContactExpositionInfo(level: .exposed)
         exposition.since = Date().addingTimeInterval(-11 * 60)
         expositionInfoRepository!.expositionInfo = exposition
         

@@ -278,7 +278,7 @@ class HomeViewController: BaseViewController {
         router?.route(to: .timeExposed, from: self, parameters: nil)
     }
 
-    private func updateExpositionInfo(_ exposition: ExpositionInfo?) {
+    private func updateExpositionInfo(_ exposition: ContactExpositionInfo?) {
         guard let exposition = exposition else {
             return
         }
@@ -441,7 +441,7 @@ class HomeViewController: BaseViewController {
         defaultImage.isHidden = showCheck
     }
     
-    private func navigateToDetail(_ info: ExpositionInfo) {
+    private func navigateToDetail(_ info: ContactExpositionInfo) {
         switch info.level {
         case .healthy:
             router?.route(to: Routes.healthyExposition, from: self, parameters: info.lastCheck)

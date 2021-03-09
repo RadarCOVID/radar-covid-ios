@@ -11,25 +11,7 @@
 
 import Foundation
 
-struct ExpositionInfo: Codable, Equatable {
-
-    var level: Level
-    var lastCheck: Date?
-    var since: Date?
-    var error: DomainError?
-
-    public init(level: Level) {
-        self.level = level
-    }
-    
-    func isOk() -> Bool {
-        error == nil
-    }
-
-}
-
-enum Level: String, Codable {
-     case healthy
-     case exposed
-     case infected
+struct ExpositionInfo {
+    let contact: ContactExpositionInfo
+    let venue: VenueExpositionInfo
 }

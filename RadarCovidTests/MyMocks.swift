@@ -18,14 +18,14 @@ import XCTest
 
 class MockExpositionInfoRepository: ExpositionInfoRepository {
     
-    var expositionInfo: ExpositionInfo?
+    var expositionInfo: ContactExpositionInfo?
     var changedToHealthy: Bool?
     
-    func getExpositionInfo() -> ExpositionInfo? {
+    func getExpositionInfo() -> ContactExpositionInfo? {
         expositionInfo
     }
     
-    func save(expositionInfo: ExpositionInfo) {
+    func save(expositionInfo: ContactExpositionInfo) {
         
     }
     
@@ -160,15 +160,15 @@ class ErrorRecorderMock: ErrorRecorder {
 
 class ExpositionInfoRepositoryMock: ExpositionInfoRepository {
     
-    var expositionInfo: ExpositionInfo?
+    var expositionInfo: ContactExpositionInfo?
     var expositionInfoCalls: Int = 0
     
-    func getExpositionInfo() -> ExpositionInfo? {
+    func getExpositionInfo() -> ContactExpositionInfo? {
         expositionInfoCalls += 1
         return expositionInfo
     }
     
-    func save(expositionInfo: ExpositionInfo) {
+    func save(expositionInfo: ContactExpositionInfo) {
         
     }
     

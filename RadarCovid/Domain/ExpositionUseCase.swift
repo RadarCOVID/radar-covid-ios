@@ -22,9 +22,10 @@ class ExpositionUseCase: DP3TTracingDelegate {
     private let disposeBag = DisposeBag()
     private let dateFormatter = DateFormatter()
 
-    private let subject: BehaviorSubject<ExpositionInfo>
+    private let subject: BehaviorSubject<ContactExpositionInfo>
     private let expositionInfoRepository: ExpositionInfoRepository
     private let notificationHandler: NotificationHandler
+    private let venueExpositionUseCase: VenueExpositionUseCase
     private static let lastSyncKey = "ExpositionUseCase.lastSync"
     
     public var lastSync: Date? {
@@ -40,13 +41,15 @@ class ExpositionUseCase: DP3TTracingDelegate {
     }
 
     init(notificationHandler: NotificationHandler,
-         expositionInfoRepository: ExpositionInfoRepository) {
+         expositionInfoRepository: ExpositionInfoRepository,
+         venueExpositionUseCase: VenueExpositionUseCase) {
 
         self.notificationHandler = notificationHandler
         self.expositionInfoRepository = expositionInfoRepository
+        self.venueExpositionUseCase = venueExpositionUseCase
         
-        self.subject = BehaviorSubject<ExpositionInfo>(
-            value: expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: .healthy)
+        self.subject = BehaviorSubject<ContactExpositionInfo>(
+            value: expositionInfoRepository.getExpositionInfo() ?? ContactExpositionInfo(level: .healthy)
         )
 
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss.SSS z"
@@ -76,7 +79,9 @@ class ExpositionUseCase: DP3TTracingDelegate {
     }
 
     func getExpositionInfo() -> Observable<ExpositionInfo> {
-        subject.asObservable()
+        .zip(subject.asObservable(), venueExpositionUseCase.expositionInfo, resultSelector: { cei, vei in
+                ExpositionInfo(contact: cei, venue: vei)
+        })
     }
 
     func updateExpositionInfo() {
@@ -86,11 +91,11 @@ class ExpositionUseCase: DP3TTracingDelegate {
     }
 
     // Metodo para mapear un TracingState a un ExpositionInfo
-    private func tracingStatusToExpositionInfo(tStatus: TracingState) -> ExpositionInfo {
+    private func tracingStatusToExpositionInfo(tStatus: TracingState) -> ContactExpositionInfo {
         
         switch tStatus.trackingState {
             case .inactive(let error):
-                var errorEI = ExpositionInfo(level: expositionInfoRepository.getExpositionInfo()?.level ?? .healthy)
+                var errorEI = ContactExpositionInfo(level: expositionInfoRepository.getExpositionInfo()?.level ?? .healthy)
                 errorEI.error = dp3tTracingErrorToDomain(error)
                 return errorEI
             default: break
@@ -98,14 +103,14 @@ class ExpositionUseCase: DP3TTracingDelegate {
         
         switch tStatus.infectionStatus {
             case .healthy:
-                var info = ExpositionInfo(level: Level.healthy)
+                var info = ContactExpositionInfo(level: Level.healthy)
                 info.lastCheck = tStatus.lastSync
                 return info
             case .infected:
                 let savedStatus = expositionInfoRepository.getExpositionInfo()?.level ?? Level.healthy
-                var expositionInfo = ExpositionInfo(level: Level.infected)
+                var expositionInfo = ContactExpositionInfo(level: Level.infected)
                 if savedStatus == Level.infected {
-                    expositionInfo = expositionInfoRepository.getExpositionInfo() ?? ExpositionInfo(level: Level.infected)
+                    expositionInfo = expositionInfoRepository.getExpositionInfo() ?? ContactExpositionInfo(level: Level.infected)
                 }
                 if expositionInfo.since == nil {
                     expositionInfo.since = Date()
@@ -114,7 +119,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
                 return expositionInfo
                 
             case .exposed(days: let days):
-                var info = ExpositionInfo(level: Level.exposed)
+                var info = ContactExpositionInfo(level: Level.exposed)
                 info.since = getMoreRecentDateFromExpositionArray(days: days)
                 info.lastCheck = tStatus.lastSync
                 return info
@@ -127,18 +132,18 @@ class ExpositionUseCase: DP3TTracingDelegate {
         }.first?.exposedDate
     }
 
-    private func showNotification(_ localEI: ExpositionInfo?, _ expositionInfo: ExpositionInfo) -> Bool {
+    private func showNotification(_ localEI: ContactExpositionInfo?, _ expositionInfo: ContactExpositionInfo) -> Bool {
         if let localEI = localEI {
             return !equals(localEI, expositionInfo) && expositionInfo.level == .exposed
         }
         return false
     }
 
-    private func equals(_ ei1: ExpositionInfo, _ ei2: ExpositionInfo) -> Bool {
+    private func equals(_ ei1: ContactExpositionInfo, _ ei2: ContactExpositionInfo) -> Bool {
         ei1.level == ei2.level && ei1.since == ei2.since
     }
 
-    private func isNewInfected(_ localEI: ExpositionInfo?, _ expositionInfo: ExpositionInfo) -> Bool {
+    private func isNewInfected(_ localEI: ContactExpositionInfo?, _ expositionInfo: ContactExpositionInfo) -> Bool {
         if let localEI = localEI {
             return !equals(localEI, expositionInfo) && expositionInfo.level == .infected
         }

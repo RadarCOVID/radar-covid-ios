@@ -16,7 +16,7 @@ import RxSwift
 protocol NotificationHandler {
     func setupNotifications() -> Observable<Bool>
     func scheduleNotification(title: String, body: String, sound: UNNotificationSound)
-    func scheduleNotification(expositionInfo: ExpositionInfo)
+    func scheduleNotification(expositionInfo: ContactExpositionInfo)
     func scheduleExposedEventNotification()
     func scheduleCheckInReminderNotification()
 }
@@ -63,7 +63,7 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
         center.add(request)
     }
 
-    func scheduleNotification(expositionInfo: ExpositionInfo) {
+    func scheduleNotification(expositionInfo: ContactExpositionInfo) {
         var title, body: String?
         var sound: UNNotificationSound?
         formatter.dateFormat = "dd.MM.YYYY"

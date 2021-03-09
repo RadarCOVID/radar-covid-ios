@@ -312,7 +312,7 @@ class NotificationHandlerMock: Mocker, NotificationHandler {
         call("scheduleNotification", params: ["title": title, "body": body, "sound": sound])
     }
     
-    func scheduleNotification(expositionInfo: ExpositionInfo) {
+    func scheduleNotification(expositionInfo: ContactExpositionInfo) {
         call("scheduleNotificationExpositionInfo", params: ["expositionInfo": expositionInfo])
     }
     

@@ -16,13 +16,19 @@ import RxSwift
 
 class VenueExpositionUseCaseTest: XCTestCase {
     
+    private var disposeBag: DisposeBag!
+    
     private var sut: VenueExpositionUseCaseImpl!
+    
+    private var scheduler: TestScheduler!
     
     private var venueRecordRepository: VenueRecordRepositoryMock!
 
     override func setUpWithError() throws {
+        self.disposeBag = DisposeBag()
         venueRecordRepository = VenueRecordRepositoryMock()
         sut = VenueExpositionUseCaseImpl(venueRecordRepository: venueRecordRepository)
+        self.scheduler = TestScheduler(initialClock: 0)
     }
 
     override func tearDownWithError() throws {
@@ -30,11 +36,24 @@ class VenueExpositionUseCaseTest: XCTestCase {
     }
 
     func testGetExpositionInfoWithNoVenuesThenHealthy() throws {
-
-        let expositionInfo = try! sut.expositionInfo.toBlocking().first()
         
-        XCTAssertEqual(expositionInfo!.level, Level.healthy)
-        XCTAssertNil(expositionInfo!.since)
+        let observer = scheduler.createObserver(VenueExpositionInfo.self)
+        
+        sut.expositionInfo
+            .subscribeOn(scheduler)
+            .subscribe(observer)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        scheduler.scheduleAt(100, action: {
+            XCTAssertEqual( observer.events.count, 1)
+            let expositionInfo = observer.events[0].value.element
+            XCTAssertEqual(expositionInfo!.level, Level.healthy)
+            XCTAssertNil(expositionInfo!.since)
+        })
+        
+        
         
     }
     
@@ -49,11 +68,23 @@ class VenueExpositionUseCaseTest: XCTestCase {
 
         venueRecordRepository.registerGetVisited(response: venueRecords)
         
-        let expositionInfo = try! sut.expositionInfo.toBlocking().first()
+        let observer = scheduler.createObserver(VenueExpositionInfo.self)
         
-        XCTAssertEqual(expositionInfo!.level, Level.healthy)
-        XCTAssertNil(expositionInfo!.since)
+        sut.expositionInfo
+            .subscribeOn(scheduler)
+            .subscribe(observer)
+            .disposed(by: disposeBag)
         
+        scheduler.start()
+        
+        scheduler.scheduleAt(100, action: {
+            XCTAssertEqual( observer.events.count, 1)
+            let expositionInfo = observer.events[0].value.element
+            XCTAssertEqual(expositionInfo!.level, Level.healthy)
+            XCTAssertNil(expositionInfo!.since)
+        })
+        
+    
     }
     
     func testGetExpositionInfoWithVenueMix() throws {
@@ -74,12 +105,23 @@ class VenueExpositionUseCaseTest: XCTestCase {
         
         venueRecordRepository.registerGetVisited(response: venueRecords)
         
-        let expositionInfo = try! sut.expositionInfo.toBlocking().first()
+        let observer = scheduler.createObserver(VenueExpositionInfo.self)
         
-        XCTAssertEqual(expositionInfo!.level, Level.exposed)
-        XCTAssertEqual(expositionInfo!.since, lastCheckout)
+        sut.expositionInfo
+            .subscribeOn(scheduler)
+            .subscribe(observer)
+            .disposed(by: disposeBag)
         
+        scheduler.start()
         
+        scheduler.scheduleAt(100, action: {
+            XCTAssertEqual( observer.events.count, 1)
+            let expositionInfo = observer.events[0].value.element
+            XCTAssertEqual(expositionInfo!.level, Level.exposed)
+            XCTAssertEqual(expositionInfo!.since, lastCheckout)
+        })
+        
+
     }
 
 

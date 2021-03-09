@@ -33,7 +33,7 @@ class HomeViewModel {
     var timeExposedDismissed = BehaviorSubject<Bool>(value: false)
     var showBackToHealthyDialog = PublishSubject<Bool>()
     var errorState = BehaviorSubject<DomainError?>(value: nil)
-    var expositionInfo = BehaviorSubject<ExpositionInfo>(value: ExpositionInfo(level: .healthy))
+    var expositionInfo = BehaviorSubject<ContactExpositionInfo>(value: ContactExpositionInfo(level: .healthy))
     var error = PublishSubject<Error>()
     var alertMessage = PublishSubject<String>()
     
@@ -67,13 +67,13 @@ class HomeViewModel {
         
         expositionUseCase?.getExpositionInfo().subscribe(
             onNext: { [weak self] exposition in
-                self?.checkExpositionLevel(exposition)
+                self?.checkExpositionLevel(exposition.contact)
             }, onError: { [weak self] error in
                 self?.error.onNext(error)
             }).disposed(by: disposeBag)
     }
     
-    private func checkExpositionLevel(_ exposition: ExpositionInfo?) {
+    private func checkExpositionLevel(_ exposition: ContactExpositionInfo?) {
         guard let exposition = exposition else {
             return
         }
@@ -141,7 +141,7 @@ class HomeViewModel {
     }
     
     func heplerQAChangeHealthy() {
-        let expositionInf = ExpositionInfo(level: .exposed)
+        let expositionInf = ContactExpositionInfo(level: .exposed)
         checkExpositionLevel(expositionInf)
     }
     
