@@ -39,26 +39,23 @@ class VenueExpositionUseCaseTest: XCTestCase {
         
         let observer = scheduler.createObserver(VenueExpositionInfo.self)
         
+        venueRecordRepository.registerGetVisited(response: nil, scheduler: scheduler)
+        
         sut.expositionInfo
             .subscribeOn(scheduler)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
         scheduler.start()
-        
-        scheduler.scheduleAt(100, action: {
-            XCTAssertEqual( observer.events.count, 1)
-            let expositionInfo = observer.events[0].value.element
-            XCTAssertEqual(expositionInfo!.level, Level.healthy)
-            XCTAssertNil(expositionInfo!.since)
-        })
-        
-        
+    
+        XCTAssertEqual(observer.events, [.next(1, VenueExpositionInfo(level: .healthy))])
         
     }
     
     func testGetExpositionInfoWithNoExposedVenuesThenHealthy() throws {
+        
         var venueRecords: [VenueRecord] = []
+        
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFresh", hidden: false, exposed: false, name: "name",
                                         checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 - 6, to: Date()),
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 + 1, to: Date())))
@@ -66,7 +63,8 @@ class VenueExpositionUseCaseTest: XCTestCase {
                                         checkInDate: Calendar.current.date(byAdding: .hour, value: -36, to: Date()),
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -12, to: Date())))
 
-        venueRecordRepository.registerGetVisited(response: venueRecords)
+        
+        venueRecordRepository.registerGetVisited(response: venueRecords, scheduler: scheduler)
         
         let observer = scheduler.createObserver(VenueExpositionInfo.self)
         
@@ -77,13 +75,8 @@ class VenueExpositionUseCaseTest: XCTestCase {
         
         scheduler.start()
         
-        scheduler.scheduleAt(100, action: {
-            XCTAssertEqual( observer.events.count, 1)
-            let expositionInfo = observer.events[0].value.element
-            XCTAssertEqual(expositionInfo!.level, Level.healthy)
-            XCTAssertNil(expositionInfo!.since)
-        })
-        
+        XCTAssertEqual(observer.events, [.next(1, VenueExpositionInfo(level: .healthy))])
+
     
     }
     
@@ -103,7 +96,7 @@ class VenueExpositionUseCaseTest: XCTestCase {
                                         checkInDate: Calendar.current.date(byAdding: .hour, value: -36, to: Date()),
                                         checkOutDate: firstCheckout))
         
-        venueRecordRepository.registerGetVisited(response: venueRecords)
+        venueRecordRepository.registerGetVisited(response: venueRecords, scheduler: scheduler)
         
         let observer = scheduler.createObserver(VenueExpositionInfo.self)
         
@@ -114,12 +107,7 @@ class VenueExpositionUseCaseTest: XCTestCase {
         
         scheduler.start()
         
-        scheduler.scheduleAt(100, action: {
-            XCTAssertEqual( observer.events.count, 1)
-            let expositionInfo = observer.events[0].value.element
-            XCTAssertEqual(expositionInfo!.level, Level.exposed)
-            XCTAssertEqual(expositionInfo!.since, lastCheckout)
-        })
+        XCTAssertEqual(observer.events, [.next(1, VenueExpositionInfo(level: .exposed, since: lastCheckout))])
         
 
     }

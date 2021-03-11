@@ -30,7 +30,13 @@ class VenueExpositionUseCaseImpl: VenueExpositionUseCase {
     
     private(set) var expositionInfo: Observable<VenueExpositionInfo> {
         get {
-            expositionInfoFromVenueRecord().bind(to: subject).disposed(by: disposeBag)
+//            Done like this because bind(to: doesn't ever emit the venue info
+            expositionInfoFromVenueRecord().subscribe(onNext: { [weak self] in
+                self?.subject.onNext($0)},
+            onError: { [weak self] error in
+                self?.subject.onError(error)
+            }).disposed(by: disposeBag)
+            
             return subject.asObservable()
         }
         set {

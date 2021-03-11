@@ -33,7 +33,13 @@ class HomeViewModel {
     var timeExposedDismissed = BehaviorSubject<Bool>(value: false)
     var showBackToHealthyDialog = PublishSubject<Bool>()
     var errorState = BehaviorSubject<DomainError?>(value: nil)
+    
     var expositionInfo = BehaviorSubject<ContactExpositionInfo>(value: ContactExpositionInfo(level: .healthy))
+    var venueExpositionInfo = BehaviorSubject<VenueExpositionInfo>(value: VenueExpositionInfo(level: .healthy))
+    
+    var hideContactExpositionInfo = BehaviorSubject<Bool>(value: false)
+    var hideVenueExpositionInfo = BehaviorSubject<Bool>(value: true)
+    
     var error = PublishSubject<Error>()
     var alertMessage = PublishSubject<String>()
     
@@ -41,18 +47,17 @@ class HomeViewModel {
         radarStatusUseCase?.changeTracingStatus(active: active).subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
-                self?.checkInitialExposition()
                 self?.isErrorTracingDP3T.onNext(false)
             }, onError: {  [weak self] error in
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
-                self?.checkInitialExposition()
                 self?.isErrorTracingDP3T.onNext(true)
             }).disposed(by: disposeBag)
     }
     
     func checkInitial() {
         checkRadarStatus()
+        checkInitialExposition()
         reminderNotificationUseCase?.cancel()
         (UIApplication.shared.delegate as? AppDelegate)?.bluethoothUseCase?.initListener()
     }
@@ -68,9 +73,26 @@ class HomeViewModel {
         expositionUseCase?.getExpositionInfo().subscribe(
             onNext: { [weak self] exposition in
                 self?.checkExpositionLevel(exposition.contact)
+                self?.venueExpositionInfo.onNext(exposition.venue)
+                self?.showAndHideVenueAndContacExpositionLevel(exposition)
             }, onError: { [weak self] error in
                 self?.error.onNext(error)
             }).disposed(by: disposeBag)
+    }
+    
+    private func showAndHideVenueAndContacExpositionLevel(_ expositionInfo: ExpositionInfo) {
+         if expositionInfo.contact.level == .infected  ||
+            expositionInfo.contact.level == .healthy && expositionInfo.venue.level == .healthy ||
+            expositionInfo.contact.level == .exposed && expositionInfo.venue.level == .healthy {
+            hideContactExpositionInfo.onNext(false)
+            hideVenueExpositionInfo.onNext(true)
+        } else if expositionInfo.contact.level == .healthy && expositionInfo.venue.level == .exposed {
+            hideContactExpositionInfo.onNext(true)
+            hideVenueExpositionInfo.onNext(false)
+        } else if expositionInfo.contact.level == .exposed && expositionInfo.venue.level == .exposed {
+            hideContactExpositionInfo.onNext(false)
+            hideVenueExpositionInfo.onNext(false)
+        }
     }
     
     private func checkExpositionLevel(_ exposition: ContactExpositionInfo?) {

@@ -158,7 +158,7 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(ExpositionUseCase.self) { r in
-            ExpositionUseCase(notificationHandler: r.resolve(NotificationHandler.self)!,
+            ExpositionUseCaseImpl(notificationHandler: r.resolve(NotificationHandler.self)!,
                               expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
                               venueExpositionUseCase: r.resolve(VenueExpositionUseCase.self)!)
         }.inObjectScope(.container)

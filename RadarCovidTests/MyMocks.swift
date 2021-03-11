@@ -326,7 +326,7 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
     
     func getVisited() -> Observable<[VenueRecord]?> {
         Observable.just(Void()).flatMap { () -> Observable<[VenueRecord]?> in
-            .just(self.call("getVisited") as? [VenueRecord])
+            self.call("getVisited") as! Observable<[VenueRecord]?>
         }
     }
     
@@ -377,8 +377,12 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
         registerMock("saveVisit",responses: [response])
     }
     
-    func registerGetVisited(response: [VenueRecord]) {
-        registerMock("getVisited", responses: [response])
+    func registerGetVisited(response: [VenueRecord]?) {
+        registerMock("getVisited", responses: [Observable.just(response)])
+    }
+    
+    func registerGetVisited(response: [VenueRecord]?, scheduler: TestScheduler) {
+        registerMock("getVisited", responses: [scheduler.createColdObservable([.next(1,response)]).asObservable()])
     }
     
     func registerGetLastReminder(date: Date) {

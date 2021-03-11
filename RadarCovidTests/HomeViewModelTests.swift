@@ -20,6 +20,7 @@ class HomeViewModelTests: XCTestCase {
     private var disposeBag: DisposeBag!
     
     private var expositionCheckUseCase: MockExpositionCheckUseCase!
+    private var expositionUseCase: ExpositionUseCaseMock!
     
     private var sut: HomeViewModel!
 
@@ -28,6 +29,8 @@ class HomeViewModelTests: XCTestCase {
         scheduler = TestScheduler(initialClock: 0)
         sut = HomeViewModel()
         expositionCheckUseCase = MockExpositionCheckUseCase()
+        expositionUseCase = ExpositionUseCaseMock(scheduler: scheduler)
+        sut.expositionUseCase = expositionUseCase
         sut.expositionCheckUseCase = expositionCheckUseCase
     }
 
@@ -75,5 +78,135 @@ class HomeViewModelTests: XCTestCase {
         XCTAssertEqual( observer.events[0].value.element, true)
 
     }
+    
+    func testShowOnlyOneExpositionWhenBothHealty() throws {
+        
+        let observerContact = scheduler.createObserver(Bool.self)
+        let observerVenue = scheduler.createObserver(Bool.self)
+        
+        let expositionInfo = ExpositionInfo(contact: ContactExpositionInfo(level: .healthy), venue: VenueExpositionInfo(level: .healthy))
+        expositionUseCase.registerGetExpositionInfo(response: expositionInfo)
+        
+        sut.checkInitial()
+        
+        sut.hideContactExpositionInfo
+            .subscribeOn(scheduler).subscribe(observerContact)
+            .disposed(by: disposeBag)
+        
+        sut.hideVenueExpositionInfo
+            .subscribeOn(scheduler).subscribe(observerVenue)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observerContact.events, [.next(1, false)])
+        XCTAssertEqual(observerVenue.events, [.next(1, true)])
+        
+    }
+    
+    func testContacExposedAndVenueHealthyThenShowOnlyContact() throws {
+        
+        let observerContact = scheduler.createObserver(Bool.self)
+        let observerVenue = scheduler.createObserver(Bool.self)
+        
+        let expositionInfo = ExpositionInfo(contact: ContactExpositionInfo(level: .exposed), venue: VenueExpositionInfo(level: .healthy))
+        expositionUseCase.registerGetExpositionInfo(response: expositionInfo)
+        
+        sut.checkInitial()
+        
+        sut.hideContactExpositionInfo
+            .subscribeOn(scheduler).subscribe(observerContact)
+            .disposed(by: disposeBag)
+        
+        sut.hideVenueExpositionInfo
+            .subscribeOn(scheduler).subscribe(observerVenue)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observerContact.events, [.next(1, false)])
+        XCTAssertEqual(observerVenue.events, [.next(1, true)])
+    
+    }
+    
+    func testVenueExposedAndContactHealthyThenShowOnlyVenue() throws {
+        
+        let observerContact = scheduler.createObserver(Bool.self)
+        let observerVenue = scheduler.createObserver(Bool.self)
+        
+        let expositionInfo = ExpositionInfo(contact: ContactExpositionInfo(level: .healthy), venue: VenueExpositionInfo(level: .exposed))
+        expositionUseCase.registerGetExpositionInfo(response: expositionInfo)
+        
+        sut.checkInitial()
+        
+        sut.hideContactExpositionInfo
+            .subscribeOn(scheduler).subscribe(observerContact)
+            .disposed(by: disposeBag)
+        
+        sut.hideVenueExpositionInfo
+            .subscribeOn(scheduler).subscribe(observerVenue)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observerContact.events, [.next(1, true)])
+        XCTAssertEqual(observerVenue.events, [.next(1, false)])
+        
+    }
+    
+    func testContacInfectedAndVenueExposedThenShowOnlyContact() throws {
+        
+        let observerContact = scheduler.createObserver(Bool.self)
+        let observerVenue = scheduler.createObserver(Bool.self)
+        
+        let expositionInfo = ExpositionInfo(contact: ContactExpositionInfo(level: .infected), venue: VenueExpositionInfo(level: .exposed))
+        expositionUseCase.registerGetExpositionInfo(response: expositionInfo)
+        
+        sut.checkInitial()
+        
+        sut.hideContactExpositionInfo
+            .subscribeOn(scheduler).subscribe(observerContact)
+            .disposed(by: disposeBag)
+        
+        sut.hideVenueExpositionInfo
+            .subscribeOn(scheduler).subscribe(observerVenue)
+            .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observerContact.events, [.next(1, false)])
+        XCTAssertEqual(observerVenue.events, [.next(1, true)])
+        
+    }
 
+}
+
+class ExpositionUseCaseMock: Mocker, ExpositionUseCase {
+    
+    private let scheduler: TestScheduler
+    
+    init(scheduler: TestScheduler) {
+        self.scheduler = scheduler
+        super.init("ExpositionUseCase")
+    }
+    
+    var lastSync: Date? {
+        get {
+            self.call("lastSync") as? Date
+        }
+    }
+    
+    func getExpositionInfo() -> Observable<ExpositionInfo> {
+        self.call("getExpositionInfo") as! Observable<ExpositionInfo>
+    }
+    
+    func updateExpositionInfo() {
+        self.call("updateExpositionInfo")
+    }
+    
+    func registerGetExpositionInfo(response: ExpositionInfo) {
+        registerMock("getExpositionInfo", responses: [scheduler.createColdObservable([.next(1,response)]).asObservable()])
+    }
+    
+    
 }

@@ -26,6 +26,9 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var expositionTitleLabel: UILabel!
     @IBOutlet weak var expositionDescriptionLabel: UILabel!
     @IBOutlet weak var expositionView: BackgroundView!
+    @IBOutlet weak var venueExpositionView: BackgroundView!
+    @IBOutlet weak var contactRiskImage: UIImageView!
+    
     @IBOutlet weak var radarSwitch: UISwitch!
     @IBOutlet weak var radarMessageLabel: UILabel!
     @IBOutlet weak var radarTitleLabel: UILabel!
@@ -40,6 +43,7 @@ class HomeViewController: BaseViewController {
     var termsRepository: TermsAcceptedRepository!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var btnShare: UIButton!
+    @IBOutlet weak var venueRemainingDaysLabel: UILabel!
     
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
@@ -72,7 +76,7 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
         viewModel?.checkShowBackToHealthyDialog()
         viewModel?.checkRadarStatus()
     }
@@ -196,6 +200,10 @@ class HomeViewController: BaseViewController {
         viewModel!.expositionInfo.subscribe { [weak self] exposition in
             self?.updateExpositionInfo(exposition.element)
         }.disposed(by: disposeBag)
+        
+        viewModel!.venueExpositionInfo.subscribe { [weak self] exposition in
+            self?.updateVenueExpositionInfo(exposition.element)
+        }.disposed(by: disposeBag)
 
         viewModel!.error.subscribe { [weak self] error in
             self?.errorHandler?.handle(error: error.element)
@@ -218,6 +226,12 @@ class HomeViewController: BaseViewController {
                 self?.showTimeExposed()
             }
         }.disposed(by: disposeBag)
+        
+        viewModel!.hideVenueExpositionInfo.bind(to: venueExpositionView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        viewModel!.hideContactExpositionInfo.bind(to: expositionView.rx.isHidden)
+            .disposed(by: disposeBag)
     }
     
     private func setupView() {
@@ -232,6 +246,8 @@ class HomeViewController: BaseViewController {
         radarSwitch.tintColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         radarSwitch.layer.cornerRadius = radarSwitch.frame.height / 2
         radarSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
+        
+        venueExpositionView.image = bgImageOrange
 
         if Config.environment == "PRE" {
             envLabel.isHidden = false
@@ -291,21 +307,25 @@ class HomeViewController: BaseViewController {
             setInfected()
         }
     }
+    
+    private func updateVenueExpositionInfo(_ exposition: VenueExpositionInfo?) {
+//        TODO: get remaining days
+        venueRemainingDaysLabel.attributedText = getRemainingDaysText(6)
+    }
 
     private func setExposed(since: Date) {
        
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_HIGH".localized
-        let reminingDays = self.viewModel?.checkRemainingExpositionDays(since: since)
-        let remindingDaysText =
-            reminingDays ?? 0 <= 1
-                ? "HOME_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(reminingDays ?? 0)])
-                : "HOME_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(reminingDays ?? 0)])
+        contactRiskImage.isHidden = false
+        let remainingDays = self.viewModel?.checkRemainingExpositionDays(since: since) ?? 0
+        let remainingDaysText = getRemainingDaysText(remainingDays)
+            
         let attributedText = NSMutableAttributedString.init(attributedString: "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
                 withParams: ["CONTACT_PHONE".localized]
             )
         )
         attributedText
-            .append(remindingDaysText)
+            .append(remainingDaysText)
         expositionDescriptionLabel.attributedText = attributedText
         expositionDescriptionLabel.setMagnifierFontSize()
         expositionView.image = bgImageOrange
@@ -315,12 +335,16 @@ class HomeViewController: BaseViewController {
         radarSwitch.isHidden = false
     }
     
-   
+    private func getRemainingDaysText(_ remainingDays: Int) -> NSAttributedString {
+        remainingDays <= 1
+            ? "HOME_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remainingDays)])
+            : "HOME_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(remainingDays)])
+    }
     
     private func setHealthy() {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_LOW".localized
         expositionDescriptionLabel.locKey  = "HOME_EXPOSITION_MESSAGE_LOW"
-
+        contactRiskImage.isHidden = true
         expositionView.image = bgImageGreen
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
@@ -331,7 +355,7 @@ class HomeViewController: BaseViewController {
     private func setInfected() {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_POSITIVE".localized
         expositionDescriptionLabel.locKey = "HOME_EXPOSITION_MESSAGE_INFECTED"
-
+        contactRiskImage.isHidden = true
         expositionView.image = bgImageRed
         communicationButton.isHidden = true
         topComunicationConstraint.constant = -(communicationButton.frame.size.height + bottomComunicationConstraint.constant)

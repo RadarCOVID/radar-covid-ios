@@ -220,6 +220,7 @@
 "HOME_EXPOSITION_COUNT_ANYMORE" = "<br><b>Te quedan <b>%@ días</b> para finalizarla.</b>";
 "HOME_EXPOSITION_COUNT_ONE_DAY" = "<br><b>Te queda <b>%@ día</b> para finalizarla.</b>";
 "HOME_EXPOSITION_MESSAGE_HIGH" = "Has estado en contacto con alguien que ha sido diagnosticado de COVID-19.<br><b> Debes realizar cuarentena domiciliaria.</b>";
+"HOME_VENUE_EXPOSITION_MESSAGE_HIGH" = "Se ha detectado un contagio masivo de COVID-19 en un lugar que has visitado.<br><b> Debes realizar cuarentena domiciliaria.</b>";
 "HOME_EXPOSITION_MESSAGE_INFECTED" = "Tu diagnóstico ha sido enviado.<br>Por favor, permanece en aislamiento siguiendo las recomendaciones que te han dado los servicios sanitarios.";
 "HOME_EXPOSITION_MESSAGE_LOW" = "Te informaremos en el caso de un posible contacto de riesgo.";
 "HOME_EXPOSITION_POSITIVE_MORE_INFO" = "<a href=\"https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov/img/20.03.24_AislamientoDomiciliario_COVID19.jpg\"><b>Más información</b></a>";

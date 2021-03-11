@@ -11,7 +11,7 @@
 
 import Foundation
 
-struct VenueExpositionInfo {
+struct VenueExpositionInfo : Equatable {
     
     var level: Level
     var since: Date?

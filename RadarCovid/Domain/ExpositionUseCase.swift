@@ -15,7 +15,13 @@ import ExposureNotification
 import RxSwift
 import Logging
 
-class ExpositionUseCase: DP3TTracingDelegate {
+protocol ExpositionUseCase {
+    var lastSync: Date? { get }
+    func getExpositionInfo() -> Observable<ExpositionInfo>
+    func updateExpositionInfo()
+}
+
+class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
     
     private let logger = Logger(label: "ExpositionUseCase")
 
@@ -30,26 +36,27 @@ class ExpositionUseCase: DP3TTracingDelegate {
     
     public var lastSync: Date? {
         get {
-            return UserDefaults.standard.value(forKey: ExpositionUseCase.lastSyncKey) as? Date
+            return UserDefaults.standard.value(forKey: ExpositionUseCaseImpl.lastSyncKey) as? Date
         }
         set(val) {
             guard let date = val else {
                 return
             }
-            UserDefaults.standard.setValue(date, forKey: ExpositionUseCase.lastSyncKey)
+            UserDefaults.standard.setValue(date, forKey: ExpositionUseCaseImpl.lastSyncKey)
         }
     }
 
     init(notificationHandler: NotificationHandler,
          expositionInfoRepository: ExpositionInfoRepository,
          venueExpositionUseCase: VenueExpositionUseCase) {
+        
 
         self.notificationHandler = notificationHandler
         self.expositionInfoRepository = expositionInfoRepository
         self.venueExpositionUseCase = venueExpositionUseCase
         
         self.subject = BehaviorSubject<ContactExpositionInfo>(
-            value: expositionInfoRepository.getExpositionInfo() ?? ContactExpositionInfo(level: .healthy)
+            value: expositionInfoRepository.getExpositionInfo() ?? ContactExpositionInfo(level: .exposed)
         )
 
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss.SSS z"
@@ -79,7 +86,7 @@ class ExpositionUseCase: DP3TTracingDelegate {
     }
 
     func getExpositionInfo() -> Observable<ExpositionInfo> {
-        .zip(subject.asObservable(), venueExpositionUseCase.expositionInfo, resultSelector: { cei, vei in
+        .zip(subject.asObservable() , venueExpositionUseCase.expositionInfo, resultSelector: { cei, vei in
                 ExpositionInfo(contact: cei, venue: vei)
         })
     }
