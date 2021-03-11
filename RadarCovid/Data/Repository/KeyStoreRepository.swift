@@ -12,10 +12,22 @@
 import Foundation
 import RxSwift
 
+
 class KeyStoreRepository {
+    
+    private let userDefaults: UserDefaults
+    private let kFirstRun = "KeyStoreRepository.firstRun"
     
     private(set) var encoder = JSONEncoder()
     private(set) var decoder = JSONDecoder()
+    
+    init(suitename: String?, deleteOnFirstRun: Bool = true) {
+        userDefaults =  UserDefaults(suiteName: suitename) ?? UserDefaults.standard
+        if userDefaults.bool(forKey: kFirstRun) && deleteOnFirstRun {
+            cleanDataOnFirsRun()
+            userDefaults.set(false, forKey: kFirstRun)
+        }
+    }
     
     func get<T: Codable>(key: KeychainKey<T>) -> Observable<T?> {
         
@@ -143,6 +155,10 @@ class KeyStoreRepository {
           kSecAttrAccount as String: key.key,
           kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly]
 
+    }
+    
+    func cleanDataOnFirsRun() {
+        
     }
     
 }

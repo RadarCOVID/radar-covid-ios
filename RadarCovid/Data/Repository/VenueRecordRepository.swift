@@ -25,12 +25,18 @@ protocol VenueRecordRepository {
 }
 
 class KeyStoreVenueRecordRepository : KeyStoreRepository, VenueRecordRepository {
+    
+    private let disposeBag = DisposeBag()
 
     private static let kCurrentVenueKey = KeychainKey(key: "UserDefaultsVenueRecordRepository.currentVenue", type: VenueRecord.self)
     
-    private static let kVisitedList = KeychainKey(key: "UserDefaultsVenueRecordRepository.currentVenue", type: [VenueRecord].self)
+    private static let kVisitedList = KeychainKey(key: "UserDefaultsVenueRecordRepository.visited", type: [VenueRecord].self)
     
     private static let kLastReminder = KeychainKey(key: "UserDefaultsVenueRecordRepository.lastReminder", type: Date.self)
+    
+    init() {
+        super.init(suitename: Bundle.main.bundleIdentifier, deleteOnFirstRun: true)
+    }
     
     func getCurrentVenue() -> Observable<VenueRecord?> {
         get(key: KeyStoreVenueRecordRepository.kCurrentVenueKey)
@@ -73,6 +79,15 @@ class KeyStoreVenueRecordRepository : KeyStoreRepository, VenueRecordRepository 
     
     func save(lastReminder: Date) -> Observable<Date> {
         save(key: KeyStoreVenueRecordRepository.kLastReminder, value: lastReminder)
+    }
+    
+    override func cleanDataOnFirsRun() {
+        debugPrint("Cleaning data on first run")
+        delete(key: KeyStoreVenueRecordRepository.kVisitedList)
+            .concat( delete(key: KeyStoreVenueRecordRepository.kCurrentVenueKey))
+            .concat (delete(key: KeyStoreVenueRecordRepository.kLastReminder))
+            .subscribe (onError: { _ in debugPrint("Error cleaning keystore data on first run") })
+            .disposed(by: disposeBag)
     }
 
 }
