@@ -44,6 +44,8 @@
 		6D63108C2501194F000CDCB4 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63108B2501194F000CDCB4 /* UINavigationController+Extension.swift */; };
 		6D63108E2501197B000CDCB4 /* AccTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63108D2501197B000CDCB4 /* AccTitleView.swift */; };
 		6D6D342125F7B6EE001B2071 /* ExpositionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D342025F7B6EE001B2071 /* ExpositionInfo.swift */; };
+		6D6D343825FA79BD001B2071 /* CrowdNotifierSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6D343725FA79BD001B2071 /* CrowdNotifierSDK */; };
+		6D6D343A25FA79BD001B2071 /* Clibsodium in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6D343925FA79BD001B2071 /* Clibsodium */; };
 		6D78B44124A9F13A00FBC23F /* SetupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */; };
 		6D7AB26D24ADCC9A00F30E0B /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */; };
 		6D7AB26F24ADED7400F30E0B /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
@@ -621,9 +623,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D5AFCE8249369FE00EFE838 /* Alamofire in Frameworks */,
+				6D6D343825FA79BD001B2071 /* CrowdNotifierSDK in Frameworks */,
 				764C6D1324B7E5BB002FA594 /* RxSwift in Frameworks */,
 				76357ADD2540447B004C9AE5 /* DP3TSDK in Frameworks */,
 				A9A7D11C2524B03A009091A5 /* RxCocoa in Frameworks */,
+				6D6D343A25FA79BD001B2071 /* Clibsodium in Frameworks */,
 				6DF6ECA8248E7453007EAA40 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1745,6 +1749,8 @@
 				764C6D1224B7E5BB002FA594 /* RxSwift */,
 				A9A7D11B2524B03A009091A5 /* RxCocoa */,
 				76357ADC2540447B004C9AE5 /* DP3TSDK */,
+				6D6D343725FA79BD001B2071 /* CrowdNotifierSDK */,
+				6D6D343925FA79BD001B2071 /* Clibsodium */,
 			);
 			productName = "Covid Pilot";
 			productReference = 39443286248939F000FF0217 /* Radar COVID.app */;
@@ -1810,6 +1816,7 @@
 				6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				76357ADB2540447B004C9AE5 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
+				6D6D343625FA79BD001B2071 /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */,
 			);
 			productRefGroup = 39443287248939F000FF0217 /* Products */;
 			projectDirPath = "";
@@ -2849,6 +2856,14 @@
 				version = 4.9.1;
 			};
 		};
+		6D6D343625FA79BD001B2071 /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CrowdNotifier/crowdnotifier-sdk-ios";
+			requirement = {
+				branch = release/v1.1;
+				kind = branch;
+			};
+		};
 		6DF6ECA6248E7453007EAA40 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject";
@@ -2880,6 +2895,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		6D6D343725FA79BD001B2071 /* CrowdNotifierSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D6D343625FA79BD001B2071 /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */;
+			productName = CrowdNotifierSDK;
+		};
+		6D6D343925FA79BD001B2071 /* Clibsodium */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D6D343625FA79BD001B2071 /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */;
+			productName = Clibsodium;
 		};
 		6DF6ECA7248E7453007EAA40 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
