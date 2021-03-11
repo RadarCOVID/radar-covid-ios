@@ -19,6 +19,7 @@ class Injection {
         case config
         case kpi
         case verification
+        case problematic
     }
     
     private let container: Container
@@ -42,6 +43,12 @@ class Injection {
         container.register(SwaggerClientAPI.self, name: Endpoint.kpi.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.kpi
+            return swaggerApi
+        }.inObjectScope(.container)
+        
+        container.register(SwaggerClientAPI.self, name: Endpoint.problematic.rawValue) { _ in
+            let swaggerApi = SwaggerClientAPI()
+            swaggerApi.basePath = Config.endpoints.problematic
             return swaggerApi
         }.inObjectScope(.container)
         
@@ -86,7 +93,8 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(ProblematicEventsApi.self) { r in
-            ProblematicEventsApi()
+            ProblematicEventsApiImpl(clientApi:  r.resolve(SwaggerClientAPI.self, name: Endpoint.problematic.rawValue)!
+            )
         }.inObjectScope(.container)
         
         container.register(PreferencesRepository.self) { _ in

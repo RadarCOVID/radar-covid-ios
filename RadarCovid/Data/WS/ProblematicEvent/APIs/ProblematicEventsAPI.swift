@@ -10,10 +10,59 @@
 //
 
 import Foundation
+import Alamofire
 import RxSwift
 
-class ProblematicEventsApi {
-    func getProblematicEvents() -> Observable<[ProblematicEvent]> {
-        .just([])
+protocol ProblematicEventsApi {
+    func getProblematicEvents(tag: String?) -> Observable<[ProblematicEvent]>
+}
+
+
+class ProblematicEventsApiImpl : ProblematicEventsApi {
+    
+    private let clientApi: SwaggerClientAPI
+
+    init(clientApi: SwaggerClientAPI) {
+        self.clientApi = clientApi
+    }
+    
+    func getProblematicEvents(tag: String?) -> Observable<[ProblematicEvent]> {
+        return .create { [weak self] observer -> Disposable in
+            guard let self = self else { return Disposables.create() }
+            self.getProblematiEventsWithRequestBuilder(tag: tag).execute { response, error in
+                if let error = error {
+                    observer.on(.error(error))
+                } else {
+                    if let data = response?.body, let problematicEvents = self.parseProtobuf(data) {
+                        observer.on(.next(problematicEvents))
+                    } else {
+                        observer.on(.error("Can't parse protobuf stream"))
+                    }
+                }
+                observer.on(.completed)
+            }
+            return Disposables.create()
+        }
+    }
+    
+    private func parseProtobuf(_ data: Data) -> [ProblematicEvent]?  {
+        let wrapper = try? ProblematicEventWrapper(serializedData: data)
+        return wrapper?.events
+        
+    }
+    
+    private func getProblematiEventsWithRequestBuilder(tag: String?) -> RequestBuilder<Data>  {
+        let path = "/traceKeys"
+        let URLString = clientApi.basePath + path
+        var parameters: [String: Any]? = nil
+        if tag != nil {
+            parameters = ["lastKeyBundleTag": tag as Any]
+        }
+        let headers = ["Accept": "application/x-protobuf"]
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<Data>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headers)
     }
 }

@@ -51,7 +51,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     func testSyncWithProblematicsEventsNoMatch() throws {
         
         var problematicEvents: [ProblematicEvent] = []
-        problematicEvents.append(ProblematicEvent(identity: "data".data(using: .utf8)!))
+        problematicEvents.append(ProblematicEvent())
         problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
         
         venueNotifier.registerCheckForMatches(response: [])
@@ -72,8 +72,8 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         sut.maxDaysToKeep = 2
         
         var problematicEvents: [ProblematicEvent] = []
-        problematicEvents.append(ProblematicEvent(identity: "data".data(using: .utf8)!))
-        problematicEvents.append(ProblematicEvent(identity: "data2".data(using: .utf8)!))
+        problematicEvents.append(ProblematicEvent())
+        problematicEvents.append(ProblematicEvent())
         problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
         
         var exposedEvents: [ExposedEvent] = []
@@ -142,8 +142,8 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     func testSyncWithAllEventsPreviouslyNotifiedDontSendNotification() throws {
         
         var problematicEvents: [ProblematicEvent] = []
-        problematicEvents.append(ProblematicEvent(identity: "data".data(using: .utf8)!))
-        problematicEvents.append(ProblematicEvent(identity: "data2".data(using: .utf8)!))
+        problematicEvents.append(ProblematicEvent())
+        problematicEvents.append(ProblematicEvent())
         problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
         
         var exposedEvents: [ExposedEvent] = []
@@ -178,8 +178,8 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     func testSyncWithAtLeastOneEventPreviouslyNotifiedSendNotification() throws {
         
         var problematicEvents: [ProblematicEvent] = []
-        problematicEvents.append(ProblematicEvent(identity: "data".data(using: .utf8)!))
-        problematicEvents.append(ProblematicEvent(identity: "data2".data(using: .utf8)!))
+        problematicEvents.append(ProblematicEvent())
+        problematicEvents.append(ProblematicEvent())
         problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
         
         var exposedEvents: [ExposedEvent] = []
@@ -214,7 +214,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     func testSyncOutdatedExposedElementIsRemovedAndNoNotificationSent() throws {
         sut.maxDaysToKeep = 2
         
-        problematicEvensApi.registerGetProblematicsEvents(.just([ProblematicEvent(identity: "data".data(using: .utf8)!)]))
+        problematicEvensApi.registerGetProblematicsEvents(.just([ProblematicEvent()]))
         
         venueNotifier.registerCheckForMatches(response: [ExposedEvent(checkOutId: "IdExposedOudated")])
         
@@ -274,14 +274,13 @@ class ProblematicEventsApiMock : ProblematicEventsApi {
     
     private let mocker: Mocker
     
-    override init() {
+    init() {
         mocker = Mocker("ProblematicEventsApiMock")
-        super.init()
     }
     
-    override func getProblematicEvents() -> Observable<[ProblematicEvent]> {
+    func getProblematicEvents(tag: String) -> Observable<[ProblematicEvent]> {
         Observable.just(Void()).flatMap { () -> Observable<[ProblematicEvent]> in
-            self.mocker.call("getProblematicEvents") as! Observable<[ProblematicEvent]>
+            self.mocker.call("getProblematicEvents", params: ["tag": tag]) as! Observable<[ProblematicEvent]>
         }
     }
     

@@ -36,7 +36,7 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     }
     
     func sync() -> Observable<Void> {
-        problematicEventsApi.getProblematicEvents().flatMap { [weak self] problematicEvents -> Observable<Void> in
+        problematicEventsApi.getProblematicEvents(tag: "").flatMap { [weak self] problematicEvents -> Observable<Void> in
             
             guard let self = self else { return .empty() }
             
