@@ -141,6 +141,10 @@ class Injection {
             KeyStoreVenueRecordRepository()
         }.inObjectScope(.container)
         
+        container.register(QrCheckRepository.self) { _ in
+            UserDefaultsQrCheckRepository()
+        }.inObjectScope(.container)
+        
         container.register(VersionHandler.self) { _ in
             VersionHandler()
         }.inObjectScope(.container)
@@ -301,6 +305,7 @@ class Injection {
         container.register(CheckInInProgressUseCase.self) { r in
             CheckInInProgressUseCaseImpl(notificationHandler: r.resolve(NotificationHandler.self)!,
                                          venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
+                                         qrCheckRepository: r.resolve(QrCheckRepository.self)!,
                                          appStateHandler: r.resolve(AppStateHandler.self)!)
         }.inObjectScope(.container)
         

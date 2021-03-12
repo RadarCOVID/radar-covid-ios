@@ -11,6 +11,8 @@
 
 import XCTest
 import RxSwift
+import CrowdNotifierSDK
+
 
 @testable import Radar_COVID
 
@@ -39,7 +41,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
 
     func testSyncWithNoProblematicEvents() throws {
         
-        problematicEvensApi.registerGetProblematicsEvents(.just([]))
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents: [])))
         venueNotifier.registerCheckForMatches(response: [])
         
         try! sut.sync().toBlocking().first()
@@ -52,7 +54,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         var problematicEvents: [ProblematicEvent] = []
         problematicEvents.append(ProblematicEvent())
-        problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:problematicEvents)))
         
         venueNotifier.registerCheckForMatches(response: [])
         
@@ -74,12 +76,12 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         var problematicEvents: [ProblematicEvent] = []
         problematicEvents.append(ProblematicEvent())
         problematicEvents.append(ProblematicEvent())
-        problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:problematicEvents)))
         
-        var exposedEvents: [ExposedEvent] = []
-        exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposed"))
-        exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposedNotified"))
-        exposedEvents.append(ExposedEvent(checkOutId: "IdOutdatedExposed"))
+        var exposedEvents: [ExposureEvent] = []
+        exposedEvents.append(getExposureEvent(checkinId: "IdFreshExposed"))
+        exposedEvents.append(getExposureEvent(checkinId: "IdFreshExposedNotified"))
+        exposedEvents.append(getExposureEvent(checkinId: "IdOutdatedExposed"))
         venueNotifier.registerCheckForMatches(response: exposedEvents)
         
         
@@ -144,11 +146,11 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         var problematicEvents: [ProblematicEvent] = []
         problematicEvents.append(ProblematicEvent())
         problematicEvents.append(ProblematicEvent())
-        problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:problematicEvents)))
         
-        var exposedEvents: [ExposedEvent] = []
-        exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposedNotified1"))
-        exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposedNotified2"))
+        var exposedEvents: [ExposureEvent] = []
+        exposedEvents.append(getExposureEvent(checkinId: "IdFreshExposedNotified1"))
+        exposedEvents.append(getExposureEvent(checkinId: "IdFreshExposedNotified2"))
         venueNotifier.registerCheckForMatches(response: exposedEvents)
         
         var venueRecords: [VenueRecord] = []
@@ -180,11 +182,11 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         var problematicEvents: [ProblematicEvent] = []
         problematicEvents.append(ProblematicEvent())
         problematicEvents.append(ProblematicEvent())
-        problematicEvensApi.registerGetProblematicsEvents(.just(problematicEvents))
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:problematicEvents)))
         
-        var exposedEvents: [ExposedEvent] = []
-        exposedEvents.append(ExposedEvent(checkOutId: "IdFreshExposedNotified1"))
-        exposedEvents.append(ExposedEvent(checkOutId: "IdFresh"))
+        var exposedEvents: [ExposureEvent] = []
+        exposedEvents.append(getExposureEvent(checkinId: "IdFreshExposedNotified1"))
+        exposedEvents.append(getExposureEvent(checkinId: "IdFresh"))
         venueNotifier.registerCheckForMatches(response: exposedEvents)
         
         var venueRecords: [VenueRecord] = []
@@ -214,9 +216,9 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     func testSyncOutdatedExposedElementIsRemovedAndNoNotificationSent() throws {
         sut.maxDaysToKeep = 2
         
-        problematicEvensApi.registerGetProblematicsEvents(.just([ProblematicEvent()]))
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:[ProblematicEvent()])))
         
-        venueNotifier.registerCheckForMatches(response: [ExposedEvent(checkOutId: "IdExposedOudated")])
+        venueNotifier.registerCheckForMatches(response: [getExposureEvent(checkinId: "IdExposedOudated")])
         
         venueRecordRepository.registerGetVisited(response: [
             VenueRecord(qr: "", checkOutId: "IdExposedOudated", hidden: false, exposed: false, name: "name",
@@ -267,24 +269,39 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         problematicEvensApi.verifyNoMoreInteractions()
         notificationHandler.verifyNoMoreInteractions()
     }
+    
+    func getExposureEvent(checkinId: String) -> ExposureEvent {
+        let decoder = JSONDecoder()
+        let json = """
+        {
+            "checkinId": "\(checkinId)",
+            "arrivalTime" : 1,
+            "departureTime" : 1,
+            "message": ""
+        }
+        """
+        return try! decoder.decode(ExposureEvent.self, from:  json.data(using: .utf8)!)
+
+       
+    }
 
 }
 
 class ProblematicEventsApiMock : ProblematicEventsApi {
-    
+
     private let mocker: Mocker
     
     init() {
         mocker = Mocker("ProblematicEventsApiMock")
     }
     
-    func getProblematicEvents(tag: String) -> Observable<[ProblematicEvent]> {
-        Observable.just(Void()).flatMap { () -> Observable<[ProblematicEvent]> in
-            self.mocker.call("getProblematicEvents", params: ["tag": tag]) as! Observable<[ProblematicEvent]>
+    func getProblematicEvents(tag: String?) -> Observable<ProblematicEventData> {
+        Observable.just(Void()).flatMap { () -> Observable<ProblematicEventData> in
+            self.mocker.call("getProblematicEvents", params: ["tag": tag]) as! Observable<ProblematicEventData>
         }
     }
     
-    func registerGetProblematicsEvents(_ events: Observable<[ProblematicEvent]>) {
+    func registerGetProblematicsEvents(_ events: Observable<ProblematicEventData>) {
         mocker.registerMock("getProblematicEvents", responses: [events] )
     }
     

@@ -14,7 +14,7 @@ import Alamofire
 import RxSwift
 
 protocol ProblematicEventsApi {
-    func getProblematicEvents(tag: String?) -> Observable<[ProblematicEvent]>
+    func getProblematicEvents(tag: String?) -> Observable<ProblematicEventData>
 }
 
 
@@ -26,15 +26,16 @@ class ProblematicEventsApiImpl : ProblematicEventsApi {
         self.clientApi = clientApi
     }
     
-    func getProblematicEvents(tag: String?) -> Observable<[ProblematicEvent]> {
-        return .create { [weak self] observer -> Disposable in
+    func getProblematicEvents(tag: String?) -> Observable<ProblematicEventData> {
+        return .create { [weak self] observer in
             guard let self = self else { return Disposables.create() }
             self.getProblematiEventsWithRequestBuilder(tag: tag).execute { response, error in
                 if let error = error {
                     observer.on(.error(error))
                 } else {
                     if let data = response?.body, let problematicEvents = self.parseProtobuf(data) {
-                        observer.on(.next(problematicEvents))
+                        let data = ProblematicEventData(problematicEvents: problematicEvents, tag: response?.header["x-key-bundle-tag"])
+                        observer.on(.next(data))
                     } else {
                         observer.on(.error("Can't parse protobuf stream"))
                     }

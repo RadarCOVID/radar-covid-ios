@@ -27,13 +27,16 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     private let notificationHandler: NotificationHandler
     private let venueRecordRepository: VenueRecordRepository
     private let appStateHandler: AppStateHandler
+    private let qrCheckRepository: QrCheckRepository
     
     init(notificationHandler: NotificationHandler,
          venueRecordRepository: VenueRecordRepository,
+         qrCheckRepository: QrCheckRepository,
          appStateHandler: AppStateHandler) {
         self.notificationHandler = notificationHandler
         self.venueRecordRepository = venueRecordRepository
         self.appStateHandler = appStateHandler
+        self.qrCheckRepository = qrCheckRepository
     }
     
     func checkStauts() -> Observable<Void> {
@@ -41,9 +44,8 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
         venueRecordRepository.getCurrentVenue().flatMap { [weak self] currentVenue -> Observable<Void> in
             guard let self = self else { return .empty() }
             if let currentVenue = currentVenue {
-                return .zip(self.checkIfAutoCheckOut(currentVenue),
-                            self.sendReminder(currentVenue), resultSelector: { _,_  in Void() })
-
+                self.sendReminder(currentVenue)
+                return self.checkIfAutoCheckOut(currentVenue)
             }
             return .just(Void())
         }
@@ -61,13 +63,10 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
         return .just(Void())
     }
     
-    private func sendReminder(_ currentVenue: VenueRecord) -> Observable<Void>{
-        venueRecordRepository.getLastReminder().map { [weak self] date in
-            guard let self = self else { return Void() }
-            if self.checkIfSendReminder(venueRecord: currentVenue, lastReminder: date) {
-                self.notificationHandler.scheduleCheckInReminderNotification()
-            }
-            return Void()
+    private func sendReminder(_ currentVenue: VenueRecord) {
+        let date = qrCheckRepository.getLastReminder()
+        if checkIfSendReminder(venueRecord: currentVenue, lastReminder: date) {
+            notificationHandler.scheduleCheckInReminderNotification()
         }
     }
         

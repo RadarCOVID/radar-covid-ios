@@ -10,6 +10,7 @@
 //
 
 import XCTest
+import CrowdNotifierSDK
 
 @testable import Radar_COVID
 
@@ -36,7 +37,7 @@ class VenueRecordUseCaseTests: XCTestCase {
         let currentDate = Date()
         let intialDate = Date().addingTimeInterval(-1000)
         let venueRecord = VenueRecord(qr: "qr", checkInDate: intialDate, checkOutDate: nil)
-        let venueInfo = VenueInfo(name: "Name")
+        let venueInfo = getVenueInfo(name: "Name")
         
         venueNotifier.registerGetInfo(response: .just(venueInfo))
         venueNotifier.registerCheckOut(response: .just("checkOutId"))
@@ -120,7 +121,7 @@ class VenueRecordUseCaseTests: XCTestCase {
         let current = Date()
         let intial = Date().addingTimeInterval(-1000)
         let venueRecord = VenueRecord(qr: "", checkInDate: intial, checkOutDate: nil)
-        let venueInfo = VenueInfo(name: "Name")
+        let venueInfo = getVenueInfo(name: "name")
         
         venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
         venueNotifier.registerGetInfo(response: .just(venueInfo))
@@ -157,5 +158,13 @@ class VenueRecordUseCaseTests: XCTestCase {
         venueNotifier.verifyGetInfo(called: .never)
         
     }
+    
+
+    func getVenueInfo(name: String) -> VenueInfo {
+        let decoder = JSONDecoder()
+        return try! decoder.decode(VenueInfo.self, from: "{\"publicKey\": \"\", \"r1\": \"\", \"notificationKey\": \"\", \"name\": \"\(name)\", \"location\": \"\", \"room\": \"\", \"venueType\": \"OTHER\", \"validFrom\": 1, \"validTo\": 1}".data(using: .utf8)!)
+    }
+    
+
 
 }

@@ -47,6 +47,8 @@
 		6D6D342A25FA7632001B2071 /* ProblematicEvent.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D342925FA7632001B2071 /* ProblematicEvent.pb.swift */; };
 		6D6D343825FA79BD001B2071 /* CrowdNotifierSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6D343725FA79BD001B2071 /* CrowdNotifierSDK */; };
 		6D6D343A25FA79BD001B2071 /* Clibsodium in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6D343925FA79BD001B2071 /* Clibsodium */; };
+		6D6D344225FB6D63001B2071 /* ProblematicEvenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D344125FB6D63001B2071 /* ProblematicEvenData.swift */; };
+		6D6D344625FB7734001B2071 /* QrCheckRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D344525FB7734001B2071 /* QrCheckRepository.swift */; };
 		6D78B44124A9F13A00FBC23F /* SetupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */; };
 		6D7AB26D24ADCC9A00F30E0B /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */; };
 		6D7AB26F24ADED7400F30E0B /* ExpositionInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */; };
@@ -101,9 +103,7 @@
 		6D9154E625E659ED007965F4 /* VenueBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9154E525E659ED007965F4 /* VenueBase.swift */; };
 		6D9154FB25E7A8EA007965F4 /* VenueNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9154FA25E7A8EA007965F4 /* VenueNotifier.swift */; };
 		6D91550425E7B078007965F4 /* VenueNotifierError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91550325E7B078007965F4 /* VenueNotifierError.swift */; };
-		6D91550825E7BCF4007965F4 /* ExposedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91550725E7BCF4007965F4 /* ExposedEvent.swift */; };
 		6D91550E25E7E4BE007965F4 /* VenueRecordUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91550D25E7E4BE007965F4 /* VenueRecordUseCaseTests.swift */; };
-		6D91551825E7F35D007965F4 /* VenueInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91551725E7F35D007965F4 /* VenueInfo.swift */; };
 		6D91552125ED02FE007965F4 /* KeyStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */; };
 		6D91552625ED6837007965F4 /* QrErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91552425ED6837007965F4 /* QrErrorViewController.swift */; };
 		6D91552725ED6837007965F4 /* QrErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D91552525ED6837007965F4 /* QrErrorViewController.xib */; };
@@ -356,6 +356,8 @@
 		6D64132B24ED897200B33427 /* RadarCovidTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RadarCovidTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		6D6D342025F7B6EE001B2071 /* ExpositionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionInfo.swift; sourceTree = "<group>"; };
 		6D6D342925FA7632001B2071 /* ProblematicEvent.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblematicEvent.pb.swift; sourceTree = "<group>"; };
+		6D6D344125FB6D63001B2071 /* ProblematicEvenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblematicEvenData.swift; sourceTree = "<group>"; };
+		6D6D344525FB7734001B2071 /* QrCheckRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCheckRepository.swift; sourceTree = "<group>"; };
 		6D78B44024A9F13A00FBC23F /* SetupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUseCase.swift; sourceTree = "<group>"; };
 		6D7AB26C24ADCC9A00F30E0B /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		6D7AB26E24ADED7400F30E0B /* ExpositionInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionInfoRepository.swift; sourceTree = "<group>"; };
@@ -412,9 +414,7 @@
 		6D9154E525E659ED007965F4 /* VenueBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueBase.swift; sourceTree = "<group>"; };
 		6D9154FA25E7A8EA007965F4 /* VenueNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueNotifier.swift; sourceTree = "<group>"; };
 		6D91550325E7B078007965F4 /* VenueNotifierError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueNotifierError.swift; sourceTree = "<group>"; };
-		6D91550725E7BCF4007965F4 /* ExposedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposedEvent.swift; sourceTree = "<group>"; };
 		6D91550D25E7E4BE007965F4 /* VenueRecordUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRecordUseCaseTests.swift; sourceTree = "<group>"; };
-		6D91551725E7F35D007965F4 /* VenueInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueInfo.swift; sourceTree = "<group>"; };
 		6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreRepository.swift; sourceTree = "<group>"; };
 		6D91552425ED6837007965F4 /* QrErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrErrorViewController.swift; sourceTree = "<group>"; };
 		6D91552525ED6837007965F4 /* QrErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrErrorViewController.xib; sourceTree = "<group>"; };
@@ -918,20 +918,10 @@
 		6D9154F925E7A8CA007965F4 /* VenueNotifier */ = {
 			isa = PBXGroup;
 			children = (
-				6D9154FE25E7A94D007965F4 /* Model */,
 				6D9154FA25E7A8EA007965F4 /* VenueNotifier.swift */,
 				6D91550325E7B078007965F4 /* VenueNotifierError.swift */,
 			);
 			path = VenueNotifier;
-			sourceTree = "<group>";
-		};
-		6D9154FE25E7A94D007965F4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				6D91551725E7F35D007965F4 /* VenueInfo.swift */,
-				6D91550725E7BCF4007965F4 /* ExposedEvent.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		6D97C48225BF303200102200 /* Analytics */ = {
@@ -1040,6 +1030,7 @@
 			isa = PBXGroup;
 			children = (
 				6D6D342925FA7632001B2071 /* ProblematicEvent.pb.swift */,
+				6D6D344125FB6D63001B2071 /* ProblematicEvenData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1188,6 +1179,7 @@
 				6D076FC925DFC913001A8C44 /* VenueRecordRepository.swift */,
 				6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */,
 				6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */,
+				6D6D344525FB7734001B2071 /* QrCheckRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1903,6 +1895,7 @@
 			files = (
 				A9DF1FEF25713270004BA5D1 /* SettingViewController.swift in Sources */,
 				A9C9AC1425385BA100637067 /* CustomSliderView.swift in Sources */,
+				6D6D344225FB6D63001B2071 /* ProblematicEvenData.swift in Sources */,
 				6D97C4A225C01CB600102200 /* KpiDto.swift in Sources */,
 				6D9154FB25E7A8EA007965F4 /* VenueNotifier.swift in Sources */,
 				6DE27C79249A6D4600BBCF40 /* APIHelper.swift in Sources */,
@@ -1935,7 +1928,6 @@
 				A9DF1FF325713270004BA5D1 /* SelectorView.swift in Sources */,
 				6DAD76AE24A884EF00643AAD /* ResetDataUseCase.swift in Sources */,
 				A91D8E332539947500EB23D4 /* OnBoardingViewController.swift in Sources */,
-				6D91550825E7BCF4007965F4 /* ExposedEvent.swift in Sources */,
 				6D4FEC8125E5173300AAD131 /* QrScannerView.swift in Sources */,
 				6D6D342125F7B6EE001B2071 /* ExpositionInfo.swift in Sources */,
 				A9EDAF1825767CE90041AE1E /* HealthyExpositionViewController.swift in Sources */,
@@ -1966,7 +1958,6 @@
 				6D076FCA25DFC913001A8C44 /* VenueRecordRepository.swift in Sources */,
 				6DF6ECD1248FA044007EAA40 /* MyDataViewController.swift in Sources */,
 				76D342DC25768C4F009E14C5 /* Totals.swift in Sources */,
-				6D91551825E7F35D007965F4 /* VenueInfo.swift in Sources */,
 				A9DF1FEE25713270004BA5D1 /* SettingViewModel.swift in Sources */,
 				A9D38D70256D25E100C2F671 /* StatsViewModel.swift in Sources */,
 				76D9BD4524A8996700BA6697 /* UIView+Extension.swift in Sources */,
@@ -2015,6 +2006,7 @@
 				6DF6ECDB248FD641007EAA40 /* ExpositionUseCase.swift in Sources */,
 				6DE27C72249A6D4600BBCF40 /* Models.swift in Sources */,
 				6DAF6EA925EFB59100387F5C /* TimeInterval+Extension.swift in Sources */,
+				6D6D344625FB7734001B2071 /* QrCheckRepository.swift in Sources */,
 				A9EDAF0E25767CC60041AE1E /* BaseExposedViewController.swift in Sources */,
 				6DB5418E24989C2500166D37 /* SettingsAPI.swift in Sources */,
 				6D91552125ED02FE007965F4 /* KeyStoreRepository.swift in Sources */,

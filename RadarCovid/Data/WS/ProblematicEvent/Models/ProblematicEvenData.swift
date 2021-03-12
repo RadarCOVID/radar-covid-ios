@@ -11,6 +11,7 @@
 
 import Foundation
 
-struct ExposedEvent {
-    public let checkOutId: String
+struct ProblematicEventData {
+    var problematicEvents: [ProblematicEvent]
+    var tag: String? = nil
 }

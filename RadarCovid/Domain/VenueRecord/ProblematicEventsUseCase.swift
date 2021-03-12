@@ -36,9 +36,12 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     }
     
     func sync() -> Observable<Void> {
-        problematicEventsApi.getProblematicEvents(tag: "").flatMap { [weak self] problematicEvents -> Observable<Void> in
+        
+        problematicEventsApi.getProblematicEvents(tag: "").flatMap { [weak self] problematicEventData -> Observable<Void> in
             
             guard let self = self else { return .empty() }
+            
+            let problematicEvents = problematicEventData.problematicEvents
             
             let exposedEvents = self.venueNotifier.checkForMatches(problematicEvents: problematicEvents)
             
@@ -50,7 +53,7 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
                     visitedVenues?.forEach { v in
                         var visited = v
                         exposedEvents.forEach { exposed in
-                            if exposed.checkOutId == visited.checkOutId {
+                            if exposed.checkinId == visited.checkOutId {
                                 visited.exposed = true
                             }
                         }

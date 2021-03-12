@@ -21,13 +21,16 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     private var venueRecordRepository: VenueRecordRepositoryMock!
     private var notificationHandler: NotificationHandlerMock!
     private var appStateHandler: AppStateHandlerMock!
+    private var qrCheckRepository: QrCheckRepositoryMock!
 
     override func setUpWithError() throws {
         venueRecordRepository = VenueRecordRepositoryMock()
         notificationHandler = NotificationHandlerMock()
         appStateHandler = AppStateHandlerMock()
+        qrCheckRepository = QrCheckRepositoryMock()
         sut = CheckInInProgressUseCaseImpl(notificationHandler: notificationHandler,
                                            venueRecordRepository: venueRecordRepository,
+                                           qrCheckRepository: qrCheckRepository,
                                            appStateHandler: appStateHandler)
     }
 
@@ -59,7 +62,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         try! sut.checkStauts().toBlocking().first()
         
         venueRecordRepository.verifyGetCurrentVenue()
-        venueRecordRepository.verifyGetLastReminder()
+        qrCheckRepository.verifyGetLastReminder()
         
         verifyNoMoreInteractionsAll()
         
@@ -80,7 +83,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         venueRecordRepository.verifyGetCurrentVenue()
         venueRecordRepository.verifyRemoveCurrent()
         venueRecordRepository.verifySaveVisit()
-        venueRecordRepository.verifyGetLastReminder()
+        qrCheckRepository.verifyGetLastReminder()
         
         let savedVisit = venueRecordRepository.paramCaptured("saveVisit")!["visit"] as! VenueRecord
         
@@ -107,7 +110,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         try! sut.checkStauts().toBlocking().first()
         
         venueRecordRepository.verifyGetCurrentVenue()
-        venueRecordRepository.verifyGetLastReminder()
+        qrCheckRepository.verifyGetLastReminder()
         
         verifyNoMoreInteractionsAll()
         
@@ -125,7 +128,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         try! sut.checkStauts().toBlocking().first()
         
         venueRecordRepository.verifyGetCurrentVenue()
-        venueRecordRepository.verifyGetLastReminder()
+        qrCheckRepository.verifyGetLastReminder()
         notificationHandler.verifyScheduleCheckInReminderNotification()
         
         verifyNoMoreInteractionsAll()
@@ -144,7 +147,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         try! sut.checkStauts().toBlocking().first()
         
         venueRecordRepository.verifyGetCurrentVenue()
-        venueRecordRepository.verifyGetLastReminder()
+        qrCheckRepository.verifyGetLastReminder()
         notificationHandler.verifyScheduleCheckInReminderNotification(called: .never)
         
         verifyNoMoreInteractionsAll()
@@ -159,12 +162,12 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         
         appStateHandler.registerGetState(response: .background)
         
-        venueRecordRepository.registerGetLastReminder(date: Calendar.current.date(byAdding: .minute, value: -60, to: Date())!)
+        qrCheckRepository.registerGetLastReminder(date: Calendar.current.date(byAdding: .minute, value: -60, to: Date())!)
         
         try! sut.checkStauts().toBlocking().first()
         
         venueRecordRepository.verifyGetCurrentVenue()
-        venueRecordRepository.verifyGetLastReminder()
+        qrCheckRepository.verifyGetLastReminder()
         notificationHandler.verifyScheduleCheckInReminderNotification()
         
         verifyNoMoreInteractionsAll()
@@ -179,12 +182,12 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         
         appStateHandler.registerGetState(response: .background)
         
-        venueRecordRepository.registerGetLastReminder(date: Calendar.current.date(byAdding: .minute, value: -59, to: Date())!)
+        qrCheckRepository.registerGetLastReminder(date: Calendar.current.date(byAdding: .minute, value: -59, to: Date())!)
         
         try! sut.checkStauts().toBlocking().first()
         
         venueRecordRepository.verifyGetCurrentVenue()
-        venueRecordRepository.verifyGetLastReminder()
+        qrCheckRepository.verifyGetLastReminder()
         notificationHandler.verifyScheduleCheckInReminderNotification(called: .never)
         
         verifyNoMoreInteractionsAll()
@@ -217,6 +220,39 @@ class AppStateHandlerMock : Mocker, AppStateHandler {
     
     func verifyGetState() {
         verify("getState")
+    }
+    
+}
+
+class QrCheckRepositoryMock: Mocker, QrCheckRepository {
+    
+    init() {
+        super.init("QrCheckRepositoryMock")
+    }
+    
+    
+    func getLastReminder() -> Date? {
+        self.call("getLastReminder") as! Date?
+    }
+    
+    func save(lastReminder: Date) {
+        self.call("saveLastReminder", params: ["lastReminder": lastReminder])
+    }
+    
+    func getSyncTag() -> String? {
+        self.call("getSyncTag") as! String?
+    }
+    
+    func save(sycTag: String) {
+        self.call("saveSycTag", params: ["sycTag": sycTag])
+    }
+    
+    func registerGetLastReminder(date: Date) {
+        registerMock("getLastReminder", responses: [date])
+    }
+    
+    func verifyGetLastReminder() {
+        verify("getLastReminder")
     }
     
     

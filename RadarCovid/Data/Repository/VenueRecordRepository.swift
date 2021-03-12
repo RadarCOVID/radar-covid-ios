@@ -20,8 +20,6 @@ protocol VenueRecordRepository {
     func update(visited: [VenueRecord]) -> Observable<[VenueRecord]>
     func removeVisited() -> Observable<Void>
     func removeCurrent() -> Observable<Void>
-    func getLastReminder() -> Observable<Date?>
-    func save(lastReminder: Date) -> Observable<Date>
 }
 
 class KeyStoreVenueRecordRepository : KeyStoreRepository, VenueRecordRepository {

@@ -13,6 +13,7 @@ import Foundation
 import RxSwift
 import UIKit
 import XCTest
+import CrowdNotifierSDK
 
 @testable import Radar_COVID
 
@@ -357,18 +358,6 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
         }
     }
     
-    func getLastReminder() -> Observable<Date?> {
-        Observable.just(Void()).flatMap { () -> Observable<Date?> in
-            .just(self.call("getLastReminder") as! Date?)
-        }
-    }
-    
-    func save(lastReminder: Date) -> Observable<Date> {
-        Observable.just(Void()).flatMap { () -> Observable<Date> in
-            .just(self.call("saveLastReminder") as! Date)
-        }
-    }
-    
     func registerGetCurrentVenue(response: VenueRecord?) {
         registerMock("getCurrentVenue", responses: [response])
     }
@@ -383,10 +372,6 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
     
     func registerGetVisited(response: [VenueRecord]?, scheduler: TestScheduler) {
         registerMock("getVisited", responses: [scheduler.createColdObservable([.next(1,response)]).asObservable()])
-    }
-    
-    func registerGetLastReminder(date: Date) {
-        registerMock("getLastReminder", responses: [date])
     }
     
     func verifyRemoveCurrent(called: VerifyCount = .atLeastOnce) {
@@ -409,11 +394,6 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
         verify("updateVisited")
     }
     
-    func verifyGetLastReminder() {
-        verify("getLastReminder")
-    }
-    
-    
 }
 
 class VenueNotifierMock : Mocker, VenueNotifier {
@@ -434,8 +414,8 @@ class VenueNotifierMock : Mocker, VenueNotifier {
         }
     }
     
-    func checkForMatches(problematicEvents: [ProblematicEvent]) -> [ExposedEvent] {
-        self.call("checkForMatches", params: ["problematicEvents": problematicEvents]) as! [ExposedEvent]
+    func checkForMatches(problematicEvents: [ProblematicEvent]) -> [ExposureEvent] {
+        self.call("checkForMatches", params: ["problematicEvents": problematicEvents]) as! [ExposureEvent]
     }
     
     func registerCheckOut(response: Observable<String>) {
@@ -445,7 +425,7 @@ class VenueNotifierMock : Mocker, VenueNotifier {
     func registerGetInfo(response: Observable<VenueInfo>) {
         registerMock("getInfo", responses: [response])
     }
-    func registerCheckForMatches(response: [ExposedEvent]) {
+    func registerCheckForMatches(response: [ExposureEvent]) {
         registerMock("checkForMatches", responses: [response])
     }
     func verifyCheckout(called: VerifyCount = .atLeastOnce) {
