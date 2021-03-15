@@ -225,7 +225,7 @@ class AppStateHandlerMock : Mocker, AppStateHandler {
 }
 
 class QrCheckRepositoryMock: Mocker, QrCheckRepository {
-    
+
     init() {
         super.init("QrCheckRepositoryMock")
     }
@@ -243,8 +243,12 @@ class QrCheckRepositoryMock: Mocker, QrCheckRepository {
         self.call("getSyncTag") as! String?
     }
     
-    func save(sycTag: String) {
-        self.call("saveSycTag", params: ["sycTag": sycTag])
+    func save(syncTag: String?) {
+        self.call("saveSyncTag", params: ["syncTag": syncTag])
+    }
+    
+    func registerGetSyncTag(syncTag: String?) {
+        registerMock("getSyncTag", responses: [syncTag])
     }
     
     func registerGetLastReminder(date: Date) {
@@ -255,5 +259,8 @@ class QrCheckRepositoryMock: Mocker, QrCheckRepository {
         verify("getLastReminder")
     }
     
+    func verifySaveSyncTag() {
+        verify("saveSyncTag")
+    }
     
 }

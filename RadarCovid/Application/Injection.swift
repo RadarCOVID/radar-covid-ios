@@ -296,7 +296,7 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(ProblematicEventsUseCase.self) { r in
-            ProblematicEventsUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
+            ProblematicEventsUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,                                          qrCheckRepository: r.resolve(QrCheckRepository.self)!,
                                          venueNotifier: r.resolve(VenueNotifier.self)!,
                                          problematicEventsApi: r.resolve(ProblematicEventsApi.self)!,
                                          notificationHandler: r.resolve(NotificationHandler.self)!)

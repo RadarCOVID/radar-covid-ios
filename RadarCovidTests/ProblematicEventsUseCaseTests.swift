@@ -24,6 +24,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     private var venueNotifier: VenueNotifierMock!
     private var problematicEvensApi: ProblematicEventsApiMock!
     private var notificationHandler: NotificationHandlerMock!
+    private var qrCheckRepository: QrCheckRepositoryMock!
     
     override func setUpWithError() throws {
         
@@ -31,8 +32,9 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         venueNotifier = VenueNotifierMock(baseUrl: "")
         problematicEvensApi = ProblematicEventsApiMock()
         notificationHandler = NotificationHandlerMock()
+        qrCheckRepository = QrCheckRepositoryMock()
         
-        sut = ProblematicEventsUseCaseImpl(venueRecordRepository: venueRecordRepository, venueNotifier: venueNotifier, problematicEventsApi: problematicEvensApi, notificationHandler: notificationHandler)
+        sut = ProblematicEventsUseCaseImpl(venueRecordRepository: venueRecordRepository, qrCheckRepository: qrCheckRepository, venueNotifier: venueNotifier, problematicEventsApi: problematicEvensApi, notificationHandler: notificationHandler)
     }
 
     override func tearDownWithError() throws {
@@ -263,6 +265,56 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         verifyNoMoreInteractionsAll()
     }
     
+    func testGivenNoPreviousTagStoredCallGetProblematicEventsWithNilTagAndStoreNewTag() throws {
+        
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:[], tag: "TAG")))
+        
+        venueNotifier.registerCheckForMatches(response: [])
+        
+        venueRecordRepository.registerGetVisited(response: [])
+        
+        venueRecordRepository.registerUpdateVisited(response: [])
+        
+        try! sut.sync().toBlocking().first()
+        
+        problematicEvensApi.verifyGetProblematicsEvents()
+        qrCheckRepository.verifySaveSyncTag()
+        
+        let tag = problematicEvensApi.paramCaptured("getProblematicEvents")!["tag"]!
+        XCTAssertNil(tag)
+        
+        
+        let savedTag = qrCheckRepository.paramCaptured("saveSyncTag")!["syncTag"] as! String
+        XCTAssertEqual(savedTag, "TAG")
+        
+    }
+    
+    func testGivenPreviousTagStoredCallGetProblematicEventsWithThatTagAndStoreNewTag() throws {
+        
+        qrCheckRepository.registerGetSyncTag(syncTag: "TAG")
+        
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:[], tag: "NEWTAG")))
+        
+        venueNotifier.registerCheckForMatches(response: [])
+        
+        venueRecordRepository.registerGetVisited(response: [])
+        
+        venueRecordRepository.registerUpdateVisited(response: [])
+        
+        try! sut.sync().toBlocking().first()
+        
+        problematicEvensApi.verifyGetProblematicsEvents()
+        qrCheckRepository.verifySaveSyncTag()
+        
+        let tag = problematicEvensApi.paramCaptured("getProblematicEvents")!["tag"] as! String
+        XCTAssertEqual("TAG", tag)
+        
+        
+        let savedTag = qrCheckRepository.paramCaptured("saveSyncTag")!["syncTag"] as! String
+        XCTAssertEqual(savedTag, "NEWTAG")
+        
+    }
+    
     private func verifyNoMoreInteractionsAll() {
         venueRecordRepository.verifyNoMoreInteractions()
         venueNotifier.verifyNoMoreInteractions()
@@ -287,31 +339,26 @@ class ProblematicEventsUseCaseTests: XCTestCase {
 
 }
 
-class ProblematicEventsApiMock : ProblematicEventsApi {
-
-    private let mocker: Mocker
+class ProblematicEventsApiMock : Mocker, ProblematicEventsApi {
     
     init() {
-        mocker = Mocker("ProblematicEventsApiMock")
+        super.init("ProblematicEventsApiMock")
     }
     
     func getProblematicEvents(tag: String?) -> Observable<ProblematicEventData> {
         Observable.just(Void()).flatMap { () -> Observable<ProblematicEventData> in
-            self.mocker.call("getProblematicEvents", params: ["tag": tag]) as! Observable<ProblematicEventData>
+            self.call("getProblematicEvents", params: ["tag": tag]) as! Observable<ProblematicEventData>
         }
     }
     
     func registerGetProblematicsEvents(_ events: Observable<ProblematicEventData>) {
-        mocker.registerMock("getProblematicEvents", responses: [events] )
+        registerMock("getProblematicEvents", responses: [events] )
     }
     
     func verifyGetProblematicsEvents() {
-        mocker.verify("getProblematicEvents")
+        verify("getProblematicEvents")
     }
     
-    func verifyNoMoreInteractions() {
-        mocker.verifyNoMoreInteractions()
-    }
 }
 
 class NotificationHandlerMock: Mocker, NotificationHandler {

@@ -374,6 +374,10 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
         registerMock("getVisited", responses: [scheduler.createColdObservable([.next(1,response)]).asObservable()])
     }
     
+    func registerUpdateVisited(response: [VenueRecord]) {
+        registerMock("updateVisited", responses: [response])
+    }
+    
     func verifyRemoveCurrent(called: VerifyCount = .atLeastOnce) {
         verify("removeCurrent", called : called)
     }

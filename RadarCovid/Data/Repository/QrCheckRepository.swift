@@ -15,7 +15,7 @@ protocol QrCheckRepository {
     func getLastReminder() -> Date?
     func save(lastReminder: Date)
     func getSyncTag() -> String?
-    func save(sycTag: String)
+    func save(syncTag: String?)
 }
 
 class UserDefaultsQrCheckRepository: UserDefaultsRepository, QrCheckRepository {
@@ -40,8 +40,8 @@ class UserDefaultsQrCheckRepository: UserDefaultsRepository, QrCheckRepository {
         userDefaults.string(forKey: UserDefaultsQrCheckRepository.kSyncTag)
     }
     
-    func save(sycTag: String) {
-        userDefaults.setValue(sycTag, forKeyPath: UserDefaultsQrCheckRepository.kSyncTag)
+    func save(syncTag: String?) {
+        userDefaults.setValue(syncTag, forKeyPath: UserDefaultsQrCheckRepository.kSyncTag)
     }
     
 

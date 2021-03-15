@@ -25,19 +25,21 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     private let venueRecordRepository: VenueRecordRepository
     private let problematicEventsApi: ProblematicEventsApi
     private let notificationHandler: NotificationHandler
+    private let qrCheckRepository: QrCheckRepository
     
     var maxDaysToKeep: Int = 14
     
-    init(venueRecordRepository: VenueRecordRepository, venueNotifier: VenueNotifier, problematicEventsApi: ProblematicEventsApi, notificationHandler: NotificationHandler) {
+    init(venueRecordRepository: VenueRecordRepository, qrCheckRepository: QrCheckRepository, venueNotifier: VenueNotifier, problematicEventsApi: ProblematicEventsApi, notificationHandler: NotificationHandler) {
         self.venueNotifier = venueNotifier
         self.venueRecordRepository = venueRecordRepository
         self.problematicEventsApi = problematicEventsApi
         self.notificationHandler = notificationHandler
+        self.qrCheckRepository = qrCheckRepository
     }
     
     func sync() -> Observable<Void> {
         
-        problematicEventsApi.getProblematicEvents(tag: "").flatMap { [weak self] problematicEventData -> Observable<Void> in
+        problematicEventsApi.getProblematicEvents(tag: qrCheckRepository.getSyncTag()).flatMap { [weak self] problematicEventData -> Observable<Void> in
             
             guard let self = self else { return .empty() }
             
@@ -68,6 +70,7 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
                     return self.venueRecordRepository.update(visited: newVisited).map { _ in Void() }
                 }
             }
+            self.qrCheckRepository.save(syncTag: problematicEventData.tag)
             
             return .just(Void())
         }
