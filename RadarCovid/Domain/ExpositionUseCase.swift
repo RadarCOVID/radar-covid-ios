@@ -86,9 +86,15 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
     }
 
     func getExpositionInfo() -> Observable<ExpositionInfo> {
-        .zip(subject.asObservable() , venueExpositionUseCase.expositionInfo, resultSelector: { cei, vei in
-                ExpositionInfo(contact: cei, venue: vei)
-        })
+        
+        var cei = ContactExpositionInfo(level: .exposed)
+        cei.lastCheck = Calendar.current.date(byAdding: .hour, value: -2, to: Date())
+        
+        return .just( ExpositionInfo(contact: cei, venue: VenueExpositionInfo(level: .exposed, since: Calendar.current.date(byAdding: .day, value: -1, to: Date()))))
+        
+//        .zip(subject.asObservable() , venueExpositionUseCase.expositionInfo, resultSelector: { cei, vei in
+//                ExpositionInfo(contact: cei, venue: vei)
+//        })
     }
 
     func updateExpositionInfo() {

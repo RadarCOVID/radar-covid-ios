@@ -124,23 +124,12 @@ class AppRouter: Router {
         case .myHealthReported:
             routeToMyHealthReported(context)
         case .healthyExposition:
-            if let param = parameters,
-               param.count >= 1 {
-                routeToHealthyExposition(context, lastCheck: param.first as? Date)
-            }
-            
+            routeToHealthyExposition(context, expositionInfo: parameters?.first as! ExpositionInfo)
         case .highExposition:
-            if let param = parameters,
-               param.count >= 1 {
-                routeToHighExposition(context, since: param.first as? Date, lastCheck: param[1] as? Date)
-            }
-            
+            let isContact = parameters!.count == 2 ? parameters![1] : true
+            routeToHighExposition(context, expositionInfo: parameters?.first as! ExpositionInfo, isContact: (isContact ?? true)  as! Bool)
         case .positiveExposed:
-            if let param = parameters,
-               param.count >= 1 {
-                routeToPositiveExposed(context, since: param.first as? Date)
-            }
-            
+            routeToPositiveExposed(context, expositionInfo: parameters?.first as! ExpositionInfo)
         case .changeLanguage:
             routeToRootAndResetView(context, parameters)
         case .shareApp:
@@ -170,8 +159,6 @@ class AppRouter: Router {
         case .qrError:
             routeToQrError(context)
         }
-        
-            
     }
 
     private func routeToOnboarding(_ context: UIViewController) {
@@ -276,22 +263,22 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(myHealthReportedVC!, animated: true)
     }
 
-    private func routeToHealthyExposition(_ context: UIViewController, lastCheck: Date?) {
+    private func routeToHealthyExposition(_ context: UIViewController, expositionInfo: ExpositionInfo) {
         let expositionVC = AppDelegate.shared?.injection.resolve(HealthyExpositionViewController.self)!
-        expositionVC?.lastCheck = lastCheck
+        expositionVC?.expositionInfo = expositionInfo
         context.navigationController?.pushViewController(expositionVC!, animated: true)
     }
 
-    private func routeToHighExposition(_ context: UIViewController, since: Date?, lastCheck: Date?) {
+    private func routeToHighExposition(_ context: UIViewController, expositionInfo: ExpositionInfo, isContact: Bool) {
         let highExpositionVC = AppDelegate.shared?.injection.resolve(HighExpositionViewController.self)!
-        highExpositionVC?.since = since
-        highExpositionVC?.lastCheck = lastCheck
+        highExpositionVC?.expositionInfo = expositionInfo
+        highExpositionVC?.isContact = isContact
         context.navigationController?.pushViewController(highExpositionVC!, animated: true)
     }
 
-    private func routeToPositiveExposed(_ context: UIViewController, since: Date?) {
+    private func routeToPositiveExposed(_ context: UIViewController, expositionInfo: ExpositionInfo) {
         let positiveExposedVC = AppDelegate.shared?.injection.resolve(PositiveExposedViewController.self)!
-        positiveExposedVC?.since = since
+        positiveExposedVC?.expositionInfo = expositionInfo
         context.navigationController?.pushViewController(positiveExposedVC!, animated: true)
     }
 

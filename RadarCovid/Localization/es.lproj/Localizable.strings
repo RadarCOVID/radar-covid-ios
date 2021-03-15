@@ -443,3 +443,4 @@
 "VENUE_RECORD_CANCEL_TITLE"="Cancelar registro";
 "VENUE_RECORD_CANCEL_TEXT"="¿Estás seguro que deseas cancelar el registro de este lugar?";
 "VENUE_RECORD_CANCEL_CONTINUE"="Continuar registro";
+"VENUE_EXPOSITION_HIGH_DESCRIPTION"="Hace <b>%@ días</b> registraste tu visita a un lugar donde también estuvo alguien diagnosticado de COVID-19 (actualizado %@)";

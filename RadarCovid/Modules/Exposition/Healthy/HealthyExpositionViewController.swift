@@ -70,7 +70,7 @@ class HealthyExpositionViewController: BaseExposed {
     }
     
     private func setHealthtText() {
-        if let date = self.lastCheck {
+        if let date = self.expositionInfo?.contact.lastCheck {
             let formatter = DateFormatter()
             formatter.dateFormat = Date.appDateFormat
             expositionLowDescription.attributedText = "EXPOSITION_LOW_DESCRIPTION"

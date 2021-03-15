@@ -153,9 +153,24 @@ class HomeViewController: BaseViewController {
     }
     
     @objc func onExpositionTap() {
-        if let level =  try? viewModel?.expositionInfo.value() {
-            navigateToDetail(level)
+        if let info = getExpositionInfo() {
+            navigateToDetail(info)
         }
+    }
+    
+    @objc func onVenueExpositionTap() {
+        let isContact = false
+        router?.route(to: Routes.highExposition, from: self, parameters: getExpositionInfo(), isContact)
+    
+    }
+    
+    private func getExpositionInfo() -> ExpositionInfo? {
+        var ei: ExpositionInfo? = nil
+        if let cei = try? viewModel?.expositionInfo.value(),
+           let vei = try? viewModel?.venueExpositionInfo.value() {
+            ei = ExpositionInfo(contact: cei, venue: vei)
+        }
+        return ei
     }
     
     private func setupAccessibility() {
@@ -284,6 +299,10 @@ class HomeViewController: BaseViewController {
         expositionView.isUserInteractionEnabled = true
         expositionView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                             action: #selector(self.onExpositionTap)))
+        
+        venueExpositionView.isUserInteractionEnabled = true
+        venueExpositionView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                            action: #selector(self.onVenueExpositionTap)))
 
         notificationInactiveMessageLabel.isUserInteractionEnabled = true
         notificationInactiveMessageLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
@@ -465,14 +484,14 @@ class HomeViewController: BaseViewController {
         defaultImage.isHidden = showCheck
     }
     
-    private func navigateToDetail(_ info: ContactExpositionInfo) {
-        switch info.level {
+    private func navigateToDetail(_ info: ExpositionInfo) {
+        switch info.contact.level {
         case .healthy:
-            router?.route(to: Routes.healthyExposition, from: self, parameters: info.lastCheck)
+            router?.route(to: Routes.healthyExposition, from: self, parameters: info)
         case .exposed:
-            router?.route(to: Routes.highExposition, from: self, parameters: info.since, info.lastCheck)
+            router?.route(to: Routes.highExposition, from: self, parameters: info)
         case .infected:
-            router?.route(to: Routes.positiveExposed, from: self, parameters: info.since)
+            router?.route(to: Routes.positiveExposed, from: self, parameters: info)
         }
     }
     
