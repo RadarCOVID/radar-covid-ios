@@ -12,12 +12,14 @@
 import UIKit
 import RxSwift
 
+
 class VenueRecordStartViewController: BaseViewController {
     
     var disposeBag: DisposeBag = DisposeBag()
     
     var router: AppRouter!
     var venueRecordUseCase : VenueRecordUseCase!
+    var authenticationHandler: AuthenticationHandler!
     
     @IBOutlet weak var listButton: UIButton!
     @IBOutlet weak var scanButton: UIButton!
@@ -43,6 +45,17 @@ class VenueRecordStartViewController: BaseViewController {
         router.route(to: .qrScanner, from: self)
     }
     
+    @IBAction func onVenueListTap(_ sender: Any) {
+        authenticationHandler.authenticate()
+            .observeOn(MainScheduler.instance).subscribe(
+            onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.router.route(to: .venueList, from: self)
+            }, onError: { error in
+                debugPrint("Authentication Failed \(error)")
+            }).disposed(by: disposeBag)
+    }
+    
     private func setupView() {
         
         scanButton.setTitle("VENUE_HOME_BUTTON_START".localized, for: .normal)
@@ -60,6 +73,7 @@ class VenueRecordStartViewController: BaseViewController {
         listButton.accessibilityLabel = "ACC_VENUE_HOME_PLACES".localized
         listButton.accessibilityHint = "ACC_HINT".localized
     }
+    
 }
 
 

@@ -444,3 +444,10 @@
 "VENUE_RECORD_CANCEL_TEXT"="¿Estás seguro que deseas cancelar el registro de este lugar?";
 "VENUE_RECORD_CANCEL_CONTINUE"="Continuar registro";
 "VENUE_EXPOSITION_HIGH_DESCRIPTION"="Hace <b>%@ días</b> registraste tu visita a un lugar donde también estuvo alguien diagnosticado de COVID-19 (actualizado %@)";
+"VENUE_BIOMETRIC_PROMPT_MESSAGE"="Por favor identifícate para acceder";
+"VENUE_DIARY_SUBTITLE"="LUGARES VISITADOS";
+"VENUE_DIARY_TITLE"="Diario";
+"VENUE_DIARY_HIDDEN_PLACES"="Lugares archivados (%@)";
+"VENUE_DIARY_HIDE"="OCULTAR";
+"VENUE_DIARY_SHOW"="MOSTRAR";
+"VENUE_DIARY_TIME"="HORA ENTRADA Y TIEMPO";

@@ -51,6 +51,7 @@ public enum Routes {
     case checkOut
     case checkOutConfirmation
     case qrError
+    case venueList
 }
 
 
@@ -158,6 +159,8 @@ class AppRouter: Router {
             routeToCheckoutConfirmation(context)
         case .qrError:
             routeToQrError(context)
+        case .venueList:
+            routeToVenueList(context)
         }
     }
 
@@ -317,7 +320,11 @@ class AppRouter: Router {
         let vc = AppDelegate.shared!.injection.resolve(QrErrorViewController.self)!
         context.navigationController?.pushViewController(vc, animated: true)
     }
-    
+    private func routeToVenueList(_ context: UIViewController) {
+        let vc = AppDelegate.shared!.injection.resolve(VenueListViewController.self)!
+        context.navigationController?.pushViewController(vc, animated: true)
+    }
+
     private func loadViewAsRoot(navController: UINavigationController?, view: UIViewController, animated: Bool = false) {
         navController?.viewControllers.removeAll()
         navController?.popToRootViewController(animated: false)

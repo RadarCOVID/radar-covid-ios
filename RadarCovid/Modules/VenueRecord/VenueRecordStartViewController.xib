@@ -125,6 +125,9 @@ Tu privacidad está protegida en todo momento </string>
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onVenueListTap:" destination="-1" eventType="primaryActionTriggered" id="3PD-By-E88"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

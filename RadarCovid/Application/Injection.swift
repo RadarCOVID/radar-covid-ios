@@ -161,6 +161,10 @@ class Injection {
             AppStateHandlertImpl()
         }.inObjectScope(.container)
         
+        container.register(AuthenticationHandler.self) { r in
+            AuthenticationHandler()
+        }.inObjectScope(.container)
+        
         container.register(VenueNotifier.self) { r in
             VenueNotifierImpl(baseUrl: Config.endpoints.qrBase)
         }.inObjectScope(.container)
@@ -587,6 +591,7 @@ class Injection {
             let vc = VenueRecordStartViewController()
             vc.router = r.resolve(AppRouter.self)!
             vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)!
+            vc.authenticationHandler = r.resolve(AuthenticationHandler.self)!
             return vc
         }
         
@@ -627,6 +632,20 @@ class Injection {
         container.register(CheckOutConfirmationViewController.self) { r in
             let vc = CheckOutConfirmationViewController()
             vc.router = r.resolve(AppRouter.self)!
+            return vc
+        }
+        
+        container.register(VenueListViewModel.self) { r in
+            let vm = VenueListViewModel()
+            vm.venueRecordRepository = r.resolve(VenueRecordRepository.self)!
+            return vm
+        }
+        
+        
+        container.register(VenueListViewController.self) { r in
+            let vc = VenueListViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.viewModel = r.resolve(VenueListViewModel.self)!
             return vc
         }
         
