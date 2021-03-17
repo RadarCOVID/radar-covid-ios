@@ -89,19 +89,19 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         var venueRecords: [VenueRecord] = []
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdOutdated", hidden: false, exposed: false, name: "name",
-                                checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 4 - 6, to: Date()),
+                                checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 4 - 6, to: Date())!,
                                 checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 4, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdOutdatedExposed", hidden: false, exposed: false, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 3 - 6, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 3 - 6, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 3, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFresh", hidden: false, exposed: false, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 - 6, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 - 6, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 + 1, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposed", hidden: false, exposed: false, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -18, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -18, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -24, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified", hidden: false, exposed: false, notified: false, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -18, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -18, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -24, to: Date())))
                             
         venueRecordRepository.registerGetVisited(response: venueRecords)
@@ -157,10 +157,10 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         var venueRecords: [VenueRecord] = []
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified1", hidden: false, exposed: false, notified: true, name: "name",
-                                checkInDate: Calendar.current.date(byAdding: .hour, value: -6, to: Date()),
+                                checkInDate: Calendar.current.date(byAdding: .hour, value: -6, to: Date())!,
                                 checkOutDate: Calendar.current.date(byAdding: .hour, value: -5, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified2", hidden: false, exposed: false, notified: true, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -3, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -3, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -2, to: Date())))
         
         venueRecordRepository.registerGetVisited(response: venueRecords)
@@ -193,10 +193,10 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         var venueRecords: [VenueRecord] = []
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified1", hidden: false, exposed: false, notified: true, name: "name",
-                                checkInDate: Calendar.current.date(byAdding: .hour, value: -6, to: Date()),
+                                checkInDate: Calendar.current.date(byAdding: .hour, value: -6, to: Date())!,
                                 checkOutDate: Calendar.current.date(byAdding: .hour, value: -5, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFresh", hidden: false, exposed: false, notified: false, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -3, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -3, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -2, to: Date())))
         
         venueRecordRepository.registerGetVisited(response: venueRecords)
@@ -224,7 +224,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         venueRecordRepository.registerGetVisited(response: [
             VenueRecord(qr: "", checkOutId: "IdExposedOudated", hidden: false, exposed: false, name: "name",
-                                checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 4 - 6, to: Date()),
+                                checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 4 - 6, to: Date())!,
                                 checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 4, to: Date()))
         ])
         

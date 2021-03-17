@@ -75,10 +75,7 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     }
     
     private func isOutdated(venueRecord: VenueRecord, interval: Int) -> Bool {
-        if let date = venueRecord.checkInDate {
-            return isOutdated(date: date, interval: interval)
-        }
-        return false
+        isOutdated(date: venueRecord.checkInDate, interval: interval)
     }
         
     private func checkIfSendReminder(venueRecord: VenueRecord, lastReminder: Date?) -> Bool {

@@ -87,24 +87,22 @@ class CheckOutViewController: VenueViewController {
         
         nameLabel.text = current.name
         
-        if let checkInDate = current.checkInDate {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.setLocalizedDateFormatFromTemplate("dMMM")
-            var day = ""
-            if Calendar.current.isDateInToday(checkInDate) || Calendar.current.isDateInToday(checkInDate) {
-                let rdf = DateFormatter()
-                rdf.dateStyle = .short
-                rdf.doesRelativeDateFormatting = true
-                day = rdf.string(from: checkInDate).capitalized + ", "
-            }
-            dateLabel.text = day + dateFormatter.string(from: checkInDate).capitalized
-            
-            let timeFormatter = DateFormatter()
-            timeFormatter.dateFormat = "HH:mm"
-            hourLabel.text = timeFormatter.string(from: checkInDate) + " h"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.setLocalizedDateFormatFromTemplate("dMMM")
+        var day = ""
+        if Calendar.current.isDateInToday(current.checkInDate) || Calendar.current.isDateInToday(current.checkInDate) {
+            let rdf = DateFormatter()
+            rdf.dateStyle = .short
+            rdf.doesRelativeDateFormatting = true
+            day = rdf.string(from: current.checkInDate).capitalized + ", "
         }
-
+        dateLabel.text = day + dateFormatter.string(from: current.checkInDate).capitalized
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        hourLabel.text = timeFormatter.string(from: current.checkInDate) + " h"
+        
     }
     
     private func setupView() {

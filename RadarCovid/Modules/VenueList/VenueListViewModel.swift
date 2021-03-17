@@ -18,11 +18,13 @@ class VenueListViewModel {
     
     var venueRecordRepository: VenueRecordRepository!
     
-    var venueMap: BehaviorSubject<[String:[VenueRecord]]> = BehaviorSubject<[String:[VenueRecord]]>(value: [:])
+    var venueMap: BehaviorSubject<[TimeInterval:[VenueRecord]]> = BehaviorSubject<[TimeInterval:[VenueRecord]]>(value: [:])
     
     private var allVenues: [VenueRecord] = []
     
     var showHidden = BehaviorSubject<Bool>(value: false)
+    
+    var numHidden =  BehaviorSubject<Int>(value: 0)
     
     var error = PublishSubject<Error>()
     
@@ -45,39 +47,62 @@ class VenueListViewModel {
     }
     
     private func refreshVenues() {
-        let map = groupByDate(allVenues.filter { venue in !((try? showHidden.value()) ?? false) || !venue.hidden })
+        let map = groupByDate(allVenues.filter { venue in
+                ((try? showHidden.value()) ?? false) || !venue.hidden
+            
+        })
         venueMap.onNext(map)
+        numHidden.onNext(countHidden())
     }
     
-    func hide(venue: VenueRecord) {
+    func toggleHide(venue: VenueRecord) {
+        
+        allVenues = allVenues.map { v in
+            var newVenue = v
+            if venue.checkOutId == v.checkOutId {
+                newVenue.hidden = !v.hidden
+            }
+            return newVenue
+        }
+        
+        venueRecordRepository.update(visited: allVenues).subscribe(
+            onNext: { [weak self] venues in
+                self?.refreshVenues()
+            }, onError: { [weak self] error in
+                debugPrint(error)
+                self?.error.onNext(error)
+        }).disposed(by: disposeBag)
     }
     
     private func mockedVenues() -> Observable<[VenueRecord]> {
-        .just( [VenueRecord(qr: "", checkOutId: nil, hidden: false, exposed: true, notified: false, name: "Un nombre muy largo de lugar que deberían ser mas de tres liiiiiineas", checkInDate: Calendar.current.date(byAdding: .minute, value: -31, to: Date()), checkOutDate: Date()),
+        .just( [VenueRecord(qr: "", checkOutId: "1", hidden: false, exposed: true, notified: false, name: "Un nombre muy largo de lugar que deberían ser mas de tres liiiiiineas", checkInDate: Calendar.current.date(byAdding: .minute, value: -31, to: Date())!, checkOutDate: Date()),
             
-               VenueRecord(qr: "", checkOutId: nil, hidden: true, exposed: true, notified: false, name: "Un nombre normal", checkInDate: Calendar.current.date(byAdding: .minute, value: -120, to: Date()), checkOutDate: Calendar.current.date(byAdding: .minute, value: -10, to: Date())),
-               VenueRecord(qr: "", checkOutId: nil, hidden: true, exposed: true, notified: false, name: "Un nombre normal2", checkInDate: Calendar.current.date(byAdding: .day, value: -2, to: Date()), checkOutDate: Calendar.current.date(byAdding: .hour, value: -28, to: Date())),
-               VenueRecord(qr: "", checkOutId: nil, hidden: true, exposed: true, notified: false, name: "Un nombre normal2", checkInDate: Calendar.current.date(byAdding: .day, value: -2, to: Date()), checkOutDate: Calendar.current.date(byAdding: .hour, value: -35, to: Date()))] )
+                VenueRecord(qr: "", checkOutId: "2", hidden: true, exposed: true, notified: false, name: "Un nombre normal", checkInDate: Calendar.current.date(byAdding: .minute, value: -120, to: Date())!, checkOutDate: Calendar.current.date(byAdding: .minute, value: -10, to: Date())),
+                VenueRecord(qr: "", checkOutId: "3", hidden: true, exposed: true, notified: false, name: "Un nombre normal2", checkInDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, checkOutDate: Calendar.current.date(byAdding: .hour, value: -28, to: Date())),
+                VenueRecord(qr: "", checkOutId: "4", hidden: true, exposed: true, notified: false, name: "Un nombre normal2", checkInDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, checkOutDate: Calendar.current.date(byAdding: .hour, value: -35, to: Date()))] )
     }
     
-    private func groupByDate(_ venues: [VenueRecord]?) -> [String: [VenueRecord]] {
-        var map: [String: [VenueRecord]] = [:]
+    private func countHidden() -> Int {
+        allVenues.filter { $0.hidden }.count
+    }
+    
+    private func groupByDate(_ venues: [VenueRecord]?) -> [TimeInterval: [VenueRecord]] {
+        var map: [TimeInterval:[VenueRecord]] = [:]
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
-        
-        venues?.forEach { venue in
-            if let checkOut = venue.checkOutDate {
-                let section = dateFormatter.string(from: checkOut).capitalized
-                let sectionVenues = map[section]
-                if var sectionVenues = sectionVenues {
-                    sectionVenues.append(venue)
-                    map[section] = sectionVenues
-                } else {
-                    map[section] = [venue]
-                }
+        venues?.sorted(by: { $0.checkInDate >  $1.checkInDate })
+            .forEach { venue in
+            
+                let section = Calendar.current.startOfDay(for: venue.checkInDate).timeIntervalSince1970
+            let sectionVenues = map[section]
+            if var sectionVenues = sectionVenues {
+                sectionVenues.append(venue)
+                map[section] = sectionVenues
+            } else {
+                map[section] = [venue]
             }
+
         }
         return map
     }
+    
 }

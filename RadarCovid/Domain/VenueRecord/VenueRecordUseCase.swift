@@ -25,14 +25,14 @@ class VenueRecordUseCaseImpl : VenueRecordUseCase{
 
     private let venueRecordRepository: VenueRecordRepository
     private let venueNotifier: VenueNotifier
-    
+
     init(venueRecordRepository: VenueRecordRepository, venueNotifier: VenueNotifier) {
         self.venueRecordRepository = venueRecordRepository
         self.venueNotifier = venueNotifier
     }
     
     func getVenueInfo(qrCode: String) -> Observable<VenueRecord> {
-        venueNotifier.getInfo(qrCode: qrCode).map { VenueRecord(qr: qrCode, name: $0.name) }
+        venueNotifier.getInfo(qrCode: qrCode).map { VenueRecord(qr: qrCode, name: $0.name, checkInDate: Date()) }
     }
     
     func isCheckedIn() -> Observable<Bool> {
@@ -52,7 +52,7 @@ class VenueRecordUseCaseImpl : VenueRecordUseCase{
             guard let self = self else { return .empty() }
             if var current = current {
                 return self.venueNotifier.getInfo(qrCode: current.qr).flatMap { venueInfo -> Observable<Void> in
-                    self.venueNotifier.checkOut(venue: venueInfo, arrival: current.checkInDate!, departure: date)
+                    self.venueNotifier.checkOut(venue: venueInfo, arrival: current.checkInDate, departure: date)
                         .flatMap { checkOutId -> Observable<Void> in
                             current.name = venueInfo.name
                             current.checkOutId = checkOutId

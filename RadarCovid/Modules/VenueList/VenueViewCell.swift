@@ -64,9 +64,9 @@ class VenueViewCell: UICollectionViewCell {
         let df = DateFormatter()
         df.dateStyle = .none
         df.timeStyle = .short
-        if let checkIn = venue.checkInDate, let checkOut = venue.checkOutDate {
-            let minutesBetween = String(format: "%.0f", checkOut.timeIntervalSince(checkIn) / secondsAnHour)
-            return df.string(from: checkIn) + " (\(minutesBetween)h)"
+        if  let checkOut = venue.checkOutDate {
+            let minutesBetween = String(format: "%.0f", checkOut.timeIntervalSince(venue.checkInDate) / secondsAnHour)
+            return df.string(from: venue.checkInDate) + " (\(minutesBetween)h)"
         }
         return "00:00 (--)"
     }

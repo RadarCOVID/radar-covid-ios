@@ -57,10 +57,10 @@ class VenueExpositionUseCaseTest: XCTestCase {
         var venueRecords: [VenueRecord] = []
         
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFresh", hidden: false, exposed: false, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 - 6, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 - 6, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 + 1, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFresh1", hidden: false, exposed: false, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -36, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -36, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -12, to: Date())))
 
         
@@ -87,13 +87,13 @@ class VenueExpositionUseCaseTest: XCTestCase {
         
         var venueRecords: [VenueRecord] = []
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFresh", hidden: false, exposed: false, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 - 6, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 - 6, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -24 * 2 + 1, to: Date())))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdExposed1", hidden: false, exposed: true, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -36, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -36, to: Date())!,
                                         checkOutDate: lastCheckout))
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdExposed2", hidden: false, exposed: true, name: "name",
-                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -36, to: Date()),
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -36, to: Date())!,
                                         checkOutDate: firstCheckout))
         
         venueRecordRepository.registerGetVisited(response: venueRecords, scheduler: scheduler)

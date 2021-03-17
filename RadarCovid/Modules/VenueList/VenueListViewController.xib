@@ -12,7 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VenueListViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="l3E-mL-d6z" id="tv6-49-FfD"/>
+                <outlet property="hiddenCountLabel" destination="vRy-gU-EF2" id="pOC-Hy-KhO"/>
                 <outlet property="showHiddenSwitch" destination="KQo-Yo-RM6" id="mLC-Mh-5YG"/>
+                <outlet property="switchLabel" destination="frz-91-cCN" id="ryx-AY-YjI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -48,11 +50,11 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQo-Yo-RM6">
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KQo-Yo-RM6">
                     <rect key="frame" x="349" y="235.5" width="51" height="31"/>
                 </switch>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOSTRAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frz-91-cCN">
-                    <rect key="frame" x="346" y="271.5" width="55" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VISIBLES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frz-91-cCN">
+                    <rect key="frame" x="349.5" y="271.5" width="48" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>

@@ -54,7 +54,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         sut.maxCheckInHours = 1
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
-                                checkInDate: Calendar.current.date(byAdding: .minute, value: -10, to: Date()),
+                                checkInDate: Calendar.current.date(byAdding: .minute, value: -10, to: Date())!,
                                 checkOutDate: nil))
         
         appStateHandler.registerGetState(response: .background)
@@ -72,7 +72,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         sut.maxCheckInHours = 1
         
         let venueRecord = VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
-                                      checkInDate: Calendar.current.date(byAdding: .minute, value: -61, to: Date()),
+                                      checkInDate: Calendar.current.date(byAdding: .minute, value: -61, to: Date())!,
                                       checkOutDate: nil)
         venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
         venueRecordRepository.registerSaveVisit(response: venueRecord)
@@ -100,7 +100,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         sut.maxCheckInHours = 1
         
         let venueRecord = VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
-                                      checkInDate: Calendar.current.date(byAdding: .minute, value: -61, to: Date()),
+                                      checkInDate: Calendar.current.date(byAdding: .minute, value: -61, to: Date())!,
                                       checkOutDate: nil)
         venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
         venueRecordRepository.registerSaveVisit(response: venueRecord)
@@ -120,7 +120,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         sut.reminderIntervalHours = 1
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
-                                checkInDate: Calendar.current.date(byAdding: .minute, value: -60, to: Date()),
+                                checkInDate: Calendar.current.date(byAdding: .minute, value: -60, to: Date())!,
                                 checkOutDate: nil))
         
         appStateHandler.registerGetState(response: .background)
@@ -139,7 +139,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         sut.reminderIntervalHours = 1
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
-                                checkInDate: Calendar.current.date(byAdding: .minute, value: -59, to: Date()),
+                                checkInDate: Calendar.current.date(byAdding: .minute, value: -59, to: Date())!,
                                 checkOutDate: nil))
         
         appStateHandler.registerGetState(response: .background)
@@ -157,7 +157,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         sut.reminderIntervalHours = 1
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
-                                checkInDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date()),
+                                checkInDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date())!,
                                 checkOutDate: nil))
         
         appStateHandler.registerGetState(response: .background)
@@ -177,7 +177,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
         sut.reminderIntervalHours = 1
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
-                                checkInDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date()),
+                                checkInDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date())!,
                                 checkOutDate: nil))
         
         appStateHandler.registerGetState(response: .background)

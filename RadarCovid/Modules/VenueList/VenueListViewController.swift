@@ -16,14 +16,17 @@ class VenueListViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     
-    
     var router: AppRouter!
     var viewModel: VenueListViewModel!
     
-    private var venueMap: [String: [VenueRecord]] = [:]
+    private var venueMap: [TimeInterval: [VenueRecord]] = [:]
+    
+    private var sortedKeys: [TimeInterval] = []
 
     @IBOutlet weak var showHiddenSwitch: UISwitch!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var switchLabel: UILabel!
+    @IBOutlet weak var hiddenCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +42,20 @@ class VenueListViewController: BaseViewController {
         }.disposed(by: disposeBag)
         
         viewModel?.venueMap.subscribe{ [weak self] venueMap in
-            self?.venueMap = venueMap.element ?? [:] as! [String : [VenueRecord]]
+            self?.venueMap = venueMap.element ?? [:] as! [TimeInterval : [VenueRecord]]
+            self?.sortedKeys = self?.sortedKeys(self?.venueMap) ?? []
             self?.collectionView.reloadData()
         }.disposed(by: disposeBag)
         
         showHiddenSwitch.rx.isOn.bind(to: viewModel.showHidden).disposed(by: disposeBag)
+        
+        viewModel.showHidden.subscribe { [weak self] show in
+            self?.switchLabel.text = show ? "VENUE_DIARY_VISIBLE".localized : "VENUE_DIARY_HIDDEN".localized
+        }.disposed(by: disposeBag)
+        
+        viewModel.numHidden.subscribe { [weak self] count in
+            self?.hiddenCountLabel.text = "VENUE_DIARY_HIDDEN_PLACES".localizedAttributed(withParams: [String(count)]).string
+        }.disposed(by: disposeBag)
     }
     
     private func setupCollectionView() {
@@ -79,16 +91,20 @@ extension VenueListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CELL", for: indexPath) as! VenueViewCell
-
-        cell.venue = Array(venueMap.values)[indexPath.section][indexPath.item]
+        let section = sortedKeys[indexPath.section]
+        cell.venue = venueMap[section]?[indexPath.item]
         cell.venueHideDelegate = self
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind:UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HEADER", for: indexPath) as! DateHeader
-        let section = Array(venueMap.keys)[indexPath.section]
-        header.date = section
+        let section = sortedKeys[indexPath.section]
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
+        header.date = dateFormatter.string(from: Date(timeIntervalSince1970: section)).capitalized
+        
         return header
     }
     
@@ -96,12 +112,16 @@ extension VenueListViewController: UICollectionViewDataSource {
         venueMap.count
     }
     
+    private func sortedKeys(_ map: [TimeInterval:[VenueRecord]]?) -> [TimeInterval]? {
+        map?.keys.sorted(by: > )
+    }
+    
 }
 
 extension VenueListViewController: VenueHideDelegate {
     
     func hide(venue: VenueRecord) {
-        viewModel.hide(venue: venue)
+        viewModel.toggleHide(venue: venue)
     }
     
 }
