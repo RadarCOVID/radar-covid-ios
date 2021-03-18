@@ -22,16 +22,20 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     private var notificationHandler: NotificationHandlerMock!
     private var appStateHandler: AppStateHandlerMock!
     private var qrCheckRepository: QrCheckRepositoryMock!
+    private var settingsRepositoyr: MockSettingsRepository!
 
     override func setUpWithError() throws {
         venueRecordRepository = VenueRecordRepositoryMock()
         notificationHandler = NotificationHandlerMock()
         appStateHandler = AppStateHandlerMock()
         qrCheckRepository = QrCheckRepositoryMock()
+        settingsRepositoyr = MockSettingsRepository()
+        
         sut = CheckInInProgressUseCaseImpl(notificationHandler: notificationHandler,
                                            venueRecordRepository: venueRecordRepository,
                                            qrCheckRepository: qrCheckRepository,
-                                           appStateHandler: appStateHandler)
+                                           appStateHandler: appStateHandler,
+                                           settinsRepository: settingsRepositoyr)
     }
 
     override func tearDownWithError() throws {

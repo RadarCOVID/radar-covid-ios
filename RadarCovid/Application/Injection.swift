@@ -300,17 +300,19 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(ProblematicEventsUseCase.self) { r in
-            ProblematicEventsUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,                                          qrCheckRepository: r.resolve(QrCheckRepository.self)!,
+            ProblematicEventsUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,                                                      qrCheckRepository: r.resolve(QrCheckRepository.self)!,
                                          venueNotifier: r.resolve(VenueNotifier.self)!,
                                          problematicEventsApi: r.resolve(ProblematicEventsApi.self)!,
-                                         notificationHandler: r.resolve(NotificationHandler.self)!)
+                                         notificationHandler: r.resolve(NotificationHandler.self)!,
+                                         settingsRepository: r.resolve(SettingsRepository.self)!)
         }.inObjectScope(.container)
         
         container.register(CheckInInProgressUseCase.self) { r in
             CheckInInProgressUseCaseImpl(notificationHandler: r.resolve(NotificationHandler.self)!,
                                          venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
                                          qrCheckRepository: r.resolve(QrCheckRepository.self)!,
-                                         appStateHandler: r.resolve(AppStateHandler.self)!)
+                                         appStateHandler: r.resolve(AppStateHandler.self)!,
+                                         settinsRepository: r.resolve(SettingsRepository.self)!)
         }.inObjectScope(.container)
         
         container.register(VenueExpositionUseCase.self) { r in

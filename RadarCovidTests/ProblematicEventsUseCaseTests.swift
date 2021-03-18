@@ -25,6 +25,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     private var problematicEvensApi: ProblematicEventsApiMock!
     private var notificationHandler: NotificationHandlerMock!
     private var qrCheckRepository: QrCheckRepositoryMock!
+    private var settingsRepository: MockSettingsRepository!
     
     override func setUpWithError() throws {
         
@@ -33,8 +34,9 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         problematicEvensApi = ProblematicEventsApiMock()
         notificationHandler = NotificationHandlerMock()
         qrCheckRepository = QrCheckRepositoryMock()
+        settingsRepository = MockSettingsRepository()
         
-        sut = ProblematicEventsUseCaseImpl(venueRecordRepository: venueRecordRepository, qrCheckRepository: qrCheckRepository, venueNotifier: venueNotifier, problematicEventsApi: problematicEvensApi, notificationHandler: notificationHandler)
+        sut = ProblematicEventsUseCaseImpl(venueRecordRepository: venueRecordRepository, qrCheckRepository: qrCheckRepository, venueNotifier: venueNotifier, problematicEventsApi: problematicEvensApi, notificationHandler: notificationHandler, settingsRepository: settingsRepository)
     }
 
     override func tearDownWithError() throws {
@@ -73,7 +75,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     
     func testSyncWithMixOfEvents() throws {
         
-        sut.maxDaysToKeep = 2
+        sut.maxMinutesToKeep = 2 * 24 * 60
         
         var problematicEvents: [ProblematicEvent] = []
         problematicEvents.append(ProblematicEvent())
@@ -216,7 +218,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     }
     
     func testSyncOutdatedExposedElementIsRemovedAndNoNotificationSent() throws {
-        sut.maxDaysToKeep = 2
+        sut.maxMinutesToKeep = 2 * 24 * 60
         
         problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:[ProblematicEvent()])))
         

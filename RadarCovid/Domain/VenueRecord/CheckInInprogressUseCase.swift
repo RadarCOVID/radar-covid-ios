@@ -32,11 +32,15 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     init(notificationHandler: NotificationHandler,
          venueRecordRepository: VenueRecordRepository,
          qrCheckRepository: QrCheckRepository,
-         appStateHandler: AppStateHandler) {
+         appStateHandler: AppStateHandler,
+         settinsRepository: SettingsRepository) {
         self.notificationHandler = notificationHandler
         self.venueRecordRepository = venueRecordRepository
         self.appStateHandler = appStateHandler
         self.qrCheckRepository = qrCheckRepository
+        maxCheckInHours = Int(settinsRepository.getSettings()?.parameters?.venueConfiguration?.autoCheckout ?? 6)
+        
+        reminderIntervalHours = Int(settinsRepository.getSettings()?.parameters?.venueConfiguration?.recordNotification ?? 3)
     }
     
     func checkStauts() -> Observable<Void> {

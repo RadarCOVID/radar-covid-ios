@@ -14,12 +14,10 @@ import RxSwift
 
 protocol ProblematicEventsUseCase {
     func sync() -> Observable<Void>
-    var maxDaysToKeep: Int { get set }
+    var maxMinutesToKeep: Int { get set }
 }
 
 class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
-    
-    private let secondsADay = 24 * 60 * 60
     
     private let venueNotifier: VenueNotifier
     private let venueRecordRepository: VenueRecordRepository
@@ -27,14 +25,16 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     private let notificationHandler: NotificationHandler
     private let qrCheckRepository: QrCheckRepository
     
-    var maxDaysToKeep: Int = 14
+    var maxMinutesToKeep: Int
     
-    init(venueRecordRepository: VenueRecordRepository, qrCheckRepository: QrCheckRepository, venueNotifier: VenueNotifier, problematicEventsApi: ProblematicEventsApi, notificationHandler: NotificationHandler) {
+    init(venueRecordRepository: VenueRecordRepository, qrCheckRepository: QrCheckRepository, venueNotifier: VenueNotifier, problematicEventsApi: ProblematicEventsApi, notificationHandler: NotificationHandler,
+         settingsRepository: SettingsRepository) {
         self.venueNotifier = venueNotifier
         self.venueRecordRepository = venueRecordRepository
         self.problematicEventsApi = problematicEventsApi
         self.notificationHandler = notificationHandler
         self.qrCheckRepository = qrCheckRepository
+        maxMinutesToKeep = Int(settingsRepository.getSettings()?.parameters?.venueConfiguration?.quarentineAfterExposed ?? (14 * 24 * 60) )
     }
     
     func sync() -> Observable<Void> {
@@ -93,7 +93,7 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     
     private func isOutdated(_ venueRecord: VenueRecord) -> Bool {
         if let checkoutDate = venueRecord.checkOutDate {
-            return checkoutDate.addingTimeInterval(Double(maxDaysToKeep * secondsADay)) < Date()
+            return checkoutDate.addingTimeInterval(Double(maxMinutesToKeep * 60)) < Date()
         }
         return false
     }

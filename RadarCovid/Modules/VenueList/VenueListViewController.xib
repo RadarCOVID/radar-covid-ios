@@ -51,10 +51,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KQo-Yo-RM6">
-                    <rect key="frame" x="349" y="235.5" width="51" height="31"/>
+                    <rect key="frame" x="345" y="235.5" width="51" height="31"/>
                 </switch>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VISIBLES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frz-91-cCN">
-                    <rect key="frame" x="349.5" y="271.5" width="48" height="14"/>
+                    <rect key="frame" x="345.5" y="271.5" width="48" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -103,7 +103,7 @@
                 <constraint firstItem="N0A-w1-iEF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mVc-eg-uNG"/>
                 <constraint firstAttribute="trailing" secondItem="N0A-w1-iEF" secondAttribute="trailing" id="q37-9F-3eY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zdm-x0-sk7" secondAttribute="trailing" constant="20" id="udF-WT-LOa"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KQo-Yo-RM6" secondAttribute="trailing" constant="16" id="ybJ-dN-ChY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KQo-Yo-RM6" secondAttribute="trailing" constant="20" id="ybJ-dN-ChY"/>
             </constraints>
             <point key="canvasLocation" x="88" y="64"/>
         </view>

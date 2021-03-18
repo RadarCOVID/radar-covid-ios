@@ -32,6 +32,7 @@ class VenueListViewController: BaseViewController {
         super.viewDidLoad()
         setupCollectionView()
         setupBinding()
+        self.showHiddenSwitch.onTintColor = UIColor.degradado
     }
     
     private func setupBinding() {
@@ -57,6 +58,7 @@ class VenueListViewController: BaseViewController {
             self?.hiddenCountLabel.text = "VENUE_DIARY_HIDDEN_PLACES".localizedAttributed(withParams: [String(count)]).string
         }.disposed(by: disposeBag)
     }
+
     
     private func setupCollectionView() {
         collectionView.delegate = self
