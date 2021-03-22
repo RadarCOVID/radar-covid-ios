@@ -13,7 +13,11 @@ import Foundation
 import RxSwift
 import Logging
 
-class AnalyticsUseCase {
+protocol AnalyticsUseCase {
+    func sendAnaltyics() -> Observable<Bool>
+}
+
+class AnalyticsUseCaseImpl : AnalyticsUseCase{
     
     private let logger = Logger(label: "AnalyticsUseCase")
     

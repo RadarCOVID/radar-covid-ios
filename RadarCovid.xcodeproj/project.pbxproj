@@ -139,7 +139,7 @@
 		6DAF6ED925F61C3C00387F5C /* AppStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF6ED825F61C3C00387F5C /* AppStateHandler.swift */; };
 		6DAF6EDF25F783ED00387F5C /* VenueExpositionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF6EDE25F783EC00387F5C /* VenueExpositionUseCase.swift */; };
 		6DAF6EE325F7872500387F5C /* VenueExpositionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF6EE225F7872500387F5C /* VenueExpositionInfo.swift */; };
-		6DAF6EE725F7966A00387F5C /* VenueExpositionUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF6EE625F7966A00387F5C /* VenueExpositionUseCaseTest.swift */; };
+		6DAF6EE725F7966A00387F5C /* VenueExpositionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF6EE625F7966A00387F5C /* VenueExpositionUseCaseTests.swift */; };
 		6DB5418D24989C2500166D37 /* TokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418524989C2500166D37 /* TokenAPI.swift */; };
 		6DB5418E24989C2500166D37 /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418624989C2500166D37 /* SettingsAPI.swift */; };
 		6DB5418F24989C2500166D37 /* SettingsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5418824989C2500166D37 /* SettingsDto.swift */; };
@@ -199,6 +199,7 @@
 		6DFC77FA26011DCF00527A1D /* DateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DFC77F826011DCF00527A1D /* DateHeader.xib */; };
 		6DFC77FE260129E800527A1D /* VenueListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC77FD260129E800527A1D /* VenueListViewModel.swift */; };
 		6DFC7808260276C700527A1D /* VenueConfigurationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC7807260276C700527A1D /* VenueConfigurationDto.swift */; };
+		6DFC780E260370CC00527A1D /* BackgroundTasksUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC780D260370CC00527A1D /* BackgroundTasksUseCaseTests.swift */; };
 		7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */; };
 		7603469E24F42DF70038CFC7 /* radarcovid.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */; };
 		76290D862524D3D20010CACD /* FakeRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76290D852524D3D20010CACD /* FakeRequestUseCase.swift */; };
@@ -459,7 +460,7 @@
 		6DAF6ED825F61C3C00387F5C /* AppStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateHandler.swift; sourceTree = "<group>"; };
 		6DAF6EDE25F783EC00387F5C /* VenueExpositionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueExpositionUseCase.swift; sourceTree = "<group>"; };
 		6DAF6EE225F7872500387F5C /* VenueExpositionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueExpositionInfo.swift; sourceTree = "<group>"; };
-		6DAF6EE625F7966A00387F5C /* VenueExpositionUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueExpositionUseCaseTest.swift; sourceTree = "<group>"; };
+		6DAF6EE625F7966A00387F5C /* VenueExpositionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueExpositionUseCaseTests.swift; sourceTree = "<group>"; };
 		6DB5418524989C2500166D37 /* TokenAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenAPI.swift; sourceTree = "<group>"; };
 		6DB5418624989C2500166D37 /* SettingsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAPI.swift; sourceTree = "<group>"; };
 		6DB5418824989C2500166D37 /* SettingsDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDto.swift; sourceTree = "<group>"; };
@@ -520,6 +521,7 @@
 		6DFC77F826011DCF00527A1D /* DateHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DateHeader.xib; path = "../../../../../wsSentinel/sentinel-ios/sentinel/pres/Wind/ListAeros/Alarm/DateHeader.xib"; sourceTree = "<group>"; };
 		6DFC77FD260129E800527A1D /* VenueListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueListViewModel.swift; sourceTree = "<group>"; };
 		6DFC7807260276C700527A1D /* VenueConfigurationDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueConfigurationDto.swift; sourceTree = "<group>"; };
+		6DFC780D260370CC00527A1D /* BackgroundTasksUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTasksUseCaseTests.swift; sourceTree = "<group>"; };
 		7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = radarcovidpre.covid19.gob.es.cer; sourceTree = "<group>"; };
 		7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = radarcovid.covid19.gob.es.cer; sourceTree = "<group>"; };
 		76290D852524D3D20010CACD /* FakeRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRequestUseCase.swift; sourceTree = "<group>"; };
@@ -2146,6 +2148,7 @@
 				6D87A07E25E1137A0077ABDE /* BlockingObservable.swift in Sources */,
 				6D87A06325E112E10077ABDE /* PriorityQueue.swift in Sources */,
 				6D87A05F25E112E10077ABDE /* Platform.Darwin.swift in Sources */,
+				6DFC780E260370CC00527A1D /* BackgroundTasksUseCaseTests.swift in Sources */,
 				6D91550E25E7E4BE007965F4 /* VenueRecordUseCaseTests.swift in Sources */,
 				6D87A06225E112E10077ABDE /* Bag.swift in Sources */,
 				6D87A04825E111C40077ABDE /* TestSchedulerVirtualTimeConverter.swift in Sources */,
@@ -2168,7 +2171,7 @@
 				6D01BDCF24EFEFCB00FBADB4 /* MyMocks.swift in Sources */,
 				6D87A03A25E111C40077ABDE /* HotObservable.swift in Sources */,
 				6DAF6EBD25F0FC8300387F5C /* ProblematicEventsUseCaseTests.swift in Sources */,
-				6DAF6EE725F7966A00387F5C /* VenueExpositionUseCaseTest.swift in Sources */,
+				6DAF6EE725F7966A00387F5C /* VenueExpositionUseCaseTests.swift in Sources */,
 				6D87A08125E1137A0077ABDE /* Resources.swift in Sources */,
 				6D87A06025E112E10077ABDE /* DispatchQueue+Extensions.swift in Sources */,
 				6D87A04425E111C40077ABDE /* XCTest+Rx.swift in Sources */,

@@ -35,7 +35,7 @@ class AnalyticsUseCaseTests: XCTestCase {
         deviceTokenHandler = DeviceTokenHandlerMock()
         exposureKpiUseCase = ExposureKpiUseCaseMock()
         
-        sut = AnalyticsUseCase(deviceTokenHandler: deviceTokenHandler,
+        sut = AnalyticsUseCaseImpl(deviceTokenHandler: deviceTokenHandler,
                                analyticsRepository: analyticsRepository,
                                kpiApi: kpiApi,
                                exposureKpiUseCase:exposureKpiUseCase,

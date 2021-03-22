@@ -196,13 +196,19 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(FakeRequestUseCase.self) { r in
-            FakeRequestUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
+            FakeRequestUseCaseImpl(settingsRepository: r.resolve(SettingsRepository.self)!,
                                verificationApi: r.resolve(VerificationControllerAPI.self)!,
-                               fakeRequestRepository: r.resolve(FakeRequestRepository.self)!)
+                               xx: r.resolve(FakeRequestRepository.self)!)
         }.inObjectScope(.container)
         
+        if #available(iOS 13.0, *) {
+            container.register(FakeRequestBackgroundTask.self) { r in
+                r.resolve(FakeRequestUseCase.self) as! FakeRequestBackgroundTask
+            }
+        }
+        
         container.register(ConfigurationUseCase.self) { r in
-            ConfigurationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
+            ConfigurationUseCaseImpl(settingsRepository: r.resolve(SettingsRepository.self)!,
                                  tokenApi: r.resolve(TokenAPI.self)!,
                                  settingsApi: r.resolve(SettingsAPI.self)!,
                                  versionHandler: r.resolve(VersionHandler.self)!)
@@ -220,9 +226,12 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(BackgroundTasksUseCase.self) { r in
-            BackgroundTasksUseCase(analyticsUseCase: r.resolve(AnalyticsUseCase.self)!,
+            BackgroundTasksUseCaseImpl(analyticsUseCase: r.resolve(AnalyticsUseCase.self)!,
                                    fakeRequestUseCase: r.resolve(FakeRequestUseCase.self)!,
-                                   expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!)
+                                   expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!,
+                                   checkInInprogressUseCase: r.resolve(CheckInInProgressUseCase.self)!,
+                                   configurationUseCase: r.resolve(ConfigurationUseCase.self)!,
+                                   problematicEventsUseCase: r.resolve(ProblematicEventsUseCase.self)!)
         }.inObjectScope(.container)
         
         container.register(LocalizationUseCase.self) { r in
@@ -272,7 +281,7 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(AnalyticsUseCase.self) { r in
-            AnalyticsUseCase(deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!,
+            AnalyticsUseCaseImpl(deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!,
                              analyticsRepository: r.resolve(AnalyticsRepository.self)!,
                              kpiApi: r.resolve(AppleKpiControllerAPI.self)!,
                              exposureKpiUseCase:  r.resolve(ExposureKpiUseCase.self)!,

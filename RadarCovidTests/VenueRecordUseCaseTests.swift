@@ -162,7 +162,7 @@ class VenueRecordUseCaseTests: XCTestCase {
 
     func getVenueInfo(name: String) -> VenueInfo {
         let decoder = JSONDecoder()
-        return try! decoder.decode(VenueInfo.self, from: "{\"publicKey\": \"\", \"r1\": \"\", \"notificationKey\": \"\", \"name\": \"\(name)\", \"location\": \"\", \"room\": \"\", \"venueType\": \"OTHER\", \"validFrom\": 1, \"validTo\": 1}".data(using: .utf8)!)
+        return try! decoder.decode(VenueInfo.self, from: "{\"masterPublicKey\": \"\", \"nonce1\": \"\", \"nonce2\": \"\",\"notificationKey\": \"\", \"name\": \"\(name)\", \"location\": \"\", \"room\": \"\", \"venueType\": \"OTHER\", \"validFrom\": 1, \"validTo\": 1}".data(using: .utf8)!)
     }
     
 

@@ -13,7 +13,17 @@ import Foundation
 import RxSwift
 import BackgroundTasks
 
-class FakeRequestUseCase: DiagnosisCodeUseCase {
+protocol FakeRequestUseCase {
+    func sendFalsePositiveFromBackgroundDP3T() -> Observable<Bool>
+}
+
+@available(iOS 13.0, *)
+protocol FakeRequestBackgroundTask {
+    func initBackgroundTask()
+    func scheduleBackgroundTask()
+}
+
+class FakeRequestUseCaseImpl: DiagnosisCodeUseCase, FakeRequestUseCase {
     
     public static let FALSE_POSITIVE_CODE = "112358132134"
     private let disposeBag = DisposeBag()
@@ -21,7 +31,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
     private let keyIdentifierFakeRequestFetch: String = "es.gob.radarcovid.fakerequestfetch"
     
     init(settingsRepository: SettingsRepository,
-         verificationApi: VerificationControllerAPI,
+         verificationApi: VerificationControllerAPI,xx
          fakeRequestRepository: FakeRequestRepository) {
         
         self.fakeRequestRepository = fakeRequestRepository
@@ -32,6 +42,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
             self.sendOldFalsePositive().subscribe().disposed(by: disposeBag)
         }
     }
+    
 
     func sendFalsePositiveFromBackgroundDP3T() -> Observable<Bool> {
         if #available(iOS 13.0, *) {
@@ -49,7 +60,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
         return Observable.create { [weak self] (observer) -> Disposable in
             if self?.needToSendFalsePositive() ?? false {
                 let randomBoolean = Bool.random()
-                self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
+                self?.sendDiagnosisCode(code:  FakeRequestUseCaseImpl.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
                     onNext: { _ in
                         debugPrint("fake request sent with date", Date())
                         self?.fakeRequestRepository.updateScheduledFakeRequestDate()
@@ -74,7 +85,7 @@ class FakeRequestUseCase: DiagnosisCodeUseCase {
 }
 
 @available(iOS 13.0, *)
-extension FakeRequestUseCase {
+extension FakeRequestUseCaseImpl: FakeRequestBackgroundTask {
     
     func initBackgroundTask() {
         
@@ -110,10 +121,10 @@ extension FakeRequestUseCase {
             task?.expirationHandler = {
                 observer.onCompleted()
             }
-            
+        
             if self?.needToSendFalsePositive() ?? false {
                 let randomBoolean = Bool.random()
-                self?.sendDiagnosisCode(code:  FakeRequestUseCase.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
+                self?.sendDiagnosisCode(code: FakeRequestUseCaseImpl.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
                     onNext: { _ in
                         debugPrint("fake request sent with date", Date())
                         self?.fakeRequestRepository.updateScheduledFakeRequestDate()

@@ -67,7 +67,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
         cancelAllPandingBGTask()
-        let fakeRequestUseCase = AppDelegate.shared?.injection.resolve(FakeRequestUseCase.self)!
+        let fakeRequestUseCase = AppDelegate.shared?.injection.resolve(FakeRequestBackgroundTask.self)!
         fakeRequestUseCase?.scheduleBackgroundTask()
         
         let reminderNotificationUseCase = AppDelegate.shared?.injection.resolve(ReminderNotificationUseCase.self)!

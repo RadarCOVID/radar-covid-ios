@@ -66,7 +66,7 @@ class MockSettingsRepository: SettingsRepository {
     
 }
 
-class MockExpositionCheckUseCase: ExpositionCheckUseCase {
+class ExpositionCheckUseCaseMock: ExpositionCheckUseCase {
     
     var justChanged = false
     var jusChangedCalls = 0
@@ -460,14 +460,18 @@ class Mocker {
         mockedFuncs[fn] = MockedFuncCall(name: fn, responses: responses)
     }
     
-    func verify(_ fn: String, called: VerifyCount = .atLeastOnce) {
+    func verify(_ fn: String, called: VerifyCount = .atLeastOnce) -> MockedFuncCall? {
         if let mockedFunc = mockedFuncs[fn] {
             mockedFunc.verify(called: called)
-        } else if case .never = called {
-            
-        } else {
-            XCTFail("Method \(fn) not called")
+            return mockedFunc
         }
+        
+        if case .never = called {
+            return nil
+        }
+        
+        XCTFail("Method \(fn) not called")
+        return nil
     }
     
     func paramCaptured(_ fn: String, position: Int = 0) -> [String:Any?]? {
@@ -498,6 +502,11 @@ enum VerifyCount {
     case never
 }
 
+enum When {
+    case after
+    case before
+}
+
 class MockedFuncCall {
     
     private var name: String
@@ -505,6 +514,7 @@ class MockedFuncCall {
     private var responses: [Any?]?
     private var paramList: [[String:Any?]?] = []
     private var verifiedCount = 0
+    private var timeStamps: [Date] = []
     
     init(name: String, responses: [Any?]?) {
         self.name = name
@@ -521,6 +531,7 @@ class MockedFuncCall {
     func call(params: [String:Any?]?) -> Any? {
         let response = getCurrentResponse()
         paramList.append(params)
+        timeStamps.append(Date())
         count += 1
         return response
     }
@@ -565,6 +576,23 @@ class MockedFuncCall {
         let className = className ?? ""
         if count > verifiedCount {
             XCTFail("Func \(className).\(name) received more interactions: \(count) than verified \(verifiedCount)")
+        }
+    }
+    
+    func verify(called: When = .before, _ funcCall: MockedFuncCall?, time: Int = 0) {
+        if let funcCall = funcCall {
+            switch called {
+            case .after:
+                if timeStamps[time] < funcCall.timeStamps[time] {
+                    XCTFail("Func \(name) is called before \(funcCall.name) and it should be caled after")
+                }
+            case .before:
+                if timeStamps[time] > funcCall.timeStamps[time] {
+                    XCTFail("Func \(name) is called after \(funcCall.name) and it should be called before")
+                }
+            }
+        } else {
+            XCTFail("Second func never called")
         }
     }
     

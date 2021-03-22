@@ -13,7 +13,11 @@ import Foundation
 import RxSwift
 import DP3TSDK
 
-class ConfigurationUseCase {
+protocol ConfigurationUseCase {
+    func loadConfig() -> Observable<Settings>
+}
+
+class ConfigurationUseCaseImpl : ConfigurationUseCase {
 
     private let settingsRepository: SettingsRepository
     private let tokenApi: TokenAPI

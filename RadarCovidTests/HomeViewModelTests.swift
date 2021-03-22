@@ -19,7 +19,7 @@ class HomeViewModelTests: XCTestCase {
     private var scheduler: TestScheduler!
     private var disposeBag: DisposeBag!
     
-    private var expositionCheckUseCase: MockExpositionCheckUseCase!
+    private var expositionCheckUseCase: ExpositionCheckUseCaseMock!
     private var expositionUseCase: ExpositionUseCaseMock!
     
     private var sut: HomeViewModel!
@@ -28,7 +28,7 @@ class HomeViewModelTests: XCTestCase {
         disposeBag = DisposeBag()
         scheduler = TestScheduler(initialClock: 0)
         sut = HomeViewModel()
-        expositionCheckUseCase = MockExpositionCheckUseCase()
+        expositionCheckUseCase = ExpositionCheckUseCaseMock()
         expositionUseCase = ExpositionUseCaseMock(scheduler: scheduler)
         sut.expositionUseCase = expositionUseCase
         sut.expositionCheckUseCase = expositionCheckUseCase
