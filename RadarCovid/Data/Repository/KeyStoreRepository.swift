@@ -16,16 +16,16 @@ import RxSwift
 class KeyStoreRepository {
     
     private let userDefaults: UserDefaults
-    private let kFirstRun = "KeyStoreRepository.firstRun"
+    private let kHasBeenRun = "KeyStoreRepository.kHasBeenRun"
     
     private(set) var encoder = JSONEncoder()
     private(set) var decoder = JSONDecoder()
     
     init(suitename: String?, deleteOnFirstRun: Bool = true) {
         userDefaults =  UserDefaults(suiteName: suitename) ?? UserDefaults.standard
-        if userDefaults.bool(forKey: kFirstRun) && deleteOnFirstRun {
+        if !userDefaults.bool(forKey: kHasBeenRun) && deleteOnFirstRun {
             cleanDataOnFirsRun()
-            userDefaults.set(false, forKey: kFirstRun)
+            userDefaults.set(true, forKey: kHasBeenRun)
         }
     }
     
