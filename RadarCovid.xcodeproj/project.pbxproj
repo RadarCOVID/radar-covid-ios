@@ -45,8 +45,6 @@
 		6D63108E2501197B000CDCB4 /* AccTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63108D2501197B000CDCB4 /* AccTitleView.swift */; };
 		6D6D342125F7B6EE001B2071 /* ExpositionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D342025F7B6EE001B2071 /* ExpositionInfo.swift */; };
 		6D6D342A25FA7632001B2071 /* ProblematicEvent.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D342925FA7632001B2071 /* ProblematicEvent.pb.swift */; };
-		6D6D343825FA79BD001B2071 /* CrowdNotifierSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6D343725FA79BD001B2071 /* CrowdNotifierSDK */; };
-		6D6D343A25FA79BD001B2071 /* Clibsodium in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6D343925FA79BD001B2071 /* Clibsodium */; };
 		6D6D344225FB6D63001B2071 /* ProblematicEvenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D344125FB6D63001B2071 /* ProblematicEvenData.swift */; };
 		6D6D344625FB7734001B2071 /* QrCheckRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D344525FB7734001B2071 /* QrCheckRepository.swift */; };
 		6D6D345D2600AACD001B2071 /* VenueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D345B2600AACD001B2071 /* VenueListViewController.swift */; };
@@ -61,6 +59,7 @@
 		6D7AB27424AE375200F30E0B /* VersionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB27124AE375200F30E0B /* VersionDto.swift */; };
 		6D7AB27524AE375200F30E0B /* ApplicationVersionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB27224AE375200F30E0B /* ApplicationVersionDto.swift */; };
 		6D7AB27724AF1CBD00F30E0B /* VersionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7AB27624AF1CBD00F30E0B /* VersionHandler.swift */; };
+		6D7ED49C2608CA580096BF9B /* CrowdNotifierSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7ED49B2608CA580096BF9B /* CrowdNotifierSDK */; };
 		6D83344524B72BC800223071 /* LocalizationSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83344424B72BC800223071 /* LocalizationSource.swift */; };
 		6D83344724B72C3B00223071 /* LocalizationHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83344624B72C3B00223071 /* LocalizationHolder.swift */; };
 		6D83344924B7303500223071 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83344824B7303500223071 /* String+Localizable.swift */; };
@@ -643,11 +642,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D5AFCE8249369FE00EFE838 /* Alamofire in Frameworks */,
-				6D6D343825FA79BD001B2071 /* CrowdNotifierSDK in Frameworks */,
+				6D7ED49C2608CA580096BF9B /* CrowdNotifierSDK in Frameworks */,
 				764C6D1324B7E5BB002FA594 /* RxSwift in Frameworks */,
 				76357ADD2540447B004C9AE5 /* DP3TSDK in Frameworks */,
 				A9A7D11C2524B03A009091A5 /* RxCocoa in Frameworks */,
-				6D6D343A25FA79BD001B2071 /* Clibsodium in Frameworks */,
 				6DF6ECA8248E7453007EAA40 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,7 +846,8 @@
 				6D91550D25E7E4BE007965F4 /* VenueRecordUseCaseTests.swift */,
 				6DAF6EBC25F0FC8300387F5C /* ProblematicEventsUseCaseTests.swift */,
 				6DAF6EC825F26EF100387F5C /* CheckInInProgressUseCaseTests.swift */,
-				6DAF6EE625F7966A00387F5C /* VenueExpositionUseCaseTest.swift */,
+				6DAF6EE625F7966A00387F5C /* VenueExpositionUseCaseTests.swift */,
+				6DFC780D260370CC00527A1D /* BackgroundTasksUseCaseTests.swift */,
 			);
 			path = RadarCovidTests;
 			sourceTree = "<group>";
@@ -1778,8 +1777,7 @@
 				764C6D1224B7E5BB002FA594 /* RxSwift */,
 				A9A7D11B2524B03A009091A5 /* RxCocoa */,
 				76357ADC2540447B004C9AE5 /* DP3TSDK */,
-				6D6D343725FA79BD001B2071 /* CrowdNotifierSDK */,
-				6D6D343925FA79BD001B2071 /* Clibsodium */,
+				6D7ED49B2608CA580096BF9B /* CrowdNotifierSDK */,
 			);
 			productName = "Covid Pilot";
 			productReference = 39443286248939F000FF0217 /* Radar COVID.app */;
@@ -1845,7 +1843,7 @@
 				6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				764C6D1124B7E5BB002FA594 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				76357ADB2540447B004C9AE5 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */,
-				6D6D343625FA79BD001B2071 /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */,
+				6DFC783B2608BFBF00527A1D /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */,
 			);
 			productRefGroup = 39443287248939F000FF0217 /* Products */;
 			projectDirPath = "";
@@ -2250,6 +2248,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2312,6 +2311,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2351,6 +2351,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3.0;
+				"OTHER_LDFLAGS[arch=*]" = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
 				PROVISIONING_PROFILE_SPECIFIER = RadarCovidDevelopmentExposure;
@@ -2376,6 +2377,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3.0;
+				"OTHER_LDFLAGS[arch=*]" = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
 				PROVISIONING_PROFILE_SPECIFIER = RadarCovidAdHocExposure;
@@ -2713,6 +2715,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2751,6 +2754,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3.0;
+				"OTHER_LDFLAGS[arch=*]" = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
 				PROVISIONING_PROFILE_SPECIFIER = RadarCovidAdHocExposure;
@@ -2796,6 +2800,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2839,6 +2844,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3.0;
+				"OTHER_LDFLAGS[arch=*]" = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
 				PROVISIONING_PROFILE_SPECIFIER = RadarCovidDevelopmentExposure;
@@ -2895,20 +2901,20 @@
 				version = 4.9.1;
 			};
 		};
-		6D6D343625FA79BD001B2071 /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CrowdNotifier/crowdnotifier-sdk-ios";
-			requirement = {
-				branch = release/v1.1;
-				kind = branch;
-			};
-		};
 		6DF6ECA6248E7453007EAA40 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject";
 			requirement = {
 				kind = exactVersion;
 				version = 2.7.1;
+			};
+		};
+		6DFC783B2608BFBF00527A1D /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CrowdNotifier/crowdnotifier-sdk-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 		76357ADB2540447B004C9AE5 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
@@ -2935,15 +2941,10 @@
 			package = 6D5AFCE6249369FE00EFE838 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		6D6D343725FA79BD001B2071 /* CrowdNotifierSDK */ = {
+		6D7ED49B2608CA580096BF9B /* CrowdNotifierSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6D6D343625FA79BD001B2071 /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */;
+			package = 6DFC783B2608BFBF00527A1D /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */;
 			productName = CrowdNotifierSDK;
-		};
-		6D6D343925FA79BD001B2071 /* Clibsodium */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6D6D343625FA79BD001B2071 /* XCRemoteSwiftPackageReference "crowdnotifier-sdk-ios" */;
-			productName = Clibsodium;
 		};
 		6DF6ECA7248E7453007EAA40 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

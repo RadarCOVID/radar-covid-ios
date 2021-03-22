@@ -60,14 +60,14 @@ class VenueNotifierImpl: VenueNotifier  {
     func checkForMatches(problematicEvents: [ProblematicEvent]) -> [ExposureEvent] {
         let peis = problematicEvents.map { pe in
             ProblematicEventInfo(
-                privateKey: pe.identity.bytes,
-                r2: pe.secretKeyForIdentity.bytes,
-                entry: Date(timeIntervalSince1970: TimeInterval(pe.startTime / 1000)),
-                exit:  Date(timeIntervalSince1970: TimeInterval(pe.endTime / 1000)),
-                message: pe.message.bytes,
+                identity: pe.identity.bytes,
+                secretKeyForIdentity: pe.secretKeyForIdentity.bytes,
+                startTimestamp: Date(timeIntervalSince1970: TimeInterval(pe.startTime / 1000)),
+                endTimestamp:  Date(timeIntervalSince1970: TimeInterval(pe.endTime / 1000)),
+                encryptedMessage: pe.message.bytes,
                 nonce: pe.nonce.bytes)
         }
-        return CrowdNotifier.checkForMatches(publishedSKs: peis)
+        return CrowdNotifier.checkForMatches(problematicEventInfos: peis)
     }
     
 

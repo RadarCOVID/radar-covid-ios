@@ -34,11 +34,10 @@ class VenueListViewModel {
     }
     
     func fetchVenues() {
-//        venueRecordRepository.getVisited()
-        mockedVenues()
+        venueRecordRepository.getVisited()
             .subscribe(
                 onNext: { [weak self] venues in
-                    self?.allVenues = venues
+                    self?.allVenues = venues ?? []
                     self?.refreshVenues()
                 }, onError: { [weak self] error in
                     debugPrint(error)
@@ -74,6 +73,7 @@ class VenueListViewModel {
         }).disposed(by: disposeBag)
     }
     
+//    TODO: remove 
     private func mockedVenues() -> Observable<[VenueRecord]> {
         .just( [VenueRecord(qr: "", checkOutId: "1", hidden: false, exposed: true, notified: false, name: "Un nombre muy largo de lugar que deberían ser mas de tres liiiiiineas", checkInDate: Calendar.current.date(byAdding: .minute, value: -31, to: Date())!, checkOutDate: Date()),
             
