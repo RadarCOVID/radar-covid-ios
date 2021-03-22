@@ -451,3 +451,6 @@
 "VENUE_DIARY_HIDDEN"="OCULTOS";
 "VENUE_DIARY_VISIBLE"="VISIBLES";
 "VENUE_DIARY_TIME"="HORA ENTRADA Y TIEMPO";
+"VENUE_EXPOSURE_NOTIFICATION_BODY"="Se ha detectado un contagio masivo de COVID-19 en un lugar que has visitado";
+"VENUE_RECORD_NOTIFICATION_REMINDER_BODY"="¿Deseas confirmar la salida el lugar visitado?";
+"VENUE_RECORD_NOTIFICATION_REMINDER_TITLE"="Recordatorio de registro en marcha";

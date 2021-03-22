@@ -50,7 +50,8 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
     func scheduleNotification(title: String, body: String, sound: UNNotificationSound) {
 
         let center = UNUserNotificationCenter.current()
-
+        center.delegate = self
+        
         let content = UNMutableNotificationContent()
 
         content.title = title
@@ -84,14 +85,16 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
     }
     
     func scheduleExposedEventNotification() {
-        scheduleNotification(title: "NOTIFICATION_EXPOSED_EVENT_TITLE".localized,
-                             body: "NOTIFICATION_EXPOSED_EVENT_MESSAGE".localized,
+
+        self.scheduleNotification(title: "NOTIFICATION_TITLE_EXPOSURE_HIGH".localized,
+                             body: "VENUE_EXPOSURE_NOTIFICATION_BODY".localized,
                              sound: .defaultCritical)
+
     }
     
     func scheduleCheckInReminderNotification() {
-        scheduleNotification(title: "NOTIFICATION_EXPOSED_EVENT_TITLE".localized,
-                             body: "NOTIFICATION_EXPOSED_EVENT_MESSAGE".localized,
+        scheduleNotification(title: "VENUE_RECORD_NOTIFICATION_REMINDER_TITLE".localized,
+                             body: "VENUE_RECORD_NOTIFICATION_REMINDER_BODY".localized,
                              sound: .defaultCritical)
     }
     
