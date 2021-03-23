@@ -30,15 +30,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escanea el código QR para realizar el registro de entrada" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2s-SP-lRK">
-                    <rect key="frame" x="23" y="557.5" width="329" height="50.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_QR_SCAN_DESC"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escanea el código QR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObF-AA-Z2J">
                     <rect key="frame" x="23" y="85" width="329" height="31.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -59,33 +50,55 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="target" translatesAutoresizingMaskIntoConstraints="NO" id="irw-vc-VZY" userLabel="target">
-                    <rect key="frame" x="32.5" y="178.5" width="310" height="310"/>
+                    <rect key="frame" x="32.5" y="158.5" width="310" height="310"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="310" id="JgI-bB-Ixo"/>
                         <constraint firstAttribute="height" constant="310" id="nGV-9n-LDc"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escanea el código QR para realizar el registro de entrada" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2s-SP-lRK">
+                    <rect key="frame" x="23" y="498.5" width="329" height="50.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_QR_SCAN_DESC"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56l-W8-Qz6">
+                    <rect key="frame" x="157.5" y="580" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="2Hm-8g-8Tt"/>
+                        <constraint firstAttribute="height" constant="60" id="jlv-in-Uy5"/>
+                    </constraints>
+                    <state key="normal" image="FlashIcon"/>
+                    <connections>
+                        <action selector="onFlashTap:" destination="-1" eventType="primaryActionTriggered" id="QAw-58-xMM"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mZe-bo-snd" secondAttribute="trailing" id="1WO-Ek-o2Z"/>
-                <constraint firstItem="irw-vc-VZY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="1dU-8o-w7K"/>
+                <constraint firstItem="irw-vc-VZY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-20" id="1dU-8o-w7K"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ObF-AA-Z2J" secondAttribute="trailing" constant="23" id="4v1-19-qbc"/>
                 <constraint firstItem="irw-vc-VZY" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="67h-Eg-yNT"/>
                 <constraint firstItem="mZe-bo-snd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8Ru-4u-9gz"/>
                 <constraint firstAttribute="bottom" secondItem="VLI-V3-vVS" secondAttribute="bottom" id="Izk-Fu-S3M"/>
+                <constraint firstItem="56l-W8-Qz6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="X5U-OY-zRt"/>
                 <constraint firstItem="VLI-V3-vVS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YSs-3T-Bo2"/>
+                <constraint firstItem="n2s-SP-lRK" firstAttribute="top" secondItem="irw-vc-VZY" secondAttribute="bottom" constant="30" id="aPA-lQ-1AW"/>
                 <constraint firstItem="mZe-bo-snd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aTB-eD-YHr"/>
                 <constraint firstItem="T7o-Sm-zAT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="bPj-AC-EGT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T7o-Sm-zAT" secondAttribute="trailing" constant="20" id="dAf-c1-Chz"/>
                 <constraint firstItem="ObF-AA-Z2J" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="85" id="eWQ-GU-V7C"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mZe-bo-snd" secondAttribute="bottom" id="gTS-fo-9GL"/>
                 <constraint firstItem="T7o-Sm-zAT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="kMv-lP-ven"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="n2s-SP-lRK" secondAttribute="bottom" constant="59" id="mB4-OC-ClM"/>
                 <constraint firstItem="ObF-AA-Z2J" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="mcv-Ei-Og4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VLI-V3-vVS" secondAttribute="trailing" id="nBx-eV-UVl"/>
                 <constraint firstItem="n2s-SP-lRK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="pCc-36-ypz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="56l-W8-Qz6" secondAttribute="bottom" constant="27" id="vB6-ZF-M22"/>
                 <constraint firstItem="VLI-V3-vVS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yAS-B6-jq5"/>
                 <constraint firstAttribute="trailing" secondItem="n2s-SP-lRK" secondAttribute="trailing" constant="23" id="zNz-r8-BUn"/>
             </constraints>
@@ -93,6 +106,7 @@
         </view>
     </objects>
     <resources>
+        <image name="FlashIcon" width="60" height="60"/>
         <image name="iconsBack" width="25.5" height="17"/>
         <image name="target" width="314" height="312"/>
         <systemColor name="systemBackgroundColor">

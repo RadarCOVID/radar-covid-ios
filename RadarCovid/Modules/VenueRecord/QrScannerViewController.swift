@@ -11,6 +11,7 @@
 
 import UIKit
 import RxSwift
+import AVFoundation
 
 class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     
@@ -36,7 +37,26 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
         addQrTransparentWindowToBackground()
     }
     
-    
+    @IBAction func onFlashTap(_ sender: Any) {
+        if let avDevice = AVCaptureDevice.default(for: AVMediaType.video) {
+            if avDevice.hasTorch {
+                 do {
+                     try avDevice.lockForConfiguration()
+                    
+                     if avDevice.isTorchActive {
+                         avDevice.torchMode = AVCaptureDevice.TorchMode.off
+                     } else {
+                         avDevice.torchMode = AVCaptureDevice.TorchMode.on
+                     }
+                    
+                 } catch {
+                    debugPrint("Error configuring torch \(error.localizedDescription)")
+                 }
+             }
+             avDevice.unlockForConfiguration()
+         }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         qrScannerView.startScanning()
@@ -81,9 +101,9 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     
     func qrScanningSucceededWithCode(_ result: String?) {
         venueRecordUseCase.getVenueInfo(qrCode: result ?? "").subscribe(
-            onNext: { [weak self] exposition in
+            onNext: { [weak self] venueInfo in
                 guard let self = self else { return }
-                self.router.route(to: .qrResult, from: self, parameters: result)
+                self.router.route(to: .qrResult, from: self, parameters: venueInfo)
             }, onError: { [weak self] error in
                 debugPrint(error)
                 guard let self = self else { return }
