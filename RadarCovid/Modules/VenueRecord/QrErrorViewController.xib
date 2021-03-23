@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="backButton" destination="Tad-va-13h" id="uMa-Ap-T9a"/>
                 <outlet property="cancelButton" destination="tDy-wy-Pkj" id="iZf-uh-tb1"/>
+                <outlet property="errorLabel" destination="nbS-se-EA8" id="FNa-ma-wGy"/>
                 <outlet property="okButton" destination="US3-V9-7Ek" id="VaP-h0-9Pr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

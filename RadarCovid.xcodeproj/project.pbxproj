@@ -106,7 +106,6 @@
 		6D9154D925E567DC007965F4 /* CheckOutConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D9154D725E567DC007965F4 /* CheckOutConfirmationViewController.xib */; };
 		6D9154E625E659ED007965F4 /* VenueBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9154E525E659ED007965F4 /* VenueBase.swift */; };
 		6D9154FB25E7A8EA007965F4 /* VenueNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9154FA25E7A8EA007965F4 /* VenueNotifier.swift */; };
-		6D91550425E7B078007965F4 /* VenueNotifierError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91550325E7B078007965F4 /* VenueNotifierError.swift */; };
 		6D91550E25E7E4BE007965F4 /* VenueRecordUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91550D25E7E4BE007965F4 /* VenueRecordUseCaseTests.swift */; };
 		6D91552125ED02FE007965F4 /* KeyStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */; };
 		6D91552625ED6837007965F4 /* QrErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D91552425ED6837007965F4 /* QrErrorViewController.swift */; };
@@ -427,7 +426,6 @@
 		6D9154D725E567DC007965F4 /* CheckOutConfirmationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckOutConfirmationViewController.xib; sourceTree = "<group>"; };
 		6D9154E525E659ED007965F4 /* VenueBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueBase.swift; sourceTree = "<group>"; };
 		6D9154FA25E7A8EA007965F4 /* VenueNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueNotifier.swift; sourceTree = "<group>"; };
-		6D91550325E7B078007965F4 /* VenueNotifierError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueNotifierError.swift; sourceTree = "<group>"; };
 		6D91550D25E7E4BE007965F4 /* VenueRecordUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRecordUseCaseTests.swift; sourceTree = "<group>"; };
 		6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStoreRepository.swift; sourceTree = "<group>"; };
 		6D91552425ED6837007965F4 /* QrErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrErrorViewController.swift; sourceTree = "<group>"; };
@@ -953,7 +951,6 @@
 			isa = PBXGroup;
 			children = (
 				6D9154FA25E7A8EA007965F4 /* VenueNotifier.swift */,
-				6D91550325E7B078007965F4 /* VenueNotifierError.swift */,
 			);
 			path = VenueNotifier;
 			sourceTree = "<group>";
@@ -1982,7 +1979,6 @@
 				6DB5419324989C2500166D37 /* RiskLevelDataDto.swift in Sources */,
 				6D9F3A8E25029B0E005EE842 /* UIViewController+Alert.swift in Sources */,
 				A91D8E2E2539947500EB23D4 /* WelcomeViewModel.swift in Sources */,
-				6D91550425E7B078007965F4 /* VenueNotifierError.swift in Sources */,
 				6DB5418D24989C2500166D37 /* TokenAPI.swift in Sources */,
 				6D7AB27724AF1CBD00F30E0B /* VersionHandler.swift in Sources */,
 				6DBDBD5624EC012D00EF2654 /* ExpositionChechUseCase.swift in Sources */,

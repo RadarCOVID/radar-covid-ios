@@ -87,7 +87,7 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
             }, onError: { [weak self] error in
                 debugPrint(error)
                 guard let self = self else { return }
-                self.router.route(to: .qrError, from: self)
+                self.router.route(to: .qrError, from: self, parameters: error)
             }).disposed(by: disposeBag)
         
     }

@@ -10,18 +10,27 @@
 //
 
 import UIKit
+import CrowdNotifierSDK
 
 class QrErrorViewController: BaseViewController {
     
     var router: AppRouter!
     
+    var error: Error?
+    
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupAccesibility()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handleError()
     }
     
     @IBAction func onOk(_ sender: Any) {
@@ -52,6 +61,20 @@ class QrErrorViewController: BaseViewController {
         okButton.accessibilityLabel = "VENUE_HOME_BUTTON_START".localized
         okButton.accessibilityHint = "ACC_HINT".localized
         okButton.accessibilityTraits.remove(UIAccessibilityTraits.selected)
+    }
+    
+    private func handleError() {
+        if let error = self.error {
+            if case CrowdNotifierError.validFromError = error {
+                errorLabel.text = "QR_NOT_VALID_YET_ERROR".localized
+            } else if case CrowdNotifierError.validToError = error {
+                errorLabel.text = "QR_OUTDATED_ERROR".localized
+            } else {
+                errorLabel.text = "VENUE_RECORD_ERROR_CODE_PARAGRAPH_1".localized
+            }
+        } else {
+            errorLabel.text = "VENUE_RECORD_ERROR_CODE_PARAGRAPH_1".localized
+        }
     }
 }
 

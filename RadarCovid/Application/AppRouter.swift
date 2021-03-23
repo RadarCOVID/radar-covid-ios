@@ -158,7 +158,7 @@ class AppRouter: Router {
         case .checkOutConfirmation:
             routeToCheckoutConfirmation(context)
         case .qrError:
-            routeToQrError(context)
+            routeToQrError(context, error: parameters?.first as? Error)
         case .venueList:
             routeToVenueList(context)
         }
@@ -316,8 +316,9 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func routeToQrError(_ context: UIViewController) {
+    private func routeToQrError(_ context: UIViewController, error: Error?) {
         let vc = AppDelegate.shared!.injection.resolve(QrErrorViewController.self)!
+        vc.error = error
         context.navigationController?.pushViewController(vc, animated: true)
     }
     private func routeToVenueList(_ context: UIViewController) {

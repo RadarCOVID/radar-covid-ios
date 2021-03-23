@@ -99,9 +99,9 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
     }
     
 
+    // Forground notifications.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // Forground notifications.
         completionHandler([.alert, .sound, .badge])
     }
 
