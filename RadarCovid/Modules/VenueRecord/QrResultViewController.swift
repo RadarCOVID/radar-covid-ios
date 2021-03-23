@@ -23,7 +23,7 @@ class QrResultViewController: VenueViewController {
     @IBOutlet weak var confirmButton: UIButton!
     
     var qrCode: String?
-    private var venueRecord: VenueRecord?
+    var venueRecord: VenueRecord?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,15 +68,23 @@ class QrResultViewController: VenueViewController {
     }
     
     private func loadVenueInfo() {
-        venueRecordUseCase.getVenueInfo(qrCode: qrCode ?? "").subscribe(
-            onNext: { [weak self] venueRecord in
-                self?.venueRecord = venueRecord
-                self?.venueNameLabel.text = venueRecord.name
-            },onError: { [weak self] error in
-                debugPrint(error)
-                guard let self = self else { return }
-                self.router.route(to: .qrError, from: self)
-        }).disposed(by: disposeBag)
+        if let venueRecord = venueRecord {
+            loadVenueInfo(venue: venueRecord)
+        } else {
+            venueRecordUseCase.getVenueInfo(qrCode: qrCode ?? "").subscribe(
+                onNext: { [weak self] venueRecord in
+                    self?.venueRecord = venueRecord
+                    self?.loadVenueInfo(venue: venueRecord)
+                },onError: { [weak self] error in
+                    debugPrint(error)
+                    guard let self = self else { return }
+                    self.router.route(to: .qrError, from: self)
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    private func loadVenueInfo(venue: VenueRecord) {
+        venueNameLabel.text = venue.name
     }
     
     private func setupAccesibility() {

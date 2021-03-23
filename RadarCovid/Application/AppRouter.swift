@@ -60,40 +60,28 @@ class AppRouter: Router {
     var parentVC: UIViewController?
 
     func routes(to routeIDs: [Routes], from context: UIViewController, parameters: [Any?]?) {
-        parentVC = context
-        
-        var index:Int = 1
-        var newParentViewController: UIViewController?
 
+        let navigationController = context.navigationController
+        var currentContext = context
         
-        for itemRouteId in routeIDs {
-            
-            let sendParameters = index >= routeIDs.count ? parameters : nil
-
-            if index == 1 {
-                let nvC = context.navigationController
-                route(to: itemRouteId, from: context, parameters: sendParameters)
-                newParentViewController = nvC?.viewControllers.first
-            } else {
-                route(to: itemRouteId, from: newParentViewController ?? context, parameters: sendParameters)
-            }
-            index = 1 + index
+        for (index, routeId) in routeIDs.enumerated() {
+            route(to: routeId, from: currentContext, parameters: parameters?[index])
+            currentContext = navigationController?.viewControllers.first ?? context
         }
     }
     
     func route(to routeID: Routes, from context: UIViewController, parameters: Any?...) {
-        route(to: routeID, from: context, parameters: parameters.map { $0 } )
+        route(to: routeID, from: context, parameters: parameters )
     }
     
     func route(to routeID: Routes, from context: UIViewController, parameters: [Any?]?) {
         parentVC = context
         switch routeID {
         case .root:
-            if let param = parameters,
-               param.count >= 2 {
-                routeToRoot(context, urlSchemeRedirect: param.first as? [Routes], paramsUrlScheme: param[1] as? [Any?])
+            if let param = parameters, !param.isEmpty {
+                routeToRoot(context, routeStack: param.first as? RouteStack)
             } else {
-                routeToRoot(context, urlSchemeRedirect: nil, paramsUrlScheme: [])
+                routeToRoot(context, routeStack: nil)
             }
         case .welcome:
             routeToWelcome(context)
@@ -150,7 +138,7 @@ class AppRouter: Router {
         case .qrScanner:
             routeToQrScanner(context)
         case .qrResult:
-            routeToQrResult(context, qrCode: parameters?.first as? String)
+            routeToQrResult(context, data: parameters?.first as Any?)
         case .checkedIn:
             routeToCheckedIn(context)
         case .checkOut:
@@ -169,10 +157,9 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(onBoardingVC!, animated: true)
     }
 
-    private func routeToRoot(_ context: UIViewController, urlSchemeRedirect: [Routes]?, paramsUrlScheme: [Any?]?) {
+    private func routeToRoot(_ context: UIViewController, routeStack: RouteStack?) {
         let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
-        rootVC?.urlSchemeRedirect = urlSchemeRedirect
-        rootVC?.paramsUrlScheme = paramsUrlScheme
+        rootVC?.routeStack = routeStack
         loadViewAsRoot(navController: context as? UINavigationController, view: rootVC!)
     }
     
@@ -218,7 +205,7 @@ class AppRouter: Router {
         let unsupportedOSVC = AppDelegate.shared?.injection.resolve(UnsupportedOSViewController.self)!
         loadViewAsRoot(navController: context.navigationController, view: unsupportedOSVC!)
     }
-    
+
     private func routeToHome(_ context: UIViewController, _ parameters: [Any?]?) {
         let tabBarController = AppDelegate.shared?.injection.resolve(TabBarController.self)!
         if let param = parameters, param.count > 0 {
@@ -295,9 +282,15 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(qrScannerVC, animated: true)
     }
     
-    private func routeToQrResult(_ context: UIViewController, qrCode: String?) {
+    private func routeToQrResult(_ context: UIViewController, data: Any?) {
         let qrResultVC = AppDelegate.shared!.injection.resolve(QrResultViewController.self)!
-        qrResultVC.qrCode = qrCode
+        
+        if let venueRecord = data as? VenueRecord {
+            qrResultVC.venueRecord = venueRecord
+        } else {
+            qrResultVC.qrCode = data as? String
+        }
+        
         context.navigationController?.pushViewController(qrResultVC, animated: true)
     }
     
@@ -357,6 +350,16 @@ class AppRouter: Router {
         from.navigationController?.popViewController(animated: animated)
         parentVC?.viewWillAppear(animated)
         parentVC = nil
+    }
+    
+    func pop(from: UIViewController, to: UIViewController.Type, animated: Bool) {
+       
+        if let navController = from.navigationController?.viewControllers
+                .last(where: { type(of:$0)  === to }) {
+            from.navigationController?.popToViewController(navController, animated: animated)
+            parentVC?.viewWillAppear(animated)
+            parentVC = nil
+        }
     }
 
 }

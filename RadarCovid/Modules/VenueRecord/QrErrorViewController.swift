@@ -34,15 +34,15 @@ class QrErrorViewController: BaseViewController {
     }
     
     @IBAction func onOk(_ sender: Any) {
-        router.pop(from: self, animated: true)
+        router.pop(from: self, to: QrScannerViewController.self, animated: true)
     }
     
     @IBAction func onCancel(_ sender: Any) {
-        router.pop(from: self, animated: true)
+        router.pop(from: self, to: QrScannerViewController.self, animated: true)
     }
     
     @IBAction func onBack(_ sender: Any) {
-        router.pop(from: self, animated: true)
+        router.pop(from: self, to: QrScannerViewController.self, animated: true)
     }
     
     private func setupView() {

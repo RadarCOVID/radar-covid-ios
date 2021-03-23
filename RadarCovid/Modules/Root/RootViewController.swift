@@ -24,9 +24,9 @@ class RootViewController: UIViewController {
     
     var venueRecordUseCase: VenueRecordUseCase!
     
-    var urlSchemeRedirect: [Routes]?
     var selectTabType: UIViewController.Type?
-    var paramsUrlScheme: [Any?]?
+    
+    var routeStack: RouteStack?
     
     private let disposeBag = DisposeBag()
     
@@ -143,8 +143,8 @@ class RootViewController: UIViewController {
     private func navigateIfCheckedIn(_ checkedIn: Bool) {
         if checkedIn {
             router.route(to: .checkedIn, from: self)
-        } else if let urlSchemeRedirect = urlSchemeRedirect {
-            router.routes(to: urlSchemeRedirect, from: self, parameters: paramsUrlScheme)
+        } else if let routeStack = routeStack {
+            router.routes(to: routeStack.routes, from: self, parameters: routeStack.params)
         } else {
             router.route(to: Routes.home, from: self, parameters: selectTabType)
         }
@@ -154,4 +154,9 @@ class RootViewController: UIViewController {
         router.route(to: .unsupportedOS, from: self)
     }
 
+}
+
+struct RouteStack {
+    let routes: [Routes]
+    let params: [Any?]
 }

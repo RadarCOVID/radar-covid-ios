@@ -277,7 +277,9 @@ class Injection {
         
         container.register(DeepLinkUseCase.self) { r in
             DeepLinkUseCase(
-                expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
+                expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+                router: r.resolve(AppRouter.self)!,
+                qrBase: Config.endpoints.qrBase)
         }.inObjectScope(.container)
         
         container.register(AnalyticsUseCase.self) { r in

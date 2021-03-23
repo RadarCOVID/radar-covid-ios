@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         if let url = url {
-            deepLinkUseCase?.getScreenFor(url: url, window: window, router: router)
+            deepLinkUseCase?.routeTo(url: url, from: navigationController)
         } else {
             router?.route(to: Routes.root, from: navigationController)
         }
