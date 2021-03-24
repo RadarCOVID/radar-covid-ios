@@ -73,15 +73,6 @@ class VenueListViewModel {
         }).disposed(by: disposeBag)
     }
     
-//    TODO: remove 
-    private func mockedVenues() -> Observable<[VenueRecord]> {
-        .just( [VenueRecord(qr: "", checkOutId: "1", hidden: false, exposed: true, notified: false, name: "Un nombre muy largo de lugar que deberían ser mas de tres liiiiiineas", checkInDate: Calendar.current.date(byAdding: .minute, value: -31, to: Date())!, checkOutDate: Date()),
-            
-                VenueRecord(qr: "", checkOutId: "2", hidden: true, exposed: true, notified: false, name: "Un nombre normal", checkInDate: Calendar.current.date(byAdding: .minute, value: -120, to: Date())!, checkOutDate: Calendar.current.date(byAdding: .minute, value: -10, to: Date())),
-                VenueRecord(qr: "", checkOutId: "3", hidden: true, exposed: true, notified: false, name: "Un nombre normal2", checkInDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, checkOutDate: Calendar.current.date(byAdding: .hour, value: -28, to: Date())),
-                VenueRecord(qr: "", checkOutId: "4", hidden: true, exposed: true, notified: false, name: "Un nombre normal2", checkInDate: Calendar.current.date(byAdding: .day, value: -2, to: Date())!, checkOutDate: Calendar.current.date(byAdding: .hour, value: -35, to: Date()))] )
-    }
-    
     private func countHidden() -> Int {
         allVenues.filter { $0.hidden }.count
     }

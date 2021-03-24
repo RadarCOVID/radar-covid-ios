@@ -20,6 +20,12 @@ class HelpLineViewController: BaseViewController, MFMailComposeViewControllerDel
     @IBOutlet weak var infoWebLabel: UILabel!
     @IBOutlet weak var otherWebLabel: UILabel!
     
+    @IBOutlet weak var acceptTermsLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var privacyLabel: UILabel!
+    @IBOutlet weak var bullet2Label: UILabel!
+    @IBOutlet weak var bullet3Label: UILabel!
+    
     var router: AppRouter?
     var preferencesRepository: PreferencesRepository?
     
@@ -77,6 +83,22 @@ class HelpLineViewController: BaseViewController, MFMailComposeViewControllerDel
         otherWebLabel.isAccessibilityElement = true
         otherWebLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
         otherWebLabel.accessibilityHint = "ACC_HINT".localized
+        
+        acceptTermsLabel.isAccessibilityElement = true
+        acceptTermsLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        acceptTermsLabel.accessibilityLabel = "MY_DATA_TERMS".localizedAttributed().string
+        acceptTermsLabel.accessibilityHint = "ACC_HINT".localized
+        
+        privacyLabel.isAccessibilityElement = true
+        privacyLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        privacyLabel.accessibilityLabel = "MY_DATA_PRIVACY".localizedAttributed().string
+        privacyLabel.accessibilityHint = "ACC_HINT".localized
+        
+        if UIAccessibility.isVoiceOverRunning {
+            descriptionLabel.text = descriptionLabel.text?.lowercased()
+            bullet2Label.text = bullet2Label.text?.lowercased()
+            bullet3Label.text = bullet3Label.text?.lowercased()
+        }
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController,
@@ -99,5 +121,23 @@ class HelpLineViewController: BaseViewController, MFMailComposeViewControllerDel
         otherWebLabel.isUserInteractionEnabled = true
         otherWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                         action: #selector(userDidTapOther(tapGestureRecognizer:))))
+        
+        acceptTermsLabel.isUserInteractionEnabled = true
+        privacyLabel.isUserInteractionEnabled = true
+
+        acceptTermsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                              action: #selector(userDidTapTerms(tapGestureRecognizer:))))
+
+        privacyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                          action: #selector(userDidTapPrivacy(tapGestureRecognizer:))))
     }
+    
+    @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_DATA_TERMS".localized.getUrlFromHref())
+    }
+
+    @objc func userDidTapPrivacy(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_DATA_PRIVACY".localized.getUrlFromHref())
+    }
+    
 }

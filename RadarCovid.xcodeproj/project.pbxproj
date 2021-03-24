@@ -175,8 +175,6 @@
 		6DF6ECC4248F691E007EAA40 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECC3248F691E007EAA40 /* HomeViewController.swift */; };
 		6DF6ECC8248F70DF007EAA40 /* PreferencesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECC7248F70DF007EAA40 /* PreferencesRepository.swift */; };
 		6DF6ECCC248F9A71007EAA40 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECCB248F9A71007EAA40 /* TabBarController.swift */; };
-		6DF6ECCF248FA032007EAA40 /* MyData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6ECCE248FA032007EAA40 /* MyData.storyboard */; };
-		6DF6ECD1248FA044007EAA40 /* MyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECD0248FA044007EAA40 /* MyDataViewController.swift */; };
 		6DF6ECD4248FA0B3007EAA40 /* HelpLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6ECD3248FA0B3007EAA40 /* HelpLine.storyboard */; };
 		6DF6ECD6248FA0D0007EAA40 /* HelpLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECD5248FA0D0007EAA40 /* HelpLineViewController.swift */; };
 		6DF6ECDB248FD641007EAA40 /* ExpositionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6ECDA248FD641007EAA40 /* ExpositionUseCase.swift */; };
@@ -496,8 +494,6 @@
 		6DF6ECC3248F691E007EAA40 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6DF6ECC7248F70DF007EAA40 /* PreferencesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesRepository.swift; sourceTree = "<group>"; };
 		6DF6ECCB248F9A71007EAA40 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		6DF6ECCE248FA032007EAA40 /* MyData.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyData.storyboard; sourceTree = "<group>"; };
-		6DF6ECD0248FA044007EAA40 /* MyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataViewController.swift; sourceTree = "<group>"; };
 		6DF6ECD3248FA0B3007EAA40 /* HelpLine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HelpLine.storyboard; sourceTree = "<group>"; };
 		6DF6ECD5248FA0D0007EAA40 /* HelpLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLineViewController.swift; sourceTree = "<group>"; };
 		6DF6ECDA248FD641007EAA40 /* ExpositionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionUseCase.swift; sourceTree = "<group>"; };
@@ -731,7 +727,6 @@
 				6D83344C24B834DD00223071 /* Root */,
 				6DA18CBE24916B1800BE8AAB /* Exposition */,
 				6DF6ECD2248FA091007EAA40 /* HelpLine */,
-				6DF6ECCD248FA01E007EAA40 /* MyData */,
 				6DF6ECC0248F68B2007EAA40 /* Home */,
 				A9508EA925247DE7008E6A8B /* Setting */,
 				394E962D248E7DE3009F640E /* MyHealth */,
@@ -1214,15 +1209,6 @@
 				6D6D344525FB7734001B2071 /* QrCheckRepository.swift */,
 			);
 			path = Repository;
-			sourceTree = "<group>";
-		};
-		6DF6ECCD248FA01E007EAA40 /* MyData */ = {
-			isa = PBXGroup;
-			children = (
-				6DF6ECD0248FA044007EAA40 /* MyDataViewController.swift */,
-				6DF6ECCE248FA032007EAA40 /* MyData.storyboard */,
-			);
-			path = MyData;
 			sourceTree = "<group>";
 		};
 		6DF6ECD2248FA091007EAA40 /* HelpLine */ = {
@@ -1892,7 +1878,6 @@
 				6D4FEC7D25E5134F00AAD131 /* QrScannerViewController.xib in Resources */,
 				A9C9AC1325385BA100637067 /* CustomSliderView.xib in Resources */,
 				7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */,
-				6DF6ECCF248FA032007EAA40 /* MyData.storyboard in Resources */,
 				6D5AFC932492883700EFE838 /* muli_regular.ttf in Resources */,
 				39443293248939F500FF0217 /* Assets.xcassets in Resources */,
 				A9D38D5A256D1D3100C2F671 /* TermsUpdatedView.xib in Resources */,
@@ -1991,7 +1976,6 @@
 				A9C9AC1225385BA100637067 /* CustomSlider.swift in Sources */,
 				76D9BD1E24A8992000BA6697 /* NVActivityIndicatorViewable.swift in Sources */,
 				6D076FCA25DFC913001A8C44 /* VenueRecordRepository.swift in Sources */,
-				6DF6ECD1248FA044007EAA40 /* MyDataViewController.swift in Sources */,
 				76D342DC25768C4F009E14C5 /* Totals.swift in Sources */,
 				A9DF1FEE25713270004BA5D1 /* SettingViewModel.swift in Sources */,
 				A9D38D70256D25E100C2F671 /* StatsViewModel.swift in Sources */,

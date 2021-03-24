@@ -334,7 +334,6 @@ class Injection {
         container.register(TabBarController.self) { r in
             TabBarController(
                 homeViewController: r.resolve(HomeViewController.self)!,
-                myDataViewController: r.resolve(MyDataViewController.self)!,
                 helpLineViewController: r.resolve(HelpLineViewController.self)!,
                 statsViewController: r.resolve(StatsViewController.self)!,
                 settingViewController: r.resolve(SettingViewController.self)!,
@@ -408,12 +407,6 @@ class Injection {
             homeVM.onBoardingCompletedUseCase = route.resolve(OnboardingCompletedUseCase.self)!
             homeVM.reminderNotificationUseCase = route.resolve(ReminderNotificationUseCase.self)!
             return homeVM
-        }
-        
-        container.register(MyDataViewController.self) {  _ in
-            self.createViewController(
-                storyboard: "MyData",
-                viewId: "MyDataViewController") as? MyDataViewController ?? MyDataViewController()
         }
         
         container.register(HelpLineViewController.self) {  route in

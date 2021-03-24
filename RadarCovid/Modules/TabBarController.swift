@@ -18,7 +18,6 @@ class TabBarController: UITabBarController {
     private let disposeBag = DisposeBag()
     
     private let homeViewController: HomeViewController!
-    private let myDataViewController: MyDataViewController!
     private let helpLineViewController: HelpLineViewController!
     private let settingViewController: SettingViewController!
     private let statsViewController: StatsViewController!
@@ -32,7 +31,6 @@ class TabBarController: UITabBarController {
     var selectTabType: UIViewController.Type?
 
     init(homeViewController: HomeViewController,
-         myDataViewController: MyDataViewController,
          helpLineViewController: HelpLineViewController,
          statsViewController: StatsViewController,
          settingViewController: SettingViewController,
@@ -42,7 +40,6 @@ class TabBarController: UITabBarController {
          venueRecodrUseCase: VenueRecordUseCase) {
         
         self.homeViewController = homeViewController
-        self.myDataViewController = myDataViewController
         self.helpLineViewController = helpLineViewController
         self.settingViewController = settingViewController
         self.statsViewController = statsViewController
@@ -71,7 +68,7 @@ class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAccessibility()
-        setViewControllers([homeViewController,venueRecordViewController, helpLineViewController, statsViewController, settingViewController ], animated: false)
+        setViewControllers([homeViewController,venueRecordViewController, statsViewController, helpLineViewController, settingViewController ], animated: false)
         
         select(tabType: selectTabType)
         
@@ -83,11 +80,6 @@ class TabBarController: UITabBarController {
         homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
         homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-
-        myDataViewController.tabBarItem.isAccessibilityElement = true
-        myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
-        myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
 
         helpLineViewController.tabBarItem.isAccessibilityElement = true
         helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
@@ -134,10 +126,6 @@ class TabBarController: UITabBarController {
             image: UIImage(named: "QrNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "QrNormal"))
         
-        myDataViewController.tabBarItem = UITabBarItem(
-            title: "",
-            image: UIImage(named: "MenuInfoNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
-            selectedImage: UIImage(named: "MenuInfoSelected"))
         helpLineViewController.tabBarItem = UITabBarItem(
             title: "",
             image: UIImage(named: "MenuHelpNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
