@@ -16,6 +16,8 @@ import DP3TSDK
 
 class HomeViewModel {
     
+    private let  minutesADay = 60 * 24
+    
     private let disposeBag = DisposeBag()
     
     var expositionUseCase: ExpositionUseCase?
@@ -118,20 +120,23 @@ class HomeViewModel {
         }
     }
     
-    func checkRemainingExpositionDays(since: Date) -> Int{
+    func getRemainingExpositionDays(since: Date) -> Int {
+        getDaysRemaining(since: since, timeToHealthy: Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0))
+
+    }
+    
+    func getRemainingVenueExpositionDays(since: Date?) -> Int {
+        getDaysRemaining(since: since ?? Date(), timeToHealthy: Int(settingsRepository?.getSettings()?.parameters?.venueConfiguration?.quarentineAfterExposed ?? 0))
+    }
+    
+    private func getDaysRemaining(since: Date, timeToHealthy: Int) -> Int {
         let sinceDay = since.getStartOfDay()
         
-        let minutesInAHour = 60
-        let hoursInADay = 24
-        let formatter = DateFormatter()
-        formatter.dateFormat = Date.appDateFormat
+        let daysSinceLastExposition = Date().days(sinceDate: sinceDay) ?? 1
         
-        let daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
-        let daysForHealty = Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0) / minutesInAHour / hoursInADay
+        let result = (timeToHealthy / minutesADay) - daysSinceLastExposition
         
-        let result = daysForHealty - daysSinceLastInfection
-        
-        return result >= 0 ? result : 0
+        return result > 0 ? result : 0
     }
     
     func restoreLastStateAndSync(cb: (() -> Void)? = nil) {

@@ -328,15 +328,15 @@ class HomeViewController: BaseViewController {
     }
     
     private func updateVenueExpositionInfo(_ exposition: VenueExpositionInfo?) {
-//        TODO: get remaining days
-        venueRemainingDaysLabel.attributedText = getRemainingDaysText(6)
+        
+        venueRemainingDaysLabel.attributedText = getRemainingDaysText(viewModel!.getRemainingVenueExpositionDays(since: exposition?.since))
     }
 
     private func setExposed(since: Date) {
        
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_HIGH".localized
         contactRiskImage.isHidden = false
-        let remainingDays = self.viewModel?.checkRemainingExpositionDays(since: since) ?? 0
+        let remainingDays = self.viewModel?.getRemainingExpositionDays(since: since) ?? 0
         let remainingDaysText = getRemainingDaysText(remainingDays)
             
         let attributedText = NSMutableAttributedString.init(attributedString: "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
