@@ -11,6 +11,7 @@
 
 import Foundation
 import RxSwift
+import Logging
 
 protocol ProblematicEventsUseCase {
     func sync() -> Observable<Void>
@@ -18,6 +19,8 @@ protocol ProblematicEventsUseCase {
 }
 
 class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
+    
+    private let logger = Logger(label: "ProblematicEventsUseCaseImpl")
     
     private let venueNotifier: VenueNotifier
     private let venueRecordRepository: VenueRecordRepository
@@ -39,8 +42,10 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     
     func sync() -> Observable<Void> {
         
-        problematicEventsApi.getProblematicEvents(tag: qrCheckRepository.getSyncTag()).flatMap { [weak self] problematicEventData -> Observable<Void> in
-            
+        logger.debug("Problematic Event Sync run")
+        
+        return problematicEventsApi.getProblematicEvents(tag: qrCheckRepository.getSyncTag()).flatMap { [weak self] problematicEventData -> Observable<Void> in
+        
             guard let self = self else { return .empty() }
             
             let problematicEvents = problematicEventData.problematicEvents
@@ -48,6 +53,8 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
             let exposedEvents = self.venueNotifier.checkForMatches(problematicEvents: problematicEvents)
             
             if !exposedEvents.isEmpty {
+                
+                self.logger.debug("Received \(exposedEvents.count) problematic events")
                 
                 return self.venueRecordRepository.getVisited().flatMap { visitedVenues -> Observable<Void> in
                     var newVisited: [VenueRecord] = []
@@ -62,7 +69,6 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
                         if !self.isOutdated(visited) {
                             newVisited.append(visited)
                         }
-                        
                     }
                     
                     newVisited = self.notifyIfExposed(newVisited)
