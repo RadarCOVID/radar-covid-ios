@@ -98,7 +98,7 @@ class VenueRecordUseCaseTests: XCTestCase {
         let venueRecord = VenueRecord(qr: "", checkInDate: intial, checkOutDate: nil)
 
         venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
-        venueNotifier.registerGetInfo(response: .error(VenueNotifierError.invalidQR))
+        venueNotifier.registerGetInfo(response: .error(CrowdNotifierError.invalidQRCode))
         
         do {
             try sut.checkOut(date: current).toBlocking().first()
@@ -125,7 +125,7 @@ class VenueRecordUseCaseTests: XCTestCase {
         
         venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
         venueNotifier.registerGetInfo(response: .just(venueInfo))
-        venueNotifier.registerCheckOut(response: .error(VenueNotifierError.invalidQR))
+        venueNotifier.registerCheckOut(response: .error(CrowdNotifierError.invalidQRCode))
         
         do {
             try sut.checkOut(date: current).toBlocking().first()
