@@ -57,7 +57,7 @@ class FakeRequestUseCaseImpl: DiagnosisCodeUseCase, FakeRequestUseCase {
      Old version S.O.
      */
     private func sendOldFalsePositive() -> Observable<Bool> {
-        return Observable.create { [weak self] (observer) -> Disposable in
+        .create { [weak self] (observer) -> Disposable in
             if self?.needToSendFalsePositive() ?? false {
                 let randomBoolean = Bool.random()
                 self?.sendDiagnosisCode(code:  FakeRequestUseCaseImpl.FALSE_POSITIVE_CODE, date: Date(), share: randomBoolean).subscribe(
@@ -117,7 +117,7 @@ extension FakeRequestUseCaseImpl: FakeRequestBackgroundTask {
     }
     
     private func sendFalsePositive(task: BGTask? = nil) -> Observable<Bool> {
-        return Observable.create { [weak self] (observer) -> Disposable in
+        .create { [weak self] (observer) -> Disposable in
             task?.expirationHandler = {
                 observer.onCompleted()
             }
