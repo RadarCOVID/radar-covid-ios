@@ -46,10 +46,12 @@ enum Endpoits {
         case .pro: return "https://radarcovid.covid19.gob.es/notifyme/v1"
         }
     }
+    
+    
 //    https://radarcovid.gob.es https://radarcovid.prueba.es
     var qrBase: String {
         switch self {     
-        case .pre: return "https://radarcovid.prueba.es"
+        case .pre: return "https://radarcovidpre.covid19.gob.es/qr"
         case .pro: return "https://qr.notify-me.ch"
         }
     }

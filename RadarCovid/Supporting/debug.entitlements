@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:test-radar.covid19.gob.es/qr</string>
+		<string>applinks:radarcovidpre.covid19.gob.es/qr</string>
 	</array>
 	<key>com.apple.developer.exposure-notification</key>
 	<true/>
