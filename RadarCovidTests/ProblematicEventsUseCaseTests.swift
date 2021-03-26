@@ -26,6 +26,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     private var notificationHandler: NotificationHandlerMock!
     private var qrCheckRepository: QrCheckRepositoryMock!
     private var settingsRepository: MockSettingsRepository!
+    private var venueExpositionUseCase: VenueExpositionUseCaseMock!
     
     override func setUpWithError() throws {
         
@@ -35,8 +36,9 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         notificationHandler = NotificationHandlerMock()
         qrCheckRepository = QrCheckRepositoryMock()
         settingsRepository = MockSettingsRepository()
+        venueExpositionUseCase = VenueExpositionUseCaseMock()
         
-        sut = ProblematicEventsUseCaseImpl(venueRecordRepository: venueRecordRepository, qrCheckRepository: qrCheckRepository, venueNotifier: venueNotifier, problematicEventsApi: problematicEvensApi, notificationHandler: notificationHandler, settingsRepository: settingsRepository)
+        sut = ProblematicEventsUseCaseImpl(venueRecordRepository: venueRecordRepository, qrCheckRepository: qrCheckRepository, venueNotifier: venueNotifier, problematicEventsApi: problematicEvensApi, notificationHandler: notificationHandler, settingsRepository: settingsRepository, venueExpositionUseCase: venueExpositionUseCase)
     }
 
     override func tearDownWithError() throws {
@@ -115,6 +117,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         venueRecordRepository.verifyGetVisited()
         venueRecordRepository.verifyUpdateVisited()
+        venueExpositionUseCase.verifyUpdateExpositionInfo()
         
         notificationHandler.verifyScheduleExposedEventNotification(called: .exact(1))
         
@@ -174,6 +177,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         venueRecordRepository.verifyGetVisited()
         venueRecordRepository.verifyUpdateVisited()
+        venueExpositionUseCase.verifyUpdateExpositionInfo()
         
         notificationHandler.verifyScheduleExposedEventNotification(called: .never)
         
@@ -181,7 +185,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
     }
     
-    func testSyncWithAtLeastOneEventPreviouslyNotifiedSendNotification() throws {
+    func testSyncWithAtLeastOneEventPreviouslyNotNotifiedNotifiedSendNotification() throws {
         
         var problematicEvents: [ProblematicEvent] = []
         problematicEvents.append(ProblematicEvent())
@@ -190,14 +194,14 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         var exposedEvents: [ExposureEvent] = []
         exposedEvents.append(getExposureEvent(checkinId: "IdFreshExposedNotified1"))
-        exposedEvents.append(getExposureEvent(checkinId: "IdFresh"))
+        exposedEvents.append(getExposureEvent(checkinId: "IdFreshExposed"))
         venueNotifier.registerCheckForMatches(response: exposedEvents)
         
         var venueRecords: [VenueRecord] = []
         venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified1", hidden: false, exposed: false, notified: true, name: "name",
                                 checkInDate: Calendar.current.date(byAdding: .hour, value: -6, to: Date())!,
                                 checkOutDate: Calendar.current.date(byAdding: .hour, value: -5, to: Date())))
-        venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFresh", hidden: false, exposed: false, notified: false, name: "name",
+        venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposed", hidden: false, exposed: false, notified: false, name: "name",
                                         checkInDate: Calendar.current.date(byAdding: .hour, value: -3, to: Date())!,
                                         checkOutDate: Calendar.current.date(byAdding: .hour, value: -2, to: Date())))
         
@@ -210,6 +214,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         venueRecordRepository.verifyGetVisited()
         venueRecordRepository.verifyUpdateVisited()
+        venueExpositionUseCase.verifyUpdateExpositionInfo()
         
         notificationHandler.verifyScheduleExposedEventNotification(called: .exact(1))
         
@@ -237,6 +242,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         venueRecordRepository.verifyGetVisited()
         venueRecordRepository.verifyUpdateVisited()
+        venueExpositionUseCase.verifyUpdateExpositionInfo()
         
         notificationHandler.verifyScheduleExposedEventNotification(called: .never)
         
@@ -322,6 +328,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         venueNotifier.verifyNoMoreInteractions()
         problematicEvensApi.verifyNoMoreInteractions()
         notificationHandler.verifyNoMoreInteractions()
+        venueExpositionUseCase.verifyNoMoreInteractions()
     }
     
     func getExposureEvent(checkinId: String) -> ExposureEvent {
@@ -396,5 +403,31 @@ class NotificationHandlerMock: Mocker, NotificationHandler {
     func verifyScheduleCheckInReminderNotification(called: VerifyCount = .atLeastOnce) {
         verify("scheduleCheckInReminderNotification", called: called)
     }
+    
+}
+
+class VenueExpositionUseCaseMock: Mocker, VenueExpositionUseCase {
+    
+    init() {
+        super.init("VenueExpositionUseCaseMock")
+    }
+    
+    var expositionInfo: Observable<VenueExpositionInfo> {
+        get {
+            call("expositionInfoGet") as! Observable<VenueExpositionInfo>
+        }
+        set {
+        
+        }
+    }
+    
+    func updateExpositionInfo() {
+        call("updateExpositionInfo")
+    }
+    
+    func verifyUpdateExpositionInfo() {
+        verify("updateExpositionInfo")
+    }
+    
     
 }

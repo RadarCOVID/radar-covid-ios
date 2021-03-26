@@ -14,6 +14,7 @@ import RxSwift
 
 protocol VenueExpositionUseCase {
     var expositionInfo: Observable<VenueExpositionInfo> { get }
+    func updateExpositionInfo()
 }
 
 class VenueExpositionUseCaseImpl: VenueExpositionUseCase {
@@ -30,13 +31,7 @@ class VenueExpositionUseCaseImpl: VenueExpositionUseCase {
     
     private(set) var expositionInfo: Observable<VenueExpositionInfo> {
         get {
-//            Done like this because bind(to: doesn't ever emit the venue info
-            expositionInfoFromVenueRecord().subscribe(onNext: { [weak self] in
-                self?.subject.onNext($0)},
-            onError: { [weak self] error in
-                self?.subject.onError(error)
-            }).disposed(by: disposeBag)
-            
+            updateExpositionInfo()
             return subject.asObservable()
         }
         set {
@@ -45,7 +40,11 @@ class VenueExpositionUseCaseImpl: VenueExpositionUseCase {
     }
     
     func updateExpositionInfo() {
-        
+        expositionInfoFromVenueRecord().subscribe(onNext: { [weak self] in
+            self?.subject.onNext($0)},
+        onError: { [weak self] error in
+            self?.subject.onError(error)
+        }).disposed(by: disposeBag)
     }
     
     private func expositionInfoFromVenueRecord() -> Observable<VenueExpositionInfo> {

@@ -27,16 +27,19 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     private let problematicEventsApi: ProblematicEventsApi
     private let notificationHandler: NotificationHandler
     private let qrCheckRepository: QrCheckRepository
+    private let venueExpositionUseCase: VenueExpositionUseCase
     
     var maxMinutesToKeep: Int
     
     init(venueRecordRepository: VenueRecordRepository, qrCheckRepository: QrCheckRepository, venueNotifier: VenueNotifier, problematicEventsApi: ProblematicEventsApi, notificationHandler: NotificationHandler,
-         settingsRepository: SettingsRepository) {
+         settingsRepository: SettingsRepository,
+         venueExpositionUseCase: VenueExpositionUseCase) {
         self.venueNotifier = venueNotifier
         self.venueRecordRepository = venueRecordRepository
         self.problematicEventsApi = problematicEventsApi
         self.notificationHandler = notificationHandler
         self.qrCheckRepository = qrCheckRepository
+        self.venueExpositionUseCase = venueExpositionUseCase
         maxMinutesToKeep = Int(settingsRepository.getSettings()?.parameters?.venueConfiguration?.quarentineAfterExposed ?? (14 * 24 * 60) )
     }
     
@@ -73,11 +76,13 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
                     
                     newVisited = self.notifyIfExposed(newVisited)
                     
-                    return self.venueRecordRepository.update(visited: newVisited).map { _ in Void() }
+                    return self.venueRecordRepository.update(visited: newVisited).map { _ in
+                        self.venueExpositionUseCase.updateExpositionInfo()
+                        return Void()
+                    }
                 }
             }
             self.qrCheckRepository.save(syncTag: problematicEventData.tag)
-            
             return .just(Void())
         }
     }
