@@ -70,11 +70,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        loadInitialScreen(initWindow: nil, url: url)
-        return true
+        
+        return loadInitialScreen(initWindow: nil, url: url)
     }
     
-    func loadInitialScreen(initWindow: UIWindow?, url: URL?) {
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool
+    {
+        // Get URL components from the incoming user activity.
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let incomingURL = userActivity.webpageURL else {
+            return false
+        }
+
+        return loadInitialScreen(initWindow: nil, url: incomingURL)
+
+    }
+    
+    func loadInitialScreen(initWindow: UIWindow?, url: URL?) -> Bool {
         
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(true, animated: false)
@@ -88,9 +102,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let url = url {
             deepLinkUseCase?.routeTo(url: url, from: navigationController)
-        } else {
-            router?.route(to: Routes.root, from: navigationController)
+            return true
         }
+        router?.route(to: Routes.root, from: navigationController)
+        return false
     }
     
     private func setupLog() {

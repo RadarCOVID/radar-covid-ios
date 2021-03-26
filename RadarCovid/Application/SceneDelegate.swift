@@ -81,5 +81,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             AppDelegate.shared?.loadInitialScreen(initWindow: nil, url: url)
         }
     }
+
+    @available(iOS 13.0, *)
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let incomingURL = userActivity.webpageURL else {
+            return
+        }
+
+        AppDelegate.shared?.loadInitialScreen(initWindow: nil, url: incomingURL)
+        
+    }
     
 }
