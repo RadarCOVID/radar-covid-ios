@@ -398,11 +398,11 @@ class Injection {
         
         container.register(HomeViewModel.self) { route in
             let homeVM = HomeViewModel()
+            homeVM.problematicEventsUseCase = route.resolve(ProblematicEventsUseCase.self)!
             homeVM.expositionUseCase = route.resolve(ExpositionUseCase.self)!
             homeVM.radarStatusUseCase = route.resolve(RadarStatusUseCase.self)!
             homeVM.resetDataUseCase = route.resolve(ResetDataUseCase.self)!
             homeVM.expositionCheckUseCase = route.resolve(ExpositionCheckUseCase.self)!
-            homeVM.syncUseCase = route.resolve(SyncUseCase.self)!
             homeVM.settingsRepository = route.resolve(SettingsRepository.self)!
             homeVM.onBoardingCompletedUseCase = route.resolve(OnboardingCompletedUseCase.self)!
             homeVM.reminderNotificationUseCase = route.resolve(ReminderNotificationUseCase.self)!

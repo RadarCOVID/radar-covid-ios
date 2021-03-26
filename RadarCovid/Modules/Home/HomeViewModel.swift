@@ -20,14 +20,14 @@ class HomeViewModel {
     
     private let disposeBag = DisposeBag()
     
-    var expositionUseCase: ExpositionUseCase?
-    var expositionCheckUseCase: ExpositionCheckUseCase?
-    var radarStatusUseCase: RadarStatusUseCase?
-    var syncUseCase: SyncUseCase?
-    var resetDataUseCase: ResetDataUseCase?
-    var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
-    var reminderNotificationUseCase: ReminderNotificationUseCase?
-    var settingsRepository: SettingsRepository?
+    var expositionUseCase: ExpositionUseCase!
+    var expositionCheckUseCase: ExpositionCheckUseCase!
+    var radarStatusUseCase: RadarStatusUseCase!
+    var resetDataUseCase: ResetDataUseCase!
+    var onBoardingCompletedUseCase: OnboardingCompletedUseCase!
+    var reminderNotificationUseCase: ReminderNotificationUseCase!
+    var settingsRepository: SettingsRepository!
+    var problematicEventsUseCase: ProblematicEventsUseCase!
     
     var radarStatus = BehaviorSubject<RadarStatus>(value: .active)
     var isErrorTracingDP3T = BehaviorSubject<Bool>(value: false)
@@ -46,7 +46,7 @@ class HomeViewModel {
     var alertMessage = PublishSubject<String>()
     
     func changeRadarStatus(_ active: Bool) {
-        radarStatusUseCase?.changeTracingStatus(active: active).subscribe(
+        radarStatusUseCase.changeTracingStatus(active: active).subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
                 self?.isErrorTracingDP3T.onNext(false)
@@ -60,19 +60,26 @@ class HomeViewModel {
     func checkInitial() {
         checkRadarStatus()
         checkInitialExposition()
-        reminderNotificationUseCase?.cancel()
+        reminderNotificationUseCase.cancel()
         (UIApplication.shared.delegate as? AppDelegate)?.bluethoothUseCase?.initListener()
     }
     
     func checkRadarStatus() {
-        changeRadarStatus(radarStatusUseCase?.isTracingActive() ?? false)
+        changeRadarStatus(radarStatusUseCase.isTracingActive() ?? false)
     }
     
     private func checkInitialExposition() {
         
-        expositionUseCase?.updateExpositionInfo()
+        problematicEventsUseCase.sync().subscribe(
+            onNext: { _ in
+                debugPrint("Problematics events sync successful")
+            }, onError: { error in
+                debugPrint("Problematics events sync error: \(error)")
+            }).disposed(by: disposeBag)
         
-        expositionUseCase?.getExpositionInfo().subscribe(
+        expositionUseCase.updateExpositionInfo()
+        
+        expositionUseCase.getExpositionInfo().subscribe(
             onNext: { [weak self] exposition in
                 self?.checkExpositionLevel(exposition.contact)
                 self?.venueExpositionInfo.onNext(exposition.venue)
@@ -121,12 +128,12 @@ class HomeViewModel {
     }
     
     func getRemainingExpositionDays(since: Date) -> Int {
-        getDaysRemaining(since: since, timeToHealthy: Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0))
+        getDaysRemaining(since: since, timeToHealthy: Int(settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0))
 
     }
     
     func getRemainingVenueExpositionDays(since: Date?) -> Int {
-        getDaysRemaining(since: since ?? Date(), timeToHealthy: Int(settingsRepository?.getSettings()?.parameters?.venueConfiguration?.quarentineAfterExposed ?? 0))
+        getDaysRemaining(since: since ?? Date(), timeToHealthy: Int(settingsRepository.getSettings()?.parameters?.venueConfiguration?.quarentineAfterExposed ?? 0))
     }
     
     private func getDaysRemaining(since: Date, timeToHealthy: Int) -> Int {
@@ -140,7 +147,7 @@ class HomeViewModel {
     }
     
     func restoreLastStateAndSync(cb: (() -> Void)? = nil) {
-        radarStatusUseCase?.restoreLastStateAndSync().subscribe(
+        radarStatusUseCase.restoreLastStateAndSync().subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
                 cb?()
@@ -152,11 +159,11 @@ class HomeViewModel {
     }
     
     func checkOnboarding() {
-        if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
+        if onBoardingCompletedUseCase.isOnBoardingCompleted() {
             checkState.onNext(false)
         } else {
             checkState.onNext(true)
-            self.onBoardingCompletedUseCase?.setOnboarding(completed: true)
+            onBoardingCompletedUseCase.setOnboarding(completed: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                 self?.checkState.onNext(false)
             }
@@ -164,7 +171,7 @@ class HomeViewModel {
     }
     
     func checkShowBackToHealthyDialog() {
-        showBackToHealthyDialog.onNext(expositionCheckUseCase!.checkBackToHealthyJustChanged())
+        showBackToHealthyDialog.onNext(expositionCheckUseCase.checkBackToHealthyJustChanged())
     }
     
     func heplerQAChangeHealthy() {
