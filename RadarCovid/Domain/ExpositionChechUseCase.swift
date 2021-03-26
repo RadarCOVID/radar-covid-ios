@@ -64,7 +64,7 @@ class ExpositionCheckUseCaseImpl: ExpositionCheckUseCase {
         }
     }
 
-    private func isExpositionOutdated(_ info: ExpositionInfo?) -> Bool {
+    private func isExpositionOutdated(_ info: ContactExpositionInfo?) -> Bool {
 
         if let since = info?.since, let highRiskToLowRisk = settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk {
 

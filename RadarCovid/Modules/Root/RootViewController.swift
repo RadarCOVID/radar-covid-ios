@@ -15,21 +15,27 @@ import DP3TSDK
 
 class RootViewController: UIViewController {
 
-    var router: AppRouter?
-    var configurationUseCase: ConfigurationUseCase?
-    var ccaaUseCase: CCAAUseCase?
-    var localesUseCase: LocalesUseCase?
-    var localizationUseCase: LocalizationUseCase?
-    var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
+    var router: AppRouter!
+    var configurationUseCase: ConfigurationUseCase!
+    var ccaaUseCase: CCAAUseCase!
+    var localesUseCase: LocalesUseCase!
+    var localizationUseCase: LocalizationUseCase!
+    var onBoardingCompletedUseCase: OnboardingCompletedUseCase!
     
-    var urlSchemeRedirect: [Routes]?
+    var venueRecordUseCase: VenueRecordUseCase!
+    
     var selectTabType: UIViewController.Type?
-    var paramsUrlScheme: [Any?]?
+    
+    var routeStack: RouteStack?
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         loadLocalesAndCCAA()
     }
@@ -60,7 +66,7 @@ class RootViewController: UIViewController {
     
     private func loadLocalization() {
     
-        localizationUseCase!.loadlocalization().subscribe(
+        localizationUseCase.loadlocalization().subscribe(
             onNext: { [weak self] settings in
                 self?.loadConfiguration()
 
@@ -78,13 +84,11 @@ class RootViewController: UIViewController {
     
     private func loadConfiguration() {
         
-        configurationUseCase!.loadConfig().subscribe(
+        configurationUseCase.loadConfig().subscribe(
             onNext: { [weak self] settings in
                 debugPrint("Configuration  finished")
 
-                let version = Float(UIDevice.current.systemVersion) ?? 0
-
-                if (version >= 13 && version < 13.6) {
+                if (!DP3TTracing.isOSCompatible) {
                     self?.navigateToUnsupportedOS()
                 } else if settings.isUpdated ?? false {
                     self?.navigateFirst()
@@ -122,24 +126,37 @@ class RootViewController: UIViewController {
         }
     }
 
-    private  func navigateFirst() {
-        if DP3TTracing.isOSCompatible {
-            if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
-                if let urlSchemeRedirect = urlSchemeRedirect {
-                    router?.routes(to: urlSchemeRedirect, from: self, parameters: paramsUrlScheme)
-                } else {
-                    router?.route(to: Routes.home, from: self, parameters: selectTabType)
-                }
-            } else {
-                router!.route(to: Routes.welcome, from: self)
-            }
+    private func navigateFirst() {
+
+        if (!DP3TTracing.isOSCompatible) {
+            navigateToUnsupportedOS()
+        } else if onBoardingCompletedUseCase.isOnBoardingCompleted() {
+            venueRecordUseCase.isCheckedIn().subscribe( onNext: { [weak self] checkedIn in
+                self?.navigateIfCheckedIn(checkedIn)
+            }).disposed(by: disposeBag)
         } else {
-            router!.route(to: Routes.unsupportedOS, from: self)
+            router.route(to: .welcome, from: self)
+        }
+
+    }
+    
+    private func navigateIfCheckedIn(_ checkedIn: Bool) {
+        if checkedIn {
+            router.route(to: .checkedIn, from: self)
+        } else if let routeStack = routeStack {
+            router.routes(to: routeStack.routes, from: self, parameters: routeStack.params)
+        } else {
+            router.route(to: Routes.home, from: self, parameters: selectTabType)
         }
     }
     
     private func navigateToUnsupportedOS() {
-        router!.route(to: Routes.unsupportedOS, from: self)
+        router.route(to: .unsupportedOS, from: self)
     }
 
+}
+
+struct RouteStack {
+    let routes: [Routes]
+    let params: [Any?]
 }

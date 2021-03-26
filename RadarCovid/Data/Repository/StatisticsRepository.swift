@@ -18,15 +18,9 @@ protocol StatisticsRepository {
     
 }
 
-class UserDefaultsStatisticsRepository: StatisticsRepository {
+class UserDefaultsStatisticsRepository: UserDefaultsRepository, StatisticsRepository {
     
     private static let kStats = "UserDefaultsStatisticsRepository.kstats"
-    
-    private let userDefaults: UserDefaults
-    
-    init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
     
     func getStatistics() -> [StatsItemModel]? {
         if let statsData = userDefaults.object(forKey: UserDefaultsStatisticsRepository.kStats) as? Data {

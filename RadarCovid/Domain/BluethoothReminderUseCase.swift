@@ -17,13 +17,17 @@ class BluethoothReminderUseCase: NSObject {
     
     var manager:CBCentralManager?
     
-    private var notificationHandler: NotificationHandler?
+    private let notificationHandler: NotificationHandler
     private var state: CBManagerState?
+    
+    init(notificationHandler: NotificationHandler) {
+        self.notificationHandler = notificationHandler
+        super.init()
+    }
 
     func initListener() {
         stopScan()
         self.manager = CBCentralManager(delegate: self, queue: nil)
-        self.notificationHandler = NotificationHandler()
     }
     
     func stopScan() {
@@ -31,7 +35,7 @@ class BluethoothReminderUseCase: NSObject {
     }
     
     private func scheduleNotification(){
-        self.notificationHandler?.scheduleNotification(
+        self.notificationHandler.scheduleNotification(
             title: "NOTIFICATIONS_INACTIVE_BLUETOOTH_TITLE".localized,
             body: "NOTIFICATIONS_INACTIVE_BLUETOOTH_BODY".localized,
             sound: .default)

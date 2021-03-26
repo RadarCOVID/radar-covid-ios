@@ -17,18 +17,9 @@ protocol SettingsRepository {
     func save(settings: Settings?)
 }
 
-class UserDefaultsSettingsRepository: SettingsRepository {
+class UserDefaultsSettingsRepository: UserDefaultsRepository, SettingsRepository {
 
     private static let kData = "UserDefaultsSettingsRepository.settings"
-
-    private let encoder = JSONEncoder()
-    private let decoder = JSONDecoder()
-
-    private let userDefaults: UserDefaults
-
-    init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
 
     func getSettings() -> Settings? {
         let uncoded = userDefaults.data(forKey: UserDefaultsSettingsRepository.kData) ?? Data()

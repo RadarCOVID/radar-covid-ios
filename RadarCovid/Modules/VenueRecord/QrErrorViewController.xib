@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QrErrorViewController" customModule="Radar_COVID" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="Tad-va-13h" id="uMa-Ap-T9a"/>
+                <outlet property="cancelButton" destination="tDy-wy-Pkj" id="iZf-uh-tb1"/>
+                <outlet property="errorLabel" destination="nbS-se-EA8" id="FNa-ma-wGy"/>
+                <outlet property="okButton" destination="US3-V9-7Ek" id="VaP-h0-9Pr"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="6VY-GB-B3B">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="155.5"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tad-va-13h">
+                    <rect key="frame" x="21" y="21" width="334" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="MB6-nG-Ni0"/>
+                    </constraints>
+                    <state key="normal" image="iconsBack"/>
+                    <connections>
+                        <action selector="onBack:" destination="-1" eventType="primaryActionTriggered" id="8cW-9r-vad"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icono KO" translatesAutoresizingMaskIntoConstraints="NO" id="gXJ-TU-lAI">
+                    <rect key="frame" x="26" y="89" width="52" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="52" id="EiK-uS-ck3"/>
+                        <constraint firstAttribute="height" constant="52" id="qBX-X0-Q98"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código no reconocido" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7C-aI-DDw">
+                    <rect key="frame" x="26" y="154" width="332" height="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_ERROR_CODE_TITLE"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDy-wy-Pkj" userLabel="Cancel Button">
+                    <rect key="frame" x="16" y="585" width="343" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="mDf-nk-JwY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="Cerrar">
+                        <color key="titleColor" name="twilight"/>
+                    </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onCancel:" destination="-1" eventType="touchUpInside" id="bXj-is-EfR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="US3-V9-7Ek" userLabel="Accept Button">
+                    <rect key="frame" x="16" y="509" width="343" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="YHg-tf-c0r"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="Capturar Código QR" backgroundImage="buttonsPrimary">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onOk:" destination="-1" eventType="primaryActionTriggered" id="xRC-eO-sju"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puede que estés intentando escanear un código no oficial de Radar COVID o que el código esté dañado" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbS-se-EA8">
+                    <rect key="frame" x="26" y="199" width="332" height="105.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_ERROR_CODE_PARAGRAPH_1"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="veryLightPink"/>
+            <constraints>
+                <constraint firstItem="Tad-va-13h" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="0xZ-kp-oF8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="e7C-aI-DDw" secondAttribute="trailing" constant="17" id="4E4-g7-raY"/>
+                <constraint firstItem="nbS-se-EA8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="6IE-Zc-pQR"/>
+                <constraint firstItem="gXJ-TU-lAI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="89" id="I8T-Af-r8B"/>
+                <constraint firstItem="6VY-GB-B3B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KFe-dK-4CI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tDy-wy-Pkj" secondAttribute="trailing" constant="16" id="SC8-aG-cdz"/>
+                <constraint firstItem="tDy-wy-Pkj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Scc-Cm-Cmx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6VY-GB-B3B" secondAttribute="trailing" id="WAa-ZF-7aM"/>
+                <constraint firstItem="tDy-wy-Pkj" firstAttribute="top" secondItem="US3-V9-7Ek" secondAttribute="bottom" constant="16" id="Yoi-0q-hcS"/>
+                <constraint firstAttribute="trailing" secondItem="nbS-se-EA8" secondAttribute="trailing" constant="17" id="bly-4b-8Nd"/>
+                <constraint firstItem="gXJ-TU-lAI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="cT2-od-Pm6"/>
+                <constraint firstItem="e7C-aI-DDw" firstAttribute="top" secondItem="gXJ-TU-lAI" secondAttribute="bottom" constant="13" id="i8g-NG-sgP"/>
+                <constraint firstItem="nbS-se-EA8" firstAttribute="top" secondItem="e7C-aI-DDw" secondAttribute="bottom" constant="13" id="ncF-S0-jq9"/>
+                <constraint firstItem="Tad-va-13h" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="21" id="owj-2K-qRt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="US3-V9-7Ek" secondAttribute="trailing" constant="16" id="py7-qT-f8c"/>
+                <constraint firstItem="US3-V9-7Ek" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="qoQ-dP-pHe"/>
+                <constraint firstItem="e7C-aI-DDw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="sY9-VW-FEF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tad-va-13h" secondAttribute="trailing" constant="20" id="sYz-AX-rYn"/>
+                <constraint firstItem="6VY-GB-B3B" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="x4H-14-tsY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="tDy-wy-Pkj" secondAttribute="bottom" constant="26" id="zNl-6H-7zH"/>
+            </constraints>
+            <point key="canvasLocation" x="141" y="78"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonPrimaryDisabled" width="341" height="60"/>
+        <image name="Icono KO" width="52" height="52"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
+        <image name="iconsBack" width="25.5" height="17"/>
+        <image name="organicColor" width="375" height="155.5"/>
+        <namedColor name="twilight">
+            <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

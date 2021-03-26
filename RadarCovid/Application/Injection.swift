@@ -16,9 +16,10 @@ import UIKit
 class Injection {
     
     enum Endpoint: String {
-        case CONFIG
-        case KPI
-        case VERIFICATION
+        case config
+        case kpi
+        case verification
+        case problematic
     }
     
     private let container: Container
@@ -27,61 +28,72 @@ class Injection {
         
         container = Container()
         
-        container.register(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue) { _ in
+        container.register(SwaggerClientAPI.self, name: Endpoint.config.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.config
             return swaggerApi
         }.inObjectScope(.container)
         
-        container.register(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue) { _ in
+        container.register(SwaggerClientAPI.self, name: Endpoint.verification.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.verification
             return swaggerApi
         }.inObjectScope(.container)
         
-        container.register(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue) { _ in
+        container.register(SwaggerClientAPI.self, name: Endpoint.kpi.rawValue) { _ in
             let swaggerApi = SwaggerClientAPI()
             swaggerApi.basePath = Config.endpoints.kpi
             return swaggerApi
         }.inObjectScope(.container)
         
+        container.register(SwaggerClientAPI.self, name: Endpoint.problematic.rawValue) { _ in
+            let swaggerApi = SwaggerClientAPI()
+            swaggerApi.basePath = Config.endpoints.problematic
+            return swaggerApi
+        }.inObjectScope(.container)
+        
         container.register(TokenAPI.self) { r in
-            TokenAPI(clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!)
+            TokenAPI(clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!)
         }.inObjectScope(.container)
         
         container.register(SettingsAPI.self) { r in
             SettingsAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(TextsAPI.self) { r in
             TextsAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(MasterDataAPI.self) { r in
             MasterDataAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(StatisticsAPI.self) { r in
             StatisticsAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.CONFIG.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.config.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(VerificationControllerAPI.self) { r in
             VerificationControllerAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.VERIFICATION.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.verification.rawValue)!
             )
         }.inObjectScope(.container)
         
         container.register(AppleKpiControllerAPI.self) { r in
             AppleKpiControllerAPI(
-                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.KPI.rawValue)!
+                clientApi: r.resolve(SwaggerClientAPI.self, name: Endpoint.kpi.rawValue)!
+            )
+        }.inObjectScope(.container)
+        
+        container.register(ProblematicEventsApi.self) { r in
+            ProblematicEventsApiImpl(clientApi:  r.resolve(SwaggerClientAPI.self, name: Endpoint.problematic.rawValue)!
             )
         }.inObjectScope(.container)
         
@@ -125,16 +137,36 @@ class Injection {
             UserDefaultsExposureKpiRepository()
         }.inObjectScope(.container)
         
+        container.register(VenueRecordRepository.self) { _ in
+            KeyStoreVenueRecordRepository()
+        }.inObjectScope(.container)
+        
+        container.register(QrCheckRepository.self) { _ in
+            UserDefaultsQrCheckRepository()
+        }.inObjectScope(.container)
+        
         container.register(VersionHandler.self) { _ in
             VersionHandler()
         }.inObjectScope(.container)
         
         container.register(NotificationHandler.self) { _ in
-            NotificationHandler()
+            NotificationHandlerImpl()
         }.inObjectScope(.container)
         
         container.register(DeviceTokenHandler.self) { r in
             DCDeviceTokenHandler()
+        }.inObjectScope(.container)
+        
+        container.register(AppStateHandler.self) { r in
+            AppStateHandlertImpl()
+        }.inObjectScope(.container)
+        
+        container.register(AuthenticationHandler.self) { r in
+            AuthenticationHandler()
+        }.inObjectScope(.container)
+        
+        container.register(VenueNotifier.self) { r in
+            VenueNotifierImpl(baseUrl: Config.endpoints.qrBase)
         }.inObjectScope(.container)
         
         container.register(OnboardingCompletedUseCase.self) { r in
@@ -142,8 +174,9 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(ExpositionUseCase.self) { r in
-            ExpositionUseCase(notificationHandler: r.resolve(NotificationHandler.self)!,
-                              expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
+            ExpositionUseCaseImpl(notificationHandler: r.resolve(NotificationHandler.self)!,
+                              expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+                              venueExpositionUseCase: r.resolve(VenueExpositionUseCase.self)!)
         }.inObjectScope(.container)
         
         container.register(RadarStatusUseCase.self) { r in
@@ -163,13 +196,19 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(FakeRequestUseCase.self) { r in
-            FakeRequestUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
+            FakeRequestUseCaseImpl(settingsRepository: r.resolve(SettingsRepository.self)!,
                                verificationApi: r.resolve(VerificationControllerAPI.self)!,
-                               fakeRequestRepository: r.resolve(FakeRequestRepository.self)!)
+                               xx: r.resolve(FakeRequestRepository.self)!)
         }.inObjectScope(.container)
         
+        if #available(iOS 13.0, *) {
+            container.register(FakeRequestBackgroundTask.self) { r in
+                r.resolve(FakeRequestUseCase.self) as! FakeRequestBackgroundTask
+            }
+        }
+        
         container.register(ConfigurationUseCase.self) { r in
-            ConfigurationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!,
+            ConfigurationUseCaseImpl(settingsRepository: r.resolve(SettingsRepository.self)!,
                                  tokenApi: r.resolve(TokenAPI.self)!,
                                  settingsApi: r.resolve(SettingsAPI.self)!,
                                  versionHandler: r.resolve(VersionHandler.self)!)
@@ -187,9 +226,12 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(BackgroundTasksUseCase.self) { r in
-            BackgroundTasksUseCase(analyticsUseCase: r.resolve(AnalyticsUseCase.self)!,
+            BackgroundTasksUseCaseImpl(analyticsUseCase: r.resolve(AnalyticsUseCase.self)!,
                                    fakeRequestUseCase: r.resolve(FakeRequestUseCase.self)!,
-                                   expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!)
+                                   expositionCheckUseCase: r.resolve(ExpositionCheckUseCase.self)!,
+                                   checkInInprogressUseCase: r.resolve(CheckInInProgressUseCase.self)!,
+                                   configurationUseCase: r.resolve(ConfigurationUseCase.self)!,
+                                   problematicEventsUseCase: r.resolve(ProblematicEventsUseCase.self)!)
         }.inObjectScope(.container)
         
         container.register(LocalizationUseCase.self) { r in
@@ -235,11 +277,13 @@ class Injection {
         
         container.register(DeepLinkUseCase.self) { r in
             DeepLinkUseCase(
-                expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!)
+                expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
+                router: r.resolve(AppRouter.self)!,
+                qrBase: Config.endpoints.qrBase)
         }.inObjectScope(.container)
         
         container.register(AnalyticsUseCase.self) { r in
-            AnalyticsUseCase(deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!,
+            AnalyticsUseCaseImpl(deviceTokenHandler: r.resolve(DeviceTokenHandler.self)!,
                              analyticsRepository: r.resolve(AnalyticsRepository.self)!,
                              kpiApi: r.resolve(AppleKpiControllerAPI.self)!,
                              exposureKpiUseCase:  r.resolve(ExposureKpiUseCase.self)!,
@@ -251,15 +295,53 @@ class Injection {
                                exposureKpiRepository: r.resolve(ExposureKpiRepository.self)!)
         }.inObjectScope(.container)
         
+        
+        container.register(ReminderNotificationUseCase.self) { r in
+            let reminderNotificationUseCase = ReminderNotificationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!)
+            return reminderNotificationUseCase
+        }.inObjectScope(.container)
+        
+        container.register(BluethoothReminderUseCase.self) { r in
+            BluethoothReminderUseCase(notificationHandler: r.resolve(NotificationHandler.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(VenueRecordUseCase.self) { r in
+            VenueRecordUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
+                                   venueNotifier: r.resolve(VenueNotifier.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(ProblematicEventsUseCase.self) { r in
+            ProblematicEventsUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,                                                      qrCheckRepository: r.resolve(QrCheckRepository.self)!,
+                                         venueNotifier: r.resolve(VenueNotifier.self)!,
+                                         problematicEventsApi: r.resolve(ProblematicEventsApi.self)!,
+                                         notificationHandler: r.resolve(NotificationHandler.self)!,
+                                         settingsRepository: r.resolve(SettingsRepository.self)!,
+                                         venueExpositionUseCase: r.resolve(VenueExpositionUseCase.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(CheckInInProgressUseCase.self) { r in
+            CheckInInProgressUseCaseImpl(notificationHandler: r.resolve(NotificationHandler.self)!,
+                                         venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
+                                         qrCheckRepository: r.resolve(QrCheckRepository.self)!,
+                                         appStateHandler: r.resolve(AppStateHandler.self)!,
+                                         settinsRepository: r.resolve(SettingsRepository.self)!)
+        }.inObjectScope(.container)
+        
+        container.register(VenueExpositionUseCase.self) { r in
+            VenueExpositionUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!)
+        }.inObjectScope(.container)
+        
+        
         container.register(TabBarController.self) { r in
             TabBarController(
                 homeViewController: r.resolve(HomeViewController.self)!,
-                myDataViewController: r.resolve(MyDataViewController.self)!,
                 helpLineViewController: r.resolve(HelpLineViewController.self)!,
                 statsViewController: r.resolve(StatsViewController.self)!,
                 settingViewController: r.resolve(SettingViewController.self)!,
                 preferencesRepository: r.resolve(PreferencesRepository.self)!,
-                localizationUseCase: r.resolve(LocalizationUseCase.self)!
+                localizationUseCase: r.resolve(LocalizationUseCase.self)!,
+                venueRecordViewController: r.resolve(VenueRecordStartViewController.self)!,
+                venueRecodrUseCase: r.resolve(VenueRecordUseCase.self)!
             )
         }
         
@@ -317,21 +399,15 @@ class Injection {
         
         container.register(HomeViewModel.self) { route in
             let homeVM = HomeViewModel()
+            homeVM.problematicEventsUseCase = route.resolve(ProblematicEventsUseCase.self)!
             homeVM.expositionUseCase = route.resolve(ExpositionUseCase.self)!
             homeVM.radarStatusUseCase = route.resolve(RadarStatusUseCase.self)!
             homeVM.resetDataUseCase = route.resolve(ResetDataUseCase.self)!
             homeVM.expositionCheckUseCase = route.resolve(ExpositionCheckUseCase.self)!
-            homeVM.syncUseCase = route.resolve(SyncUseCase.self)!
             homeVM.settingsRepository = route.resolve(SettingsRepository.self)!
             homeVM.onBoardingCompletedUseCase = route.resolve(OnboardingCompletedUseCase.self)!
             homeVM.reminderNotificationUseCase = route.resolve(ReminderNotificationUseCase.self)!
             return homeVM
-        }
-        
-        container.register(MyDataViewController.self) {  _ in
-            self.createViewController(
-                storyboard: "MyData",
-                viewId: "MyDataViewController") as? MyDataViewController ?? MyDataViewController()
         }
         
         container.register(HelpLineViewController.self) {  route in
@@ -508,6 +584,7 @@ class Injection {
             rootVC.configurationUseCase = r.resolve(ConfigurationUseCase.self)!
             rootVC.localizationUseCase = r.resolve(LocalizationUseCase.self)!
             rootVC.onBoardingCompletedUseCase = r.resolve(OnboardingCompletedUseCase.self)!
+            rootVC.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)!
             rootVC.router = r.resolve(AppRouter.self)!
             return rootVC
         }
@@ -517,6 +594,69 @@ class Injection {
             return unsupportedOSVC
         }
         
+        container.register(VenueRecordStartViewController.self) { r in
+            let vc = VenueRecordStartViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)!
+            vc.authenticationHandler = r.resolve(AuthenticationHandler.self)!
+            return vc
+        }
+        
+        container.register(QrScannerViewController.self) { r in
+            let vc = QrScannerViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)!
+            return vc
+        }
+        
+        container.register(QrResultViewController.self) { r in
+            let vc = QrResultViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)
+            return vc
+        }
+        
+        container.register(QrErrorViewController.self) { r in
+            let vc = QrErrorViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            return vc
+        }
+    
+        container.register(CheckedInViewController.self) { r in
+            let vc = CheckedInViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)!
+            return vc
+        }
+        
+        container.register(CheckOutViewController.self) { r in
+            let vc = CheckOutViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.venueRecordUseCase = r.resolve(VenueRecordUseCase.self)
+            return vc
+        }
+        
+        container.register(CheckOutConfirmationViewController.self) { r in
+            let vc = CheckOutConfirmationViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            return vc
+        }
+        
+        container.register(VenueListViewModel.self) { r in
+            let vm = VenueListViewModel()
+            vm.venueRecordRepository = r.resolve(VenueRecordRepository.self)!
+            return vm
+        }
+        
+        
+        container.register(VenueListViewController.self) { r in
+            let vc = VenueListViewController()
+            vc.router = r.resolve(AppRouter.self)!
+            vc.viewModel = r.resolve(VenueListViewModel.self)!
+            return vc
+        }
+        
+        
         container.register(ErrorRecorder.self) { _ in
             ErrorRecorderImpl()
         }
@@ -525,16 +665,6 @@ class Injection {
             let errorHandler = ErrorHandlerImpl(verbose: Config.errorVerbose)
             errorHandler.errorRecorder = r.resolve(ErrorRecorder.self)!
             return errorHandler
-        }
-        
-        container.register(ReminderNotificationUseCase.self) { r in
-            let reminderNotificationUseCase = ReminderNotificationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!)
-            return reminderNotificationUseCase
-        }
-        
-        container.register(BluethoothReminderUseCase.self) { r in
-            let bluethoothReminderUseCase = BluethoothReminderUseCase()
-            return bluethoothReminderUseCase
         }
         
     }

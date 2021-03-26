@@ -56,7 +56,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                                            jwtPublicKey: Config.dp3tValidationKey,
                                            mode: Config.dp3tMode), backgroundHandler: self)
         
-        DP3TTracing.delegate = expositionUseCase
+        DP3TTracing.delegate = (expositionUseCase as! DP3TTracingDelegate)
     }
     
     func log(_ string: String, type: OSLogType) {

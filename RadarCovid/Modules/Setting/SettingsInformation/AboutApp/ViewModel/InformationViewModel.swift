@@ -56,7 +56,7 @@ class InformationViewModel {
                     }
                     do {
                         var aInformation = try weakSelf.appInformation.value()
-                        if let lastCheck = exposition.lastCheck {
+                        if let lastCheck = exposition.contact.lastCheck {
                             aInformation.lastSync = lastCheck
                             aInformation.onSync = true
                             weakSelf.appInformation.onNext(aInformation)

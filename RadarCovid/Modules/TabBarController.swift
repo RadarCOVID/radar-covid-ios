@@ -15,32 +15,39 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    var homeViewController: HomeViewController
-    var myDataViewController: MyDataViewController
-    var helpLineViewController: HelpLineViewController
-    var settingViewController: SettingViewController
-    var statsViewController: StatsViewController
-    var localizationUseCase: LocalizationUseCase
-    var preferencesRepository: PreferencesRepository?
+    private let disposeBag = DisposeBag()
+    
+    private let homeViewController: HomeViewController!
+    private let helpLineViewController: HelpLineViewController!
+    private let settingViewController: SettingViewController!
+    private let statsViewController: StatsViewController!
+    private let venueRecordViewController: VenueRecordStartViewController!
+    
+    private let localizationUseCase: LocalizationUseCase!
+    private let venueRecodrUseCase: VenueRecordUseCase!
+    
+    private let preferencesRepository: PreferencesRepository!
     
     var selectTabType: UIViewController.Type?
 
     init(homeViewController: HomeViewController,
-         myDataViewController: MyDataViewController,
          helpLineViewController: HelpLineViewController,
          statsViewController: StatsViewController,
          settingViewController: SettingViewController,
          preferencesRepository: PreferencesRepository,
-         localizationUseCase: LocalizationUseCase) {
+         localizationUseCase: LocalizationUseCase,
+         venueRecordViewController: VenueRecordStartViewController,
+         venueRecodrUseCase: VenueRecordUseCase) {
         
         self.homeViewController = homeViewController
-        self.myDataViewController = myDataViewController
         self.helpLineViewController = helpLineViewController
         self.settingViewController = settingViewController
         self.statsViewController = statsViewController
         
         self.localizationUseCase = localizationUseCase
         self.preferencesRepository = preferencesRepository
+        self.venueRecordViewController = venueRecordViewController
+        self.venueRecodrUseCase = venueRecodrUseCase
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -61,9 +68,11 @@ class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAccessibility()
-        setViewControllers([homeViewController, myDataViewController, helpLineViewController, statsViewController, settingViewController], animated: false)
+        setViewControllers([homeViewController,venueRecordViewController, statsViewController, helpLineViewController, settingViewController ], animated: false)
         
         select(tabType: selectTabType)
+        
+        loadBadges()
     }
     
     private func setupAccessibility() {
@@ -71,11 +80,6 @@ class TabBarController: UITabBarController {
         homeViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         homeViewController.tabBarItem.accessibilityLabel = "ACC_HOME_TITLE".localized
         homeViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
-
-        myDataViewController.tabBarItem.isAccessibilityElement = true
-        myDataViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        myDataViewController.tabBarItem.accessibilityLabel = "ACC_MYDATA_TITLE".localized
-        myDataViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
 
         helpLineViewController.tabBarItem.isAccessibilityElement = true
         helpLineViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
@@ -91,6 +95,14 @@ class TabBarController: UITabBarController {
         settingViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         settingViewController.tabBarItem.accessibilityLabel = "ACC_SETTINGS_TITLE".localized
         settingViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+        
+        
+        venueRecordViewController.tabBarItem.isAccessibilityElement = true
+        venueRecordViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        venueRecordViewController.tabBarItem.accessibilityLabel = "ACC_VENUE_TITLE".localized
+        venueRecordViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+        
+        
     }
     
     private func setupView() {
@@ -108,10 +120,12 @@ class TabBarController: UITabBarController {
             title: "",
             image: UIImage(named: "MenuHomeNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuHomeSelected"))
-        myDataViewController.tabBarItem = UITabBarItem(
+        
+        venueRecordViewController.tabBarItem = UITabBarItem(
             title: "",
-            image: UIImage(named: "MenuInfoNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
-            selectedImage: UIImage(named: "MenuInfoSelected"))
+            image: UIImage(named: "QrNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
+            selectedImage: UIImage(named: "QrNormal"))
+        
         helpLineViewController.tabBarItem = UITabBarItem(
             title: "",
             image: UIImage(named: "MenuHelpNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
@@ -127,6 +141,7 @@ class TabBarController: UITabBarController {
             image: UIImage(named: "MenuSettingNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuSettingSelected"))
         
+        
     }
     
     private func select(tabType: UIViewController.Type?) {
@@ -137,6 +152,12 @@ class TabBarController: UITabBarController {
                 }
             }
         }
+    }
+    
+    private func loadBadges() {
+        venueRecodrUseCase.isCheckedIn().subscribe { [weak self] checked in
+            self?.venueRecordViewController.tabBarItem.badgeValue = checked ? "" : nil
+        }.disposed(by: disposeBag)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

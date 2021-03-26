@@ -19,6 +19,8 @@ protocol CustomAlertProtocol {
 }
 
 class CustomAlert: UIView {
+    
+    private let disposeBag = DisposeBag()
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
@@ -27,7 +29,6 @@ class CustomAlert: UIView {
     @IBOutlet weak var buttonContainerHeight: NSLayoutConstraint!
 
     var parentView: UIView?
-    var disposeBag = DisposeBag()
     
     let buttonHeight: CGFloat = 60
     

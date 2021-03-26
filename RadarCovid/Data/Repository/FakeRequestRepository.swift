@@ -23,9 +23,9 @@ enum ExponentialDistribution {
     }
 }
 
-class FakeRequestRepository {
+class FakeRequestRepository: UserDefaultsRepository {
     
-    private var userDefaults: UserDefaults
+
     private let nextFakeRequestDate = "UserDefaultsFakeRequestUseCase.lastFake"
     var rate: Double
     let daySecs: Double = 24 * 60 * 60
@@ -44,12 +44,12 @@ class FakeRequestRepository {
         }
     }
     
-    init() {
-        self.userDefaults = UserDefaults.standard
+    override init() {
         rate = 1.0
         if Config.debug {
             rate = 2
         }
+        super.init()
     }
     
     public func getNextScheduledFakeRequestDate() -> Date {

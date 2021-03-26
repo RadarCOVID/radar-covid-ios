@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Necesiatmos hacer uso de la funcióin de reconocimiento facial para restringir el acceso a terceros a la información de eventos visitados</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Necesitamos hacer uso de la cámara para poder escanear los códicos QR de establecimientos asociados</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>org.dpppt.exposure-notification</string>

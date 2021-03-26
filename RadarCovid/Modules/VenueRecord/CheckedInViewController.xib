@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckedInViewController" customModule="Radar_COVID" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundView" destination="ufr-O1-f2W" id="hRW-Gc-KVb"/>
+                <outlet property="cancelButton" destination="Ayh-Rv-xN5" id="Uvf-nd-dcW"/>
+                <outlet property="confirmButton" destination="REb-mp-kup" id="1nc-YL-ac3"/>
+                <outlet property="timeLabel" destination="gwt-tL-ts7" id="1eA-0U-BaI"/>
+                <outlet property="venueNameLabel" destination="Fpq-cP-cVE" id="3ne-Qd-Z1l"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="cmK-8a-G4J">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="155.5"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqb-Wc-T4v">
+                    <rect key="frame" x="20" y="64" width="374" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="vb7-iF-qgd"/>
+                    </constraints>
+                    <state key="normal" image="iconsBack"/>
+                    <connections>
+                        <action selector="onBack:" destination="-1" eventType="primaryActionTriggered" id="owM-QH-7XX"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registro Iniciado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoa-dD-Vib">
+                    <rect key="frame" x="26" y="198" width="186" height="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_CHECKIN_TITLE"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ayh-Rv-xN5" userLabel="Cancel Button">
+                    <rect key="frame" x="16" y="790" width="382" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="g9c-Qv-Jxe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="Cancelar">
+                        <color key="titleColor" name="twilight"/>
+                    </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onCancel:" destination="-1" eventType="primaryActionTriggered" id="4Cf-Oa-Nfn"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconOK" translatesAutoresizingMaskIntoConstraints="NO" id="hr1-7s-zRN" userLabel="Icono OK">
+                    <rect key="frame" x="26" y="133" width="52" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="52" id="FYv-cr-zg4"/>
+                        <constraint firstAttribute="width" constant="52" id="RPa-xU-Xuf"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufr-O1-f2W" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
+                    <rect key="frame" x="16" y="268" width="382" height="75"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Venue" translatesAutoresizingMaskIntoConstraints="NO" id="UQb-xT-0df">
+                            <rect key="frame" x="18" y="26.5" width="22" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="22" id="pes-xq-x2S"/>
+                                <constraint firstAttribute="height" constant="22" id="rK1-vi-Y6i"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre del establecimiento dos líneas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpq-cP-cVE">
+                            <rect key="frame" x="56" y="16" width="310" height="43"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="UQb-xT-0df" firstAttribute="leading" secondItem="ufr-O1-f2W" secondAttribute="leading" constant="18" id="K5l-eM-j5i"/>
+                        <constraint firstAttribute="bottom" secondItem="Fpq-cP-cVE" secondAttribute="bottom" constant="16" id="P9F-3k-P2L"/>
+                        <constraint firstAttribute="trailing" secondItem="Fpq-cP-cVE" secondAttribute="trailing" constant="16" id="T4W-Lg-18t"/>
+                        <constraint firstItem="UQb-xT-0df" firstAttribute="centerY" secondItem="ufr-O1-f2W" secondAttribute="centerY" id="TJ5-B0-3db"/>
+                        <constraint firstItem="Fpq-cP-cVE" firstAttribute="top" secondItem="ufr-O1-f2W" secondAttribute="top" constant="16" id="W39-gR-tOx"/>
+                        <constraint firstItem="Fpq-cP-cVE" firstAttribute="leading" secondItem="UQb-xT-0df" secondAttribute="trailing" constant="16" id="aj5-Mm-Oyt"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiempo transcurrido" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhn-Se-YfZ">
+                    <rect key="frame" x="125.5" y="379" width="163" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_RECORD_CHECKIN_TIME"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwt-tL-ts7">
+                    <rect key="frame" x="121.5" y="419" width="171" height="46"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REb-mp-kup" userLabel="Accept Button">
+                    <rect key="frame" x="16" y="714" width="382" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="dAz-Z3-Ilo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="Confirmar Salida" backgroundImage="buttonsPrimary">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onCheckOutTap:" destination="-1" eventType="touchUpInside" id="0DC-IH-HhA"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="veryLightPink"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ayh-Rv-xN5" secondAttribute="bottom" constant="16" id="3a8-Yj-16q"/>
+                <constraint firstItem="gwt-tL-ts7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6MG-ig-JyN"/>
+                <constraint firstItem="hr1-7s-zRN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="8Zi-cW-8A4"/>
+                <constraint firstItem="Ayh-Rv-xN5" firstAttribute="top" secondItem="REb-mp-kup" secondAttribute="bottom" constant="16" id="9RF-5G-K91"/>
+                <constraint firstItem="zqb-Wc-T4v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ATV-QL-9BJ"/>
+                <constraint firstItem="REb-mp-kup" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="D2z-CZ-FZA"/>
+                <constraint firstItem="zqb-Wc-T4v" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="DRk-fd-ceY"/>
+                <constraint firstItem="gwt-tL-ts7" firstAttribute="top" secondItem="Nhn-Se-YfZ" secondAttribute="bottom" constant="18" id="E54-5Q-Thr"/>
+                <constraint firstItem="Nhn-Se-YfZ" firstAttribute="top" secondItem="ufr-O1-f2W" secondAttribute="bottom" constant="36" id="FiG-yr-Dc9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zqb-Wc-T4v" secondAttribute="trailing" constant="20" id="IrL-tb-i5n"/>
+                <constraint firstAttribute="trailing" secondItem="Ayh-Rv-xN5" secondAttribute="trailing" constant="16" id="Iuj-qJ-mhc"/>
+                <constraint firstItem="ufr-O1-f2W" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="KcR-3o-55Q"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ufr-O1-f2W" secondAttribute="trailing" constant="16" id="L9k-FI-BMr"/>
+                <constraint firstItem="cmK-8a-G4J" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Lmi-hR-UXt"/>
+                <constraint firstItem="hr1-7s-zRN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="89" id="YXe-2S-IoR"/>
+                <constraint firstItem="hoa-dD-Vib" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="ZaY-qW-gL2"/>
+                <constraint firstItem="cmK-8a-G4J" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dUk-Vx-CuC"/>
+                <constraint firstAttribute="trailing" secondItem="REb-mp-kup" secondAttribute="trailing" constant="16" id="eA7-5H-8mZ"/>
+                <constraint firstItem="Ayh-Rv-xN5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="gpS-sZ-LaC"/>
+                <constraint firstItem="ufr-O1-f2W" firstAttribute="top" secondItem="hoa-dD-Vib" secondAttribute="bottom" constant="38" id="rP0-Hq-CZW"/>
+                <constraint firstItem="Nhn-Se-YfZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vDb-Ix-nUW"/>
+                <constraint firstItem="cmK-8a-G4J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wSq-nB-zia"/>
+                <constraint firstItem="hoa-dD-Vib" firstAttribute="top" secondItem="hr1-7s-zRN" secondAttribute="bottom" constant="13" id="z7s-9Z-7Op"/>
+            </constraints>
+            <point key="canvasLocation" x="-7" y="32"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonPrimaryDisabled" width="341" height="60"/>
+        <image name="IconOK" width="52" height="52"/>
+        <image name="Venue" width="27" height="24"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
+        <image name="iconsBack" width="25.5" height="17"/>
+        <image name="organicColor" width="375" height="155.5"/>
+        <namedColor name="twilight">
+            <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

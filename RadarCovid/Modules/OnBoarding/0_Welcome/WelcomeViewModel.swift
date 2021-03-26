@@ -35,7 +35,7 @@ class WelcomeViewModel {
     }
     
     func getCurrenLenguageLocalizable() -> Observable<String> {
-        return Observable.create { [weak self] observer in
+        .create { [weak self] observer in
             
             self?.localesUseCase.getLocales()
                 .observeOn(MainScheduler.instance)
@@ -54,8 +54,7 @@ class WelcomeViewModel {
                     }).disposed(by: self?.disposeBag ?? DisposeBag())
             observer.onCompleted()
             
-            return Disposables.create {
-            }
+            return Disposables.create {}
         }
     }
 }
