@@ -2893,8 +2893,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CrowdNotifier/crowdnotifier-sdk-ios";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = exactVersion;
+				version = 2.0.1;
 			};
 		};
 		76357ADB2540447B004C9AE5 /* XCRemoteSwiftPackageReference "dp3t-sdk-ios" */ = {
