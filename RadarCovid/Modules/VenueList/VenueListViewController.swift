@@ -23,6 +23,8 @@ class VenueListViewController: BaseViewController {
     
     private var sortedKeys: [TimeInterval] = []
 
+    @IBOutlet weak var listView: UIView!
+    @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var showHiddenSwitch: UISwitch!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var switchLabel: UILabel!
@@ -57,6 +59,14 @@ class VenueListViewController: BaseViewController {
         viewModel.numHidden.subscribe { [weak self] count in
             self?.hiddenCountLabel.text = "VENUE_DIARY_HIDDEN_PLACES".localizedAttributed(withParams: [String(count)]).string
         }.disposed(by: disposeBag)
+        
+        viewModel.showEmpty.subscribe { [weak self] showEmpty in
+            if let showEmpty = showEmpty.element {
+                self?.emptyView.isHidden = showEmpty
+                self?.listView.isHidden = !showEmpty
+            }
+        }.disposed(by: disposeBag)
+        
     }
 
     

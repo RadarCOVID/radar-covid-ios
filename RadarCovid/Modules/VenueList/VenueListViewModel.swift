@@ -23,6 +23,7 @@ class VenueListViewModel {
     private var allVenues: [VenueRecord] = []
     
     var showHidden = BehaviorSubject<Bool>(value: false)
+    var showEmpty = BehaviorSubject<Bool>(value: false)
     
     var numHidden =  BehaviorSubject<Int>(value: 0)
     
@@ -52,6 +53,7 @@ class VenueListViewModel {
         })
         venueMap.onNext(map)
         numHidden.onNext(countHidden())
+        showEmpty.onNext(allVenues.count != 0)
     }
     
     func toggleHide(venue: VenueRecord) {
