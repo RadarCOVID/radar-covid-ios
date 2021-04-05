@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Necesiatmos hacer uso de la funcióin de reconocimiento facial para restringir el acceso a terceros a la información de eventos visitados</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Necesitamos hacer uso de la cámara para poder escanear los códicos QR de establecimientos asociados</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>org.dpppt.exposure-notification</string>
@@ -49,6 +45,10 @@
 	<integer>2</integer>
 	<key>ENDeveloperRegion</key>
 	<string>ES</string>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>Intent</string>
+	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
@@ -63,6 +63,10 @@
 	<string>Necesitamos Bluetooth para compartir información con otros dispositivos cercanos</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Necesitamos Bluetooth para compartir información con otros dispositivos cercanos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Necesitamos hacer uso de la cámara para poder escanear los códicos QR de establecimientos asociados</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Necesiatmos hacer uso de la funcióin de reconocimiento facial para restringir el acceso a terceros a la información de eventos visitados</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
