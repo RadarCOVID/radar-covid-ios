@@ -16,6 +16,9 @@ class CheckedInViewController: VenueViewController {
     
     private let disposeBag = DisposeBag()
     
+    private var currentVenue: VenueRecord?
+    private var timer: Timer?
+    
     var venueRecordUseCase: VenueRecordUseCase!
     
     @IBOutlet weak var venueNameLabel: UILabel!
@@ -33,6 +36,10 @@ class CheckedInViewController: VenueViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadCurrentVenue()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
     }
     
     @IBAction func onBack(_ sender: Any) {
@@ -87,9 +94,24 @@ class CheckedInViewController: VenueViewController {
     }
     
     private func load(current: VenueRecord) {
+        currentVenue = current
         venueNameLabel.text = current.name
-        timeLabel.text = Date().timeIntervalSince(current.checkInDate).toFormattedString()
+        updateTime()
+        runUpdateTimer()
     }
+    
+    private func updateTime() {
+        if let currentVenue = currentVenue {
+            timeLabel.text = Date().timeIntervalSince(currentVenue.checkInDate).toFormattedString()
+        }
+    }
+    
+    private func runUpdateTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            self?.updateTime()
+        }
+    }
+    
     
 }
 
