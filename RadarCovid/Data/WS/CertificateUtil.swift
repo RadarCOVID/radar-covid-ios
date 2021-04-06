@@ -11,10 +11,6 @@
 
 import Foundation
 struct CertificateUtil {
-    static let pre =
-        CertificateUtil.certificate(filename: "radarcovidpre.covid19.gob.es")
-    static let pro =
-        CertificateUtil.certificate(filename: "radarcovid.covid19.gob.es")
 
     static func certificate(filename: String) -> SecCertificate {
         let filePath = Bundle.main.path(forResource: filename, ofType: "cer")!
