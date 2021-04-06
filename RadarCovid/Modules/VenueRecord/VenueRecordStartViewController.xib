@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VenueRecordStartViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="listButton" destination="FVg-JD-CGY" id="PI2-ch-qV9"/>
+                <outlet property="moreInfoLabel" destination="Nnb-WQ-Kb1" id="jN3-Mi-JSt"/>
                 <outlet property="scanButton" destination="aQi-YJ-1fb" id="imf-e6-DyC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,7 +29,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgC-W0-UDl">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="684"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registro de lugares mediante QR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZf-mB-EUF">
                                     <rect key="frame" x="16" y="130" width="343" height="95.5"/>
@@ -60,18 +61,51 @@ Tu privacidad está protegida en todo momento </string>
                                         <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_HOME_PARAGRAPH_1"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3c-vq-cRd">
+                                    <rect key="frame" x="16" y="652" width="343" height="27"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statsCursor" translatesAutoresizingMaskIntoConstraints="NO" id="PAB-vz-pCS">
+                                            <rect key="frame" x="0.0" y="7" width="13" height="13"/>
+                                            <color key="tintColor" red="0.4810534716" green="0.35028833149999999" blue="0.66210502390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="13" id="OuP-w8-G5R"/>
+                                                <constraint firstAttribute="height" constant="13" id="Uiu-Qu-ZVf"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Más información" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnb-WQ-Kb1">
+                                            <rect key="frame" x="26" y="0.0" width="317" height="27"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                            <color key="textColor" red="0.4810534716" green="0.35028833149999999" blue="0.66210502390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_INFO_WEB_TITLE"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Nnb-WQ-Kb1" secondAttribute="bottom" id="H45-W9-FxP"/>
+                                        <constraint firstItem="PAB-vz-pCS" firstAttribute="centerY" secondItem="g3c-vq-cRd" secondAttribute="centerY" id="J8h-sb-vMp"/>
+                                        <constraint firstItem="Nnb-WQ-Kb1" firstAttribute="top" secondItem="g3c-vq-cRd" secondAttribute="top" id="Xqh-y1-5MQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="Nnb-WQ-Kb1" secondAttribute="trailing" id="ZBx-uN-EPY"/>
+                                        <constraint firstItem="PAB-vz-pCS" firstAttribute="leading" secondItem="g3c-vq-cRd" secondAttribute="leading" id="ogV-X7-q2Q"/>
+                                        <constraint firstItem="Nnb-WQ-Kb1" firstAttribute="leading" secondItem="PAB-vz-pCS" secondAttribute="trailing" constant="13" id="vnN-Rd-4p9"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="8Vs-gr-kLa" secondAttribute="bottom" constant="5" id="0Rw-7Y-BdW"/>
+                                <constraint firstAttribute="bottom" secondItem="g3c-vq-cRd" secondAttribute="bottom" constant="5" id="8Ed-CX-dhi"/>
                                 <constraint firstItem="xZf-mB-EUF" firstAttribute="leading" secondItem="kgC-W0-UDl" secondAttribute="leading" constant="16" id="8qo-88-zTx"/>
                                 <constraint firstItem="8Vs-gr-kLa" firstAttribute="leading" secondItem="kgC-W0-UDl" secondAttribute="leading" constant="16" id="9nk-Wl-9fN"/>
+                                <constraint firstItem="8Vs-gr-kLa" firstAttribute="bottom" secondItem="g3c-vq-cRd" secondAttribute="top" constant="-17" id="DIT-X4-plB"/>
                                 <constraint firstAttribute="trailing" secondItem="8Vs-gr-kLa" secondAttribute="trailing" constant="16" id="Ltg-SR-PSk"/>
                                 <constraint firstItem="8Vs-gr-kLa" firstAttribute="top" secondItem="GDw-E7-IfY" secondAttribute="bottom" constant="10" id="Rn8-mB-BQ1"/>
                                 <constraint firstItem="GDw-E7-IfY" firstAttribute="centerX" secondItem="kgC-W0-UDl" secondAttribute="centerX" constant="-20" id="WA3-kC-DJj"/>
                                 <constraint firstItem="xZf-mB-EUF" firstAttribute="bottom" secondItem="GDw-E7-IfY" secondAttribute="top" constant="-34" id="cbY-i7-NOf"/>
+                                <constraint firstItem="g3c-vq-cRd" firstAttribute="leading" secondItem="kgC-W0-UDl" secondAttribute="leading" constant="16" id="cvq-8J-ANk"/>
                                 <constraint firstAttribute="trailing" secondItem="xZf-mB-EUF" secondAttribute="trailing" constant="16" id="hNm-u5-SHg"/>
                                 <constraint firstItem="xZf-mB-EUF" firstAttribute="top" secondItem="kgC-W0-UDl" secondAttribute="top" constant="130" id="j16-BS-huv"/>
+                                <constraint firstAttribute="trailing" secondItem="g3c-vq-cRd" secondAttribute="trailing" constant="16" id="yaA-tf-lNb"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -154,6 +188,7 @@ Tu privacidad está protegida en todo momento </string>
         <image name="buttonsPrimary" width="341" height="60"/>
         <image name="organicColor" width="375" height="155.5"/>
         <image name="placeRecord" width="38" height="35.5"/>
+        <image name="statsCursor" width="15" height="15"/>
         <image name="venueRecordHome" width="242.5" height="172"/>
         <namedColor name="twilight">
             <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

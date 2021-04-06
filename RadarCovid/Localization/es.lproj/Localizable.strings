@@ -456,3 +456,5 @@
 "VENUE_RECORD_NOTIFICATION_REMINDER_TITLE"="Recordatorio de registro en marcha";
 "QR_NOT_VALID_YET_ERROR"="El código QR escaneado todavía no es válido";
 "QR_OUTDATED_ERROR"= "El código QR escaneado ya no es válido";
+"VENUE_INFO_WEB_TITLE"="<a href=\"https://test-radar.covid19.gob.es/establecimientos\"><b>Más información</b></a>";
+"VENUE_INFO_WEB_URL"="https://test-radar.covid19.gob.es/establecimientos";

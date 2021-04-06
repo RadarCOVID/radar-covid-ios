@@ -23,6 +23,7 @@ class VenueRecordStartViewController: BaseViewController {
     
     @IBOutlet weak var listButton: UIButton!
     @IBOutlet weak var scanButton: UIButton!
+    @IBOutlet weak var moreInfoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,15 @@ class VenueRecordStartViewController: BaseViewController {
         
         listButton.layer.borderWidth = 1
         listButton.layer.borderColor = UIColor.deepLilac.cgColor
+        
+        moreInfoLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                          action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
+        
+        
+    }
+    
+    @objc func userDidTapMoreInfo(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "VENUE_INFO_WEB_URL".localized.getUrlFromHref())
     }
     
     private func setupAccesibility() {
@@ -73,6 +83,8 @@ class VenueRecordStartViewController: BaseViewController {
         listButton.accessibilityLabel = "ACC_VENUE_HOME_PLACES".localized
         listButton.accessibilityHint = "ACC_HINT".localized
     }
+    
+    
     
 }
 
