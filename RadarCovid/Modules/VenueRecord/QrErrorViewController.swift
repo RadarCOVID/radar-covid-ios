@@ -38,7 +38,7 @@ class QrErrorViewController: BaseViewController {
     }
     
     @IBAction func onCancel(_ sender: Any) {
-        router.pop(from: self, to: QrScannerViewController.self, animated: true)
+        router.pop(from: self, to: TabBarController.self, animated: true)
     }
     
     @IBAction func onBack(_ sender: Any) {
