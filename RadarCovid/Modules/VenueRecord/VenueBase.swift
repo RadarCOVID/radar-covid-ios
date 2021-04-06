@@ -26,10 +26,10 @@ class VenueViewController: BaseViewController, VenueCanceller {
         self.showAlertCancelContinue(
             title: "VENUE_RECORD_CANCEL_TITLE".localizedAttributed,
             message: "VENUE_RECORD_CANCEL_TEXT".localizedAttributed,
-            buttonOkTitle: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
-            buttonCancelTitle: "VENUE_RECORD_CANCEL_CONTINUE".localizedAttributed.string,
-            buttonOkVoiceover: "ALERT_CANCEL_SEND_BUTTON".localizedAttributed.string,
-            buttonCancelVoiceover: "VENUE_RECORD_CANCEL_CONTINUE".localizedAttributed.string,
+            buttonOkTitle: "VENUE_RECORD_CANCEL_CONTINUE".localizedAttributed.string,
+            buttonCancelTitle: "ALERT_CANCEL_BUTTON".localizedAttributed.string,
+            buttonOkVoiceover: "VENUE_RECORD_CANCEL_CONTINUE".localizedAttributed.string,
+            buttonCancelVoiceover: "ALERT_CANCEL_BUTTON".localizedAttributed.string,
             okHandler: { [weak self]() in
                 guard let self = self else {
                     return
