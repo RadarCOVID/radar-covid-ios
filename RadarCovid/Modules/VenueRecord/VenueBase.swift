@@ -30,12 +30,10 @@ class VenueViewController: BaseViewController, VenueCanceller {
             buttonCancelTitle: "ALERT_CANCEL_BUTTON".localizedAttributed.string,
             buttonOkVoiceover: "VENUE_RECORD_CANCEL_CONTINUE".localizedAttributed.string,
             buttonCancelVoiceover: "ALERT_CANCEL_BUTTON".localizedAttributed.string,
-            okHandler: { [weak self]() in
-                guard let self = self else {
-                    return
-                }
-                self.finallyCanceled()
-            }, cancelHandler: { () in
+            okHandler: {
+        
+            }, cancelHandler: { [weak self] () in
+                self?.finallyCanceled()
             })
     }
     
