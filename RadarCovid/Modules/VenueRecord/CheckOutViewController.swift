@@ -146,6 +146,7 @@ class CheckOutViewController: VenueViewController {
         timeSC.setTitleTextAttributes(segAttributes, for: .normal)
         
         timeSC.setImage(imageWith(name:"VENUE_RECORD_CHECKOUT_LEAVE_NOW".localizedAttributed.string), forSegmentAt: 0)
+        
     }
     
     private func setupAccesibility() {
@@ -182,21 +183,22 @@ class CheckOutViewController: VenueViewController {
     }
     
     private func imageWith(name: String?) -> UIImage? {
-         let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-         let nameLabel = UILabel(frame: frame)
-         nameLabel.textAlignment = .center
-         nameLabel.backgroundColor = .clear
-         nameLabel.textColor = .black
-         nameLabel.numberOfLines = 0
-         nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-         nameLabel.text = name
-         UIGraphicsBeginImageContext(frame.size)
-          if let currentContext = UIGraphicsGetCurrentContext() {
-             nameLabel.layer.render(in: currentContext)
-             let nameImage = UIGraphicsGetImageFromCurrentImageContext()
-             return nameImage
-          }
-          return nil
+        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        let nameLabel = UILabel(frame: frame)
+        nameLabel.textAlignment = .center
+        nameLabel.backgroundColor = .clear
+        nameLabel.textColor = .black
+        nameLabel.numberOfLines = 0
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        nameLabel.text = name
+        UIGraphicsBeginImageContext(frame.size)
+        if let currentContext = UIGraphicsGetCurrentContext() {
+            nameLabel.layer.render(in: currentContext)
+            let nameImage = UIGraphicsGetImageFromCurrentImageContext()
+            nameImage?.accessibilityLabel = name?.localized
+            return nameImage
+        }
+        return nil
     }
     
     private func getCheckoutFrom(index: Int) -> Date {
