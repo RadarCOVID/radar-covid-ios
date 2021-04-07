@@ -21,6 +21,7 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var qrScannerView: QrScannerView!
     @IBOutlet weak var targetImage: UIImageView!
+    @IBOutlet weak var headerLabel: UILabel!
     
     var router: AppRouter!
     
@@ -70,7 +71,7 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
         flashButton.accessibilityLabel = "ACC_FLASH_OFF".localized
         flashButton.accessibilityHint = "ACC_HINT".localized
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         qrScannerView.startScanning()
@@ -90,6 +91,9 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
         flashButton.accessibilityLabel = "ACC_FLASH_OFF".localized
         flashButton.accessibilityHint = "ACC_HINT".localized
         flashButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        
+        headerLabel.isAccessibilityElement = true
+        headerLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
     }
     
     @IBAction func onBack(_ sender: Any) {

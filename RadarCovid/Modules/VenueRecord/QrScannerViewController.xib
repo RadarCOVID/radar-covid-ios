@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="backgroundView" destination="VLI-V3-vVS" id="trU-5I-Et8"/>
                 <outlet property="flashButton" destination="56l-W8-Qz6" id="ST7-cV-LB1"/>
+                <outlet property="headerLabel" destination="ObF-AA-Z2J" id="qZ9-IJ-UOW"/>
                 <outlet property="qrScannerView" destination="mZe-bo-snd" id="dq7-lT-TFN"/>
                 <outlet property="targetImage" destination="irw-vc-VZY" id="r6i-H9-pUF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
