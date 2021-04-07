@@ -31,9 +31,9 @@ class VenueViewCell: UICollectionViewCell {
                 nameLabel.text = venue.name
                 timeLabel.text = getTimeText(venue)
                 if venue.hidden {
-                    hiddenImageView.image = hiddenImage
+                    hideVenue()
                 } else {
-                    hiddenImageView.image = notHiddenImage
+                    showVenue()
                 }
             } else {
                 nameLabel.text = "--"
@@ -52,6 +52,24 @@ class VenueViewCell: UICollectionViewCell {
         hiddenImageView.isUserInteractionEnabled = true
         hiddenImageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                              action: #selector(userDidTapHide(tapGestureRecognizer:))))
+        setupAccesibility()
+    }
+    
+    private func hideVenue() {
+        hiddenImageView.accessibilityLabel = "ACC_VENUE_HIDDEN".localized
+        hiddenImageView.accessibilityHint = "ACC_VENUE_HIDDEN_HINT".localized
+        hiddenImageView.image = hiddenImage
+    }
+    
+    private func showVenue() {
+        hiddenImageView.accessibilityLabel = "ACC_VENUE_SHOWN".localized
+        hiddenImageView.accessibilityHint = "ACC_VENUE_SHOWN_HINT".localized
+        hiddenImageView.image = notHiddenImage
+    }
+    
+    private func setupAccesibility() {
+        hiddenImageView.isAccessibilityElement = true
+        hiddenImageView.accessibilityTraits.insert(UIAccessibilityTraits.button)
     }
     
     @objc func userDidTapHide(tapGestureRecognizer: UITapGestureRecognizer) {

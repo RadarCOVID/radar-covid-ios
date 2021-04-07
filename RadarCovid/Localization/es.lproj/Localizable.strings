@@ -461,3 +461,7 @@
 "VENUE_DIARY_EMPTY_LIST"="Aún no has registrado ningún lugar visitado";
 "ACC_FLASH_ON"="Flash activado";
 "ACC_FLASH_OFF"="Flash desactivado";
+"ACC_VENUE_HIDDEN"="Lugar oculto";
+"ACC_VENUE_HIDDEN_HINT"="Pulse dos veces para mostrar";
+"ACC_VENUE_SHOWN"="Lugar visible";
+"ACC_VENUE_SHOWN_HINT"="Pulse dos veces para ocultar";

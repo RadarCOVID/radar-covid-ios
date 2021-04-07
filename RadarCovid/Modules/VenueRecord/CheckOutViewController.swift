@@ -196,6 +196,7 @@ class CheckOutViewController: VenueViewController {
             nameLabel.layer.render(in: currentContext)
             let nameImage = UIGraphicsGetImageFromCurrentImageContext()
             nameImage?.accessibilityLabel = name?.localized
+            nameImage?.accessibilityTraits.insert(UIAccessibilityTraits.button)
             return nameImage
         }
         return nil
