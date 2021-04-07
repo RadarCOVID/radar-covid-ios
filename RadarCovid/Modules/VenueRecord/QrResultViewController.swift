@@ -50,14 +50,10 @@ class QrResultViewController: VenueViewController {
         }
     }
     
-    @IBAction override func onCancel(_ sender: Any) {
-        router.popToRoot(from: self, animated: true)
-    }
-    
     @IBAction func onBack(_ sender: Any) {
-        router.popToRoot(from: self, animated: true)
+        onCancel(sender)
     }
-    
+
     private func setupView() {
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.deepLilac.cgColor

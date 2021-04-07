@@ -38,13 +38,13 @@ class VenueListViewController: BaseViewController {
     }
     
     private func setupBinding() {
-        viewModel!.error.subscribe { [weak self] error in
+        viewModel.error.subscribe { [weak self] error in
             self?.showAlertOk(title: "ALERT_GENERIC_ERROR_TITLE".localized,
                               message: "ALERT_GENERIC_ERROR_CONTENT".localized,
                               buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
         }.disposed(by: disposeBag)
         
-        viewModel?.venueMap.subscribe{ [weak self] venueMap in
+        viewModel.venueMap.subscribe{ [weak self] venueMap in
             self?.venueMap = venueMap.element ?? [:] as! [TimeInterval : [VenueRecord]]
             self?.sortedKeys = self?.sortedKeys(self?.venueMap) ?? []
             self?.collectionView.reloadData()
