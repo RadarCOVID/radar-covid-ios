@@ -74,7 +74,7 @@
                         <action selector="onCancel:" destination="-1" eventType="touchUpInside" id="bXj-is-EfR"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="US3-V9-7Ek" userLabel="Accept Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="US3-V9-7Ek" userLabel="Accept Button">
                     <rect key="frame" x="16" y="509" width="343" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="YHg-tf-c0r"/>

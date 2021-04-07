@@ -207,7 +207,7 @@ AHORA</string>
                         <action selector="onBack:" destination="-1" eventType="touchUpInside" id="arB-Fp-Bgp"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9u-6n-7q3" userLabel="Accept Button">
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9u-6n-7q3" userLabel="Accept Button">
                     <rect key="frame" x="16" y="519" width="343" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="K5F-Vb-tWi"/>
