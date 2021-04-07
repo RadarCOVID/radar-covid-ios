@@ -66,8 +66,6 @@ class VenueRecordStartViewController: BaseViewController {
         
         moreInfoLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                           action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
-        
-        
     }
     
     @objc func userDidTapMoreInfo(tapGestureRecognizer: UITapGestureRecognizer) {
