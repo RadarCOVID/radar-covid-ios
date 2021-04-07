@@ -17,10 +17,9 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     
     private let disposeBag = DisposeBag()
     
+    @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var backgroundView: UIView!
-    
     @IBOutlet weak var qrScannerView: QrScannerView!
-    
     @IBOutlet weak var targetImage: UIImageView!
     
     var router: AppRouter!
@@ -31,6 +30,7 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
         super.viewDidLoad()
         qrScannerView.delegate = self
         setupView()
+        setupAccesibility()
     }
     
     override func viewDidLayoutSubviews() {
@@ -44,9 +44,9 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
                      try avDevice.lockForConfiguration()
                     
                      if avDevice.isTorchActive {
-                         avDevice.torchMode = AVCaptureDevice.TorchMode.off
+                        switchTorchOff(avDevice)
                      } else {
-                         avDevice.torchMode = AVCaptureDevice.TorchMode.on
+                        switchTorchOn(avDevice)
                      }
                     
                  } catch {
@@ -55,6 +55,20 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
              }
              avDevice.unlockForConfiguration()
          }
+    }
+    
+    private func switchTorchOn(_ avDevice: AVCaptureDevice) {
+        avDevice.torchMode = AVCaptureDevice.TorchMode.on
+        flashButton.setImage(UIImage(named: "FlashOn"), for: .normal)
+        flashButton.accessibilityLabel = "ACC_FLASH_ON".localized
+        flashButton.accessibilityHint = "ACC_HINT_DISABLE".localized
+    }
+    
+    private func switchTorchOff(_ avDevice: AVCaptureDevice) {
+        avDevice.torchMode = AVCaptureDevice.TorchMode.off
+        flashButton.setImage(UIImage(named: "FlashOff"), for: .normal)
+        flashButton.accessibilityLabel = "ACC_FLASH_OFF".localized
+        flashButton.accessibilityHint = "ACC_HINT".localized
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +83,13 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     
     private func setupView() {
         self.title = "VENUE_QR_SCAN_TITLE".localized
+    }
+    
+    private func setupAccesibility() {
+        flashButton.isAccessibilityElement = true
+        flashButton.accessibilityLabel = "ACC_FLASH_OFF".localized
+        flashButton.accessibilityHint = "ACC_HINT".localized
+        flashButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
     }
     
     @IBAction func onBack(_ sender: Any) {

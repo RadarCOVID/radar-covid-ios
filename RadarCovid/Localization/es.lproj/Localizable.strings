@@ -458,3 +458,6 @@
 "QR_OUTDATED_ERROR"= "El código QR escaneado ya no es válido";
 "VENUE_INFO_WEB_TITLE"="<a href=\"https://test-radar.covid19.gob.es/establecimientos\"><b>Más información</b></a>";
 "VENUE_INFO_WEB_URL"="https://test-radar.covid19.gob.es/establecimientos";
+"VENUE_DIARY_EMPTY_LIST"="Aún no has registrado ningún lugar visitado";
+"ACC_FLASH_ON"="Flash activado";
+"ACC_FLASH_OFF"="Flash desactivado";

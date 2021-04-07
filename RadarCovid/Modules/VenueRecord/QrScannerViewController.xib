@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QrScannerViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundView" destination="VLI-V3-vVS" id="trU-5I-Et8"/>
+                <outlet property="flashButton" destination="56l-W8-Qz6" id="ST7-cV-LB1"/>
                 <outlet property="qrScannerView" destination="mZe-bo-snd" id="dq7-lT-TFN"/>
                 <outlet property="targetImage" destination="irw-vc-VZY" id="r6i-H9-pUF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -71,7 +72,7 @@
                         <constraint firstAttribute="width" constant="60" id="2Hm-8g-8Tt"/>
                         <constraint firstAttribute="height" constant="60" id="jlv-in-Uy5"/>
                     </constraints>
-                    <state key="normal" image="FlashIcon"/>
+                    <state key="normal" image="FlashOff"/>
                     <connections>
                         <action selector="onFlashTap:" destination="-1" eventType="primaryActionTriggered" id="QAw-58-xMM"/>
                     </connections>
@@ -106,7 +107,7 @@
         </view>
     </objects>
     <resources>
-        <image name="FlashIcon" width="60" height="60"/>
+        <image name="FlashOff" width="60" height="60"/>
         <image name="iconsBack" width="25.5" height="17"/>
         <image name="target" width="314" height="312"/>
         <systemColor name="systemBackgroundColor">
