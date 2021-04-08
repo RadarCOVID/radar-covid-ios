@@ -9,8 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckOutViewController" customModule="Radar_COVID" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaseViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="b57-Uu-ZnC" id="BHD-xm-94E"/>
                 <outlet property="cancelButton" destination="gm5-29-6Qx" id="h7E-im-026"/>
                 <outlet property="dateLabel" destination="Ub5-4U-f0q" id="ajF-aP-WiK"/>
                 <outlet property="dateView" destination="fqe-dv-hiF" id="DHZ-pw-NUC"/>
@@ -18,6 +19,7 @@
                 <outlet property="hourLabel" destination="Qkj-Vb-9I0" id="4DM-4m-mNg"/>
                 <outlet property="nameLabel" destination="LWQ-U8-VxA" id="zJC-tC-kXV"/>
                 <outlet property="timeSC" destination="CZY-uE-DoK" id="iYG-la-tEV"/>
+                <outlet property="titleLabel" destination="W6k-zM-qWR" id="fJX-mF-uWQ"/>
                 <outlet property="venueView" destination="vir-15-84f" id="ENY-r8-Vp9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -27,6 +29,19 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="lvK-GG-lWR">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="155.5"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b57-Uu-ZnC">
+                    <rect key="frame" x="22" y="22" width="331" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="GpT-rs-RoV"/>
+                    </constraints>
+                    <state key="normal" image="iconsBack"/>
+                    <connections>
+                        <action selector="onBack:" destination="-1" eventType="touchUpInside" id="arB-Fp-Bgp"/>
+                    </connections>
+                </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDE-6x-gCR">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="509"/>
                     <subviews>
@@ -172,9 +187,6 @@ AHORA</string>
                     <viewLayoutGuide key="contentLayoutGuide" id="g7T-M2-a4t"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="nZs-t0-gri"/>
                 </scrollView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="lvK-GG-lWR">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="155.5"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gm5-29-6Qx" userLabel="Cancel Button">
                     <rect key="frame" x="16" y="595" width="343" height="56"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -195,16 +207,6 @@ AHORA</string>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="onCancel:" destination="-1" eventType="touchUpInside" id="oEj-ne-724"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b57-Uu-ZnC">
-                    <rect key="frame" x="22" y="22" width="331" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="GpT-rs-RoV"/>
-                    </constraints>
-                    <state key="normal" image="iconsBack"/>
-                    <connections>
-                        <action selector="onBack:" destination="-1" eventType="touchUpInside" id="arB-Fp-Bgp"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9u-6n-7q3" userLabel="Accept Button">

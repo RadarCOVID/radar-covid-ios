@@ -9,12 +9,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QrErrorViewController" customModule="Radar_COVID" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaseViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
-                <outlet property="backButton" destination="Tad-va-13h" id="uMa-Ap-T9a"/>
+                <outlet property="backButton" destination="Tad-va-13h" id="ZTa-ne-QkV"/>
                 <outlet property="cancelButton" destination="tDy-wy-Pkj" id="iZf-uh-tb1"/>
                 <outlet property="errorLabel" destination="nbS-se-EA8" id="FNa-ma-wGy"/>
                 <outlet property="okButton" destination="US3-V9-7Ek" id="VaP-h0-9Pr"/>
+                <outlet property="titleLabel" destination="e7C-aI-DDw" id="Wxh-NO-YCQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

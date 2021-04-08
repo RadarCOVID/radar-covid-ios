@@ -41,6 +41,11 @@ class VenueViewController: BaseViewController, VenueCanceller {
         router.popToRoot(from: self, animated: true)
     }
     
+    func setupAccesibility() {
+        cancelButton.isAccessibilityElement = true
+        cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+    }
+    
     func showGenericError() {
         showAlertOk(title: "ALERT_GENERIC_ERROR_TITLE".localized,
                           message: "ALERT_GENERIC_ERROR_CONTENT".localized,

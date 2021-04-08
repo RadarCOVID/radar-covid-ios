@@ -83,7 +83,8 @@ class QrResultViewController: VenueViewController {
         venueNameLabel.text = venue.name
     }
     
-    private func setupAccesibility() {
+    override func setupAccesibility() {
+        super.setupAccesibility()
         confirmButton.accessibilityHint = "VENUE_RECORD_CHECKIN_ACTION".localized
         confirmButton.accessibilityHint = "ACC_HINT".localized
         confirmButton.isAccessibilityElement = true

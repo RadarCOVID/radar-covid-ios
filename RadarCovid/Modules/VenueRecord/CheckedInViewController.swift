@@ -73,7 +73,9 @@ class CheckedInViewController: VenueViewController {
         
     }
     
-    private func setupAccesibility() {
+    internal override func setupAccesibility() {
+        super.setupAccesibility()
+        
         confirmButton.accessibilityHint = "VENUE_RECORD_CHECKOUT_ACTION".localized
         confirmButton.accessibilityHint = "ACC_HINT".localized
         confirmButton.isAccessibilityElement = true

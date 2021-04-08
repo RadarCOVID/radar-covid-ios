@@ -87,13 +87,11 @@ class QrScannerViewController: BaseViewController, QrScannerViewDelegate {
     }
     
     private func setupAccesibility() {
+        
         flashButton.isAccessibilityElement = true
         flashButton.accessibilityLabel = "ACC_FLASH_OFF".localized
         flashButton.accessibilityHint = "ACC_HINT".localized
         flashButton.accessibilityTraits.insert(UIAccessibilityTraits.button)
-        
-        headerLabel.isAccessibilityElement = true
-        headerLabel.accessibilityTraits.insert(UIAccessibilityTraits.header)
     }
     
     @IBAction func onBack(_ sender: Any) {

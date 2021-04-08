@@ -149,7 +149,9 @@ class CheckOutViewController: VenueViewController {
         
     }
     
-    private func setupAccesibility() {
+    override func setupAccesibility() {
+        super.setupAccesibility()
+        
         finishButton.accessibilityHint = "VENUE_RECORD_CHECKOUT_END".localized
         finishButton.accessibilityHint = "ACC_HINT".localized
         finishButton.isAccessibilityElement = true
@@ -225,4 +227,13 @@ class CheckOutViewController: VenueViewController {
         return Date()
     }
     
+}
+
+extension CheckOutViewController: AccTitleView {
+
+    var accTitle: String? {
+        get {
+            "VENUE_RECORD_CHECKIN_TITLE".localized
+        }
+    }
 }
