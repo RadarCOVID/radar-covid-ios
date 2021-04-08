@@ -34,6 +34,7 @@ class VenueListViewController: BaseViewController {
         super.viewDidLoad()
         setupCollectionView()
         setupBinding()
+        setupAccesibility()
         self.showHiddenSwitch.onTintColor = UIColor.degradado
     }
     
@@ -53,7 +54,10 @@ class VenueListViewController: BaseViewController {
         showHiddenSwitch.rx.isOn.bind(to: viewModel.showHidden).disposed(by: disposeBag)
         
         viewModel.showHidden.subscribe { [weak self] show in
-            self?.switchLabel.text = show ? "VENUE_DIARY_VISIBLE".localized : "VENUE_DIARY_HIDDEN".localized
+            if let show = show.element {
+                self?.switchLabel.text = show ? "VENUE_DIARY_VISIBLE".localized : "VENUE_DIARY_HIDDEN".localized
+                self?.showHiddenSwitch.accessibilityHint = show ? "ACC_HIDE_SWITCH_ON_HINT".localized : "ACC_HIDE_SWITCH_ON_HINT".localized
+            }
         }.disposed(by: disposeBag)
         
         viewModel.numHidden.subscribe { [weak self] count in
@@ -67,6 +71,10 @@ class VenueListViewController: BaseViewController {
             }
         }.disposed(by: disposeBag)
         
+    }
+    
+    private func setupAccesibility() {
+        showHiddenSwitch.isAccessibilityElement = true
     }
 
     

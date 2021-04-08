@@ -465,3 +465,5 @@
 "ACC_VENUE_HIDDEN_HINT"="Pulse dos veces para mostrar";
 "ACC_VENUE_SHOWN"="Lugar visible";
 "ACC_VENUE_SHOWN_HINT"="Pulse dos veces para ocultar";
+"ACC_HIDE_SWITCH_ON_HINT"="Pulse dos veces para filtrar ocultos";
+"ACC_HIDE_SWITCH_OFF_HINT"="Pulse dos veces para mostrar ocultos";
