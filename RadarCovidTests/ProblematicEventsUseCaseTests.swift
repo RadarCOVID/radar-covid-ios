@@ -323,6 +323,32 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
     }
     
+    func testGivenPreviousTagStoredCallGetProblematicEventsWithThatTagAndGettingMatchesAndStoreNewTag() throws {
+        
+        qrCheckRepository.registerGetSyncTag(syncTag: "TAG")
+        
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:[], tag: "NEWTAG")))
+        
+        venueNotifier.registerCheckForMatches(response: [getExposureEvent(checkinId: "IdExposedOudated")])
+        
+        venueRecordRepository.registerGetVisited(response: [])
+        
+        venueRecordRepository.registerUpdateVisited(response: [])
+        
+        try! sut.sync().toBlocking().first()
+        
+        problematicEvensApi.verifyGetProblematicsEvents()
+        qrCheckRepository.verifySaveSyncTag()
+        
+        let tag = problematicEvensApi.paramCaptured("getProblematicEvents")!["tag"] as! String
+        XCTAssertEqual("TAG", tag)
+        
+        
+        let savedTag = qrCheckRepository.paramCaptured("saveSyncTag")!["syncTag"] as! String
+        XCTAssertEqual(savedTag, "NEWTAG")
+        
+    }
+    
     private func verifyNoMoreInteractionsAll() {
         venueRecordRepository.verifyNoMoreInteractions()
         venueNotifier.verifyNoMoreInteractions()

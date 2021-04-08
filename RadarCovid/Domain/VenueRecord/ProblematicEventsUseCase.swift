@@ -57,11 +57,13 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
             
             let exposedEvents = self.venueNotifier.checkForMatches(problematicEvents: problematicEvents)
             
+            var result = Observable.just(Void())
+                
             if !exposedEvents.isEmpty {
                 
                 self.logger.debug("Received \(exposedEvents.count) problematic events")
                 
-                return self.venueRecordRepository.getVisited().flatMap { visitedVenues -> Observable<Void> in
+                result = self.venueRecordRepository.getVisited().flatMap { visitedVenues -> Observable<Void> in
                     var newVisited: [VenueRecord] = []
                     
                     visitedVenues?.forEach { v in
@@ -85,7 +87,7 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
                 }
             }
             self.qrCheckRepository.save(syncTag: problematicEventData.tag)
-            return .just(Void())
+            return result
         }
     }
     
