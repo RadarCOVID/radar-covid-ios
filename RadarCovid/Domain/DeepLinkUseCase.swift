@@ -54,9 +54,8 @@ class DeepLinkUseCase {
     
     private func reportUrlStack(url: URL) -> RouteStack {
         
-
-        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        let param = urlComponents?.queryItems?.filter({ $0.name == "code" }).first
+        let param = URLComponents(url: url, resolvingAgainstBaseURL: false)?
+            .queryItems?.filter({ $0.name == "code" }).first?.value
         
         return RouteStack(routes:  [.home,.myHealthStep0,.myHealthStep1], params: [nil, nil, param])
     }
