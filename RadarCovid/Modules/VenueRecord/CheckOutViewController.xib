@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaseViewController" customModule="Radar_COVID" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckOutViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
-                <outlet property="backButton" destination="b57-Uu-ZnC" id="BHD-xm-94E"/>
+                <outlet property="backButton" destination="Swf-dR-9x2" id="LeD-RB-G9W"/>
                 <outlet property="cancelButton" destination="gm5-29-6Qx" id="h7E-im-026"/>
                 <outlet property="dateLabel" destination="Ub5-4U-f0q" id="ajF-aP-WiK"/>
                 <outlet property="dateView" destination="fqe-dv-hiF" id="DHZ-pw-NUC"/>
@@ -32,24 +32,24 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="lvK-GG-lWR">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="155.5"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b57-Uu-ZnC">
-                    <rect key="frame" x="22" y="22" width="331" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swf-dR-9x2">
+                    <rect key="frame" x="20" y="20" width="335" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="GpT-rs-RoV"/>
+                        <constraint firstAttribute="height" constant="40" id="VFa-q1-kjd"/>
                     </constraints>
                     <state key="normal" image="iconsBack"/>
                     <connections>
-                        <action selector="onBack:" destination="-1" eventType="touchUpInside" id="arB-Fp-Bgp"/>
+                        <action selector="onBack:" destination="-1" eventType="touchUpInside" id="bsc-Mx-pDt"/>
                     </connections>
                 </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDE-6x-gCR">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="509"/>
+                    <rect key="frame" x="0.0" y="60" width="375" height="449"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKp-fP-v4a">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="558"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmación de salida" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6k-zM-qWR">
-                                    <rect key="frame" x="26" y="125" width="323" height="31.5"/>
+                                    <rect key="frame" x="26" y="85" width="323" height="31.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vir-15-84f" customClass="BackgroundView" customModule="Radar_COVID" customModuleProvider="target">
-                                    <rect key="frame" x="16" y="194.5" width="343" height="75"/>
+                                    <rect key="frame" x="16" y="154.5" width="343" height="75"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Venue" translatesAutoresizingMaskIntoConstraints="NO" id="du6-TC-sbu">
                                             <rect key="frame" x="18" y="26.5" width="22" height="22"/>
@@ -84,7 +84,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha y hora de entrada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5U-jd-b8H">
-                                    <rect key="frame" x="28" y="314.5" width="319" height="27"/>
+                                    <rect key="frame" x="28" y="274.5" width="319" height="27"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -93,7 +93,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqe-dv-hiF" userLabel="dateView">
-                                    <rect key="frame" x="16" y="351.5" width="343" height="66.5"/>
+                                    <rect key="frame" x="16" y="311.5" width="343" height="66.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoy, 15 Feb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub5-4U-f0q">
                                             <rect key="frame" x="16" y="20" width="117" height="26.5"/>
@@ -123,7 +123,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Cuánto tiempo has estado?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Inp-8E-B6u">
-                                    <rect key="frame" x="31" y="456" width="271" height="27"/>
+                                    <rect key="frame" x="31" y="416" width="271" height="27"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -132,7 +132,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CZY-uE-DoK">
-                                    <rect key="frame" x="16" y="493" width="343" height="61"/>
+                                    <rect key="frame" x="16" y="453" width="343" height="61"/>
                                     <color key="backgroundColor" name="white"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="YOd-aS-fYG"/>
@@ -163,7 +163,7 @@ AHORA</string>
                                 <constraint firstItem="CZY-uE-DoK" firstAttribute="top" secondItem="fqe-dv-hiF" secondAttribute="bottom" constant="75" id="8sl-rl-kIf"/>
                                 <constraint firstItem="fqe-dv-hiF" firstAttribute="leading" secondItem="NKp-fP-v4a" secondAttribute="leading" constant="16" id="Fuw-UT-3qT"/>
                                 <constraint firstItem="Inp-8E-B6u" firstAttribute="leading" secondItem="CZY-uE-DoK" secondAttribute="leading" constant="15" id="IAa-MG-eFy"/>
-                                <constraint firstItem="W6k-zM-qWR" firstAttribute="top" secondItem="NKp-fP-v4a" secondAttribute="top" constant="125" id="JuZ-6l-LMM"/>
+                                <constraint firstItem="W6k-zM-qWR" firstAttribute="top" secondItem="NKp-fP-v4a" secondAttribute="top" constant="85" id="JuZ-6l-LMM"/>
                                 <constraint firstAttribute="trailing" secondItem="W6k-zM-qWR" secondAttribute="trailing" constant="26" id="KIh-KG-vLm"/>
                                 <constraint firstAttribute="trailing" secondItem="CZY-uE-DoK" secondAttribute="trailing" constant="16" id="Pov-22-Mzj"/>
                                 <constraint firstItem="W6k-zM-qWR" firstAttribute="bottom" secondItem="vir-15-84f" secondAttribute="top" constant="-38" id="R1U-hd-f9Z"/>
@@ -240,16 +240,16 @@ AHORA</string>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NDE-6x-gCR" secondAttribute="trailing" id="FiS-ez-3ic"/>
                 <constraint firstItem="lvK-GG-lWR" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Neh-mc-dp5"/>
                 <constraint firstItem="S9u-6n-7q3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Oeh-c7-xed"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Swf-dR-9x2" secondAttribute="trailing" constant="20" id="QJT-xC-D6d"/>
+                <constraint firstItem="Swf-dR-9x2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Qc5-yL-Eoa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S9u-6n-7q3" secondAttribute="trailing" constant="16" id="RUq-ri-eLo"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gm5-29-6Qx" secondAttribute="trailing" constant="16" id="VZu-wS-8X8"/>
-                <constraint firstItem="NDE-6x-gCR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cIn-N9-okd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gm5-29-6Qx" secondAttribute="bottom" constant="16" id="eEl-zm-2HC"/>
                 <constraint firstItem="lvK-GG-lWR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="llm-sq-V62"/>
                 <constraint firstItem="NDE-6x-gCR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ppp-BX-JMF"/>
-                <constraint firstItem="b57-Uu-ZnC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="uYq-C1-zFz"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b57-Uu-ZnC" secondAttribute="trailing" constant="22" id="wUC-AL-twg"/>
                 <constraint firstItem="gm5-29-6Qx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="wk3-6n-NGz"/>
-                <constraint firstItem="b57-Uu-ZnC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="22" id="z4Y-4A-bL3"/>
+                <constraint firstItem="NDE-6x-gCR" firstAttribute="top" secondItem="Swf-dR-9x2" secondAttribute="bottom" id="xO5-O6-8ve"/>
+                <constraint firstItem="Swf-dR-9x2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="xfk-Ff-u9I"/>
             </constraints>
             <point key="canvasLocation" x="-55.072463768115945" y="89.732142857142847"/>
         </view>

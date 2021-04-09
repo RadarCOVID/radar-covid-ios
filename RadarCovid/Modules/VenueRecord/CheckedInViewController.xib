@@ -36,7 +36,7 @@
                     </constraints>
                     <state key="normal" image="iconsBack"/>
                     <connections>
-                        <action selector="onBack:" destination="-1" eventType="primaryActionTriggered" id="owM-QH-7XX"/>
+                        <action selector="onBack:" destination="-1" eventType="primaryActionTriggered" id="nDA-4F-Rdm"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registro Iniciado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoa-dD-Vib">

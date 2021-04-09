@@ -65,7 +65,7 @@ class HomeViewModel {
     }
     
     func checkRadarStatus() {
-        changeRadarStatus(radarStatusUseCase.isTracingActive() ?? false)
+        changeRadarStatus(radarStatusUseCase.isTracingActive())
     }
     
     private func checkInitialExposition() {
