@@ -180,7 +180,7 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(RadarStatusUseCase.self) { r in
-            RadarStatusUseCase(preferencesRepository: r.resolve(PreferencesRepository.self)!,
+            RadarStatusUseCaseImpl(preferencesRepository: r.resolve(PreferencesRepository.self)!,
                                syncUseCase: r.resolve(SyncUseCase.self)!)
         }.inObjectScope(.container)
         
@@ -297,7 +297,7 @@ class Injection {
         
         
         container.register(ReminderNotificationUseCase.self) { r in
-            let reminderNotificationUseCase = ReminderNotificationUseCase(settingsRepository: r.resolve(SettingsRepository.self)!)
+            let reminderNotificationUseCase = ReminderNotificationUseCaseImpl(settingsRepository: r.resolve(SettingsRepository.self)!)
             return reminderNotificationUseCase
         }.inObjectScope(.container)
         

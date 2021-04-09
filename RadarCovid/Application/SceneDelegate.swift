@@ -71,7 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         fakeRequestUseCase?.scheduleBackgroundTask()
         
         let reminderNotificationUseCase = AppDelegate.shared?.injection.resolve(ReminderNotificationUseCase.self)!
-        reminderNotificationUseCase?.start()
+        reminderNotificationUseCase?.start(nil)
     }
     
     // MARK: - Deep links

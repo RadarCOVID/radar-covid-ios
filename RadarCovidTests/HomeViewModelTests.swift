@@ -21,6 +21,9 @@ class HomeViewModelTests: XCTestCase {
     
     private var expositionCheckUseCase: ExpositionCheckUseCaseMock!
     private var expositionUseCase: ExpositionUseCaseMock!
+    private var radarStatusUseCase: RadarStatusUseCaseMock!
+    private var problematicEventUseCase: ProblematicEventsUseCaseMock!
+    private var reminderNotificationUseCase: ReminderNotificationUseCaseMock!
     
     private var sut: HomeViewModel!
 
@@ -29,9 +32,16 @@ class HomeViewModelTests: XCTestCase {
         scheduler = TestScheduler(initialClock: 0)
         sut = HomeViewModel()
         expositionCheckUseCase = ExpositionCheckUseCaseMock()
+        radarStatusUseCase = RadarStatusUseCaseMock()
         expositionUseCase = ExpositionUseCaseMock(scheduler: scheduler)
+        problematicEventUseCase = ProblematicEventsUseCaseMock()
+        reminderNotificationUseCase = ReminderNotificationUseCaseMock()
+        
         sut.expositionUseCase = expositionUseCase
         sut.expositionCheckUseCase = expositionCheckUseCase
+        sut.radarStatusUseCase = radarStatusUseCase
+        sut.problematicEventsUseCase = problematicEventUseCase
+        sut.reminderNotificationUseCase = reminderNotificationUseCase
     }
 
     override func tearDownWithError() throws {
@@ -206,6 +216,42 @@ class ExpositionUseCaseMock: Mocker, ExpositionUseCase {
     
     func registerGetExpositionInfo(response: ExpositionInfo) {
         registerMock("getExpositionInfo", responses: [scheduler.createColdObservable([.next(1,response)]).asObservable()])
+    }
+    
+    
+}
+
+class RadarStatusUseCaseMock : Mocker, RadarStatusUseCase {
+    init() {
+        super.init("RadarStatusUseCaseMock")
+    }
+    func isTracingActive() -> Bool {
+        (self.call("isTracingActive") ?? false) as! Bool
+    }
+    
+    func changeTracingStatus(active: Bool) -> Observable<RadarStatus> {
+        (self.call("changeTracingStatus") ?? Observable<RadarStatus>.empty()) as! Observable<RadarStatus>
+    }
+    
+    func restoreLastStateAndSync() -> Observable<RadarStatus> {
+        (self.call("restoreLastStateAndSync")  ?? Observable<RadarStatus>.empty()) as! Observable<RadarStatus>
+    }
+    
+    func isTracingInit() -> Bool {
+        (self.call("isTracingInit") ?? false) as! Bool
+    }
+    
+    
+}
+
+class ReminderNotificationUseCaseMock: ReminderNotificationUseCase {
+    
+    func cancel() {
+        
+    }
+    
+    func start(_ timerInterval: Int64?) {
+        
     }
     
     
