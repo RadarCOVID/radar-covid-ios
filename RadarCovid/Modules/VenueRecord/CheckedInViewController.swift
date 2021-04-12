@@ -13,11 +13,12 @@ import UIKit
 import RxSwift
 
 class CheckedInViewController: VenueViewController {
-    
+        
     private let disposeBag = DisposeBag()
     
     private var currentVenue: VenueRecord?
     private var timer: Timer?
+    private var readenTimer: Timer?
     
     var venueRecordUseCase: VenueRecordUseCase!
     
@@ -40,6 +41,7 @@ class CheckedInViewController: VenueViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         timer?.invalidate()
+        readenTimer?.invalidate()
     }
     
     @IBAction func onBack(_ sender: Any) {
@@ -82,6 +84,7 @@ class CheckedInViewController: VenueViewController {
         
         cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+        
     }
     
     override func setAccesibilityBackButton() {
@@ -110,7 +113,9 @@ class CheckedInViewController: VenueViewController {
     
     private func updateTime() {
         if let currentVenue = currentVenue {
-            timeLabel.text = Date().timeIntervalSince(currentVenue.checkInDate).toFormattedString()
+            let timeInterval = Date().timeIntervalSince(currentVenue.checkInDate)
+            timeLabel.accessibilityLabel = readenTime(timeInterval)
+            timeLabel.text = timeInterval.toFormattedString()
         }
     }
     
@@ -118,8 +123,25 @@ class CheckedInViewController: VenueViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             self?.updateTime()
         }
+        if UIAccessibility.isVoiceOverRunning {
+            readenTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
+                if self?.timeLabel.accessibilityElementIsFocused() ?? false {
+                    UIAccessibility.post(notification: .announcement, argument: self?.timeLabel.accessibilityLabel)
+                }
+            }
+        }
     }
     
+    private func readenTime(_ timeInterval: TimeInterval) -> String {
+        let hours = Int(floor(timeInterval / 3600))
+        let remainder = Int(timeInterval.truncatingRemainder(dividingBy: 3600))
+        let minutes = remainder / 60
+        let seconds = remainder % 60
+        
+        return (hours   > 0 ? (hours.description + " " + "ACC_HOURS".localized + " "  ) : "") +
+            (minutes > 0 ? (minutes.description + " " + "ACC_MINUTES".localized + " " ) : "") +
+            (seconds.description + "ACC_SECONDS".localized)
+    }
     
 }
 

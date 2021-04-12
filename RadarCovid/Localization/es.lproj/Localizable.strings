@@ -471,3 +471,6 @@
 "VENUE_RECORD_BACK_HOME_TITLE"="Acceso a Radar COVID";
 "VENUE_RECORD_BACK_HOME_DESC"="Recuerda que el tiempo en el establecimiento seguirá contando hasta que no confirmes la salida.<br><br> Podrás volver al registro desde el icono “QR” del menú de navegación";
 "VENUE_RECORD_BACK_HOME_BUTTON"="Acceder a Radar COVID";
+"ACC_HOURS"="horas";
+"ACC_MINUTES"="minutos";
+"ACC_SECONDS"="segundos";
