@@ -63,6 +63,7 @@ class BackgroundTasksUseCaseImpl: BackgroundTasksUseCase {
     private func callBackToHealthy() -> Observable<Bool> {
         expositionCheckUseCase.checkBackToHealthy().catchError { [weak self] error in
             self?.logger.error("Error checking exposed to healthy state \(error.localizedDescription)")
+            self?.logStack()
             return .just(false)
         }
     }
@@ -70,6 +71,7 @@ class BackgroundTasksUseCaseImpl: BackgroundTasksUseCase {
     private func callSendAnalytics() -> Observable<Bool> {
         analyticsUseCase.sendAnaltyics().catchError { [weak self] error in
             self?.logger.error("Error sending analytics: \(error.localizedDescription)")
+            self?.logStack()
             return .just(false)
         }
     }
@@ -77,6 +79,7 @@ class BackgroundTasksUseCaseImpl: BackgroundTasksUseCase {
     private func callFakeRequest() -> Observable<Bool> {
         fakeRequestUseCase.sendFalsePositiveFromBackgroundDP3T().catchError { [weak self] error in
             self?.logger.error("Error sending fake: \(error.localizedDescription)")
+            self?.logStack()
             return .just(false)
         }
     }
@@ -87,16 +90,27 @@ class BackgroundTasksUseCaseImpl: BackgroundTasksUseCase {
             var errorFound: Bool = false
             return self.checkInInprogressUseCase.checkStauts().catchError { error in
                 self.logger.error("Error checking venue status: \(error.localizedDescription)")
+                self.logStack()
                 errorFound = true
                 return .just(Void())
             }.flatMap { () -> Observable<Void> in
                 self.problematicEventsUseCase.sync().catchError { error in
                     self.logger.error("Error syncing problematic events: \(error.localizedDescription)")
+                    self.logStack()
                     errorFound = true
                     return .just(Void())
                 }
             }.map { errorFound }
         }
+    }
+    
+    private func logStack() {
+        var s = ""
+        for stack in Thread.callStackSymbols {
+            s.append(stack)
+            s.append("\n")
+        }
+        logger.error("StackTrace \(s)")
     }
     
 }

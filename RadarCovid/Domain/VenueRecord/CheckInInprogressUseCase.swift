@@ -11,6 +11,7 @@
 
 import Foundation
 import RxSwift
+import Logging
 
 protocol CheckInInProgressUseCase {
     func checkStauts() -> Observable<Void>
@@ -18,6 +19,8 @@ protocol CheckInInProgressUseCase {
 }
 
 class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
+    
+    private let logger = Logger(label: "CheckInInProgressUseCaseImpl")
     
     private let secondsAnHour = 60 * 60
     
@@ -57,8 +60,9 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     
     private func checkIfAutoCheckOut(_ currentVenue: VenueRecord) -> Observable<Void> {
         var editVenue = currentVenue
-        
+        logger.debug("Checking if auto checkout")
         if appStateHandler.state != .active && isOutdated(venueRecord: currentVenue, interval: maxCheckInHours) {
+            logger.debug("Checking out automatically")
             return self.venueRecordRepository.removeCurrent().flatMap {  _ -> Observable<Void> in
                 editVenue.checkOutDate = Date()
                 return self.venueRecordRepository.save(visit: editVenue).map { _ in Void() }
@@ -68,8 +72,10 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     }
     
     private func sendReminder(_ currentVenue: VenueRecord) {
+        logger.debug("Checking if auto checkout")
         let date = qrCheckRepository.getLastReminder()
         if checkIfSendReminder(venueRecord: currentVenue, lastReminder: date) {
+            logger.debug("Sending reminder")
             notificationHandler.scheduleCheckInReminderNotification()
         }
     }
