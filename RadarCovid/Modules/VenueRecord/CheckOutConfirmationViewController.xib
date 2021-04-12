@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaseViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
-                <outlet property="backButton" destination="8Y9-od-ot7" id="3HJ-x6-gYj"/>
+                <outlet property="backButton" destination="8Y9-od-ot7" id="cKu-3a-HME"/>
                 <outlet property="titleLabel" destination="KnA-rL-oph" id="82J-TD-ZWM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

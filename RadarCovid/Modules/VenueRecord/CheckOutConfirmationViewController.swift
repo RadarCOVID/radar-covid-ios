@@ -23,5 +23,11 @@ class CheckOutConfirmationViewController: BaseViewController {
         router.popToRoot(from: self, animated: true)
     }
     
+    override func setAccesibilityBackButton() {
+        backButton?.isAccessibilityElement = true
+        backButton?.accessibilityHint = "ACC_HINT".localized
+        backButton?.accessibilityLabel =  "VENUE_HOME_TITLE".localized  + " " + "ACC_BUTTON_BACK_TO".localized
+    }
+    
     
 }
