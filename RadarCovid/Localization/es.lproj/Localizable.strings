@@ -467,3 +467,7 @@
 "ACC_VENUE_SHOWN_HINT"="Pulse dos veces para ocultar";
 "ACC_HIDE_SWITCH_ON_HINT"="Pulse dos veces para filtrar ocultos";
 "ACC_HIDE_SWITCH_OFF_HINT"="Pulse dos veces para mostrar ocultos";
+"ACC_DIARY_HIDDEN_SWITCH"  ="Mostrar lugares archivados";
+"VENUE_RECORD_BACK_HOME_TITLE"="Acceso a Radar COVID";
+"VENUE_RECORD_BACK_HOME_DESC"="Recuerda que el tiempo en el establecimiento seguirá contando hasta que no confirmes la salida.<br><br> Podrás volver al registro desde el icono “QR” del menú de navegación";
+"VENUE_RECORD_BACK_HOME_BUTTON"="Acceder a Radar COVID";

@@ -74,6 +74,7 @@ class VenueListViewController: BaseViewController {
     }
     
     private func setupAccesibility() {
+        showHiddenSwitch.accessibilityLabel = "ACC_DIARY_HIDDEN_SWITCH".localized
         showHiddenSwitch.isAccessibilityElement = true
     }
 
