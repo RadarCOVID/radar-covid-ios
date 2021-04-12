@@ -55,7 +55,7 @@ class ProblematicEventsApiImpl : ProblematicEventsApi {
     private func getProblematiEventsWithRequestBuilder(tag: String?) -> RequestBuilder<Data>  {
         let URLString = clientApi.basePath + "/traceKeys"
         var parameters: [String: Any]? = nil
-        if tag != nil {
+        if let tag = tag {
             parameters = ["lastKeyBundleTag": tag as Any]
         }
         let headers = ["Accept": "application/x-protobuf"]

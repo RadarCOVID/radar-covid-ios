@@ -20,8 +20,8 @@ protocol QrCheckRepository {
 
 class UserDefaultsQrCheckRepository: UserDefaultsRepository, QrCheckRepository {
     
-    private static let kLastReminder = "UserDefaultsSettingsRepository.kLastReminder"
-    private static let kSyncTag = "UserDefaultsSettingsRepository.kSyncTag"
+    private static let kLastReminder = "UserDefaultsQrCheckRepository.kLastReminder"
+    private static let kSyncTag = "UserDefaultsQrCheckRepository.kSyncTag"
     
     func getLastReminder() -> Date? {
         let uncoded = userDefaults.data(forKey: UserDefaultsQrCheckRepository.kLastReminder) ?? Data()
@@ -41,7 +41,7 @@ class UserDefaultsQrCheckRepository: UserDefaultsRepository, QrCheckRepository {
     }
     
     func save(syncTag: String?) {
-        userDefaults.setValue(syncTag, forKeyPath: UserDefaultsQrCheckRepository.kSyncTag)
+        userDefaults.set(syncTag, forKey: UserDefaultsQrCheckRepository.kSyncTag)
     }
     
 
