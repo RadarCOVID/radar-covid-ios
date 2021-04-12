@@ -80,6 +80,13 @@ class VenueRecordStartViewController: BaseViewController {
         listButton.isAccessibilityElement = true
         listButton.accessibilityLabel = "ACC_VENUE_HOME_PLACES".localized
         listButton.accessibilityHint = "ACC_HINT".localized
+        
+        moreInfoLabel.isAccessibilityElement = true
+        moreInfoLabel.accessibilityTraits.insert(UIAccessibilityTraits.link)
+        moreInfoLabel.accessibilityTraits.remove(UIAccessibilityTraits.button)
+        moreInfoLabel.accessibilityLabel = "VENUE_INFO_WEB_TITLE".localizedAttributed().string
+        moreInfoLabel.accessibilityHint = "ACC_HINT".localized
+        
     }
     
     
