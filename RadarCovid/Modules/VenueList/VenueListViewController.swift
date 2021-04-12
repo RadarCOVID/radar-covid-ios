@@ -106,7 +106,7 @@ extension VenueListViewController: UICollectionViewDelegateFlowLayout {
 extension VenueListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        Array(venueMap.values)[section].count
+        venueMap[sortedKeys[section]]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
