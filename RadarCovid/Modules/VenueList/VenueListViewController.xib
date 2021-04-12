@@ -9,14 +9,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VenueListViewController" customModule="Radar_COVID" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaseViewController" customModule="Radar_COVID" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="Zdm-x0-sk7" id="TMg-GE-5GZ"/>
                 <outlet property="collectionView" destination="l3E-mL-d6z" id="tv6-49-FfD"/>
                 <outlet property="emptyView" destination="MjU-gN-gqX" id="4c6-2b-68A"/>
                 <outlet property="hiddenCountLabel" destination="vRy-gU-EF2" id="pOC-Hy-KhO"/>
                 <outlet property="listView" destination="aN7-Mz-OHX" id="eaO-Z3-c6o"/>
                 <outlet property="showHiddenSwitch" destination="KQo-Yo-RM6" id="mLC-Mh-5YG"/>
                 <outlet property="switchLabel" destination="frz-91-cCN" id="ryx-AY-YjI"/>
+                <outlet property="titleLabel" destination="sFo-dn-vYD" id="unX-pk-kOm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
