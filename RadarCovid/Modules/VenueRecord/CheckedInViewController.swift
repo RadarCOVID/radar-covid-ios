@@ -84,6 +84,12 @@ class CheckedInViewController: VenueViewController {
         cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
     }
     
+    override func setAccesibilityBackButton() {
+        backButton?.isAccessibilityElement = true
+        backButton?.accessibilityHint = "ACC_HINT".localized
+        backButton?.accessibilityLabel =  "HOME_TITLE".localized  + " " + "ACC_BUTTON_BACK_TO".localized
+    }
+    
     private func loadCurrentVenue() {
         venueRecordUseCase.getCurrentVenue().subscribe(onNext: { [weak self] venue in
             if let venue = venue {
