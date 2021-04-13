@@ -11,9 +11,12 @@
 
 import Foundation
 import RxSwift
+import Logging
 
 
 class KeyStoreRepository {
+    
+    private let logger = Logger(label: "KeyStoreRepository")
     
     private let userDefaults: UserDefaults
     private let kHasBeenRun = "KeyStoreRepository.kHasBeenRun"
@@ -56,7 +59,7 @@ class KeyStoreRepository {
                 observer.onNext(nil)
                 observer.onCompleted()
             default:
-                observer.onError(KeyStoreError.secError(status))
+                observer.onError(self.getError(status))
             }
             
             return Disposables.create()
@@ -88,7 +91,7 @@ class KeyStoreRepository {
                         observer.onNext(value)
                         observer.onCompleted()
                     } else {
-                        observer.onError(KeyStoreError.secError(status))
+                        observer.onError(self.getError(status))
                     }
                     
                 case errSecItemNotFound:
@@ -97,10 +100,10 @@ class KeyStoreRepository {
                         observer.onNext(value)
                         observer.onCompleted()
                     } else {
-                        observer.onError(KeyStoreError.secError(status))
+                        observer.onError(self.getError(status))
                     }
                 default:
-                    observer.onError(KeyStoreError.secError(status))
+                    observer.onError(self.getError(status))
                 }
                 
             }
@@ -145,7 +148,7 @@ class KeyStoreRepository {
             observer.onNext(Void())
             observer.onCompleted()
         default:
-            observer.onError(KeyStoreError.secError(status))
+            observer.onError(getError(status))
         }
     }
     
@@ -153,12 +156,27 @@ class KeyStoreRepository {
     private func createQuery<T: Codable>(_ key: KeychainKey<T>) -> [String: Any] {
          [kSecClass as String: kSecClassGenericPassword,
           kSecAttrAccount as String: key.key,
-          kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly]
+          kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly]
 
     }
     
     func cleanDataOnFirsRun() {
         
+    }
+    
+    private func getError(_ status: OSStatus) -> KeyStoreError {
+        logger.error("OSStatus \(status.value), \(status.description), \(status) ")
+        logStack()
+        return .secError(status)
+    }
+    
+    private func logStack() {
+        var s = ""
+        for stack in Thread.callStackSymbols {
+            s.append(stack)
+            s.append("\n")
+        }
+        logger.error("StackTrace \(s)")
     }
     
 }

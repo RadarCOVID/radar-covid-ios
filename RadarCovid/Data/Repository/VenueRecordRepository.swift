@@ -81,11 +81,9 @@ class KeyStoreVenueRecordRepository : KeyStoreRepository, VenueRecordRepository 
     
     override func cleanDataOnFirsRun() {
         debugPrint("Cleaning data on first run")
-        delete(key: KeyStoreVenueRecordRepository.kVisitedList)
-            .concat( delete(key: KeyStoreVenueRecordRepository.kCurrentVenueKey))
-            .concat (delete(key: KeyStoreVenueRecordRepository.kLastReminder))
-            .subscribe (onError: { _ in debugPrint("Error cleaning keystore data on first run") })
-            .disposed(by: disposeBag)
+        deleteAll().subscribe (onError: { _ in
+                debugPrint("Error cleaning keystore data on first run") })
+        .disposed(by: disposeBag)
     }
 
 }

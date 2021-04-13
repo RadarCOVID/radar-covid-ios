@@ -45,9 +45,11 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     
     func sync() -> Observable<Void> {
         
-        logger.debug("Problematic Event Sync run")
+        let tag = qrCheckRepository.getSyncTag()
         
-        return problematicEventsApi.getProblematicEvents(tag: qrCheckRepository.getSyncTag())
+        logger.debug("Problematic Event Sync run tag: \(String(describing: tag))")
+        
+        return problematicEventsApi.getProblematicEvents(tag: tag)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .flatMap { [weak self] problematicEventData -> Observable<Void> in
         

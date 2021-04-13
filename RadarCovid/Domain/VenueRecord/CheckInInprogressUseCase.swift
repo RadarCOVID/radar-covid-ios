@@ -60,7 +60,7 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     
     private func checkIfAutoCheckOut(_ currentVenue: VenueRecord) -> Observable<Void> {
         var editVenue = currentVenue
-        logger.debug("Checking if auto checkout")
+        logger.debug("Checking if auto checkout. State: \(appStateHandler.state) currentVenue.checkInDate \(currentVenue.checkInDate)" )
         if appStateHandler.state != .active && isOutdated(venueRecord: currentVenue, interval: maxCheckInHours) {
             logger.debug("Checking out automatically")
             return self.venueRecordRepository.removeCurrent().flatMap {  _ -> Observable<Void> in
@@ -72,8 +72,8 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     }
     
     private func sendReminder(_ currentVenue: VenueRecord) {
-        logger.debug("Checking if auto checkout")
         let date = qrCheckRepository.getLastReminder()
+        logger.debug("Checking if sendReminder currentVenue.checkInDate \(currentVenue.checkInDate) lastReminder: \(String(describing: date)), reminderIntervalHours \(reminderIntervalHours)")
         if checkIfSendReminder(venueRecord: currentVenue, lastReminder: date) {
             logger.debug("Sending reminder")
             notificationHandler.scheduleCheckInReminderNotification()
