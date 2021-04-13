@@ -45,7 +45,10 @@ class CheckedInViewController: VenueViewController {
     }
     
     @IBAction func onBack(_ sender: Any) {
-        router.route(to: .home, from: self)
+        let vc = BackToHomeAlertViewController()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
     }
     
     override func finallyCanceled() {
@@ -151,5 +154,11 @@ extension CheckedInViewController: AccTitleView {
         get {
             "VENUE_RECORD_CHECKIN_TITLE".localized
         }
+    }
+}
+
+extension CheckedInViewController: BackToHomeConfirmationDelegate {
+    func backOK() {
+        router.route(to: .home, from: self)
     }
 }

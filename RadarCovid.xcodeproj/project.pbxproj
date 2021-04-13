@@ -152,6 +152,9 @@
 		6DB541992498A55700166D37 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB541982498A55700166D37 /* Settings.swift */; };
 		6DBDBD5424EC00BD00EF2654 /* TimeBetweenStatesDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDBD5324EC00BC00EF2654 /* TimeBetweenStatesDto.swift */; };
 		6DBDBD5624EC012D00EF2654 /* ExpositionChechUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDBD5524EC012D00EF2654 /* ExpositionChechUseCase.swift */; };
+		6DC00DC52625F9B60017317A /* BackToHomeAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC00DC32625F9B50017317A /* BackToHomeAlertViewController.swift */; };
+		6DC00DD02626029B0017317A /* BackToHomeAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DC00DCF2626029B0017317A /* BackToHomeAlertViewController.xib */; };
+		6DCFA4B62625A8C800B38D72 /* BackToHomeAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DCFA4B52625A8C800B38D72 /* BackToHomeAlertViewController.xib */; };
 		6DD0420825120DD700799D58 /* CaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD0420725120DD700799D58 /* CaData.swift */; };
 		6DD0420A2512763D00799D58 /* CertificateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042092512763D00799D58 /* CertificateUtil.swift */; };
 		6DE27C642499118200BBCF40 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE27C632499118200BBCF40 /* String+Extension.swift */; };
@@ -474,6 +477,9 @@
 		6DB5419A2498ABE900166D37 /* release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = release.entitlements; sourceTree = "<group>"; };
 		6DBDBD5324EC00BC00EF2654 /* TimeBetweenStatesDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBetweenStatesDto.swift; sourceTree = "<group>"; };
 		6DBDBD5524EC012D00EF2654 /* ExpositionChechUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpositionChechUseCase.swift; sourceTree = "<group>"; };
+		6DC00DC32625F9B50017317A /* BackToHomeAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackToHomeAlertViewController.swift; sourceTree = "<group>"; };
+		6DC00DCF2626029B0017317A /* BackToHomeAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackToHomeAlertViewController.xib; sourceTree = "<group>"; };
+		6DCFA4B52625A8C800B38D72 /* BackToHomeAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackToHomeAlertViewController.xib; sourceTree = "<group>"; };
 		6DD0420725120DD700799D58 /* CaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaData.swift; sourceTree = "<group>"; };
 		6DD042092512763D00799D58 /* CertificateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateUtil.swift; sourceTree = "<group>"; };
 		6DE27C632499118200BBCF40 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -786,6 +792,9 @@
 				6D9154E525E659ED007965F4 /* VenueBase.swift */,
 				6D91552425ED6837007965F4 /* QrErrorViewController.swift */,
 				6D91552525ED6837007965F4 /* QrErrorViewController.xib */,
+				6DCFA4B52625A8C800B38D72 /* BackToHomeAlertViewController.xib */,
+				6DC00DC32625F9B50017317A /* BackToHomeAlertViewController.swift */,
+				6DC00DCF2626029B0017317A /* BackToHomeAlertViewController.xib */,
 			);
 			path = VenueRecord;
 			sourceTree = "<group>";
@@ -1856,6 +1865,7 @@
 				A9EDAF1725767CE90041AE1E /* HealthyExposition.storyboard in Resources */,
 				6D91552725ED6837007965F4 /* QrErrorViewController.xib in Resources */,
 				6D5AFC902492827C00EFE838 /* muli_light.ttf in Resources */,
+				6DC00DD02626029B0017317A /* BackToHomeAlertViewController.xib in Resources */,
 				A999EB172553FC2A004E058D /* Localizable.strings in Resources */,
 				A9DF1FF825713270004BA5D1 /* InformationView.xib in Resources */,
 				76AEA4B2255E2A3E00FB8204 /* CustomAlert.xib in Resources */,
@@ -1865,6 +1875,7 @@
 				6D3A008F2620CB1B002053E3 /* DateHeader.xib in Resources */,
 				6D6D345E2600AACD001B2071 /* VenueListViewController.xib in Resources */,
 				6DF6ECC2248F68DF007EAA40 /* Home.storyboard in Resources */,
+				6DCFA4B62625A8C800B38D72 /* BackToHomeAlertViewController.xib in Resources */,
 				A9DF1FF525713270004BA5D1 /* SettingView.xib in Resources */,
 				A91D8E2F2539947500EB23D4 /* WelcomeViewController.xib in Resources */,
 				6D076FB225DEC2F8001A8C44 /* VenueRecordStartViewController.xib in Resources */,
@@ -1980,6 +1991,7 @@
 				6DAF6EAE25F0F0FD00387F5C /* ProblematicEventsUseCase.swift in Sources */,
 				6D1385C825D4407B000E5461 /* BackgroundTasksUseCase.swift in Sources */,
 				76290D862524D3D20010CACD /* FakeRequestUseCase.swift in Sources */,
+				6DC00DC52625F9B60017317A /* BackToHomeAlertViewController.swift in Sources */,
 				A9EDAF1225767CC60041AE1E /* PositiveExposedViewController.swift in Sources */,
 				6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */,
 				6DFC7808260276C700527A1D /* VenueConfigurationDto.swift in Sources */,
