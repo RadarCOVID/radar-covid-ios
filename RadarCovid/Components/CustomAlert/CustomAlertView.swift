@@ -21,6 +21,7 @@ protocol CustomAlertProtocol {
 class CustomAlert: UIView {
     
     static let cancelTag = 128
+    static let okTag = 127
 
     private let disposeBag = DisposeBag()
     
@@ -32,6 +33,7 @@ class CustomAlert: UIView {
     @IBOutlet weak var buttonContainerHeight: NSLayoutConstraint!
     
     private weak var cancelButton: UIButton?
+    private weak var okButton: UIButton?
 
     var parentView: UIView?
     
@@ -51,7 +53,10 @@ class CustomAlert: UIView {
         buttons.forEach { button in
             if button.tag == CustomAlert.cancelTag {
                 alert.cancelButton = button
+            } else if button.tag == CustomAlert.okTag {
+                alert.okButton = button
             }
+    
             button.rx.tap.subscribe(onNext: { (_) in
                    buttonClicked(button)
             }).disposed(by: alert.disposeBag)
@@ -96,7 +101,11 @@ class CustomAlert: UIView {
     }
     
     @IBAction func onClose(_ sender: Any) {
-        cancelButton?.sendActions(for: .touchUpInside)
+        if let cancelButton = cancelButton {
+            cancelButton.sendActions(for: .touchUpInside)
+        } else {
+            okButton?.sendActions(for: .touchUpInside)
+        }
     }
 
     private func initValues() {

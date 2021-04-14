@@ -51,6 +51,7 @@ extension UIViewController: AlertController {
         okButton.setTitleColor(UIColor.white, for: .normal)
         okButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold)
         okButton.setBackgroundImage(UIImage.init(named: "buttonsPrimary"), for: .normal)
+        okButton.tag = CustomAlert.okTag
         okButton.isUserInteractionEnabled = true
         okButton.isAccessibilityElement = true
         okButton.accessibilityHint = "ACC_HINT".localized
@@ -87,6 +88,7 @@ extension UIViewController: AlertController {
         okButton.setTitleColor(UIColor.white, for: .normal)
         okButton.setBackgroundImage(UIImage.init(named: "buttonsPrimary"), for: .normal)
         okButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold)
+        okButton.tag = CustomAlert.okTag
         okButton.isUserInteractionEnabled = true
         okButton.isAccessibilityElement = true
         okButton.accessibilityHint = "ACC_HINT".localized
