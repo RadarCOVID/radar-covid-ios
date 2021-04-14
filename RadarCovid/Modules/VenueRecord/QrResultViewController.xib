@@ -102,7 +102,7 @@
                         <constraint firstAttribute="height" constant="52" id="VqA-7h-n2W"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJj-mx-6VP" userLabel="Accept Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJj-mx-6VP" userLabel="Accept Button">
                     <rect key="frame" x="16" y="519" width="343" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="v55-Po-zLX"/>
