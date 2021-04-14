@@ -522,7 +522,7 @@ class MockedFuncCall {
     }
     
     private func getCurrentResponse() -> Any? {
-        if let responses = responses, count > responses.count {
+        if let responses = responses, count >= responses.count {
             return responses[responses.count - 1]
         }
         return responses?[count] ?? nil
