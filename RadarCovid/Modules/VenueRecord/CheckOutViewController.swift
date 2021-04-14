@@ -158,6 +158,8 @@ class CheckOutViewController: VenueViewController {
         
         cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+        
+        timeSC.isAccessibilityElement = true
     }
     
     private func imageWithColor(color: UIColor) -> UIImage {
@@ -199,6 +201,7 @@ class CheckOutViewController: VenueViewController {
             let nameImage = UIGraphicsGetImageFromCurrentImageContext()
             nameImage?.accessibilityLabel = name?.localized
             nameImage?.accessibilityTraits.insert(UIAccessibilityTraits.button)
+            nameImage?.isAccessibilityElement = true
             return nameImage
         }
         return nil

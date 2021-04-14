@@ -38,10 +38,6 @@ class WelcomeViewController: BaseViewController {
         router?.route(to: .onBoarding, from: self)
     }
     
-
-
-
-    
     @objc func selectLanguage(_ sender: Any) {
         guard let viewModel = self.viewModel else { return }
         
