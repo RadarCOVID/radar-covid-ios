@@ -69,7 +69,7 @@ class VenueRecordStartViewController: BaseViewController {
     }
     
     @objc func userDidTapMoreInfo(tapGestureRecognizer: UITapGestureRecognizer) {
-        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "VENUE_INFO_WEB_URL".localized.getUrlFromHref())
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "VENUE_INFO_WEB_URL".localized)
     }
     
     private func setupAccesibility() {
