@@ -57,6 +57,17 @@ class HomeViewModel {
             }).disposed(by: disposeBag)
     }
     
+    func checkProblematicEvents() {
+        problematicEventsUseCase.sync().subscribe(
+            onNext: { _ in
+                debugPrint("Problematics events sync successful")
+            }, onError: { error in
+                debugPrint("Problematics events sync error: \(error)")
+            }).disposed(by: disposeBag)
+    }
+    
+    
+    
     func checkInitial() {
         checkRadarStatus()
         checkInitialExposition()
@@ -70,16 +81,11 @@ class HomeViewModel {
     
     private func checkInitialExposition() {
         
-        problematicEventsUseCase.sync().subscribe(
-            onNext: { _ in
-                debugPrint("Problematics events sync successful")
-            }, onError: { error in
-                debugPrint("Problematics events sync error: \(error)")
-            }).disposed(by: disposeBag)
-        
         expositionUseCase.updateExpositionInfo()
         
-        expositionUseCase.getExpositionInfo().subscribe(
+        expositionUseCase.getExpositionInfo()
+            .observeOn(MainScheduler.instance)
+            .subscribe(
             onNext: { [weak self] exposition in
                 self?.checkExpositionLevel(exposition.contact)
                 self?.venueExpositionInfo.onNext(exposition.venue)

@@ -54,8 +54,8 @@ class HomeViewController: BaseViewController {
     private let circleGray = UIImage(named: "circle")?.grayScale
 
     var errorHandler: ErrorHandler!
-    var router: AppRouter?
-    var viewModel: HomeViewModel?
+    var router: AppRouter!
+    var viewModel: HomeViewModel!
 
     private let disposeBag = DisposeBag()
     
@@ -68,21 +68,22 @@ class HomeViewController: BaseViewController {
         setupView()
         
         if !termsRepository.termsAccepted {
-            router?.route(to: .termsUpdated, from: self, parameters: nil)
+            router.route(to: .termsUpdated, from: self, parameters: nil)
         }
         
-        viewModel?.checkInitial()
+        viewModel.checkProblematicEvents()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
-        viewModel?.checkShowBackToHealthyDialog()
-        viewModel?.checkRadarStatus()
+        viewModel.checkInitial()
+        viewModel.checkShowBackToHealthyDialog()
+        viewModel.checkRadarStatus()
     }
     
     @IBAction func onShare(_ sender: Any) {
-        router?.route(to: .shareApp, from: self)
+        router.route(to: .shareApp, from: self)
     }
     
     @IBAction func onReset(_ sender: Any) {
@@ -140,7 +141,7 @@ class HomeViewController: BaseViewController {
                 buttonCancelVoiceover: "ACC_BUTTON_RADAR_CANCEL".localized,
                 okHandler: { [weak self] in
                     self?.radarSwitch.accessibilityHint = "ACC_BUTTON_ACTIVATE_RADAR".localized
-                    self?.viewModel?.changeRadarStatus(false)
+                    self?.viewModel.changeRadarStatus(false)
                 }, cancelHandler: { [weak self] in
                     self?.radarSwitch.isOn = true
 
@@ -161,14 +162,14 @@ class HomeViewController: BaseViewController {
     
     @objc func onVenueExpositionTap() {
         let isContact = false
-        router?.route(to: Routes.highExposition, from: self, parameters: getExpositionInfo(), isContact)
+        router.route(to: Routes.highExposition, from: self, parameters: getExpositionInfo(), isContact)
     
     }
     
     private func getExpositionInfo() -> ExpositionInfo? {
         var ei: ExpositionInfo? = nil
-        if let cei = try? viewModel?.expositionInfo.value(),
-           let vei = try? viewModel?.venueExpositionInfo.value() {
+        if let cei = try? viewModel.expositionInfo.value(),
+           let vei = try? viewModel.venueExpositionInfo.value() {
             ei = ExpositionInfo(contact: cei, venue: vei)
         }
         return ei
@@ -222,7 +223,7 @@ class HomeViewController: BaseViewController {
         }.disposed(by: disposeBag)
 
         viewModel!.error.subscribe { [weak self] error in
-            self?.errorHandler?.handle(error: error.element)
+            self?.errorHandler.handle(error: error.element)
         }.disposed(by: disposeBag)
 
         viewModel!.alertMessage.subscribe { [weak self] message in
@@ -287,7 +288,7 @@ class HomeViewController: BaseViewController {
             envLabel.isHidden = true
         }
         
-        viewModel?.checkOnboarding()
+        viewModel.checkOnboarding()
 
         errorHandler!.alertDelegate = self
     }
@@ -311,7 +312,7 @@ class HomeViewController: BaseViewController {
     }
     
     private func showTimeExposed() {
-        router?.route(to: .timeExposed, from: self, parameters: nil)
+        router.route(to: .timeExposed, from: self, parameters: nil)
     }
 
     private func updateExpositionInfo(_ exposition: ContactExpositionInfo?) {
@@ -337,7 +338,7 @@ class HomeViewController: BaseViewController {
        
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_HIGH".localized
         contactRiskImage.isHidden = false
-        let remainingDays = self.viewModel?.getRemainingExpositionDays(since: since) ?? 0
+        let remainingDays = self.viewModel.getRemainingExpositionDays(since: since) ?? 0
         let remainingDaysText = getRemainingDaysText(remainingDays)
             
         let attributedText = NSMutableAttributedString.init(attributedString: "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
@@ -488,11 +489,11 @@ class HomeViewController: BaseViewController {
     private func navigateToDetail(_ info: ExpositionInfo) {
         switch info.contact.level {
         case .healthy:
-            router?.route(to: Routes.healthyExposition, from: self, parameters: info)
+            router.route(to: Routes.healthyExposition, from: self, parameters: info)
         case .exposed:
-            router?.route(to: Routes.highExposition, from: self, parameters: info)
+            router.route(to: Routes.highExposition, from: self, parameters: info)
         case .infected:
-            router?.route(to: Routes.positiveExposed, from: self, parameters: info)
+            router.route(to: Routes.positiveExposed, from: self, parameters: info)
         }
     }
     
@@ -507,7 +508,7 @@ class HomeViewController: BaseViewController {
     }
     
     @objc private func heplerQAChangeHealthy() {
-        self.viewModel?.heplerQAChangeHealthy()
+        self.viewModel.heplerQAChangeHealthy()
     }
     
     @objc private func heplerQAShowAlert() {
