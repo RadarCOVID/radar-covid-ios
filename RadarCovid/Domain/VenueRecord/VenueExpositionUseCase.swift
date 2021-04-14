@@ -62,7 +62,6 @@ class VenueExpositionUseCaseImpl: VenueExpositionUseCase {
                             expositionInfo.since = checkOutDate
                         }
                     }
-
                 }
             }
             return expositionInfo

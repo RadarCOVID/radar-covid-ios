@@ -134,15 +134,16 @@ class HomeViewController: BaseViewController {
             self.showAlertCancelContinue(
                 title: "ALERT_HOME_RADAR_TITLE".localizedAttributed(),
                 message: "ALERT_HOME_RADAR_CONTENT".localizedAttributed(),
-                buttonOkTitle: "ALERT_HOME_RADAR_CANCEL_BUTTON".localized,
-                buttonCancelTitle: "ALERT_HOME_RADAR_OK_BUTTON".localized,
-                buttonOkVoiceover: "ACC_BUTTON_RADAR_CANCEL".localized,
-                buttonCancelVoiceover: "ACC_BUTTON_RADAR_OK".localized,
+                buttonOkTitle: "ALERT_HOME_RADAR_OK_BUTTON".localized,
+                buttonCancelTitle: "ALERT_HOME_RADAR_CANCEL_BUTTON".localized,
+                buttonOkVoiceover: "ACC_BUTTON_RADAR_OK".localized,
+                buttonCancelVoiceover: "ACC_BUTTON_RADAR_CANCEL".localized,
                 okHandler: { [weak self] in
-                    self?.radarSwitch.isOn = true
-                }, cancelHandler: { [weak self] in
                     self?.radarSwitch.accessibilityHint = "ACC_BUTTON_ACTIVATE_RADAR".localized
                     self?.viewModel?.changeRadarStatus(false)
+                }, cancelHandler: { [weak self] in
+                    self?.radarSwitch.isOn = true
+
             })
         }
     }

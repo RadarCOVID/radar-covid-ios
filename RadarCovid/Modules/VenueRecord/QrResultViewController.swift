@@ -60,7 +60,7 @@ class QrResultViewController: VenueViewController {
         venueView.image = UIImage(named: "WhiteCard")
         
         confirmButton.setTitle("VENUE_RECORD_CHECKIN_ACTION".localized, for: .normal)
-        cancelButton.setTitle("ACC_BUTTON_CLOSE".localized, for: .normal)
+        cancelButton.setTitle("ALERT_CANCEL_BUTTON".localized, for: .normal)
     }
     
     private func loadVenueInfo() {

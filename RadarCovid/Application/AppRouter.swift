@@ -260,7 +260,7 @@ class AppRouter: Router {
     }
 
     private func routeToHighExposition(_ context: UIViewController, expositionInfo: ExpositionInfo, isContact: Bool) {
-        let highExpositionVC = AppDelegate.shared?.injection.resolve(HighExpositionViewController.self)!
+        let highExpositionVC = AppDelegate.shared?.injection.resolve(HighExpositionViewController.self)
         highExpositionVC?.expositionInfo = expositionInfo
         highExpositionVC?.isContact = isContact
         context.navigationController?.pushViewController(highExpositionVC!, animated: true)

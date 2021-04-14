@@ -20,13 +20,18 @@ protocol CustomAlertProtocol {
 
 class CustomAlert: UIView {
     
-    private let disposeBag = DisposeBag()
+    static let cancelTag = 128
 
+    private let disposeBag = DisposeBag()
+    
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var buttonContainer: UIStackView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var buttonContainerHeight: NSLayoutConstraint!
+    
+    private weak var cancelButton: UIButton?
 
     var parentView: UIView?
     
@@ -38,10 +43,15 @@ class CustomAlert: UIView {
             .instantiate(withOwner: nil, options: nil)[0] as? CustomAlert else {
             return nil
         }
+        alert.setupAccesibility()
+        
         let buttonsHeight = CGFloat(alert.buttonHeight * CGFloat(buttons.count))
         alert.buttonContainerHeight.constant = buttonsHeight
         
         buttons.forEach { button in
+            if button.tag == CustomAlert.cancelTag {
+                alert.cancelButton = button
+            }
             button.rx.tap.subscribe(onNext: { (_) in
                    buttonClicked(button)
             }).disposed(by: alert.disposeBag)
@@ -76,6 +86,17 @@ class CustomAlert: UIView {
         UIAccessibility.post(notification: .layoutChanged, argument: alert.titleLabel)
         
         return alert
+    }
+    
+    private func setupAccesibility() {
+        closeButton.isUserInteractionEnabled = true
+        closeButton.isAccessibilityElement = true
+        closeButton.accessibilityHint = "ACC_HINT".localized
+        closeButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
+    }
+    
+    @IBAction func onClose(_ sender: Any) {
+        cancelButton?.sendActions(for: .touchUpInside)
     }
 
     private func initValues() {
