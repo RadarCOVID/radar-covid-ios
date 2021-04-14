@@ -127,7 +127,7 @@ class CheckedInViewController: VenueViewController {
             self?.updateTime()
         }
         if UIAccessibility.isVoiceOverRunning {
-            readenTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
+            readenTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
                 if self?.timeLabel.accessibilityElementIsFocused() ?? false {
                     UIAccessibility.post(notification: .announcement, argument: self?.timeLabel.accessibilityLabel)
                 }
