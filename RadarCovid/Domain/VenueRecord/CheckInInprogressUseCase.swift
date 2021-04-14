@@ -15,17 +15,15 @@ import Logging
 
 protocol CheckInInProgressUseCase {
     func checkStauts() -> Observable<Void>
-    var maxCheckInHours: Int { get set }
+    var maxCheckInMinutes: Int64 { get set }
 }
 
 class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     
     private let logger = Logger(label: "CheckInInProgressUseCaseImpl")
     
-    private let secondsAnHour = 60 * 60
-    
-    var maxCheckInHours: Int = 6
-    var reminderIntervalHours: Int = 3
+    var maxCheckInMinutes: Int64 = 6 * 60
+    var reminderIntervalMinutes: Int64 = 3 * 60
     
     private let notificationHandler: NotificationHandler
     private let venueRecordRepository: VenueRecordRepository
@@ -41,9 +39,9 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
         self.venueRecordRepository = venueRecordRepository
         self.appStateHandler = appStateHandler
         self.qrCheckRepository = qrCheckRepository
-        maxCheckInHours = Int(settinsRepository.getSettings()?.parameters?.venueConfiguration?.autoCheckout ?? 6)
+        maxCheckInMinutes = settinsRepository.getSettings()?.parameters?.venueConfiguration?.autoCheckout ?? maxCheckInMinutes
         
-        reminderIntervalHours = Int(settinsRepository.getSettings()?.parameters?.venueConfiguration?.recordNotification ?? 3)
+        reminderIntervalMinutes = settinsRepository.getSettings()?.parameters?.venueConfiguration?.recordNotification ?? reminderIntervalMinutes
     }
     
     func checkStauts() -> Observable<Void> {
@@ -60,8 +58,8 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     
     private func checkIfAutoCheckOut(_ currentVenue: VenueRecord) -> Observable<Void> {
         var editVenue = currentVenue
-        logger.debug("Checking if auto checkout. State: \(appStateHandler.state) currentVenue.checkInDate \(currentVenue.checkInDate)" )
-        if appStateHandler.state != .active && isOutdated(venueRecord: currentVenue, interval: maxCheckInHours) {
+        logger.debug("Checking if auto checkout. State: \(appStateHandler.state.rawValue) currentVenue.checkInDate \(currentVenue.checkInDate), maxCheckInHours \(maxCheckInMinutes)" )
+        if appStateHandler.state != .active && isOutdated(venueRecord: currentVenue, interval: maxCheckInMinutes) {
             logger.debug("Checking out automatically")
             return self.venueRecordRepository.removeCurrent().flatMap {  _ -> Observable<Void> in
                 editVenue.checkOutDate = Date()
@@ -73,26 +71,26 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
     
     private func sendReminder(_ currentVenue: VenueRecord) {
         let date = qrCheckRepository.getLastReminder()
-        logger.debug("Checking if sendReminder currentVenue.checkInDate \(currentVenue.checkInDate) lastReminder: \(String(describing: date)), reminderIntervalHours \(reminderIntervalHours)")
+        logger.debug("Checking if sendReminder currentVenue.checkInDate \(currentVenue.checkInDate) lastReminder: \(String(describing: date)), reminderIntervalHours \(reminderIntervalMinutes)")
         if checkIfSendReminder(venueRecord: currentVenue, lastReminder: date) {
             logger.debug("Sending reminder")
             notificationHandler.scheduleCheckInReminderNotification()
         }
     }
         
-    private func isOutdated(date: Date, interval: Int) -> Bool {
-        date.addingTimeInterval(Double(interval * secondsAnHour)) < Date()
+    private func isOutdated(date: Date, interval: Int64) -> Bool {
+        date.addingTimeInterval(Double(interval * 60)) < Date()
     }
     
-    private func isOutdated(venueRecord: VenueRecord, interval: Int) -> Bool {
+    private func isOutdated(venueRecord: VenueRecord, interval: Int64) -> Bool {
         isOutdated(date: venueRecord.checkInDate, interval: interval)
     }
         
     private func checkIfSendReminder(venueRecord: VenueRecord, lastReminder: Date?) -> Bool {
         if let lastReminder = lastReminder {
-            return isOutdated(date: lastReminder, interval: reminderIntervalHours)
+            return isOutdated(date: lastReminder, interval: reminderIntervalMinutes)
         }
-        return isOutdated(venueRecord: venueRecord, interval: reminderIntervalHours)
+        return isOutdated(venueRecord: venueRecord, interval: reminderIntervalMinutes)
     }
     
     

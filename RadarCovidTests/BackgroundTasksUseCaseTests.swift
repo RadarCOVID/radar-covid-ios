@@ -146,7 +146,7 @@ class ConfigurationUseCaseMock: Mocker, ConfigurationUseCase {
 
 class CheckInInProgressUseCaseMock: Mocker, CheckInInProgressUseCase {
     
-    var maxCheckInHours: Int = 2
+    var maxCheckInMinutes: Int64 = 120
     
     init() {
         super.init("CheckInInProgressUseCaseMock")

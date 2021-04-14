@@ -333,7 +333,7 @@ class VenueRecordRepositoryMock : Mocker, VenueRecordRepository {
     
     func save(visit: VenueRecord) -> Observable<VenueRecord> {
         Observable.just(Void()).flatMap { () -> Observable<VenueRecord> in
-            .just(self.call("saveVisit", params: ["visit": visit]) as! VenueRecord)
+            .just((self.call("saveVisit", params: ["visit": visit]) ?? visit) as! VenueRecord)
         }
     }
     

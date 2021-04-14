@@ -55,7 +55,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     }
     
     func testCheckinInprogressNOTOutdated() throws {
-        sut.maxCheckInHours = 1
+        sut.maxCheckInMinutes = 60
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
                                 checkInDate: Calendar.current.date(byAdding: .minute, value: -10, to: Date())!,
@@ -73,7 +73,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     }
     
     func testCheckinInprogressOutdatedThenAuthomaticCheckout() throws {
-        sut.maxCheckInHours = 1
+        sut.maxCheckInMinutes = 60
         
         let venueRecord = VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
                                       checkInDate: Calendar.current.date(byAdding: .minute, value: -61, to: Date())!,
@@ -101,7 +101,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     }
     
     func testCheckInInprogressOutdatedAndAppInForegroundThenSkipCheckout() throws {
-        sut.maxCheckInHours = 1
+        sut.maxCheckInMinutes = 60
         
         let venueRecord = VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
                                       checkInDate: Calendar.current.date(byAdding: .minute, value: -61, to: Date())!,
@@ -121,7 +121,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     }
     
     func testSendReminderNoPreviousReminderAndCheckInExpired() throws {
-        sut.reminderIntervalHours = 1
+        sut.reminderIntervalMinutes = 60
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
                                 checkInDate: Calendar.current.date(byAdding: .minute, value: -60, to: Date())!,
@@ -140,7 +140,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     }
     
     func testSendReminderNoPreviousReminderAndCheckInNOTExpired() throws {
-        sut.reminderIntervalHours = 1
+        sut.reminderIntervalMinutes = 60
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
                                 checkInDate: Calendar.current.date(byAdding: .minute, value: -59, to: Date())!,
@@ -158,7 +158,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     }
     
     func testSendReminderWithPreviousReminderExpired() throws {
-        sut.reminderIntervalHours = 1
+        sut.reminderIntervalMinutes = 60
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
                                 checkInDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date())!,
@@ -178,7 +178,7 @@ class CheckInInProgressUseCaseTests: XCTestCase {
     }
     
     func testSendReminderWithPreviousReminderNotExpired() throws {
-        sut.reminderIntervalHours = 1
+        sut.reminderIntervalMinutes = 60
         venueRecordRepository.registerGetCurrentVenue(response:
                     VenueRecord(qr: "", checkOutId: "", hidden: false, exposed: false, name: "",
                                 checkInDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date())!,
