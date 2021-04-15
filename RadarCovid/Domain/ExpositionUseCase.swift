@@ -141,7 +141,7 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
 
     private func showNotification(_ localEI: ContactExpositionInfo?, _ expositionInfo: ContactExpositionInfo) -> Bool {
         if let localEI = localEI {
-            return !equals(localEI, expositionInfo) && expositionInfo.level == .exposed
+            return expositionInfo.since != nil && !equals(localEI, expositionInfo) && expositionInfo.level == .exposed
         }
         return false
     }
@@ -152,7 +152,7 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
 
     private func isNewInfected(_ localEI: ContactExpositionInfo?, _ expositionInfo: ContactExpositionInfo) -> Bool {
         if let localEI = localEI {
-            return !equals(localEI, expositionInfo) && expositionInfo.level == .infected
+            return expositionInfo.since != nil && !equals(localEI, expositionInfo) && expositionInfo.level == .infected
         }
         return expositionInfo.level == .infected
 
