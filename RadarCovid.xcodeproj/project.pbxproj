@@ -35,12 +35,6 @@
 		6D4FEC7C25E5134F00AAD131 /* QrScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4FEC7A25E5134F00AAD131 /* QrScannerViewController.swift */; };
 		6D4FEC7D25E5134F00AAD131 /* QrScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D4FEC7B25E5134F00AAD131 /* QrScannerViewController.xib */; };
 		6D4FEC8125E5173300AAD131 /* QrScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4FEC8025E5173300AAD131 /* QrScannerView.swift */; };
-		6D5AFC8D2492827C00EFE838 /* muli_extrabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC892492827B00EFE838 /* muli_extrabold.ttf */; };
-		6D5AFC8E2492827C00EFE838 /* muli_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8A2492827C00EFE838 /* muli_semibold.ttf */; };
-		6D5AFC8F2492827C00EFE838 /* muli_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8B2492827C00EFE838 /* muli_bold.ttf */; };
-		6D5AFC902492827C00EFE838 /* muli_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC8C2492827C00EFE838 /* muli_light.ttf */; };
-		6D5AFC932492883700EFE838 /* muli_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC912492883700EFE838 /* muli_regular.ttf */; };
-		6D5AFC942492883700EFE838 /* muli_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D5AFC922492883700EFE838 /* muli_italic.ttf */; };
 		6D5AFCE8249369FE00EFE838 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6D5AFCE7249369FE00EFE838 /* Alamofire */; };
 		6D5AFCEC24936E7A00EFE838 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFCEB24936E7A00EFE838 /* Config.swift */; };
 		6D63108C2501194F000CDCB4 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D63108B2501194F000CDCB4 /* UINavigationController+Extension.swift */; };
@@ -356,12 +350,6 @@
 		6D4FEC7A25E5134F00AAD131 /* QrScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScannerViewController.swift; sourceTree = "<group>"; };
 		6D4FEC7B25E5134F00AAD131 /* QrScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrScannerViewController.xib; sourceTree = "<group>"; };
 		6D4FEC8025E5173300AAD131 /* QrScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScannerView.swift; sourceTree = "<group>"; };
-		6D5AFC892492827B00EFE838 /* muli_extrabold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = muli_extrabold.ttf; sourceTree = "<group>"; };
-		6D5AFC8A2492827C00EFE838 /* muli_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = muli_semibold.ttf; sourceTree = "<group>"; };
-		6D5AFC8B2492827C00EFE838 /* muli_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = muli_bold.ttf; sourceTree = "<group>"; };
-		6D5AFC8C2492827C00EFE838 /* muli_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = muli_light.ttf; sourceTree = "<group>"; };
-		6D5AFC912492883700EFE838 /* muli_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = muli_regular.ttf; sourceTree = "<group>"; };
-		6D5AFC922492883700EFE838 /* muli_italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = muli_italic.ttf; sourceTree = "<group>"; };
 		6D5AFCEB24936E7A00EFE838 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		6D63108B2501194F000CDCB4 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		6D63108D2501197B000CDCB4 /* AccTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccTitleView.swift; sourceTree = "<group>"; };
@@ -695,7 +683,6 @@
 				6DA18CB92491053700BE8AAB /* Components */,
 				6DF6ECC5248F6EBE007EAA40 /* Data */,
 				6DF6ECAE248E88B9007EAA40 /* Domain */,
-				394E9625248E3845009F640E /* Fonts */,
 				3944329D248A7F7900FF0217 /* Application */,
 				394E9628248E3E71009F640E /* Modules */,
 				39443292248939F500FF0217 /* Assets.xcassets */,
@@ -714,19 +701,6 @@
 				6D8444092543398800F92BCA /* SwiftLogFile.swift */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		394E9625248E3845009F640E /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				6D5AFC922492883700EFE838 /* muli_italic.ttf */,
-				6D5AFC912492883700EFE838 /* muli_regular.ttf */,
-				6D5AFC8B2492827C00EFE838 /* muli_bold.ttf */,
-				6D5AFC892492827B00EFE838 /* muli_extrabold.ttf */,
-				6D5AFC8C2492827C00EFE838 /* muli_light.ttf */,
-				6D5AFC8A2492827C00EFE838 /* muli_semibold.ttf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		394E9628248E3E71009F640E /* Modules */ = {
@@ -1864,14 +1838,12 @@
 				A9EDAF1125767CC60041AE1E /* PositiveExposed.storyboard in Resources */,
 				A9EDAF1725767CE90041AE1E /* HealthyExposition.storyboard in Resources */,
 				6D91552725ED6837007965F4 /* QrErrorViewController.xib in Resources */,
-				6D5AFC902492827C00EFE838 /* muli_light.ttf in Resources */,
 				6DC00DD02626029B0017317A /* BackToHomeAlertViewController.xib in Resources */,
 				A999EB172553FC2A004E058D /* Localizable.strings in Resources */,
 				A9DF1FF825713270004BA5D1 /* InformationView.xib in Resources */,
 				76AEA4B2255E2A3E00FB8204 /* CustomAlert.xib in Resources */,
 				76357AD4253FC297004C9AE5 /* CustomSwitch.xib in Resources */,
 				763489FF24B75A6900B31C59 /* TransparentView.xib in Resources */,
-				6D5AFC8E2492827C00EFE838 /* muli_semibold.ttf in Resources */,
 				6D3A008F2620CB1B002053E3 /* DateHeader.xib in Resources */,
 				6D6D345E2600AACD001B2071 /* VenueListViewController.xib in Resources */,
 				6DF6ECC2248F68DF007EAA40 /* Home.storyboard in Resources */,
@@ -1879,7 +1851,6 @@
 				A9DF1FF525713270004BA5D1 /* SettingView.xib in Resources */,
 				A91D8E2F2539947500EB23D4 /* WelcomeViewController.xib in Resources */,
 				6D076FB225DEC2F8001A8C44 /* VenueRecordStartViewController.xib in Resources */,
-				6D5AFC8D2492827C00EFE838 /* muli_extrabold.ttf in Resources */,
 				A9EB48012535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */,
 				A9DF1FFA25713270004BA5D1 /* HelpSettingsView.xib in Resources */,
 				A96E31222537188800C3EC59 /* MyHealthStep2View.xib in Resources */,
@@ -1899,20 +1870,17 @@
 				6D4FEC7D25E5134F00AAD131 /* QrScannerViewController.xib in Resources */,
 				A9C9AC1325385BA100637067 /* CustomSliderView.xib in Resources */,
 				7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */,
-				6D5AFC932492883700EFE838 /* muli_regular.ttf in Resources */,
 				39443293248939F500FF0217 /* Assets.xcassets in Resources */,
 				A9D38D5A256D1D3100C2F671 /* TermsUpdatedView.xib in Resources */,
 				A91D8E2C2539947500EB23D4 /* ActivatePushNotificationViewController.xib in Resources */,
 				A97717FF2535CFFA0070AD51 /* MyHealthStep1View.xib in Resources */,
 				A9EB481F2535AF2500F3A122 /* MyHealthStep0View.xib in Resources */,
 				A9D38D82256D47D200C2F671 /* DetailInteroperabilityView.xib in Resources */,
-				6D5AFC8F2492827C00EFE838 /* muli_bold.ttf in Resources */,
 				A9D38D72256D25E100C2F671 /* StatsView.xib in Resources */,
 				A9EDAF0C25767CC60041AE1E /* HighExposition.storyboard in Resources */,
 				6D6D34682600D0B0001B2071 /* VenueViewCell.xib in Resources */,
 				7603469E24F42DF70038CFC7 /* radarcovid.covid19.gob.es.cer in Resources */,
 				6D9154C725E543CD007965F4 /* CheckedInViewController.xib in Resources */,
-				6D5AFC942492883700EFE838 /* muli_italic.ttf in Resources */,
 				6D83345024B8350300223071 /* RootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

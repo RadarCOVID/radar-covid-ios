@@ -69,15 +69,6 @@
 	<string>Necesiatmos hacer uso de la funcióin de reconocimiento facial para restringir el acceso a terceros a la información de eventos visitados</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>muli_italic.ttf</string>
-		<string>muli_regular.ttf</string>
-		<string>muli_semibold.ttf</string>
-		<string>muli_bold.ttf</string>
-		<string>muli_light.ttf</string>
-		<string>muli_extrabold.ttf</string>
-	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
