@@ -25,6 +25,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var checkImage: UIImageView!
     @IBOutlet weak var expositionTitleLabel: UILabel!
     @IBOutlet weak var expositionDescriptionLabel: UILabel!
+    @IBOutlet weak var venueContactTextLabel: UILabel!
     @IBOutlet weak var expositionView: BackgroundView!
     @IBOutlet weak var venueExpositionView: BackgroundView!
     @IBOutlet weak var contactRiskImage: UIImageView!
@@ -43,7 +44,6 @@ class HomeViewController: BaseViewController {
     var termsRepository: TermsAcceptedRepository!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var btnShare: UIButton!
-    @IBOutlet weak var venueRemainingDaysLabel: UILabel!
     
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
     private let bgImageOrange = UIImage(named: "GradientBackgroundOrange")
@@ -331,14 +331,18 @@ class HomeViewController: BaseViewController {
     
     private func updateVenueExpositionInfo(_ exposition: VenueExpositionInfo?) {
         
-        venueRemainingDaysLabel.attributedText = getRemainingDaysText(viewModel!.getRemainingVenueExpositionDays(since: exposition?.since))
+        let text = NSMutableAttributedString.init(attributedString: "HOME_VENUE_EXPOSITION_MESSAGE_HIGH".localizedAttributed)
+        text.append(getRemainingDaysText(viewModel!.getRemainingVenueExpositionDays(since: exposition?.since)))
+                    
+        venueContactTextLabel.attributedText = text
+        venueContactTextLabel.setMagnifierFontSize()
     }
 
     private func setExposed(since: Date) {
        
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_HIGH".localized
         contactRiskImage.isHidden = false
-        let remainingDays = self.viewModel.getRemainingExpositionDays(since: since) ?? 0
+        let remainingDays = viewModel.getRemainingExpositionDays(since: since) 
         let remainingDaysText = getRemainingDaysText(remainingDays)
             
         let attributedText = NSMutableAttributedString.init(attributedString: "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(

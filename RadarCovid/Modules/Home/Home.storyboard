@@ -200,7 +200,7 @@ Cuídate y cuida a los demás.</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Contacto de riesgo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kzx-KD-naq">
-                                                                <rect key="frame" x="20" y="42" width="272" height="31.5"/>
+                                                                <rect key="frame" x="20" y="42" width="272" height="57"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -209,7 +209,7 @@ Cuídate y cuida a los demás.</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Se ha detectado un contagio masivo de COVID-19 en un lugar que has visitado.Debes realizar cuarentena domiciliaria." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqh-vL-5my">
-                                                                <rect key="frame" x="20" y="83.5" width="342" height="76.5"/>
+                                                                <rect key="frame" x="20" y="109" width="342" height="76.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -224,26 +224,17 @@ Cuídate y cuida a los demás.</string>
                                                                     <constraint firstAttribute="width" constant="32" id="aiT-tT-42I"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Te quedan 7 días para finalizarla." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBJ-Be-mUc">
-                                                                <rect key="frame" x="20" y="165" width="342" height="19.5"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="nBJ-Be-mUc" secondAttribute="bottom" constant="26" id="5NL-hy-ydj"/>
                                                             <constraint firstItem="gZh-r1-OVD" firstAttribute="leading" secondItem="Kzx-KD-naq" secondAttribute="leading" id="Abb-5g-QCs"/>
                                                             <constraint firstItem="dqh-vL-5my" firstAttribute="leading" secondItem="Kzx-KD-naq" secondAttribute="leading" id="KP5-KS-HDb"/>
-                                                            <constraint firstItem="nBJ-Be-mUc" firstAttribute="trailing" secondItem="dqh-vL-5my" secondAttribute="trailing" id="LSa-BU-RIb"/>
                                                             <constraint firstAttribute="trailing" secondItem="Kzx-KD-naq" secondAttribute="trailing" constant="90" id="PK7-Vp-9yS"/>
-                                                            <constraint firstItem="nBJ-Be-mUc" firstAttribute="leading" secondItem="dqh-vL-5my" secondAttribute="leading" id="Txj-lm-JV8"/>
                                                             <constraint firstItem="plj-3d-YLw" firstAttribute="top" secondItem="1GR-Pu-IS1" secondAttribute="top" constant="20" id="YG2-fU-YG7"/>
                                                             <constraint firstItem="gZh-r1-OVD" firstAttribute="top" secondItem="1GR-Pu-IS1" secondAttribute="top" constant="15" id="fwI-m4-u9O"/>
                                                             <constraint firstItem="dqh-vL-5my" firstAttribute="top" secondItem="Kzx-KD-naq" secondAttribute="bottom" constant="10" id="iWU-Pg-KsY"/>
                                                             <constraint firstItem="gZh-r1-OVD" firstAttribute="bottom" secondItem="Kzx-KD-naq" secondAttribute="top" constant="-5" id="otl-ss-hvp"/>
-                                                            <constraint firstItem="nBJ-Be-mUc" firstAttribute="top" secondItem="dqh-vL-5my" secondAttribute="bottom" constant="5" id="p5c-bz-l6f"/>
                                                             <constraint firstAttribute="trailing" secondItem="dqh-vL-5my" secondAttribute="trailing" constant="20" id="qiE-HI-xjZ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="dqh-vL-5my" secondAttribute="bottom" constant="25" id="soJ-tN-T4v"/>
                                                             <constraint firstItem="Kzx-KD-naq" firstAttribute="leading" secondItem="1GR-Pu-IS1" secondAttribute="leading" constant="20" id="xFU-k6-1jW"/>
                                                             <constraint firstAttribute="trailing" secondItem="plj-3d-YLw" secondAttribute="trailing" constant="20" id="xo1-nO-BgS"/>
                                                         </constraints>
@@ -430,8 +421,8 @@ Cuídate y cuida a los demás.</string>
                         <outlet property="topActiveNotificationConstraint" destination="guG-Sw-JA8" id="X7b-4X-u0t"/>
                         <outlet property="topComunicationConstraint" destination="WKe-p7-llK" id="8tH-5c-G0r"/>
                         <outlet property="topRadarTitle" destination="8uE-ZH-Pls" id="IY5-n2-dML"/>
+                        <outlet property="venueContactTextLabel" destination="dqh-vL-5my" id="M2s-aN-H1B"/>
                         <outlet property="venueExpositionView" destination="1GR-Pu-IS1" id="tQT-KR-1qo"/>
-                        <outlet property="venueRemainingDaysLabel" destination="nBJ-Be-mUc" id="iqK-fh-QxN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGb-4j-Cjq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
