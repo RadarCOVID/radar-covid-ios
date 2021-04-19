@@ -474,3 +474,5 @@
 "ACC_HOURS"="horas";
 "ACC_MINUTES"="minutos";
 "ACC_SECONDS"="segundos";
+"NOTIFICATION_AUTO_CHECKOUT_TITLE"="Registro de visita a establecimiento finalizado";
+"NOTIFICATION_AUTO_CHECKOUT_MESSAGE"="Se ha finalizado automáticamente tras más de %@ horas sin confirmar la salida";

@@ -96,6 +96,8 @@ class CheckInInProgressUseCaseTests: XCTestCase {
             XCTAssertTrue(savedVisit.checkOutDate!.distance(to: Date()) < 1.0)
         }
         
+        notificationHandler.verifyScheduleCheckOutAlert()
+        
         verifyNoMoreInteractionsAll()
         
     }

@@ -19,6 +19,7 @@ protocol NotificationHandler {
     func scheduleNotification(expositionInfo: ContactExpositionInfo)
     func scheduleExposedEventNotification()
     func scheduleCheckInReminderNotification()
+    func scheduleCheckOutAlert()
 }
 
 class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, NotificationHandler {
@@ -98,11 +99,18 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
                              sound: .defaultCritical)
     }
     
+    func scheduleCheckOutAlert() {
+        scheduleNotification(title: "NOTIFICATION_AUTO_CHECKOUT_TITLE".localized,
+                             body: "NOTIFICATION_AUTO_CHECKOUT_MESSAGE".localized,
+                             sound: .defaultCritical)
+    }
 
     // Forground notifications.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound, .badge])
     }
+    
+
 
 }

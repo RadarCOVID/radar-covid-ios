@@ -398,6 +398,7 @@ class ProblematicEventsApiMock : Mocker, ProblematicEventsApi {
 
 class NotificationHandlerMock: Mocker, NotificationHandler {
 
+    
     init() {
         super.init("NotificationHandlerMock")
     }
@@ -422,12 +423,20 @@ class NotificationHandlerMock: Mocker, NotificationHandler {
         call("scheduleCheckInReminderNotification")
     }
     
+    func scheduleCheckOutAlert() {
+        call("scheduleCheckOutAlert")
+    }
+    
     func verifyScheduleExposedEventNotification(called: VerifyCount = .atLeastOnce) {
         verify("scheduleExposedEventNotification", called: called)
     }
     
     func verifyScheduleCheckInReminderNotification(called: VerifyCount = .atLeastOnce) {
         verify("scheduleCheckInReminderNotification", called: called)
+    }
+    
+    func verifyScheduleCheckOutAlert(called: VerifyCount = .atLeastOnce) {
+        verify("scheduleCheckOutAlert", called: called)
     }
     
 }

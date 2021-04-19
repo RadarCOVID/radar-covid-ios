@@ -63,6 +63,7 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
             logger.debug("Checking out automatically")
             return self.venueRecordRepository.removeCurrent().flatMap {  _ -> Observable<Void> in
                 editVenue.checkOutDate = Date()
+                self.notificationHandler.scheduleCheckOutAlert()
                 return self.venueRecordRepository.save(visit: editVenue).map { _ in Void() }
             }
         }
