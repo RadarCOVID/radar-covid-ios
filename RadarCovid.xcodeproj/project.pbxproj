@@ -46,6 +46,7 @@
 		6D83344F24B8350300223071 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83344D24B8350300223071 /* RootViewController.swift */; };
 		6D83345024B8350300223071 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D83344E24B8350300223071 /* RootViewController.xib */; };
 		6D84440A2543398800F92BCA /* SwiftLogFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8444092543398800F92BCA /* SwiftLogFile.swift */; };
+		6D90E993262F1D2D0073F401 /* newradarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6D90E992262F1D2D0073F401 /* newradarcovidpre.covid19.gob.es.cer */; };
 		6D97C46325BAF05700102200 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46225BAF05700102200 /* Data+Extension.swift */; };
 		6D97C46725BAF49000102200 /* AnalyticsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */; };
 		6D97C47D25BAFE4200102200 /* AnalyticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */; };
@@ -120,7 +121,7 @@
 		6DF8212624D07D2E000ED0D2 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF8212424D07D2E000ED0D2 /* TokenResponse.swift */; };
 		6DF8212924D1DC00000ED0D2 /* TextCustomMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF8212724D1DC00000ED0D2 /* TextCustomMap.swift */; };
 		6DF8212A24D1DC00000ED0D2 /* CcaaKeyValueDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF8212824D1DC00000ED0D2 /* CcaaKeyValueDto.swift */; };
-		7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */; };
+		7603469D24F42DF40038CFC7 /* oldradarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469924F423C90038CFC7 /* oldradarcovidpre.covid19.gob.es.cer */; };
 		7603469E24F42DF70038CFC7 /* radarcovid.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */; };
 		76290D862524D3D20010CACD /* FakeRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76290D852524D3D20010CACD /* FakeRequestUseCase.swift */; };
 		763489FB24B637ED00B31C59 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763489FA24B637ED00B31C59 /* UIImage+Extension.swift */; };
@@ -287,6 +288,7 @@
 		6D83344D24B8350300223071 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6D83344E24B8350300223071 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		6D8444092543398800F92BCA /* SwiftLogFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftLogFile.swift; sourceTree = "<group>"; };
+		6D90E992262F1D2D0073F401 /* newradarcovidpre.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = newradarcovidpre.covid19.gob.es.cer; sourceTree = "<group>"; };
 		6D97C46225BAF05700102200 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		6D97C46625BAF49000102200 /* AnalyticsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUseCase.swift; sourceTree = "<group>"; };
 		6D97C47C25BAFE4200102200 /* AnalyticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRepository.swift; sourceTree = "<group>"; };
@@ -362,7 +364,7 @@
 		6DF8212424D07D2E000ED0D2 /* TokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		6DF8212724D1DC00000ED0D2 /* TextCustomMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCustomMap.swift; sourceTree = "<group>"; };
 		6DF8212824D1DC00000ED0D2 /* CcaaKeyValueDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CcaaKeyValueDto.swift; sourceTree = "<group>"; };
-		7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = radarcovidpre.covid19.gob.es.cer; sourceTree = "<group>"; };
+		7603469924F423C90038CFC7 /* oldradarcovidpre.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = oldradarcovidpre.covid19.gob.es.cer; sourceTree = "<group>"; };
 		7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = radarcovid.covid19.gob.es.cer; sourceTree = "<group>"; };
 		76290D852524D3D20010CACD /* FakeRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRequestUseCase.swift; sourceTree = "<group>"; };
 		763489FA24B637ED00B31C59 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -814,7 +816,8 @@
 		6DE27D3924A7187500BBCF40 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				7603469924F423C90038CFC7 /* radarcovidpre.covid19.gob.es.cer */,
+				6D90E992262F1D2D0073F401 /* newradarcovidpre.covid19.gob.es.cer */,
+				7603469924F423C90038CFC7 /* oldradarcovidpre.covid19.gob.es.cer */,
 				7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */,
 				6DE27CB424A37EF500BBCF40 /* debug.entitlements */,
 				6DB5419A2498ABE900166D37 /* release.entitlements */,
@@ -1549,13 +1552,14 @@
 				A9685AE22552DCC3004BD3B3 /* LaunchScreen.xib in Resources */,
 				A91D8E322539947500EB23D4 /* OnBoarding.storyboard in Resources */,
 				A9C9AC1325385BA100637067 /* CustomSliderView.xib in Resources */,
-				7603469D24F42DF40038CFC7 /* radarcovidpre.covid19.gob.es.cer in Resources */,
+				7603469D24F42DF40038CFC7 /* oldradarcovidpre.covid19.gob.es.cer in Resources */,
 				6DF6ECCF248FA032007EAA40 /* MyData.storyboard in Resources */,
 				6D5AFC932492883700EFE838 /* muli_regular.ttf in Resources */,
 				39443293248939F500FF0217 /* Assets.xcassets in Resources */,
 				A9D38D5A256D1D3100C2F671 /* TermsUpdatedView.xib in Resources */,
 				A91D8E2C2539947500EB23D4 /* ActivatePushNotificationViewController.xib in Resources */,
 				A97717FF2535CFFA0070AD51 /* MyHealthStep1View.xib in Resources */,
+				6D90E993262F1D2D0073F401 /* newradarcovidpre.covid19.gob.es.cer in Resources */,
 				A9EB481F2535AF2500F3A122 /* MyHealthStep0View.xib in Resources */,
 				A9D38D82256D47D200C2F671 /* DetailInteroperabilityView.xib in Resources */,
 				6D5AFC8F2492827C00EFE838 /* muli_bold.ttf in Resources */,
