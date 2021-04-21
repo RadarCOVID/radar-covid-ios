@@ -32,7 +32,9 @@ class ResetDataUseCaseImpl: ResetDataUseCase {
         .deferred { [weak self] in
             do {
                 DP3TTracing.reset()
-                try self?.setupUseCase!.initializeSDK()
+                if Thread.isMainThread {
+                    try self?.setupUseCase!.initializeSDK()
+                }
                 self?.expositionInfoRepository.clearData()
             } catch {
                 return .error(error)
