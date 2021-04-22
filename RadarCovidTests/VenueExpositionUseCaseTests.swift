@@ -23,11 +23,14 @@ class VenueExpositionUseCaseTests: XCTestCase {
     private var scheduler: TestScheduler!
     
     private var venueRecordRepository: VenueRecordRepositoryMock!
+    
+    private var qrCheckRepository: QrCheckRepositoryMock!
 
     override func setUpWithError() throws {
         self.disposeBag = DisposeBag()
         venueRecordRepository = VenueRecordRepositoryMock()
-        sut = VenueExpositionUseCaseImpl(venueRecordRepository: venueRecordRepository)
+        qrCheckRepository = QrCheckRepositoryMock()
+        sut = VenueExpositionUseCaseImpl(venueRecordRepository: venueRecordRepository, qrCheckRepository: qrCheckRepository)
         self.scheduler = TestScheduler(initialClock: 0)
     }
 
@@ -109,9 +112,6 @@ class VenueExpositionUseCaseTests: XCTestCase {
         
         XCTAssertEqual(observer.events, [.next(1, VenueExpositionInfo(level: .exposed, since: lastCheckout))])
         
-
     }
-
-
 
 }

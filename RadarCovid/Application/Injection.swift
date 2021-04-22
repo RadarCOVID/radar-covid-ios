@@ -328,7 +328,8 @@ class Injection {
         }.inObjectScope(.container)
         
         container.register(VenueExpositionUseCase.self) { r in
-            VenueExpositionUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!)
+            VenueExpositionUseCaseImpl(venueRecordRepository: r.resolve(VenueRecordRepository.self)!,
+                                       qrCheckRepository: r.resolve(QrCheckRepository.self)!)
         }.inObjectScope(.container)
         
         

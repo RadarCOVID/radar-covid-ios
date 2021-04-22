@@ -15,5 +15,6 @@ struct VenueExpositionInfo : Equatable {
     
     var level: Level
     var since: Date?
+    var lastCheck: Date?
     
 }

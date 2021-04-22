@@ -236,7 +236,6 @@ class QrCheckRepositoryMock: Mocker, QrCheckRepository {
         super.init("QrCheckRepositoryMock")
     }
     
-    
     func getLastReminder() -> Date? {
         self.call("getLastReminder") as! Date?
     }
@@ -251,6 +250,14 @@ class QrCheckRepositoryMock: Mocker, QrCheckRepository {
     
     func save(syncTag: String?) {
         self.call("saveSyncTag", params: ["syncTag": syncTag])
+    }
+    
+    func getLastCheck() -> Date? {
+        self.call("getLastCheck") as! Date?
+    }
+    
+    func save(lastCheck: Date) {
+        self.call("saveLastCheck", params: ["lastCheck": lastCheck])
     }
     
     func registerGetSyncTag(syncTag: String?) {
@@ -268,5 +275,15 @@ class QrCheckRepositoryMock: Mocker, QrCheckRepository {
     func verifySaveSyncTag() {
         verify("saveSyncTag")
     }
+    
+    func verifyGetSyncTag() {
+        verify("getSyncTag")
+    }
+    
+    func verifySaveLastCheck() {
+        verify("saveLastCheck")
+    }
+    
+    
     
 }

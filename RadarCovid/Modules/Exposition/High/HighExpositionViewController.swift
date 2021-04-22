@@ -203,6 +203,10 @@ class HighExpositionViewController: BaseExposed {
         youCouldBeLabel.accessibilityLabel = accesibilityText.string
         
         if let venueExposition = expositionInfo?.venue {
+            last = "-"
+            if let lastCheck = venueExposition.lastCheck {
+                last = formatter.string(from: lastCheck)
+            }
             youCouldBeVenue.attributedText = "VENUE_EXPOSITION_HIGH_DESCRIPTION".localizedAttributed(withParams: [String(getDaysSince(date: venueExposition.since)), last])
         }
         youCouldBeVenue.setMagnifierFontSize()

@@ -52,7 +52,12 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         try! sut.sync().toBlocking().first()
         
+        qrCheckRepository.verifyGetSyncTag()
         problematicEvensApi.verifyGetProblematicsEvents()
+        qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
+        
+        verifyNoMoreInteractionsAll()
 
     }
     
@@ -69,8 +74,11 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         let params = venueNotifier.paramCaptured("checkForMatches")
         XCTAssertEqual(params!["problematicEvents"] as! [ProblematicEvent], problematicEvents)
         
+        qrCheckRepository.verifyGetSyncTag()
         problematicEvensApi.verifyGetProblematicsEvents()
         venueNotifier.verifyCheckForMatches()
+        qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
         
         verifyNoMoreInteractionsAll()
     }
@@ -112,6 +120,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         try! sut.sync().toBlocking().first()
         
+        qrCheckRepository.verifyGetSyncTag()
         problematicEvensApi.verifyGetProblematicsEvents()
         venueNotifier.verifyCheckForMatches()
         
@@ -144,6 +153,9 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         let notNotified = venuesParams.filter { $0.notified == false }
         XCTAssertTrue(notNotified.count == 0)
         
+        qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
+        
         verifyNoMoreInteractionsAll()
         
     }
@@ -172,6 +184,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         try! sut.sync().toBlocking().first()
         
+        qrCheckRepository.verifyGetSyncTag()
         problematicEvensApi.verifyGetProblematicsEvents()
         venueNotifier.verifyCheckForMatches()
         
@@ -179,7 +192,11 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         venueRecordRepository.verifyUpdateVisited()
         venueExpositionUseCase.verifyUpdateExpositionInfo()
         
-        notificationHandler.verifyScheduleExposedEventNotification(called: .never)
+        notificationHandler
+            .verifyScheduleExposedEventNotification(called: .never)
+        
+        qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
         
         verifyNoMoreInteractionsAll()
         
@@ -209,6 +226,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         try! sut.sync().toBlocking().first()
         
+        qrCheckRepository.verifyGetSyncTag()
         problematicEvensApi.verifyGetProblematicsEvents()
         venueNotifier.verifyCheckForMatches()
         
@@ -217,6 +235,9 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         venueExpositionUseCase.verifyUpdateExpositionInfo()
         
         notificationHandler.verifyScheduleExposedEventNotification(called: .exact(1))
+        
+        qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
         
         verifyNoMoreInteractionsAll()
         
@@ -237,6 +258,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         try! sut.sync().toBlocking().first()
         
+        qrCheckRepository.verifyGetSyncTag()
         problematicEvensApi.verifyGetProblematicsEvents()
         venueNotifier.verifyCheckForMatches()
         
@@ -249,6 +271,9 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         let venuesParams = venueRecordRepository.paramCaptured("updateVisited")!["visited"] as! [VenueRecord]
         
         XCTAssertTrue(venuesParams.isEmpty)
+        
+        qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
         
         verifyNoMoreInteractionsAll()
         
@@ -267,6 +292,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         } catch {
             XCTFail("Incorrect error \(error)")
         }
+        qrCheckRepository.verifyGetSyncTag()
         
         problematicEvensApi.verifyGetProblematicsEvents()
         
@@ -285,8 +311,10 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         try! sut.sync().toBlocking().first()
         
+        qrCheckRepository.verifyGetSyncTag()
         problematicEvensApi.verifyGetProblematicsEvents()
         qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
         
         let tag = problematicEvensApi.paramCaptured("getProblematicEvents")!["tag"]!
         XCTAssertNil(tag)
@@ -294,6 +322,8 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         let savedTag = qrCheckRepository.paramCaptured("saveSyncTag")!["syncTag"] as! String
         XCTAssertEqual(savedTag, "TAG")
+        
+        verifyNoMoreInteractionsAll()
         
     }
     
@@ -311,8 +341,10 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         try! sut.sync().toBlocking().first()
         
+        qrCheckRepository.verifyGetSyncTag()
         problematicEvensApi.verifyGetProblematicsEvents()
         qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
         
         let tag = problematicEvensApi.paramCaptured("getProblematicEvents")!["tag"] as! String
         XCTAssertEqual("TAG", tag)
@@ -320,6 +352,8 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         let savedTag = qrCheckRepository.paramCaptured("saveSyncTag")!["syncTag"] as! String
         XCTAssertEqual(savedTag, "NEWTAG")
+        
+        verifyNoMoreInteractionsAll()
         
     }
     
@@ -337,8 +371,10 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         try! sut.sync().toBlocking().first()
         
+        qrCheckRepository.verifyGetSyncTag()
         problematicEvensApi.verifyGetProblematicsEvents()
         qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
         
         let tag = problematicEvensApi.paramCaptured("getProblematicEvents")!["tag"] as! String
         XCTAssertEqual("TAG", tag)
@@ -346,6 +382,8 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         
         let savedTag = qrCheckRepository.paramCaptured("saveSyncTag")!["syncTag"] as! String
         XCTAssertEqual(savedTag, "NEWTAG")
+        
+        verifyNoMoreInteractionsAll()
         
     }
     
@@ -355,6 +393,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         problematicEvensApi.verifyNoMoreInteractions()
         notificationHandler.verifyNoMoreInteractions()
         venueExpositionUseCase.verifyNoMoreInteractions()
+        qrCheckRepository.verifyNoMoreInteractions()
     }
     
     func getExposureEvent(checkinId: String) -> ExposureEvent {

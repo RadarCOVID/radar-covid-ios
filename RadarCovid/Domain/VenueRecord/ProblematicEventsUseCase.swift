@@ -56,41 +56,51 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
             guard let self = self else { return .empty() }
             
             let problematicEvents = problematicEventData.problematicEvents
-            
-            let exposedEvents = self.venueNotifier.checkForMatches(problematicEvents: problematicEvents)
-            
-            var result = Observable.just(Void())
+    
+                var result = Observable<Void>.empty()
                 
-            if !exposedEvents.isEmpty {
-                
-                self.logger.debug("Received \(exposedEvents.count) problematic events")
-                
-                result = self.venueRecordRepository.getVisited().flatMap { visitedVenues -> Observable<Void> in
-                    var newVisited: [VenueRecord] = []
-                    
-                    visitedVenues?.forEach { v in
-                        var visited = v
-                        exposedEvents.forEach { exposed in
-                            if exposed.checkinId == visited.checkOutId {
-                                visited.exposed = true
-                            }
-                        }
-                        if !self.isOutdated(visited) {
-                            newVisited.append(visited)
-                        }
-                    }
-                    
-                    newVisited = self.notifyIfExposed(newVisited)
-                    
-                    return self.venueRecordRepository.update(visited: newVisited).map { _ in
-                        self.venueExpositionUseCase.updateExpositionInfo()
-                        return Void()
-                    }
-                }
+            if !problematicEvents.isEmpty {
+                result = self.checkProblematicEvents(problematicEvents)
             }
+
             self.qrCheckRepository.save(syncTag: problematicEventData.tag)
+            self.qrCheckRepository.save(lastCheck: Date())
             return result
         }
+    }
+    
+    private func checkProblematicEvents(_ problematicEvents: [ProblematicEvent]) -> Observable<Void> {
+        let exposedEvents = self.venueNotifier.checkForMatches(problematicEvents: problematicEvents)
+        
+        if !exposedEvents.isEmpty {
+            
+            self.logger.debug("Received \(exposedEvents.count) problematic events")
+            
+            return self.venueRecordRepository.getVisited().flatMap { visitedVenues -> Observable<Void> in
+                var newVisited: [VenueRecord] = []
+                
+                visitedVenues?.forEach { v in
+                    var visited = v
+                    exposedEvents.forEach { exposed in
+                        if exposed.checkinId == visited.checkOutId {
+                            visited.exposed = true
+                        }
+                    }
+                    if !self.isOutdated(visited) {
+                        newVisited.append(visited)
+                    }
+                }
+                
+                newVisited = self.notifyIfExposed(newVisited)
+                
+                return self.venueRecordRepository.update(visited: newVisited).map { _ in
+                    self.venueExpositionUseCase.updateExpositionInfo()
+                    return Void()
+                }
+            }
+        }
+        
+        return .empty()
     }
     
     private func notifyIfExposed(_ venues: [VenueRecord]) -> [VenueRecord] {

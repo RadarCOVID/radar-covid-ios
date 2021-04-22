@@ -16,12 +16,15 @@ protocol QrCheckRepository {
     func save(lastReminder: Date)
     func getSyncTag() -> String?
     func save(syncTag: String?)
+    func getLastCheck() -> Date?
+    func save(lastCheck: Date)
 }
 
 class UserDefaultsQrCheckRepository: UserDefaultsRepository, QrCheckRepository {
     
     private static let kLastReminder = "UserDefaultsQrCheckRepository.kLastReminder"
     private static let kSyncTag = "UserDefaultsQrCheckRepository.kSyncTag"
+    private static let kLastCheck = "UserDefaultsQrCheckRepository.kLastCheck"
     
     func getLastReminder() -> Date? {
         let uncoded = userDefaults.data(forKey: UserDefaultsQrCheckRepository.kLastReminder) ?? Data()
@@ -42,6 +45,19 @@ class UserDefaultsQrCheckRepository: UserDefaultsRepository, QrCheckRepository {
     
     func save(syncTag: String?) {
         userDefaults.set(syncTag, forKey: UserDefaultsQrCheckRepository.kSyncTag)
+    }
+    
+    func getLastCheck() -> Date? {
+        let uncoded = userDefaults.data(forKey: UserDefaultsQrCheckRepository.kLastCheck) ?? Data()
+        if uncoded.isEmpty {
+            return nil
+        }
+        return try? decoder.decode(Date.self, from: uncoded)
+    }
+    
+    func save(lastCheck: Date) {
+        guard let encoded = try? encoder.encode(lastCheck) else { return }
+        userDefaults.set(encoded, forKey: UserDefaultsQrCheckRepository.kLastCheck)
     }
     
 

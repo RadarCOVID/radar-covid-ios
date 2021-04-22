@@ -24,9 +24,11 @@ class VenueExpositionUseCaseImpl: VenueExpositionUseCase {
     private let subject = BehaviorSubject(value: VenueExpositionInfo(level: .healthy))
     
     private let venueRecordRepository: VenueRecordRepository
+    private let qrCheckRepository: QrCheckRepository
     
-    init(venueRecordRepository: VenueRecordRepository) {
+    init(venueRecordRepository: VenueRecordRepository, qrCheckRepository: QrCheckRepository) {
         self.venueRecordRepository = venueRecordRepository
+        self.qrCheckRepository = qrCheckRepository
     }
     
     private(set) var expositionInfo: Observable<VenueExpositionInfo> {
@@ -48,8 +50,9 @@ class VenueExpositionUseCaseImpl: VenueExpositionUseCase {
     }
     
     private func expositionInfoFromVenueRecord() -> Observable<VenueExpositionInfo> {
-        venueRecordRepository.getVisited().map { visited in
+        venueRecordRepository.getVisited().map { [weak self] visited in
             var expositionInfo = VenueExpositionInfo(level: .healthy, since: nil)
+            expositionInfo.lastCheck = self?.qrCheckRepository.getLastCheck()
             visited?.forEach { venue in
                 if venue.exposed {
                     expositionInfo.level = .exposed
