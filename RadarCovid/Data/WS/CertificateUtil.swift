@@ -18,4 +18,22 @@ struct CertificateUtil {
         let certificate = SecCertificateCreateWithData(nil, data as CFData)!
         return certificate
     }
+    
+    static func publicKey(filename: String) throws -> SecKey {
+        let cert = certificate(filename: filename)
+        var trust: SecTrust?
+
+        let policy = SecPolicyCreateBasicX509()
+        let status = SecTrustCreateWithCertificates(cert, policy, &trust)
+
+        if status == errSecSuccess {
+            return SecTrustCopyPublicKey(trust!)!
+        } else {
+            throw CertError.error("Failed to get public key from cert: \(filename)")
+        }
+    }
+}
+
+enum CertError: Error {
+    case error(String)
 }
