@@ -39,10 +39,13 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
      */
     open func createSessionManager() -> Alamofire.SessionManager {
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
-            "radarcovidpre.covid19.gob.es": .pinCertificates(
-                certificates: [CertificateUtil.certificate(filename: "radarcovidpre.covid19.gob.es")
-],
-                validateCertificateChain: false,
+
+            "radarcovidpre.covid19.gob.es": .pinPublicKeys(
+                publicKeys: [
+                    try! CertificateUtil.publicKey(filename: "newradarcovidpre.covid19.gob.es"),
+                    try! CertificateUtil.publicKey(filename: "oldradarcovidpre.covid19.gob.es"),
+                ],
+                validateCertificateChain: true,
                 validateHost: true
             ),
             "radarcovid.covid19.gob.es": .pinCertificates(
