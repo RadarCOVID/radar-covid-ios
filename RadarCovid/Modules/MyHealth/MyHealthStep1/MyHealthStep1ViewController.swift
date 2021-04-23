@@ -84,7 +84,7 @@ class MyHealthStep1ViewController: BaseViewController {
     
     private func setupView() {
         setEnableButton(isEnable: false)
-        isDisabblePricipalAccesibility(isDisabble: false)
+        setDisabledPricipalAccesibility(disabled: false)
         
         self.title = "MY_HEALTH_TITLE_STEP1".localized
         
@@ -164,7 +164,7 @@ class MyHealthStep1ViewController: BaseViewController {
         }
     }
     private func onDateChanged() {
-        isDisabblePricipalAccesibility(isDisabble: false)
+        setDisabledPricipalAccesibility(disabled: false)
         date = datePicker.date
         if let date = date {
             let formatter = DateFormatter()
@@ -190,7 +190,7 @@ class MyHealthStep1ViewController: BaseViewController {
     @objc private func showDatePicker() {
         self.view.endEditing(true)
 
-        isDisabblePricipalAccesibility(isDisabble: true)
+        setDisabledPricipalAccesibility(disabled: true)
         pickerPresenter?.openPicker()
         UIAccessibility.post(notification: .layoutChanged, argument: self.datePicker)
     }
@@ -266,9 +266,9 @@ class MyHealthStep1ViewController: BaseViewController {
             })
     }
     
-    private func isDisabblePricipalAccesibility(isDisabble: Bool) {
-        self.continueButton.isAccessibilityElement = !isDisabble
-        self.cancelButton.isAccessibilityElement = !isDisabble
+    private func setDisabledPricipalAccesibility(disabled: Bool) {
+        self.continueButton.isAccessibilityElement = !disabled
+        self.cancelButton.isAccessibilityElement = !disabled
     }
     
     private func checkIfNeedSetCovidCode() {
@@ -325,7 +325,7 @@ extension MyHealthStep1ViewController: PickerDelegate {
     }
     
     func onCancel() {
-        isDisabblePricipalAccesibility(isDisabble: false)
+        setDisabledPricipalAccesibility(disabled: false)
         date = nil
         yearLabel.text = "----"
         monthLabel.text = "--"
