@@ -130,6 +130,7 @@
                                     <subviews>
                                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="tEk-7t-zqL">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="216"/>
+                                            <color key="tintColor" name="twilight"/>
                                             <connections>
                                                 <action selector="onDateSelected:" destination="-1" eventType="primaryActionTriggered" id="5C4-qW-egb"/>
                                             </connections>
