@@ -22,7 +22,6 @@ class TimeExposedViewController: BaseViewController {
     @IBOutlet weak var bottomCloseButton: UIButton!
     
     var router: AppRouter?
-    var viewModel: TimeExposedViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()

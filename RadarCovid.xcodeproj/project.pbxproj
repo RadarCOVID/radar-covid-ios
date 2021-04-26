@@ -264,10 +264,8 @@
 		A9C9AC1325385BA100637067 /* CustomSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C9AC1025385BA100637067 /* CustomSliderView.xib */; };
 		A9C9AC1425385BA100637067 /* CustomSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C9AC1125385BA100637067 /* CustomSliderView.swift */; };
 		A9CE0573256E7A440080A7E3 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CE0572256E7A440080A7E3 /* UILabel+Extension.swift */; };
-		A9D38D58256D1D3100C2F671 /* TermsUpdatedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D38D48256D1D3100C2F671 /* TermsUpdatedViewModel.swift */; };
 		A9D38D59256D1D3100C2F671 /* TermsUpdatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D38D4A256D1D3100C2F671 /* TermsUpdatedViewController.swift */; };
 		A9D38D5A256D1D3100C2F671 /* TermsUpdatedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9D38D4B256D1D3100C2F671 /* TermsUpdatedView.xib */; };
-		A9D38D5B256D1D3100C2F671 /* TimeExposedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D38D4E256D1D3100C2F671 /* TimeExposedViewModel.swift */; };
 		A9D38D5C256D1D3100C2F671 /* TimeExposedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9D38D50256D1D3100C2F671 /* TimeExposedView.xib */; };
 		A9D38D5D256D1D3100C2F671 /* TimeExposedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D38D51256D1D3100C2F671 /* TimeExposedViewController.swift */; };
 		A9D38D5E256D1D3100C2F671 /* ShareAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D38D54256D1D3100C2F671 /* ShareAppViewModel.swift */; };
@@ -586,10 +584,8 @@
 		A9C9AC1025385BA100637067 /* CustomSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSliderView.xib; sourceTree = "<group>"; };
 		A9C9AC1125385BA100637067 /* CustomSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSliderView.swift; sourceTree = "<group>"; };
 		A9CE0572256E7A440080A7E3 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
-		A9D38D48256D1D3100C2F671 /* TermsUpdatedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsUpdatedViewModel.swift; sourceTree = "<group>"; };
 		A9D38D4A256D1D3100C2F671 /* TermsUpdatedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsUpdatedViewController.swift; sourceTree = "<group>"; };
 		A9D38D4B256D1D3100C2F671 /* TermsUpdatedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsUpdatedView.xib; sourceTree = "<group>"; };
-		A9D38D4E256D1D3100C2F671 /* TimeExposedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeExposedViewModel.swift; sourceTree = "<group>"; };
 		A9D38D50256D1D3100C2F671 /* TimeExposedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeExposedView.xib; sourceTree = "<group>"; };
 		A9D38D51256D1D3100C2F671 /* TimeExposedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeExposedViewController.swift; sourceTree = "<group>"; };
 		A9D38D54256D1D3100C2F671 /* ShareAppViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAppViewModel.swift; sourceTree = "<group>"; };
@@ -1459,53 +1455,19 @@
 		A9D38D46256D1D3100C2F671 /* TermsUpdated */ = {
 			isa = PBXGroup;
 			children = (
-				A9D38D47256D1D3100C2F671 /* ViewModel */,
-				A9D38D49256D1D3100C2F671 /* View */,
-			);
-			path = TermsUpdated;
-			sourceTree = "<group>";
-		};
-		A9D38D47256D1D3100C2F671 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				A9D38D48256D1D3100C2F671 /* TermsUpdatedViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		A9D38D49256D1D3100C2F671 /* View */ = {
-			isa = PBXGroup;
-			children = (
 				A9D38D4A256D1D3100C2F671 /* TermsUpdatedViewController.swift */,
 				A9D38D4B256D1D3100C2F671 /* TermsUpdatedView.xib */,
 			);
-			path = View;
+			path = TermsUpdated;
 			sourceTree = "<group>";
 		};
 		A9D38D4C256D1D3100C2F671 /* TimeExposed */ = {
 			isa = PBXGroup;
 			children = (
-				A9D38D4D256D1D3100C2F671 /* ViewModel */,
-				A9D38D4F256D1D3100C2F671 /* View */,
-			);
-			path = TimeExposed;
-			sourceTree = "<group>";
-		};
-		A9D38D4D256D1D3100C2F671 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				A9D38D4E256D1D3100C2F671 /* TimeExposedViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		A9D38D4F256D1D3100C2F671 /* View */ = {
-			isa = PBXGroup;
-			children = (
 				A9D38D51256D1D3100C2F671 /* TimeExposedViewController.swift */,
 				A9D38D50256D1D3100C2F671 /* TimeExposedView.xib */,
 			);
-			path = View;
+			path = TimeExposed;
 			sourceTree = "<group>";
 		};
 		A9D38D52256D1D3100C2F671 /* ShareApp */ = {
@@ -1998,7 +1960,6 @@
 				6DF8212924D1DC00000ED0D2 /* TextCustomMap.swift in Sources */,
 				6D9154CC25E564C0007965F4 /* CheckOutViewController.swift in Sources */,
 				76D9BD4D24A950CF00BA6697 /* Date+Extension.swift in Sources */,
-				A9D38D5B256D1D3100C2F671 /* TimeExposedViewModel.swift in Sources */,
 				6DF6ECD6248FA0D0007EAA40 /* HelpLineViewController.swift in Sources */,
 				6DE27D4124A7A08C00BBCF40 /* SyncUseCase.swift in Sources */,
 				76D9BD1C24A8992000BA6697 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
@@ -2037,7 +1998,6 @@
 				6D9154BF25E52A2E007965F4 /* VenueRecordUseCase.swift in Sources */,
 				6D63108E2501197B000CDCB4 /* AccTitleView.swift in Sources */,
 				6DF6ECAC248E79C1007EAA40 /* Injection.swift in Sources */,
-				A9D38D58256D1D3100C2F671 /* TermsUpdatedViewModel.swift in Sources */,
 				763489FD24B7530500B31C59 /* UIFont+Extension.swift in Sources */,
 				6DFC77FE260129E800527A1D /* VenueListViewModel.swift in Sources */,
 				768856892554683100992F8B /* UIView+Magnifier+Extension.swift in Sources */,

@@ -521,26 +521,14 @@ class Injection {
         
         container.register(TimeExposedViewController.self) {  r in
             let timeExposedVC = TimeExposedViewController()
-            timeExposedVC.viewModel = r.resolve(TimeExposedViewModel.self)!
             timeExposedVC.router = r.resolve(AppRouter.self)!
             return timeExposedVC
         }
         
-        container.register(TimeExposedViewModel.self) { route in
-            let timeExposedVM = TimeExposedViewModel()
-            return timeExposedVM
-        }
-        
         container.register(TermsUpdatedViewController.self) {  r in
             let termsUpdatedVC = TermsUpdatedViewController()
-            termsUpdatedVC.viewModel = r.resolve(TermsUpdatedViewModel.self)!
             termsUpdatedVC.router = r.resolve(AppRouter.self)!
             return termsUpdatedVC
-        }
-        
-        container.register(TermsUpdatedViewModel.self) { route in
-            let termsUpdatedVM = TermsUpdatedViewModel()
-            return termsUpdatedVM
         }
         
         container.register(DetailInteroperabilityViewController.self) {  r in

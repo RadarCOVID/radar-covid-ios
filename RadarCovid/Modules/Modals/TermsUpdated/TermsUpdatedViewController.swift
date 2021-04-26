@@ -29,7 +29,6 @@ class TermsUpdatedViewController: BaseViewController {
     }
     
     var router: AppRouter?
-    var viewModel: TermsUpdatedViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
