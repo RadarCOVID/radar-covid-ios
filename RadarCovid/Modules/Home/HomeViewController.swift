@@ -87,7 +87,6 @@ class HomeViewController: BaseViewController {
     }
     
     @IBAction func onReset(_ sender: Any) {
-
         showAlertCancelContinue(
             title: "ALERT_HOME_RESET_TITLE".localizedAttributed,
             message: "ALERT_HOME_RESET_CONTENT".localizedAttributed,

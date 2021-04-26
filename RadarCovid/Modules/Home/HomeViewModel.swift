@@ -66,8 +66,6 @@ class HomeViewModel {
             }).disposed(by: disposeBag)
     }
     
-    
-    
     func checkInitial() {
         checkRadarStatus()
         checkInitialExposition()
