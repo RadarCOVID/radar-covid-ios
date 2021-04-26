@@ -44,7 +44,7 @@ class VenueRecordUseCaseTests: XCTestCase {
         venueRecordRepository.registerGetCurrentVenue(response: venueRecord)
         venueRecordRepository.registerSaveVisit(response: venueRecord)
         
-        try! sut.checkOut(date: currentDate).toBlocking().first()
+        try! sut.checkOut(date: currentDate, isPlusSelected: false).toBlocking().first()
         
         venueNotifier.verifyCheckout()
         venueNotifier.verifyGetInfo()
@@ -77,7 +77,7 @@ class VenueRecordUseCaseTests: XCTestCase {
         venueRecordRepository.registerGetCurrentVenue(response: nil)
         
         do {
-            try sut.checkOut(date: current).toBlocking().first()
+            try sut.checkOut(date: current, isPlusSelected: false).toBlocking().first()
             XCTFail("No error received")
         } catch {
             
@@ -101,7 +101,7 @@ class VenueRecordUseCaseTests: XCTestCase {
         venueNotifier.registerGetInfo(response: .error(CrowdNotifierError.invalidQRCode))
         
         do {
-            try sut.checkOut(date: current).toBlocking().first()
+            try sut.checkOut(date: current, isPlusSelected: false).toBlocking().first()
             XCTFail("No error received")
         } catch {
             
@@ -128,7 +128,7 @@ class VenueRecordUseCaseTests: XCTestCase {
         venueNotifier.registerCheckOut(response: .error(CrowdNotifierError.invalidQRCode))
         
         do {
-            try sut.checkOut(date: current).toBlocking().first()
+            try sut.checkOut(date: current, isPlusSelected: false).toBlocking().first()
             XCTFail("No error received")
         } catch {
             
@@ -147,7 +147,7 @@ class VenueRecordUseCaseTests: XCTestCase {
         let current = Date()
         
         do {
-            try sut.checkOut(date: current).toBlocking().first()
+            try sut.checkOut(date: current, isPlusSelected: false).toBlocking().first()
         } catch is VenueRecordError {
         
         } catch {

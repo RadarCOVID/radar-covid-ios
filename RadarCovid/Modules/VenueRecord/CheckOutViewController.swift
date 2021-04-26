@@ -43,7 +43,10 @@ class CheckOutViewController: VenueViewController {
         
         let checkOutDate = getCheckoutFrom(index: timeSC.selectedSegmentIndex)
         
-        venueRecordUseCase.checkOut(date: checkOutDate).subscribe(
+        let plusSelected = timeSC.selectedSegmentIndex == 5
+        
+        venueRecordUseCase.checkOut(date: checkOutDate,
+                                    isPlusSelected: plusSelected).subscribe(
             onNext: { [weak self] exposition in
                 guard let self = self else { return }
                 self.router.route(to: .checkOutConfirmation, from: self)
@@ -219,7 +222,7 @@ class CheckOutViewController: VenueViewController {
             return checkInDate.addingTimeInterval(30 * 60)
         }
         
-        if index > 1 && index <= 3{
+        if index > 1 && index <= 3 {
             return checkInDate.addingTimeInterval( Double((index - 1)) * 60.0 * 60.0 )
         }
         

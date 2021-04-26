@@ -20,4 +20,5 @@ struct VenueRecord: Codable {
     var name: String?
     var checkInDate: Date
     var checkOutDate: Date?
+    var isPlusSelected: Bool = false
 }

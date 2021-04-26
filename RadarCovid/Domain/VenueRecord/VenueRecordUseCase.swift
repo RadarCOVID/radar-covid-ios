@@ -17,11 +17,11 @@ protocol VenueRecordUseCase {
     func isCheckedIn() -> Observable<Bool>
     func getCurrentVenue() -> Observable<VenueRecord?>
     func checkIn(venue: VenueRecord) -> Observable<VenueRecord>
-    func checkOut(date: Date) -> Observable<Void>
+    func checkOut(date: Date, isPlusSelected: Bool) -> Observable<Void>
     func cancelCheckIn() -> Observable<Void>
 }
 
-class VenueRecordUseCaseImpl : VenueRecordUseCase{
+class VenueRecordUseCaseImpl : VenueRecordUseCase {
 
     private let venueRecordRepository: VenueRecordRepository
     private let venueNotifier: VenueNotifier
@@ -47,10 +47,11 @@ class VenueRecordUseCaseImpl : VenueRecordUseCase{
         venueRecordRepository.save(current: venue)
     }
     
-    func checkOut(date: Date) -> Observable<Void> {
+    func checkOut(date: Date, isPlusSelected: Bool) -> Observable<Void> {
         venueRecordRepository.getCurrentVenue().flatMap { [weak self] current -> Observable<Void> in
             guard let self = self else { return .empty() }
             if var current = current {
+                current.isPlusSelected = isPlusSelected
                 return self.venueNotifier.getInfo(qrCode: current.qr).flatMap { venueInfo -> Observable<Void> in
                     self.venueNotifier.checkOut(venue: venueInfo, arrival: current.checkInDate, departure: date)
                         .flatMap { checkOutId -> Observable<Void> in
