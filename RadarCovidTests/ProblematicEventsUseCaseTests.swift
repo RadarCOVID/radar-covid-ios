@@ -27,6 +27,7 @@ class ProblematicEventsUseCaseTests: XCTestCase {
     private var qrCheckRepository: QrCheckRepositoryMock!
     private var settingsRepository: MockSettingsRepository!
     private var venueExpositionUseCase: VenueExpositionUseCaseMock!
+    private var expositionInfoRepository: ExpositionInfoRepositoryMock!
     
     override func setUpWithError() throws {
         
@@ -37,8 +38,9 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         qrCheckRepository = QrCheckRepositoryMock()
         settingsRepository = MockSettingsRepository()
         venueExpositionUseCase = VenueExpositionUseCaseMock()
+        expositionInfoRepository = ExpositionInfoRepositoryMock()
         
-        sut = ProblematicEventsUseCaseImpl(venueRecordRepository: venueRecordRepository, qrCheckRepository: qrCheckRepository, venueNotifier: venueNotifier, problematicEventsApi: problematicEvensApi, notificationHandler: notificationHandler, settingsRepository: settingsRepository, venueExpositionUseCase: venueExpositionUseCase)
+        sut = ProblematicEventsUseCaseImpl(venueRecordRepository: venueRecordRepository, qrCheckRepository: qrCheckRepository, venueNotifier: venueNotifier, problematicEventsApi: problematicEvensApi, notificationHandler: notificationHandler, settingsRepository: settingsRepository, venueExpositionUseCase: venueExpositionUseCase, expositionRepository: expositionInfoRepository)
     }
 
     override func tearDownWithError() throws {
@@ -235,6 +237,49 @@ class ProblematicEventsUseCaseTests: XCTestCase {
         venueExpositionUseCase.verifyUpdateExpositionInfo()
         
         notificationHandler.verifyScheduleExposedEventNotification(called: .exact(1))
+        
+        qrCheckRepository.verifySaveSyncTag()
+        qrCheckRepository.verifySaveLastCheck()
+        
+        verifyNoMoreInteractionsAll()
+        
+    }
+    
+    func testSyncWithAtLeastOneEventPreviouslyNotNotifiedNotifiedButInfectedDontSendNotification() throws {
+        
+        var problematicEvents: [ProblematicEvent] = []
+        problematicEvents.append(ProblematicEvent())
+        problematicEvents.append(ProblematicEvent())
+        problematicEvensApi.registerGetProblematicsEvents(.just(ProblematicEventData(problematicEvents:problematicEvents)))
+        
+        var exposedEvents: [ExposureEvent] = []
+        exposedEvents.append(getExposureEvent(checkinId: "IdFreshExposedNotified1"))
+        exposedEvents.append(getExposureEvent(checkinId: "IdFreshExposed"))
+        venueNotifier.registerCheckForMatches(response: exposedEvents)
+        
+        var venueRecords: [VenueRecord] = []
+        venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposedNotified1", hidden: false, exposed: false, notified: true, name: "name",
+                                checkInDate: Calendar.current.date(byAdding: .hour, value: -6, to: Date())!,
+                                checkOutDate: Calendar.current.date(byAdding: .hour, value: -5, to: Date())))
+        venueRecords.append(VenueRecord(qr: "", checkOutId: "IdFreshExposed", hidden: false, exposed: false, notified: false, name: "name",
+                                        checkInDate: Calendar.current.date(byAdding: .hour, value: -3, to: Date())!,
+                                        checkOutDate: Calendar.current.date(byAdding: .hour, value: -2, to: Date())))
+        
+        expositionInfoRepository.expositionInfo = ContactExpositionInfo(level: .infected)
+        
+        venueRecordRepository.registerGetVisited(response: venueRecords)
+        
+        try! sut.sync().toBlocking().first()
+        
+        qrCheckRepository.verifyGetSyncTag()
+        problematicEvensApi.verifyGetProblematicsEvents()
+        venueNotifier.verifyCheckForMatches()
+        
+        venueRecordRepository.verifyGetVisited()
+        venueRecordRepository.verifyUpdateVisited()
+        venueExpositionUseCase.verifyUpdateExpositionInfo()
+        
+        notificationHandler.verifyScheduleExposedEventNotification(called: .never)
         
         qrCheckRepository.verifySaveSyncTag()
         qrCheckRepository.verifySaveLastCheck()

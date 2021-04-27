@@ -28,18 +28,20 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     private let notificationHandler: NotificationHandler
     private let qrCheckRepository: QrCheckRepository
     private let venueExpositionUseCase: VenueExpositionUseCase
+    private let expositionRepository: ExpositionInfoRepository
     
     var maxMinutesToKeep: Int
     
     init(venueRecordRepository: VenueRecordRepository, qrCheckRepository: QrCheckRepository, venueNotifier: VenueNotifier, problematicEventsApi: ProblematicEventsApi, notificationHandler: NotificationHandler,
          settingsRepository: SettingsRepository,
-         venueExpositionUseCase: VenueExpositionUseCase) {
+         venueExpositionUseCase: VenueExpositionUseCase, expositionRepository: ExpositionInfoRepository) {
         self.venueNotifier = venueNotifier
         self.venueRecordRepository = venueRecordRepository
         self.problematicEventsApi = problematicEventsApi
         self.notificationHandler = notificationHandler
         self.qrCheckRepository = qrCheckRepository
         self.venueExpositionUseCase = venueExpositionUseCase
+        self.expositionRepository = expositionRepository
         maxMinutesToKeep = Int(settingsRepository.getSettings()?.parameters?.venueConfiguration?.quarentineAfterExposed ?? (14 * 24 * 60) )
     }
     
@@ -106,13 +108,17 @@ class ProblematicEventsUseCaseImpl : ProblematicEventsUseCase {
     private func notifyIfExposed(_ venues: [VenueRecord]) -> [VenueRecord] {
         var notify = false
         var modifiedVenues: [VenueRecord] = []
+        
         venues.forEach { v in
             var venue = v
             notify = notify || (v.exposed && !v.notified)
             venue.notified = true
             modifiedVenues.append(venue)
         }
-        if notify {
+        
+        let exposition = expositionRepository.getExpositionInfo()
+        
+        if notify && exposition?.level != .infected {
             notificationHandler.scheduleExposedEventNotification()
         }
         return modifiedVenues

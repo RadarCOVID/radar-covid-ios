@@ -316,7 +316,7 @@ class Injection {
                                          problematicEventsApi: r.resolve(ProblematicEventsApi.self)!,
                                          notificationHandler: r.resolve(NotificationHandler.self)!,
                                          settingsRepository: r.resolve(SettingsRepository.self)!,
-                                         venueExpositionUseCase: r.resolve(VenueExpositionUseCase.self)!)
+                                         venueExpositionUseCase: r.resolve(VenueExpositionUseCase.self)!, expositionRepository: r.resolve(ExpositionInfoRepository.self)!)
         }.inObjectScope(.container)
         
         container.register(CheckInInProgressUseCase.self) { r in
