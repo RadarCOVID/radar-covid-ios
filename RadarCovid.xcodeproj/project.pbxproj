@@ -95,6 +95,7 @@
 		6D87A09125E114BD0077ABDE /* AnalyticsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87A08F25E114BD0077ABDE /* AnalyticsUseCaseTests.swift */; };
 		6D90E9A2263182A80073F401 /* newradarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6D90E9A0263182A70073F401 /* newradarcovidpre.covid19.gob.es.cer */; };
 		6D90E9A3263182A80073F401 /* oldradarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6D90E9A1263182A70073F401 /* oldradarcovidpre.covid19.gob.es.cer */; };
+		6D90E9BB263AB9DC0073F401 /* debug-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D90E9BA263AB9DC0073F401 /* debug-Info.plist */; };
 		6D9154BF25E52A2E007965F4 /* VenueRecordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9154BE25E52A2E007965F4 /* VenueRecordUseCase.swift */; };
 		6D9154C625E543CD007965F4 /* CheckedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9154C425E543CD007965F4 /* CheckedInViewController.swift */; };
 		6D9154C725E543CD007965F4 /* CheckedInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D9154C525E543CD007965F4 /* CheckedInViewController.xib */; };
@@ -412,6 +413,7 @@
 		6D87A08F25E114BD0077ABDE /* AnalyticsUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUseCaseTests.swift; sourceTree = "<group>"; };
 		6D90E9A0263182A70073F401 /* newradarcovidpre.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = newradarcovidpre.covid19.gob.es.cer; sourceTree = "<group>"; };
 		6D90E9A1263182A70073F401 /* oldradarcovidpre.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = oldradarcovidpre.covid19.gob.es.cer; sourceTree = "<group>"; };
+		6D90E9BA263AB9DC0073F401 /* debug-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "debug-Info.plist"; sourceTree = "<group>"; };
 		6D9154BE25E52A2E007965F4 /* VenueRecordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRecordUseCase.swift; sourceTree = "<group>"; };
 		6D9154C425E543CD007965F4 /* CheckedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedInViewController.swift; sourceTree = "<group>"; };
 		6D9154C525E543CD007965F4 /* CheckedInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckedInViewController.xib; sourceTree = "<group>"; };
@@ -1119,6 +1121,7 @@
 		6DE27D3924A7187500BBCF40 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				6D90E9BA263AB9DC0073F401 /* debug-Info.plist */,
 				6D90E9A0263182A70073F401 /* newradarcovidpre.covid19.gob.es.cer */,
 				6D90E9A1263182A70073F401 /* oldradarcovidpre.covid19.gob.es.cer */,
 				7603469C24F42DED0038CFC7 /* radarcovid.covid19.gob.es.cer */,
@@ -1818,6 +1821,7 @@
 				6D076FB225DEC2F8001A8C44 /* VenueRecordStartViewController.xib in Resources */,
 				A9EB48012535ADBB00F3A122 /* MyHealthReported.storyboard in Resources */,
 				6D90E9A3263182A80073F401 /* oldradarcovidpre.covid19.gob.es.cer in Resources */,
+				6D90E9BB263AB9DC0073F401 /* debug-Info.plist in Resources */,
 				A9DF1FFA25713270004BA5D1 /* HelpSettingsView.xib in Resources */,
 				A96E31222537188800C3EC59 /* MyHealthStep2View.xib in Resources */,
 				A96A8A4325AF1971000FD21A /* UnsupportedOSView.xib in Resources */,
@@ -2273,12 +2277,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/debug.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 248;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
-				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
+				INFOPLIST_FILE = "RadarCovid/Supporting/debug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2288,7 +2292,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
-				PROVISIONING_PROFILE_SPECIFIER = RadarCovidDevelopmentExposure;
+				PROVISIONING_PROFILE_SPECIFIER = RadarCovidAdHocExposure;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/RxCocoaRuntime";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2681,7 +2685,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 248;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
-				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
+				INFOPLIST_FILE = "RadarCovid/Supporting/debug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2771,7 +2775,7 @@
 				CURRENT_PROJECT_VERSION = 248;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
-				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
+				INFOPLIST_FILE = "RadarCovid/Supporting/debug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

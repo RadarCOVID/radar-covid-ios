@@ -64,6 +64,7 @@ struct Config {
     
     #if DEBUG_PRE
     static let debug = true
+    static let activateLog = true
     static let environment = "PRE"
     static let endpoints: Endpoits = .pre
     static let dp3tMode: ApplicationDescriptor.Mode = .test
@@ -72,6 +73,7 @@ struct Config {
     static let verificationKey =  Data(base64Encoded: "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CQUdCeXFHU000OUFnRUdCU3VCQkFBakE0R0dBQVFCbUlXU0ptdGVGNkh2VnI0M1V5SzliZStlNkpPQgpDRjlVaXpMeis4a3padkVEc25nMGl3VEF3UVB0QzdBMDlzQjVMM3EwSUl1N250Yzd4U1VqSUdTakZvd0JXL0xPCnFtMTBYQ1NkUWNZT3BMTi85dUI1emZKVUZOY3B6Ynk4dDAzSlg3TUZiYi9vQm1pcFNNNHptSm1UajR3Qm9XZ2sKRlF6ZEJHcnAwR2laUU9WVXRtUT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg==")!
     #elseif DEBUG_PRO
     static let debug = true
+    static let activateLog = true
     static let environment = "PRO"
     static let endpoints: Endpoits = .pro
     static let dp3tMode: ApplicationDescriptor.Mode = .test
@@ -80,6 +82,7 @@ struct Config {
     static let verificationKey =  Data(base64Encoded: "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CQUdCeXFHU000OUFnRUdCU3VCQkFBakE0R0dBQVFBWjM1ZzlhN1M2MjdXMVlpOEVsVmdNS012dkdUUAo5R0hiUHZHTzhLekNLQk84WTZOc0JSTHlJeWUwZmdxR0ZXM2Z5dHVxcnFSNi9wSllDUWFXN1IyUnY3OEF4OXJhCmlYbmRVSmVyVk9KSHJRaFgxbnMrTjZxaVUxT0I4a3dUaWVuaCtuZDVVbXZUN24vK3hod3djK1RYa1lnNDBxOVcKUTRiVjBMbHRWbGRUSUlTK1QxOD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg====")!
     #elseif RELEASE_PRE
     static let debug = false
+    static let activateLog = true
     static let environment = "PRE"
     static let endpoints: Endpoits = .pre
     static let dp3tMode: ApplicationDescriptor.Mode = .production
@@ -88,6 +91,7 @@ struct Config {
     static let verificationKey =  Data(base64Encoded: "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CQUdCeXFHU000OUFnRUdCU3VCQkFBakE0R0dBQVFCbUlXU0ptdGVGNkh2VnI0M1V5SzliZStlNkpPQgpDRjlVaXpMeis4a3padkVEc25nMGl3VEF3UVB0QzdBMDlzQjVMM3EwSUl1N250Yzd4U1VqSUdTakZvd0JXL0xPCnFtMTBYQ1NkUWNZT3BMTi85dUI1emZKVUZOY3B6Ynk4dDAzSlg3TUZiYi9vQm1pcFNNNHptSm1UajR3Qm9XZ2sKRlF6ZEJHcnAwR2laUU9WVXRtUT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg==")!
     #elseif RELEASE_PRO
     static let debug = false
+    static let activateLog = false
     static let environment = "PRO"
     static let endpoints: Endpoits = .pro
     static let dp3tMode: ApplicationDescriptor.Mode = .production
