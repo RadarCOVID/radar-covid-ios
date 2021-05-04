@@ -97,7 +97,6 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
         subject.onNext(expositionInfo)
     }
 
-    // Metodo para mapear un TracingState a un ExpositionInfo
     private func tracingStatusToExpositionInfo(tStatus: TracingState) -> ContactExpositionInfo {
         
         switch tStatus.trackingState {
