@@ -69,7 +69,8 @@ class VenueViewCell: UICollectionViewCell {
     
     private func setupAccesibility() {
         hiddenImageView.isAccessibilityElement = true
-        hiddenImageView.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        hiddenImageView.accessibilityTraits.insert(.button)
+        hiddenImageView.accessibilityTraits.remove(.image)
     }
     
     @objc func userDidTapHide(tapGestureRecognizer: UITapGestureRecognizer) {
