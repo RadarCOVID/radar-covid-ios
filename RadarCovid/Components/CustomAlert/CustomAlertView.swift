@@ -86,18 +86,17 @@ class CustomAlert: UIView {
         view.addSubview(alert)
         view.bringSubviewToFront(alert)
         
-        
-        UIAccessibility.post(notification: .screenChanged, argument: nil)
-        UIAccessibility.post(notification: .layoutChanged, argument: alert.titleLabel)
-        
         return alert
     }
     
     private func setupAccesibility() {
         closeButton.isUserInteractionEnabled = true
         closeButton.isAccessibilityElement = true
-        closeButton.accessibilityHint = "ACC_HINT".localized
+        closeButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
         closeButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
+        
+        UIAccessibility.post(notification: .screenChanged, argument: nil)
+        UIAccessibility.post(notification: .layoutChanged, argument: closeButton)
     }
     
     @IBAction func onClose(_ sender: Any) {
