@@ -46,24 +46,24 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Archive" translatesAutoresizingMaskIntoConstraints="NO" id="eFC-JO-k5h">
-                                <rect key="frame" x="365" y="109" width="20" height="18"/>
+                                <rect key="frame" x="348" y="89" width="42" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="gMd-9o-vVJ"/>
-                                    <constraint firstAttribute="width" constant="20" id="zG5-do-DRB"/>
+                                    <constraint firstAttribute="height" constant="42" id="gMd-9o-vVJ"/>
+                                    <constraint firstAttribute="width" constant="42" id="zG5-do-DRB"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="M3r-5c-0W4" firstAttribute="top" secondItem="8IX-Yh-mXQ" secondAttribute="bottom" constant="8" id="1qc-c2-u0z"/>
-                            <constraint firstAttribute="trailing" secondItem="eFC-JO-k5h" secondAttribute="trailing" constant="16" id="5Ka-il-ZTh"/>
+                            <constraint firstAttribute="trailing" secondItem="eFC-JO-k5h" secondAttribute="trailing" constant="11" id="5Ka-il-ZTh"/>
                             <constraint firstAttribute="trailing" secondItem="DE8-Bg-ueo" secondAttribute="trailing" constant="16" id="82M-H2-ZL3"/>
                             <constraint firstItem="8IX-Yh-mXQ" firstAttribute="leading" secondItem="DE8-Bg-ueo" secondAttribute="leading" id="CaH-hb-d2p"/>
                             <constraint firstAttribute="bottom" secondItem="M3r-5c-0W4" secondAttribute="bottom" constant="18" id="Ify-rp-wsI"/>
                             <constraint firstItem="DE8-Bg-ueo" firstAttribute="top" secondItem="hTp-go-8KS" secondAttribute="top" constant="-1" id="Qgc-QE-kYX"/>
                             <constraint firstItem="DE8-Bg-ueo" firstAttribute="leading" secondItem="hTp-go-8KS" secondAttribute="trailing" constant="16" id="UBH-rq-VGH"/>
                             <constraint firstItem="hTp-go-8KS" firstAttribute="leading" secondItem="It9-Mq-HgD" secondAttribute="leading" constant="18" id="cUl-KF-J68"/>
-                            <constraint firstAttribute="bottom" secondItem="eFC-JO-k5h" secondAttribute="bottom" constant="16" id="hVX-eN-Quv"/>
+                            <constraint firstAttribute="bottom" secondItem="eFC-JO-k5h" secondAttribute="bottom" constant="12" id="hVX-eN-Quv"/>
                             <constraint firstItem="M3r-5c-0W4" firstAttribute="leading" secondItem="8IX-Yh-mXQ" secondAttribute="leading" id="isx-eC-7YN"/>
                             <constraint firstItem="hTp-go-8KS" firstAttribute="top" secondItem="It9-Mq-HgD" secondAttribute="top" constant="18" id="sKX-oG-MPP"/>
                         </constraints>
@@ -88,7 +88,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Archive" width="22" height="20"/>
+        <image name="Archive" width="42" height="42"/>
         <image name="Venue" width="27" height="24"/>
     </resources>
 </document>
