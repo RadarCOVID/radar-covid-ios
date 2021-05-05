@@ -61,9 +61,10 @@ class CheckInInProgressUseCaseImpl: CheckInInProgressUseCase {
         logger.debug("Checking if auto checkout. State: \(appStateHandler.state.rawValue) currentVenue.checkInDate \(currentVenue.checkInDate), maxCheckInHours \(maxCheckInMinutes)" )
         if appStateHandler.state != .active && isOutdated(venueRecord: currentVenue, interval: maxCheckInMinutes) {
             logger.debug("Checking out automatically")
-            return self.venueRecordRepository.removeCurrent().flatMap {  _ -> Observable<Void> in
+            return self.venueRecordRepository.removeCurrent().flatMap { [weak self] _ -> Observable<Void> in
+                guard let self = self else { return .empty() }
                 editVenue.checkOutDate = Date()
-                self.notificationHandler.scheduleCheckOutAlert()
+                self.notificationHandler.scheduleCheckOutAlert(hours: self.maxCheckInMinutes / 60)
                 return self.venueRecordRepository.save(visit: editVenue).map { _ in Void() }
             }
         }

@@ -19,7 +19,7 @@ protocol NotificationHandler {
     func scheduleNotification(expositionInfo: ContactExpositionInfo)
     func scheduleExposedEventNotification()
     func scheduleCheckInReminderNotification()
-    func scheduleCheckOutAlert()
+    func scheduleCheckOutAlert(hours: Int64)
 }
 
 class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, NotificationHandler {
@@ -99,9 +99,11 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
                              sound: .defaultCritical)
     }
     
-    func scheduleCheckOutAlert() {
+    func scheduleCheckOutAlert(hours: Int64) {
         scheduleNotification(title: "NOTIFICATION_AUTO_CHECKOUT_TITLE".localized,
-                             body: "NOTIFICATION_AUTO_CHECKOUT_MESSAGE".localized,
+                             body: "NOTIFICATION_AUTO_CHECKOUT_MESSAGE".localizedAttributed(
+                                withParams: [String(hours)]
+                             ).string,
                              sound: .defaultCritical)
     }
 

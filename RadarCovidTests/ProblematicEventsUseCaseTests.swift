@@ -507,8 +507,8 @@ class NotificationHandlerMock: Mocker, NotificationHandler {
         call("scheduleCheckInReminderNotification")
     }
     
-    func scheduleCheckOutAlert() {
-        call("scheduleCheckOutAlert")
+    func scheduleCheckOutAlert(hours: Int64) {
+        call("scheduleCheckOutAlert", params: ["hours": hours])
     }
     
     func verifyScheduleExposedEventNotification(called: VerifyCount = .atLeastOnce) {
