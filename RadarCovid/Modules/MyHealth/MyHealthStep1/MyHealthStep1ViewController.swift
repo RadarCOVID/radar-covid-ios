@@ -146,7 +146,7 @@ class MyHealthStep1ViewController: BaseViewController {
         
         dateView.isAccessibilityElement = true
         
-        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
+        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
         dateView.accessibilityHint = "ACC_HINT".localized
         
     }
@@ -176,11 +176,11 @@ class MyHealthStep1ViewController: BaseViewController {
             dayLabel.text = formatter.string(from: date)
             
             //Setup accessibility
-            let daySelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + (dayLabel.text ?? "")
-            let monthSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + (monthLabel.text ?? "")
-            let yearSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + ", " + (yearLabel.text ?? "")
+            let daySelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
+            let monthSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + (monthLabel.text ?? "")
+            let yearSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + " " + (yearLabel.text ?? "")
 
-            dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + ", " + monthSelected + ", " + yearSelected)
+            dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + " " + monthSelected + " " + yearSelected)
         }
         
         //Restore focus from dateView
@@ -331,7 +331,7 @@ extension MyHealthStep1ViewController: PickerDelegate {
         monthLabel.text = "--"
         dayLabel.text = "--"
         
-        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
+        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + " " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
         
         //Setup accessibility
         dayLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
