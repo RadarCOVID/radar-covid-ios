@@ -155,6 +155,7 @@ class TabBarController: UITabBarController {
     }
     
     private func loadBadges() {
+        
         venueRecodrUseCase.isCheckedIn().subscribe ( onNext: { [weak self] checked in
             if checked {
                 self?.venueRecordViewController.tabBarItem.badgeValue = ""

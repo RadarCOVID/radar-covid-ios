@@ -98,8 +98,11 @@ class CheckedInViewController: VenueViewController {
     
     private func loadCurrentVenue() {
         venueRecordUseCase.getCurrentVenue().subscribe(onNext: { [weak self] venue in
+            guard let self = self else { return }
             if let venue = venue {
-                self?.load(current: venue)
+                self.load(current: venue)
+            } else {
+                self.router.popToRoot(from: self, animated: false)
             }
         }, onError: { [weak self] error in
             debugPrint(error)
