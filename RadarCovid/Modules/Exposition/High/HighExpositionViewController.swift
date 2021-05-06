@@ -217,9 +217,7 @@ class HighExpositionViewController: BaseExposed {
         let sinceDay = (date ?? Date()).getStartOfDay()
         
         var daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
-        if daysSinceLastInfection == 0 {
-            daysSinceLastInfection = 1
-        }
+
         return daysSinceLastInfection
     }
     
@@ -228,8 +226,6 @@ class HighExpositionViewController: BaseExposed {
         
         let minutesInAHour = 60
         let hoursInADay = 24
-        let formatter = DateFormatter()
-        formatter.dateFormat = Date.appDateFormat
         
         let daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
         let daysForHealty = Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0) / minutesInAHour / hoursInADay
