@@ -358,7 +358,7 @@
 "NOTIFICATIONS_INACTIVE_BLUETOOTH_BODY" = "Por favor, activa el Bluetooth. Es imprescindible para que Radar COVID funcione correctamente.";
 "NOTIFICATIONS_INACTIVE_BLUETOOTH_TITLE" = "Radar COVID no funciona correctamente";
 "NOTIFICATION_MESSAGE_EXPOSURE_HIGH" = "Tu exposición ahora es alta";
-"NOTIFICATION_MESSAGE_EXPOSURE_LOW" = "Tu exposición ahora es baja";
+"NOTIFICATION_MESSAGE_EXPOSURE_LOW" = "Tu exposición por contacto estrecho ahora es baja";
 "NOTIFICATION_MESSAGE_EXPOSURE_LOW_ACTIVATE_RADAR" = "Tu exposición ahora es baja. Por favor, vuelve a activar el radar.";
 "NOTIFICATION_REMINDER_BODY" = "Accede regularmente para comprobar si tu riesgo de exposición ha cambiado.";
 "NOTIFICATION_REMINDER_TITLE" = "Accede a Radar COVID";
