@@ -1848,6 +1848,7 @@
 				A91D8E2C2539947500EB23D4 /* ActivatePushNotificationViewController.xib in Resources */,
 				A97717FF2535CFFA0070AD51 /* MyHealthStep1View.xib in Resources */,
 				A9EB481F2535AF2500F3A122 /* MyHealthStep0View.xib in Resources */,
+				6D90E9E526454ACD0073F401 /* newradarcovid.covid19.gob.es.cer in Resources */,
 				A9D38D82256D47D200C2F671 /* DetailInteroperabilityView.xib in Resources */,
 				A9D38D72256D25E100C2F671 /* StatsView.xib in Resources */,
 				6D90E9D8264545F20073F401 /* newradarcovid.covid19.gob.es.cer in Resources */,
