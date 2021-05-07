@@ -48,9 +48,12 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
                 validateCertificateChain: true,
                 validateHost: true
             ),
-            "radarcovid.covid19.gob.es": .pinCertificates(
-                certificates: [CertificateUtil.certificate(filename: "radarcovid.covid19.gob.es")],
-                validateCertificateChain: false,
+            "radarcovid.covid19.gob.es": .pinPublicKeys(
+                publicKeys: [
+                    try! CertificateUtil.publicKey(filename: "oldradarcovid.covid19.gob.es"),
+                    try! CertificateUtil.publicKey(filename: "newradarcovid.covid19.gob.es")
+                ],
+                validateCertificateChain: true,
                 validateHost: true
             )
         ]
