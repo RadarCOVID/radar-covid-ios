@@ -58,7 +58,7 @@ class ExpositionCheckUseCaseImpl: ExpositionCheckUseCase {
                     self.logger.debug("Exposition outdated")
                     self.expositionInfoRepository.setChangedToHealthy(changed: true)
                     self.expositionInfoRepository.save(expositionInfo: ContactExpositionInfo(level: .healthy))
-                    return self.resetDataUseCase.reset().map { true }
+                    return self.resetDataUseCase.resetInfectionStatus().map { true }
                 }
             }
             return .just(false)
