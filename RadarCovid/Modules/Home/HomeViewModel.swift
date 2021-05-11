@@ -12,9 +12,11 @@
 import Foundation
 import UIKit
 import RxSwift
-import DP3TSDK
+import Logging
 
 class HomeViewModel {
+    
+    private let logger = Logger(label: "HomeViewModel")
     
     private let  minutesADay = 60 * 24
     
@@ -79,12 +81,15 @@ class HomeViewModel {
     
     private func checkInitialExposition() {
         
+        logger.debug("Showing Home")
+        
         expositionUseCase.updateExpositionInfo()
         
         expositionUseCase.getExpositionInfo()
             .observeOn(MainScheduler.instance)
             .subscribe(
             onNext: { [weak self] exposition in
+                self?.logger.debug("Showing Exposition Info. Contact: \(exposition.contact.level) Venue: \(exposition.venue.level)" )
                 self?.checkExpositionLevel(exposition.contact)
                 self?.venueExpositionInfo.onNext(exposition.venue)
                 self?.showAndHideVenueAndContacExpositionLevel(exposition)

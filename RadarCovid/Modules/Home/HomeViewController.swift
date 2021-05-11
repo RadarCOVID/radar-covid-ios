@@ -11,9 +11,11 @@
 
 import UIKit
 import RxSwift
-import DP3TSDK
+import Logging
 
 class HomeViewController: BaseViewController {
+    
+    private let logger = Logger(label: "HomeViewController")
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var moreInfoLabel: UILabel!
@@ -311,6 +313,7 @@ class HomeViewController: BaseViewController {
     }
     
     private func showTimeExposed() {
+        logger.debug("Showing back to healty dialog")
         router.route(to: .timeExposed, from: self, parameters: nil)
     }
 

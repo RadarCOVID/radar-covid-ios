@@ -73,9 +73,13 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
         if isNewInfected(localEI, expositionInfo) {
             expositionInfo.since = Date()
         }
+        
         if showNotification(localEI, expositionInfo) {
             notificationHandler.scheduleNotification(expositionInfo: expositionInfo)
+        } else {
+            logger.debug("Discarding Notification: currentEI \(String(describing: localEI)) , newEI: \(expositionInfo)")
         }
+        
         if expositionInfo.isOk() {
             expositionInfoRepository.save(expositionInfo: expositionInfo)
         }

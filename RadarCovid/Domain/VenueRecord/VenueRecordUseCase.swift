@@ -11,6 +11,7 @@
 
 import Foundation
 import RxSwift
+import Logging
 
 protocol VenueRecordUseCase {
     func getVenueInfo(qrCode: String) -> Observable<VenueRecord>
@@ -22,6 +23,8 @@ protocol VenueRecordUseCase {
 }
 
 class VenueRecordUseCaseImpl : VenueRecordUseCase {
+    
+    private let logger = Logger(label: "VenueRecordUseCaseImpl")
 
     private let venueRecordRepository: VenueRecordRepository
     private let venueNotifier: VenueNotifier
@@ -48,8 +51,11 @@ class VenueRecordUseCaseImpl : VenueRecordUseCase {
     }
     
     func checkOut(date: Date, isPlusSelected: Bool) -> Observable<Void> {
-        venueRecordRepository.getCurrentVenue().flatMap { [weak self] current -> Observable<Void> in
+        return venueRecordRepository.getCurrentVenue().flatMap { [weak self] current -> Observable<Void> in
             guard let self = self else { return .empty() }
+            
+            self.logger.debug("Checking Out venue: \(String(describing: current?.name))")
+
             if var current = current {
                 current.isPlusSelected = isPlusSelected
                 return self.venueNotifier.getInfo(qrCode: current.qr).flatMap { venueInfo -> Observable<Void> in

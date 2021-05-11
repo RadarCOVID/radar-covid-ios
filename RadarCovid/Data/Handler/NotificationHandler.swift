@@ -12,6 +12,7 @@
 import Foundation
 import UserNotifications
 import RxSwift
+import Logging
 
 protocol NotificationHandler {
     func setupNotifications() -> Observable<Bool>
@@ -23,6 +24,8 @@ protocol NotificationHandler {
 }
 
 class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, NotificationHandler {
+    
+    private let logger = Logger(label: "NotificationHandlerImpl")
 
     private let formatter: DateFormatter = DateFormatter()
 
@@ -49,7 +52,7 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
     }
 
     func scheduleNotification(title: String, body: String, sound: UNNotificationSound) {
-
+        logger.debug("Scheduling notificaiton: \(title). Body: \(body)")
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
