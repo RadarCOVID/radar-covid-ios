@@ -75,6 +75,19 @@ class TabBarController: UITabBarController {
         
         select(tabType: selectTabType)
         
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil)
+        
+        loadBadges()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    @objc func applicationDidBecomeActive() {
         loadBadges()
     }
     

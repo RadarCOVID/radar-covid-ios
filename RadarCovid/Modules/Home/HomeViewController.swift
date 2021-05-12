@@ -77,11 +77,30 @@ class HomeViewController: BaseViewController {
         
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil)
+        
+        checkState()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    func checkState() {
         viewModel.checkInitial()
         viewModel.checkShowBackToHealthyDialog()
         viewModel.checkRadarStatus()
+    }
+    
+    @objc func applicationDidBecomeActive() {
+        checkState()
     }
     
     @IBAction func onShare(_ sender: Any) {
