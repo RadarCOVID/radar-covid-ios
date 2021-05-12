@@ -56,7 +56,7 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
         self.venueExpositionUseCase = venueExpositionUseCase
         
         self.subject = BehaviorSubject<ContactExpositionInfo>(
-            value: expositionInfoRepository.getExpositionInfo() ?? ContactExpositionInfo(level: .exposed)
+            value: expositionInfoRepository.getExpositionInfo() ?? ContactExpositionInfo(level: .healthy)
         )
 
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss.SSS z"

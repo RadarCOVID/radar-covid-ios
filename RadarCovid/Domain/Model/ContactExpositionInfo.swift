@@ -23,7 +23,7 @@ struct ContactExpositionInfo: Codable, Equatable {
     }
     
     func isOk() -> Bool {
-        error == nil && since != nil
+        error == nil
     }
 
 }
