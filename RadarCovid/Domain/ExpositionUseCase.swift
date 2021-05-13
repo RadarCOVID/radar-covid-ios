@@ -77,10 +77,11 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
         if showNotification(localEI, expositionInfo) {
             notificationHandler.scheduleNotification(expositionInfo: expositionInfo)
         } else {
-            logger.debug("Discarding Notification: currentEI \(String(describing: localEI)) , newEI: \(expositionInfo)")
+            logger.debug("Discarding Notification")
         }
         
         if expositionInfo.isOk() {
+            logger.debug("Saving ExpositionInfo: \(expositionInfo)")
             expositionInfoRepository.save(expositionInfo: expositionInfo)
         }
         self.lastSync = expositionInfo.lastCheck
@@ -143,6 +144,7 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
     }
 
     private func showNotification(_ localEI: ContactExpositionInfo?, _ expositionInfo: ContactExpositionInfo) -> Bool {
+        logger.debug("ShowNotification? localEi: \(String(describing: localEI)) expositionInfo: \(expositionInfo) ")
         if let localEI = localEI {
             return expositionInfo.since != nil && !equals(localEI, expositionInfo) && expositionInfo.level == .exposed
         }
