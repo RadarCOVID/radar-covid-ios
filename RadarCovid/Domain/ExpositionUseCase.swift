@@ -80,7 +80,7 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
             logger.debug("Discarding Notification")
         }
         
-        if expositionInfo.isOk() {
+        if expositionInfo.isOk() || expositionInfo.level == .healthy {
             logger.debug("Saving ExpositionInfo: \(expositionInfo)")
             expositionInfoRepository.save(expositionInfo: expositionInfo)
         }
@@ -101,6 +101,8 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
         self.lastSync = expositionInfo.lastCheck
         subject.onNext(expositionInfo)
     }
+    
+    
 
     private func tracingStatusToExpositionInfo(tStatus: TracingState) -> ContactExpositionInfo {
         
