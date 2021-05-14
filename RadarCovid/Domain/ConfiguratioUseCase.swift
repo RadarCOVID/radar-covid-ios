@@ -81,6 +81,11 @@ class ConfigurationUseCaseImpl : ConfigurationUseCase {
         if let factorHigh = settings.parameters?.attenuationFactor?.medium {
             params.contactMatching.factorHigh = factorHigh
         }
+        
+        if let highRiskToLowRisk = settings.parameters?.timeBetweenStates?.highRiskToLowRisk {
+            params.crypto.numberOfDaysToKeepMatchedContacts = Int(highRiskToLowRisk / 1440)
+        }
+        
         DP3TTracing.parameters = params
     }
 
