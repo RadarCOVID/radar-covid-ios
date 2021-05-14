@@ -25,16 +25,20 @@ class ExpositionCheckUseCaseImpl: ExpositionCheckUseCase {
     private let logger = Logger(label: "ExpositionCheckUseCase")
 
     private let disposeBag = DisposeBag()
+    
     private let expositionInfoRepository: ExpositionInfoRepository
     private let settingsRepository: SettingsRepository
     private let resetDataUseCase: ResetDataUseCase
+    private let notificationHandler: NotificationHandler
 
     init(expositionInfoRepository: ExpositionInfoRepository,
          settingsRepository: SettingsRepository,
-         resetDataUseCase: ResetDataUseCase) {
+         resetDataUseCase: ResetDataUseCase,
+         notificationHandler: NotificationHandler) {
         self.expositionInfoRepository = expositionInfoRepository
         self.settingsRepository = settingsRepository
         self.resetDataUseCase = resetDataUseCase
+        self.notificationHandler = notificationHandler
     }
 
     func checkBackToHealthyJustChanged() -> Bool {
@@ -56,6 +60,7 @@ class ExpositionCheckUseCaseImpl: ExpositionCheckUseCase {
             if case .exposed = expositionInfo?.level {
                 if self.isExpositionOutdated(expositionInfo) {
                     self.logger.debug("Exposition outdated")
+                    self.notificationHandler.scheduleHealedNotification()
                     self.expositionInfoRepository.setChangedToHealthy(changed: true)
                     self.expositionInfoRepository.save(expositionInfo: ContactExpositionInfo(level: .healthy))
                     return self.resetDataUseCase.resetInfectionStatus().map { true }

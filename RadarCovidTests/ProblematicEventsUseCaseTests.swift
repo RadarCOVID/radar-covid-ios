@@ -511,6 +511,10 @@ class NotificationHandlerMock: Mocker, NotificationHandler {
         call("scheduleCheckOutAlert", params: ["hours": hours])
     }
     
+    func scheduleHealedNotification() {
+        call("scheduleHealedNotification")
+    }
+    
     func verifyScheduleExposedEventNotification(called: VerifyCount = .atLeastOnce) {
         verify("scheduleExposedEventNotification", called: called)
     }

@@ -272,7 +272,8 @@ class Injection {
             ExpositionCheckUseCaseImpl(
                 expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
                 settingsRepository: r.resolve(SettingsRepository.self)!,
-                resetDataUseCase: r.resolve(ResetDataUseCase.self)!)
+                resetDataUseCase: r.resolve(ResetDataUseCase.self)!,
+                notificationHandler: r.resolve(NotificationHandler.self)!)
         }.inObjectScope(.container)
         
         container.register(DeepLinkUseCase.self) { r in

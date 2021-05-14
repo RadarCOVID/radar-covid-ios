@@ -21,6 +21,7 @@ protocol NotificationHandler {
     func scheduleExposedEventNotification()
     func scheduleCheckInReminderNotification()
     func scheduleCheckOutAlert(hours: Int64)
+    func scheduleHealedNotification()
 }
 
 class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, NotificationHandler {
@@ -107,6 +108,12 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
                              body: "NOTIFICATION_AUTO_CHECKOUT_MESSAGE".localizedAttributed(
                                 withParams: [String(hours)]
                              ).string,
+                             sound: .defaultCritical)
+    }
+    
+    func scheduleHealedNotification() {
+        scheduleNotification(title: "NOTIFICATION_TITLE_EXPOSURE_LOW".localized,
+                             body: "NOTIFICATION_MESSAGE_EXPOSURE_LOW_ACTIVATE_RADAR".localized,
                              sound: .defaultCritical)
     }
 
