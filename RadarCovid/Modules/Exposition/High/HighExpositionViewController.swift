@@ -158,24 +158,19 @@ class HighExpositionViewController: BaseExposed {
     
     private func setLogicTextInfect() {
 
-        var since = self.expositionInfo?.contact.since ?? Date()
+        let since = self.expositionInfo?.contact.since ?? Date()
+        let sinceDay = since.getStartOfDay()
+        
         
         let formatter = DateFormatter()
         formatter.dateFormat = Date.appDateFormat
-        var sinceDay = since ?? Date()
-        sinceDay = sinceDay.getStartOfDay()
-        
+
+    
         var daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
         if daysSinceLastInfection == 0 {
             daysSinceLastInfection = 1
         }
-        
-        let remainingDays = self.checkRemainingExpositionDays(since: sinceDay)
-        let remainingDaysText =
-            remainingDays <= 1
-                ? "EXPOSED_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remainingDays)])
-                : "EXPOSED_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(remainingDays)])
-        
+
         var last = "-"
         if let lastCheck = self.expositionInfo?.contact.lastCheck {
             last = formatter.string(from: lastCheck)
@@ -187,6 +182,8 @@ class HighExpositionViewController: BaseExposed {
                     withParams: [String(daysSinceLastInfection), last ]
                 )
         )
+        
+        let remainingDaysText = getRemainingDaysText(sinceDay)
         attributedText
             .append(remainingDaysText)
         youCouldBeLabel.attributedText = attributedText
@@ -199,6 +196,7 @@ class HighExpositionViewController: BaseExposed {
                     withParams: [ String(daysSinceLastInfection), since.getAccesibilityDate() ?? ""]
                 )
         )
+        
         accesibilityText.append(remainingDaysText)
         youCouldBeLabel.accessibilityLabel = accesibilityText.string
         
@@ -207,7 +205,14 @@ class HighExpositionViewController: BaseExposed {
             if let lastCheck = venueExposition.lastCheck {
                 last = formatter.string(from: lastCheck)
             }
-            youCouldBeVenue.attributedText = "VENUE_EXPOSITION_HIGH_DESCRIPTION".localizedAttributed(withParams: [String(getDaysSince(date: venueExposition.since)), last])
+            let text = NSMutableAttributedString.init(attributedString: "VENUE_EXPOSITION_HIGH_DESCRIPTION".localizedAttributed(withParams: [String(getDaysSince(date: venueExposition.since)), last]))
+            
+            let sinceDay = (venueExposition.since ?? Date()).getStartOfDay()
+            
+            text.append(getRemainingDaysText(sinceDay))
+            
+            youCouldBeVenue.attributedText = text
+            
         }
         youCouldBeVenue.setMagnifierFontSize()
         
@@ -219,6 +224,12 @@ class HighExpositionViewController: BaseExposed {
         var daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
 
         return daysSinceLastInfection
+    }
+    
+    private func getRemainingDaysText(_ sinceDay: Date) -> NSAttributedString {
+        let remainingDays = self.checkRemainingExpositionDays(since: sinceDay)
+        return remainingDays <= 1 ? "EXPOSED_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remainingDays)])
+                : "EXPOSED_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(remainingDays)])
     }
     
     private func checkRemainingExpositionDays(since: Date) -> Int {
