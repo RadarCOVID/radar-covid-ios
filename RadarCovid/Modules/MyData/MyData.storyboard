@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Data View Controller-->
+        <scene sceneID="fWE-1a-aLh">
+            <objects>
+                <viewController storyboardIdentifier="MyDataViewController" id="gMD-g3-Jan" customClass="MyDataViewController" customModule="Radar_COVID" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PzG-JC-htC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUj-bT-z4d">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VwZ-tl-fSP">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="599.66666666666663"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MIS DATOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9Bl-bV-W3d">
+                                                <rect key="frame" x="16" y="100" width="343" height="21"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_TOP_PLACEHOLDER"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu privacidad es lo más importante" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KyZ-ry-hvw">
+                                                <rect key="frame" x="16" y="131" width="343" height="67"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_TITLE"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO recogemos ningún dato pesonal (nombre, dirección, edad, teléfono, correo electrónico...)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uiy-SU-ykG">
+                                                <rect key="frame" x="32" y="227.99999999999997" width="327" height="71.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_BULLET_1"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cJ-Rr-DdP">
+                                                <rect key="frame" x="16" y="225" width="10" height="29"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <color key="textColor" red="0.34901960784313724" green="0.27058823529411763" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aC-xr-L9s" userLabel="CheckView">
+                                                <rect key="frame" x="16" y="533" width="343" height="56.666666666666629"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consulta la política de privacidad" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-rQ-MAh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="19.333333333333332"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" link="YES"/>
+                                                        </accessibility>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <color key="textColor" red="0.43921568630000002" green="0.31372549020000001" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_PRIVACY"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consulta las condiciones de uso" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fH-8T-cla">
+                                                        <rect key="frame" x="0.0" y="37.333333333333371" width="343" height="19.333333333333329"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" link="YES"/>
+                                                        </accessibility>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <color key="textColor" red="0.43921568630000002" green="0.3126067817" blue="0.61136299370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_TERMS"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="XwU-rQ-MAh" firstAttribute="top" secondItem="7aC-xr-L9s" secondAttribute="top" id="8xx-qz-G4E"/>
+                                                    <constraint firstAttribute="trailing" secondItem="XwU-rQ-MAh" secondAttribute="trailing" id="Kfo-bb-hnu"/>
+                                                    <constraint firstItem="XwU-rQ-MAh" firstAttribute="leading" secondItem="7aC-xr-L9s" secondAttribute="leading" id="Lac-1f-QLh"/>
+                                                    <constraint firstItem="8fH-8T-cla" firstAttribute="top" secondItem="XwU-rQ-MAh" secondAttribute="bottom" constant="18" id="QXy-uR-QeA"/>
+                                                    <constraint firstAttribute="bottom" secondItem="8fH-8T-cla" secondAttribute="bottom" id="g8K-jQ-fcg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="8fH-8T-cla" secondAttribute="trailing" id="hxn-MI-76x"/>
+                                                    <constraint firstItem="8fH-8T-cla" firstAttribute="leading" secondItem="7aC-xr-L9s" secondAttribute="leading" id="pP9-mh-hUq"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO6-3S-7mQ">
+                                                <rect key="frame" x="16" y="316.66666666666669" width="10" height="29"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <color key="textColor" red="0.3483489293" green="0.26916854210000002" blue="0.61393559639999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO recogemos ningún dato pesonal (nombre, dirección, ed" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfk-6L-D4d">
+                                                <rect key="frame" x="32" y="319.66666666666669" width="327" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_BULLET_2"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO recogemos ningún dato pesonal (nombre, dirección, ed" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILT-Tp-LEw">
+                                                <rect key="frame" x="32" y="387.66666666666669" width="327" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_BULLET_3"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OpI-sc-jmF" userLabel="Los datos son guardados en tu teléfono y la conexión con el servidor están encriptados">
+                                                <rect key="frame" x="16" y="455.66666666666669" width="343" height="57.333333333333314"/>
+                                                <string key="text">Los datos son guardados en tu teléfono y la conexión con el servidor están encriptados
+</string>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="MY_DATA_PARAGRAPH_1"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="veryLightPink"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="7aC-xr-L9s" secondAttribute="bottom" constant="10" id="0pU-v2-ISR"/>
+                                            <constraint firstAttribute="trailing" secondItem="Uiy-SU-ykG" secondAttribute="trailing" constant="16" id="23H-xI-4As"/>
+                                            <constraint firstItem="9Bl-bV-W3d" firstAttribute="bottom" secondItem="KyZ-ry-hvw" secondAttribute="top" constant="-10" id="2dt-7X-C8R"/>
+                                            <constraint firstAttribute="trailing" secondItem="ILT-Tp-LEw" secondAttribute="trailing" constant="16" id="5tO-7Q-JI9"/>
+                                            <constraint firstItem="Uiy-SU-ykG" firstAttribute="leading" secondItem="9cJ-Rr-DdP" secondAttribute="trailing" constant="6" id="Ahj-7F-ogB"/>
+                                            <constraint firstItem="Rfk-6L-D4d" firstAttribute="leading" secondItem="CO6-3S-7mQ" secondAttribute="trailing" constant="6" id="EX7-EA-kUl"/>
+                                            <constraint firstItem="9Bl-bV-W3d" firstAttribute="top" secondItem="VwZ-tl-fSP" secondAttribute="top" constant="100" id="Hcm-Nc-UBX"/>
+                                            <constraint firstAttribute="trailing" secondItem="7aC-xr-L9s" secondAttribute="trailing" constant="16" id="Mna-Hr-WBO"/>
+                                            <constraint firstItem="Rfk-6L-D4d" firstAttribute="top" secondItem="CO6-3S-7mQ" secondAttribute="bottom" constant="-26" id="PlA-MP-nb0"/>
+                                            <constraint firstItem="OpI-sc-jmF" firstAttribute="leading" secondItem="VwZ-tl-fSP" secondAttribute="leading" constant="16" id="QOJ-RT-JWK"/>
+                                            <constraint firstItem="Uiy-SU-ykG" firstAttribute="bottom" secondItem="Rfk-6L-D4d" secondAttribute="top" constant="-20" id="aFA-1h-7SA"/>
+                                            <constraint firstItem="KyZ-ry-hvw" firstAttribute="bottom" secondItem="Uiy-SU-ykG" secondAttribute="top" constant="-30" id="bNv-4y-gfU"/>
+                                            <constraint firstItem="9Bl-bV-W3d" firstAttribute="leading" secondItem="VwZ-tl-fSP" secondAttribute="leading" constant="16" id="eni-6k-AmX"/>
+                                            <constraint firstAttribute="trailing" secondItem="OpI-sc-jmF" secondAttribute="trailing" constant="16" id="f1v-Ou-03X"/>
+                                            <constraint firstItem="Rfk-6L-D4d" firstAttribute="leading" secondItem="VwZ-tl-fSP" secondAttribute="leading" constant="32" id="i8W-vj-vKc"/>
+                                            <constraint firstItem="7aC-xr-L9s" firstAttribute="leading" secondItem="VwZ-tl-fSP" secondAttribute="leading" constant="16" id="m3o-OK-1mu"/>
+                                            <constraint firstItem="ILT-Tp-LEw" firstAttribute="top" secondItem="Rfk-6L-D4d" secondAttribute="bottom" constant="20" id="piD-C2-Hy7"/>
+                                            <constraint firstAttribute="trailing" secondItem="KyZ-ry-hvw" secondAttribute="trailing" constant="16" id="q2r-UQ-VtR"/>
+                                            <constraint firstItem="ILT-Tp-LEw" firstAttribute="leading" secondItem="VwZ-tl-fSP" secondAttribute="leading" constant="32" id="qvN-zM-Sfx"/>
+                                            <constraint firstItem="Uiy-SU-ykG" firstAttribute="leading" secondItem="VwZ-tl-fSP" secondAttribute="leading" constant="32" id="sd9-Nt-jDl"/>
+                                            <constraint firstItem="OpI-sc-jmF" firstAttribute="top" secondItem="ILT-Tp-LEw" secondAttribute="bottom" constant="20" id="tfy-P2-7BN"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rfk-6L-D4d" secondAttribute="trailing" constant="16" id="uKx-FX-70O"/>
+                                            <constraint firstItem="7aC-xr-L9s" firstAttribute="top" secondItem="OpI-sc-jmF" secondAttribute="bottom" constant="20" id="wcS-B4-YFV"/>
+                                            <constraint firstAttribute="trailing" secondItem="9Bl-bV-W3d" secondAttribute="trailing" constant="16" id="xNu-eJ-dml"/>
+                                            <constraint firstItem="KyZ-ry-hvw" firstAttribute="leading" secondItem="VwZ-tl-fSP" secondAttribute="leading" constant="16" id="xUi-j4-cfU"/>
+                                            <constraint firstItem="Uiy-SU-ykG" firstAttribute="top" secondItem="9cJ-Rr-DdP" secondAttribute="bottom" constant="-26" id="zeK-oo-ved"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="veryLightPink"/>
+                                <constraints>
+                                    <constraint firstItem="VwZ-tl-fSP" firstAttribute="width" secondItem="rrK-VU-KPe" secondAttribute="width" id="2sc-aS-pEy"/>
+                                    <constraint firstItem="VwZ-tl-fSP" firstAttribute="trailing" secondItem="2za-d3-QPw" secondAttribute="trailing" id="F0Y-xK-Ycf"/>
+                                    <constraint firstItem="2za-d3-QPw" firstAttribute="top" secondItem="VwZ-tl-fSP" secondAttribute="top" id="L4r-Or-66d"/>
+                                    <constraint firstItem="2za-d3-QPw" firstAttribute="leading" secondItem="VwZ-tl-fSP" secondAttribute="leading" id="e3K-T5-Tx7"/>
+                                    <constraint firstItem="VwZ-tl-fSP" firstAttribute="bottom" secondItem="2za-d3-QPw" secondAttribute="bottom" id="eoX-eP-2kr"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="2za-d3-QPw"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="rrK-VU-KPe"/>
+                            </scrollView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="Rvd-uR-G5b">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="155.66666666666666"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LcH-Cx-Sa2"/>
+                        <color key="backgroundColor" name="veryLightPink"/>
+                        <constraints>
+                            <constraint firstItem="xUj-bT-z4d" firstAttribute="leading" secondItem="LcH-Cx-Sa2" secondAttribute="leading" id="7ty-AB-sc9"/>
+                            <constraint firstItem="Rvd-uR-G5b" firstAttribute="top" secondItem="LcH-Cx-Sa2" secondAttribute="top" constant="-44" id="CsJ-zq-WRr"/>
+                            <constraint firstItem="LcH-Cx-Sa2" firstAttribute="trailing" secondItem="xUj-bT-z4d" secondAttribute="trailing" id="T5A-UF-Vuh"/>
+                            <constraint firstItem="xUj-bT-z4d" firstAttribute="top" secondItem="PzG-JC-htC" secondAttribute="top" id="ZDA-dN-aQ9"/>
+                            <constraint firstItem="LcH-Cx-Sa2" firstAttribute="trailing" secondItem="Rvd-uR-G5b" secondAttribute="trailing" id="inP-lz-0zm"/>
+                            <constraint firstAttribute="bottom" secondItem="xUj-bT-z4d" secondAttribute="bottom" id="rR4-7d-PJS"/>
+                            <constraint firstItem="Rvd-uR-G5b" firstAttribute="leading" secondItem="LcH-Cx-Sa2" secondAttribute="leading" id="yBA-OA-Orj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="acceptTermsLabel" destination="8fH-8T-cla" id="y5C-9N-06Y"/>
+                        <outlet property="bullet2Label" destination="Rfk-6L-D4d" id="eKc-Ec-VBC"/>
+                        <outlet property="bullet3Label" destination="ILT-Tp-LEw" id="SyZ-hG-w6s"/>
+                        <outlet property="descriptionLabel" destination="Uiy-SU-ykG" id="3Kz-7P-Cfg"/>
+                        <outlet property="privacyLabel" destination="XwU-rQ-MAh" id="hAM-UG-3yc"/>
+                        <outlet property="titleLabel" destination="9Bl-bV-W3d" id="2bl-Ka-Fep"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yh7-yu-SIT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-92" y="19.95073891625616"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="organicColor" width="375" height="155.33332824707031"/>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
