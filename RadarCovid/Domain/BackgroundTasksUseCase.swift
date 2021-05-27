@@ -50,12 +50,10 @@ class BackgroundTasksUseCaseImpl: BackgroundTasksUseCase {
             guard let self = self else { return .empty() }
             return .zip(self.callBackToHealthy(),
                         self.callSendAnalytics(),
-                        self.callFakeRequest(),
-                        self.callVenueRecordTasks()) { backToHealthy, analyticsSent, fakeSent, venueRecord in
+                        self.callFakeRequest()) { backToHealthy, analyticsSent, fakeSent in
                  self.logger.debug("Analytics sent:\(analyticsSent)")
                  self.logger.debug("Expostion Check, back to healthy \(backToHealthy)")
                  self.logger.debug("Fake Sent: \(fakeSent)")
-                 self.logger.debug("Venue management done: \(venueRecord)")
                  return Void()
             }
         }
