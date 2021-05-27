@@ -20,6 +20,7 @@ class InformationViewController: BaseViewController {
     @IBOutlet weak var lastSyncAgo: UILabel!
     @IBOutlet weak var bluetoothValue: UILabel!
     @IBOutlet weak var learnKeepRadarActive: UILabel!
+    @IBOutlet weak var exposureRecordLabel: UILabel!
     @IBOutlet weak var versionValue: UILabel!
     @IBOutlet weak var lastUpdateValue: UILabel!
     @IBOutlet weak var soValue: UILabel!
@@ -34,8 +35,8 @@ class InformationViewController: BaseViewController {
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var bottomBackButton: UIButton!
     
-    var router: AppRouter?
-    var viewModel: InformationViewModel?
+    var router: AppRouter!
+    var viewModel: InformationViewModel!
     
     private let imageActive = UIImage(named: "green_check_icon")
     private let imageInactive = UIImage(named: "forbidenIcon")
@@ -52,7 +53,7 @@ class InformationViewController: BaseViewController {
     }
     
     private func setupBind() {
-        viewModel?.appInformation
+        viewModel.appInformation
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (value) in
                 self?.updateInformation(appInformation: value)
@@ -65,6 +66,11 @@ class InformationViewController: BaseViewController {
         learnKeepRadarActive.isUserInteractionEnabled = true
         learnKeepRadarActive.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                          action: #selector(userDidTapLearn(tapGestureRecognizer:))))
+        
+        exposureRecordLabel.isUserInteractionEnabled = true
+        exposureRecordLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                         action: #selector(userDidTapExposureRecord(tapGestureRecognizer:))))
+   
         faqLink.isUserInteractionEnabled = true
         faqLink.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                             action: #selector(userDidTapFAQ(tapGestureRecognizer:))))
@@ -135,8 +141,6 @@ class InformationViewController: BaseViewController {
             } else {
                 self.lastSyncAgo.text = "INFO_LAST_SYNC_UPDATE".localized
             }
-        
-            
             self.lastSyncAgo.textColor = appInformation.checkSyncDate() ? UIColor.systemGreen : UIColor.red
             self.lastSyncIcon.image = appInformation.checkSyncDate() ? imageActive : imageInactive
 
@@ -148,7 +152,6 @@ class InformationViewController: BaseViewController {
         self.lastSyncValue.setMagnifierFontSize()
         self.lastSyncAgo.setMagnifierFontSize()
 
-
         let lastUpdateValueString = viewModel?.formatDate(date: appInformation.lastUpdate) ?? ""
         self.lastUpdateValue.text = lastUpdateValueString
         self.lastUpdateValue.setMagnifierFontSize()
@@ -159,11 +162,35 @@ class InformationViewController: BaseViewController {
     }
     
     @IBAction func onBack(_ sender: Any) {
-        self.router?.pop(from: self, animated: true)
+        self.router.pop(from: self, animated: true)
     }
     
     @objc func userDidTapLearn(tapGestureRecognizer: UITapGestureRecognizer) {
-        router?.route(to: .helpSettings, from: self)
+        router.route(to: .helpSettings, from: self)
+    }
+    
+    @objc func userDidTapExposureRecord(tapGestureRecognizer: UITapGestureRecognizer) {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = Date.appDateFormatWithBar
+        
+        var text = ""
+        
+        let dates = viewModel.getExposureRecordDates().filter { date in date == nil }
+        if dates.isEmpty {
+            text = "EXPOSURE_RECORDS_NO_DATA".localized
+        } else {
+            dates.forEach {
+                if let date = $0 {
+                    text.append("\u{25CF}  " + formatter.string(from: date) + "\n")
+                }
+            }
+            if text.count > 0 { text.removeLast() }
+        }
+
+        showAlertOk(title: "EXPOSURE_RECORD_TITLE".localized,
+                    message: text,
+                    buttonTitle: "ALERT_ACCEPT_BUTTON".localized)
     }
     
     @objc func userDidTapFAQ(tapGestureRecognizer: UITapGestureRecognizer) {

@@ -145,6 +145,10 @@ class Injection {
             UserDefaultsQrCheckRepository()
         }.inObjectScope(.container)
         
+        container.register(ExposureRecordRepository.self) { _ in
+            ExposureRecordRepositoryImpl()
+        }.inObjectScope(.container)
+        
         container.register(VersionHandler.self) { _ in
             VersionHandler()
         }.inObjectScope(.container)
@@ -176,7 +180,8 @@ class Injection {
         container.register(ExpositionUseCase.self) { r in
             ExpositionUseCaseImpl(notificationHandler: r.resolve(NotificationHandler.self)!,
                               expositionInfoRepository: r.resolve(ExpositionInfoRepository.self)!,
-                              venueExpositionUseCase: r.resolve(VenueExpositionUseCase.self)!)
+                              venueExpositionUseCase: r.resolve(VenueExpositionUseCase.self)!,
+                              exposureRecordRepository: r.resolve(ExposureRecordRepository.self)!)
         }.inObjectScope(.container)
         
         container.register(RadarStatusUseCase.self) { r in
@@ -454,10 +459,11 @@ class Injection {
             return informationVC
         }
         
-        container.register(InformationViewModel.self) { route in
-            let informationVM = InformationViewModel(radarStatusUseCase: route.resolve(RadarStatusUseCase.self)!,
-                                                     expositionUseCase: route.resolve(ExpositionUseCase.self)!)
-            return informationVM
+        container.register(InformationViewModel.self) { r in
+            InformationViewModel(radarStatusUseCase: r.resolve(RadarStatusUseCase.self)!,
+                                                     expositionUseCase: r.resolve(ExpositionUseCase.self)!,
+                                                     exposureRecordRepository: r.resolve(ExposureRecordRepository.self)!)
+            
         }
 
         container.register(MyHealthStep0ViewController.self) {  route in

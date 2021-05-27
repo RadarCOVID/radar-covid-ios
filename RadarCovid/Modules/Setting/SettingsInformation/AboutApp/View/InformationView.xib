@@ -16,6 +16,7 @@
                 <outlet property="bluetoothValue" destination="R3n-ii-CEe" id="SLp-oW-hHK"/>
                 <outlet property="bottomBackButton" destination="1AL-Va-aoO" id="EQg-iD-CTB"/>
                 <outlet property="emailLink" destination="Myo-a5-RTQ" id="F6g-Up-S7g"/>
+                <outlet property="exposureRecordLabel" destination="HpT-MX-lO8" id="Cel-v6-9fD"/>
                 <outlet property="faqLink" destination="b31-qT-RPQ" id="XuN-75-YHf"/>
                 <outlet property="infoView" destination="LUC-xw-q59" id="oHd-XD-9h5"/>
                 <outlet property="lastSyncAgo" destination="6d0-Ar-TnX" id="z56-V4-rhv"/>
@@ -42,7 +43,7 @@
                     <rect key="frame" x="0.0" y="104" width="414" height="792"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlp-cT-qGC">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1351"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1382.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFORMACIÓN DE LA APLICACIÓN" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fh9-4x-ean" userLabel="title">
                                     <rect key="frame" x="16" y="0.0" width="382" height="20.5"/>
@@ -78,7 +79,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUC-xw-q59">
-                                    <rect key="frame" x="16" y="174" width="382" height="624"/>
+                                    <rect key="frame" x="16" y="174" width="382" height="655.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hcq-ls-cT2">
                                             <rect key="frame" x="0.0" y="32" width="382" height="54.5"/>
@@ -305,15 +306,27 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="INFO_KEEP_RADAR_ACTIVE"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registro de fechas de exposición" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HpT-MX-lO8" userLabel="exposureRecord">
+                                            <rect key="frame" x="16" y="399" width="350" height="21.5"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" none="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" red="0.43921568630000002" green="0.31372549020000001" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="EXPOSURE_RECORD_BUTTON_TITLE"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GkH-Gf-iqc">
-                                            <rect key="frame" x="0.0" y="405" width="382" height="1"/>
+                                            <rect key="frame" x="0.0" y="436.5" width="382" height="1"/>
                                             <color key="backgroundColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="Phc-hs-B9z"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Versión de la app Radar COVID" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCE-QS-bfR" userLabel="versionTitle">
-                                            <rect key="frame" x="16" y="419" width="350" height="19.5"/>
+                                            <rect key="frame" x="16" y="450.5" width="350" height="19.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -322,13 +335,13 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUP-Uw-VzN" userLabel="versionValue">
-                                            <rect key="frame" x="16" y="444.5" width="350" height="0.0"/>
+                                            <rect key="frame" x="16" y="476" width="350" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Última actualización" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0KS-XW-pKh" userLabel="lastUpdateTitle">
-                                            <rect key="frame" x="16" y="460.5" width="350" height="19.5"/>
+                                            <rect key="frame" x="16" y="492" width="350" height="19.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -337,20 +350,20 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPY-gg-8pT" userLabel="lastUpdateValue">
-                                            <rect key="frame" x="16" y="486" width="350" height="0.0"/>
+                                            <rect key="frame" x="16" y="517.5" width="350" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sau-hR-aZ2">
-                                            <rect key="frame" x="0.0" y="505" width="382" height="1"/>
+                                            <rect key="frame" x="0.0" y="536.5" width="382" height="1"/>
                                             <color key="backgroundColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="srO-sT-F4r"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sistema operativo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wpq-or-BQO" userLabel="soTitle">
-                                            <rect key="frame" x="16" y="525" width="350" height="19.5"/>
+                                            <rect key="frame" x="16" y="556.5" width="350" height="19.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -359,13 +372,13 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evc-Gw-S9P" userLabel="soValue">
-                                            <rect key="frame" x="16" y="550.5" width="350" height="0.0"/>
+                                            <rect key="frame" x="16" y="582" width="350" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modelo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRW-3c-Od2" userLabel="modelTitle">
-                                            <rect key="frame" x="16" y="566.5" width="350" height="19.5"/>
+                                            <rect key="frame" x="16" y="598" width="350" height="19.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -374,7 +387,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xE-N2-Fro" userLabel="modelValue">
-                                            <rect key="frame" x="16" y="592" width="350" height="0.0"/>
+                                            <rect key="frame" x="16" y="623.5" width="350" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -395,12 +408,13 @@
                                         <constraint firstItem="Hcq-ls-cT2" firstAttribute="top" secondItem="LUC-xw-q59" secondAttribute="top" constant="32" id="7Uq-H8-gjt"/>
                                         <constraint firstAttribute="trailing" secondItem="BUP-Uw-VzN" secondAttribute="trailing" constant="16" id="9Oo-1c-Teh"/>
                                         <constraint firstAttribute="trailing" secondItem="IWp-tE-SEO" secondAttribute="trailing" id="9qX-1y-z9q"/>
-                                        <constraint firstItem="GkH-Gf-iqc" firstAttribute="top" secondItem="uA4-eO-rWP" secondAttribute="bottom" constant="22" id="AwX-j0-InQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="HpT-MX-lO8" secondAttribute="trailing" constant="16" id="BQ2-OI-FLa"/>
                                         <constraint firstItem="Hcq-ls-cT2" firstAttribute="leading" secondItem="LUC-xw-q59" secondAttribute="leading" id="G0y-Gh-8OV"/>
                                         <constraint firstItem="Wpq-or-BQO" firstAttribute="top" secondItem="sau-hR-aZ2" secondAttribute="bottom" constant="19" id="HEW-A8-taC"/>
                                         <constraint firstAttribute="trailing" secondItem="uA4-eO-rWP" secondAttribute="trailing" constant="16" id="Hh6-1c-Eg7"/>
                                         <constraint firstItem="uA4-eO-rWP" firstAttribute="leading" secondItem="LUC-xw-q59" secondAttribute="leading" constant="16" id="J8C-oF-g0O"/>
                                         <constraint firstItem="0KS-XW-pKh" firstAttribute="leading" secondItem="LUC-xw-q59" secondAttribute="leading" constant="16" id="Kdk-6n-dlq"/>
+                                        <constraint firstItem="HpT-MX-lO8" firstAttribute="leading" secondItem="LUC-xw-q59" secondAttribute="leading" constant="16" id="LPX-PP-i1J"/>
                                         <constraint firstItem="Evc-Gw-S9P" firstAttribute="top" secondItem="Wpq-or-BQO" secondAttribute="bottom" constant="6" id="P1l-az-mXU"/>
                                         <constraint firstAttribute="trailing" secondItem="GkH-Gf-iqc" secondAttribute="trailing" id="Qf0-93-Pqf"/>
                                         <constraint firstAttribute="trailing" secondItem="55K-LX-SoP" secondAttribute="trailing" id="R93-bh-04q"/>
@@ -414,6 +428,7 @@
                                         <constraint firstAttribute="trailing" secondItem="Evc-Gw-S9P" secondAttribute="trailing" constant="16" id="XTO-gz-r33"/>
                                         <constraint firstItem="yRW-3c-Od2" firstAttribute="leading" secondItem="LUC-xw-q59" secondAttribute="leading" constant="16" id="Z6d-3t-qqe"/>
                                         <constraint firstAttribute="trailing" secondItem="Wpq-or-BQO" secondAttribute="trailing" constant="16" id="ZOg-8a-qbg"/>
+                                        <constraint firstItem="HpT-MX-lO8" firstAttribute="bottom" secondItem="GkH-Gf-iqc" secondAttribute="top" constant="-16" id="bUu-jS-iul"/>
                                         <constraint firstAttribute="trailing" secondItem="Hcq-ls-cT2" secondAttribute="trailing" id="bxK-qw-Zfa"/>
                                         <constraint firstItem="IWp-tE-SEO" firstAttribute="top" secondItem="55K-LX-SoP" secondAttribute="bottom" constant="31" id="cBq-wT-MpC"/>
                                         <constraint firstItem="qPY-gg-8pT" firstAttribute="leading" secondItem="LUC-xw-q59" secondAttribute="leading" constant="16" id="fZJ-SX-du9"/>
@@ -422,6 +437,7 @@
                                         <constraint firstItem="sau-hR-aZ2" firstAttribute="leading" secondItem="LUC-xw-q59" secondAttribute="leading" id="hAR-TZ-PAg"/>
                                         <constraint firstAttribute="trailing" secondItem="yRW-3c-Od2" secondAttribute="trailing" constant="16" id="hZ3-lP-De1"/>
                                         <constraint firstItem="5xE-N2-Fro" firstAttribute="top" secondItem="yRW-3c-Od2" secondAttribute="bottom" constant="6" id="jQq-QM-dUK"/>
+                                        <constraint firstItem="uA4-eO-rWP" firstAttribute="bottom" secondItem="HpT-MX-lO8" secondAttribute="top" constant="-16" id="l1E-bV-Vmw"/>
                                         <constraint firstItem="zSy-Xj-1b5" firstAttribute="top" secondItem="IWp-tE-SEO" secondAttribute="bottom" constant="19" id="lWw-u0-wmS"/>
                                         <constraint firstItem="BUP-Uw-VzN" firstAttribute="top" secondItem="vCE-QS-bfR" secondAttribute="bottom" constant="6" id="urn-IK-A8Z"/>
                                         <constraint firstItem="sau-hR-aZ2" firstAttribute="top" secondItem="qPY-gg-8pT" secondAttribute="bottom" constant="19" id="w7b-Kg-Fe1"/>
@@ -436,7 +452,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXF-W2-O6N">
-                                    <rect key="frame" x="0.0" y="830" width="414" height="203.5"/>
+                                    <rect key="frame" x="0.0" y="861.5" width="414" height="203.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consejos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jq0-6y-dKs" userLabel="advices">
                                             <rect key="frame" x="16" y="0.0" width="382" height="33.5"/>
@@ -571,7 +587,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resuelve otras dudas:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syb-r1-XmR" userLabel="otherDoubts">
-                                    <rect key="frame" x="16" y="1053.5" width="382" height="21.5"/>
+                                    <rect key="frame" x="16" y="1085" width="382" height="21.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -580,7 +596,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preguntas frecuentes Radar COVID" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="b31-qT-RPQ" userLabel="FAQ">
-                                    <rect key="frame" x="16" y="1083" width="382" height="21.5"/>
+                                    <rect key="frame" x="16" y="1114.5" width="382" height="21.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" link="YES"/>
                                     </accessibility>
@@ -592,7 +608,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ayuda técnica" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfw-2u-z6Q" userLabel="technicalHelp">
-                                    <rect key="frame" x="16" y="1120.5" width="382" height="33.5"/>
+                                    <rect key="frame" x="16" y="1152" width="382" height="33.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                     </accessibility>
@@ -604,7 +620,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si no has encontrado respuesta, puedes contactar por correo electrónico:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EA9-K4-xjf" userLabel="technicalHelpDescription1">
-                                    <rect key="frame" x="16" y="1162" width="382" height="43"/>
+                                    <rect key="frame" x="16" y="1193.5" width="382" height="43"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -613,7 +629,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="soporte@email" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-a5-RTQ" userLabel="tecnicalHelpEmail">
-                                    <rect key="frame" x="16" y="1221" width="382" height="19.5"/>
+                                    <rect key="frame" x="16" y="1252.5" width="382" height="19.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" button="YES"/>
                                     </accessibility>
@@ -625,7 +641,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si utilizas este medio, el equipo de soporte técnico podrá ver tu dirección de correo electrónico" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOv-6L-aJi" userLabel="technicalHelpDescription2">
-                                    <rect key="frame" x="16" y="1256.5" width="382" height="64.5"/>
+                                    <rect key="frame" x="16" y="1288" width="382" height="64.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -634,7 +650,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AL-Va-aoO" userLabel="backButton">
-                                    <rect key="frame" x="16" y="1326" width="382" height="20"/>
+                                    <rect key="frame" x="16" y="1357.5" width="382" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="FKH-JB-fmE"/>
                                     </constraints>
