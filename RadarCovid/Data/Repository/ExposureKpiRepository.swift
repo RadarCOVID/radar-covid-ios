@@ -17,17 +17,8 @@ protocol ExposureKpiRepository {
     func save(lastExposition: Date?)
 }
 
-class UserDefaultsExposureKpiRepository: ExposureKpiRepository {
-        
-    private let encoder = JSONEncoder()
-    private let decoder = JSONDecoder()
-
-    private let userDefaults: UserDefaults
-
-    init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
-    
+class UserDefaultsExposureKpiRepository: UserDefaultsRepository, ExposureKpiRepository {
+            
     private static let kLastExposition = "UserDefaultsExposureKpiRepository.lastExposition"
     
     func getLastExposition() -> Date? {

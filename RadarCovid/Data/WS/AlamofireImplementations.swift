@@ -29,8 +29,8 @@ private var managerStore: [String: Alamofire.SessionManager] = [:]
 private let syncQueue = DispatchQueue(label: "thread-safe-sync-queue", attributes: .concurrent)
 
 open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
-    required public init(method: String, URLString: String, parameters: [String: Any]?, isBody: Bool, headers: [String: String] = [:]) {
-        super.init(method: method, URLString: URLString, parameters: parameters, isBody: isBody, headers: headers)
+    required public init(method: String, URLString: String, parameters: [String: Any]?, isBody: Bool, headers: [String: String] = [:], cachePolicy: URLRequest.CachePolicy? = nil) {
+        super.init(method: method, URLString: URLString, parameters: parameters, isBody: isBody, headers: headers, cachePolicy: cachePolicy)
     }
 
     /**
@@ -39,21 +39,30 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
      */
     open func createSessionManager() -> Alamofire.SessionManager {
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
-            "radarcovidpre.covid19.gob.es": .pinCertificates(
-                certificates: [        CertificateUtil.certificate(filename: "radarcovidpre.covid19.gob.es")
-],
-                validateCertificateChain: false,
+
+            "radarcovidpre.covid19.gob.es": .pinPublicKeys(
+                publicKeys: [
+                    try! CertificateUtil.publicKey(filename: "newradarcovidpre.covid19.gob.es"),
+                    try! CertificateUtil.publicKey(filename: "oldradarcovidpre.covid19.gob.es"),
+                ],
+                validateCertificateChain: true,
                 validateHost: true
             ),
-            "radarcovid.covid19.gob.es": .pinCertificates(
-                certificates: [CertificateUtil.pro],
-                validateCertificateChain: false,
+            "radarcovid.covid19.gob.es": .pinPublicKeys(
+                publicKeys: [
+                    try! CertificateUtil.publicKey(filename: "oldradarcovid.covid19.gob.es"),
+                    try! CertificateUtil.publicKey(filename: "newradarcovid.covid19.gob.es")
+                ],
+                validateCertificateChain: true,
                 validateHost: true
             )
         ]
         let configuration = URLSessionConfiguration.default
         let serverTrusPolicyManager = ServerTrustPolicyManager(policies: serverTrustPolicies)
         configuration.httpAdditionalHeaders = buildHeaders()
+        if let cachePolicy = cachePolicy {
+            configuration.requestCachePolicy = cachePolicy
+        }
         return Alamofire.SessionManager(configuration: configuration, serverTrustPolicyManager: serverTrusPolicyManager )
     }
 
@@ -489,3 +498,5 @@ open class AlamofireDecodableRequestBuilder<T: Decodable>: AlamofireRequestBuild
     }
 
 }
+
+

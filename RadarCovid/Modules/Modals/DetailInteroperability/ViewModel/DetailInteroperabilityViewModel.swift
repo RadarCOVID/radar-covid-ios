@@ -26,9 +26,6 @@ class DetailInteroperabilityViewModel {
         countriesUseCase.getCountries().subscribe { (countries) in
             self.countries.onNext(countries)
         }.disposed(by: disposeBag)
-        
-    
-
 
     }
 }

@@ -15,50 +15,52 @@ import UIKit
 class DeepLinkUseCase {
     
     private let expositionInfoRepository: ExpositionInfoRepository
+    private let router: AppRouter
+    private let qrBase: String
     
-    init (expositionInfoRepository: ExpositionInfoRepository) {
+    init (expositionInfoRepository: ExpositionInfoRepository,
+          router: AppRouter,
+          qrBase: String) {
         self.expositionInfoRepository = expositionInfoRepository
+        self.router = router
+        self.qrBase = qrBase
     }
     
-    func getScreenFor(url: URL, window: UIWindow?, router: Router?) {
-        let component = url.absoluteString.components(separatedBy: "?")
-        
-        if component.count > 1 {
-            let urlSchemeRedirect = urlSchemeToSection(urlScheme: component.first ?? "")
-            var params: [Any?] = []
-            
-            if let lastRouteId = urlSchemeRedirect.last,
-               let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
-               let queryItems = urlComponents.queryItems {
+    func routeTo(url: URL, from: UIViewController ) {
 
-                params = paramsUrlSchemeToSectionParameters(route: lastRouteId, params: queryItems)
-            }
-            router?.route(to: .root, from: (window?.rootViewController)!, parameters: urlSchemeRedirect, params)
-        } else {
-            router?.route(to: .root, from: (window?.rootViewController)!, parameters: nil)
-        }
+        router.route(to: .root, from: from, parameters: routes(for: url))
+
     }
     
-    func urlSchemeToSection(urlScheme: String) -> [Routes] {
+    private func routes(for url: URL) -> RouteStack? {
         
-        if urlScheme == "radarcovid://report" &&
+        let urlString = url.absoluteString
+        
+        if urlString.hasPrefix("radarcovid://report") &&
             expositionInfoRepository.getExpositionInfo()?.level != .infected {
-            
-            return [.home,.myHealthStep0,.myHealthStep1]
+            return reportUrlStack(url: url)
         }
         
-        return [.home]
+        if urlString.hasPrefix(qrBase) {
+            return qrUrlStack(url: url)
+        }
+        
+        return nil
+    }
+
+    private func qrUrlStack(url: URL) -> RouteStack {
+        return RouteStack(routes: [.home, .qrScanner, .qrResult], params: [nil,nil, url.absoluteString])
     }
     
-    func paramsUrlSchemeToSectionParameters(route: Routes, params: [URLQueryItem]) -> [Any?] {
-        switch route {
-        case .myHealthStep1:
-            let code = params.filter{ $0.name == "code" }.first?.value
-            return [code]
-            
-        default:
-            return []
-        }
+    private func reportUrlStack(url: URL) -> RouteStack {
+        
+        let param = URLComponents(url: url, resolvingAgainstBaseURL: false)?
+            .queryItems?.filter({ $0.name == "code" }).first?.value
+        
+        return RouteStack(routes:  [.home,.myHealthStep0,.myHealthStep1], params: [nil, nil, param])
     }
+    
 
 }
+
+

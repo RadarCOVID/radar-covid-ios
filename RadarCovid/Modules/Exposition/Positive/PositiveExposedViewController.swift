@@ -17,7 +17,6 @@ class PositiveExposedViewController: BaseExposed {
     @IBOutlet weak var moreInfoLabel: UILabel!
     @IBOutlet weak var whatToDoLabel: UILabel!
     
-    var since: Date?
     private let bgImageRed = UIImage(named: "GradientBackgroundRed")
 
     override func viewDidLoad() {
@@ -25,6 +24,11 @@ class PositiveExposedViewController: BaseExposed {
 
         setupView()
         setupAccessibility()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setInfectedText()
     }
     
     @objc override func userDidTapLabel(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -62,18 +66,15 @@ class PositiveExposedViewController: BaseExposed {
         moreInfoLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                       action: #selector(userDidTapMoreInfo(tapGestureRecognizer:))))
         expositionBGView.image = bgImageRed
-        
-        setInfectedText()
     }
     
     private func setInfectedText() {
         
-        let date = self.since ?? Date()
         let formatter = DateFormatter()
         formatter.dateFormat = Date.appDateFormat
-        
-        let actualizado = formatter.string(from: date)
-        var sinceDay = since ?? Date()
+        let now = Date()
+        let actualizado = formatter.string(from: now)
+        var sinceDay = expositionInfo?.contact.since ?? Date()
         sinceDay = sinceDay.getStartOfDay()
         
         let daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
@@ -83,7 +84,7 @@ class PositiveExposedViewController: BaseExposed {
         realInfectedLabel.setMagnifierFontSize()
         
         realInfectedLabel.accessibilityLabel = "EXPOSITION_EXPOSED_DESCRIPTION"
-            .localizedAttributed(withParams: [String(daysSinceLastInfection), date.getAccesibilityDate() ?? ""]).string
+            .localizedAttributed(withParams: [String(daysSinceLastInfection), now.getAccesibilityDate() ?? ""]).string
         
         self.view.setFontTextStyle()
     }

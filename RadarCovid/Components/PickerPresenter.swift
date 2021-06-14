@@ -23,13 +23,13 @@ class PickerPresenter {
     private var toolBar: UIToolbar?
     private let picker: UIView
     private var pickerOpened = false
-    private var isNeedCancelButton: Bool = false
+    private let showCancel: Bool
     
     weak var delegate: PickerDelegate?
 
-    init( picker: UIView, isNeedCancelButton: Bool = false) {
+    init( picker: UIView, showCancel: Bool = false) {
         self.picker = picker
-        self.isNeedCancelButton = isNeedCancelButton
+        self.showCancel = showCancel
     }
     
     func openPicker(title: String? = nil) {
@@ -49,7 +49,7 @@ class PickerPresenter {
             toolBar!.barStyle = .default
             toolBar!.items = []
            
-            if isNeedCancelButton {
+            if showCancel {
                 let itemCancelButton = UIBarButtonItem.init(title: "ALERT_CANCEL_BUTTON".localized, style: .done,
                                                 target: self, action: #selector(onCancelButtonTapped))
                 itemCancelButton.isAccessibilityElement = true
@@ -72,19 +72,19 @@ class PickerPresenter {
         }
     }
 
-    func hiddenPickerView() {
+    func hidePickerView() {
         toolBar?.removeFromSuperview()
         picker.removeFromSuperview()
         pickerOpened = false
     }
     
     @objc func onDoneButtonTapped() {
-        hiddenPickerView()
+        hidePickerView()
         delegate?.onDone()
     }
     
     @objc func onCancelButtonTapped() {
-        hiddenPickerView()
+        hidePickerView()
         delegate?.onCancel()
     }
 }

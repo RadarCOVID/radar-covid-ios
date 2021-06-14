@@ -51,6 +51,7 @@ extension UIViewController: AlertController {
         okButton.setTitleColor(UIColor.white, for: .normal)
         okButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold)
         okButton.setBackgroundImage(UIImage.init(named: "buttonsPrimary"), for: .normal)
+        okButton.tag = CustomAlert.okTag
         okButton.isUserInteractionEnabled = true
         okButton.isAccessibilityElement = true
         okButton.accessibilityHint = "ACC_HINT".localized
@@ -87,6 +88,7 @@ extension UIViewController: AlertController {
         okButton.setTitleColor(UIColor.white, for: .normal)
         okButton.setBackgroundImage(UIImage.init(named: "buttonsPrimary"), for: .normal)
         okButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold)
+        okButton.tag = CustomAlert.okTag
         okButton.isUserInteractionEnabled = true
         okButton.isAccessibilityElement = true
         okButton.accessibilityHint = "ACC_HINT".localized
@@ -95,6 +97,7 @@ extension UIViewController: AlertController {
         cancelButton.layer.masksToBounds = true
         cancelButton.layer.cornerRadius = 5
         cancelButton.layer.borderWidth = 1
+        cancelButton.tag = CustomAlert.cancelTag
         cancelButton.layer.borderColor = UIColor.degradado.cgColor
         cancelButton.setTitle(buttonCancelTitle, for: .normal)
         cancelButton.setTitleColor(UIColor.degradado, for: .normal)

@@ -56,7 +56,8 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                                            jwtPublicKey: Config.dp3tValidationKey,
                                            mode: Config.dp3tMode), backgroundHandler: self)
         
-        DP3TTracing.delegate = expositionUseCase
+        DP3TTracing.delegate = (expositionUseCase as! DP3TTracingDelegate)
+        
     }
     
     func log(_ string: String, type: OSLogType) {
@@ -107,7 +108,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
         
         backgroundTaskUseCase.runTasks()
         .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe ( onError: { [weak self] error in
+        .subscribe ( onError: { [weak self] error in
             self?.logger.error("Error performing background task \(error.localizedDescription) ")
         }, onCompleted: { [weak self] in
             self?.logger.debug("Background tasks completed ")

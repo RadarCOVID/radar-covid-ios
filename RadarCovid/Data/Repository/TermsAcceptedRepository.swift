@@ -11,18 +11,11 @@
 
 
 import Foundation
-class TermsAcceptedRepository {
+class TermsAcceptedRepository: UserDefaultsRepository {
     
-    private var userDefaults: UserDefaults
     private let termsAcceptedKey = "UserDefaultsTermsAccepted.accepted"
     private let termsAcceptedVersion = "UserDefaultsTermsAccepted.version"
 
-    
-    init() {
-        self.userDefaults = UserDefaults.standard
-        
-    }
-    
     private var termsVersion: String {
         get {
             return userDefaults.string(forKey: termsAcceptedVersion)

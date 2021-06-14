@@ -12,16 +12,25 @@
 import Foundation
 import RxSwift
 import UIKit
+import Logging
 
 class TabBarController: UITabBarController {
     
-    var homeViewController: HomeViewController
-    var myDataViewController: MyDataViewController
-    var helpLineViewController: HelpLineViewController
-    var settingViewController: SettingViewController
-    var statsViewController: StatsViewController
-    var localizationUseCase: LocalizationUseCase
-    var preferencesRepository: PreferencesRepository?
+    private let logger = Logger(label: "TabBarController")
+    
+    private let disposeBag = DisposeBag()
+    
+    private let homeViewController: HomeViewController!
+    private let myDataViewController: MyDataViewController!
+    private let helpLineViewController: HelpLineViewController!
+    private let settingViewController: SettingViewController!
+    private let statsViewController: StatsViewController!
+    private let venueRecordViewController: VenueRecordStartViewController!
+    
+    private let localizationUseCase: LocalizationUseCase!
+    private let venueRecodrUseCase: VenueRecordUseCase!
+    
+    private let preferencesRepository: PreferencesRepository!
     
     var selectTabType: UIViewController.Type?
 
@@ -31,7 +40,9 @@ class TabBarController: UITabBarController {
          statsViewController: StatsViewController,
          settingViewController: SettingViewController,
          preferencesRepository: PreferencesRepository,
-         localizationUseCase: LocalizationUseCase) {
+         localizationUseCase: LocalizationUseCase,
+         venueRecordViewController: VenueRecordStartViewController,
+         venueRecodrUseCase: VenueRecordUseCase) {
         
         self.homeViewController = homeViewController
         self.myDataViewController = myDataViewController
@@ -41,6 +52,8 @@ class TabBarController: UITabBarController {
         
         self.localizationUseCase = localizationUseCase
         self.preferencesRepository = preferencesRepository
+        self.venueRecordViewController = venueRecordViewController
+        self.venueRecodrUseCase = venueRecodrUseCase
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -62,8 +75,23 @@ class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         setupAccessibility()
         setViewControllers([homeViewController, myDataViewController, helpLineViewController, statsViewController, settingViewController], animated: false)
-        
+
         select(tabType: selectTabType)
+        
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil)
+        
+        loadBadges()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    @objc func applicationDidBecomeActive() {
+        loadBadges()
     }
     
     private func setupAccessibility() {
@@ -91,6 +119,14 @@ class TabBarController: UITabBarController {
         settingViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
         settingViewController.tabBarItem.accessibilityLabel = "ACC_SETTINGS_TITLE".localized
         settingViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+        
+        
+        venueRecordViewController.tabBarItem.isAccessibilityElement = true
+        venueRecordViewController.tabBarItem.accessibilityTraits.insert(UIAccessibilityTraits.button)
+        venueRecordViewController.tabBarItem.accessibilityLabel = "ACC_VENUE_TITLE".localized
+        venueRecordViewController.tabBarItem.accessibilityHint = "ACC_HINT".localized
+        
+        
     }
     
     private func setupView() {
@@ -108,6 +144,12 @@ class TabBarController: UITabBarController {
             title: "",
             image: UIImage(named: "MenuHomeNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuHomeSelected"))
+        
+        venueRecordViewController.tabBarItem = UITabBarItem(
+            title: "",
+            image: UIImage(named: "QrNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
+            selectedImage: UIImage(named: "QrNormal"))
+        
         myDataViewController.tabBarItem = UITabBarItem(
             title: "",
             image: UIImage(named: "MenuInfoNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
@@ -127,6 +169,7 @@ class TabBarController: UITabBarController {
             image: UIImage(named: "MenuSettingNormal")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
             selectedImage: UIImage(named: "MenuSettingSelected"))
         
+        
     }
     
     private func select(tabType: UIViewController.Type?) {
@@ -137,6 +180,23 @@ class TabBarController: UITabBarController {
                 }
             }
         }
+    }
+    
+    private func loadBadges() {
+        
+        logger.debug("Checking badges")
+        
+        venueRecodrUseCase.isCheckedIn().subscribe ( onNext: { [weak self] checked in
+            if checked {
+                self?.logger.debug("Showing checked in badge")
+                self?.venueRecordViewController.tabBarItem.badgeValue = ""
+                self?.venueRecordViewController.tabBarItem.accessibilityLabel = "ACC_VENUE_TITLE".localized + ". " + "VENUE_RECORD_CHECKIN_TITLE".localized
+            } else {
+                self?.logger.debug("NOT Showing checked in badge")
+                self?.venueRecordViewController.tabBarItem.badgeValue = nil
+                self?.venueRecordViewController.tabBarItem.accessibilityLabel = "ACC_VENUE_TITLE".localized
+            }
+        }).disposed(by: disposeBag)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

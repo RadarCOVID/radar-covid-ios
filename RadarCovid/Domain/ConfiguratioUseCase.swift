@@ -13,7 +13,11 @@ import Foundation
 import RxSwift
 import DP3TSDK
 
-class ConfigurationUseCase {
+protocol ConfigurationUseCase {
+    func loadConfig() -> Observable<Settings>
+}
+
+class ConfigurationUseCaseImpl : ConfigurationUseCase {
 
     private let settingsRepository: SettingsRepository
     private let tokenApi: TokenAPI
@@ -77,6 +81,11 @@ class ConfigurationUseCase {
         if let factorHigh = settings.parameters?.attenuationFactor?.medium {
             params.contactMatching.factorHigh = factorHigh
         }
+        
+        if let highRiskToLowRisk = settings.parameters?.timeBetweenStates?.highRiskToLowRisk {
+            params.crypto.numberOfDaysToKeepMatchedContacts = Int(highRiskToLowRisk / 1440)
+        }
+        
         DP3TTracing.parameters = params
     }
 

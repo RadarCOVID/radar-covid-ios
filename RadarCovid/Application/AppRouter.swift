@@ -45,6 +45,13 @@ public enum Routes {
     case infoApp
     case helpSettings
     case unsupportedOS
+    case qrScanner
+    case qrResult
+    case checkedIn
+    case checkOut
+    case checkOutConfirmation
+    case qrError
+    case venueList
 }
 
 
@@ -53,40 +60,28 @@ class AppRouter: Router {
     var parentVC: UIViewController?
 
     func routes(to routeIDs: [Routes], from context: UIViewController, parameters: [Any?]?) {
-        parentVC = context
-        
-        var index:Int = 1
-        var newParentViewController: UIViewController?
 
+        let navigationController = context.navigationController
+        var currentContext = context
         
-        for itemRouteId in routeIDs {
-            
-            let sendParameters = index >= routeIDs.count ? parameters : nil
-
-            if index == 1 {
-                let nvC = context.navigationController
-                route(to: itemRouteId, from: context, parameters: sendParameters)
-                newParentViewController = nvC?.viewControllers.first
-            } else {
-                route(to: itemRouteId, from: newParentViewController ?? context, parameters: sendParameters)
-            }
-            index = 1 + index
+        for (index, routeId) in routeIDs.enumerated() {
+            route(to: routeId, from: currentContext, parameters: parameters?[index])
+            currentContext = navigationController?.viewControllers.first ?? context
         }
     }
     
     func route(to routeID: Routes, from context: UIViewController, parameters: Any?...) {
-        route(to: routeID, from: context, parameters: parameters.map { $0 } )
+        route(to: routeID, from: context, parameters: parameters )
     }
     
     func route(to routeID: Routes, from context: UIViewController, parameters: [Any?]?) {
         parentVC = context
         switch routeID {
         case .root:
-            if let param = parameters,
-               param.count >= 2 {
-                routeToRoot(context, urlSchemeRedirect: param[0] as? [Routes], paramsUrlScheme: param[1] as? [Any?])
+            if let param = parameters, !param.isEmpty {
+                routeToRoot(context, routeStack: param.first as? RouteStack)
             } else {
-                routeToRoot(context, urlSchemeRedirect: nil, paramsUrlScheme: [])
+                routeToRoot(context, routeStack: nil)
             }
         case .welcome:
             routeToWelcome(context)
@@ -105,36 +100,25 @@ class AppRouter: Router {
         case .myHealthStep1:
             if let param = parameters,
                param.count >= 1 {
-                routeToMyHealthStep1(context, covidCode: param[0] as? String ?? "")
+                routeToMyHealthStep1(context, covidCode: param.first as? String ?? "")
             } else {
                 routeToMyHealthStep1(context)
             }
         case .myHealthStep2:
             if let param = parameters,
                param.count >= 2 {
-                routeToMyHealthStep2(context, codeString: param[0] as? String ?? "", dateNotificationPositive: param[1] as? Date)
+                routeToMyHealthStep2(context, codeString: param.first as? String ?? "", dateNotificationPositive: param[1] as? Date)
             }
             
         case .myHealthReported:
             routeToMyHealthReported(context)
         case .healthyExposition:
-            if let param = parameters,
-               param.count >= 1 {
-                routeToHealthyExposition(context, lastCheck: param[0] as? Date)
-            }
-            
+            routeToHealthyExposition(context, expositionInfo: parameters?.first as! ExpositionInfo)
         case .highExposition:
-            if let param = parameters,
-               param.count >= 1 {
-                routeToHighExposition(context, since: param[0] as? Date, lastCheck: param[1] as? Date)
-            }
-            
+            let isContact = parameters!.count == 2 ? parameters![1] : true
+            routeToHighExposition(context, expositionInfo: parameters?.first as! ExpositionInfo, isContact: (isContact ?? true)  as! Bool)
         case .positiveExposed:
-            if let param = parameters,
-               param.count >= 1 {
-                routeToPositiveExposed(context, since: param[0] as? Date)
-            }
-            
+            routeToPositiveExposed(context, expositionInfo: parameters?.first as! ExpositionInfo)
         case .changeLanguage:
             routeToRootAndResetView(context, parameters)
         case .shareApp:
@@ -151,6 +135,20 @@ class AppRouter: Router {
             routeToHelpSettings(context)
         case .unsupportedOS:
             routeToUnsupportedOS(context)
+        case .qrScanner:
+            routeToQrScanner(context)
+        case .qrResult:
+            routeToQrResult(context, data: parameters?.first as Any?)
+        case .checkedIn:
+            routeToCheckedIn(context)
+        case .checkOut:
+            routeToCheckOut(context)
+        case .checkOutConfirmation:
+            routeToCheckoutConfirmation(context)
+        case .qrError:
+            routeToQrError(context, error: parameters?.first as? Error)
+        case .venueList:
+            routeToVenueList(context)
         }
     }
 
@@ -159,17 +157,16 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(onBoardingVC!, animated: true)
     }
 
-    private func routeToRoot(_ context: UIViewController, urlSchemeRedirect: [Routes]?, paramsUrlScheme: [Any?]?) {
+    private func routeToRoot(_ context: UIViewController, routeStack: RouteStack?) {
         let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
-        rootVC?.urlSchemeRedirect = urlSchemeRedirect
-        rootVC?.paramsUrlScheme = paramsUrlScheme
+        rootVC?.routeStack = routeStack
         loadViewAsRoot(navController: context as? UINavigationController, view: rootVC!)
     }
     
     private func routeToRootAndResetView(_ context: UIViewController, _ parameters: [Any?]?) {
         let rootVC = AppDelegate.shared?.injection.resolve(RootViewController.self)!
         if let param = parameters, param.count > 0 {
-            rootVC?.selectTabType = param[0] as? UIViewController.Type
+            rootVC?.selectTabType = param.first as? UIViewController.Type
         }
         loadViewAsRoot(navController: context.navigationController, view: rootVC!)
     }
@@ -208,11 +205,11 @@ class AppRouter: Router {
         let unsupportedOSVC = AppDelegate.shared?.injection.resolve(UnsupportedOSViewController.self)!
         loadViewAsRoot(navController: context.navigationController, view: unsupportedOSVC!)
     }
-    
+
     private func routeToHome(_ context: UIViewController, _ parameters: [Any?]?) {
         let tabBarController = AppDelegate.shared?.injection.resolve(TabBarController.self)!
         if let param = parameters, param.count > 0 {
-            tabBarController!.selectTabType = param[0] as? UIViewController.Type
+            tabBarController!.selectTabType = param.first as? UIViewController.Type
         }
 
         loadViewAsRoot(navController: context.navigationController, view: tabBarController!)
@@ -256,22 +253,22 @@ class AppRouter: Router {
         context.navigationController?.pushViewController(myHealthReportedVC!, animated: true)
     }
 
-    private func routeToHealthyExposition(_ context: UIViewController, lastCheck: Date?) {
+    private func routeToHealthyExposition(_ context: UIViewController, expositionInfo: ExpositionInfo) {
         let expositionVC = AppDelegate.shared?.injection.resolve(HealthyExpositionViewController.self)!
-        expositionVC?.lastCheck = lastCheck
+        expositionVC?.expositionInfo = expositionInfo
         context.navigationController?.pushViewController(expositionVC!, animated: true)
     }
 
-    private func routeToHighExposition(_ context: UIViewController, since: Date?, lastCheck: Date?) {
-        let highExpositionVC = AppDelegate.shared?.injection.resolve(HighExpositionViewController.self)!
-        highExpositionVC?.since = since
-        highExpositionVC?.lastCheck = lastCheck
+    private func routeToHighExposition(_ context: UIViewController, expositionInfo: ExpositionInfo, isContact: Bool) {
+        let highExpositionVC = AppDelegate.shared?.injection.resolve(HighExpositionViewController.self)
+        highExpositionVC?.expositionInfo = expositionInfo
+        highExpositionVC?.isContact = isContact
         context.navigationController?.pushViewController(highExpositionVC!, animated: true)
     }
 
-    private func routeToPositiveExposed(_ context: UIViewController, since: Date?) {
+    private func routeToPositiveExposed(_ context: UIViewController, expositionInfo: ExpositionInfo) {
         let positiveExposedVC = AppDelegate.shared?.injection.resolve(PositiveExposedViewController.self)!
-        positiveExposedVC?.since = since
+        positiveExposedVC?.expositionInfo = expositionInfo
         context.navigationController?.pushViewController(positiveExposedVC!, animated: true)
     }
 
@@ -280,6 +277,48 @@ class AppRouter: Router {
         loadViewAsRoot(navController: context.navigationController, view: welcomeVC)
     }
     
+    private func routeToQrScanner(_ context: UIViewController) {
+        let qrScannerVC = AppDelegate.shared!.injection.resolve(QrScannerViewController.self)!
+        context.navigationController?.pushViewController(qrScannerVC, animated: true)
+    }
+    
+    private func routeToQrResult(_ context: UIViewController, data: Any?) {
+        let qrResultVC = AppDelegate.shared!.injection.resolve(QrResultViewController.self)!
+        
+        if let venueRecord = data as? VenueRecord {
+            qrResultVC.venueRecord = venueRecord
+        } else {
+            qrResultVC.qrCode = data as? String
+        }
+        
+        context.navigationController?.pushViewController(qrResultVC, animated: true)
+    }
+    
+    private func routeToCheckedIn(_ context: UIViewController) {
+        let checkedInVC = AppDelegate.shared!.injection.resolve(CheckedInViewController.self)!
+        context.navigationController?.pushViewController(checkedInVC, animated: true)
+    }
+    
+    private func routeToCheckOut(_ context: UIViewController) {
+        let vc = AppDelegate.shared!.injection.resolve(CheckOutViewController.self)!
+        context.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func routeToCheckoutConfirmation(_ context: UIViewController) {
+        let vc = AppDelegate.shared!.injection.resolve(CheckOutConfirmationViewController.self)!
+        context.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func routeToQrError(_ context: UIViewController, error: Error?) {
+        let vc = AppDelegate.shared!.injection.resolve(QrErrorViewController.self)!
+        vc.error = error
+        context.navigationController?.pushViewController(vc, animated: true)
+    }
+    private func routeToVenueList(_ context: UIViewController) {
+        let vc = AppDelegate.shared!.injection.resolve(VenueListViewController.self)!
+        context.navigationController?.pushViewController(vc, animated: true)
+    }
+
     private func loadViewAsRoot(navController: UINavigationController?, view: UIViewController, animated: Bool = false) {
         navController?.viewControllers.removeAll()
         navController?.popToRootViewController(animated: false)
@@ -297,7 +336,13 @@ class AppRouter: Router {
     }
 
     func popToRoot(from: UIViewController, animated: Bool) {
-        from.navigationController?.popToRootViewController(animated: animated)
+        
+        if let root = from.navigationController?.viewControllers.first, root.isKind(of: TabBarController.self) {
+            from.navigationController?.popToRootViewController(animated: animated)
+        } else {
+            route(to: .home, from: from)
+        }
+        
         parentVC = nil
     }
 
@@ -305,6 +350,16 @@ class AppRouter: Router {
         from.navigationController?.popViewController(animated: animated)
         parentVC?.viewWillAppear(animated)
         parentVC = nil
+    }
+    
+    func pop(from: UIViewController, to: UIViewController.Type, animated: Bool) {
+       
+        if let navController = from.navigationController?.viewControllers
+                .last(where: { type(of:$0)  === to }) {
+            from.navigationController?.popToViewController(navController, animated: animated)
+            parentVC?.viewWillAppear(animated)
+            parentVC = nil
+        }
     }
 
 }

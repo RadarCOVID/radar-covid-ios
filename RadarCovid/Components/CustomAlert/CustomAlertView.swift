@@ -19,15 +19,23 @@ protocol CustomAlertProtocol {
 }
 
 class CustomAlert: UIView {
+    
+    static let cancelTag = 128
+    static let okTag = 127
 
+    private let disposeBag = DisposeBag()
+    
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var buttonContainer: UIStackView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var buttonContainerHeight: NSLayoutConstraint!
+    
+    private weak var cancelButton: UIButton?
+    private weak var okButton: UIButton?
 
     var parentView: UIView?
-    var disposeBag = DisposeBag()
     
     let buttonHeight: CGFloat = 60
     
@@ -37,10 +45,18 @@ class CustomAlert: UIView {
             .instantiate(withOwner: nil, options: nil)[0] as? CustomAlert else {
             return nil
         }
+        alert.setupAccesibility()
+        
         let buttonsHeight = CGFloat(alert.buttonHeight * CGFloat(buttons.count))
         alert.buttonContainerHeight.constant = buttonsHeight
         
         buttons.forEach { button in
+            if button.tag == CustomAlert.cancelTag {
+                alert.cancelButton = button
+            } else if button.tag == CustomAlert.okTag {
+                alert.okButton = button
+            }
+    
             button.rx.tap.subscribe(onNext: { (_) in
                    buttonClicked(button)
             }).disposed(by: alert.disposeBag)
@@ -70,11 +86,25 @@ class CustomAlert: UIView {
         view.addSubview(alert)
         view.bringSubviewToFront(alert)
         
+        return alert
+    }
+    
+    private func setupAccesibility() {
+        closeButton.isUserInteractionEnabled = true
+        closeButton.isAccessibilityElement = true
+        closeButton.accessibilityHint = "ACC_BUTTON_ALERT_CANCEL".localized
+        closeButton.accessibilityLabel = "ACC_BUTTON_CLOSE".localized
         
         UIAccessibility.post(notification: .screenChanged, argument: nil)
-        UIAccessibility.post(notification: .layoutChanged, argument: alert.titleLabel)
-        
-        return alert
+        UIAccessibility.post(notification: .layoutChanged, argument: closeButton)
+    }
+    
+    @IBAction func onClose(_ sender: Any) {
+        if let cancelButton = cancelButton {
+            cancelButton.sendActions(for: .touchUpInside)
+        } else {
+            okButton?.sendActions(for: .touchUpInside)
+        }
     }
 
     private func initValues() {

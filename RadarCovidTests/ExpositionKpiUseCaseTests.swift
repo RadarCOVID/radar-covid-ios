@@ -30,7 +30,7 @@ class ExpositionKpiUseCaseTests: XCTestCase {
         
         exposureKpiRepository = ExposureKpiRepositoryMock()
         
-        sut = ExposureKpiUseCase(expositionInfoRepository: expositionInfoRepository!,
+        sut = ExposureKpiUseCaseImpl(expositionInfoRepository: expositionInfoRepository!,
                                  exposureKpiRepository: exposureKpiRepository!)
     }
 
@@ -41,7 +41,7 @@ class ExpositionKpiUseCaseTests: XCTestCase {
 
     func testGivenHelthyReturnDummyKpiAndResetRecord() throws {
         
-        expositionInfoRepository?.expositionInfo = ExpositionInfo(level: .healthy)
+        expositionInfoRepository?.expositionInfo = ContactExpositionInfo(level: .healthy)
         
         let kpi = sut!.getExposureKpi()
         
@@ -68,7 +68,7 @@ class ExpositionKpiUseCaseTests: XCTestCase {
     func testGivenExposedAndNotPreviousDateReturnExposedKpiAndRegisterCurrentDate() throws {
         
         let date = Date()
-        expositionInfoRepository?.expositionInfo = ExpositionInfo(level: .exposed)
+        expositionInfoRepository?.expositionInfo = ContactExpositionInfo(level: .exposed)
         expositionInfoRepository?.expositionInfo?.since = date
         
         let kpi = sut!.getExposureKpi()
@@ -84,7 +84,7 @@ class ExpositionKpiUseCaseTests: XCTestCase {
     
     func testGivenExposedAndPreviousDateEqualReturnDummy() throws {
         let date = Date()
-        expositionInfoRepository?.expositionInfo = ExpositionInfo(level: .exposed)
+        expositionInfoRepository?.expositionInfo = ContactExpositionInfo(level: .exposed)
         expositionInfoRepository?.expositionInfo?.since = date
         
         exposureKpiRepository?.date = date
@@ -98,7 +98,7 @@ class ExpositionKpiUseCaseTests: XCTestCase {
     
     func testGivenExposedAndPreviousDateDifferentReturnExposedKpiAndRegisterCurrentDate() throws {
         let date = Date()
-        expositionInfoRepository?.expositionInfo = ExpositionInfo(level: .exposed)
+        expositionInfoRepository?.expositionInfo = ContactExpositionInfo(level: .exposed)
         expositionInfoRepository?.expositionInfo?.since = date
         
         exposureKpiRepository?.date = date.addingTimeInterval(-1000)

@@ -13,7 +13,12 @@ import Foundation
 import UIKit
 import UserNotifications
 
-class ReminderNotificationUseCase {
+protocol ReminderNotificationUseCase {
+    func cancel()
+    func start(_ timerInterval: Int64?)
+}
+
+class ReminderNotificationUseCaseImpl : ReminderNotificationUseCase{
     
     private let settingsRepository: SettingsRepository
     private let notificationCenter = UNUserNotificationCenter.current()

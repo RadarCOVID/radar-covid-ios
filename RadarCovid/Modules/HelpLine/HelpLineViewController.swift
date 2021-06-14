@@ -99,5 +99,15 @@ class HelpLineViewController: BaseViewController, MFMailComposeViewControllerDel
         otherWebLabel.isUserInteractionEnabled = true
         otherWebLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                         action: #selector(userDidTapOther(tapGestureRecognizer:))))
+        
     }
+    
+    @objc func userDidTapTerms(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_DATA_TERMS".localized.getUrlFromHref())
+    }
+
+    @objc func userDidTapPrivacy(tapGestureRecognizer: UITapGestureRecognizer) {
+        onWebTap(tapGestureRecognizer: tapGestureRecognizer, urlString: "MY_DATA_PRIVACY".localized.getUrlFromHref())
+    }
+    
 }

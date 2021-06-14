@@ -33,6 +33,10 @@ class MyHealthStep1ViewController: BaseViewController {
     @IBOutlet weak var yearView: UIView!
     @IBOutlet weak var yearLabel: UILabel!
     
+    @IBOutlet weak var compactDatePicker: UIDatePicker!
+    
+    private var datePicker: UIDatePicker!
+    
     var router: AppRouter?
     var covidCode: String?
     
@@ -44,19 +48,6 @@ class MyHealthStep1ViewController: BaseViewController {
     private let emptyText232B: String = "\u{232B}"
     private let disposeBag = DisposeBag()
     
-    lazy var datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        
-        datePicker.minimumDate = Date().addingTimeInterval(-TimeInterval(14*60*60*24))
-        datePicker.maximumDate = Date()
-        datePicker.datePickerMode = .date
-        if #available(iOS 13.4, *) {
-            datePicker.preferredDatePickerStyle = .wheels
-        }
-        
-        return datePicker
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -67,16 +58,33 @@ class MyHealthStep1ViewController: BaseViewController {
     }
     
     private func setupDatePicker() {
-        pickerPresenter = PickerPresenter(picker: datePicker, isNeedCancelButton: true)
-        pickerPresenter?.delegate = self
         
-        dateView.isUserInteractionEnabled = true
-        dateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDatePicker)))
+         self.datePicker = compactDatePicker!
+
+        if #available(iOS 14, *) {
+            datePicker.preferredDatePickerStyle = .compact
+        } else {
+            datePicker = UIDatePicker()
+            if #available(iOS 13.4, *) {
+                datePicker.preferredDatePickerStyle = .wheels
+            }
+            pickerPresenter = PickerPresenter(picker: datePicker, showCancel: true)
+            pickerPresenter?.delegate = self
+            
+            dateView.isUserInteractionEnabled = true
+            dateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDatePicker)))
+        }
+        
+        datePicker.minimumDate = Date().addingTimeInterval(-TimeInterval(14*60*60*24))
+        datePicker.maximumDate = Date()
+        datePicker.datePickerMode = .date
+        datePicker.accessibilityActivate()
+        
     }
     
     private func setupView() {
         setEnableButton(isEnable: false)
-        isDisabblePricipalAccesibility(isDisabble: false)
+        setDisabledPricipalAccesibility(disabled: false)
         
         self.title = "MY_HEALTH_TITLE_STEP1".localized
         
@@ -116,6 +124,9 @@ class MyHealthStep1ViewController: BaseViewController {
         accesibilityHelperSlider = accesibilityHelperSlider.replacingOccurrences(of: "$2", with: "\(2)")
         customSliderView.configure(indexStep: 1, totalStep: 2, accesibilityHelper: accesibilityHelperSlider)
     }
+    @IBAction func onDateSelected(_ sender: Any) {
+        onDateChanged()
+    }
     
     private func setupAccessibility() {
         
@@ -135,7 +146,7 @@ class MyHealthStep1ViewController: BaseViewController {
         
         dateView.isAccessibilityElement = true
         
-        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
+        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
         dateView.accessibilityHint = "ACC_HINT".localized
         
     }
@@ -152,11 +163,34 @@ class MyHealthStep1ViewController: BaseViewController {
             continueButton.setBackgroundImage(nil, for: .normal)
         }
     }
+    private func onDateChanged() {
+        setDisabledPricipalAccesibility(disabled: false)
+        date = datePicker.date
+        if let date = date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy"
+            yearLabel.text = formatter.string(from: date)
+            formatter.dateFormat = "MM"
+            monthLabel.text = formatter.string(from: date)
+            formatter.dateFormat = "dd"
+            dayLabel.text = formatter.string(from: date)
+            
+            //Setup accessibility
+            let daySelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
+            let monthSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + (monthLabel.text ?? "")
+            let yearSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + " " + (yearLabel.text ?? "")
+
+            dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + " " + monthSelected + " " + yearSelected)
+        }
+        
+        //Restore focus from dateView
+        UIAccessibility.post(notification: .layoutChanged, argument: self.dateView)
+    }
     
     @objc private func showDatePicker() {
         self.view.endEditing(true)
 
-        isDisabblePricipalAccesibility(isDisabble: true)
+        setDisabledPricipalAccesibility(disabled: true)
         pickerPresenter?.openPicker()
         UIAccessibility.post(notification: .layoutChanged, argument: self.datePicker)
     }
@@ -173,7 +207,7 @@ class MyHealthStep1ViewController: BaseViewController {
         DispatchQueue.main.async {
             self.scrollViewBottonConstraint.constant = keyboardSize.height
             self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-            self.pickerPresenter?.hiddenPickerView()
+            self.pickerPresenter?.hidePickerView()
         }
     }
     
@@ -232,9 +266,9 @@ class MyHealthStep1ViewController: BaseViewController {
             })
     }
     
-    private func isDisabblePricipalAccesibility(isDisabble: Bool) {
-        self.continueButton.isAccessibilityElement = !isDisabble
-        self.cancelButton.isAccessibilityElement = !isDisabble
+    private func setDisabledPricipalAccesibility(disabled: Bool) {
+        self.continueButton.isAccessibilityElement = !disabled
+        self.cancelButton.isAccessibilityElement = !disabled
     }
     
     private func checkIfNeedSetCovidCode() {
@@ -291,13 +325,13 @@ extension MyHealthStep1ViewController: PickerDelegate {
     }
     
     func onCancel() {
-        isDisabblePricipalAccesibility(isDisabble: false)
+        setDisabledPricipalAccesibility(disabled: false)
         date = nil
         yearLabel.text = "----"
         monthLabel.text = "--"
         dayLabel.text = "--"
         
-        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
+        dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_NO_SELECTED".localized + " " + "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + " " + "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized
         
         //Setup accessibility
         dayLabel.accessibilityLabel = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + " " + (dayLabel.text ?? "")
@@ -309,26 +343,6 @@ extension MyHealthStep1ViewController: PickerDelegate {
     }
     
     func onDone() {
-        isDisabblePricipalAccesibility(isDisabble: false)
-        date = datePicker.date
-        if let date = date {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy"
-            yearLabel.text = formatter.string(from: date)
-            formatter.dateFormat = "MM"
-            monthLabel.text = formatter.string(from: date)
-            formatter.dateFormat = "dd"
-            dayLabel.text = formatter.string(from: date)
-            
-            //Setup accessibility
-            let daySelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_DAY".localized + ", " + (dayLabel.text ?? "")
-            let monthSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_MONTH".localized + ", " + (monthLabel.text ?? "")
-            let yearSelected: String = "MY_HEALTH_DIAGNOSTIC_DATE_YEAR".localized + ", " + (yearLabel.text ?? "")
-
-            dateView.accessibilityLabel = "ACC_MY_HEALTH_DATE_PICKER_SELECTED".localized.replacingOccurrences(of: "$1", with: daySelected + ", " + monthSelected + ", " + yearSelected)
-        }
-        
-        //Restore focus from dateView
-        UIAccessibility.post(notification: .layoutChanged, argument: self.dateView)
+        onDateChanged()
     }
 }

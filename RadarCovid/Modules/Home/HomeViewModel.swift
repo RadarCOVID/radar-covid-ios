@@ -12,20 +12,24 @@
 import Foundation
 import UIKit
 import RxSwift
-import DP3TSDK
+import Logging
 
 class HomeViewModel {
     
+    private let logger = Logger(label: "HomeViewModel")
+    
+    private let  minutesADay = 60 * 24
+    
     private let disposeBag = DisposeBag()
     
-    var expositionUseCase: ExpositionUseCase?
-    var expositionCheckUseCase: ExpositionCheckUseCase?
-    var radarStatusUseCase: RadarStatusUseCase?
-    var syncUseCase: SyncUseCase?
-    var resetDataUseCase: ResetDataUseCase?
-    var onBoardingCompletedUseCase: OnboardingCompletedUseCase?
-    var reminderNotificationUseCase: ReminderNotificationUseCase?
-    var settingsRepository: SettingsRepository?
+    var expositionUseCase: ExpositionUseCase!
+    var expositionCheckUseCase: ExpositionCheckUseCase!
+    var radarStatusUseCase: RadarStatusUseCase!
+    var resetDataUseCase: ResetDataUseCase!
+    var onBoardingCompletedUseCase: OnboardingCompletedUseCase!
+    var reminderNotificationUseCase: ReminderNotificationUseCase!
+    var settingsRepository: SettingsRepository!
+    var problematicEventsUseCase: ProblematicEventsUseCase!
     
     var radarStatus = BehaviorSubject<RadarStatus>(value: .active)
     var isErrorTracingDP3T = BehaviorSubject<Bool>(value: false)
@@ -33,47 +37,83 @@ class HomeViewModel {
     var timeExposedDismissed = BehaviorSubject<Bool>(value: false)
     var showBackToHealthyDialog = PublishSubject<Bool>()
     var errorState = BehaviorSubject<DomainError?>(value: nil)
-    var expositionInfo = BehaviorSubject<ExpositionInfo>(value: ExpositionInfo(level: .healthy))
+    
+    var expositionInfo = BehaviorSubject<ContactExpositionInfo>(value: ContactExpositionInfo(level: .healthy))
+    var venueExpositionInfo = BehaviorSubject<VenueExpositionInfo>(value: VenueExpositionInfo(level: .healthy))
+    
+    var hideContactExpositionInfo = BehaviorSubject<Bool>(value: false)
+    var hideVenueExpositionInfo = BehaviorSubject<Bool>(value: true)
+    
     var error = PublishSubject<Error>()
     var alertMessage = PublishSubject<String>()
     
     func changeRadarStatus(_ active: Bool) {
-        radarStatusUseCase?.changeTracingStatus(active: active).subscribe(
+        radarStatusUseCase.changeTracingStatus(active: active).subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
-                self?.checkInitialExposition()
                 self?.isErrorTracingDP3T.onNext(false)
             }, onError: {  [weak self] error in
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
-                self?.checkInitialExposition()
                 self?.isErrorTracingDP3T.onNext(true)
+            }).disposed(by: disposeBag)
+    }
+    
+    func checkProblematicEvents() {
+        problematicEventsUseCase.sync().subscribe(
+            onNext: { _ in
+                debugPrint("Problematics events sync successful")
+            }, onError: { error in
+                debugPrint("Problematics events sync error: \(error)")
             }).disposed(by: disposeBag)
     }
     
     func checkInitial() {
         checkRadarStatus()
-        reminderNotificationUseCase?.cancel()
+        checkInitialExposition()
+        reminderNotificationUseCase.cancel()
         (UIApplication.shared.delegate as? AppDelegate)?.bluethoothUseCase?.initListener()
     }
     
     func checkRadarStatus() {
-        changeRadarStatus(radarStatusUseCase?.isTracingActive() ?? false)
+        changeRadarStatus(radarStatusUseCase.isTracingActive())
     }
     
     private func checkInitialExposition() {
         
-        expositionUseCase?.updateExpositionInfo()
+        logger.debug("Showing Home")
         
-        expositionUseCase?.getExpositionInfo().subscribe(
+        expositionUseCase.updateExpositionInfo()
+        
+        expositionUseCase.getExpositionInfo()
+            .observeOn(MainScheduler.instance)
+            .subscribe(
             onNext: { [weak self] exposition in
-                self?.checkExpositionLevel(exposition)
+                self?.logger.debug("Showing Exposition Info. Contact: \(exposition.contact.level) Venue: \(exposition.venue.level)" )
+                self?.checkExpositionLevel(exposition.contact)
+                self?.venueExpositionInfo.onNext(exposition.venue)
+                self?.showAndHideVenueAndContacExpositionLevel(exposition)
             }, onError: { [weak self] error in
                 self?.error.onNext(error)
             }).disposed(by: disposeBag)
     }
     
-    private func checkExpositionLevel(_ exposition: ExpositionInfo?) {
+    private func showAndHideVenueAndContacExpositionLevel(_ expositionInfo: ExpositionInfo) {
+         if expositionInfo.contact.level == .infected  ||
+            expositionInfo.contact.level == .healthy && expositionInfo.venue.level == .healthy ||
+            expositionInfo.contact.level == .exposed && expositionInfo.venue.level == .healthy {
+            hideContactExpositionInfo.onNext(false)
+            hideVenueExpositionInfo.onNext(true)
+        } else if expositionInfo.contact.level == .healthy && expositionInfo.venue.level == .exposed {
+            hideContactExpositionInfo.onNext(true)
+            hideVenueExpositionInfo.onNext(false)
+        } else if expositionInfo.contact.level == .exposed && expositionInfo.venue.level == .exposed {
+            hideContactExpositionInfo.onNext(false)
+            hideVenueExpositionInfo.onNext(false)
+        }
+    }
+    
+    private func checkExpositionLevel(_ exposition: ContactExpositionInfo?) {
         guard let exposition = exposition else {
             return
         }
@@ -96,24 +136,27 @@ class HomeViewModel {
         }
     }
     
-    func checkRemainingExpositionDays(since: Date) -> Int{
+    func getRemainingExpositionDays(since: Date) -> Int {
+        getDaysRemaining(since: since, timeToHealthy: Int(settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0))
+
+    }
+    
+    func getRemainingVenueExpositionDays(since: Date?) -> Int {
+        getDaysRemaining(since: since ?? Date(), timeToHealthy: Int(settingsRepository.getSettings()?.parameters?.venueConfiguration?.quarentineAfterExposed ?? 0))
+    }
+    
+    private func getDaysRemaining(since: Date, timeToHealthy: Int) -> Int {
         let sinceDay = since.getStartOfDay()
         
-        let minutesInAHour = 60
-        let hoursInADay = 24
-        let formatter = DateFormatter()
-        formatter.dateFormat = Date.appDateFormat
+        let daysSinceLastExposition = Date().days(sinceDate: sinceDay) ?? 1
         
-        let daysSinceLastInfection = Date().days(sinceDate: sinceDay) ?? 1
-        let daysForHealty = Int(settingsRepository?.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk ?? 0) / minutesInAHour / hoursInADay
+        let result = (timeToHealthy / minutesADay) - daysSinceLastExposition
         
-        let result = daysForHealty - daysSinceLastInfection
-        
-        return result >= 0 ? result : 0
+        return result > 0 ? result : 0
     }
     
     func restoreLastStateAndSync(cb: (() -> Void)? = nil) {
-        radarStatusUseCase?.restoreLastStateAndSync().subscribe(
+        radarStatusUseCase.restoreLastStateAndSync().subscribe(
             onNext: { [weak self] status in
                 self?.radarStatus.onNext(status)
                 cb?()
@@ -125,11 +168,11 @@ class HomeViewModel {
     }
     
     func checkOnboarding() {
-        if onBoardingCompletedUseCase?.isOnBoardingCompleted() ?? false {
+        if onBoardingCompletedUseCase.isOnBoardingCompleted() {
             checkState.onNext(false)
         } else {
             checkState.onNext(true)
-            self.onBoardingCompletedUseCase?.setOnboarding(completed: true)
+            onBoardingCompletedUseCase.setOnboarding(completed: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                 self?.checkState.onNext(false)
             }
@@ -137,11 +180,11 @@ class HomeViewModel {
     }
     
     func checkShowBackToHealthyDialog() {
-        showBackToHealthyDialog.onNext(expositionCheckUseCase!.checkBackToHealthyJustChanged())
+        showBackToHealthyDialog.onNext(expositionCheckUseCase.checkBackToHealthyJustChanged())
     }
     
     func heplerQAChangeHealthy() {
-        let expositionInf = ExpositionInfo(level: .exposed)
+        let expositionInf = ContactExpositionInfo(level: .exposed)
         checkExpositionLevel(expositionInf)
     }
     

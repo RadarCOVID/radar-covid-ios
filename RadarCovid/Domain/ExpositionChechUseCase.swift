@@ -13,21 +13,32 @@ import Foundation
 import RxSwift
 import Logging
 
-class ExpositionCheckUseCase {
+protocol ExpositionCheckUseCase {
+    
+    func checkBackToHealthyJustChanged() -> Bool
+    func checkBackToHealthy() -> Observable<Bool>
+    
+}
+
+class ExpositionCheckUseCaseImpl: ExpositionCheckUseCase {
     
     private let logger = Logger(label: "ExpositionCheckUseCase")
 
     private let disposeBag = DisposeBag()
+    
     private let expositionInfoRepository: ExpositionInfoRepository
     private let settingsRepository: SettingsRepository
     private let resetDataUseCase: ResetDataUseCase
+    private let notificationHandler: NotificationHandler
 
     init(expositionInfoRepository: ExpositionInfoRepository,
          settingsRepository: SettingsRepository,
-         resetDataUseCase: ResetDataUseCase) {
+         resetDataUseCase: ResetDataUseCase,
+         notificationHandler: NotificationHandler) {
         self.expositionInfoRepository = expositionInfoRepository
         self.settingsRepository = settingsRepository
         self.resetDataUseCase = resetDataUseCase
+        self.notificationHandler = notificationHandler
     }
 
     func checkBackToHealthyJustChanged() -> Bool {
@@ -49,19 +60,19 @@ class ExpositionCheckUseCase {
             if case .exposed = expositionInfo?.level {
                 if self.isExpositionOutdated(expositionInfo) {
                     self.logger.debug("Exposition outdated")
+                    self.notificationHandler.scheduleHealedNotification()
                     self.expositionInfoRepository.setChangedToHealthy(changed: true)
-                    return self.resetDataUseCase.reset().map { true }
+                    self.expositionInfoRepository.save(expositionInfo: ContactExpositionInfo(level: .healthy))
+                    return self.resetDataUseCase.resetInfectionStatus().map { true }
                 }
             }
             return .just(false)
         }
     }
 
-    private func isExpositionOutdated(_ info: ExpositionInfo?) -> Bool {
+    private func isExpositionOutdated(_ info: ContactExpositionInfo?) -> Bool {
 
         if let since = info?.since, let highRiskToLowRisk = settingsRepository.getSettings()?.parameters?.timeBetweenStates?.highRiskToLowRisk {
-            
-//            let highRiskToLowRisk = 30
 
             let current = Date()
             let limit = since.addingTimeInterval(Double(highRiskToLowRisk * 60))

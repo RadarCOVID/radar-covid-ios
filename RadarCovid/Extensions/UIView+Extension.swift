@@ -119,17 +119,17 @@ extension UIView {
             }
         }
     }
-    func fadeIn(_ alpha: CGFloat = 1.0, _ completion: ((_ err: Bool) -> Void)? = nil ) {
+    func fadeIn(_ alpha: CGFloat = 1.0, duration: TimeInterval = 0.3,_ completion: ((_ err: Bool) -> Void)? = nil ) {
         self.alpha = 0.0
 
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.alpha = alpha
         }, completion: completion)
     }
 
     func fadeOut(callBack: ((_: Bool) -> Void)? = nil ) {
         UIView.animate(
-            withDuration: 1.0,
+            withDuration: 0.3,
             delay: 0.0,
             options: UIView.AnimationOptions.curveEaseOut,
             animations: {

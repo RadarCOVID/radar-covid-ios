@@ -11,7 +11,7 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
+
 
 protocol SelectorProtocol {
     func userSelectorSelected(selectorItem: SelectorItem, completionCloseView: @escaping (Bool) -> Void)
@@ -31,23 +31,21 @@ class SelectorView: UIView {
     var delegateOutput: SelectorProtocol?
     
     var getArray:() -> (Observable<[SelectorItem]>) = {
-        return Observable.create { observer in
+        .create { observer  in
             
             observer.onNext([])
             observer.onCompleted()
             
-            return Disposables.create {
-            }
+            return Disposables.create()
         }
     }
     var getSelectedItem:() -> (Observable<SelectorItem>) = {
-        return Observable.create { observer in
+        .create { observer in
             
             observer.onNext(SelectorItem(id: "", description: "", objectOrigin: ""))
             observer.onCompleted()
             
-            return Disposables.create {
-            }
+            return Disposables.create()
         }
     }
     

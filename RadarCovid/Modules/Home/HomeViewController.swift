@@ -11,9 +11,11 @@
 
 import UIKit
 import RxSwift
-import DP3TSDK
+import Logging
 
 class HomeViewController: BaseViewController {
+    
+    private let logger = Logger(label: "HomeViewController")
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var moreInfoLabel: UILabel!
@@ -25,7 +27,11 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var checkImage: UIImageView!
     @IBOutlet weak var expositionTitleLabel: UILabel!
     @IBOutlet weak var expositionDescriptionLabel: UILabel!
+    @IBOutlet weak var venueContactTextLabel: UILabel!
     @IBOutlet weak var expositionView: BackgroundView!
+    @IBOutlet weak var venueExpositionView: BackgroundView!
+    @IBOutlet weak var contactRiskImage: UIImageView!
+    
     @IBOutlet weak var radarSwitch: UISwitch!
     @IBOutlet weak var radarMessageLabel: UILabel!
     @IBOutlet weak var radarTitleLabel: UILabel!
@@ -50,8 +56,8 @@ class HomeViewController: BaseViewController {
     private let circleGray = UIImage(named: "circle")?.grayScale
 
     var errorHandler: ErrorHandler!
-    var router: AppRouter?
-    var viewModel: HomeViewModel?
+    var router: AppRouter!
+    var viewModel: HomeViewModel!
 
     private let disposeBag = DisposeBag()
     
@@ -64,25 +70,44 @@ class HomeViewController: BaseViewController {
         setupView()
         
         if !termsRepository.termsAccepted {
-            router?.route(to: .termsUpdated, from: self, parameters: nil)
+            router.route(to: .termsUpdated, from: self, parameters: nil)
         }
         
-        viewModel?.checkInitial()
+        viewModel.checkProblematicEvents()
+        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel?.checkShowBackToHealthyDialog()
-        viewModel?.checkRadarStatus()
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil)
+        
+        checkState()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    func checkState() {
+        viewModel.checkInitial()
+        viewModel.checkShowBackToHealthyDialog()
+        viewModel.checkRadarStatus()
+    }
+    
+    @objc func applicationDidBecomeActive() {
+        checkState()
     }
     
     @IBAction func onShare(_ sender: Any) {
-        router?.route(to: .shareApp, from: self)
+        router.route(to: .shareApp, from: self)
     }
     
     @IBAction func onReset(_ sender: Any) {
-
         showAlertCancelContinue(
             title: "ALERT_HOME_RESET_TITLE".localizedAttributed,
             message: "ALERT_HOME_RESET_CONTENT".localizedAttributed,
@@ -130,15 +155,16 @@ class HomeViewController: BaseViewController {
             self.showAlertCancelContinue(
                 title: "ALERT_HOME_RADAR_TITLE".localizedAttributed(),
                 message: "ALERT_HOME_RADAR_CONTENT".localizedAttributed(),
-                buttonOkTitle: "ALERT_HOME_RADAR_CANCEL_BUTTON".localized,
-                buttonCancelTitle: "ALERT_HOME_RADAR_OK_BUTTON".localized,
-                buttonOkVoiceover: "ACC_BUTTON_RADAR_CANCEL".localized,
-                buttonCancelVoiceover: "ACC_BUTTON_RADAR_OK".localized,
+                buttonOkTitle: "ALERT_HOME_RADAR_OK_BUTTON".localized,
+                buttonCancelTitle: "ALERT_HOME_RADAR_CANCEL_BUTTON".localized,
+                buttonOkVoiceover: "ACC_BUTTON_RADAR_OK".localized,
+                buttonCancelVoiceover: "ACC_BUTTON_RADAR_CANCEL".localized,
                 okHandler: { [weak self] in
-                    self?.radarSwitch.isOn = true
-                }, cancelHandler: { [weak self] in
                     self?.radarSwitch.accessibilityHint = "ACC_BUTTON_ACTIVATE_RADAR".localized
-                    self?.viewModel?.changeRadarStatus(false)
+                    self?.viewModel.changeRadarStatus(false)
+                }, cancelHandler: { [weak self] in
+                    self?.radarSwitch.isOn = true
+
             })
         }
     }
@@ -149,9 +175,24 @@ class HomeViewController: BaseViewController {
     }
     
     @objc func onExpositionTap() {
-        if let level =  try? viewModel?.expositionInfo.value() {
-            navigateToDetail(level)
+        if let info = getExpositionInfo() {
+            navigateToDetail(info)
         }
+    }
+    
+    @objc func onVenueExpositionTap() {
+        let isContact = false
+        router.route(to: Routes.highExposition, from: self, parameters: getExpositionInfo(), isContact)
+    
+    }
+    
+    private func getExpositionInfo() -> ExpositionInfo? {
+        var ei: ExpositionInfo? = nil
+        if let cei = try? viewModel.expositionInfo.value(),
+           let vei = try? viewModel.venueExpositionInfo.value() {
+            ei = ExpositionInfo(contact: cei, venue: vei)
+        }
+        return ei
     }
     
     private func setupAccessibility() {
@@ -196,9 +237,13 @@ class HomeViewController: BaseViewController {
         viewModel!.expositionInfo.subscribe { [weak self] exposition in
             self?.updateExpositionInfo(exposition.element)
         }.disposed(by: disposeBag)
+        
+        viewModel!.venueExpositionInfo.subscribe { [weak self] exposition in
+            self?.updateVenueExpositionInfo(exposition.element)
+        }.disposed(by: disposeBag)
 
         viewModel!.error.subscribe { [weak self] error in
-            self?.errorHandler?.handle(error: error.element)
+            self?.errorHandler.handle(error: error.element)
         }.disposed(by: disposeBag)
 
         viewModel!.alertMessage.subscribe { [weak self] message in
@@ -218,6 +263,12 @@ class HomeViewController: BaseViewController {
                 self?.showTimeExposed()
             }
         }.disposed(by: disposeBag)
+        
+        viewModel!.hideVenueExpositionInfo.bind(to: venueExpositionView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        viewModel!.hideContactExpositionInfo.bind(to: expositionView.rx.isHidden)
+            .disposed(by: disposeBag)
     }
     
     private func setupView() {
@@ -232,6 +283,8 @@ class HomeViewController: BaseViewController {
         radarSwitch.tintColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
         radarSwitch.layer.cornerRadius = radarSwitch.frame.height / 2
         radarSwitch.backgroundColor = #colorLiteral(red: 0.878000021, green: 0.423999995, blue: 0.3409999907, alpha: 1)
+        
+        venueExpositionView.image = bgImageOrange
 
         if Config.environment == "PRE" {
             envLabel.isHidden = false
@@ -255,7 +308,7 @@ class HomeViewController: BaseViewController {
             envLabel.isHidden = true
         }
         
-        viewModel?.checkOnboarding()
+        viewModel.checkOnboarding()
 
         errorHandler!.alertDelegate = self
     }
@@ -268,6 +321,10 @@ class HomeViewController: BaseViewController {
         expositionView.isUserInteractionEnabled = true
         expositionView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                             action: #selector(self.onExpositionTap)))
+        
+        venueExpositionView.isUserInteractionEnabled = true
+        venueExpositionView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                            action: #selector(self.onVenueExpositionTap)))
 
         notificationInactiveMessageLabel.isUserInteractionEnabled = true
         notificationInactiveMessageLabel.addGestureRecognizer(UITapGestureRecognizer(target: self,
@@ -275,10 +332,11 @@ class HomeViewController: BaseViewController {
     }
     
     private func showTimeExposed() {
-        router?.route(to: .timeExposed, from: self, parameters: nil)
+        logger.debug("Showing back to healty dialog")
+        router.route(to: .timeExposed, from: self, parameters: nil)
     }
 
-    private func updateExpositionInfo(_ exposition: ExpositionInfo?) {
+    private func updateExpositionInfo(_ exposition: ContactExpositionInfo?) {
         guard let exposition = exposition else {
             return
         }
@@ -291,21 +349,29 @@ class HomeViewController: BaseViewController {
             setInfected()
         }
     }
+    
+    private func updateVenueExpositionInfo(_ exposition: VenueExpositionInfo?) {
+        
+        let text = NSMutableAttributedString.init(attributedString: "HOME_VENUE_EXPOSITION_MESSAGE_HIGH".localizedAttributed)
+        text.append(getRemainingDaysText(viewModel!.getRemainingVenueExpositionDays(since: exposition?.since)))
+                    
+        venueContactTextLabel.attributedText = text
+        venueContactTextLabel.setMagnifierFontSize()
+    }
 
     private func setExposed(since: Date) {
        
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_HIGH".localized
-        let reminingDays = self.viewModel?.checkRemainingExpositionDays(since: since)
-        let remindingDaysText =
-            reminingDays ?? 0 <= 1
-                ? "HOME_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(reminingDays ?? 0)])
-                : "HOME_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(reminingDays ?? 0)])
+        contactRiskImage.isHidden = false
+        let remainingDays = viewModel.getRemainingExpositionDays(since: since) 
+        let remainingDaysText = getRemainingDaysText(remainingDays)
+            
         let attributedText = NSMutableAttributedString.init(attributedString: "HOME_EXPOSITION_MESSAGE_HIGH".localizedAttributed(
                 withParams: ["CONTACT_PHONE".localized]
             )
         )
         attributedText
-            .append(remindingDaysText)
+            .append(remainingDaysText)
         expositionDescriptionLabel.attributedText = attributedText
         expositionDescriptionLabel.setMagnifierFontSize()
         expositionView.image = bgImageOrange
@@ -315,12 +381,16 @@ class HomeViewController: BaseViewController {
         radarSwitch.isHidden = false
     }
     
-   
+    private func getRemainingDaysText(_ remainingDays: Int) -> NSAttributedString {
+        remainingDays <= 1
+            ? "HOME_EXPOSITION_COUNT_ONE_DAY".localizedAttributed(withParams: [String(remainingDays)])
+            : "HOME_EXPOSITION_COUNT_ANYMORE".localizedAttributed(withParams: [String(remainingDays)])
+    }
     
     private func setHealthy() {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_LOW".localized
         expositionDescriptionLabel.locKey  = "HOME_EXPOSITION_MESSAGE_LOW"
-
+        contactRiskImage.isHidden = true
         expositionView.image = bgImageGreen
         communicationButton.isHidden = false
         topComunicationConstraint.constant = 10
@@ -331,7 +401,7 @@ class HomeViewController: BaseViewController {
     private func setInfected() {
         expositionTitleLabel.text = "HOME_EXPOSITION_TITLE_POSITIVE".localized
         expositionDescriptionLabel.locKey = "HOME_EXPOSITION_MESSAGE_INFECTED"
-
+        contactRiskImage.isHidden = true
         expositionView.image = bgImageRed
         communicationButton.isHidden = true
         topComunicationConstraint.constant = -(communicationButton.frame.size.height + bottomComunicationConstraint.constant)
@@ -442,13 +512,13 @@ class HomeViewController: BaseViewController {
     }
     
     private func navigateToDetail(_ info: ExpositionInfo) {
-        switch info.level {
+        switch info.contact.level {
         case .healthy:
-            router?.route(to: Routes.healthyExposition, from: self, parameters: info.lastCheck)
+            router.route(to: Routes.healthyExposition, from: self, parameters: info)
         case .exposed:
-            router?.route(to: Routes.highExposition, from: self, parameters: info.since, info.lastCheck)
+            router.route(to: Routes.highExposition, from: self, parameters: info)
         case .infected:
-            router?.route(to: Routes.positiveExposed, from: self, parameters: info.since)
+            router.route(to: Routes.positiveExposed, from: self, parameters: info)
         }
     }
     
@@ -463,7 +533,7 @@ class HomeViewController: BaseViewController {
     }
     
     @objc private func heplerQAChangeHealthy() {
-        self.viewModel?.heplerQAChangeHealthy()
+        self.viewModel.heplerQAChangeHealthy()
     }
     
     @objc private func heplerQAShowAlert() {

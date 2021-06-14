@@ -26,19 +26,13 @@ protocol LocalizationRepository {
     func getCurrentCA() -> CaData?
 }
 
-class UserDefaultsLocalizationRepository: LocalizationRepository {
+class UserDefaultsLocalizationRepository: UserDefaultsRepository, LocalizationRepository {
     
     private static let kLocale = "UserDefaultsLocalizationRepository.locale"
     private static let kLocales = "UserDefaultsLocalizationRepository.kLocales"
     private static let kTexts = "UserDefaultsLocalizationRepository.texts"
     private static let kCCAA = "UserDefaultsLocalizationRepository.kCCAA"
     private static let kCurrentCA = "UserDefaultsLocalizationRepository.kCurrentCa"
-    
-    private let userDefaults: UserDefaults
-    
-    init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
     
     func getLocale() -> String? {
         

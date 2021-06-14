@@ -12,35 +12,26 @@
 import Foundation
 
 protocol ExpositionInfoRepository {
-    func getExpositionInfo() -> ExpositionInfo?
-    func save(expositionInfo: ExpositionInfo)
+    func getExpositionInfo() -> ContactExpositionInfo?
+    func save(expositionInfo: ContactExpositionInfo)
     func isChangedToHealthy() -> Bool?
     func setChangedToHealthy(changed: Bool)
     func clearData()
 }
 
-class UserDefaultsExpositionInfoRepository: ExpositionInfoRepository {
+class UserDefaultsExpositionInfoRepository: UserDefaultsRepository, ExpositionInfoRepository {
 
     private static let kData = "UserDefaultsExpositionInfoRepository.expositionInfo"
     private static let kChanged = "UserDefaultsExpositionInfoRepository.changedToHealthy"
 
-    private let encoder = JSONEncoder()
-    private let decoder = JSONDecoder()
-
-    private let userDefaults: UserDefaults
-
-    init() {
-        userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier) ?? UserDefaults.standard
-    }
-
-    func getExpositionInfo() -> ExpositionInfo? {
+    func getExpositionInfo() -> ContactExpositionInfo? {
         if let uncoded = userDefaults.data(forKey: UserDefaultsExpositionInfoRepository.kData), !uncoded.isEmpty {
-            return try? decoder.decode(ExpositionInfo.self, from: uncoded)
+            return try? decoder.decode(ContactExpositionInfo.self, from: uncoded)
         }
         return nil
     }
 
-    func save(expositionInfo: ExpositionInfo) {
+    func save(expositionInfo: ContactExpositionInfo) {
         guard let encoded = try? encoder.encode(expositionInfo) else { return }
         userDefaults.set(encoded, forKey: UserDefaultsExpositionInfoRepository.kData)
     }

@@ -11,6 +11,7 @@
 
 import Foundation
 
+
 /** Application settings */
 
 public struct SettingsDto: Codable {
@@ -28,12 +29,17 @@ public struct SettingsDto: Codable {
     public var attenuationFactor: AttenuationFactorDto?
     public var applicationVersion: ApplicationVersionDto?
     public var timeBetweenStates: TimeBetweenStatesDto?
+    /** Legal terms version identifier */
     public var legalTermsVersion: String?
+    /** Radar COVID download link */
     public var radarCovidDownloadUrl: String?
+    /** Notification reminder interval */
     public var notificationReminder: Int64?
+    /** Time to elapse between KPI submission */
     public var timeBetweenKpi: Int64?
+    public var venueConfiguration: VenueConfigurationDto?
 
-    public init(responseDate: Int64?, exposureConfiguration: ExposureConfigurationDto?, minRiskScore: Int64?, minDurationForExposure: Int64?, riskScoreClassification: [RiskScoreClassificationDto]?, attenuationDurationThresholds: AttenuationDurationThresholdsDto?, attenuationFactor: AttenuationFactorDto?, applicationVersion: ApplicationVersionDto?, timeBetweenStates: TimeBetweenStatesDto?, legalTermsVersion: String?, radarCovidDownloadUrl: String?, notificationReminder: Int64?, timeBetweenKpi: Int64?) {
+    public init(responseDate: Int64? = nil, exposureConfiguration: ExposureConfigurationDto? = nil, minRiskScore: Int64? = nil, minDurationForExposure: Int64? = nil, riskScoreClassification: [RiskScoreClassificationDto]? = nil, attenuationDurationThresholds: AttenuationDurationThresholdsDto? = nil, attenuationFactor: AttenuationFactorDto? = nil, applicationVersion: ApplicationVersionDto? = nil, timeBetweenStates: TimeBetweenStatesDto? = nil, legalTermsVersion: String? = nil, radarCovidDownloadUrl: String? = nil, notificationReminder: Int64? = nil, timeBetweenKpi: Int64? = nil, venueConfiguration: VenueConfigurationDto? = nil) {
         self.responseDate = responseDate
         self.exposureConfiguration = exposureConfiguration
         self.minRiskScore = minRiskScore
@@ -47,7 +53,8 @@ public struct SettingsDto: Codable {
         self.radarCovidDownloadUrl = radarCovidDownloadUrl
         self.notificationReminder = notificationReminder
         self.timeBetweenKpi = timeBetweenKpi
-
+        self.venueConfiguration = venueConfiguration
     }
+
 
 }

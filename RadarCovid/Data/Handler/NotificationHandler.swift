@@ -12,8 +12,21 @@
 import Foundation
 import UserNotifications
 import RxSwift
+import Logging
 
-class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
+protocol NotificationHandler {
+    func setupNotifications() -> Observable<Bool>
+    func scheduleNotification(title: String, body: String, sound: UNNotificationSound)
+    func scheduleNotification(expositionInfo: ContactExpositionInfo)
+    func scheduleExposedEventNotification()
+    func scheduleCheckInReminderNotification()
+    func scheduleCheckOutAlert(hours: Int64)
+    func scheduleHealedNotification()
+}
+
+class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, NotificationHandler {
+    
+    private let logger = Logger(label: "NotificationHandlerImpl")
 
     private let formatter: DateFormatter = DateFormatter()
 
@@ -40,9 +53,10 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func scheduleNotification(title: String, body: String, sound: UNNotificationSound) {
-
+        logger.debug("Scheduling notificaiton: \(title). Body: \(body)")
         let center = UNUserNotificationCenter.current()
-
+        center.delegate = self
+        
         let content = UNMutableNotificationContent()
 
         content.title = title
@@ -55,7 +69,7 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
         center.add(request)
     }
 
-    func scheduleNotification(expositionInfo: ExpositionInfo) {
+    func scheduleNotification(expositionInfo: ContactExpositionInfo) {
         var title, body: String?
         var sound: UNNotificationSound?
         formatter.dateFormat = "dd.MM.YYYY"
@@ -74,11 +88,41 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
             scheduleNotification(title: title, body: body, sound: sound)
         }
     }
+    
+    func scheduleExposedEventNotification() {
 
+        self.scheduleNotification(title: "NOTIFICATION_TITLE_EXPOSURE_HIGH".localized,
+                             body: "VENUE_EXPOSURE_NOTIFICATION_BODY".localized,
+                             sound: .defaultCritical)
+
+    }
+    
+    func scheduleCheckInReminderNotification() {
+        scheduleNotification(title: "VENUE_RECORD_NOTIFICATION_REMINDER_TITLE".localized,
+                             body: "VENUE_RECORD_NOTIFICATION_REMINDER_BODY".localized,
+                             sound: .defaultCritical)
+    }
+    
+    func scheduleCheckOutAlert(hours: Int64) {
+        scheduleNotification(title: "NOTIFICATION_AUTO_CHECKOUT_TITLE".localized,
+                             body: "NOTIFICATION_AUTO_CHECKOUT_MESSAGE".localizedAttributed(
+                                withParams: [String(hours)]
+                             ).string,
+                             sound: .defaultCritical)
+    }
+    
+    func scheduleHealedNotification() {
+        scheduleNotification(title: "NOTIFICATION_TITLE_EXPOSURE_LOW".localized,
+                             body: "NOTIFICATION_MESSAGE_EXPOSURE_LOW_ACTIVATE_RADAR".localized,
+                             sound: .defaultCritical)
+    }
+
+    // Forground notifications.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // Forground notifications.
         completionHandler([.alert, .sound, .badge])
     }
+    
+
 
 }

@@ -15,7 +15,14 @@ import RxSwift
 import ExposureNotification
 import Logging
 
-class RadarStatusUseCase {
+protocol RadarStatusUseCase {
+    func isTracingActive() -> Bool
+    func changeTracingStatus(active: Bool) -> Observable<RadarStatus>
+    func restoreLastStateAndSync() -> Observable<RadarStatus>
+    func isTracingInit() -> Bool
+}
+
+class RadarStatusUseCaseImpl: RadarStatusUseCase {
     
     private let logger = Logger(label: "RadarStatusUseCase")
     

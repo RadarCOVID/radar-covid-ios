@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaseViewController" customModule="Radar_COVID" customModuleProvider="target">
+            <connections>
+                <outlet property="listButton" destination="FVg-JD-CGY" id="PI2-ch-qV9"/>
+                <outlet property="moreInfoLabel" destination="Nnb-WQ-Kb1" id="jN3-Mi-JSt"/>
+                <outlet property="scanButton" destination="aQi-YJ-1fb" id="imf-e6-DyC"/>
+                <outlet property="titleLabel" destination="xZf-mB-EUF" id="CQM-Rk-Mlx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="organicColor" translatesAutoresizingMaskIntoConstraints="NO" id="J7w-OL-P9F">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="155.5"/>
+                </imageView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SmP-EE-gfM">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgC-W0-UDl">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="684"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registro de lugares mediante QR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZf-mB-EUF">
+                                    <rect key="frame" x="16" y="130" width="343" height="95.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_HOME_TITLE"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="venueRecordHome" translatesAutoresizingMaskIntoConstraints="NO" id="GDw-E7-IfY">
+                                    <rect key="frame" x="46" y="259.5" width="243" height="172"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="172" id="NFQ-Z5-B4A"/>
+                                        <constraint firstAttribute="width" constant="243" id="RZ4-W3-NOh"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vs-gr-kLa">
+                                    <rect key="frame" x="16" y="441.5" width="343" height="193.5"/>
+                                    <string key="text">Registra los lugares que visitas capturando sus códigos QR.
+
+Recibe notificaciones en caso de coincidir con personas posteriormente diagnosticadas de COVID-19. 
+
+Tu privacidad está protegida en todo momento </string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_HOME_PARAGRAPH_1"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3c-vq-cRd">
+                                    <rect key="frame" x="16" y="652" width="343" height="27"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statsCursor" translatesAutoresizingMaskIntoConstraints="NO" id="PAB-vz-pCS">
+                                            <rect key="frame" x="0.0" y="7" width="13" height="13"/>
+                                            <color key="tintColor" red="0.4810534716" green="0.35028833149999999" blue="0.66210502390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="13" id="OuP-w8-G5R"/>
+                                                <constraint firstAttribute="height" constant="13" id="Uiu-Qu-ZVf"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Más información" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnb-WQ-Kb1">
+                                            <rect key="frame" x="26" y="0.0" width="317" height="27"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                            <color key="textColor" red="0.4810534716" green="0.35028833149999999" blue="0.66210502390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="VENUE_INFO_WEB_TITLE"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Nnb-WQ-Kb1" secondAttribute="bottom" id="H45-W9-FxP"/>
+                                        <constraint firstItem="PAB-vz-pCS" firstAttribute="centerY" secondItem="g3c-vq-cRd" secondAttribute="centerY" id="J8h-sb-vMp"/>
+                                        <constraint firstItem="Nnb-WQ-Kb1" firstAttribute="top" secondItem="g3c-vq-cRd" secondAttribute="top" id="Xqh-y1-5MQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="Nnb-WQ-Kb1" secondAttribute="trailing" id="ZBx-uN-EPY"/>
+                                        <constraint firstItem="PAB-vz-pCS" firstAttribute="leading" secondItem="g3c-vq-cRd" secondAttribute="leading" id="ogV-X7-q2Q"/>
+                                        <constraint firstItem="Nnb-WQ-Kb1" firstAttribute="leading" secondItem="PAB-vz-pCS" secondAttribute="trailing" constant="13" id="vnN-Rd-4p9"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="g3c-vq-cRd" secondAttribute="bottom" constant="5" id="8Ed-CX-dhi"/>
+                                <constraint firstItem="xZf-mB-EUF" firstAttribute="leading" secondItem="kgC-W0-UDl" secondAttribute="leading" constant="16" id="8qo-88-zTx"/>
+                                <constraint firstItem="8Vs-gr-kLa" firstAttribute="leading" secondItem="kgC-W0-UDl" secondAttribute="leading" constant="16" id="9nk-Wl-9fN"/>
+                                <constraint firstItem="8Vs-gr-kLa" firstAttribute="bottom" secondItem="g3c-vq-cRd" secondAttribute="top" constant="-17" id="DIT-X4-plB"/>
+                                <constraint firstAttribute="trailing" secondItem="8Vs-gr-kLa" secondAttribute="trailing" constant="16" id="Ltg-SR-PSk"/>
+                                <constraint firstItem="8Vs-gr-kLa" firstAttribute="top" secondItem="GDw-E7-IfY" secondAttribute="bottom" constant="10" id="Rn8-mB-BQ1"/>
+                                <constraint firstItem="GDw-E7-IfY" firstAttribute="centerX" secondItem="kgC-W0-UDl" secondAttribute="centerX" constant="-20" id="WA3-kC-DJj"/>
+                                <constraint firstItem="xZf-mB-EUF" firstAttribute="bottom" secondItem="GDw-E7-IfY" secondAttribute="top" constant="-34" id="cbY-i7-NOf"/>
+                                <constraint firstItem="g3c-vq-cRd" firstAttribute="leading" secondItem="kgC-W0-UDl" secondAttribute="leading" constant="16" id="cvq-8J-ANk"/>
+                                <constraint firstAttribute="trailing" secondItem="xZf-mB-EUF" secondAttribute="trailing" constant="16" id="hNm-u5-SHg"/>
+                                <constraint firstItem="xZf-mB-EUF" firstAttribute="top" secondItem="kgC-W0-UDl" secondAttribute="top" constant="130" id="j16-BS-huv"/>
+                                <constraint firstAttribute="trailing" secondItem="g3c-vq-cRd" secondAttribute="trailing" constant="16" id="yaA-tf-lNb"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="kgC-W0-UDl" firstAttribute="trailing" secondItem="QGx-KM-lDh" secondAttribute="trailing" id="BVU-F4-oRS"/>
+                        <constraint firstItem="kgC-W0-UDl" firstAttribute="bottom" secondItem="QGx-KM-lDh" secondAttribute="bottom" id="J1D-kH-dxG"/>
+                        <constraint firstItem="kgC-W0-UDl" firstAttribute="leading" secondItem="QGx-KM-lDh" secondAttribute="leading" id="VYh-Ko-iMB"/>
+                        <constraint firstItem="kgC-W0-UDl" firstAttribute="top" secondItem="QGx-KM-lDh" secondAttribute="top" id="VuG-RJ-kaZ"/>
+                        <constraint firstItem="t1k-9x-Rtk" firstAttribute="width" secondItem="kgC-W0-UDl" secondAttribute="width" id="X3L-bC-7j2"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="QGx-KM-lDh"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="t1k-9x-Rtk"/>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQi-YJ-1fb" userLabel="Accept Button">
+                    <rect key="frame" x="16" y="591" width="273" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="ZaM-kH-egq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="Capturar Código QR" backgroundImage="buttonsPrimary">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onScanTap:" destination="-1" eventType="touchUpInside" id="w2g-xf-pbT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVg-JD-CGY" userLabel="ListButton">
+                    <rect key="frame" x="299" y="591" width="60" height="60"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="WAB-o6-zfr"/>
+                        <constraint firstAttribute="height" constant="60" id="f9y-Lf-HaZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" image="placeRecord">
+                        <color key="titleColor" name="twilight"/>
+                    </state>
+                    <state key="disabled" backgroundImage="ButtonPrimaryDisabled">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onVenueListTap:" destination="-1" eventType="primaryActionTriggered" id="3PD-By-E88"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="veryLightPink"/>
+            <constraints>
+                <constraint firstItem="SmP-EE-gfM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6qE-Cm-eYc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SmP-EE-gfM" secondAttribute="trailing" id="Bvb-9b-30d"/>
+                <constraint firstItem="aQi-YJ-1fb" firstAttribute="top" secondItem="SmP-EE-gfM" secondAttribute="bottom" constant="10" id="Cad-mn-HmJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J7w-OL-P9F" secondAttribute="trailing" id="JDt-Zk-b9X"/>
+                <constraint firstItem="SmP-EE-gfM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="No8-mh-uDL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="aQi-YJ-1fb" secondAttribute="bottom" constant="16" id="Spe-mR-JXA"/>
+                <constraint firstItem="aQi-YJ-1fb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="g0N-V4-Ufv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FVg-JD-CGY" secondAttribute="bottom" constant="16" id="hSJ-XV-Ej7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FVg-JD-CGY" secondAttribute="trailing" constant="16" id="s1w-Q1-oFF"/>
+                <constraint firstItem="J7w-OL-P9F" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sl7-jh-jRn"/>
+                <constraint firstItem="FVg-JD-CGY" firstAttribute="leading" secondItem="aQi-YJ-1fb" secondAttribute="trailing" constant="10" id="tRA-p8-237"/>
+                <constraint firstItem="J7w-OL-P9F" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xO7-UW-6Cl"/>
+            </constraints>
+            <point key="canvasLocation" x="-145" y="106"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonPrimaryDisabled" width="341" height="60"/>
+        <image name="buttonsPrimary" width="341" height="60"/>
+        <image name="organicColor" width="375" height="155.5"/>
+        <image name="placeRecord" width="38" height="35.5"/>
+        <image name="statsCursor" width="15" height="15"/>
+        <image name="venueRecordHome" width="242.5" height="172"/>
+        <namedColor name="twilight">
+            <color red="0.43900001049041748" green="0.31400001049041748" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightPink">
+            <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
