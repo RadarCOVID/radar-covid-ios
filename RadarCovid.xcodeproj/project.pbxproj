@@ -99,6 +99,7 @@
 		6D90E9A3263182A80073F401 /* oldradarcovidpre.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6D90E9A1263182A70073F401 /* oldradarcovidpre.covid19.gob.es.cer */; };
 		6D90E9BB263AB9DC0073F401 /* debug-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D90E9BA263AB9DC0073F401 /* debug-Info.plist */; };
 		6D90E9D8264545F20073F401 /* newradarcovid.covid19.gob.es.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6D90E9D7264545F20073F401 /* newradarcovid.covid19.gob.es.cer */; };
+		6D90E9FA265E592D0073F401 /* ExposureRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D90E9F9265E592B0073F401 /* ExposureRecordRepository.swift */; };
 		6D9154BF25E52A2E007965F4 /* VenueRecordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9154BE25E52A2E007965F4 /* VenueRecordUseCase.swift */; };
 		6D9154C625E543CD007965F4 /* CheckedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9154C425E543CD007965F4 /* CheckedInViewController.swift */; };
 		6D9154C725E543CD007965F4 /* CheckedInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D9154C525E543CD007965F4 /* CheckedInViewController.xib */; };
@@ -420,6 +421,7 @@
 		6D90E9A1263182A70073F401 /* oldradarcovidpre.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = oldradarcovidpre.covid19.gob.es.cer; sourceTree = "<group>"; };
 		6D90E9BA263AB9DC0073F401 /* debug-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "debug-Info.plist"; sourceTree = "<group>"; };
 		6D90E9D7264545F20073F401 /* newradarcovid.covid19.gob.es.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = newradarcovid.covid19.gob.es.cer; sourceTree = "<group>"; };
+		6D90E9F9265E592B0073F401 /* ExposureRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureRecordRepository.swift; sourceTree = "<group>"; };
 		6D9154BE25E52A2E007965F4 /* VenueRecordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRecordUseCase.swift; sourceTree = "<group>"; };
 		6D9154C425E543CD007965F4 /* CheckedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedInViewController.swift; sourceTree = "<group>"; };
 		6D9154C525E543CD007965F4 /* CheckedInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckedInViewController.xib; sourceTree = "<group>"; };
@@ -1216,6 +1218,7 @@
 				6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */,
 				6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */,
 				6D6D344525FB7734001B2071 /* QrCheckRepository.swift */,
+				6D90E9F9265E592B0073F401 /* ExposureRecordRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -2062,6 +2065,7 @@
 				6DE27C77249A6D4600BBCF40 /* JSONValue.swift in Sources */,
 				6D4FEC7C25E5134F00AAD131 /* QrScannerViewController.swift in Sources */,
 				6DAF6EE325F7872500387F5C /* VenueExpositionInfo.swift in Sources */,
+				6D90E9FA265E592D0073F401 /* ExposureRecordRepository.swift in Sources */,
 				6D97C4A325C01CB600102200 /* AppleKpiTokenDto.swift in Sources */,
 				6D01BDD924F6719000FBADB4 /* PickerPresenter.swift in Sources */,
 				6D91552625ED6837007965F4 /* QrErrorViewController.swift in Sources */,

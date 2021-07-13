@@ -17,8 +17,9 @@ import DP3TSDK
 
 class InformationViewModel {
     
-    var radarStatusUseCase: RadarStatusUseCase?
-    var expositionUseCase: ExpositionUseCase?
+    private var radarStatusUseCase: RadarStatusUseCase!
+    private var expositionUseCase: ExpositionUseCase!
+    private var exposureRecordRepository: ExposureRecordRepository!
     
     var appInformation = BehaviorSubject<AppInformation>(value: AppInformation())
     var strBuildShareMessage: String?
@@ -26,9 +27,12 @@ class InformationViewModel {
     private var disposeBag = DisposeBag()
     
     init(radarStatusUseCase: RadarStatusUseCase,
-         expositionUseCase: ExpositionUseCase) {
+         expositionUseCase: ExpositionUseCase,
+         exposureRecordRepository: ExposureRecordRepository) {
+        
         self.radarStatusUseCase = radarStatusUseCase
         self.expositionUseCase = expositionUseCase
+        self.exposureRecordRepository = exposureRecordRepository
         
         self.appInformation
             .subscribe(onNext: { [weak self] (value) in
@@ -48,7 +52,7 @@ class InformationViewModel {
         appInformation.onNext(aInformation)
         
         //Get last exposition
-        expositionUseCase?.getExpositionInfo()
+        expositionUseCase.getExpositionInfo()
             .subscribe(
                 onNext: { [weak self] exposition in
                     guard let weakSelf = self else {
@@ -87,6 +91,10 @@ class InformationViewModel {
         return stringDate
     }
     
+    func getExposureRecordDates() -> [Date?] {
+        exposureRecordRepository.getExposureRecords().map { $0.since }
+    }
+    
     private func getStatusNotification() {
         let status = ENManager.authorizationStatus
         
@@ -108,7 +116,7 @@ class InformationViewModel {
     
     private func getStatusRadar() {
         let radarStatus = radarStatusUseCase?.isTracingActive() ?? false
-        radarStatusUseCase?.changeTracingStatus(active: radarStatus).subscribe(
+        radarStatusUseCase.changeTracingStatus(active: radarStatus).subscribe(
             onNext: { [weak self] status in
                 guard var information = try? self?.appInformation.value() else {
                     return
