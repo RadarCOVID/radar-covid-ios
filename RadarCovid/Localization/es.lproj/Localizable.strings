@@ -476,3 +476,6 @@
 "ACC_SECONDS"="segundos";
 "NOTIFICATION_AUTO_CHECKOUT_TITLE"="Registro de visita a establecimiento finalizado";
 "NOTIFICATION_AUTO_CHECKOUT_MESSAGE"="Se ha finalizado automáticamente tras más de %@ horas sin confirmar la salida";
+"EXPOSURE_RECORD_TITLE"="Fechas de alta exposición";
+"EXPOSURE_RECORD_BUTTON_TITLE"="Registro de fechas de exposición";
+"EXPOSURE_RECORDS_NO_DATA"="No se ha registrado alta exposición";
