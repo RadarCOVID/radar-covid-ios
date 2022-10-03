@@ -69,10 +69,6 @@ class HomeViewController: BaseViewController {
         setupUserInteraction()
         setupView()
         
-        if !termsRepository.termsAccepted {
-            router.route(to: .termsUpdated, from: self, parameters: nil)
-        }
-        
     }
     
     

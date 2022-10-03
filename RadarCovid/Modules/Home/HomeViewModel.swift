@@ -50,7 +50,6 @@ class HomeViewModel {
     func changeRadarStatus(_ active: Bool) {
         radarStatusUseCase.changeTracingStatus(active: active).subscribe(
             onNext: { [weak self] status in
-                self?.radarStatus.onNext(status)
                 self?.isErrorTracingDP3T.onNext(false)
             }, onError: {  [weak self] error in
                 self?.error.onNext(error)
@@ -65,32 +64,11 @@ class HomeViewModel {
     
     func checkInitial() {
         checkRadarStatus()
-        checkInitialExposition()
         reminderNotificationUseCase.cancel()
-        (UIApplication.shared.delegate as? AppDelegate)?.bluethoothUseCase?.initListener()
     }
     
     func checkRadarStatus() {
         changeRadarStatus(false)
-    }
-    
-    private func checkInitialExposition() {
-        
-        logger.debug("Showing Home")
-        
-        expositionUseCase.updateExpositionInfo()
-        
-        expositionUseCase.getExpositionInfo()
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-            onNext: { [weak self] exposition in
-                self?.logger.debug("Showing Exposition Info. Contact: \(exposition.contact.level) Venue: \(exposition.venue.level)" )
-                self?.checkExpositionLevel(exposition.contact)
-                self?.venueExpositionInfo.onNext(exposition.venue)
-                self?.showAndHideVenueAndContacExpositionLevel(exposition)
-            }, onError: { [weak self] error in
-                self?.error.onNext(error)
-            }).disposed(by: disposeBag)
     }
     
     private func showAndHideVenueAndContacExpositionLevel(_ expositionInfo: ExpositionInfo) {

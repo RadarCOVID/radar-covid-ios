@@ -84,9 +84,9 @@ class AppRouter: Router {
                 routeToRoot(context, routeStack: nil)
             }
         case .welcome:
-            routeToWelcome(context)
+            routeToHome(context, parameters)
         case .onBoarding:
-            routeToOnboarding(context)
+            routeToHome(context, parameters)
         case .home:
             routeToHome(context, parameters)
         case .proximity:
@@ -126,7 +126,7 @@ class AppRouter: Router {
         case .timeExposed:
             routeToTimeExposed(context)
         case .termsUpdated:
-            routeToTermsUpdated(context)
+            routeToHome(context, parameters)
         case .detailInteroperability:
             routeToDetailInteroperability(context)
         case .infoApp:
