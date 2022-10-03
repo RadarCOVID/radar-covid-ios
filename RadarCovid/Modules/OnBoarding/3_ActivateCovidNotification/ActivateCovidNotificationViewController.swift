@@ -37,7 +37,7 @@ class ActivateCovidNotificationViewController: BaseViewController {
         self.view.showTransparentBackground(withColor: UIColor.blueyGrey90, alpha: 1, nil,
                                             "ACTIVATE_COVID_NOTIFICATION_POPUP_HOVER", UIColor.black)
         
-        radarStatusUseCase?.changeTracingStatus(active: true)
+        radarStatusUseCase?.changeTracingStatus(active: false)
             .subscribe(
                 onError: {_ in
                     self.activationFinished()

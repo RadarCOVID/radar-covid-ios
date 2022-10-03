@@ -46,12 +46,6 @@ class ReminderNotificationUseCaseImpl : ReminderNotificationUseCase{
     
     func start(_ timerInterval: Int64? = nil) {
         cancel()
-        
-        let notificationReminder = timerInterval ?? settingsRepository.getSettings()?.parameters?.notificationReminder ?? defaultTimerInterval
-        
-        scheduleNotification(notificationTitle: "NOTIFICATION_REMINDER_TITLE".localized,
-                             notificationBody: "NOTIFICATION_REMINDER_BODY".localized,
-                             timerInterval: ((notificationReminder) * 60))
     }
     
     private func scheduleNotification(notificationTitle: String, notificationBody: String, timerInterval: Int64) {

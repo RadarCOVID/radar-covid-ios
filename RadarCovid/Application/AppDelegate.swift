@@ -33,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return AppDelegate.shared?.injection.resolve(AppRouter.self)!
     }()
     
+    private lazy var notificationHandler: NotificationHandler? = {
+        return AppDelegate.shared?.injection.resolve(NotificationHandler.self)!
+    }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if Config.activateLog {
@@ -54,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 logger.error("Error initializing DP3T \(error)")
             }
         }
+        
+        notificationHandler?.scheduleRemovalNotification()
         
         UIApplication.shared.applicationIconBadgeNumber = 0
             //Loading initial screen, only execut iOS 12.5

@@ -84,9 +84,9 @@ class AppRouter: Router {
                 routeToRoot(context, routeStack: nil)
             }
         case .welcome:
-            routeToWelcome(context)
+            routeToHome(context, parameters, true)
         case .onBoarding:
-            routeToOnboarding(context)
+            routeToHome(context, parameters, true)
         case .home:
             routeToHome(context, parameters)
         case .proximity:
@@ -126,7 +126,7 @@ class AppRouter: Router {
         case .timeExposed:
             routeToTimeExposed(context)
         case .termsUpdated:
-            routeToTermsUpdated(context)
+            routeToHome(context, parameters, true)
         case .detailInteroperability:
             routeToDetailInteroperability(context)
         case .infoApp:
@@ -206,12 +206,8 @@ class AppRouter: Router {
         loadViewAsRoot(navController: context.navigationController, view: unsupportedOSVC!)
     }
 
-    private func routeToHome(_ context: UIViewController, _ parameters: [Any?]?) {
+    private func routeToHome(_ context: UIViewController, _ parameters: [Any?]?, _ isFirstTime: Bool = false) {
         let tabBarController = AppDelegate.shared?.injection.resolve(TabBarController.self)!
-        if let param = parameters, param.count > 0 {
-            tabBarController!.selectTabType = param.first as? UIViewController.Type
-        }
-
         loadViewAsRoot(navController: context.navigationController, view: tabBarController!)
     }
 

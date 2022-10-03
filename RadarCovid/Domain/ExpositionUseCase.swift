@@ -32,6 +32,8 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
     private let expositionInfoRepository: ExpositionInfoRepository
     private let notificationHandler: NotificationHandler
     private let venueExpositionUseCase: VenueExpositionUseCase
+    private let exposureRecordRepository: ExposureRecordRepository
+    
     private static let lastSyncKey = "ExpositionUseCase.lastSync"
     
     public var lastSync: Date? {
@@ -48,12 +50,14 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
 
     init(notificationHandler: NotificationHandler,
          expositionInfoRepository: ExpositionInfoRepository,
-         venueExpositionUseCase: VenueExpositionUseCase) {
+         venueExpositionUseCase: VenueExpositionUseCase,
+         exposureRecordRepository: ExposureRecordRepository) {
         
 
         self.notificationHandler = notificationHandler
         self.expositionInfoRepository = expositionInfoRepository
         self.venueExpositionUseCase = venueExpositionUseCase
+        self.exposureRecordRepository = exposureRecordRepository
         
         self.subject = BehaviorSubject<ContactExpositionInfo>(
             value: expositionInfoRepository.getExpositionInfo() ?? ContactExpositionInfo(level: .healthy)
@@ -75,6 +79,7 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
         }
         
         if showNotification(localEI, expositionInfo) {
+            exposureRecordRepository.addExposure(exposureInfo: expositionInfo)
             notificationHandler.scheduleNotification(expositionInfo: expositionInfo)
         } else {
             logger.debug("Discarding Notification")
@@ -92,7 +97,7 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
 
     func getExpositionInfo() -> Observable<ExpositionInfo> {
         .zip(subject.asObservable() , venueExpositionUseCase.expositionInfo, resultSelector: { cei, vei in
-                ExpositionInfo(contact: cei, venue: vei)
+            ExpositionInfo(contact: ContactExpositionInfo.init(level: Level.exposed), venue: vei)
         })
     }
 
