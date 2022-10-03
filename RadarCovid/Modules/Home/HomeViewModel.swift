@@ -60,12 +60,7 @@ class HomeViewModel {
     }
     
     func checkProblematicEvents() {
-        problematicEventsUseCase.sync().subscribe(
-            onNext: { _ in
-                debugPrint("Problematics events sync successful")
-            }, onError: { error in
-                debugPrint("Problematics events sync error: \(error)")
-            }).disposed(by: disposeBag)
+
     }
     
     func checkInitial() {
@@ -76,7 +71,7 @@ class HomeViewModel {
     }
     
     func checkRadarStatus() {
-        changeRadarStatus(radarStatusUseCase.isTracingActive())
+        changeRadarStatus(false)
     }
     
     private func checkInitialExposition() {

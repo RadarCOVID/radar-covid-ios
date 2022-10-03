@@ -73,8 +73,6 @@ class HomeViewController: BaseViewController {
             router.route(to: .termsUpdated, from: self, parameters: nil)
         }
         
-        viewModel.checkProblematicEvents()
-        
     }
     
     
@@ -97,6 +95,11 @@ class HomeViewController: BaseViewController {
         viewModel.checkInitial()
         viewModel.checkShowBackToHealthyDialog()
         viewModel.checkRadarStatus()
+        showAlertOk(
+            title: "NOTIFICATION_TITLE_REMOVAL".localized,
+            message: "NOTIFICATION_MESSAGE_REMOVAL".localized,
+            buttonTitle: "ALERT_ACCEPT_BUTTON".localized
+        )
     }
     
     @objc func applicationDidBecomeActive() {
@@ -175,15 +178,11 @@ class HomeViewController: BaseViewController {
     }
     
     @objc func onExpositionTap() {
-        if let info = getExpositionInfo() {
-            navigateToDetail(info)
-        }
+
     }
     
     @objc func onVenueExpositionTap() {
-        let isContact = false
-        router.route(to: Routes.highExposition, from: self, parameters: getExpositionInfo(), isContact)
-    
+
     }
     
     private func getExpositionInfo() -> ExpositionInfo? {
@@ -340,14 +339,7 @@ class HomeViewController: BaseViewController {
         guard let exposition = exposition else {
             return
         }
-        switch exposition.level {
-        case .exposed:
-            setExposed(since: exposition.since ?? Date())
-        case .healthy:
-            setHealthy()
-        case .infected:
-            setInfected()
-        }
+        setHealthy()
     }
     
     private func updateVenueExpositionInfo(_ exposition: VenueExpositionInfo?) {

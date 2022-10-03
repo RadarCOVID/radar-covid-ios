@@ -54,7 +54,7 @@ class SetupUseCase: LoggingDelegate, ActivityDelegate, DP3TBackgroundHandler {
                                            bucketBaseUrl: url,
                                            reportBaseUrl: url,
                                            jwtPublicKey: Config.dp3tValidationKey,
-                                           mode: Config.dp3tMode), backgroundHandler: self)
+                                           mode: Config.dp3tMode), backgroundHandler: nil)
         
         DP3TTracing.delegate = (expositionUseCase as! DP3TTracingDelegate)
         

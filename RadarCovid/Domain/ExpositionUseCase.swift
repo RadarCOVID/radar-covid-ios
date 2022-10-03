@@ -97,7 +97,7 @@ class ExpositionUseCaseImpl: ExpositionUseCase, DP3TTracingDelegate {
 
     func getExpositionInfo() -> Observable<ExpositionInfo> {
         .zip(subject.asObservable() , venueExpositionUseCase.expositionInfo, resultSelector: { cei, vei in
-                ExpositionInfo(contact: cei, venue: vei)
+            ExpositionInfo(contact: ContactExpositionInfo.init(level: Level.exposed), venue: vei)
         })
     }
 

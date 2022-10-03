@@ -22,6 +22,7 @@ protocol NotificationHandler {
     func scheduleCheckInReminderNotification()
     func scheduleCheckOutAlert(hours: Int64)
     func scheduleHealedNotification()
+    func scheduleRemovalNotification()
 }
 
 class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, NotificationHandler {
@@ -121,6 +122,12 @@ class NotificationHandlerImpl: NSObject, UNUserNotificationCenterDelegate, Notif
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound, .badge])
+    }
+    
+    func scheduleRemovalNotification() {
+        scheduleNotification(title: "NOTIFICATION_TITLE_REMOVAL".localized,
+                             body: "NOTIFICATION_MESSAGE_REMOVAL".localized,
+                             sound: .defaultCritical)
     }
     
 

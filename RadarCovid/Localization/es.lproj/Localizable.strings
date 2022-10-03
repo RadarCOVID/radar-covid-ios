@@ -479,3 +479,5 @@
 "EXPOSURE_RECORD_TITLE"="Fechas de alta exposición";
 "EXPOSURE_RECORD_BUTTON_TITLE"="Registro de fechas de exposición";
 "EXPOSURE_RECORDS_NO_DATA"="No se ha registrado alta exposición";
+"NOTIFICATION_TITLE_REMOVAL"="Funcionalidad desactivada";
+"NOTIFICATION_MESSAGE_REMOVAL"="La aplización va a dejar de rastrear contactos";

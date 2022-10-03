@@ -74,7 +74,7 @@ class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAccessibility()
-        setViewControllers([homeViewController, myDataViewController, helpLineViewController, statsViewController, settingViewController], animated: false)
+        setViewControllers([homeViewController], animated: false)
 
         select(tabType: selectTabType)
         

@@ -41,32 +41,16 @@ class RadarStatusUseCaseImpl: RadarStatusUseCase {
     
     func changeTracingStatus(active: Bool) -> Observable<RadarStatus> {
         .create { [weak self] observer in
-            if active {
-                DP3TTracing.startTracing { result in
-                    switch result {
-                    case .success():
-                        self?.preferencesRepository.setTracing(active: active)
-                        observer.onNext(.active)
-                        observer.onCompleted()
-                    case .failure(let error):
-                        self?.handle(error: error, observer: observer)
-                        observer.onCompleted()
-                    }
+            DP3TTracing.stopTracing { result in
+                switch result {
+                case .success():
+                    self?.preferencesRepository.setTracing(active: false)
+                    observer.onNext(.inactive)
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError("Error stopping tracing. : \(error)")
+                    observer.onCompleted()
                 }
-                
-            } else {
-                DP3TTracing.stopTracing { result in
-                    switch result {
-                    case .success():
-                        self?.preferencesRepository.setTracing(active: active)
-                        observer.onNext(.inactive)
-                        observer.onCompleted()
-                    case .failure(let error):
-                        observer.onError("Error stopping tracing. : \(error)")
-                        observer.onCompleted()
-                    }
-                }
-                
             }
             return Disposables.create()
         }
