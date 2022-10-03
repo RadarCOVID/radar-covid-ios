@@ -417,5 +417,7 @@
 "TEST_KEY" = "<b>Your diagnosis helps us to protect others.</b><br>Without revealing your identity at any time, we have reported your diagnosis to mobiles that have been near you in recent days and we will send them an alert for their safety.";
 "THANKS" = "<b>Merci de nous aider à prendre soin de vous et des autres.</b>";
 "USE_CONDITIONS_URL" = "https://radarcovid.gob.es/fr/conditions-d-utilisation";
+"NOTIFICATION_TITLE_REMOVAL"="Aplicación no activa";
+"NOTIFICATION_MESSAGE_REMOVAL"="Radar COVID finalizó su actividad el 9/10/2022. A partir de esa fecha, sus funcionalidades dejaron de estar operativas.";
 
 

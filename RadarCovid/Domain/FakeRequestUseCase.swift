@@ -88,32 +88,11 @@ class FakeRequestUseCaseImpl: DiagnosisCodeUseCase, FakeRequestUseCase {
 extension FakeRequestUseCaseImpl: FakeRequestBackgroundTask {
     
     func initBackgroundTask() {
-        
-        BGTaskScheduler.shared.register(
-            forTaskWithIdentifier: keyIdentifierFakeRequestFetch,
-            using: nil
-        ) { [weak self] (task) in
-            self?.sendFalsePositive(task: task)
-                .subscribe(onNext: { success in
-                    self?.scheduleBackgroundTask()
-                    task.setTaskCompleted(success: success)
-                }).disposed(by: self?.disposeBag ?? DisposeBag())
-            
-        }
-        
-        self.scheduleBackgroundTask()
+        BGTaskScheduler.shared.cancelAllTaskRequests()
     }
     
     public func scheduleBackgroundTask() {
         
-        let fakeRequestTask = BGAppRefreshTaskRequest(identifier: keyIdentifierFakeRequestFetch)
-        fakeRequestTask.earliestBeginDate = self.fakeRequestRepository.getNextScheduledFakeRequestDate()
-        
-        do {
-            try BGTaskScheduler.shared.submit(fakeRequestTask)
-        } catch {
-            debugPrint("Unable to submit task: \(error.localizedDescription)")
-        }
     }
     
     private func sendFalsePositive(task: BGTask? = nil) -> Observable<Bool> {

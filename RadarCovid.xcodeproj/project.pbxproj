@@ -23,6 +23,7 @@
 		6D076FD425DFCC66001A8C44 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */; };
 		6D077AB925E046C3001A8C44 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D077AB825E046C3001A8C44 /* HomeViewModelTests.swift */; };
 		6D1385C825D4407B000E5461 /* BackgroundTasksUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1385C725D4407B000E5461 /* BackgroundTasksUseCase.swift */; };
+		6D19143528EB250C00DBFC5A /* IsNewRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D19143428EB250C00DBFC5A /* IsNewRepository.swift */; };
 		6D1E3E99265FEA60002C6126 /* MyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E3E98265FEA60002C6126 /* MyDataViewController.swift */; };
 		6D1E3E9D265FEA90002C6126 /* MyData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E3E9C265FEA90002C6126 /* MyData.storyboard */; };
 		6D2725DB24D3369200F014C7 /* LocalesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */; };
@@ -342,6 +343,7 @@
 		6D076FD325DFCC66001A8C44 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		6D077AB825E046C3001A8C44 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		6D1385C725D4407B000E5461 /* BackgroundTasksUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTasksUseCase.swift; sourceTree = "<group>"; };
+		6D19143428EB250C00DBFC5A /* IsNewRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsNewRepository.swift; sourceTree = "<group>"; };
 		6D1E3E98265FEA60002C6126 /* MyDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataViewController.swift; sourceTree = "<group>"; };
 		6D1E3E9C265FEA90002C6126 /* MyData.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyData.storyboard; sourceTree = "<group>"; };
 		6D2725DA24D3369200F014C7 /* LocalesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalesUseCase.swift; sourceTree = "<group>"; };
@@ -1219,6 +1221,7 @@
 				6D91552025ED02FE007965F4 /* KeyStoreRepository.swift */,
 				6D6D344525FB7734001B2071 /* QrCheckRepository.swift */,
 				6D90E9F9265E592B0073F401 /* ExposureRecordRepository.swift */,
+				6D19143428EB250C00DBFC5A /* IsNewRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -2010,6 +2013,7 @@
 				6DAF6EA925EFB59100387F5C /* TimeInterval+Extension.swift in Sources */,
 				6D6D344625FB7734001B2071 /* QrCheckRepository.swift in Sources */,
 				A9EDAF0E25767CC60041AE1E /* BaseExposedViewController.swift in Sources */,
+				6D19143528EB250C00DBFC5A /* IsNewRepository.swift in Sources */,
 				6DB5418E24989C2500166D37 /* SettingsAPI.swift in Sources */,
 				6D91552125ED02FE007965F4 /* KeyStoreRepository.swift in Sources */,
 				A9D38D68256D1DB300C2F671 /* ShareUseCase.swift in Sources */,
@@ -2303,7 +2307,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/debug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 281;
+				CURRENT_PROJECT_VERSION = 290;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = "RadarCovid/Supporting/debug-Info.plist";
@@ -2312,8 +2316,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
-				"OTHER_LDFLAGS[arch=*]" = "-lstdc++";
+				MARKETING_VERSION = 1.5.0;
+				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
 				PROVISIONING_PROFILE_SPECIFIER = RadarCovidDevelopmentExposure;
@@ -2330,7 +2334,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 281;
+				CURRENT_PROJECT_VERSION = 290;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = RadarCovid/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
@@ -2338,7 +2342,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5.0;
 				"OTHER_LDFLAGS[arch=*]" = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
@@ -2707,7 +2711,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/release.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 281;
+				CURRENT_PROJECT_VERSION = 290;
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = "RadarCovid/Supporting/debug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.5;
@@ -2715,7 +2719,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5.0;
 				"OTHER_LDFLAGS[arch=*]" = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";
@@ -2796,7 +2800,7 @@
 				CODE_SIGN_ENTITLEMENTS = RadarCovid/Supporting/debug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 281;
+				CURRENT_PROJECT_VERSION = 290;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2H36E8KFN2;
 				INFOPLIST_FILE = "RadarCovid/Supporting/debug-Info.plist";
@@ -2805,7 +2809,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5.0;
 				"OTHER_LDFLAGS[arch=*]" = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = es.gob.radarcovid;
 				PRODUCT_NAME = "Radar COVID";

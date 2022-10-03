@@ -58,6 +58,8 @@ class HomeViewController: BaseViewController {
     var errorHandler: ErrorHandler!
     var router: AppRouter!
     var viewModel: HomeViewModel!
+    
+    var isFirstTime: Bool = false
 
     private let disposeBag = DisposeBag()
     
@@ -69,24 +71,21 @@ class HomeViewController: BaseViewController {
         setupUserInteraction()
         setupView()
         
-        if !termsRepository.termsAccepted {
-            router.route(to: .termsUpdated, from: self, parameters: nil)
-        }
-        
-        viewModel.checkProblematicEvents()
-        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self,
-            selector: #selector(applicationDidBecomeActive),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil)
+        showAlertOk(
+            title: "NOTIFICATION_TITLE_REMOVAL".localized,
+            message: "NOTIFICATION_MESSAGE_REMOVAL".localized,
+            buttonTitle: "ALERT_ACCEPT_BUTTON".localized
+        )
+        if viewModel.isOnBoardingCompleted() {
+            checkState()
+        }
         
-        checkState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -98,11 +97,7 @@ class HomeViewController: BaseViewController {
         viewModel.checkShowBackToHealthyDialog()
         viewModel.checkRadarStatus()
     }
-    
-    @objc func applicationDidBecomeActive() {
-        checkState()
-    }
-    
+
     @IBAction func onShare(_ sender: Any) {
         router.route(to: .shareApp, from: self)
     }
@@ -175,15 +170,11 @@ class HomeViewController: BaseViewController {
     }
     
     @objc func onExpositionTap() {
-        if let info = getExpositionInfo() {
-            navigateToDetail(info)
-        }
+
     }
     
     @objc func onVenueExpositionTap() {
-        let isContact = false
-        router.route(to: Routes.highExposition, from: self, parameters: getExpositionInfo(), isContact)
-    
+
     }
     
     private func getExpositionInfo() -> ExpositionInfo? {
@@ -340,14 +331,7 @@ class HomeViewController: BaseViewController {
         guard let exposition = exposition else {
             return
         }
-        switch exposition.level {
-        case .exposed:
-            setExposed(since: exposition.since ?? Date())
-        case .healthy:
-            setHealthy()
-        case .infected:
-            setInfected()
-        }
+        setHealthy()
     }
     
     private func updateVenueExpositionInfo(_ exposition: VenueExpositionInfo?) {

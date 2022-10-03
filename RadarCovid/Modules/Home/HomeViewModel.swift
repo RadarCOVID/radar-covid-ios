@@ -31,7 +31,7 @@ class HomeViewModel {
     var settingsRepository: SettingsRepository!
     var problematicEventsUseCase: ProblematicEventsUseCase!
     
-    var radarStatus = BehaviorSubject<RadarStatus>(value: .active)
+    var radarStatus = BehaviorSubject<RadarStatus>(value: .disabled)
     var isErrorTracingDP3T = BehaviorSubject<Bool>(value: false)
     var checkState = BehaviorSubject<Bool>(value: false)
     var timeExposedDismissed = BehaviorSubject<Bool>(value: false)
@@ -50,8 +50,8 @@ class HomeViewModel {
     func changeRadarStatus(_ active: Bool) {
         radarStatusUseCase.changeTracingStatus(active: active).subscribe(
             onNext: { [weak self] status in
-                self?.radarStatus.onNext(status)
                 self?.isErrorTracingDP3T.onNext(false)
+                self?.radarStatus.onNext(.inactive)
             }, onError: {  [weak self] error in
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
@@ -60,42 +60,16 @@ class HomeViewModel {
     }
     
     func checkProblematicEvents() {
-        problematicEventsUseCase.sync().subscribe(
-            onNext: { _ in
-                debugPrint("Problematics events sync successful")
-            }, onError: { error in
-                debugPrint("Problematics events sync error: \(error)")
-            }).disposed(by: disposeBag)
+
     }
     
     func checkInitial() {
         checkRadarStatus()
-        checkInitialExposition()
         reminderNotificationUseCase.cancel()
-        (UIApplication.shared.delegate as? AppDelegate)?.bluethoothUseCase?.initListener()
     }
     
     func checkRadarStatus() {
-        changeRadarStatus(radarStatusUseCase.isTracingActive())
-    }
-    
-    private func checkInitialExposition() {
-        
-        logger.debug("Showing Home")
-        
-        expositionUseCase.updateExpositionInfo()
-        
-        expositionUseCase.getExpositionInfo()
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-            onNext: { [weak self] exposition in
-                self?.logger.debug("Showing Exposition Info. Contact: \(exposition.contact.level) Venue: \(exposition.venue.level)" )
-                self?.checkExpositionLevel(exposition.contact)
-                self?.venueExpositionInfo.onNext(exposition.venue)
-                self?.showAndHideVenueAndContacExpositionLevel(exposition)
-            }, onError: { [weak self] error in
-                self?.error.onNext(error)
-            }).disposed(by: disposeBag)
+        changeRadarStatus(false)
     }
     
     private func showAndHideVenueAndContacExpositionLevel(_ expositionInfo: ExpositionInfo) {
@@ -172,11 +146,14 @@ class HomeViewModel {
             checkState.onNext(false)
         } else {
             checkState.onNext(true)
-            onBoardingCompletedUseCase.setOnboarding(completed: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                 self?.checkState.onNext(false)
             }
         }
+    }
+    
+    func isOnBoardingCompleted() -> Bool {
+        onBoardingCompletedUseCase.isOnBoardingCompleted()
     }
     
     func checkShowBackToHealthyDialog() {

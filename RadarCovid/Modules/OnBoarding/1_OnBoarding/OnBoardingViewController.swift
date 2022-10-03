@@ -56,7 +56,7 @@ class OnBoardingViewController: BaseViewController {
 
     @IBAction func onOk(_ sender: Any) {
         termsRepository.termsAccepted = true
-        router?.route(to: Routes.proximity, from: self)
+        router?.route(to: Routes.home, from: self)
     }
     
     @objc func userDidTapAccept(tapGestureRecognizer: UITapGestureRecognizer) {

@@ -41,22 +41,7 @@ class BackgroundTasksUseCaseImpl: BackgroundTasksUseCase {
     
     
     func runTasks() -> Observable<Void> {
-        logger.debug("Running Background Tasks...")
-        return configurationUseCase.loadConfig()
-            .catchError { [weak self] error in
-                self?.logger.error("Error loading config \(error.localizedDescription)")
-                return .just(Settings())
-            }.flatMap { [weak self] _  -> Observable<Void> in
-            guard let self = self else { return .empty() }
-            return .zip(self.callBackToHealthy(),
-                        self.callSendAnalytics(),
-                        self.callFakeRequest()) { backToHealthy, analyticsSent, fakeSent in
-                 self.logger.debug("Analytics sent:\(analyticsSent)")
-                 self.logger.debug("Expostion Check, back to healthy \(backToHealthy)")
-                 self.logger.debug("Fake Sent: \(fakeSent)")
-                 return Void()
-            }
-        }
+        .empty()
     }
     
     private func callBackToHealthy() -> Observable<Bool> {

@@ -29,9 +29,9 @@ class ProximityViewController: BaseViewController {
     
     @IBAction func onContinue(_ sender: Any) {
         if radarStatusUseCase!.isTracingInit() {
-            router!.route(to: .activatePush, from: self)
+            router!.route(to: .home, from: self)
         } else {
-            router!.route(to: .activateCovid, from: self)
+            router!.route(to: .home, from: self)
         }
     }
     
