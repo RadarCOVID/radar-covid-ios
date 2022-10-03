@@ -184,19 +184,6 @@ class TabBarController: UITabBarController {
     
     private func loadBadges() {
         
-        logger.debug("Checking badges")
-        
-        venueRecodrUseCase.isCheckedIn().subscribe ( onNext: { [weak self] checked in
-            if checked {
-                self?.logger.debug("Showing checked in badge")
-                self?.venueRecordViewController.tabBarItem.badgeValue = ""
-                self?.venueRecordViewController.tabBarItem.accessibilityLabel = "ACC_VENUE_TITLE".localized + ". " + "VENUE_RECORD_CHECKIN_TITLE".localized
-            } else {
-                self?.logger.debug("NOT Showing checked in badge")
-                self?.venueRecordViewController.tabBarItem.badgeValue = nil
-                self?.venueRecordViewController.tabBarItem.accessibilityLabel = "ACC_VENUE_TITLE".localized
-            }
-        }).disposed(by: disposeBag)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

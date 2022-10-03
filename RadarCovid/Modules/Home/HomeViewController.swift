@@ -58,6 +58,8 @@ class HomeViewController: BaseViewController {
     var errorHandler: ErrorHandler!
     var router: AppRouter!
     var viewModel: HomeViewModel!
+    
+    var isFirstTime: Bool = false
 
     private let disposeBag = DisposeBag()
     
@@ -75,12 +77,15 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self,
-            selector: #selector(applicationDidBecomeActive),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil)
+        showAlertOk(
+            title: "NOTIFICATION_TITLE_REMOVAL".localized,
+            message: "NOTIFICATION_MESSAGE_REMOVAL".localized,
+            buttonTitle: "ALERT_ACCEPT_BUTTON".localized
+        )
+        if viewModel.isOnBoardingCompleted() {
+            checkState()
+        }
         
-        checkState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -91,17 +96,8 @@ class HomeViewController: BaseViewController {
         viewModel.checkInitial()
         viewModel.checkShowBackToHealthyDialog()
         viewModel.checkRadarStatus()
-        showAlertOk(
-            title: "NOTIFICATION_TITLE_REMOVAL".localized,
-            message: "NOTIFICATION_MESSAGE_REMOVAL".localized,
-            buttonTitle: "ALERT_ACCEPT_BUTTON".localized
-        )
     }
-    
-    @objc func applicationDidBecomeActive() {
-        checkState()
-    }
-    
+
     @IBAction func onShare(_ sender: Any) {
         router.route(to: .shareApp, from: self)
     }

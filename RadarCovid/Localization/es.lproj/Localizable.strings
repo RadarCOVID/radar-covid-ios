@@ -479,5 +479,5 @@
 "EXPOSURE_RECORD_TITLE"="Fechas de alta exposición";
 "EXPOSURE_RECORD_BUTTON_TITLE"="Registro de fechas de exposición";
 "EXPOSURE_RECORDS_NO_DATA"="No se ha registrado alta exposición";
-"NOTIFICATION_TITLE_REMOVAL"="Funcionalidad desactivada";
-"NOTIFICATION_MESSAGE_REMOVAL"="La aplicación va a dejar de rastrear contactos";
+"NOTIFICATION_TITLE_REMOVAL"="Aplicación no activa";
+"NOTIFICATION_MESSAGE_REMOVAL"="Radar COVID finalizó su actividad el 9/10/2022. A partir de esa fecha, sus funcionalidades dejaron de estar operativas.";

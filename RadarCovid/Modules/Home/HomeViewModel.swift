@@ -31,7 +31,7 @@ class HomeViewModel {
     var settingsRepository: SettingsRepository!
     var problematicEventsUseCase: ProblematicEventsUseCase!
     
-    var radarStatus = BehaviorSubject<RadarStatus>(value: .active)
+    var radarStatus = BehaviorSubject<RadarStatus>(value: .disabled)
     var isErrorTracingDP3T = BehaviorSubject<Bool>(value: false)
     var checkState = BehaviorSubject<Bool>(value: false)
     var timeExposedDismissed = BehaviorSubject<Bool>(value: false)
@@ -51,6 +51,7 @@ class HomeViewModel {
         radarStatusUseCase.changeTracingStatus(active: active).subscribe(
             onNext: { [weak self] status in
                 self?.isErrorTracingDP3T.onNext(false)
+                self?.radarStatus.onNext(.inactive)
             }, onError: {  [weak self] error in
                 self?.error.onNext(error)
                 self?.radarStatus.onNext(.inactive)
@@ -145,11 +146,14 @@ class HomeViewModel {
             checkState.onNext(false)
         } else {
             checkState.onNext(true)
-            onBoardingCompletedUseCase.setOnboarding(completed: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                 self?.checkState.onNext(false)
             }
         }
+    }
+    
+    func isOnBoardingCompleted() -> Bool {
+        onBoardingCompletedUseCase.isOnBoardingCompleted()
     }
     
     func checkShowBackToHealthyDialog() {

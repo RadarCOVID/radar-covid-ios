@@ -21,7 +21,8 @@ class RootViewController: UIViewController {
     var localesUseCase: LocalesUseCase!
     var localizationUseCase: LocalizationUseCase!
     var onBoardingCompletedUseCase: OnboardingCompletedUseCase!
-    
+    var isNewRepository: IsNewRepository = IsNewRepositoryImpl()
+        
     var venueRecordUseCase: VenueRecordUseCase!
     
     var selectTabType: UIViewController.Type?
