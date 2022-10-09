@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.5.0 (2022-10-04)
+
+### Features
+* Update to disable EN functionality
+
 ## 1.4.0 (2021-06-14)
 
 ### Bug Fixes
